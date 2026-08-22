@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/features/platform/design-system";
 import { EnterpriseKnowledgeService } from "@/features/platform/knowledge/services/knowledge.service";
+import { recordKnowledgeQualityFeedbackAction } from "@/features/platform/knowledge/actions";
 
 const guides = [
   "Admin Guide",
@@ -21,10 +22,17 @@ const faq = [
 export default async function Page({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string; module?: string }>;
 }) {
-  const q = (await searchParams).q?.trim() ?? "",
-    answer = q ? await new EnterpriseKnowledgeService().ask(q) : null;
+  const parameters = await searchParams,
+    q = parameters.q?.trim() ?? "",
+    moduleName = parameters.module?.replace(/[^a-z0-9-]/gi, "").slice(0, 60),
+    answer = q
+      ? await new EnterpriseKnowledgeService().ask(q, {
+          module: moduleName,
+          productVersion: process.env.APP_VERSION ?? "2.0",
+        })
+      : null;
   return (
     <main className="mx-auto max-w-5xl px-4 py-8">
       <Link href="/vayon/knowledge" className="text-sm text-vds-primary">
@@ -47,6 +55,7 @@ export default async function Page({
           placeholder="Ask a product or setup question"
           className="vds-focus h-11 flex-1 rounded-xl border border-vds-border bg-vds-elevated px-3"
         />
+        {moduleName && <input type="hidden" name="module" value={moduleName} />}
         <Button type="submit">Search</Button>
       </form>
       {answer && (
@@ -56,7 +65,7 @@ export default async function Page({
         >
           <p className="text-sm leading-6">{answer.answer}</p>
           <p className="mt-3 text-xs text-vds-muted">
-            Recommendation only · {answer.latencyMs} ms
+            Knowledge-first answer · Recommendation only · {answer.latencyMs} ms
           </p>
           <h2 className="mt-5 font-semibold">Supporting documents</h2>
           <ul className="mt-2 space-y-2">
@@ -66,6 +75,68 @@ export default async function Page({
               </li>
             ))}
           </ul>
+          {answer.related.length > 0 && (
+            <div className="mt-5">
+              <h2 className="font-semibold">Related guides</h2>
+              <ul className="mt-2 space-y-2 text-sm">
+                {answer.related.map((item) => (
+                  <li key={item.id}>{item.title}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {answer.video && (
+            <Link
+              className="mt-5 inline-block text-sm font-semibold text-vds-primary"
+              href={
+                answer.video.videoUrl ??
+                `/vayon/knowledge?q=${encodeURIComponent(answer.video.title)}`
+              }
+            >
+              Watch: {answer.video.title}
+            </Link>
+          )}
+          <p className="mt-5 text-sm">
+            <strong>Suggested next step:</strong> {answer.suggestedNextStep}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {answer.quickActions.map((action) => (
+              <Link
+                className="vds-focus rounded-xl border border-vds-border px-3 py-2 text-sm font-semibold"
+                href={action.href}
+                key={action.href}
+              >
+                {action.label}
+              </Link>
+            ))}
+          </div>
+          {answer.citations[0] && (
+            <form
+              action={recordKnowledgeQualityFeedbackAction}
+              className="mt-6 flex flex-wrap gap-2"
+            >
+              <input
+                type="hidden"
+                name="sourceId"
+                value={answer.citations[0].id}
+              />
+              {[
+                ["helpful", "Helpful"],
+                ["not_helpful", "Not Helpful"],
+                ["needs_update", "Needs Update"],
+                ["report_problem", "Report Problem"],
+              ].map(([rating, label]) => (
+                <Button
+                  variant="outline"
+                  name="rating"
+                  value={rating}
+                  key={rating}
+                >
+                  {label}
+                </Button>
+              ))}
+            </form>
+          )}
           {answer.escalate && (
             <Link
               className="mt-5 inline-block text-sm text-vds-primary"

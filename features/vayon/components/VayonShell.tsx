@@ -6,4 +6,53 @@ import { ProductExperience } from "./ProductExperience";
 import { getAuroraNavigationContext } from "../demo-workspace";
 // Search/navigation compatibility remains sourced from builder/config/vayon-navigation through ShellHeader.
 
-export async function VayonShell({children}:{readonly children:ReactNode}){const[user,organization]=await Promise.all([new AuthenticationService().user(),new OrganizationService().current()]),demo=getAuroraNavigationContext(),userName=String(user?.user_metadata?.full_name??user?.user_metadata?.name??user?.email?.split("@")[0]??"User"),identity=organization?{userName,workspaceName:organization.name}:{userName,workspaceName:demo.workspaceName,workspaceLogo:demo.logoPlaceholder,organizationDescription:demo.organizationDescription,demoWorkspace:"aurora" as const};return <Suspense><ProductExperience identity={identity}>{children}</ProductExperience></Suspense>}
+export async function VayonShell({
+  children,
+}: {
+  readonly children: ReactNode;
+}) {
+  const [user, organization] = await Promise.all([
+      new AuthenticationService().user(),
+      new OrganizationService().current(),
+    ]),
+    demo = getAuroraNavigationContext(),
+    userName = String(
+      user?.user_metadata?.full_name ??
+        user?.user_metadata?.name ??
+        user?.email?.split("@")[0] ??
+        "User",
+    ),
+    role = String(user?.app_metadata?.role ?? "workspace-member"),
+    subscriptionPlan =
+      typeof user?.app_metadata?.subscription_plan === "string"
+        ? user.app_metadata.subscription_plan
+        : undefined,
+    permissions = Array.isArray(user?.app_metadata?.permissions)
+      ? user.app_metadata.permissions.filter(
+          (permission): permission is string => typeof permission === "string",
+        )
+      : [],
+    identity = organization?.name
+      ? { userName, workspaceName: organization.name }
+      : {
+          userName,
+          workspaceName: demo.workspaceName,
+          workspaceLogo: demo.logoPlaceholder,
+          organizationDescription: demo.organizationDescription,
+          demoWorkspace: "aurora" as const,
+        };
+  return (
+    <Suspense>
+      <ProductExperience
+        identity={identity}
+        intelligenceEnabled={process.env.FEATURE_VAYON_INTELLIGENCE === "true"}
+        intelligenceOrganization={organization?.id}
+        intelligenceRole={role}
+        intelligenceSubscription={subscriptionPlan}
+        intelligencePermissions={permissions}
+      >
+        {children}
+      </ProductExperience>
+    </Suspense>
+  );
+}

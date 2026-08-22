@@ -54,3 +54,8 @@ export interface EventSubscriber {
   readonly eventTypes: readonly DomainEventType[];
   handle(event: DomainEvent): void | Promise<void>;
 }
+export interface ProductTelemetryPublisher {
+  recordBatch(
+    events: readonly import("@/features/platform/product-intelligence/contracts").ProductEvent[],
+  ): Promise<void>;
+}

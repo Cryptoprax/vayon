@@ -29,3 +29,28 @@ CSP is report-only for the first deployment. Review violations, remove unnecessa
 ## Backups and recovery
 
 Enable Supabase production backups and point-in-time recovery according to the service tier. Test restoration into an isolated project. Recovery validation must cover Auth configuration, Storage metadata and objects, database migrations, and application secrets.
+
+## Deployment and migration process
+
+1. Promote only a commit that passed TypeScript, ESLint, regression, audit and production-build gates.
+2. Run the Version 1.0 migration audit and compare the expected migration with the deployed migration history.
+3. Apply migrations to staging in timestamp order. Verify RLS, RPC execution permissions, indexes, storage buckets and rollback implications.
+4. Run authenticated smoke tests and provider health checks in staging.
+5. Deploy the same immutable build to production, apply approved migrations and record build ID, commit SHA, operator and UTC time.
+6. Do not roll back a database migration by rolling back the web deployment. Use a separately reviewed forward repair unless a tested reversible migration exists.
+
+## Application rollback
+
+Select the last certified immutable deployment, verify its environment contract, and promote it through the hosting provider. Confirm readiness, authentication, tenant isolation and mission-critical forms. Record the reason, correlation IDs and affected interval.
+
+## Database restore and disaster recovery
+
+Follow `BACKUP_AND_RECOVERY_RUNBOOK.md`. Restore into isolation, verify integrity and authorization, and require business-owner approval before any production cutover. Never test a restore by overwriting production.
+
+## Key rotation
+
+1. Identify the credential reference and dependent provider without logging the secret.
+2. Create the replacement in the provider and approved secret manager.
+3. deploy, validate health and signed callbacks, then revoke the old key.
+4. Rotate webhook secrets with a controlled overlap where supported.
+5. Record actor, provider, reference, time and outcome in the audit system; never record the credential value.

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { publicSiteUrl } from "@/lib/public-url";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
@@ -6,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/vayon/", "/platform/", "/api/"],
     },
-    sitemap: "https://vayon.app/sitemap.xml",
+    sitemap: `${publicSiteUrl}/sitemap.xml`,
+    host: publicSiteUrl,
   };
 }

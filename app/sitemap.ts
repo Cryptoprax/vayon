@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { DocumentationService } from "@/features/platform/knowledge/services/documentation.service";
 import { MarketingAssetsService } from "@/features/marketing/services/marketing-assets.service";
+import { publicSiteUrl } from "@/lib/public-url";
 const routes = [
   "",
   "/product",
@@ -27,6 +28,9 @@ const routes = [
   "/contact",
   "/privacy",
   "/terms",
+  "/cookie-policy",
+  "/refund-policy",
+  "/support-policy",
   "/trust-center",
   "/demo",
   "/compare",
@@ -46,7 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...assets.stories.map((x) => `/customers/${x.slug}`),
     ];
   return [...routes, ...documentation, ...marketing].map((path) => ({
-    url: `https://vayon.app${path}`,
+    url: `${publicSiteUrl}${path}`,
     changeFrequency: path === "/blog" ? "weekly" : "monthly",
     priority: path === "" ? 1 : path === "/product" ? 0.9 : 0.7,
   }));

@@ -201,6 +201,9 @@ function MarketingFooter() {
       [
         ["Privacy", "/privacy"],
         ["Terms", "/terms"],
+        ["Cookies", "/cookie-policy"],
+        ["Refunds", "/refund-policy"],
+        ["Support", "/support-policy"],
       ],
     ],
     [

@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import { VdsThemeProvider } from "@/features/platform/design-system/theme/ThemeProvider";
 import { ThemeBootstrap } from "@/features/platform/design-system/theme/ThemeBootstrap";
+import { publicSiteUrl } from "@/lib/public-url";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +21,7 @@ type LayoutProps = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://vayon.app"),
+  metadataBase: new URL(publicSiteUrl),
   title: { default: "Vayon OS", template: "%s | Vayon" },
   description: "The world's most advanced AI operating system for real estate. Unite AI employees, CRM, WhatsApp, voice, property intelligence, automation, and enterprise governance.",
   alternates: { canonical: "/" },
