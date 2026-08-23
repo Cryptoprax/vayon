@@ -16,7 +16,7 @@ export class CreativeGenerationService {
     const access = await creativeStudioAccess();
     if (!access) throw new Error("Marketing Studio subscription access is required.");
     const { data: projects, error } = await access.client
-      .from("inventory_projects")
+      .from("property_projects")
       .select("id,name")
       .eq("organization_id", access.organizationId)
       .eq("workspace_id", access.workspaceId);
@@ -107,12 +107,12 @@ export class CreativeGenerationWorker {
       const [projectResult, unitsResult, brandResult, documentsResult] =
         await Promise.all([
           client
-            .from("inventory_projects")
+            .from("property_projects")
             .select("name,developer,city,state,description,cover_image,gallery")
             .eq("id", String(job.project_id))
             .single(),
           client
-            .from("inventory_units")
+            .from("property_units")
             .select("bhk_type,area,price,offer_price,currency,status")
             .eq("project_id", String(job.project_id))
             .eq("status", "available")
@@ -126,7 +126,7 @@ export class CreativeGenerationWorker {
             .limit(1)
             .maybeSingle(),
           client
-            .from("inventory_documents")
+            .from("property_documents")
             .select("title,kind,storage_path")
             .eq("project_id", String(job.project_id))
             .limit(30),

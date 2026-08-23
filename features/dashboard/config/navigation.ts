@@ -24,10 +24,12 @@ export interface NavigationItem {
   badge?: string;
   permission: string;
   enabled: boolean;
+  founderOnly?: boolean;
   children: NavigationItem[];
 }
 
 export const missionControlNavigation: NavigationItem[] = [
+  { id: "founder", title: "Founder Portal", iconName: "platform", route: "/platform/founder", badge: "Live", permission: "platform.founder.view", enabled: true, founderOnly: true, children: [] },
   { id: "platform", title: "Platform", iconName: "platform", route: "/platform", permission: "platform.overview.view", enabled: true, children: [] },
   { id: "applications", title: "Applications", iconName: "applications", route: "/platform/applications", permission: "platform.applications.view", enabled: true, children: [] },
   { id: "identity", title: "Identity", iconName: "identity", route: "/platform/identity", badge: "Core", permission: "platform.identity.view", enabled: true, children: [] },

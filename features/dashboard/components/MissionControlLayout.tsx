@@ -11,10 +11,12 @@ import { Topbar } from "./Topbar";
 
 export interface MissionControlLayoutProps {
   children: ReactNode;
+  showFounder?: boolean;
 }
 
 export function MissionControlLayout({
   children,
+  showFounder = false,
 }: MissionControlLayoutProps) {
   const pathname = usePathname();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -48,6 +50,7 @@ export function MissionControlLayout({
         activeRoute={pathname}
         onCollapse={() => setSidebarCollapsed((current) => !current)}
         onMobileClose={() => setMobileNavigationOpen(false)}
+        showFounder={showFounder}
       />
 
       <div className="relative flex min-w-0 flex-1 flex-col">

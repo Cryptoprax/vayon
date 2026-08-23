@@ -40,10 +40,10 @@ test("creative assistant understands requested real estate intents", () => {
 test("project context is loaded automatically from authoritative tenant data", () => {
   const worker = read("features/vayon/creative-studio/generation.service.ts");
   for (const value of [
-    "inventory_projects",
-    "inventory_units",
+    "property_projects",
+    "property_units",
     "creative_brand_kits",
-    "inventory_documents",
+    "property_documents",
     "developer",
     "city",
     "state",

@@ -27,12 +27,13 @@ export default async function Page({
   const parameters = await searchParams,
     q = parameters.q?.trim() ?? "",
     moduleName = parameters.module?.replace(/[^a-z0-9-]/gi, "").slice(0, 60),
-    answer = q
-      ? await new EnterpriseKnowledgeService().ask(q, {
+    answerResult = q
+      ? await new EnterpriseKnowledgeService().loadAnswer(q, {
           module: moduleName,
           productVersion: process.env.APP_VERSION ?? "2.0",
         })
-      : null;
+      : null,
+    answer = answerResult?.status === "ready" ? answerResult.answer : null;
   return (
     <main className="mx-auto max-w-5xl px-4 py-8">
       <Link href="/vayon/knowledge" className="text-sm text-vds-primary">
@@ -58,6 +59,7 @@ export default async function Page({
         {moduleName && <input type="hidden" name="module" value={moduleName} />}
         <Button type="submit">Search</Button>
       </form>
+      {answerResult?.status === "unavailable" && <section role="alert" className="mt-6 rounded-2xl border border-vds-warning bg-vds-surface p-5"><h2 className="font-semibold">{answerResult.failure.message}</h2><p className="mt-2 text-sm text-vds-muted">Product guides remain available below. Retry later or contact Support with reference {answerResult.correlationId}.</p><div className="mt-4 flex gap-3"><Link className="text-sm font-semibold text-vds-primary" href="/docs">Documentation</Link><Link className="text-sm font-semibold text-vds-primary" href="/contact">Support</Link></div></section>}
       {answer && (
         <section
           aria-live="polite"

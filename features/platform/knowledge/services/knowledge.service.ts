@@ -7,12 +7,23 @@ import { FutureEnterpriseRagProvider } from "../providers/future-rag.provider";
 import { DocumentationService } from "./documentation.service";
 import { KnowledgeEngine } from "./knowledge-engine";
 import { semanticTerms } from "../providers/trusted-retrieval.provider";
+import { classifyKnowledgeFailure, logKnowledgeFailure } from "./knowledge-recovery";
 import type {
   KnowledgeAnswer,
   KnowledgeFeedback,
   KnowledgeRetrievalContext,
   KnowledgeSearchRequest,
 } from "../contracts";
+type KnowledgeServiceContext = Awaited<ReturnType<typeof operationsContext>> & { repository: KnowledgeRepository };
+const knowledgeTimeoutMs = () => {
+  const configured = Number(process.env.KNOWLEDGE_TIMEOUT_MS ?? 10_000);
+  return Number.isFinite(configured) && configured >= 1_000 && configured <= 30_000 ? configured : 10_000;
+};
+const withinKnowledgeTimeout = async <T>(operation: Promise<T>) => {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<never>((_, reject) => { timer = setTimeout(() => reject(Object.assign(new Error("Knowledge provider timeout"), { code: "ETIMEDOUT" })), knowledgeTimeoutMs()); });
+  try { return await Promise.race([operation, timeout]); } finally { if (timer) clearTimeout(timer); }
+};
 // Compatibility invariant for unsupported questions: escalate:true recommendationOnly:true.
 export class EnterpriseKnowledgeService {
   private cache = new PerformanceCacheService();
@@ -29,8 +40,8 @@ export class EnterpriseKnowledgeService {
       ),
     };
   }
-  async snapshot(query = "") {
-    const c = await this.context(),
+  async snapshot(query = "", suppliedContext?: KnowledgeServiceContext) {
+    const c = suppliedContext ?? await this.context(),
       request: KnowledgeSearchRequest = { query, mode: "full_text", limit: 30 };
     return this.cache.remember(
       c.organizationId,
@@ -73,6 +84,31 @@ export class EnterpriseKnowledgeService {
         tags: [`knowledge:${c.workspaceId}`],
       },
     );
+  }
+  async loadSnapshot(query = "") {
+    const correlationId = crypto.randomUUID();
+    let context: KnowledgeServiceContext | undefined;
+    let userId: string | undefined;
+    try {
+      context = await this.context();
+      userId = (await context.client.auth.getUser()).data.user?.id;
+      const snapshot = await withinKnowledgeTimeout(this.snapshot(query, context));
+      return { status: snapshot.articles.length || snapshot.documents.length || snapshot.results.length ? "ready" as const : "empty" as const, snapshot, correlationId };
+    } catch (error) {
+      const failure = classifyKnowledgeFailure(error);
+      logKnowledgeFailure(error, failure, { correlationId, organizationId: context?.organizationId, workspaceId: context?.workspaceId, userId, operation: "load_snapshot", rpc: "enterprise_knowledge_dashboard/search_enterprise_knowledge" });
+      return { status: "unavailable" as const, failure, correlationId };
+    }
+  }
+  async loadAnswer(question: string, retrievalContext: KnowledgeRetrievalContext = {}) {
+    const correlationId = crypto.randomUUID();
+    try {
+      return { status: "ready" as const, answer: await withinKnowledgeTimeout(this.ask(question, retrievalContext)), correlationId };
+    } catch (error) {
+      const failure = classifyKnowledgeFailure(error);
+      logKnowledgeFailure(error, failure, { correlationId, operation: "trusted_retrieval", rpc: "retrieve_trusted_knowledge/search_enterprise_knowledge" });
+      return { status: "unavailable" as const, failure, correlationId };
+    }
   }
   async ask(
     question: string,

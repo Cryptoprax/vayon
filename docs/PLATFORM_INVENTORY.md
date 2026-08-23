@@ -1,0 +1,1337 @@
+# RC1 platform inventory
+
+Generated 2026-08-23T18:10:03.641Z from source files and the sanitized read-only production catalog. Build-generated dynamic paths are reported separately by the production build.
+
+## Summary
+
+| Surface | Count |
+| --- | ---: |
+| App Router pages | 286 |
+| Layouts | 11 |
+| API route handlers | 24 |
+| Route error boundaries | 43 |
+| Components | 315 |
+| Providers | 34 |
+| Repositories | 82 |
+| Services | 206 |
+| AI-related source files | 135 |
+| Production public tables | 77 |
+| Production functions | 99 |
+| Production triggers | 8 |
+| Production policies | 80 |
+| Production buckets | 1 |
+
+## Pages (286)
+
+- `app/(marketing)/about/page.tsx`
+- `app/(marketing)/ai-workforce/page.tsx`
+- `app/(marketing)/blog/[slug]/page.tsx`
+- `app/(marketing)/blog/page.tsx`
+- `app/(marketing)/calendar/page.tsx`
+- `app/(marketing)/careers/page.tsx`
+- `app/(marketing)/communications/page.tsx`
+- `app/(marketing)/compare/[slug]/page.tsx`
+- `app/(marketing)/compare/page.tsx`
+- `app/(marketing)/contact/page.tsx`
+- `app/(marketing)/cookie-policy/page.tsx`
+- `app/(marketing)/crm/page.tsx`
+- `app/(marketing)/customers/[slug]/page.tsx`
+- `app/(marketing)/customers/page.tsx`
+- `app/(marketing)/deals/page.tsx`
+- `app/(marketing)/developers/page.tsx`
+- `app/(marketing)/docs/[slug]/page.tsx`
+- `app/(marketing)/docs/page.tsx`
+- `app/(marketing)/enterprise/page.tsx`
+- `app/(marketing)/features/page.tsx`
+- `app/(marketing)/industries/[slug]/page.tsx`
+- `app/(marketing)/industries/page.tsx`
+- `app/(marketing)/integrations/page.tsx`
+- `app/(marketing)/investors/page.tsx`
+- `app/(marketing)/media-kit/page.tsx`
+- `app/(marketing)/pricing/page.tsx`
+- `app/(marketing)/privacy/page.tsx`
+- `app/(marketing)/product/page.tsx`
+- `app/(marketing)/properties/page.tsx`
+- `app/(marketing)/refund-policy/page.tsx`
+- `app/(marketing)/resources/page.tsx`
+- `app/(marketing)/roi-calculator/page.tsx`
+- `app/(marketing)/sales-assets/[slug]/page.tsx`
+- `app/(marketing)/sales-assets/page.tsx`
+- `app/(marketing)/security/page.tsx`
+- `app/(marketing)/solutions/page.tsx`
+- `app/(marketing)/support-policy/page.tsx`
+- `app/(marketing)/terms/page.tsx`
+- `app/(marketing)/trust-center/page.tsx`
+- `app/(marketing)/workflows/page.tsx`
+- `app/accept-invitation/page.tsx`
+- `app/demo/page.tsx`
+- `app/forgot-password/page.tsx`
+- `app/login/page.tsx`
+- `app/onboarding/page.tsx`
+- `app/page.tsx`
+- `app/platform/activity/page.tsx`
+- `app/platform/applications/page.tsx`
+- `app/platform/audit/page.tsx`
+- `app/platform/builder/applications/page.tsx`
+- `app/platform/builder/branding/page.tsx`
+- `app/platform/builder/features/page.tsx`
+- `app/platform/builder/modules/page.tsx`
+- `app/platform/builder/navigation/page.tsx`
+- `app/platform/builder/page.tsx`
+- `app/platform/builder/settings/page.tsx`
+- `app/platform/command-center/page.tsx`
+- `app/platform/country-management/page.tsx`
+- `app/platform/customer-success/page.tsx`
+- `app/platform/customers/[organizationId]/page.tsx`
+- `app/platform/customers/page.tsx`
+- `app/platform/deployment/page.tsx`
+- `app/platform/feature-flags/page.tsx`
+- `app/platform/identity/page.tsx`
+- `app/platform/integrations/health/page.tsx`
+- `app/platform/integrations/logs/page.tsx`
+- `app/platform/integrations/page.tsx`
+- `app/platform/integrations/providers/page.tsx`
+- `app/platform/integrations/secrets/page.tsx`
+- `app/platform/integrations/webhooks/page.tsx`
+- `app/platform/launch-readiness/page.tsx`
+- `app/platform/notifications/page.tsx`
+- `app/platform/organizations/page.tsx`
+- `app/platform/page.tsx`
+- `app/platform/performance/page.tsx`
+- `app/platform/permissions/page.tsx`
+- `app/platform/platform-health/page.tsx`
+- `app/platform/region-management/page.tsx`
+- `app/platform/releases/page.tsx`
+- `app/platform/roles/page.tsx`
+- `app/platform/search/page.tsx`
+- `app/platform/security-review/page.tsx`
+- `app/platform/settings/page.tsx`
+- `app/platform/support/page.tsx`
+- `app/platform/system-analytics/page.tsx`
+- `app/platform/themes/page.tsx`
+- `app/platform/users/page.tsx`
+- `app/platform/workspaces/page.tsx`
+- `app/reset-password/page.tsx`
+- `app/signup/page.tsx`
+- `app/vayon/admin/audit/page.tsx`
+- `app/vayon/admin/departments/page.tsx`
+- `app/vayon/admin/organizations/page.tsx`
+- `app/vayon/admin/page.tsx`
+- `app/vayon/admin/permissions/page.tsx`
+- `app/vayon/admin/roles/page.tsx`
+- `app/vayon/admin/teams/page.tsx`
+- `app/vayon/admin/users/page.tsx`
+- `app/vayon/admin/workspaces/page.tsx`
+- `app/vayon/ai/collaboration/page.tsx`
+- `app/vayon/ai/employees/[employeeId]/page.tsx`
+- `app/vayon/ai/employees/page.tsx`
+- `app/vayon/ai/history/page.tsx`
+- `app/vayon/ai/knowledge/page.tsx`
+- `app/vayon/ai/page.tsx`
+- `app/vayon/ai/playground/page.tsx`
+- `app/vayon/ai/tasks/page.tsx`
+- `app/vayon/ai/workforce/[employeeId]/page.tsx`
+- `app/vayon/ai/workforce/page.tsx`
+- `app/vayon/analytics/communications/page.tsx`
+- `app/vayon/analytics/conversion/page.tsx`
+- `app/vayon/analytics/crm/page.tsx`
+- `app/vayon/analytics/deals/page.tsx`
+- `app/vayon/analytics/executive/page.tsx`
+- `app/vayon/analytics/page.tsx`
+- `app/vayon/analytics/properties/page.tsx`
+- `app/vayon/analytics/sales/page.tsx`
+- `app/vayon/analytics/workforce/page.tsx`
+- `app/vayon/approvals/[approvalId]/page.tsx`
+- `app/vayon/approvals/page.tsx`
+- `app/vayon/brain/page.tsx`
+- `app/vayon/calendar/agenda/page.tsx`
+- `app/vayon/calendar/day/page.tsx`
+- `app/vayon/calendar/google/calendars/page.tsx`
+- `app/vayon/calendar/google/events/page.tsx`
+- `app/vayon/calendar/google/free-busy/page.tsx`
+- `app/vayon/calendar/google/page.tsx`
+- `app/vayon/calendar/google/settings/page.tsx`
+- `app/vayon/calendar/meetings/page.tsx`
+- `app/vayon/calendar/month/page.tsx`
+- `app/vayon/calendar/outlook/page.tsx`
+- `app/vayon/calendar/page.tsx`
+- `app/vayon/calendar/reminders/page.tsx`
+- `app/vayon/calendar/site-visits/page.tsx`
+- `app/vayon/calendar/tasks/page.tsx`
+- `app/vayon/calendar/week/page.tsx`
+- `app/vayon/cognitive/page.tsx`
+- `app/vayon/communications/campaigns/page.tsx`
+- `app/vayon/communications/connectors/page.tsx`
+- `app/vayon/communications/conversations/[conversationId]/page.tsx`
+- `app/vayon/communications/conversations/page.tsx`
+- `app/vayon/communications/inbox/page.tsx`
+- `app/vayon/communications/notifications/page.tsx`
+- `app/vayon/communications/outlook/page.tsx`
+- `app/vayon/communications/page.tsx`
+- `app/vayon/communications/reports/page.tsx`
+- `app/vayon/communications/teams/page.tsx`
+- `app/vayon/communications/templates/page.tsx`
+- `app/vayon/contacts/google/page.tsx`
+- `app/vayon/contacts/microsoft/page.tsx`
+- `app/vayon/context/page.tsx`
+- `app/vayon/creative-studio/analytics/page.tsx`
+- `app/vayon/creative-studio/assets/page.tsx`
+- `app/vayon/creative-studio/assistant/page.tsx`
+- `app/vayon/creative-studio/brand-kits/page.tsx`
+- `app/vayon/creative-studio/calendar/page.tsx`
+- `app/vayon/creative-studio/editor/[assetId]/page.tsx`
+- `app/vayon/creative-studio/growth/page.tsx`
+- `app/vayon/creative-studio/packs/page.tsx`
+- `app/vayon/creative-studio/page.tsx`
+- `app/vayon/creative-studio/templates/page.tsx`
+- `app/vayon/creative-studio/wizard/page.tsx`
+- `app/vayon/crm/activities/page.tsx`
+- `app/vayon/crm/companies/page.tsx`
+- `app/vayon/crm/contacts/page.tsx`
+- `app/vayon/crm/customers/page.tsx`
+- `app/vayon/crm/leads/[leadId]/page.tsx`
+- `app/vayon/crm/leads/page.tsx`
+- `app/vayon/crm/page.tsx`
+- `app/vayon/dashboard/page.tsx`
+- `app/vayon/deals/[dealId]/edit/page.tsx`
+- `app/vayon/deals/[dealId]/page.tsx`
+- `app/vayon/deals/analytics/page.tsx`
+- `app/vayon/deals/checklists/page.tsx`
+- `app/vayon/deals/contracts/page.tsx`
+- `app/vayon/deals/new/page.tsx`
+- `app/vayon/deals/offers/page.tsx`
+- `app/vayon/deals/page.tsx`
+- `app/vayon/deals/pipeline/page.tsx`
+- `app/vayon/developers/page.tsx`
+- `app/vayon/documents/drive/page.tsx`
+- `app/vayon/documents/onedrive/page.tsx`
+- `app/vayon/email/[messageId]/page.tsx`
+- `app/vayon/email/archive/page.tsx`
+- `app/vayon/email/drafts/page.tsx`
+- `app/vayon/email/inbox/page.tsx`
+- `app/vayon/email/page.tsx`
+- `app/vayon/email/sent/page.tsx`
+- `app/vayon/email/spam/page.tsx`
+- `app/vayon/email/trash/page.tsx`
+- `app/vayon/events/catalog/page.tsx`
+- `app/vayon/events/history/page.tsx`
+- `app/vayon/events/page.tsx`
+- `app/vayon/executions/page.tsx`
+- `app/vayon/follow-ups/page.tsx`
+- `app/vayon/growth/page.tsx`
+- `app/vayon/home/page.tsx`
+- `app/vayon/intelligence/page.tsx`
+- `app/vayon/knowledge/help/page.tsx`
+- `app/vayon/knowledge/page.tsx`
+- `app/vayon/leads/[leadId]/edit/page.tsx`
+- `app/vayon/leads/[leadId]/page.tsx`
+- `app/vayon/leads/new/page.tsx`
+- `app/vayon/leads/page.tsx`
+- `app/vayon/meetings/page.tsx`
+- `app/vayon/messages/page.tsx`
+- `app/vayon/notifications/history/page.tsx`
+- `app/vayon/notifications/inbox/page.tsx`
+- `app/vayon/notifications/page.tsx`
+- `app/vayon/notifications/preferences/page.tsx`
+- `app/vayon/objects/page.tsx`
+- `app/vayon/operations/page.tsx`
+- `app/vayon/page.tsx`
+- `app/vayon/properties/[propertyId]/edit/page.tsx`
+- `app/vayon/properties/[propertyId]/page.tsx`
+- `app/vayon/properties/analytics/page.tsx`
+- `app/vayon/properties/availability/page.tsx`
+- `app/vayon/properties/documents/page.tsx`
+- `app/vayon/properties/grid/page.tsx`
+- `app/vayon/properties/inventory/page.tsx`
+- `app/vayon/properties/map/page.tsx`
+- `app/vayon/properties/media/page.tsx`
+- `app/vayon/properties/new/page.tsx`
+- `app/vayon/properties/page.tsx`
+- `app/vayon/properties/price-lists/page.tsx`
+- `app/vayon/properties/projects/[projectId]/page.tsx`
+- `app/vayon/properties/projects/page.tsx`
+- `app/vayon/property-matching/compare/page.tsx`
+- `app/vayon/property-matching/page.tsx`
+- `app/vayon/property-matching/reports/page.tsx`
+- `app/vayon/providers/[provider]/page.tsx`
+- `app/vayon/providers/page.tsx`
+- `app/vayon/runtime/page.tsx`
+- `app/vayon/settings/activity/page.tsx`
+- `app/vayon/settings/ai/openai/page.tsx`
+- `app/vayon/settings/appearance/page.tsx`
+- `app/vayon/settings/billing/page.tsx`
+- `app/vayon/settings/billing/provider-health/page.tsx`
+- `app/vayon/settings/configuration/page.tsx`
+- `app/vayon/settings/departments/page.tsx`
+- `app/vayon/settings/email/history/page.tsx`
+- `app/vayon/settings/email/page.tsx`
+- `app/vayon/settings/email/queue/page.tsx`
+- `app/vayon/settings/email/templates/page.tsx`
+- `app/vayon/settings/google/page.tsx`
+- `app/vayon/settings/integrations/google/page.tsx`
+- `app/vayon/settings/integrations/microsoft/page.tsx`
+- `app/vayon/settings/integrations/page.tsx`
+- `app/vayon/settings/invoices/[invoiceId]/page.tsx`
+- `app/vayon/settings/invoices/page.tsx`
+- `app/vayon/settings/members/page.tsx`
+- `app/vayon/settings/notifications/page.tsx`
+- `app/vayon/settings/organization/page.tsx`
+- `app/vayon/settings/page.tsx`
+- `app/vayon/settings/payment-methods/page.tsx`
+- `app/vayon/settings/permissions/page.tsx`
+- `app/vayon/settings/plans/page.tsx`
+- `app/vayon/settings/product-intelligence/page.tsx`
+- `app/vayon/settings/profile/page.tsx`
+- `app/vayon/settings/roles/page.tsx`
+- `app/vayon/settings/security/page.tsx`
+- `app/vayon/settings/subscription/page.tsx`
+- `app/vayon/settings/teams/page.tsx`
+- `app/vayon/settings/usage/page.tsx`
+- `app/vayon/settings/users/page.tsx`
+- `app/vayon/settings/workspace/page.tsx`
+- `app/vayon/site-visits/[visitId]/page.tsx`
+- `app/vayon/site-visits/calendar/page.tsx`
+- `app/vayon/site-visits/page.tsx`
+- `app/vayon/site-visits/reports/page.tsx`
+- `app/vayon/storage/page.tsx`
+- `app/vayon/success-center/page.tsx`
+- `app/vayon/system/page.tsx`
+- `app/vayon/tasks/page.tsx`
+- `app/vayon/team/page.tsx`
+- `app/vayon/timeline/page.tsx`
+- `app/vayon/whatsapp/conversations/page.tsx`
+- `app/vayon/whatsapp/inbox/page.tsx`
+- `app/vayon/whatsapp/page.tsx`
+- `app/vayon/whatsapp/settings/page.tsx`
+- `app/vayon/whatsapp/templates/page.tsx`
+- `app/vayon/workflows/[workflowId]/page.tsx`
+- `app/vayon/workflows/page.tsx`
+- `app/vayon/workflows/runtime/page.tsx`
+- `app/vayon/workforce/page.tsx`
+- `app/verify-email/page.tsx`
+
+## Layouts (11)
+
+- `app/(marketing)/layout.tsx`
+- `app/layout.tsx`
+- `app/platform/layout.tsx`
+- `app/vayon/admin/layout.tsx`
+- `app/vayon/analytics/layout.tsx`
+- `app/vayon/calendar/google/layout.tsx`
+- `app/vayon/calendar/layout.tsx`
+- `app/vayon/deals/layout.tsx`
+- `app/vayon/layout.tsx`
+- `app/vayon/properties/layout.tsx`
+- `app/vayon/whatsapp/layout.tsx`
+
+## API routes (24)
+
+- `app/api/ai/workforce/chat/route.ts`
+- `app/api/ai/workforce/collaborate/route.ts`
+- `app/api/analytics/events/route.ts`
+- `app/api/documentation/events/route.ts`
+- `app/api/email/process/route.ts`
+- `app/api/gmail/attachments/[messageId]/[attachmentId]/route.ts`
+- `app/api/health/deployment/route.ts`
+- `app/api/health/live/route.ts`
+- `app/api/health/ready/route.ts`
+- `app/api/health/route.ts`
+- `app/api/launch-readiness/report/route.ts`
+- `app/api/launch-readiness/run/route.ts`
+- `app/api/marketing/events/route.ts`
+- `app/api/microsoft/onedrive/[fileId]/route.ts`
+- `app/api/product-intelligence/events/route.ts`
+- `app/api/security/report/route.ts`
+- `app/api/security/route.ts`
+- `app/api/version/route.ts`
+- `app/api/webhooks/razorpay/route.ts`
+- `app/api/webhooks/stripe/route.ts`
+- `app/api/webhooks/whatsapp/route.ts`
+- `app/auth/callback/route.ts`
+- `app/integrations/google/callback/route.ts`
+- `app/integrations/microsoft/callback/route.ts`
+
+## Webhook routes (3)
+
+- `app/api/webhooks/razorpay/route.ts`
+- `app/api/webhooks/stripe/route.ts`
+- `app/api/webhooks/whatsapp/route.ts`
+
+## Error boundaries (43)
+
+- `app/onboarding/error.tsx`
+- `app/platform/customers/error.tsx`
+- `app/platform/feature-flags/error.tsx`
+- `app/platform/integrations/error.tsx`
+- `app/platform/integrations/health/error.tsx`
+- `app/platform/integrations/logs/error.tsx`
+- `app/platform/integrations/providers/error.tsx`
+- `app/platform/integrations/secrets/error.tsx`
+- `app/platform/integrations/webhooks/error.tsx`
+- `app/platform/platform-health/error.tsx`
+- `app/platform/releases/error.tsx`
+- `app/platform/support/error.tsx`
+- `app/vayon/admin/error.tsx`
+- `app/vayon/ai/employees/error.tsx`
+- `app/vayon/ai/error.tsx`
+- `app/vayon/ai/knowledge/error.tsx`
+- `app/vayon/ai/tasks/error.tsx`
+- `app/vayon/analytics/error.tsx`
+- `app/vayon/calendar/error.tsx`
+- `app/vayon/calendar/google/error.tsx`
+- `app/vayon/communications/error.tsx`
+- `app/vayon/creative-studio/error.tsx`
+- `app/vayon/deals/error.tsx`
+- `app/vayon/error.tsx`
+- `app/vayon/events/error.tsx`
+- `app/vayon/follow-ups/error.tsx`
+- `app/vayon/knowledge/error.tsx`
+- `app/vayon/leads/error.tsx`
+- `app/vayon/meetings/error.tsx`
+- `app/vayon/messages/error.tsx`
+- `app/vayon/notifications/error.tsx`
+- `app/vayon/operations/error.tsx`
+- `app/vayon/properties/error.tsx`
+- `app/vayon/providers/error.tsx`
+- `app/vayon/settings/ai/openai/error.tsx`
+- `app/vayon/settings/billing/error.tsx`
+- `app/vayon/settings/invoices/error.tsx`
+- `app/vayon/settings/subscription/error.tsx`
+- `app/vayon/settings/usage/error.tsx`
+- `app/vayon/site-visits/error.tsx`
+- `app/vayon/system/error.tsx`
+- `app/vayon/tasks/error.tsx`
+- `app/vayon/whatsapp/error.tsx`
+
+## Providers (34)
+
+- `features/marketing/providers/supabase-marketing.provider.ts`
+- `features/notifications/providers/enterprise-notification.provider.ts`
+- `features/platform/ai-runtime/providers/provider-registry.ts`
+- `features/platform/billing/providers/index.ts`
+- `features/platform/conversion-analytics/providers/provider-neutral.ts`
+- `features/platform/deployment/providers/platform-health.provider.ts`
+- `features/platform/email/providers/http.providers.ts`
+- `features/platform/email/providers/index.ts`
+- `features/platform/email/providers/smtp.provider.ts`
+- `features/platform/enterprise-security/providers/supabase-auth.provider.ts`
+- `features/platform/gmail/providers/gmail.provider.ts`
+- `features/platform/google-calendar/providers/google-calendar.provider.ts`
+- `features/platform/intelligence/providers/contracts.ts`
+- `features/platform/knowledge/providers/documentation-observability.provider.ts`
+- `features/platform/knowledge/providers/future-rag.provider.ts`
+- `features/platform/knowledge/providers/trusted-retrieval.provider.ts`
+- `features/platform/launch-readiness/providers/existing-platform-audit.provider.ts`
+- `features/platform/openai/providers/openai.provider.ts`
+- `features/platform/organization/providers/supabase-invitation.provider.ts`
+- `features/platform/performance/providers/cache.provider.ts`
+- `features/platform/security-review/providers/rate-limit.provider.ts`
+- `features/platform/whatsapp/providers/whatsapp-cloud.provider.ts`
+- `features/platform/workflows/providers/existing-platform.provider.ts`
+- `features/vayon/billing/providers/billing-provider.ts`
+- `features/vayon/billing/providers/razorpay.provider.ts`
+- `features/vayon/billing/providers/stripe.provider.ts`
+- `features/vayon/communications-workspace/providers/connector.provider.ts`
+- `features/vayon/demo-experience/providers/browser-demo-observability.provider.ts`
+- `features/vayon/operational-workforce/providers/employee.ts`
+- `features/vayon/operational-workforce/providers/provider.ts`
+- `features/vayon/property-intelligence/providers/import-provider.ts`
+- `features/vayon/property-intelligence/providers/importer-registry.ts`
+- `features/vayon/property-intelligence/providers/mock-import.provider.ts`
+- `features/vayon/universal-bar/providers/static-navigation.provider.ts`
+
+## Repositories (82)
+
+- `features/identity-workspace/repositories/identity-workspace.repository.ts`
+- `features/marketing/repositories/marketing-assets.repository.ts`
+- `features/marketing/repositories/marketing.repository.ts`
+- `features/notifications/repositories/notification.repository.ts`
+- `features/onboarding/repositories/onboarding.repository.ts`
+- `features/platform/ai-collaboration/repositories/supabase-collaboration.repository.ts`
+- `features/platform/billing/repositories/index.ts`
+- `features/platform/continuous-learning/repositories/continuous-learning.repository.ts`
+- `features/platform/conversion-analytics/repositories/conversion-analytics.repository.ts`
+- `features/platform/crm-ai/repositories/supabase-crm-ai.repository.ts`
+- `features/platform/customer-success/repositories/analytics.repository.ts`
+- `features/platform/customer-success/repositories/customer.repository.ts`
+- `features/platform/customer-success/repositories/feature-flag.repository.ts`
+- `features/platform/customer-success/repositories/health.repository.ts`
+- `features/platform/customer-success/repositories/release.repository.ts`
+- `features/platform/customer-success/repositories/support.repository.ts`
+- `features/platform/deployment/repositories/deployment.repository.ts`
+- `features/platform/email/repositories/email.repository.ts`
+- `features/platform/enterprise-security/repositories/security.repository.ts`
+- `features/platform/executive-ai/repositories/supabase-executive-ai.repository.ts`
+- `features/platform/gmail/repositories/google-gmail.repository.ts`
+- `features/platform/google-calendar/repositories/google-calendar.repository.ts`
+- `features/platform/integration-platform/repositories/in-memory.repository.ts`
+- `features/platform/integrations/google/repositories/google.repository.ts`
+- `features/platform/integrations/repositories/health.repository.ts`
+- `features/platform/integrations/repositories/integration.repository.ts`
+- `features/platform/integrations/repositories/provider.repository.ts`
+- `features/platform/integrations/repositories/secrets.repository.ts`
+- `features/platform/integrations/repositories/webhook.repository.ts`
+- `features/platform/knowledge/repositories/documentation.repository.ts`
+- `features/platform/knowledge/repositories/knowledge.repository.ts`
+- `features/platform/launch-readiness/repositories/launch-readiness.repository.ts`
+- `features/platform/live-providers/repositories/reference.repository.ts`
+- `features/platform/marketing-ai/repositories/supabase-marketing-ai.repository.ts`
+- `features/platform/notifications/repositories/in-memory.repository.ts`
+- `features/platform/openai/repositories/openai.repository.ts`
+- `features/platform/organization/repositories/organization.repository.ts`
+- `features/platform/performance/repositories/performance.repository.ts`
+- `features/platform/product-intelligence/repositories/product-intelligence.repository.ts`
+- `features/platform/sales-ai/repositories/supabase-sales-ai.repository.ts`
+- `features/platform/security-review/repositories/security-review.repository.ts`
+- `features/platform/whatsapp-ai/repositories/supabase-whatsapp-ai.repository.ts`
+- `features/platform/whatsapp/repositories/whatsapp-cloud.repository.ts`
+- `features/platform/workflows/repositories/supabase-workflow.repository.ts`
+- `features/vayon/admin-platform/repositories/aurora.repository.ts`
+- `features/vayon/admin-platform/repositories/supabase.repository.ts`
+- `features/vayon/ai-runtime/repositories/runtime.repository.ts`
+- `features/vayon/ai-workforce/repositories/ai.repository.ts`
+- `features/vayon/ai-workforce/repositories/approval.repository.ts`
+- `features/vayon/ai-workforce/repositories/knowledge.repository.ts`
+- `features/vayon/ai-workforce/repositories/recommendation.repository.ts`
+- `features/vayon/analytics-platform/repositories/aurora.repository.ts`
+- `features/vayon/analytics-platform/repositories/supabase.repository.ts`
+- `features/vayon/billing/repositories/billing.repository.ts`
+- `features/vayon/billing/repositories/commercial.repository.ts`
+- `features/vayon/billing/repositories/invoice.repository.ts`
+- `features/vayon/billing/repositories/subscription.repository.ts`
+- `features/vayon/billing/repositories/usage.repository.ts`
+- `features/vayon/calendar-platform/repositories/aurora.repository.ts`
+- `features/vayon/calendar-platform/repositories/supabase.repository.ts`
+- `features/vayon/communication/repositories/call.repository.ts`
+- `features/vayon/communication/repositories/communication.repository.ts`
+- `features/vayon/communication/repositories/follow-up.repository.ts`
+- `features/vayon/communications-workspace/repositories/aurora.repository.ts`
+- `features/vayon/communications-workspace/repositories/supabase.repository.ts`
+- `features/vayon/crm-engine/repositories/aurora-crm.repository.ts`
+- `features/vayon/crm-engine/repositories/supabase-crm.repository.ts`
+- `features/vayon/deal-room/repositories/aurora.repository.ts`
+- `features/vayon/deal-room/repositories/supabase.repository.ts`
+- `features/vayon/deal/repositories/deal.repository.ts`
+- `features/vayon/lead/repositories/lead.repository.ts`
+- `features/vayon/operational-workforce/repositories/aurora.repository.ts`
+- `features/vayon/operational-workforce/repositories/supabase.repository.ts`
+- `features/vayon/operational-workforce/repositories/workforce-data.ts`
+- `features/vayon/operations/repositories/activity.repository.ts`
+- `features/vayon/operations/repositories/meeting.repository.ts`
+- `features/vayon/operations/repositories/site-visit.repository.ts`
+- `features/vayon/operations/repositories/task.repository.ts`
+- `features/vayon/property-platform/repositories/aurora.repository.ts`
+- `features/vayon/property-platform/repositories/supabase.repository.ts`
+- `features/vayon/property/repositories/property.repository.ts`
+- `features/vayon/workflow-approval/repositories/in-memory.repository.ts`
+
+## Services (206)
+
+- `features/ai/services/.keep`
+- `features/analytics/services/.keep`
+- `features/auth/services/.keep`
+- `features/authentication/services/authentication.service.ts`
+- `features/crm/services/.keep`
+- `features/dashboard/services/.keep`
+- `features/demo/services/demo.service.ts`
+- `features/identity-workspace/services/identity-workspace.service.ts`
+- `features/location/services/location-data.service.ts`
+- `features/marketing/services/contact-pipeline.service.ts`
+- `features/marketing/services/marketing-assets.service.ts`
+- `features/marketing/services/marketing.service.ts`
+- `features/messaging/services/.keep`
+- `features/notifications/services/notification.service.ts`
+- `features/onboarding/services/csv-import.service.ts`
+- `features/onboarding/services/enterprise-onboarding.service.ts`
+- `features/onboarding/services/invitation.service.ts`
+- `features/onboarding/services/onboarding.service.ts`
+- `features/onboarding/services/organization.service.ts`
+- `features/onboarding/services/workspace.service.ts`
+- `features/organizations/services/.keep`
+- `features/permissions/services/.keep`
+- `features/platform/ai-collaboration/services/collaboration.service.ts`
+- `features/platform/ai-runtime/services/ai-runtime.ts`
+- `features/platform/billing/services/index.ts`
+- `features/platform/builder/application-registry/services/index.ts`
+- `features/platform/builder/branding-builder/services/index.ts`
+- `features/platform/builder/feature-registry/services/index.ts`
+- `features/platform/builder/menu-builder/services/index.ts`
+- `features/platform/builder/module-registry/services/index.ts`
+- `features/platform/builder/navigation-builder/services/index.ts`
+- `features/platform/builder/page-builder/services/index.ts`
+- `features/platform/builder/permissions-builder/services/index.ts`
+- `features/platform/builder/services/registry.service.ts`
+- `features/platform/builder/settings-builder/services/index.ts`
+- `features/platform/business-timeline/services/correlation.service.ts`
+- `features/platform/business-timeline/services/inspection.service.ts`
+- `features/platform/business-timeline/services/journey.service.ts`
+- `features/platform/business-timeline/services/observability.ts`
+- `features/platform/business-timeline/services/timeline.service.ts`
+- `features/platform/business-timeline/services/validation.service.ts`
+- `features/platform/context-engine/services/context-engine.service.ts`
+- `features/platform/continuous-learning/services/continuous-learning.service.ts`
+- `features/platform/conversion-analytics/services/conversion-analytics.service.ts`
+- `features/platform/core/activity/services/.keep`
+- `features/platform/core/audit/services/.keep`
+- `features/platform/core/command-center/services/.keep`
+- `features/platform/core/notifications/services/.keep`
+- `features/platform/core/search/services/.keep`
+- `features/platform/core/settings/services/.keep`
+- `features/platform/core/themes/services/.keep`
+- `features/platform/crm-ai/services/crm-ai.service.ts`
+- `features/platform/customer-success/services/analytics.service.ts`
+- `features/platform/customer-success/services/customer.service.ts`
+- `features/platform/customer-success/services/feature-flag.service.ts`
+- `features/platform/customer-success/services/health.service.ts`
+- `features/platform/customer-success/services/platform-context.ts`
+- `features/platform/customer-success/services/release.service.ts`
+- `features/platform/customer-success/services/support.service.ts`
+- `features/platform/deployment/services/deployment.service.ts`
+- `features/platform/email/services/email-publisher.service.ts`
+- `features/platform/email/services/email.service.ts`
+- `features/platform/enterprise-security/services/security.service.ts`
+- `features/platform/event-bus/services/event.factory.ts`
+- `features/platform/event-bus/services/in-memory-event-bus.ts`
+- `features/platform/executive-ai/services/executive-ai.service.ts`
+- `features/platform/gmail/services/gmail-context.service.ts`
+- `features/platform/gmail/services/gmail-integration.service.ts`
+- `features/platform/gmail/services/gmail-platform.service.ts`
+- `features/platform/google-calendar/services/google-calendar.service.ts`
+- `features/platform/identity/services/.keep`
+- `features/platform/integration-platform/services/integration-manager.ts`
+- `features/platform/integration-platform/services/platform.service.ts`
+- `features/platform/integration-platform/services/retry.service.ts`
+- `features/platform/integrations/google/services/calendar.service.ts`
+- `features/platform/integrations/google/services/contacts.service.ts`
+- `features/platform/integrations/google/services/drive.service.ts`
+- `features/platform/integrations/google/services/gmail.service.ts`
+- `features/platform/integrations/google/services/google-api.service.ts`
+- `features/platform/integrations/google/services/google-oauth.service.ts`
+- `features/platform/integrations/google/services/token-crypto.service.ts`
+- `features/platform/integrations/microsoft/services/graph-gateway.service.ts`
+- `features/platform/integrations/microsoft/services/microsoft-oauth.service.ts`
+- `features/platform/integrations/microsoft/services/onedrive.service.ts`
+- `features/platform/integrations/microsoft/services/outlook-calendar.service.ts`
+- `features/platform/integrations/microsoft/services/outlook.service.ts`
+- `features/platform/integrations/microsoft/services/people.service.ts`
+- `features/platform/integrations/microsoft/services/provider-status.ts`
+- `features/platform/integrations/microsoft/services/teams.service.ts`
+- `features/platform/integrations/services/health.service.ts`
+- `features/platform/integrations/services/integration-context.ts`
+- `features/platform/integrations/services/integration.service.ts`
+- `features/platform/integrations/services/openai-metrics.service.ts`
+- `features/platform/integrations/services/provider-registry.service.ts`
+- `features/platform/integrations/services/provider.service.ts`
+- `features/platform/integrations/services/retry-queue.service.ts`
+- `features/platform/integrations/services/secrets.service.ts`
+- `features/platform/integrations/services/webhook.service.ts`
+- `features/platform/intelligence/brain/services/context-assembler.ts`
+- `features/platform/intelligence/brain/services/explainability.ts`
+- `features/platform/intelligence/brain/services/prompt-builder.ts`
+- `features/platform/intelligence/cognitive/services/cognitive-engine.ts`
+- `features/platform/intelligence/workforce-mvp/services/advisor-registry.ts`
+- `features/platform/intelligence/workforce-mvp/services/advisor.service.ts`
+- `features/platform/knowledge/services/documentation.service.ts`
+- `features/platform/knowledge/services/knowledge-engine.ts`
+- `features/platform/knowledge/services/knowledge-recovery.ts`
+- `features/platform/knowledge/services/knowledge.service.ts`
+- `features/platform/launch-readiness/services/launch-readiness.service.ts`
+- `features/platform/live-providers/services/oauth-state.service.ts`
+- `features/platform/live-providers/services/provider-readiness.service.ts`
+- `features/platform/marketing-ai/services/marketing-ai.service.ts`
+- `features/platform/notifications/services/notification.service.ts`
+- `features/platform/openai/services/model-registry.ts`
+- `features/platform/openai/services/openai-workforce.service.ts`
+- `features/platform/organization/services/organization.service.ts`
+- `features/platform/performance/services/cache.service.ts`
+- `features/platform/performance/services/performance.service.ts`
+- `features/platform/product-intelligence/services/product-intelligence.service.ts`
+- `features/platform/quality/services/system-diagnostics.ts`
+- `features/platform/sales-ai/services/sales-ai.service.ts`
+- `features/platform/security-review/services/rate-limit.service.ts`
+- `features/platform/security-review/services/security-review.service.ts`
+- `features/platform/universal-objects/services/object.service.ts`
+- `features/platform/universal-objects/services/search.service.ts`
+- `features/platform/whatsapp-ai/services/whatsapp-ai.service.ts`
+- `features/platform/whatsapp/services/whatsapp-platform.service.ts`
+- `features/platform/workflow-runtime/services/action-dispatcher.ts`
+- `features/platform/workflow-runtime/services/approved-handlers.ts`
+- `features/platform/workflow-runtime/services/observability.ts`
+- `features/platform/workflow-runtime/services/publisher.ts`
+- `features/platform/workflow-runtime/services/runtime-engine.ts`
+- `features/platform/workflow-runtime/services/security.ts`
+- `features/platform/workflow-runtime/services/variable-resolver.ts`
+- `features/platform/workflows/services/automation.service.ts`
+- `features/platform/workflows/services/execution-planner.service.ts`
+- `features/platform/workflows/services/runtime-adapter.service.ts`
+- `features/platform/workflows/services/validation.service.ts`
+- `features/properties/services/.keep`
+- `features/users/services/.keep`
+- `features/vayon/admin-platform/services/admin.service.ts`
+- `features/vayon/ai-runtime/services/ai-runtime.service.ts`
+- `features/vayon/ai-runtime/services/context-builder.service.ts`
+- `features/vayon/ai-runtime/services/prompt-registry.service.ts`
+- `features/vayon/ai-runtime/services/response-cache.service.ts`
+- `features/vayon/ai-workforce/services/ai.service.ts`
+- `features/vayon/ai-workforce/services/approval.service.ts`
+- `features/vayon/ai-workforce/services/employee-workspace.service.ts`
+- `features/vayon/ai-workforce/services/knowledge.service.ts`
+- `features/vayon/ai-workforce/services/recommendation.service.ts`
+- `features/vayon/analytics-platform/services/analytics.service.ts`
+- `features/vayon/billing/services/billing-context.ts`
+- `features/vayon/billing/services/billing.service.ts`
+- `features/vayon/billing/services/commercial-health.service.ts`
+- `features/vayon/billing/services/feature-licensing.service.ts`
+- `features/vayon/billing/services/invoice.service.ts`
+- `features/vayon/billing/services/razorpay.service.ts`
+- `features/vayon/billing/services/stripe.service.ts`
+- `features/vayon/billing/services/subscription-limit.service.ts`
+- `features/vayon/billing/services/subscription.service.ts`
+- `features/vayon/billing/services/usage.service.ts`
+- `features/vayon/calendar-platform/services/calendar-platform.service.ts`
+- `features/vayon/communication-hub/services/communication-hub.services.ts`
+- `features/vayon/communication/services/call.service.ts`
+- `features/vayon/communication/services/communication.service.ts`
+- `features/vayon/communication/services/conversation.service.ts`
+- `features/vayon/communication/services/follow-up.service.ts`
+- `features/vayon/communications-workspace/services/communications.service.ts`
+- `features/vayon/communications-workspace/services/outbound-governance.ts`
+- `features/vayon/configuration/services/configuration.service.ts`
+- `features/vayon/crm-engine/services/crm-rules.service.ts`
+- `features/vayon/crm-engine/services/crm.service.ts`
+- `features/vayon/dashboard/services/executive-dashboard.service.ts`
+- `features/vayon/deal-room/services/deal-room.service.ts`
+- `features/vayon/deal/services/commission.service.ts`
+- `features/vayon/deal/services/deal-workspace.service.ts`
+- `features/vayon/deal/services/deal.service.ts`
+- `features/vayon/deal/services/offer.service.ts`
+- `features/vayon/deal/services/payment.service.ts`
+- `features/vayon/deal/services/pipeline.service.ts`
+- `features/vayon/deal/services/visit.service.ts`
+- `features/vayon/demo-experience/services/demo-experience.service.ts`
+- `features/vayon/demo-experience/services/demo-observability.service.ts`
+- `features/vayon/demo-workspace/services/navigation-context.ts`
+- `features/vayon/executive-home/services/narrative-engine.ts`
+- `features/vayon/growth/services/growth.services.ts`
+- `features/vayon/lead/services/lead-assignment.service.ts`
+- `features/vayon/lead/services/lead-qualification.service.ts`
+- `features/vayon/lead/services/lead.service.ts`
+- `features/vayon/operational-workforce/services/workforce.service.ts`
+- `features/vayon/operations/services/activity.service.ts`
+- `features/vayon/operations/services/calendar.service.ts`
+- `features/vayon/operations/services/context.ts`
+- `features/vayon/operations/services/meeting.service.ts`
+- `features/vayon/operations/services/operations.service.ts`
+- `features/vayon/operations/services/site-visit.service.ts`
+- `features/vayon/operations/services/task.service.ts`
+- `features/vayon/property-intelligence/services/property-import.service.ts`
+- `features/vayon/property-intelligence/services/property-intelligence.service.ts`
+- `features/vayon/property-platform/services/property-platform.service.ts`
+- `features/vayon/property/services/property.service.ts`
+- `features/vayon/universal-bar/services/deterministic-intent-router.ts`
+- `features/vayon/universal-bar/services/universal-search.service.ts`
+- `features/vayon/workflow-approval/services/governance.service.ts`
+- `features/vayon/workspace-engine/services/workspace-adapter.service.ts`
+- `features/vayon/workspace-engine/services/workspace-registry.service.ts`
+
+## Client and server components (315)
+
+- `features/ai/components/.keep`
+- `features/analytics/components/.keep`
+- `features/auth/components/.keep`
+- `features/authentication/components/AuthForm.tsx`
+- `features/authentication/components/PasswordField.tsx`
+- `features/crm/components/.keep`
+- `features/dashboard/components/.keep`
+- `features/dashboard/components/Breadcrumbs.tsx`
+- `features/dashboard/components/CommandPalette.tsx`
+- `features/dashboard/components/MissionControlLayout.tsx`
+- `features/dashboard/components/NotificationCenter.tsx`
+- `features/dashboard/components/ProfileDropdown.tsx`
+- `features/dashboard/components/Sidebar.tsx`
+- `features/dashboard/components/StatusBar.tsx`
+- `features/dashboard/components/Topbar.tsx`
+- `features/dashboard/components/WorkspaceSwitcher.tsx`
+- `features/identity-workspace/components/GoogleSettings.tsx`
+- `features/identity-workspace/components/ProfileSettings.tsx`
+- `features/identity-workspace/components/SettingsShell.tsx`
+- `features/identity-workspace/components/TenantSettings.tsx`
+- `features/location/components/AddressAutocomplete.tsx`
+- `features/location/components/CitySelect.tsx`
+- `features/location/components/CountrySelect.tsx`
+- `features/location/components/CurrencySelect.tsx`
+- `features/location/components/LanguageSelect.tsx`
+- `features/location/components/PhoneCodeSelect.tsx`
+- `features/location/components/RegionalSelect.tsx`
+- `features/location/components/StateSelect.tsx`
+- `features/location/components/TimezoneSelect.tsx`
+- `features/location/components/index.ts`
+- `features/marketing/components/AssetPages.tsx`
+- `features/marketing/components/Blog.tsx`
+- `features/marketing/components/EnterpriseExperience.tsx`
+- `features/marketing/components/Homepage.tsx`
+- `features/marketing/components/LandingRoiCalculator.tsx`
+- `features/marketing/components/LaunchMotion.tsx`
+- `features/marketing/components/LeadCapture.tsx`
+- `features/marketing/components/LegalPolicyPage.tsx`
+- `features/marketing/components/MarketingAnalytics.tsx`
+- `features/marketing/components/MarketingPage.tsx`
+- `features/marketing/components/MarketingShell.tsx`
+- `features/marketing/components/PricingTable.tsx`
+- `features/marketing/components/PublicContentPage.tsx`
+- `features/marketing/components/RoiCalculator.tsx`
+- `features/messaging/components/.keep`
+- `features/notifications/components/NotificationCenter.tsx`
+- `features/notifications/components/NotificationPreferences.tsx`
+- `features/onboarding/components/CountrySelect.tsx`
+- `features/onboarding/components/CurrencySelect.tsx`
+- `features/onboarding/components/EnterpriseOnboardingWizard.tsx`
+- `features/onboarding/components/LanguageSelect.tsx`
+- `features/onboarding/components/LogoUploader.tsx`
+- `features/onboarding/components/OnboardingWizard.tsx`
+- `features/onboarding/components/ProgressStepper.tsx`
+- `features/onboarding/components/SearchableSelect.tsx`
+- `features/onboarding/components/TimezoneSelect.tsx`
+- `features/onboarding/components/ValidationMessage.tsx`
+- `features/organizations/components/.keep`
+- `features/platform/ai-collaboration/components/CollaborationDashboard.tsx`
+- `features/platform/applications/components/ApplicationCard.tsx`
+- `features/platform/applications/components/ApplicationGrid.tsx`
+- `features/platform/applications/components/ApplicationHeader.tsx`
+- `features/platform/applications/components/ApplicationLauncher.tsx`
+- `features/platform/applications/components/ApplicationSidebar.tsx`
+- `features/platform/applications/components/ApplicationStatusBadge.tsx`
+- `features/platform/billing/components/index.ts`
+- `features/platform/builder/application-registry/components/index.ts`
+- `features/platform/builder/branding-builder/components/index.ts`
+- `features/platform/builder/components/BuilderComponents.tsx`
+- `features/platform/builder/feature-registry/components/index.ts`
+- `features/platform/builder/menu-builder/components/index.ts`
+- `features/platform/builder/module-registry/components/index.ts`
+- `features/platform/builder/navigation-builder/components/index.ts`
+- `features/platform/builder/page-builder/components/index.ts`
+- `features/platform/builder/permissions-builder/components/index.ts`
+- `features/platform/builder/settings-builder/components/index.ts`
+- `features/platform/business-timeline/components/TimelineDashboard.tsx`
+- `features/platform/business-timeline/components/live/CorrelationExplorer.tsx`
+- `features/platform/business-timeline/components/live/EventInspector.tsx`
+- `features/platform/business-timeline/components/live/JourneyView.tsx`
+- `features/platform/business-timeline/components/live/ProjectionDashboard.tsx`
+- `features/platform/business-timeline/components/live/TimelineExperience.tsx`
+- `features/platform/business-timeline/components/live/TimelineFeed.tsx`
+- `features/platform/business-timeline/components/live/TimelineFilters.tsx`
+- `features/platform/calendar/components/CalendarExecutiveSnapshot.tsx`
+- `features/platform/calendar/components/GoogleCalendarWorkspace.tsx`
+- `features/platform/context-engine/components/ContextPanel.tsx`
+- `features/platform/context-engine/components/ContextSection.tsx`
+- `features/platform/context-engine/components/ContextSidePanel.tsx`
+- `features/platform/context-engine/components/ContextSlideOver.tsx`
+- `features/platform/continuous-learning/components/ContinuousLearningDashboard.tsx`
+- `features/platform/conversion-analytics/components/ConsentManager.tsx`
+- `features/platform/conversion-analytics/components/EnterpriseAnalyticsDashboard.tsx`
+- `features/platform/conversion-analytics/components/ProductAnalytics.tsx`
+- `features/platform/core/activity/components/Timeline.tsx`
+- `features/platform/core/activity/components/TimelineItem.tsx`
+- `features/platform/core/audit/components/AuditTable.tsx`
+- `features/platform/core/command-center/components/CommandCenter.tsx`
+- `features/platform/core/command-center/components/CommandInput.tsx`
+- `features/platform/core/command-center/components/CommandResult.tsx`
+- `features/platform/core/components/PageLayout.tsx`
+- `features/platform/core/components/SectionHeader.tsx`
+- `features/platform/core/notifications/components/NotificationCard.tsx`
+- `features/platform/core/notifications/components/NotificationPlatform.tsx`
+- `features/platform/core/search/components/SearchGroup.tsx`
+- `features/platform/core/search/components/SearchResult.tsx`
+- `features/platform/core/search/components/UniversalSearch.tsx`
+- `features/platform/core/settings/components/SettingsCard.tsx`
+- `features/platform/core/settings/components/SettingsPlatform.tsx`
+- `features/platform/core/settings/components/SettingsSection.tsx`
+- `features/platform/core/themes/components/ThemeCard.tsx`
+- `features/platform/core/themes/components/ThemeManager.tsx`
+- `features/platform/crm-ai/components/CRMAIDashboard.tsx`
+- `features/platform/crm-ai/components/CRMSearch.tsx`
+- `features/platform/customer-success/components/MissionControlUI.tsx`
+- `features/platform/customer-success/components/SupportActions.tsx`
+- `features/platform/deployment/components/DeploymentDashboard.tsx`
+- `features/platform/design-system/components/core/Actions.tsx`
+- `features/platform/design-system/components/core/Surfaces.tsx`
+- `features/platform/design-system/components/data/Data.tsx`
+- `features/platform/design-system/components/disclosure/Disclosure.tsx`
+- `features/platform/design-system/components/feedback/Feedback.tsx`
+- `features/platform/design-system/components/forms/Fields.tsx`
+- `features/platform/design-system/components/metrics/Metrics.tsx`
+- `features/platform/email/components/EmailCenter.tsx`
+- `features/platform/enterprise-security/components/SecurityDashboard.tsx`
+- `features/platform/event-bus/components/EventViews.tsx`
+- `features/platform/executive-ai/components/ExecutiveAIDashboard.tsx`
+- `features/platform/external-contacts/components/ContactsExecutiveSnapshot.tsx`
+- `features/platform/external-contacts/components/GoogleContactsWorkspace.tsx`
+- `features/platform/external-storage/components/DriveExecutiveSnapshot.tsx`
+- `features/platform/external-storage/components/GoogleDriveWorkspace.tsx`
+- `features/platform/gmail/components/GmailMailboxPage.tsx`
+- `features/platform/gmail/components/GmailShell.tsx`
+- `features/platform/gmail/components/MailboxView.tsx`
+- `features/platform/gmail/components/index.ts`
+- `features/platform/google-calendar/components/GoogleCalendarShell.tsx`
+- `features/platform/google-calendar/components/GoogleCalendarWorkspace.tsx`
+- `features/platform/google-calendar/components/index.ts`
+- `features/platform/identity/components/ActionMenu.tsx`
+- `features/platform/identity/components/Avatar.tsx`
+- `features/platform/identity/components/DataTable.tsx`
+- `features/platform/identity/components/EmptyState.tsx`
+- `features/platform/identity/components/FilterBar.tsx`
+- `features/platform/identity/components/IdentityDashboard.tsx`
+- `features/platform/identity/components/PageContainer.tsx`
+- `features/platform/identity/components/PageHeader.tsx`
+- `features/platform/identity/components/SearchInput.tsx`
+- `features/platform/identity/components/StatCard.tsx`
+- `features/platform/identity/components/StatusBadge.tsx`
+- `features/platform/identity/components/TableToolbar.tsx`
+- `features/platform/integration-platform/components/ProviderStatusDashboard.tsx`
+- `features/platform/integrations/components/IntegrationUI.tsx`
+- `features/platform/integrations/components/OpenAIMetrics.tsx`
+- `features/platform/integrations/microsoft/components/MicrosoftCapabilityShell.tsx`
+- `features/platform/integrations/microsoft/components/MicrosoftExecutiveSnapshot.tsx`
+- `features/platform/intelligence/workforce-mvp/components/AdvisorSelector.tsx`
+- `features/platform/intelligence/workforce-mvp/components/ConversationPanel.tsx`
+- `features/platform/intelligence/workforce-mvp/components/ExplainabilityDrawer.tsx`
+- `features/platform/intelligence/workforce-mvp/components/InsightCard.tsx`
+- `features/platform/intelligence/workforce-mvp/components/RecommendationTimeline.tsx`
+- `features/platform/intelligence/workforce-mvp/components/WorkforceShell.tsx`
+- `features/platform/knowledge/components/DeveloperPortal.tsx`
+- `features/platform/knowledge/components/DocumentationClient.tsx`
+- `features/platform/knowledge/components/KnowledgeCenter.tsx`
+- `features/platform/knowledge/components/KnowledgeRecovery.tsx`
+- `features/platform/launch-readiness/components/LaunchReadinessDashboard.tsx`
+- `features/platform/live-providers/components/ConnectionWizard.tsx`
+- `features/platform/live-providers/components/ProviderViews.tsx`
+- `features/platform/marketing-ai/components/MarketingAIDashboard.tsx`
+- `features/platform/notifications/components/NotificationViews.tsx`
+- `features/platform/openai/components/OpenAISettings.tsx`
+- `features/platform/openai/components/index.ts`
+- `features/platform/organization/components/OrganizationAdmin.tsx`
+- `features/platform/organization/components/OrganizationUI.tsx`
+- `features/platform/organizations/components/OrganizationTable.tsx`
+- `features/platform/performance/components/PerformanceDashboard.tsx`
+- `features/platform/permissions/components/PermissionGroups.tsx`
+- `features/platform/product-intelligence/components/ProductIntelligenceDashboard.tsx`
+- `features/platform/quality/components/RouteBoundary.tsx`
+- `features/platform/quality/components/SystemDiagnostics.tsx`
+- `features/platform/roles/components/RoleTable.tsx`
+- `features/platform/sales-ai/components/SalesAIDashboard.tsx`
+- `features/platform/security-review/components/SecurityReviewDashboard.tsx`
+- `features/platform/universal-objects/components/ActivityTimeline.tsx`
+- `features/platform/universal-objects/components/AddressCard.tsx`
+- `features/platform/universal-objects/components/AttachmentManager.tsx`
+- `features/platform/universal-objects/components/DocumentCenter.tsx`
+- `features/platform/universal-objects/components/DocumentViewer.tsx`
+- `features/platform/universal-objects/components/EntityBadge.tsx`
+- `features/platform/universal-objects/components/NotesManager.tsx`
+- `features/platform/universal-objects/components/RelationshipGraph.tsx`
+- `features/platform/universal-objects/components/SearchOverlay.tsx`
+- `features/platform/universal-objects/components/TagManager.tsx`
+- `features/platform/universal-objects/components/TimelineCard.tsx`
+- `features/platform/universal-objects/components/UniversalObjectHeader.tsx`
+- `features/platform/universal-objects/components/UniversalObjectsWorkbench.tsx`
+- `features/platform/universal-objects/components/UniversalProfileCard.tsx`
+- `features/platform/users/components/UserTable.tsx`
+- `features/platform/whatsapp-ai/components/WhatsAppAIDashboard.tsx`
+- `features/platform/whatsapp/components/WhatsAppShell.tsx`
+- `features/platform/whatsapp/components/WhatsAppWorkspace.tsx`
+- `features/platform/whatsapp/components/index.ts`
+- `features/platform/workflows/components/WorkflowAutomationDashboard.tsx`
+- `features/platform/workflows/components/WorkflowDesigner.tsx`
+- `features/platform/workspaces/components/WorkspaceGrid.tsx`
+- `features/properties/components/.keep`
+- `features/users/components/.keep`
+- `features/vayon/admin-platform/components/AdminViews.tsx`
+- `features/vayon/ai-runtime/components/AIRecommendationPanel.tsx`
+- `features/vayon/ai-runtime/components/AIRuntimeHeader.tsx`
+- `features/vayon/ai-runtime/components/PromptLibrary.tsx`
+- `features/vayon/ai-workforce/components/AIWorkforceUI.tsx`
+- `features/vayon/ai-workforce/components/ApprovalQueue.tsx`
+- `features/vayon/ai-workforce/components/KnowledgeForm.tsx`
+- `features/vayon/analytics-platform/components/AnalyticsViews.tsx`
+- `features/vayon/analytics-platform/components/ExecutiveBI.tsx`
+- `features/vayon/billing/components/BillingForms.tsx`
+- `features/vayon/billing/components/BillingUI.tsx`
+- `features/vayon/billing/components/CommercialBilling.tsx`
+- `features/vayon/billing/components/CommercialPlatform.tsx`
+- `features/vayon/billing/components/StripeBilling.tsx`
+- `features/vayon/calendar-platform/components/CalendarShell.tsx`
+- `features/vayon/calendar-platform/components/CalendarViews.tsx`
+- `features/vayon/communication-hub/components/CommunicationHubArchitecture.tsx`
+- `features/vayon/communication/components/CommunicationForms.tsx`
+- `features/vayon/communication/components/CommunicationUI.tsx`
+- `features/vayon/communications-workspace/components/CommunicationViews.tsx`
+- `features/vayon/communications-workspace/components/CommunicationsShell.tsx`
+- `features/vayon/communications-workspace/components/InboxList.tsx`
+- `features/vayon/components/ProductExperience.tsx`
+- `features/vayon/components/RouteStates.tsx`
+- `features/vayon/components/VayonShell.tsx`
+- `features/vayon/configuration/components/ConfigurationEngine.tsx`
+- `features/vayon/configuration/components/ConfigurationShell.tsx`
+- `features/vayon/configuration/components/CustomFieldEditor.tsx`
+- `features/vayon/configuration/components/FormCanvas.tsx`
+- `features/vayon/configuration/components/PermissionMatrix.tsx`
+- `features/vayon/configuration/components/PipelineEditor.tsx`
+- `features/vayon/configuration/components/PreferencePanel.tsx`
+- `features/vayon/configuration/components/StageCard.tsx`
+- `features/vayon/configuration/components/WorkflowCanvas.tsx`
+- `features/vayon/configuration/components/WorkflowNode.tsx`
+- `features/vayon/creative-studio/components/CreativeAssistant.tsx`
+- `features/vayon/creative-studio/components/CreativeEditor.tsx`
+- `features/vayon/creative-studio/components/GrowthCampaignChat.tsx`
+- `features/vayon/creative-studio/components/GrowthViews.tsx`
+- `features/vayon/creative-studio/components/StudioViews.tsx`
+- `features/vayon/crm-engine/components/CrmDashboard.tsx`
+- `features/vayon/crm-engine/components/CrmDirectory.tsx`
+- `features/vayon/crm-engine/components/CrmLeadProfile.tsx`
+- `features/vayon/crm-engine/components/CrmLeadTable.tsx`
+- `features/vayon/crm-engine/components/CrmShell.tsx`
+- `features/vayon/dashboard/components/AICommandBar.tsx`
+- `features/vayon/dashboard/components/AIWidget.tsx`
+- `features/vayon/dashboard/components/AIWorkforceGrid.tsx`
+- `features/vayon/dashboard/components/ActivityTimeline.tsx`
+- `features/vayon/dashboard/components/CalendarWidget.tsx`
+- `features/vayon/dashboard/components/DashboardShell.tsx`
+- `features/vayon/dashboard/components/KpiCard.tsx`
+- `features/vayon/dashboard/components/NotificationsPanel.tsx`
+- `features/vayon/dashboard/components/PipelineBoard.tsx`
+- `features/vayon/dashboard/components/QuickActions.tsx`
+- `features/vayon/dashboard/components/RevenueChart.tsx`
+- `features/vayon/dashboard/components/RevenueChartLoader.tsx`
+- `features/vayon/dashboard/components/Sparkline.tsx`
+- `features/vayon/dashboard/components/WhatsAppConversations.tsx`
+- `features/vayon/deal-room/components/DealRoomViews.tsx`
+- `features/vayon/deal/components/DealBoard.tsx`
+- `features/vayon/deal/components/DealForm.tsx`
+- `features/vayon/deal/components/DealWorkspaceContent.tsx`
+- `features/vayon/demo-experience/components/DemoExperience.tsx`
+- `features/vayon/executive-home/components/AwaitingData.tsx`
+- `features/vayon/executive-home/components/BusinessHealth.tsx`
+- `features/vayon/executive-home/components/ContextWidget.tsx`
+- `features/vayon/executive-home/components/ExecutiveCard.tsx`
+- `features/vayon/executive-home/components/ExecutiveGreeting.tsx`
+- `features/vayon/executive-home/components/ExecutiveHome.tsx`
+- `features/vayon/executive-home/components/NarrativePanel.tsx`
+- `features/vayon/growth/components/GrowthDashboard.tsx`
+- `features/vayon/growth/components/GrowthMetricCard.tsx`
+- `features/vayon/growth/components/GrowthModuleCard.tsx`
+- `features/vayon/intelligence-core/components/VayonIntelligence.tsx`
+- `features/vayon/lead/components/LeadBadges.tsx`
+- `features/vayon/lead/components/LeadList.tsx`
+- `features/vayon/lead/components/LeadToolbar.tsx`
+- `features/vayon/lead/components/LeadWizard.tsx`
+- `features/vayon/operational-workforce/components/WorkforceDirectory.tsx`
+- `features/vayon/operational-workforce/components/WorkforceShell.tsx`
+- `features/vayon/operational-workforce/components/WorkforceViews.tsx`
+- `features/vayon/operations/components/OperationForms.tsx`
+- `features/vayon/operations/components/OperationsUI.tsx`
+- `features/vayon/property-intelligence/components/ImportCard.tsx`
+- `features/vayon/property-intelligence/components/ImportCenter.tsx`
+- `features/vayon/property-intelligence/components/ImportProgress.tsx`
+- `features/vayon/property-intelligence/components/ImportWizard.tsx`
+- `features/vayon/property-intelligence/components/MapPreview.tsx`
+- `features/vayon/property-intelligence/components/MediaManager.tsx`
+- `features/vayon/property-intelligence/components/PropertyDashboard.tsx`
+- `features/vayon/property-intelligence/components/PropertyForm.tsx`
+- `features/vayon/property-intelligence/components/PropertyInsights.tsx`
+- `features/vayon/property-intelligence/components/PropertyStats.tsx`
+- `features/vayon/property-platform/components/PropertyShell.tsx`
+- `features/vayon/property-platform/components/PropertyViews.tsx`
+- `features/vayon/property/components/PropertyCard.tsx`
+- `features/vayon/property/components/PropertyStatusBadge.tsx`
+- `features/vayon/property/components/PropertyTable.tsx`
+- `features/vayon/property/components/PropertyToolbar.tsx`
+- `features/vayon/property/components/PropertyWizard.tsx`
+- `features/vayon/universal-bar/components/UniversalBar.tsx`
+- `features/vayon/universal-bar/components/UniversalPreviewCard.tsx`
+- `features/vayon/workflow-approval/components/GovernanceViews.tsx`
+- `features/vayon/workspace-engine/components/WorkspaceEngine.tsx`
+- `features/vayon/workspace-engine/components/WorkspaceRenderer.tsx`
+- `features/vayon/workspace-engine/components/index.ts`
+
+## Production tables (77)
+
+- `public.activity_events`
+- `public.ai_approval_queue`
+- `public.ai_capabilities`
+- `public.ai_conversations`
+- `public.ai_employee_capabilities`
+- `public.ai_employees`
+- `public.ai_knowledge`
+- `public.ai_recommendations`
+- `public.ai_response_cache`
+- `public.ai_runtime_outputs`
+- `public.ai_tasks`
+- `public.ai_workforce_conversations`
+- `public.ai_workforce_messages`
+- `public.billing_contacts`
+- `public.calendar_entries`
+- `public.call_logs`
+- `public.communication_notes`
+- `public.communication_saved_views`
+- `public.communication_threads`
+- `public.communications`
+- `public.countries`
+- `public.customer_health`
+- `public.customer_success_notes`
+- `public.deal_commissions`
+- `public.deal_notes`
+- `public.deal_offers`
+- `public.deal_payments`
+- `public.deal_saved_views`
+- `public.deal_site_visits`
+- `public.deal_stages`
+- `public.deals`
+- `public.demo_organizations`
+- `public.feature_flag_assignments`
+- `public.feature_flags`
+- `public.follow_ups`
+- `public.google_oauth_credentials`
+- `public.integration_connections`
+- `public.integration_health`
+- `public.integration_logs`
+- `public.integration_providers`
+- `public.integration_retry_queue`
+- `public.integration_secrets_metadata`
+- `public.integration_sync_history`
+- `public.integration_webhooks`
+- `public.invitations`
+- `public.invoices`
+- `public.lead_property_interests`
+- `public.lead_saved_views`
+- `public.lead_tags`
+- `public.leads`
+- `public.meetings`
+- `public.notification_events`
+- `public.notification_preferences`
+- `public.notification_queue`
+- `public.organization_limits`
+- `public.organization_members`
+- `public.organization_usage`
+- `public.organizations`
+- `public.platform_metrics`
+- `public.properties`
+- `public.property_saved_views`
+- `public.provider_webhook_events`
+- `public.regions`
+- `public.release_registry`
+- `public.roles`
+- `public.site_visits`
+- `public.subscription_events`
+- `public.subscription_plans`
+- `public.subscriptions`
+- `public.support_sessions`
+- `public.system_alerts`
+- `public.task_saved_views`
+- `public.tasks`
+- `public.whatsapp_connections`
+- `public.whatsapp_messages`
+- `public.workspace_members`
+- `public.workspaces`
+
+## Production functions and RPC candidates (99)
+
+- `public.add_communication_note(p_input jsonb)`
+- `public.add_customer_health_note(p_input jsonb)`
+- `public.approve_support_session(p_session_id uuid, p_expected_version integer)`
+- `public.archive_ai_recommendation(p_recommendation_id uuid, p_expected_version integer)`
+- `public.archive_communication_thread(p_thread_id uuid, p_expected_version integer)`
+- `public.archive_deal(p_deal_id uuid)`
+- `public.archive_integration_log(p_log_id uuid, p_expected_version integer)`
+- `public.archive_leads(p_workspace_id uuid, p_lead_ids uuid[])`
+- `public.archive_operation_task(p_task_id uuid)`
+- `public.archive_platform_release(p_release_id uuid, p_expected_version integer)`
+- `public.archive_properties(p_workspace_id uuid, p_property_ids uuid[])`
+- `public.assign_leads(p_workspace_id uuid, p_lead_ids uuid[], p_agent_id uuid)`
+- `public.assign_platform_feature_flag(p_input jsonb)`
+- `public.can_govern_ai(p_workspace uuid)`
+- `public.can_manage_billing(p_workspace uuid)`
+- `public.can_manage_deal(p_workspace uuid, p_assigned uuid)`
+- `public.can_manage_integrations(p_workspace uuid)`
+- `public.can_use_communications(p_workspace uuid)`
+- `public.can_use_operations(p_workspace uuid)`
+- `public.cancel_subscription(p_workspace_id uuid, p_expected_version integer)`
+- `public.change_lead_status(p_workspace_id uuid, p_lead_ids uuid[], p_status text)`
+- `public.change_subscription_plan(p_workspace_id uuid, p_plan_code text, p_seat_quantity integer, p_expected_version integer)`
+- `public.check_subscription_limit(p_workspace_id uuid, p_metric text, p_increment numeric)`
+- `public.complete_follow_up(p_follow_up_id uuid, p_expected_version integer)`
+- `public.complete_operation_task(p_task_id uuid, p_expected_version integer)`
+- `public.complete_organization_onboarding(p_organization_name text, p_country text, p_currency text, p_timezone text, p_language text, p_workspace_name text, p_office text, p_branch text, p_invitations jsonb)`
+- `public.connect_whatsapp(p_workspace_id uuid, p_phone_number_id text, p_business_account_id text, p_token_ciphertext text, p_token_iv text, p_token_tag text)`
+- `public.create_ai_knowledge(p_workspace_id uuid, p_input jsonb)`
+- `public.create_call_log(p_workspace_id uuid, p_input jsonb)`
+- `public.create_commission(p_input jsonb)`
+- `public.create_deal(p_workspace_id uuid, p_input jsonb)`
+- `public.create_follow_up(p_workspace_id uuid, p_input jsonb)`
+- `public.create_lead(p_workspace_id uuid, p_input jsonb)`
+- `public.create_offer(p_input jsonb)`
+- `public.create_operation_task(p_workspace_id uuid, p_input jsonb)`
+- `public.create_payment(p_input jsonb)`
+- `public.create_platform_feature_flag(p_input jsonb)`
+- `public.create_property(p_workspace_id uuid, p_input jsonb)`
+- `public.create_visit(p_input jsonb)`
+- `public.current_workspace_role(p_workspace_id uuid)`
+- `public.decide_ai_approval(p_approval_id uuid, p_expected_version integer, p_decision text, p_reason text)`
+- `public.disconnect_whatsapp(p_workspace_id uuid)`
+- `public.dismiss_notification(p_notification_id uuid)`
+- `public.end_support_session(p_session_id uuid, p_expected_version integer)`
+- `public.enqueue_notification(p_input jsonb)`
+- `public.enrich_demo_workspace()`
+- `public.ensure_communication_thread(p_workspace uuid, p_related_type text, p_related_id uuid, p_subject text)`
+- `public.generate_demo_organization()`
+- `public.generate_draft_invoice(p_workspace_id uuid)`
+- `public.get_google_credential(p_organization_id uuid, p_workspace_id uuid)`
+- `public.get_whatsapp_delivery_credential(p_workspace_id uuid)`
+- `public.is_organization_member(p_organization_id uuid)`
+- `public.is_platform_staff()`
+- `public.is_super_admin()`
+- `public.move_deal_stage(p_deal_id uuid, p_expected_version integer, p_stage_id text)`
+- `public.platform_audit(p_event text, p_organization uuid, p_workspace uuid, p_message text)`
+- `public.platform_customer_directory()`
+- `public.process_stripe_event(p_event_id text, p_event_type text, p_payload jsonb)`
+- `public.process_whatsapp_message(p_connection_id uuid, p_organization_id uuid, p_workspace_id uuid, p_event_id text, p_message jsonb)`
+- `public.process_whatsapp_status(p_provider_message_id text, p_status text, p_event_id text, p_payload jsonb)`
+- `public.provision_ai_workforce(p_workspace uuid, p_organization uuid, p_actor uuid)`
+- `public.provision_ai_workforce_on_workspace()`
+- `public.provision_billing_on_workspace()`
+- `public.provision_integrations_on_workspace()`
+- `public.provision_workspace_billing(p_workspace uuid, p_organization uuid, p_actor uuid)`
+- `public.provision_workspace_integrations(p_workspace uuid, p_organization uuid, p_actor uuid)`
+- `public.publish_platform_release(p_input jsonb)`
+- `public.refresh_google_credential(p_organization_id uuid, p_workspace_id uuid, p_access_ciphertext text, p_access_iv text, p_access_tag text, p_expires_at timestamp with time zone, p_expected_version integer)`
+- `public.replay_integration_webhook(p_webhook_id uuid, p_expected_version integer)`
+- `public.request_support_session(p_input jsonb)`
+- `public.retry_integration_sync(p_retry_id uuid, p_expected_version integer)`
+- `public.rotate_integration_secret_metadata(p_metadata_id uuid, p_expected_version integer)`
+- `public.schedule_operation_meeting(p_workspace_id uuid, p_input jsonb)`
+- `public.schedule_operation_visit(p_workspace_id uuid, p_input jsonb)`
+- `public.set_integration_enabled(p_connection_id uuid, p_expected_version integer, p_enabled boolean)`
+- `public.store_ai_runtime_output(p_workspace_id uuid, p_input jsonb)`
+- `public.update_billing_contact(p_workspace_id uuid, p_input jsonb)`
+- `public.update_deal(p_deal_id uuid, p_expected_version integer, p_input jsonb)`
+- `public.update_lead(p_lead_id uuid, p_expected_version integer, p_input jsonb)`
+- `public.update_operation_task(p_task_id uuid, p_expected_version integer, p_input jsonb)`
+- `public.update_property(p_property_id uuid, p_expected_version integer, p_input jsonb)`
+- `public.upsert_google_credential(p_organization_id uuid, p_workspace_id uuid, p_email text, p_scopes text[], p_access_ciphertext text, p_access_iv text, p_access_tag text, p_refresh_ciphertext text, p_refresh_iv text, p_refresh_tag text, p_expires_at timestamp with time zone)`
+- `storage.allow_any_operation(expected_operations text[])`
+- `storage.allow_only_operation(expected_operation text)`
+- `storage.can_insert_object(bucketid text, name text, owner uuid, metadata jsonb)`
+- `storage.enforce_bucket_name_length()`
+- `storage.extension(name text)`
+- `storage.filename(name text)`
+- `storage.foldername(name text)`
+- `storage.get_common_prefix(p_key text, p_prefix text, p_delimiter text)`
+- `storage.get_size_by_bucket()`
+- `storage.list_multipart_uploads_with_delimiter(bucket_id text, prefix_param text, delimiter_param text, max_keys integer, next_key_token text, next_upload_token text)`
+- `storage.list_objects_with_delimiter(_bucket_id text, prefix_param text, delimiter_param text, max_keys integer, start_after text, next_token text, sort_order text)`
+- `storage.operation()`
+- `storage.protect_delete()`
+- `storage.search(prefix text, bucketname text, limits integer, levels integer, offsets integer, search text, sortcolumn text, sortorder text)`
+- `storage.search_by_timestamp(p_prefix text, p_bucket_id text, p_limit integer, p_level integer, p_start_after text, p_sort_order text, p_sort_column text, p_sort_column_after text)`
+- `storage.search_v2(prefix text, bucket_name text, limits integer, levels integer, start_after text, sort_order text, sort_column text, sort_column_after text)`
+- `storage.update_updated_at_column()`
+
+## Production triggers (8)
+
+- `public.demo_organizations.enrich_demo_after_generation`
+- `public.workspaces.provision_ai_workforce_after_workspace`
+- `public.workspaces.provision_billing_after_workspace`
+- `public.workspaces.provision_integrations_after_workspace`
+- `storage.buckets.enforce_bucket_name_length_trigger`
+- `storage.buckets.protect_buckets_delete`
+- `storage.objects.protect_objects_delete`
+- `storage.objects.update_objects_updated_at`
+
+## Production RLS policies (80)
+
+- `public.activity_events.activity_workspace_read`
+- `public.ai_approval_queue.ai_approvals_workspace_read`
+- `public.ai_capabilities.ai_capabilities_workspace_read`
+- `public.ai_conversations.ai_conversations_workspace_read`
+- `public.ai_employee_capabilities.ai_employee_capabilities_workspace_read`
+- `public.ai_employees.ai_employees_workspace_read`
+- `public.ai_knowledge.ai_knowledge_workspace_read`
+- `public.ai_recommendations.ai_recommendations_workspace_read`
+- `public.ai_response_cache.ai_cache_governor_read`
+- `public.ai_runtime_outputs.ai_outputs_workspace_read`
+- `public.ai_tasks.ai_tasks_workspace_read`
+- `public.ai_workforce_conversations.ai_workforce_conversation_insert`
+- `public.ai_workforce_conversations.ai_workforce_conversation_read`
+- `public.ai_workforce_conversations.ai_workforce_conversation_update`
+- `public.ai_workforce_messages.ai_workforce_message_insert`
+- `public.ai_workforce_messages.ai_workforce_message_read`
+- `public.billing_contacts.billing_contacts_admin_read`
+- `public.calendar_entries.calendar_workspace_read`
+- `public.call_logs.calls_workspace_read`
+- `public.communication_notes.communication_notes_workspace_read`
+- `public.communication_saved_views.communication_views_owner_read`
+- `public.communication_threads.threads_workspace_read`
+- `public.communications.communications_workspace_read`
+- `public.countries.countries_staff_read`
+- `public.customer_health.customer_health_staff_read`
+- `public.customer_success_notes.customer_notes_staff_read`
+- `public.deal_commissions.deal_commissions_workspace_read`
+- `public.deal_notes.deal_notes_workspace_read`
+- `public.deal_offers.deal_offers_workspace_read`
+- `public.deal_payments.deal_payments_workspace_read`
+- `public.deal_saved_views.deal_saved_views_owner_read`
+- `public.deal_site_visits.deal_site_visits_workspace_read`
+- `public.deal_stages.deal_stages_authenticated_read`
+- `public.deals.deals_workspace_read`
+- `public.demo_organizations.demo_owner_read`
+- `public.feature_flag_assignments.flag_assignments_staff_read`
+- `public.feature_flags.flags_staff_read`
+- `public.follow_ups.followups_workspace_read`
+- `public.integration_connections.integration_connections_governor_read`
+- `public.integration_health.integration_health_governor_read`
+- `public.integration_logs.integration_logs_governor_read`
+- `public.integration_providers.integration_providers_authenticated_read`
+- `public.integration_retry_queue.integration_retry_governor_read`
+- `public.integration_secrets_metadata.integration_secret_metadata_governor_read`
+- `public.integration_sync_history.integration_sync_governor_read`
+- `public.integration_webhooks.integration_webhooks_governor_read`
+- `public.invitations.invitations_member_read`
+- `public.invoices.invoices_admin_read`
+- `public.lead_property_interests.lead_interests_workspace_read`
+- `public.lead_saved_views.lead_views_owner`
+- `public.lead_tags.lead_tags_workspace_read`
+- `public.leads.leads_workspace_read`
+- `public.meetings.meetings_workspace_read`
+- `public.notification_events.notification_events_member_read`
+- `public.notification_preferences.notification_preferences_owner`
+- `public.organization_limits.limits_admin_read`
+- `public.organization_members.organization_members_member_read`
+- `public.organization_usage.usage_admin_read`
+- `public.organizations.organizations_member_read`
+- `public.platform_metrics.metrics_staff_read`
+- `public.properties.properties_workspace_read`
+- `public.property_saved_views.property_saved_views_owner`
+- `public.regions.regions_staff_read`
+- `public.release_registry.releases_staff_read`
+- `public.roles.roles_authenticated_read`
+- `public.site_visits.site_visits_workspace_read`
+- `public.subscription_plans.plans_authenticated_read`
+- `public.subscriptions.subscriptions_admin_read`
+- `public.support_sessions.support_staff_read`
+- `public.system_alerts.alerts_staff_read`
+- `public.task_saved_views.task_views_owner_read`
+- `public.tasks.tasks_workspace_read`
+- `public.whatsapp_connections.whatsapp_connections_admin_read`
+- `public.whatsapp_messages.whatsapp_messages_member_read`
+- `public.workspace_members.workspace_members_member_read`
+- `public.workspaces.workspaces_member_read`
+- `storage.objects.leadestate_assets_member_delete`
+- `storage.objects.leadestate_assets_member_insert`
+- `storage.objects.leadestate_assets_member_read`
+- `storage.objects.leadestate_assets_member_update`
+
+## Production storage buckets (1)
+
+- `storage.leadestate-assets`
+
+## Runtime-only inventory
+
+Background processing is implemented through API processors, workflow runtime services, database claim RPCs, notification/email queues, and webhook handlers listed above. Live queue depth, provider account state, browser console output, hydration, and navigation require production runtime access and are not inferred from source.

@@ -1,6 +1,6 @@
 # Version 1 schema requirements
 
-Generated from the read-only production catalog captured 2026-08-23T01:08:57.755Z. No production mutation was performed.
+Generated from the read-only production catalog captured 2026-08-23T18:39:26.791Z. No production mutation was performed.
 
 ## Migration selection
 

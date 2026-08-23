@@ -19,6 +19,7 @@ const environmentKeys: Readonly<Record<ProductionFeatureKey, string>> = Object.f
 export class EnvironmentFeatureFlagProvider implements WorkspaceFeatureFlagProvider {
   async evaluate(workspaceId: string, key: ProductionFeatureKey): Promise<WorkspaceFeatureFlag> {
     if (!workspaceId.trim()) throw new Error("A workspace ID is required for feature evaluation.");
-    return Object.freeze({ key, workspaceId, enabled: process.env[environmentKeys[key]] === "true", source: "environment" });
+    const configured = process.env[environmentKeys[key]];
+    return Object.freeze({ key, workspaceId, enabled: key === "vayon_intelligence" ? configured !== "false" : configured === "true", source: "environment" });
   }
 }

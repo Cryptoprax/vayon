@@ -57,6 +57,7 @@ export interface SidebarProps {
   activeRoute?: string;
   onCollapse: () => void;
   onMobileClose: () => void;
+  showFounder?: boolean;
 }
 
 export function Sidebar({
@@ -65,8 +66,9 @@ export function Sidebar({
   activeRoute = "/platform",
   onCollapse,
   onMobileClose,
+  showFounder = false,
 }: SidebarProps) {
-  const items = missionControlNavigation.filter((item) => item.enabled);
+  const items = missionControlNavigation.filter((item) => item.enabled && (!item.founderOnly || showFounder));
 
   return (
     <>
