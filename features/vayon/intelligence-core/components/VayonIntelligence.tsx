@@ -14,6 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { Button } from "@/features/platform/design-system";
+import { FloatingSurface } from "@/features/vayon/floating-layout/FloatingLayoutManager";
 import { intelligenceModuleRegistry, moduleForRoute } from "../module-registry";
 import type {
   IntelligenceConversation,
@@ -216,9 +217,15 @@ export function VayonIntelligence({
     URL.revokeObjectURL(url);
   }
   return (
-    <>
+    <FloatingSurface
+      id="vayon-intelligence"
+      kind="assistant"
+      priority={10}
+      expanded={open}
+      fullscreen={full}
+    >
       {!open ? (
-        <div className="fixed bottom-5 right-5 z-[70] flex items-center gap-2">
+        <div className="flex items-center gap-2">
           {proactive && (
             <Button
               variant="ghost"
@@ -242,8 +249,10 @@ export function VayonIntelligence({
         </div>
       ) : (
         <aside
+          role="dialog"
           aria-label="Vayon Intelligence"
-          className={`fixed z-[70] overflow-hidden rounded-3xl border border-vds-border bg-vds-surface/95 shadow-2xl backdrop-blur-xl transition-all ${full ? "inset-3" : "bottom-5 right-5 h-[min(42rem,calc(100dvh-2rem))] w-[min(29rem,calc(100vw-2rem))]"}`}
+          aria-modal={full || undefined}
+          className={`overflow-hidden border border-vds-border bg-vds-surface/95 shadow-2xl backdrop-blur-xl transition-all ${full ? "h-full w-full rounded-3xl" : "h-[min(42rem,calc(100dvh-2rem))] w-[min(29rem,calc(100vw-2rem))] rounded-3xl max-md:h-dvh max-md:w-screen max-md:rounded-none"}`}
         >
           <header className="flex items-center gap-2 border-b border-vds-border p-3">
             <Bot className="text-vds-primary" />
@@ -523,7 +532,7 @@ export function VayonIntelligence({
           </div>
         </aside>
       )}
-    </>
+    </FloatingSurface>
   );
 }
 function Empty({ title, text }: { title: string; text: string }) {

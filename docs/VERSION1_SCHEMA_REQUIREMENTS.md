@@ -1,0 +1,475 @@
+# Version 1 schema requirements
+
+Generated from the read-only production catalog captured 2026-08-23T01:08:57.755Z. No production mutation was performed.
+
+## Migration selection
+
+- Included: 31 migrations classified missing or partially represented.
+- Excluded: migrations already represented in production.
+- Excluded: migration history initialization or repair.
+- Excluded: historical seed/data rewrites; the unproven Sprint 84.1 data-only change remains a manual review item.
+
+## Required objects
+
+### Tables (90)
+
+- `public.ai_collaboration_events`
+- `public.ai_collaboration_recommendations`
+- `public.ai_collaboration_runs`
+- `public.authentication_attempts`
+- `public.billing_customers`
+- `public.billing_events`
+- `public.buyer_property_profiles`
+- `public.commercial_provider_customers`
+- `public.commercial_webhook_events`
+- `public.communication_ai_recommendations`
+- `public.communication_attachments`
+- `public.communication_audit`
+- `public.continuous_learning_aggregates`
+- `public.continuous_learning_jobs`
+- `public.creative_assets`
+- `public.creative_brand_kits`
+- `public.creative_campaign_packs`
+- `public.creative_campaign_schedule`
+- `public.creative_campaigns`
+- `public.creative_editor_documents`
+- `public.creative_generation_jobs`
+- `public.creative_growth_reviews`
+- `public.creative_timeline`
+- `public.deployment_migration_history`
+- `public.deployment_releases`
+- `public.documentation_events`
+- `public.email_delivery_attempts`
+- `public.email_messages`
+- `public.email_templates`
+- `public.executive_intelligence_briefings`
+- `public.identity_audit_events`
+- `public.identity_sessions`
+- `public.intelligence_memory`
+- `public.knowledge_analytics`
+- `public.knowledge_article_relations`
+- `public.knowledge_article_versions`
+- `public.knowledge_articles`
+- `public.knowledge_documents`
+- `public.knowledge_quality_feedback`
+- `public.knowledge_videos`
+- `public.launch_readiness_audit_runs`
+- `public.marketing_events`
+- `public.marketing_leads`
+- `public.mfa_recovery_codes`
+- `public.notification_reminders`
+- `public.onboarding_connection_events`
+- `public.onboarding_demo_seed_requests`
+- `public.onboarding_import_jobs`
+- `public.onboarding_sessions`
+- `public.onboarding_step_events`
+- `public.onboarding_tour_progress`
+- `public.organization_audit_events`
+- `public.organization_departments`
+- `public.organization_team_members`
+- `public.organization_teams`
+- `public.payment_methods`
+- `public.permissions`
+- `public.personal_access_tokens`
+- `public.product_feedback`
+- `public.product_intelligence_events`
+- `public.property_documents`
+- `public.property_inventory_audit`
+- `public.property_inventory_opportunity_requests`
+- `public.property_match_audit`
+- `public.property_match_results`
+- `public.property_match_runs`
+- `public.property_match_signals`
+- `public.property_price_revisions`
+- `public.property_projects`
+- `public.property_shortlists`
+- `public.property_towers`
+- `public.property_units`
+- `public.role_permissions`
+- `public.security_alerts`
+- `public.security_review_events`
+- `public.site_visit_audit`
+- `public.site_visit_feedback`
+- `public.site_visit_follow_up_requests`
+- `public.subscription_items`
+- `public.trusted_devices`
+- `public.usage_events`
+- `public.user_organization_context`
+- `public.user_profiles`
+- `public.workflow_automation_approvals`
+- `public.workflow_definitions`
+- `public.workflow_instances`
+- `public.workflow_step_executions`
+- `public.workflow_trigger_events`
+- `public.workspace_analytics_events`
+- `public.workspace_feature_licenses`
+
+### Columns (69)
+
+- `public.communication_notes.attachment_ids`
+- `public.communication_notes.mentions`
+- `public.communication_notes.pinned`
+- `public.creative_assets.cache_key`
+- `public.creative_assets.mime_type`
+- `public.creative_assets.model`
+- `public.creative_assets.reasoning_summary`
+- `public.creative_assets.storage_path`
+- `public.invitations.accepted_at`
+- `public.invitations.cancelled_at`
+- `public.invitations.resent_at`
+- `public.invoices.payment_intent_id`
+- `public.knowledge_articles.approved_at`
+- `public.knowledge_articles.approved_by`
+- `public.knowledge_articles.deprecated`
+- `public.knowledge_articles.feature_key`
+- `public.knowledge_articles.knowledge_kind`
+- `public.knowledge_articles.minimum_plan`
+- `public.knowledge_articles.module`
+- `public.knowledge_articles.product_version`
+- `public.knowledge_articles.upcoming`
+- `public.knowledge_articles.visibility`
+- `public.notification_events.archived_at`
+- `public.notification_events.mentioned`
+- `public.notification_events.snoozed_until`
+- `public.notification_events.source_id`
+- `public.notification_events.source_type`
+- `public.notification_events.starred`
+- `public.notification_preferences.browser_push_enabled`
+- `public.notification_preferences.digest_frequency`
+- `public.notification_preferences.muted`
+- `public.notification_preferences.whatsapp_enabled`
+- `public.notification_queue.delivered_at`
+- `public.notification_queue.provider`
+- `public.notification_queue.started_at`
+- `public.organization_members.updated_at`
+- `public.organizations.address`
+- `public.organizations.branding`
+- `public.organizations.business_email`
+- `public.organizations.business_hours`
+- `public.organizations.business_type`
+- `public.organizations.company_size`
+- `public.organizations.industry`
+- `public.organizations.locale`
+- `public.organizations.phone`
+- `public.organizations.regional_settings`
+- `public.organizations.version`
+- `public.organizations.website`
+- `public.site_visits.agenda`
+- `public.site_visits.agent_label`
+- `public.site_visits.arrival_at`
+- `public.site_visits.checklist`
+- `public.site_visits.contact_id`
+- `public.site_visits.customer_label`
+- `public.site_visits.departure_at`
+- `public.site_visits.documents`
+- `public.site_visits.duration_minutes`
+- `public.site_visits.priority`
+- `public.site_visits.project_id`
+- `public.site_visits.project_label`
+- `public.site_visits.reminder_timeline`
+- `public.site_visits.tower_id`
+- `public.site_visits.tower_label`
+- `public.site_visits.unit_id`
+- `public.site_visits.unit_label`
+- `public.site_visits.visit_type`
+- `public.site_visits.visitor_instructions`
+- `public.subscriptions.provider_price_id`
+- `public.workspace_members.updated_at`
+
+### Indexes (87)
+
+- `public.ai_collaboration_event_timeline_idx`
+- `public.ai_collaboration_recommendation_graph_idx`
+- `public.ai_collaboration_run_scope_idx`
+- `public.ai_runtime_outputs_performance_idx`
+- `public.auth_attempts_user_time_idx`
+- `public.buyer_profiles_tenant_idx`
+- `public.commercial_customer_scope_idx`
+- `public.communication_ai_thread_idx`
+- `public.communication_attachments_thread_idx`
+- `public.communication_audit_tenant_idx`
+- `public.continuous_learning_jobs_scope_idx`
+- `public.continuous_learning_period_idx`
+- `public.creative_asset_cache_idx`
+- `public.creative_asset_search_idx`
+- `public.creative_campaign_recent_idx`
+- `public.creative_jobs_queue_idx`
+- `public.creative_jobs_tenant_idx`
+- `public.creative_pack_scope_idx`
+- `public.creative_schedule_scope_idx`
+- `public.creative_timeline_idx`
+- `public.documentation_events_article_idx`
+- `public.documentation_events_created_at_idx`
+- `public.email_attempt_message_idx`
+- `public.email_history_idx`
+- `public.email_queue_due_idx`
+- `public.executive_briefings_scope_idx`
+- `public.feature_license_scope_idx`
+- `public.identity_audit_user_time_idx`
+- `public.identity_audit_workspace_time_idx`
+- `public.identity_sessions_active_idx`
+- `public.intelligence_memory_org_key`
+- `public.intelligence_memory_user_key`
+- `public.invitations_one_pending_email_idx`
+- `public.invoices_provider_id_idx`
+- `public.knowledge_analytics_dashboard_idx`
+- `public.knowledge_analytics_performance_idx`
+- `public.knowledge_articles_listing_idx`
+- `public.knowledge_articles_search_idx`
+- `public.knowledge_articles_tags_idx`
+- `public.knowledge_documents_listing_idx`
+- `public.knowledge_quality_feedback_idx`
+- `public.knowledge_trusted_retrieval_idx`
+- `public.knowledge_video_transcript_idx`
+- `public.launch_readiness_audit_runs_scope_idx`
+- `public.marketing_events_analytics_idx`
+- `public.marketing_events_path_performance_idx`
+- `public.marketing_leads_pipeline_idx`
+- `public.match_audit_trace_idx`
+- `public.match_results_profile_idx`
+- `public.match_signals_profile_idx`
+- `public.notification_events_center_idx`
+- `public.notification_events_unread_idx`
+- `public.notification_preferences_lookup_idx`
+- `public.notification_queue_throughput_idx`
+- `public.notification_reminders_due_idx`
+- `public.onboarding_events_dropoff_idx`
+- `public.onboarding_import_observability_idx`
+- `public.organization_audit_tenant_time_idx`
+- `public.organization_departments_active_name_idx`
+- `public.organization_departments_tenant_idx`
+- `public.organization_teams_active_name_idx`
+- `public.organization_teams_tenant_idx`
+- `public.pat_scope_idx`
+- `public.product_feedback_trends_idx`
+- `public.product_intelligence_module_idx`
+- `public.product_intelligence_scope_idx`
+- `public.property_documents_project_idx`
+- `public.property_inventory_audit_idx`
+- `public.property_price_history_idx`
+- `public.property_projects_search_idx`
+- `public.property_towers_project_idx`
+- `public.property_units_inventory_idx`
+- `public.security_alert_user_time_idx`
+- `public.security_review_events_observability_idx`
+- `public.shortlists_profile_idx`
+- `public.site_visit_audit_visit_idx`
+- `public.site_visit_feedback_visit_idx`
+- `public.site_visit_follow_up_idx`
+- `public.site_visits_schedule_v2_idx`
+- `public.subscriptions_provider_id_idx`
+- `public.workflow_approvals_lookup_idx`
+- `public.workflow_definitions_tenant_idx`
+- `public.workflow_instances_monitor_idx`
+- `public.workflow_instances_performance_idx`
+- `public.workflow_queue_throughput_idx`
+- `public.workflow_triggers_claim_idx`
+- `public.workspace_analytics_events_scope_idx`
+
+### Policies (78)
+
+- `public.authentication_attempt_owner`
+- `public.billing_contacts_billing_read`
+- `public.billing_customers_read`
+- `public.billing_events_read`
+- `public.collaboration_event_insert`
+- `public.collaboration_event_read`
+- `public.collaboration_recommendation_insert`
+- `public.collaboration_recommendation_read`
+- `public.collaboration_run_insert`
+- `public.collaboration_run_read`
+- `public.collaboration_run_update`
+- `public.commercial_customer_read`
+- `public.commercial_events_read`
+- `public.communication_ai_insert`
+- `public.communication_ai_read`
+- `public.communication_ai_update`
+- `public.communication_attachments_delete`
+- `public.communication_attachments_insert`
+- `public.communication_attachments_read`
+- `public.communication_audit_insert`
+- `public.communication_audit_read`
+- `public.creative_asset_read`
+- `public.creative_asset_write`
+- `public.creative_brand_read`
+- `public.creative_brand_write`
+- `public.creative_campaign_read`
+- `public.creative_campaign_write`
+- `public.creative_editor_read`
+- `public.creative_editor_write`
+- `public.creative_jobs_read`
+- `public.creative_pack_read`
+- `public.creative_pack_write`
+- `public.creative_review_read`
+- `public.creative_review_write`
+- `public.creative_schedule_read`
+- `public.creative_schedule_write`
+- `public.creative_timeline_insert`
+- `public.creative_timeline_read`
+- `public.executive briefing admin read`
+- `public.feature_license_manage`
+- `public.feature_license_read`
+- `public.identity_audit_owner_or_member_read`
+- `public.identity_session_owner`
+- `public.intelligence memory tenant read`
+- `public.invoices_billing_read`
+- `public.learning aggregate admin read`
+- `public.learning job admin read`
+- `public.limits_billing_read`
+- `public.onboarding owner events read`
+- `public.onboarding owner session read`
+- `public.onboarding tenant connections read`
+- `public.onboarding tenant demo read`
+- `public.onboarding tenant imports read`
+- `public.onboarding tenant tour read`
+- `public.organization_audit_member_read`
+- `public.organization_context_owner`
+- `public.organization_departments_member_read`
+- `public.organization_profiles_peer_read`
+- `public.organization_team_members_member_read`
+- `public.organization_teams_member_read`
+- `public.pat_owner_read`
+- `public.payment_methods_read`
+- `public.permissions_authenticated_read`
+- `public.recovery_code_owner`
+- `public.role_permissions_authenticated_read`
+- `public.security_alert_owner`
+- `public.subscription_items_read`
+- `public.subscriptions_billing_read`
+- `public.trusted_device_owner`
+- `public.usage_billing_read`
+- `public.usage_events_read`
+- `public.user_profiles_owner_read`
+- `public.user_profiles_owner_update`
+- `public.workflow approvals tenant read`
+- `public.workflow definitions tenant read`
+- `public.workflow instances tenant read`
+- `public.workflow steps tenant read`
+- `public.workflow triggers tenant read`
+
+### Functions (101)
+
+- `public.accept_organization_invitation`
+- `public.add_enterprise_communication_note`
+- `public.advance_creative_campaign`
+- `public.audit_ai_collaboration`
+- `public.autosave_creative_editor`
+- `public.can_manage_email_platform`
+- `public.can_manage_knowledge`
+- `public.can_manage_workflow_automation`
+- `public.cancel_organization_invitation`
+- `public.capture_public_marketing_lead`
+- `public.change_organization_member_role`
+- `public.check_auth_rate_limit`
+- `public.claim_creative_generation`
+- `public.claim_email_message`
+- `public.communication_can_manage`
+- `public.communication_tenant_member`
+- `public.complete_creative_generation`
+- `public.complete_email_message`
+- `public.complete_enterprise_onboarding`
+- `public.complete_sprint43_onboarding`
+- `public.create_creative_campaign_draft`
+- `public.create_growth_campaign_pack`
+- `public.create_personal_access_token`
+- `public.create_team_invitation`
+- `public.creative_studio_access`
+- `public.creative_studio_manage`
+- `public.creative_studio_member`
+- `public.email_delivery_statistics`
+- `public.enqueue_creative_generation`
+- `public.enqueue_email_message`
+- `public.enqueue_workflow_trigger`
+- `public.enterprise_knowledge_dashboard`
+- `public.enterprise_org_context`
+- `public.enterprise_performance_snapshot`
+- `public.enterprise_security_rls_audit`
+- `public.get_enterprise_onboarding_session`
+- `public.handle_new_user_profile`
+- `public.inventory_can_write`
+- `public.inventory_workspace_member`
+- `public.invite_organization_member`
+- `public.manage_organization_department`
+- `public.manage_organization_team`
+- `public.manage_site_visit_lifecycle`
+- `public.mutate_notification`
+- `public.notification_observability`
+- `public.notify_ai_approval`
+- `public.notify_ai_recommendation`
+- `public.notify_billing_event`
+- `public.notify_security_alert`
+- `public.process_due_notification_reminders`
+- `public.process_stripe_billing_event`
+- `public.property_match_can_manage`
+- `public.property_match_member`
+- `public.publish_workflow_definition`
+- `public.reactivate_subscription`
+- `public.record_authentication_attempt`
+- `public.record_billing_usage`
+- `public.record_commercial_webhook`
+- `public.record_documentation_event`
+- `public.record_identity_audit`
+- `public.record_knowledge_feedback`
+- `public.record_knowledge_quality_feedback`
+- `public.record_launch_readiness_audit`
+- `public.record_product_intelligence_events`
+- `public.record_public_marketing_event`
+- `public.record_workspace_analytics_event`
+- `public.refresh_continuous_learning_aggregates`
+- `public.register_knowledge_document`
+- `public.remove_identity_device`
+- `public.remove_organization_member`
+- `public.replace_mfa_recovery_codes`
+- `public.resend_organization_invitation`
+- `public.retrieve_trusted_knowledge`
+- `public.retry_email_message`
+- `public.revoke_other_identity_sessions`
+- `public.revoke_personal_access_token`
+- `public.save_email_template`
+- `public.save_enterprise_onboarding_progress`
+- `public.save_notification_preferences`
+- `public.save_property_shortlist`
+- `public.save_workflow_definition`
+- `public.schedule_notification_reminder`
+- `public.search_enterprise_knowledge`
+- `public.set_enterprise_organization_logo`
+- `public.set_organization_logo`
+- `public.set_organization_member_status`
+- `public.site_visit_agent_availability`
+- `public.site_visit_can_manage`
+- `public.site_visit_member`
+- `public.store_executive_intelligence_briefing`
+- `public.submit_product_feedback`
+- `public.switch_current_organization`
+- `public.transfer_organization_ownership`
+- `public.transition_knowledge_article`
+- `public.transition_property_unit`
+- `public.trust_identity_device`
+- `public.update_enterprise_organization`
+- `public.update_user_profile`
+- `public.upsert_identity_session`
+- `public.upsert_intelligence_memory`
+- `public.workspace_feature_licensed`
+
+### Triggers (7)
+
+- `public.ai_approval_notification`
+- `public.ai_recommendation_notification`
+- `public.audit_ai_collaboration_recommendation`
+- `public.audit_ai_collaboration_run`
+- `public.billing_event_notification`
+- `public.on_auth_user_profile`
+- `public.security_alert_notification`
+
+### Views (0)
+
+None identified by the catalog comparison.
+
+### Buckets (2)
+
+- `storage.knowledge-documents`
+- `storage.product-feedback`
+
+### Extensions (0)
+
+None identified by the catalog comparison.

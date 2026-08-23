@@ -24,6 +24,7 @@ import { BrandLogo } from "@/components/brand";
 import { DemoObservabilityService } from "../services/demo-observability.service";
 import { useMarketingCurrency } from "@/features/marketing/currency/CurrencyDisplay";
 import { convertToUsd } from "@/features/marketing/currency/currency";
+import { FloatingLayoutManager, FloatingSurface } from "@/features/vayon/floating-layout/FloatingLayoutManager";
 
 const tabs = [
   "dashboard",
@@ -146,6 +147,7 @@ export function DemoExperience({
     }
   }
   return (
+    <FloatingLayoutManager sidebarCollapsed>
     <div
       onClickCapture={protect}
       className="min-h-dvh bg-vds-background text-vds-foreground"
@@ -247,7 +249,8 @@ export function DemoExperience({
           onPage={setPage}
         />
       )}
-      <div className="fixed bottom-5 left-5 z-50 flex items-end gap-2">
+      <FloatingSurface id="demo-tour-actions" kind="action" priority={50}>
+      <div className="flex items-end gap-2">
         <details className="group rounded-xl bg-vds-surface shadow-vds-lg">
           <summary className="vds-focus flex cursor-pointer list-none items-center gap-2 rounded-xl border border-vds-border px-4 py-2 text-sm">
             <Play className="size-4" />
@@ -284,8 +287,10 @@ export function DemoExperience({
           Reset demo
         </Button>
       </div>
+      </FloatingSurface>
       {tourStep !== null && (
-        <div className="fixed inset-x-4 bottom-20 z-[70] mx-auto max-w-lg rounded-2xl border border-vds-accent-border bg-vds-surface p-5 shadow-vds-lg">
+        <FloatingSurface id="demo-walkthrough" kind="walkthrough" priority={20}>
+        <div className="max-w-lg rounded-2xl border border-vds-accent-border bg-vds-surface p-5 shadow-vds-lg">
           <p className="text-xs text-vds-primary">
             Guided tour · {tourStep + 1}/{model.enterprise.tour.length}
           </p>
@@ -316,11 +321,13 @@ export function DemoExperience({
             </Button>
           </div>
         </div>
+        </FloatingSurface>
       )}
       {notice && (
+        <FloatingSurface id="demo-notice" kind="toast" priority={30}>
         <div
           role="status"
-          className="fixed bottom-5 right-5 z-[80] flex max-w-sm items-start gap-3 rounded-2xl border border-vds-warning/25 bg-vds-surface p-4 shadow-xl shadow-vds-shadow"
+          className="flex max-w-sm items-start gap-3 rounded-2xl border border-vds-warning/25 bg-vds-surface p-4 shadow-xl shadow-vds-shadow"
         >
           <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-vds-warning" />
           <div>
@@ -341,8 +348,10 @@ export function DemoExperience({
             <X className="size-4" />
           </Button>
         </div>
+        </FloatingSurface>
       )}
     </div>
+    </FloatingLayoutManager>
   );
 }
 

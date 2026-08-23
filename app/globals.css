@@ -61,6 +61,14 @@ button:not(:disabled),summary { cursor:pointer; }
 @media (min-width:40rem) { .vayon-product #main-content > :where(main,.vds-page) { padding-inline:1.5rem; } }
 @media (min-width:96rem) { .vayon-product #main-content > :where(main,.vds-page) { padding-block:2.5rem; } }
 .skip-link { position:fixed; left:1rem; top:-5rem; z-index:100; border-radius:.75rem; background:var(--vds-color-surface); color:var(--vds-color-foreground); padding:.75rem 1rem; font-size:.875rem; font-weight:700; box-shadow:0 12px 30px var(--vds-shadow-color); }
+.vayon-floating-layout { position:fixed; z-index:70; right:max(1rem,env(safe-area-inset-right)); bottom:max(1rem,env(safe-area-inset-bottom)); display:flex; max-height:calc(100dvh - 2rem); max-width:calc(100vw - 2rem); flex-direction:column; align-items:flex-end; gap:16px; pointer-events:none; }
+.vayon-floating-surface { max-width:100%; pointer-events:auto; }
+.vayon-floating-layout[data-expanded] > .vayon-floating-surface:not([data-floating-expanded]) { display:none; }
+.vayon-floating-surface[data-floating-fullscreen] { position:fixed; inset:max(.75rem,env(safe-area-inset-top)) max(.75rem,env(safe-area-inset-right)) max(.75rem,env(safe-area-inset-bottom)) max(.75rem,env(safe-area-inset-left)); }
+.floating-safe-content { padding-bottom:max(6rem,var(--vayon-floating-safe-bottom,6rem)); }
+@media (min-width:1024px) { .floating-safe-content { padding-right:var(--vayon-floating-safe-right,5rem); } }
+@media (max-width:767px) { .vayon-floating-layout[data-expanded] { inset:0; max-height:none; max-width:none; align-items:stretch; } .vayon-floating-layout[data-expanded] .vayon-floating-surface[data-floating-expanded] { position:fixed; inset:0; width:100%; height:100dvh; } }
+@media (prefers-reduced-motion:reduce) { .vayon-floating-layout *, .vayon-floating-surface * { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; animation-iteration-count:1!important; } }
 .skip-link:focus { top:1rem; }
 .skeleton { position:relative; overflow:hidden; background:var(--vds-color-skeleton); }
 .skeleton::after { content:""; position:absolute; inset:0; transform:translateX(-100%); background:linear-gradient(90deg,transparent,var(--vds-color-skeleton-highlight),transparent); animation:shimmer 1.5s infinite; }

@@ -8,6 +8,7 @@ import { QuickCreate } from "../product-shell/QuickCreate";
 import { ShellHeader } from "../product-shell/ShellHeader";
 import { ShellSidebar } from "../product-shell/ShellSidebar";
 import type { ShellIdentity } from "../product-shell/types";
+import { FloatingLayoutManager, FloatingSurface } from "../floating-layout/FloatingLayoutManager";
 const storageKey = "vayon.shell.sidebar.collapsed.v1";
 const storageEvent = "vayon-shell-collapse";
 const VayonIntelligence = dynamic(
@@ -70,6 +71,7 @@ export function ProductExperience({
     window.dispatchEvent(new Event(storageEvent));
   }
   return (
+    <FloatingLayoutManager sidebarCollapsed={collapsed}>
     <div className="vayon-premium-canvas vayon-product min-h-dvh text-vds-foreground">
       <a href="#main-content" className="skip-link">
         Skip to content
@@ -87,7 +89,7 @@ export function ProductExperience({
         onMobileClose={() => setMobile(false)}
       />
       <div
-        className={`min-h-dvh pt-16 transition-[padding] duration-200 ${collapsed ? "lg:pl-20" : "lg:pl-64"}`}
+        className={`floating-safe-content min-h-dvh pt-16 transition-[padding] duration-200 ${collapsed ? "lg:pl-20" : "lg:pl-64"}`}
       >
         <div className="sticky top-16 z-20 border-b border-vds-border bg-vds-background/90 px-4 py-3 backdrop-blur-lg sm:px-6">
           <Breadcrumbs path={path} />
@@ -115,9 +117,10 @@ export function ProductExperience({
         />
       )}
       {feedback && (
+        <FloatingSurface id="shell-feedback" kind="toast" priority={30}>
         <div
           role={params.get("error") ? "alert" : "status"}
-          className={`fixed bottom-24 right-5 z-[60] flex max-w-sm items-start gap-3 rounded-2xl border p-4 shadow-xl shadow-vds-shadow backdrop-blur ${params.get("error") ? "border-vds-danger bg-vds-danger-soft text-vds-danger" : "border-vds-success bg-vds-success-soft text-vds-success"}`}
+          className={`flex max-w-sm items-start gap-3 rounded-2xl border p-4 shadow-xl shadow-vds-shadow backdrop-blur ${params.get("error") ? "border-vds-danger bg-vds-danger-soft text-vds-danger" : "border-vds-success bg-vds-success-soft text-vds-success"}`}
         >
           {params.get("error") ? (
             <X className="mt-0.5" size={18} />
@@ -126,7 +129,9 @@ export function ProductExperience({
           )}
           <p className="text-sm">{feedback}</p>
         </div>
+        </FloatingSurface>
       )}
     </div>
+    </FloatingLayoutManager>
   );
 }
