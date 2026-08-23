@@ -45,7 +45,7 @@ export async function VayonShell({
     <Suspense>
       <ProductExperience
         identity={identity}
-        intelligenceEnabled={process.env.FEATURE_VAYON_INTELLIGENCE === "true"}
+        intelligenceEnabled={process.env.FEATURE_VAYON_INTELLIGENCE !== "false"}
         intelligenceOrganization={organization?.id}
         intelligenceRole={role}
         intelligenceSubscription={subscriptionPlan}

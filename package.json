@@ -13,6 +13,7 @@
     "audit:stabilization": "node scripts/audit-sprint85-stabilization.mjs all",
     "audit:v1": "node scripts/audit-version-1-readiness.mjs && node scripts/audit-production-environment.mjs",
     "audit:v1:performance": "node scripts/audit-version-1-performance.mjs",
+    "audit:activation": "node scripts/audit-feature-activation.mjs",
     "typecheck": "tsc --noEmit",
     "validate": "npm run typecheck && npm run lint && npm test && npm run audit:theme && npm run audit:ux && npm run audit:cta && npm run audit:certification && npm run audit:production && npm run build",
     "test": "node --test tests/*.test.mjs",

@@ -38,6 +38,10 @@ const tabs = [
   "notifications",
   "billing",
   "analytics",
+  "marketing",
+  "growth",
+  "landing-pages",
+  "assistant",
 ] as const;
 type Tab = (typeof tabs)[number];
 const enterpriseTabs = [
@@ -47,6 +51,10 @@ const enterpriseTabs = [
   "notifications",
   "billing",
   "analytics",
+  "marketing",
+  "growth",
+  "landing-pages",
+  "assistant",
 ] as const;
 const pageSize = 24;
 const investorTours = [
@@ -210,6 +218,10 @@ export function DemoExperience({
           records={
             tab === "ai"
               ? model.enterprise.aiRecommendations
+              : tab === "marketing" || tab === "assistant"
+                ? model.enterprise.aiRecommendations
+                : tab === "growth" || tab === "landing-pages"
+                  ? model.enterprise.workflows
               : model.enterprise[
                   tab as
                     | "team"
