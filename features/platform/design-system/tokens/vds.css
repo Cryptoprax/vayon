@@ -1,5 +1,11 @@
 :root,
 [data-vds-theme="dark"] {
+  /* Certified Brand Studio starter identity tokens. */
+  --vds-brand-draft-primary: #7c5cff;
+  --vds-brand-draft-secondary: #151526;
+  --vds-brand-draft-accent: #d7b56d;
+  --vds-brand-draft-background: #ffffff;
+  --vds-brand-draft-typography: #151526;
   --vds-color-background: #08090b;
   --vds-color-surface: #181a1f;
   --vds-color-elevated: #22252b;

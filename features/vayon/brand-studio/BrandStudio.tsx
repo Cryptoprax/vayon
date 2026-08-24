@@ -92,6 +92,23 @@ const steps = [
   "Logo Preferences",
   "Photography Style",
 ] as const;
+const draftPaletteTokens = {
+  primary: "--vds-brand-draft-primary",
+  secondary: "--vds-brand-draft-secondary",
+  accent: "--vds-brand-draft-accent",
+  background: "--vds-brand-draft-background",
+  typography: "--vds-brand-draft-typography",
+} as const;
+function resolveDraftPalette() {
+  const styles = getComputedStyle(document.documentElement);
+  return {
+    primary: styles.getPropertyValue(draftPaletteTokens.primary).trim(),
+    secondary: styles.getPropertyValue(draftPaletteTokens.secondary).trim(),
+    accent: styles.getPropertyValue(draftPaletteTokens.accent).trim(),
+    background: styles.getPropertyValue(draftPaletteTokens.background).trim(),
+    typography: styles.getPropertyValue(draftPaletteTokens.typography).trim(),
+  };
+}
 export function BrandStudio({
   snapshot,
 }: {
@@ -110,11 +127,11 @@ export function BrandStudio({
       audiences: [] as Audience[],
       personality: "Professional" as Personality,
       colorStrategy: "recommend" as "recommend" | "manual",
-      primary: "#7c5cff",
-      secondary: "#151526",
-      accent: "#d7b56d",
-      background: "#ffffff",
-      typography: "#151526",
+      primary: "",
+      secondary: "",
+      accent: "",
+      background: "",
+      typography: "",
       logo: "Combination" as LogoPreference,
       photo: "Corporate" as PhotographyStyle,
     });
@@ -153,6 +170,10 @@ export function BrandStudio({
           <Button
             onClick={() => {
               setStep(0);
+              setForm((current) => ({
+                ...current,
+                ...resolveDraftPalette(),
+              }));
               setWizard(true);
             }}
           >

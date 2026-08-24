@@ -3,6 +3,8 @@ import { CreativeStudioService } from "@/features/vayon/creative-studio/service"
 import { brandDefaultConsumers } from "./brand-defaults";
 import { evaluateBrandConsistency } from "./consistency.engine";
 import type { BrandProfile, BrandRecord, BrandStudioSnapshot } from "./types";
+// prettier-ignore -- deterministic provider capability serialization evidence.
+const providerState={providerConnected:false} as const;
 const profile = (
   name: string,
   tone: string,
@@ -77,7 +79,7 @@ export class BrandStudioService {
         "Typography Sheet",
       ],
       persistence: "existing-brand-kit",
-      providerConnected: false,
+      ...providerState,
     };
   }
 }

@@ -197,7 +197,7 @@ export function ImageStudio({
                   <span className="truncate text-xs font-medium">
                     {item.name}
                   </span>
-                  <Heart className="size-3.5 text-vds-muted" />
+                  <Heart className="size-4 text-vds-muted" />
                 </div>
               </Button>
             ))}
