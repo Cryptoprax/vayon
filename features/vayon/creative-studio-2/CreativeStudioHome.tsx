@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/features/platform/design-system";
 import {
   Boxes,
@@ -25,6 +26,11 @@ import {
   X,
 } from "lucide-react";
 import { useMemo, useState } from "react";
+import {
+  analyzeCreativeIntent,
+  creativeExecutionStages,
+  type CreativeExecutionPlan,
+} from "./intent";
 import type { CreativeModuleId, CreativeStudio2Snapshot } from "./types";
 
 const icons = {
@@ -52,6 +58,19 @@ const nav: readonly [string, CreativeModuleId | "home"][] = [
   ["Templates", "templates"],
   ["Projects", "projects"],
 ];
+const routes: Record<CreativeModuleId | "home", string> = {
+  home: "/vayon/creative",
+  brand: "/vayon/creative/brand",
+  images: "/vayon/creative/images",
+  marketing: "/vayon/creative/campaigns",
+  presentations: "/vayon/creative/documents",
+  documents: "/vayon/creative/documents",
+  videos: "/vayon/creative/videos",
+  websites: "/vayon/creative/campaigns",
+  assets: "/vayon/creative-studio/assets",
+  templates: "/vayon/creative-studio/templates",
+  projects: "/vayon/creative/campaigns",
+};
 const prompts = [
   "Create a luxury real estate brochure.",
   "Create a fintech logo.",
@@ -67,10 +86,38 @@ export function CreativeStudioHome({
 }: {
   readonly snapshot: CreativeStudio2Snapshot;
 }) {
-  const [dialog, setDialog] = useState(false),
+  const router = useRouter(),
+    [dialog, setDialog] = useState(false),
     [assistant, setAssistant] = useState(true),
-    [prompt, setPrompt] = useState(""),
+    [prompt, setPrompt] = useState(() =>
+      typeof window === "undefined"
+        ? ""
+        : (window.sessionStorage.getItem("vayon.creative.prompt") ?? ""),
+    ),
+    [plan, setPlan] = useState<CreativeExecutionPlan | null>(null),
+    [executionStatus, setExecutionStatus] = useState("Ready"),
     [query, setQuery] = useState("");
+  const updatePrompt = (value: string) => {
+      setPrompt(value);
+      window.sessionStorage.setItem("vayon.creative.prompt", value);
+      setPlan(null);
+      setExecutionStatus("Ready");
+    },
+    prepare = () => {
+      setPlan(analyzeCreativeIntent(prompt));
+      setExecutionStatus(
+        snapshot.governance.generationEnabled ? "Queued" : "Waiting Provider",
+      );
+    },
+    execute = () => {
+      if (!plan) return;
+      setExecutionStatus("Planning");
+      window.sessionStorage.setItem(
+        "vayon.creative.plan",
+        JSON.stringify(plan),
+      );
+      router.push(plan.primaryRoute);
+    };
   const projects = useMemo(
     () =>
       snapshot.projects.filter((project) =>
@@ -88,21 +135,11 @@ export function CreativeStudioHome({
           Creative Studio 2.0
         </p>
         <nav className="grid gap-1">
-          {nav.map(([label, id], index) => {
+          {nav.map(([label, id]) => {
             const Icon = id === "home" ? Sparkles : icons[id];
             return (
               <Link
-                href={
-                  id === "brand"
-                    ? "/vayon/creative/brand"
-                    : id === "images"
-                      ? "/vayon/creative/images"
-                      : id === "marketing"
-                        ? "/vayon/creative/campaigns"
-                        : index
-                          ? `#${id}`
-                          : "#creative-home"
-                }
+                href={routes[id]}
                 className="focus-ring flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"
                 key={id}
               >
@@ -144,7 +181,7 @@ export function CreativeStudioHome({
               Creative studios
             </h2>
             <span className="text-xs text-vds-muted">
-              Provider-neutral foundation
+              Live execution through Creative Runtime
             </span>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
@@ -168,6 +205,12 @@ export function CreativeStudioHome({
                   <p className="mt-2 text-xs leading-5 text-vds-muted">
                     {module.outcome}
                   </p>
+                  <Link
+                    href={routes[module.id]}
+                    className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-vds-primary"
+                  >
+                    Open workflow <ChevronRight className="size-4" />
+                  </Link>
                 </article>
               );
             })}
@@ -327,10 +370,9 @@ export function CreativeStudioHome({
           className={`${card} flex flex-wrap items-center justify-between gap-4 p-5`}
         >
           <div>
-            <h2 className="font-semibold">Export engine foundation</h2>
+            <h2 className="font-semibold">Export engine</h2>
             <p className="mt-1 text-xs text-vds-muted">
-              Formats are prepared for future provider-backed rendering; no
-              export is fabricated.
+              Available formats are produced by each governed studio workflow.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -371,8 +413,8 @@ export function CreativeStudioHome({
             </Button>
           </div>
           <p className="mt-3 text-sm text-vds-muted">
-            I can improve prompts and remember this project context. Generation
-            providers are not connected in this foundation.
+            I analyze intent, prepare a governed execution plan, and route work
+            through the existing Creative Director and studio runtimes.
           </p>
           <Button
             onClick={() => setDialog(true)}
@@ -415,7 +457,7 @@ export function CreativeStudioHome({
             <textarea
               autoFocus
               value={prompt}
-              onChange={(event) => setPrompt(event.target.value)}
+              onChange={(event) => updatePrompt(event.target.value)}
               rows={5}
               className="mt-5 w-full rounded-2xl border border-vds-border bg-vds-elevated p-4 outline-none focus:ring-2 focus:ring-vds-focus"
               placeholder="Create a luxury real estate brochure."
@@ -423,7 +465,7 @@ export function CreativeStudioHome({
             <div className="mt-3 flex flex-wrap gap-2">
               {prompts.map((value) => (
                 <Button
-                  onClick={() => setPrompt(value)}
+                  onClick={() => updatePrompt(value)}
                   className="rounded-full border border-vds-border px-3 py-1.5 text-xs text-vds-muted"
                   key={value}
                 >
@@ -431,15 +473,86 @@ export function CreativeStudioHome({
                 </Button>
               ))}
             </div>
+            {plan && (
+              <div className="mt-5 rounded-2xl border border-vds-border bg-vds-elevated p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="font-semibold">
+                    Execution Plan · {plan.title}
+                  </h3>
+                  <span className="text-xs text-vds-primary">
+                    {executionStatus}
+                  </span>
+                </div>
+                <div className="mt-3 grid gap-2">
+                  {plan.items.map((item) => (
+                    <div
+                      key={item.output}
+                      className="flex items-center justify-between gap-3 text-sm"
+                    >
+                      <span>✓ {item.output}</span>
+                      <span className="text-xs text-vds-muted">
+                        {item.studio}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-vds-muted sm:grid-cols-4">
+                  <span>{plan.estimatedMinutes} min estimated</span>
+                  <span>
+                    {plan.estimatedCostUsd === null
+                      ? "No provider cost"
+                      : `$${plan.estimatedCostUsd.toFixed(2)} estimated`}
+                  </span>
+                  <span>
+                    {plan.requiredProviders.join(", ") ||
+                      "No provider required"}
+                  </span>
+                  <span>
+                    {plan.items.filter((item) => item.approvalRequired).length}{" "}
+                    approvals
+                  </span>
+                </div>
+                <div className="mt-4 flex flex-wrap gap-1">
+                  {creativeExecutionStages.map((stage) => (
+                    <span
+                      key={stage}
+                      className="rounded-full border border-vds-border px-2 py-1 text-[10px]"
+                    >
+                      {stage}
+                    </span>
+                  ))}
+                </div>
+                {!snapshot.governance.generationEnabled && (
+                  <p className="mt-3 text-xs text-vds-warning">
+                    {snapshot.governance.providerReason} Retry later; no output
+                    will be fabricated.
+                  </p>
+                )}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {plan.suggestedFollowUps.map((suggestion) => (
+                    <Button
+                      key={suggestion}
+                      variant="outline"
+                      size="sm"
+                      onClick={() => updatePrompt(`${prompt} ${suggestion}.`)}
+                    >
+                      {suggestion}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="mt-6 flex items-center justify-between gap-3">
               <p className="text-xs text-vds-muted">
-                Draft only · Provider connection is a future sprint
+                Creative Director → Pipeline → Runtime → Execution Engine →
+                Provider Adapter
               </p>
               <Button
                 disabled={!prompt.trim()}
+                onClick={plan ? execute : prepare}
                 className="rounded-xl bg-vds-primary px-4 py-2 text-sm font-semibold text-vds-on-primary disabled:opacity-40"
               >
-                Prepare project brief
+                {plan ? "Begin execution" : "Prepare execution plan"}
               </Button>
             </div>
           </section>
