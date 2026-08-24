@@ -14,6 +14,12 @@ export function MarketingPage({
 }: {
   readonly content: MarketingPageContent;
 }) {
+  if (content.id === "pricing")
+    return (
+      <main>
+        <PricingTable />
+      </main>
+    );
   return (
     <main>
       <MarketingJsonLd content={content} />
@@ -49,9 +55,7 @@ export function MarketingPage({
           </div>
         </div>
       </section>
-      {content.id === "pricing" ? (
-        <PricingTable />
-      ) : content.id === "blog" ? (
+      {content.id === "blog" ? (
         <BlogSurface />
       ) : content.id === "resources" || content.id === "docs" ? (
         <ResourceSurface docs={content.id === "docs"} />
