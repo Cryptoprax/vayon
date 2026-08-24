@@ -55,6 +55,22 @@ export class FounderRepository {
     }
   }
 
+  async billingOverview() {
+    try {
+      const since = new Date(); since.setUTCMonth(since.getUTCMonth() - 12);
+      const [subscriptions, invoices] = await Promise.all([
+        this.client.from("subscriptions").select("status,updated_at,subscription_plans(monthly_price)").is("deleted_at", null),
+        this.client.from("invoices").select("status,total,issued_at").eq("status", "paid").gte("issued_at", since.toISOString()).is("deleted_at", null),
+      ]);
+      if (subscriptions.error || invoices.error) return null;
+      const rows = subscriptions.data ?? [], activeRows = rows.filter((row) => row.status === "active" || row.status === "trialing");
+      const mrr = activeRows.reduce((sum, row) => sum + Number((row.subscription_plans as unknown as { monthly_price?: number | null } | null)?.monthly_price ?? 0), 0);
+      const monthKey = (value: string) => value.slice(0, 7), totals = new Map<string, number>();
+      for (const invoice of invoices.data ?? []) if (invoice.issued_at) totals.set(monthKey(invoice.issued_at), (totals.get(monthKey(invoice.issued_at)) ?? 0) + Number(invoice.total));
+      return { mrr, arr: mrr * 12, active: rows.filter((row) => row.status === "active").length, trials: rows.filter((row) => row.status === "trialing").length, failedPayments: await this.count("invoices", { status: "failed" }), cancelled: rows.filter((row) => row.status === "cancelled").length, revenueTrend: [...totals].sort(([a],[b]) => a.localeCompare(b)).map(([label,value]) => ({ label, value })) };
+    } catch { return null; }
+  }
+
   async activity(): Promise<readonly FounderActivity[]> {
     const batches = await Promise.all(activitySources.map(async (source) => {
       try {

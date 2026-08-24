@@ -1,0 +1,10 @@
+export type ObservabilityHealthState = "healthy" | "degraded" | "unavailable" | "maintenance" | "unknown";
+export type EvidenceState = "live" | "unavailable" | "unknown";
+export interface SystemHealthItem { readonly id:string;readonly name:string;readonly state:ObservabilityHealthState;readonly evidence:EvidenceState;readonly latencyMs:number|null;readonly checkedAt:string|null;readonly diagnostic:string }
+export interface IncidentRecord { readonly id:string;readonly title:string;readonly severity:"critical"|"high"|"medium"|"low";readonly status:"open"|"resolved";readonly customerImpact:string;readonly affectedModules:readonly string[];readonly owner:string|null;readonly openedAt:string;readonly resolvedAt:string|null;readonly resolutionNotes:string|null;readonly timeline:readonly {readonly label:string;readonly at:string}[] }
+export interface OperationalMetric { readonly id:string;readonly label:string;readonly value:number|null;readonly unit:string;readonly evidence:EvidenceState }
+export type AIAgentState="online"|"offline"|"busy"|"disabled"|"configuration_missing"|"provider_unavailable"|"quota_exceeded";
+export interface AIAgentHealth { readonly id:string;readonly name:string;readonly state:AIAgentState;readonly lastSuccessfulExecution:string|null;readonly averageResponseTimeMs:number|null;readonly evidence:EvidenceState }
+export interface JobSummary { readonly status:"running"|"queued"|"completed"|"failed"|"retries";readonly count:number|null;readonly evidence:EvidenceState }
+export interface AlertRecord { readonly id:string;readonly priority:"critical"|"warning"|"info";readonly title:string;readonly source:string;readonly status:string;readonly createdAt:string }
+export interface ObservabilitySnapshot { readonly health:readonly SystemHealthItem[];readonly incidents:readonly IncidentRecord[];readonly errors:readonly OperationalMetric[];readonly performance:readonly OperationalMetric[];readonly ai:readonly AIAgentHealth[];readonly jobs:readonly JobSummary[];readonly billing:readonly OperationalMetric[];readonly alerts:readonly AlertRecord[];readonly generatedAt:string }

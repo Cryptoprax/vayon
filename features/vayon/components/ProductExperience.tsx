@@ -83,6 +83,7 @@ export function ProductExperience({
       />
       <ShellSidebar
         path={path}
+        role={identity.workspaceRole ?? "guest"}
         collapsed={collapsed}
         mobileOpen={mobile}
         onCollapse={toggleCollapse}

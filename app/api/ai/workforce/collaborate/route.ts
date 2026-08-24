@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { AICollaborationService } from "@/features/platform/ai-collaboration";
+import { enforceApiPermission } from "@/features/platform/permissions/runtime/http";
 const employee = z.enum([
     "sales-ai",
     "crm-ai",
@@ -23,6 +24,8 @@ const employee = z.enum([
     agents: z.array(employee).min(1).max(8).optional(),
   });
 export async function POST(request: Request) {
+  const authorization=await enforceApiPermission("ai_employees","create");
+  if(authorization.response)return authorization.response;
   const parsed = schema.safeParse(await request.json().catch(() => null));
   if (!parsed.success)
     return Response.json(

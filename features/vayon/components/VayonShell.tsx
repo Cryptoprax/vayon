@@ -4,6 +4,7 @@ import { AuthenticationService } from "@/features/authentication/services/authen
 import { OrganizationService } from "@/features/onboarding/services/organization.service";
 import { ProductExperience } from "./ProductExperience";
 import { getAuroraNavigationContext } from "../demo-workspace";
+import { WorkspacePermissionService } from "@/features/platform/permissions/runtime/permission.service";
 // Search/navigation compatibility remains sourced from builder/config/vayon-navigation through ShellHeader.
 
 export async function VayonShell({
@@ -11,9 +12,10 @@ export async function VayonShell({
 }: {
   readonly children: ReactNode;
 }) {
-  const [user, organization] = await Promise.all([
+  const [user, organization, authorization] = await Promise.all([
       new AuthenticationService().user(),
       new OrganizationService().current(),
+      new WorkspacePermissionService().context().catch(() => null),
     ]),
     demo = getAuroraNavigationContext(),
     userName = String(
@@ -33,13 +35,14 @@ export async function VayonShell({
         )
       : [],
     identity = organization?.name
-      ? { userName, workspaceName: organization.name }
+      ? { userName, workspaceName: organization.name, workspaceRole: authorization?.role ?? "guest" as const }
       : {
           userName,
           workspaceName: demo.workspaceName,
           workspaceLogo: demo.logoPlaceholder,
           organizationDescription: demo.organizationDescription,
           demoWorkspace: "aurora" as const,
+          workspaceRole: authorization?.role ?? "guest" as const,
         };
   return (
     <Suspense>

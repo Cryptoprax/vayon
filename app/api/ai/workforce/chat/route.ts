@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { WorkforceRuntimeService } from "@/features/platform/openai/runtime/service";
 import { EnterpriseRateLimitService, requestSubject } from "@/features/platform/security-review/services/rate-limit.service";
+import { enforceApiPermission } from "@/features/platform/permissions/runtime/http";
 
 const schema = z.object({
   employee: z.enum(["sales-ai", "crm-ai", "marketing-ai", "whatsapp-ai", "voice-ai", "operations-ai", "finance-ai", "executive-ai"]),
@@ -10,6 +11,8 @@ const schema = z.object({
 });
 
 export async function POST(request: Request) {
+  const authorization=await enforceApiPermission("ai_employees","create");
+  if(authorization.response)return authorization.response;
   const limit = await new EnterpriseRateLimitService().enforce("ai-runtime", requestSubject(request));
   if (!limit.allowed) return Response.json({ error: "Rate limit exceeded." }, { status: 429, headers: { "Retry-After": String(limit.retryAfterSeconds) } });
   const parsed = schema.safeParse(await request.json().catch(() => null));

@@ -11,6 +11,7 @@ import {
   ContactRound,
   FileCode2,
   FileText,
+  Palette,
   Gauge,
   Handshake,
   Home,
@@ -38,6 +39,24 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
     label: "Home",
     icon: Home,
     items: [
+      {
+        label: "Creative Studio",
+        href: "/vayon/creative",
+        icon: Palette,
+        description: "Creative operating system",
+      },
+      {
+        label: "Creative Cloud",
+        href: "/vayon/creative/cloud",
+        icon: Sparkles,
+        description: "Creative operating model",
+      },
+      {
+        label: "Creative Pipelines",
+        href: "/vayon/creative/pipelines",
+        icon: Workflow,
+        description: "Production orchestration",
+      },
       {
         label: "Customer Success",
         href: "/vayon/customer-success",

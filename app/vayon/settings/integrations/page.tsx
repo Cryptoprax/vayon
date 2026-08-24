@@ -2,6 +2,7 @@ import { IntegrationCenter } from "@/features/platform/integrations/center";
 import { IntegrationCenterService } from "@/features/platform/integrations/center/service";
 import { ProviderStatusDashboard } from "@/features/platform/integration-platform/components/ProviderStatusDashboard";
 import { IntegrationPlatformService } from "@/features/platform/integration-platform/services/platform.service";
+import { enforcePagePermission } from "@/features/platform/permissions/runtime/http";
 export default async function Page({
   searchParams,
 }: {
@@ -13,6 +14,7 @@ export default async function Page({
     success?: string;
   }>;
 }) {
+  await enforcePagePermission("integrations");
   const [model, platform, q] = await Promise.all([
     new IntegrationCenterService().model(),
     new IntegrationPlatformService().dashboard(),
