@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/features/platform/design-system";
+import { logoutAction } from "@/features/authentication/actions/auth.actions";
 
 import {
   CircleHelp,
@@ -49,15 +50,16 @@ export function ProfileDropdown({ onClose }: ProfileDropdownProps) {
         })}
       </div>
       <div className="border-t border-vds-border/[0.07] p-1.5">
-        <Button variant="control"
-          type="button"
-          onClick={onClose}
-          className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-vds-muted transition hover:bg-vds-danger-soft hover:text-vds-danger focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vds-danger"
-          role="menuitem"
-        >
-          <LogOut className="size-4" aria-hidden="true" />
-          Sign out
-        </Button>
+        <form action={logoutAction}>
+          <Button variant="control"
+            type="submit"
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-vds-muted transition hover:bg-vds-danger-soft hover:text-vds-danger focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vds-danger"
+            role="menuitem"
+          >
+            <LogOut className="size-4" aria-hidden="true" />
+            Sign out
+          </Button>
+        </form>
       </div>
     </div>
   );

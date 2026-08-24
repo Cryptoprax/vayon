@@ -1,4 +1,5 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import {
@@ -124,6 +125,8 @@ export async function logoutAction() {
     p_event_type: "logout",
     p_metadata: { source: "product_shell" },
   });
-  await new AuthenticationService().logout();
+  const { error } = await new AuthenticationService().logout();
+  if (error) throw new Error("Unable to sign out. Please try again.");
+  revalidatePath("/", "layout");
   redirect("/login");
 }

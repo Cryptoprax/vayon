@@ -17,6 +17,7 @@ import { LazyFounderCharts } from "./LazyFounderCharts";
 const card =
   "rounded-3xl border border-vds-border/70 bg-vds-surface/70 shadow-xl shadow-vds-shadow/10 backdrop-blur-xl";
 const actions = [
+  ["Founder Access", "/platform/founder/access"],
   ["Enterprise Tenant Management", "/platform/founder/tenants"],
   ["VAYON AI Command Center", "/platform/founder/command-center"],
   ["Autonomous Operations Center", "/platform/founder/operations"],
