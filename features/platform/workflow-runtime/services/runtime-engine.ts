@@ -337,7 +337,7 @@ export class WorkflowRuntimeEngine {
         attempt:
           typeof metadata.attempt === "number" ? metadata.attempt : undefined,
         code: typeof metadata.code === "string" ? metadata.code : undefined,
-        metadata,
+        metadata: { ...metadata, actorId: session.context.actorId, correlationId: session.context.correlationId, trigger: session.context.trigger },
       }),
     );
   }

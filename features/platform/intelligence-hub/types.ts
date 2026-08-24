@@ -1,0 +1,6 @@
+import type { FounderAISnapshot } from "@/features/platform/founder-ai/types";
+export interface HubSearchResult { readonly id: string; readonly category: string; readonly title: string; readonly description: string; readonly href: string; }
+export interface HubNotification { readonly id: string; readonly category: string; readonly title: string; readonly body: string; readonly priority: string; readonly severity: string; readonly read: boolean; readonly archived: boolean; readonly createdAt: string; }
+export interface HubTimelineEvent { readonly id: string; readonly organizationId: string | null; readonly workspaceId: string | null; readonly userId: string | null; readonly module: string; readonly title: string; readonly occurredAt: string; }
+export interface AgentProgress { readonly agent: string; readonly capability: string; readonly status: "idle" | "processing" | "completed" | "unavailable"; readonly evidence: string; readonly href: string; }
+export interface IntelligenceHubSnapshot { readonly executive: FounderAISnapshot; readonly search: readonly HubSearchResult[]; readonly notifications: readonly HubNotification[]; readonly timeline: readonly HubTimelineEvent[]; readonly agents: readonly AgentProgress[]; readonly reports: readonly { id: string; label: string; formats: readonly ["PDF", "PowerPoint"] }[]; readonly generatedAt: string; }

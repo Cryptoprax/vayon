@@ -5,9 +5,11 @@ import { DashboardShell } from "@/features/vayon/dashboard/components/DashboardS
 import {
   Building2,
   CheckCircle2,
+  Camera,
   ChevronLeft,
   ChevronRight,
   LockKeyhole,
+  Maximize2,
   Play,
   RotateCcw,
   Search,
@@ -18,6 +20,7 @@ import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import type {
   DemoCollection,
   DemoExperienceModel,
+  DemoMode,
   DemoRecord,
 } from "../domain/contracts";
 import { BrandLogo } from "@/components/brand";
@@ -43,6 +46,11 @@ const tabs = [
   "growth",
   "landing-pages",
   "assistant",
+  "knowledge",
+  "customer-success",
+  "creative",
+  "reports",
+  "investor",
 ] as const;
 type Tab = (typeof tabs)[number];
 const enterpriseTabs = [
@@ -56,22 +64,41 @@ const enterpriseTabs = [
   "growth",
   "landing-pages",
   "assistant",
+  "knowledge",
+  "customer-success",
+  "creative",
+  "reports",
+  "investor",
 ] as const;
 const pageSize = 24;
 const investorTours = [
   ["Executive Tour", "dashboard", 0],
+  ["Founder Dashboard Tour", "dashboard", 0],
   ["Sales Tour", "deals", 4],
-  ["Marketing Tour", "communications", 7],
+  ["Marketing Tour", "marketing", 7],
   ["CRM Tour", "leads", 2],
   ["AI Tour", "ai", 1],
-  ["Creative Studio Tour", "ai", 14],
+  ["Creative Studio Tour", "creative", 14],
+  ["Knowledge Tour", "knowledge", 10],
   ["Growth Studio Tour", "workflows", 15],
+  ["CRM · unify the customer journey", "leads", 2],
+  ["Marketing AI · turn goals into campaigns", "marketing", 7],
+  ["Sales AI · prioritize revenue", "deals", 4],
+  ["Customer Success · protect retention", "customer-success", 8],
+  ["Founder AI · focus executive decisions", "dashboard", 8],
+  ["Workflow Automation · govern execution", "workflows", 9],
+  ["AI Command Center · coordinate specialists", "ai", 1],
+  ["Knowledge Platform · ground every answer", "knowledge", 10],
+  ["Creative Studio · scale brand-safe assets", "creative", 14],
+  ["Integration Hub · connect without lock-in", "workflows", 15],
 ] as const satisfies readonly (readonly [string, Tab, number])[];
 
 export function DemoExperience({
   model,
+  initialMode = "visitor",
 }: {
   readonly model: DemoExperienceModel;
+  readonly initialMode?: DemoMode;
 }) {
   const { currency, format, toLocal } = useMarketingCurrency();
   const [tab, setTab] = useState<Tab>("dashboard"),
@@ -79,12 +106,26 @@ export function DemoExperience({
     [page, setPage] = useState(0),
     [notice, setNotice] = useState(false),
     [tourStep, setTourStep] = useState<number | null>(null),
+    [mode, setMode] = useState<DemoMode>(initialMode),
+    [presentation, setPresentation] = useState(false),
+    [screenshot, setScreenshot] = useState(false),
+    [storyStep, setStoryStep] = useState(0),
     [resetCount, setResetCount] = useState(0);
   useEffect(() => {
     const telemetry = new DemoObservabilityService();
     if (tab === "dashboard") telemetry.launch(tab);
     else telemetry.view(tab);
   }, [tab, resetCount]);
+  useEffect(() => {
+    if (!presentation) return;
+    const navigate = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setPresentation(false);
+      if (event.key === "ArrowRight") setStoryStep((value) => Math.min(model.enterprise.executiveStory.length - 1, value + 1));
+      if (event.key === "ArrowLeft") setStoryStep((value) => Math.max(0, value - 1));
+    };
+    window.addEventListener("keydown", navigate);
+    return () => window.removeEventListener("keydown", navigate);
+  }, [model.enterprise.executiveStory.length, presentation]);
   const dashboard = useMemo(
     () => ({
       ...model.dashboard,
@@ -150,9 +191,11 @@ export function DemoExperience({
     <FloatingLayoutManager sidebarCollapsed>
     <div
       onClickCapture={protect}
-      className="min-h-dvh bg-vds-background text-vds-foreground"
+      className={`min-h-dvh bg-vds-background text-vds-foreground ${screenshot ? "demo-screenshot-mode" : ""}`}
+      data-demo-tenant="aurora-demo-workspace"
+      data-demo-mode={mode}
     >
-      <header className="sticky top-0 z-50 border-b border-vds-border bg-vds-background/95 backdrop-blur-xl">
+      {!presentation && <header className="sticky top-0 z-50 border-b border-vds-border bg-vds-background/95 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-[106rem] items-center gap-3 px-4 sm:px-6">
           <BrandLogo size="sm" priority />
           <div className="min-w-0">
@@ -164,12 +207,13 @@ export function DemoExperience({
             <LockKeyhole className="size-4" />
             Read-only demo
           </span>
+          <label className="hidden text-xs text-vds-muted md:block"><span className="sr-only">Demo mode</span><select className="h-9 rounded-lg border border-vds-border bg-vds-input px-2" value={mode} onChange={(event)=>{const next=event.target.value as DemoMode;setMode(next);const profile=model.enterprise.modes.find(item=>item.id===next);if(profile?.openingTab&&tabs.includes(profile.openingTab as Tab))select(profile.openingTab as Tab);}}>{model.enterprise.modes.map((item)=><option key={item.id} value={item.id}>{item.label}</option>)}</select></label>
           <ButtonLink href="/signup" className="shrink-0">
             Start free
           </ButtonLink>
         </div>
-      </header>
-      <section className="border-b border-vds-border bg-vds-warning-soft">
+      </header>}
+      {!presentation && <section className="border-b border-vds-border bg-vds-warning-soft">
         <div className="mx-auto flex max-w-[106rem] flex-col gap-2 px-4 py-3 text-xs sm:flex-row sm:items-center sm:px-6">
           <strong className="flex items-center gap-2 text-vds-warning">
             <Building2 className="size-4" />
@@ -182,8 +226,8 @@ export function DemoExperience({
             Seeded, isolated fixtures
           </span>
         </div>
-      </section>
-      <nav
+      </section>}
+      {!presentation && <nav
         aria-label="Demo sections"
         className="sticky top-16 z-40 overflow-x-auto border-b border-vds-border bg-vds-background/90 px-4 backdrop-blur-xl sm:px-6"
       >
@@ -201,8 +245,8 @@ export function DemoExperience({
             </Button>
           ))}
         </div>
-      </nav>
-      {tab === "dashboard" ? (
+      </nav>}
+      {presentation ? <PresentationStory records={model.enterprise.executiveStory} step={storyStep} onStep={setStoryStep} onClose={()=>setPresentation(false)}/> : tab === "dashboard" ? (
         <DashboardShell
           data={dashboard}
           onBlockedAction={() => setNotice(true)}
@@ -217,22 +261,7 @@ export function DemoExperience({
       ) : enterpriseTabs.includes(tab as (typeof enterpriseTabs)[number]) ? (
         <EnterpriseBrowser
           title={tab}
-          records={
-            tab === "ai"
-              ? model.enterprise.aiRecommendations
-              : tab === "marketing" || tab === "assistant"
-                ? model.enterprise.aiRecommendations
-                : tab === "growth" || tab === "landing-pages"
-                  ? model.enterprise.workflows
-              : model.enterprise[
-                  tab as
-                    | "team"
-                    | "workflows"
-                    | "notifications"
-                    | "billing"
-                    | "analytics"
-                ]
-          }
+          records={enterpriseRecords(model,tab)}
         />
       ) : (
         <DemoBrowser
@@ -249,7 +278,7 @@ export function DemoExperience({
           onPage={setPage}
         />
       )}
-      <FloatingSurface id="demo-tour-actions" kind="action" priority={50}>
+      {!presentation && <FloatingSurface id="demo-tour-actions" kind="action" priority={50}>
       <div className="flex items-end gap-2">
         <details className="group rounded-xl bg-vds-surface shadow-vds-lg">
           <summary className="vds-focus flex cursor-pointer list-none items-center gap-2 rounded-xl border border-vds-border px-4 py-2 text-sm">
@@ -272,6 +301,8 @@ export function DemoExperience({
             ))}
           </div>
         </details>
+        <Button variant="secondary" onClick={()=>{setStoryStep(0);setPresentation(true);}} aria-label="Start fullscreen-friendly presentation mode"><Maximize2 className="size-4"/>Present</Button>
+        <Button variant="secondary" onClick={()=>setScreenshot(value=>!value)} aria-pressed={screenshot}><Camera className="size-4"/>Screenshot</Button>
         <Button
           variant="secondary"
           onClick={() => {
@@ -287,7 +318,7 @@ export function DemoExperience({
           Reset demo
         </Button>
       </div>
-      </FloatingSurface>
+      </FloatingSurface>}
       {tourStep !== null && (
         <FloatingSurface id="demo-walkthrough" kind="walkthrough" priority={20}>
         <div className="max-w-lg rounded-2xl border border-vds-accent-border bg-vds-surface p-5 shadow-vds-lg">
@@ -397,6 +428,26 @@ function EnterpriseBrowser({
       </div>
     </main>
   );
+}
+
+function enterpriseRecords(model: DemoExperienceModel, tab: Tab) {
+  if (tab === "ai" || tab === "assistant") return model.enterprise.aiDemonstrations;
+  if (tab === "marketing") return model.enterprise.campaigns;
+  if (tab === "growth" || tab === "landing-pages" || tab === "workflows") return model.enterprise.workflows;
+  if (tab === "billing") return [...model.enterprise.subscriptions, ...model.enterprise.billing];
+  if (tab === "knowledge") return model.enterprise.knowledge;
+  if (tab === "customer-success") return model.enterprise.customerSuccess;
+  if (tab === "creative") return model.enterprise.creative;
+  if (tab === "reports") return model.enterprise.reports;
+  if (tab === "investor") return model.enterprise.investor;
+  if (tab === "team") return model.enterprise.team;
+  if (tab === "notifications") return model.enterprise.notifications;
+  return model.enterprise.analytics;
+}
+
+function PresentationStory({ records, step, onStep, onClose }: { records: DemoExperienceModel["enterprise"]["executiveStory"]; step: number; onStep: (value: number) => void; onClose: () => void }) {
+  const record = records[step];
+  return <main className="grid min-h-dvh place-items-center overflow-hidden px-5 py-12" aria-live="polite"><section className="w-full max-w-6xl rounded-[2.5rem] border border-vds-accent-border bg-vds-surface/80 p-8 shadow-2xl backdrop-blur-xl sm:p-14 lg:p-20"><p className="text-xs font-semibold uppercase tracking-[.24em] text-vds-primary">Executive story · Demo content · {step+1}/{records.length}</p><h1 className="mt-6 text-4xl font-semibold tracking-[-.05em] sm:text-6xl lg:text-8xl">{record?.title}</h1><p className="mt-6 max-w-4xl text-lg leading-8 text-vds-muted sm:text-2xl sm:leading-10">{record?.detail}</p><div className="mt-12 flex flex-wrap items-center justify-between gap-4"><p className="text-xs text-vds-subtle">Use ← and → to navigate · Esc to exit</p><div className="flex gap-2"><Button variant="secondary" disabled={step===0} onClick={()=>onStep(Math.max(0,step-1))}><ChevronLeft className="size-4"/>Previous</Button><Button variant="secondary" onClick={onClose}>Exit</Button><Button disabled={step===records.length-1} onClick={()=>onStep(Math.min(records.length-1,step+1))}>Next<ChevronRight className="size-4"/></Button></div></div></section></main>;
 }
 
 function DemoBrowser({

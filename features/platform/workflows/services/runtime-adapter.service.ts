@@ -14,15 +14,27 @@ import { ExistingPlatformWorkflowProvider } from "../providers/existing-platform
 
 const actionKinds: readonly ActionKind[] = [
   "crm.task.recommend",
+  "task.create",
+  "owner.assign",
+  "notification.create",
+  "whatsapp.queue",
+  "sms.queue",
+  "ai.task.create",
+  "crm.record.update",
+  "meeting.schedule",
+  "report.generate",
+  "provider.call",
   "reminder.create",
   "gmail.draft",
   "whatsapp.draft",
   "meeting.recommend",
   "ai.recommend",
+  "ai.request",
   "user.notify",
   "email.queue",
   "approval.request",
   "timeline.update",
+  "timeline.propose",
   "executive.report",
 ];
 

@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
-const realtimeTables = ["platform_metrics", "organizations", "subscriptions", "billing_events", "ai_conversations", "support_sessions", "system_alerts"] as const;
+const realtimeTables = ["platform_metrics", "organizations", "subscriptions", "billing_events", "invoices", "ai_conversations", "support_sessions", "customer_health", "system_alerts", "creative_campaigns", "marketing_events", "marketing_leads", "leads", "deals", "site_visits", "activity_events", "integration_connections", "integration_health", "integration_logs", "integration_retry_queue", "integration_webhooks", "integration_sync_history"] as const;
 
 export function FounderRealtime() {
   const router = useRouter();

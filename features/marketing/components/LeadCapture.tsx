@@ -9,7 +9,7 @@ export function LeadCapture({ submitted = false, error = false }: { submitted?: 
     {submitted && <p className="mt-6 rounded-xl border border-vds-success p-4" role="status">Thank you.<br />Our team has received your request.<br />We will contact you shortly.</p>}
     {error && <p className="mt-6 rounded-xl border border-vds-danger p-4" role="alert">Please review your details.</p>}
     <form action={captureLeadAction} className="mt-8 grid gap-4">
-      <select name="kind" className="h-12 rounded-xl border border-vds-border bg-vds-input px-4"><option value="demo">Book Demo</option><option value="trial">Start Free Trial</option><option value="sales">Contact Sales</option><option value="newsletter">Newsletter</option></select>
+      <select name="kind" className="h-12 rounded-xl border border-vds-border bg-vds-input px-4"><option value="demo">Book Demo</option><option value="trial">Start Free Trial</option><option value="sales">Contact Sales</option><option value="enterprise">Enterprise inquiry</option><option value="newsletter">Newsletter</option><option value="waitlist">Join waitlist</option></select>
       <input name="name" maxLength={100} placeholder="Name" className="h-12 rounded-xl border border-vds-border bg-vds-input px-4" />
       <input name="email" type="email" required maxLength={254} placeholder="Business email" className="h-12 rounded-xl border border-vds-border bg-vds-input px-4" />
       <input name="company" maxLength={160} placeholder="Company" className="h-12 rounded-xl border border-vds-border bg-vds-input px-4" />

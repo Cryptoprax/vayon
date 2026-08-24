@@ -19,5 +19,5 @@ export async function saveOnboardingProgressAction(input: {
 
 export async function launchOnboardingAction() {
   await new EnterpriseOnboardingService().complete();
-  redirect("/vayon/home?welcome=1&tour=1");
+  redirect("/vayon/customer-success?welcome=1&tour=1");
 }

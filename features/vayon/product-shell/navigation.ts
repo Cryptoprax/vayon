@@ -38,6 +38,12 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
     label: "Home",
     icon: Home,
     items: [
+      {
+        label: "Customer Success",
+        href: "/vayon/customer-success",
+        icon: Sparkles,
+        description: "Onboarding and adoption",
+      },
       { label: "Dashboard", href: "/vayon/dashboard", icon: Gauge },
       { label: "Executive Home", href: "/vayon/home", icon: Home },
       { label: "Analytics", href: "/vayon/analytics", icon: BarChart3 },

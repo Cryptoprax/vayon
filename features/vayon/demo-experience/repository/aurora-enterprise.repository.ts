@@ -9,6 +9,7 @@ import {
 import type {
   DemoEnterpriseItem,
   DemoEnterpriseProjection,
+  DemoModeProfile,
 } from "../domain/contracts";
 import { convertToUsd } from "@/features/marketing/currency/currency";
 
@@ -63,6 +64,13 @@ const tour = [
   "Organization",
   "Creative Studio",
   "Growth Studio",
+];
+const modes: readonly DemoModeProfile[] = [
+  { id:"visitor",label:"Visitor Demo",audience:"Prospects exploring VAYON",openingTab:"dashboard",highlights:["CRM","AI Workforce","Properties","Business outcomes"] },
+  { id:"sales",label:"Sales Demo",audience:"Revenue leaders",openingTab:"deals",highlights:["Pipeline","Sales AI","Site visits","Forecast"] },
+  { id:"investor",label:"Investor Demo",audience:"Investors and advisors",openingTab:"investor",highlights:["Platform","Growth","Architecture","Scalability"] },
+  { id:"founder",label:"Founder Demo",audience:"Founders and executives",openingTab:"dashboard",highlights:["Founder AI","Command Center","Health","Operations"] },
+  { id:"enterprise",label:"Enterprise Demo",audience:"Enterprise buying teams",openingTab:"workflows",highlights:["Security","Integrations","Governance","Automation"] },
 ];
 
 /** Deterministic enterprise projections over the canonical cross-linked Aurora graph. */
@@ -191,6 +199,23 @@ export class AuroraEnterpriseDemoRepository {
         workflows.map((value) => value.id),
       ),
     ];
+    const campaigns = Array.from({length:8},(_,index)=>item(`demo-campaign-${index+1}`,["Luxury Portfolio Launch","Investor Week","Commercial Leasing","NRI Property Briefing"][index%4]!,`${120+index*17} qualified prospects · governed creative approval`,index%3===0?"scheduled":"running",auroraLeads.slice(index*3,index*3+6).map(value=>value.id),convertToUsd(240000+index*35000,"INR")));
+    const subscriptions = [item("demo-subscription-pro","Professional subscription","Annual billing · 24 active seats · demo only","active",[],convertToUsd(14999*12,"INR")),item("demo-subscription-storage","Storage add-on","320 GB of 500 GB demonstration allowance","active")];
+    const knowledge = ["Sales playbook","Property qualification guide","Enterprise security guide","Customer onboarding SOP","Campaign governance"].map((title,index)=>item(`demo-knowledge-${index+1}`,title,`${8+index} approved sections · version ${index+2}.0`,"approved"));
+    const creative = ["Aurora luxury brochure","Investor landing page","Commercial sales kit","NRI campaign pack","Property launch flyer"].map((title,index)=>item(`demo-creative-${index+1}`,title,"Brand-aligned asset · human approval recorded",index===4?"review":"approved",campaigns[index%campaigns.length]?[campaigns[index%campaigns.length]!.id]:[]));
+    const customerSuccess = auroraCompanies.slice(0,8).map((company,index)=>item(`demo-success-${index+1}`,company.name,`${82-index*4}/100 health · ${index%3===0?"onboarding review":"adoption on track"}`,index<5?"healthy":"needs_attention",[company.id]));
+    const reports = ["Daily Executive Brief","Weekly Sales Report","Monthly Growth Report","Customer Health Review","Board Summary"].map((title,index)=>item(`demo-report-${index+1}`,title,"Presentation-ready demonstration report","generated",analytics.slice(0,index+1).map(value=>value.id)));
+    const aiDemonstrations = ["Founder AI","Marketing AI","Sales AI","Customer Success AI","Knowledge AI","Creative AI","Workflow AI"].map((title,index)=>item(`demo-live-ai-${index+1}`,title,"Deterministic demonstration insight · recommendation only",index%3===0?"processing":"ready",aiRecommendations.slice(index,index+3).map(value=>value.id)));
+    const investor = [
+      item("investor-platform","Platform overview","One governed operating system across growth, revenue, customer success, and operations.","released"),
+      item("investor-architecture","Architecture","Tenant-isolated Repository → Service → Provider boundaries with approval governance.","verified"),
+      item("investor-metrics","Business and growth metrics","Demonstration MRR, ARR, pipeline, adoption, retention, and AI impact.","demo_content"),
+      item("investor-ai","AI capabilities","Seven coordinated recommendation-only AI capabilities with evidence.","released"),
+      item("investor-scale","Enterprise scalability","RBAC, tenant isolation, provider abstraction, observability, and workflow orchestration.","verified"),
+      item("investor-security","Security","RLS, audit history, approval boundaries, and secret-safe provider architecture.","verified"),
+      item("investor-roadmap","Roadmap","Forward-looking direction is clearly separated from released functionality.","forward_looking"),
+    ];
+    const executiveStory = ["The Problem","The Solution","Marketing","Sales","Customer Success","AI Workforce","Founder AI","Operations","Integrations","Growth"].map((title,index)=>item(`demo-story-${index+1}`,title,["Fragmented systems hide business context.","VAYON unifies governed business operations.","Turn goals into approved campaigns.","Convert qualified demand with evidence.","Protect adoption, retention, and expansion.","Coordinate specialized AI recommendations.","Give leaders an evidence-backed daily brief.","Run workflows with approval boundaries.","Connect providers without coupling business logic.","Compound learning across the customer journey."][index]!,"story"));
     return Object.freeze({
       datasetVersion: "aurora-enterprise-v1",
       demoData: true,
@@ -200,12 +225,22 @@ export class AuroraEnterpriseDemoRepository {
       notifications: Object.freeze(notifications),
       billing: Object.freeze(billing),
       analytics: Object.freeze(analytics),
+      campaigns:Object.freeze(campaigns),
+      subscriptions:Object.freeze(subscriptions),
+      knowledge:Object.freeze(knowledge),
+      creative:Object.freeze(creative),
+      customerSuccess:Object.freeze(customerSuccess),
+      reports:Object.freeze(reports),
+      aiDemonstrations:Object.freeze(aiDemonstrations),
+      investor:Object.freeze(investor),
+      executiveStory:Object.freeze(executiveStory),
+      modes:Object.freeze(modes),
       tour: Object.freeze(
         tour.map((title, index) =>
           item(
             `demo-tour-${index + 1}`,
             title,
-            `Guided stop ${index + 1} of ${tour.length}`,
+            ["See revenue, risk, activity, and priorities in one operating view.","Coordinate specialized AI recommendations without autonomous execution.","Unify relationships, pipeline, communications, and next actions.","Connect live inventory to qualified demand and revenue.","Prioritize buyers and deals using explainable evidence.","Protect customer data quality and relationship context.","Draft timely conversations while people retain sending control.","Turn a business goal into a governed, measurable campaign.","Give leadership evidence-backed health, risk, and forecast context.","Move work across triggers, approvals, and actions with full history.","Ground assistance in approved product and organization knowledge.","Keep every important event visible and traceable.","Connect commercial entitlement, usage, invoices, and renewal context.","Manage teams, roles, and operating boundaries.","Create brand-safe campaign assets with human approval.","Link adoption, acquisition, retention, and expansion evidence."][index]!,
             "pending",
           ),
         ),

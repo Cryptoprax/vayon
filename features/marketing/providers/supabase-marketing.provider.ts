@@ -1,7 +1,7 @@
 import "server-only";
 import { createClient } from "@supabase/supabase-js";
 import { getSupabaseConfig } from "@/lib/supabase/config";
-import type { MarketingEvent, MarketingProvider } from "../contracts";
+import type { LeadCaptureKind, MarketingEvent, MarketingProvider } from "../contracts";
 const timeoutMs = 4_000;
 const attempts = 3;
 export class MarketingProviderError extends Error { constructor(readonly diagnostic: "configuration_missing" | "database_unavailable" | "timeout" | "provider_error", readonly retryable: boolean) { super("Marketing provider operation failed."); this.name = "MarketingProviderError"; } }
@@ -11,5 +11,5 @@ function providerError(reason: unknown) { if (reason instanceof MarketingProvide
 async function execute<T>(operation: () => PromiseLike<T>): Promise<T> { let failure = new MarketingProviderError("provider_error", false); for (let attempt = 1; attempt <= attempts; attempt += 1) { try { return await bounded(operation); } catch (reason) { failure = providerError(reason); if (!failure.retryable || attempt === attempts) throw failure; } } throw failure; }
 export class SupabaseMarketingProvider implements MarketingProvider {
   async record(event: MarketingEvent) { await execute(async () => { const { error } = await client().rpc("record_public_marketing_event", { p_event: event }); if (error) throw error; }); }
-  async captureLead(input: { kind: "demo" | "trial" | "sales" | "newsletter"; name?: string; email: string; company?: string; message?: string; plan?: string }) { return execute(async () => { const { data, error } = await client().rpc("capture_public_marketing_lead", { p_input: input }); if (error) throw error; return String(data); }); }
+  async captureLead(input: { kind: LeadCaptureKind; name?: string; email: string; company?: string; message?: string; plan?: string }) { return execute(async () => { const { data, error } = await client().rpc("capture_public_marketing_lead", { p_input: input }); if (error) throw error; return String(data); }); }
 }

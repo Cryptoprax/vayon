@@ -2,6 +2,8 @@ import type { ExecutiveDashboardData } from "@/features/vayon/dashboard/types";
 
 export type DemoCollection =
   "properties" | "leads" | "deals" | "communications" | "activity";
+export type DemoMode = "visitor" | "sales" | "investor" | "founder" | "enterprise";
+export interface DemoModeProfile { readonly id:DemoMode;readonly label:string;readonly audience:string;readonly openingTab:string;readonly highlights:readonly string[] }
 export interface DemoRecord {
   readonly id: string;
   readonly kind: DemoCollection;
@@ -50,5 +52,15 @@ export interface DemoEnterpriseProjection {
   readonly notifications:readonly DemoEnterpriseItem[];
   readonly billing:readonly DemoEnterpriseItem[];
   readonly analytics:readonly DemoEnterpriseItem[];
+  readonly campaigns:readonly DemoEnterpriseItem[];
+  readonly subscriptions:readonly DemoEnterpriseItem[];
+  readonly knowledge:readonly DemoEnterpriseItem[];
+  readonly creative:readonly DemoEnterpriseItem[];
+  readonly customerSuccess:readonly DemoEnterpriseItem[];
+  readonly reports:readonly DemoEnterpriseItem[];
+  readonly aiDemonstrations:readonly DemoEnterpriseItem[];
+  readonly investor:readonly DemoEnterpriseItem[];
+  readonly executiveStory:readonly DemoEnterpriseItem[];
+  readonly modes:readonly DemoModeProfile[];
   readonly tour:readonly DemoEnterpriseItem[];
 }

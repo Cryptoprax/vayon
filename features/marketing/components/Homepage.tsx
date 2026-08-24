@@ -29,6 +29,7 @@ import {
   WorkforceOrbit,
 } from "./EnterpriseExperience";
 import { LandingRoiCalculator } from "./LandingRoiCalculator";
+import { PublicGrowthPlatform } from "./PublicGrowthPlatform";
 
 const features = [
   [
@@ -324,6 +325,7 @@ export function Homepage() {
       >
         <WorkforceOrbit />
       </Section>
+      <PublicGrowthPlatform />
       <RealEstateBusinesses />
       <Section
         eyebrow="Business case"

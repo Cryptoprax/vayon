@@ -1,6 +1,6 @@
 export type ExecutionState="queued"|"running"|"waiting"|"paused"|"completed"|"cancelled"|"failed"|"timed_out"|"skipped";
 export type ApprovalState="approval_required"|"approved"|"rejected"|"escalated"|"timed_out";
-export type RuntimeAction="task.create"|"meeting.create"|"timeline.submit_proposal"|"notification.create"|"email.send"|"calendar.create"|"document.reference"|`provider.${string}`;
+export type RuntimeAction="task.create"|"owner.assign"|"notification.create"|"email.queue"|"whatsapp.queue"|"sms.queue"|"ai.task.create"|"crm.record.update"|"meeting.schedule"|"report.generate"|"meeting.create"|"timeline.submit_proposal"|"email.send"|"calendar.create"|"document.reference"|`provider.${string}`;
 export interface RetryPolicy{readonly maxAttempts:number;readonly baseDelayMs:number;readonly maxDelayMs:number;readonly retryableCodes:readonly string[]}
 export interface ExecutionContext{readonly organizationId:string;readonly workspaceId:string;readonly actorId:string;readonly correlationId:string;readonly trigger:"manual"|"schedule"|"event";readonly triggeredAt:string;readonly permissions:readonly string[];readonly variables:Readonly<Record<string,unknown>>}
 export interface RuntimeStep{readonly id:string;readonly nodeId:string;readonly action:RuntimeAction;readonly input:Readonly<Record<string,unknown>>;readonly dependencies:readonly string[];readonly approvalRequired:boolean;readonly timeoutMs:number;readonly retryPolicy:RetryPolicy}
