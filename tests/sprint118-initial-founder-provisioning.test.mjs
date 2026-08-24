@@ -10,9 +10,10 @@ test("initial provisioning targets only the four approved Founder emails", () =>
 });
 
 test("utility requires server credentials without exposing their values", () => {
-  assert.match(script, /process\.env\.SUPABASE_URL/);
+  assert.match(script, /loadEnvConfig\(process\.cwd\(\)\)/);
+  assert.match(script, /process\.env\.SUPABASE_URL\s*\?\?\s*process\.env\.NEXT_PUBLIC_SUPABASE_URL/);
   assert.match(script, /process\.env\.SUPABASE_SERVICE_ROLE_KEY/);
-  assert.doesNotMatch(script, /NEXT_PUBLIC_SUPABASE|serviceRoleKey\}|console\.(?:log|error)\([^\n]*serviceRoleKey/);
+  assert.doesNotMatch(script, /serviceRoleKey\}|console\.(?:log|error)\([^\n]*serviceRoleKey/);
 });
 
 test("role update preserves app metadata and is idempotent", () => {

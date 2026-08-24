@@ -1,6 +1,8 @@
 import { z } from "zod";
+import { assignableWorkspaceRoles, type WorkspaceRoleCode } from "../config/workspace-role-catalog";
 
-export const roleSchema = z.enum(["organization_admin", "manager", "sales", "marketing", "operations", "finance", "support", "read_only"]);
+const assignableRoleCodes = assignableWorkspaceRoles.map((role) => role.code) as [string, ...string[]];
+export const roleSchema = z.enum(assignableRoleCodes).transform((role) => role as WorkspaceRoleCode);
 const hours = z.object({ open: z.string().regex(/^\d{2}:\d{2}$/), close: z.string().regex(/^\d{2}:\d{2}$/) });
 export const profileSchema = z.object({
   name: z.string().trim().min(2).max(160), businessEmail: z.string().trim().email().max(320), phone: z.string().trim().max(40).optional(), website: z.string().trim().url().max(500).optional().or(z.literal("")), timezone: z.string().trim().min(1).max(100), locale: z.string().trim().min(2).max(20), currency: z.string().trim().length(3),

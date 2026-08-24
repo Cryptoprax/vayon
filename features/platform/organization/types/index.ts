@@ -1,8 +1,9 @@
-export type OrganizationRole="organization_owner"|"organization_admin"|"manager"|"sales"|"marketing"|"operations"|"finance"|"support"|"read_only";
+import type { WorkspaceRoleCode, WorkspaceRoleDefinition } from "../config/workspace-role-catalog";
+export type OrganizationRole=WorkspaceRoleCode;
 export interface OrganizationProfile{id:string;name:string;businessEmail:string|null;phone:string|null;website:string|null;timezone:string;locale:string;currency:string;address:Record<string,string>;branding:{primary:string|null;accent:string|null};businessHours:Record<string,{open:string;close:string}>;regionalSettings:Record<string,string>;logoPath:string|null;version:number}
 export interface OrganizationMember{id:string;userId:string;name:string;email:string;role:OrganizationRole;roleName:string;status:"active"|"suspended"|"removed";joinedAt:string;lastLoginAt:string|null}
 export interface OrganizationInvitation{id:string;name:string;email:string;role:OrganizationRole;roleName:string;status:string;expiresAt:string;sentAt:string;resentAt:string|null}
 export interface OrganizationAuditEvent{id:string;eventType:string;actorId:string;subjectId:string|null;metadata:Record<string,unknown>;occurredAt:string}
 export interface OrganizationDepartment{id:string;name:string;managerMemberId:string|null;managerName:string|null;kpis:string[];permissions:string[];status:"active"|"archived";version:number}
 export interface OrganizationTeam{id:string;name:string;departmentId:string;departmentName:string;managerMemberId:string|null;managerName:string|null;memberIds:string[];capacity:number;workload:number;status:"active"|"archived";version:number}
-export interface OrganizationSnapshot{profile:OrganizationProfile;members:OrganizationMember[];invitations:OrganizationInvitation[];roles:{code:OrganizationRole;name:string;permissions:string[]}[];departments:OrganizationDepartment[];teams:OrganizationTeam[];activity:OrganizationAuditEvent[];canManage:boolean;isOwner:boolean}
+export interface OrganizationSnapshot{profile:OrganizationProfile;members:OrganizationMember[];invitations:OrganizationInvitation[];roles:readonly WorkspaceRoleDefinition[];departments:OrganizationDepartment[];teams:OrganizationTeam[];activity:OrganizationAuditEvent[];canManage:boolean;isOwner:boolean}

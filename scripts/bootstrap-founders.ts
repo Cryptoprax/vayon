@@ -1,4 +1,7 @@
+import { loadEnvConfig } from "@next/env";
 import { createClient, type User } from "@supabase/supabase-js";
+
+loadEnvConfig(process.cwd());
 
 const founderEmails = Object.freeze([
   "prakyathaiagent@gmail.com",
@@ -16,7 +19,8 @@ interface Summary {
 
 async function main(): Promise<void> {
   const summary: Summary = { found: 0, updated: 0, skipped: 0, failed: 0 };
-  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseUrl =
+    process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl || !serviceRoleKey) {
