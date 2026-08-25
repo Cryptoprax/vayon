@@ -41,12 +41,13 @@ test("existing route collisions remain untouched and documented", () => {
 });
 test("marketing routes are public without exposing authenticated application paths", () => {
   const source = read("lib/supabase/proxy.ts");
-  for (const route of routes) assert.match(source, new RegExp(`"/${route}"`));
+  for (const route of routes.filter((route) => route !== "crm"))
+    assert.match(source, new RegExp(`"/${route}"`));
   const publicInventory = source.match(
-    /const PUBLIC_ROUTES = \[([\s\S]*?)\];/,
+    /const PUBLIC_ROUTES = \[([\s\S]*?)\] as const;/,
   )?.[1];
   assert.ok(publicInventory);
-  assert.doesNotMatch(publicInventory, /"\/vayon"/);
+  assert.doesNotMatch(publicInventory, /"\/(?:vayon|crm)"/);
 });
 test("shared server-first architecture avoids duplicated page implementations", () => {
   const layout = read("app/(marketing)/layout.tsx"),

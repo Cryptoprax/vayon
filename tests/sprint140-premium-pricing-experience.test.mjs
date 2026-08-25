@@ -5,32 +5,19 @@ import fs from "node:fs";
 const read = (path) => fs.readFileSync(path, "utf8");
 const pricing = () => read("features/marketing/components/PricingTable.tsx");
 
-test("pricing hero and flagship catalog communicate the unified platform", () => {
+test("pricing starts with simple plan selection and omits duplicated marketing", () => {
   const source = pricing();
   for (const evidence of [
-    "The World&apos;s First AI Business Operating System",
+    "Simple pricing",
+    "Choose the plan that fits your business.",
     "Start Free Trial",
-    "Book a Demo",
-    "AI Business Launch",
-    "AI Workforce",
-    "AI CRM",
-    "Creative Studio 2.0",
-    "Brand Studio",
-    "Document Studio",
-    "Image Studio",
-    "Video Studio",
-    "Campaign Studio",
-    "Marketing Studio",
-    "Sales Workspace",
-    "Customer Success",
-    "Founder OS",
-    "Business Intelligence",
+    "Annual · save 20%",
+    "Monthly",
   ])
     assert.ok(source.includes(evidence), evidence);
-  assert.match(
-    source,
-    /Everything your business needs\. One intelligent platform powered by\s+AI\./,
-  );
+  assert.doesNotMatch(source, /The World&apos;s First AI Business Operating System/);
+  assert.doesNotMatch(source, /Flagship products/);
+  assert.doesNotMatch(source, /Business outcomes/);
 });
 
 test("commercial packages and comparison matrix cover the Sprint 140 offer", () => {
@@ -51,16 +38,18 @@ test("commercial packages and comparison matrix cover the Sprint 140 offer", () 
     assert.ok(source.includes(evidence), evidence);
 });
 
-test("sales narrative includes outcomes ROI enterprise FAQ and final conversion", () => {
+test("sales narrative includes cost comparison ROI enterprise FAQ and final conversion", () => {
   const source = pricing();
   for (const evidence of [
-    "Business outcomes",
-    "Launch your business with AI",
-    "Generate sales proposals",
-    "Create investor pitch decks",
+    "Why VAYON Saves You Money",
+    "Software Category",
+    "Typical Monthly Cost",
+    "$355–1,380+/month",
+    "Why Businesses Choose VAYON",
+    "Lower software costs",
+    "AI employees included",
     "Estimated monthly software spend",
-    "Estimated savings with VAYON",
-    "Why businesses choose VAYON",
+    "Savings vary depending on your existing software stack.",
     "Commercial questions, answered.",
     "Ready to run your business with AI?",
     "Talk to Sales",

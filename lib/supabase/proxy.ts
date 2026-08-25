@@ -8,10 +8,10 @@ const PUBLIC_ROUTES = [
   "/forgot-password",
   "/reset-password",
   "/auth/callback",
+  "/platform",
   "/demo",
   "/product",
   "/ai-workforce",
-  "/crm",
   "/properties",
   "/deals",
   "/communications",
@@ -28,7 +28,45 @@ const PUBLIC_ROUTES = [
   "/about",
   "/careers",
   "/contact",
-];
+  "/features",
+  "/solutions",
+  "/industries",
+  "/trust-center",
+  "/status",
+  "/help",
+  "/developers",
+  "/roi-calculator",
+  "/media-kit",
+  "/partners",
+  "/investors",
+  "/privacy",
+  "/terms",
+  "/refund-policy",
+  "/cookie-policy",
+  "/support-policy",
+  "/acceptable-use-policy",
+  "/ai-usage-policy",
+  "/data-processing-addendum",
+  "/search",
+] as const;
+
+const PUBLIC_ROUTE_PREFIXES = [
+  "/auth",
+  "/features",
+  "/solutions",
+  "/industries",
+  "/customers",
+  "/blog",
+  "/docs",
+] as const;
+
+export function isPublicWebsiteRoute(path: string) {
+  return (
+    PUBLIC_ROUTES.includes(path as (typeof PUBLIC_ROUTES)[number]) ||
+    PUBLIC_ROUTE_PREFIXES.some((route) => path.startsWith(`${route}/`))
+  );
+}
+
 export async function refreshSession(request: NextRequest) {
   const path = request.nextUrl.pathname;
   if (path === "/api/webhooks" || path.startsWith("/api/webhooks/")) {
@@ -52,9 +90,7 @@ export async function refreshSession(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  const isPublic = PUBLIC_ROUTES.some(
-    (route) => path === route || path.startsWith(route + "/"),
-  );
+  const isPublic = isPublicWebsiteRoute(path);
   if (!user && !isPublic) {
     const target = request.nextUrl.clone();
     target.pathname = "/login";
@@ -67,6 +103,8 @@ export async function refreshSession(request: NextRequest) {
     target.search = "";
     return NextResponse.redirect(target);
   }
+  if (isPublic) return response;
+
   if (user && path !== "/onboarding" && !path.startsWith("/auth/")) {
     const { data: membership, error } = await supabase
       .from("organization_members")
