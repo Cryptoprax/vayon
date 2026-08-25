@@ -228,7 +228,7 @@ function ResourceSurface({ docs }: { readonly docs: boolean }) {
         "Integrations",
         "Workflow governance",
       ]
-    : ["Documentation", "API readiness", "Guides", "Videos", "Playbooks"];
+    : ["Documentation", "Blog", "Help Center", "Release Notes", "Status", "API (Coming Soon)"];
   return (
     <section className="mx-auto max-w-[90rem] px-5 py-20 sm:px-8">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -243,7 +243,7 @@ function ResourceSurface({ docs }: { readonly docs: boolean }) {
               technical and editorial review.
             </p>
             <span className="mt-5 inline-block text-sm text-vds-subtle">
-              Coming soon
+              {docs ? "Documentation collection" : "Explore resources"}
             </span>
           </article>
         ))}

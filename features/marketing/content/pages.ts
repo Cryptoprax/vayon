@@ -60,19 +60,24 @@ export const marketingPages: Readonly<
     "Unify customer relationships, properties, transactions, communications, governance, and intelligence in one coherent workspace.",
     [
       {
-        title: "Connected work",
+        title: "AI Workforce + CRM",
         description:
-          "Shared context keeps teams aligned across business objects and activity.",
+          "Specialist AI employees work from governed customer and sales context.",
       },
       {
-        title: "Governed automation",
+        title: "Creative Cloud + Marketing",
         description:
-          "Recommendations, approvals, and execution boundaries remain explicit.",
+          "Brand, documents, images, video and campaigns share one accountable production model.",
       },
       {
-        title: "Enterprise control",
+        title: "Sales + Customer Success",
         description:
-          "Administration, audit, diagnostics, and integrations share one platform model.",
+          "Acquisition, pipeline, adoption, renewal and customer health stay connected.",
+      },
+      {
+        title: "Founder OS + Business Intelligence",
+        description:
+          "Executive decisions use cross-module evidence, platform health and explainable recommendations.",
       },
     ],
     [
@@ -309,19 +314,49 @@ export const marketingPages: Readonly<
     "Vayon is designed for layered access control, auditability, encrypted credentials, approval workflows, and safe AI boundaries.",
     [
       {
-        title: "Security readiness",
+        title: "Authentication",
         description:
-          "Controls are structured to support future compliance programs; no certification is implied.",
+          "Server-validated sessions and provider-safe identity flows protect access.",
       },
       {
-        title: "Permissions",
+        title: "Encryption",
         description:
-          "Organization and workspace boundaries support least-privilege access.",
+          "Transport security and protected provider credentials reduce secret exposure.",
+      },
+      {
+        title: "Role-based access",
+        description:
+          "Central permissions enforce least privilege across UI and server boundaries.",
+      },
+      {
+        title: "Tenant isolation",
+        description:
+          "Organization and workspace scope prevent cross-tenant access.",
+      },
+      {
+        title: "Backups",
+        description:
+          "Operational recovery procedures are documented; production evidence remains independently verified.",
+      },
+      {
+        title: "Audit logs",
+        description:
+          "Sensitive actions, approvals and denials preserve accountable history.",
       },
       {
         title: "AI safety",
         description:
-          "Recommendations and execution remain separate, governed concerns.",
+          "Evidence, confidence, human approval and provider abstraction govern AI work.",
+      },
+      {
+        title: "Compliance roadmap",
+        description:
+          "Controls support future assurance programs; no certification is implied.",
+      },
+      {
+        title: "Responsible disclosure",
+        description:
+          "Security concerns may be reported to security@vayon.online when the mailbox is configured.",
       },
     ],
     [
@@ -417,19 +452,19 @@ export const marketingPages: Readonly<
     "Vayon brings fragmented business context into a coherent, governable enterprise platform.",
     [
       {
-        title: "Our focus",
+        title: "Mission",
         description:
-          "Clarity, accountability, extensibility, and excellent enterprise experience.",
+          "Give every business a coherent, accountable operating system powered by governed AI.",
       },
       {
-        title: "Our approach",
+        title: "Vision",
         description:
-          "Architecture-first foundations designed to evolve without repeated redesign.",
+          "A future where teams coordinate customers, creativity and decisions without fragmented context.",
       },
       {
-        title: "Our standard",
+        title: "Leadership",
         description:
-          "Evidence over theater, explicit boundaries over hidden automation.",
+          "Founder and leadership profiles are prepared for publication after approval.",
       },
     ],
     [

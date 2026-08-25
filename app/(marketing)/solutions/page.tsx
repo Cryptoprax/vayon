@@ -1,17 +1,25 @@
 import type { Metadata } from "next";
-import { PublicContentPage } from "@/features/marketing/components/PublicContentPage";
-import { MarketingService } from "@/features/marketing/services/marketing.service";
-const page = new MarketingService().page("solutions");
+import { CommercialCatalogIndex } from "@/features/marketing/components/CommercialCatalogPage";
+import { solutionCatalog } from "@/features/marketing/content/commercial-catalog";
 export const metadata: Metadata = {
-  title: page.title,
-  description: page.description,
+  title: "Business Solutions",
+  description:
+    "VAYON solutions for startups, small businesses, agencies, growing companies and enterprises.",
   alternates: { canonical: "/solutions" },
   openGraph: {
-    title: page.title,
-    description: page.description,
+    title: "VAYON Business Solutions",
+    description: "One AI business operating system for every stage of growth.",
     url: "/solutions",
   },
 };
 export default function Page() {
-  return <PublicContentPage page={page} />;
+  return (
+    <CommercialCatalogIndex
+      eyebrow="Business solutions"
+      title="Operate with clarity at every stage of growth."
+      description="Choose a business path to see the problems VAYON solves, the outcomes it supports and the connected modules recommended for your team."
+      entries={solutionCatalog}
+      basePath="/solutions"
+    />
+  );
 }

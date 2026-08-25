@@ -9,24 +9,59 @@ test("hero prioritizes demo conversion with visible trust", async () => {
   assert.match(source, /Book Demo/);
   assert.match(source, /Watch Demo/);
   assert.match(source, /Start Free Trial/);
-  for (const value of ["Secure by design", "Human approval controls", "Cloud-native infrastructure"]) assert.match(source, new RegExp(value));
+  for (const value of [
+    "Secure by design",
+    "Human approval controls",
+    "Cloud-native infrastructure",
+  ])
+    assert.match(source, new RegExp(value));
 });
 
 test("homepage tells the complete lead-to-revenue workflow", async () => {
   const source = await read("features/marketing/components/Homepage.tsx");
-  for (const step of ["Lead arrives", "AI responds", "Lead qualifies", "Meeting booked", "Deal tracked", "Revenue generated"]) assert.match(source, new RegExp(step));
+  for (const step of [
+    "Lead arrives",
+    "AI responds",
+    "Lead qualifies",
+    "Meeting booked",
+    "Deal tracked",
+    "Revenue generated",
+  ])
+    assert.match(source, new RegExp(step));
 });
 
 test("product preview covers launch modules and one AI employee presentation", async () => {
-  const [homepage, experience] = await Promise.all([read("features/marketing/components/Homepage.tsx"), read("features/marketing/components/EnterpriseExperience.tsx")]);
-  for (const view of ["CRM", "AI Employees", "Pipeline", "Analytics", "Calendar", "Automation"]) assert.match(experience, new RegExp(view));
+  const [homepage, experience] = await Promise.all([
+    read("features/marketing/components/Homepage.tsx"),
+    read("features/marketing/components/EnterpriseExperience.tsx"),
+  ]);
+  for (const view of [
+    "CRM",
+    "AI Employees",
+    "Pipeline",
+    "Analytics",
+    "Calendar",
+    "Automation",
+  ])
+    assert.match(experience, new RegExp(view));
   assert.match(homepage, /<WorkforceOrbit \/>/);
   assert.doesNotMatch(homepage, /ConversionWorkforce/);
 });
 
 test("interactive ROI calculator uses transparent requested inputs and outputs", async () => {
-  const source = await read("features/marketing/components/LandingRoiCalculator.tsx");
-  for (const value of ["Monthly leads", "Conversion rate", "Revenue per deal", "Revenue increase", "Hours saved", "AI cost savings", "Pipeline growth"]) assert.match(source, new RegExp(value));
+  const source = await read(
+    "features/marketing/components/LandingRoiCalculator.tsx",
+  );
+  for (const value of [
+    "Monthly leads",
+    "Conversion rate",
+    "Revenue per deal",
+    "Revenue increase",
+    "Hours saved",
+    "AI cost savings",
+    "Pipeline growth",
+  ])
+    assert.match(source, new RegExp(value));
   assert.match(source, /directional/i);
   assert.match(source, /not guarantees/i);
 });
@@ -40,7 +75,17 @@ test("customer proof is launch-ready without fabricated endorsements", async () 
 
 test("footer has complete information architecture and functional newsletter capture", async () => {
   const source = await read("features/marketing/components/MarketingShell.tsx");
-  for (const value of ["Product", "Resources", "Company", "Legal", "Social", "Real estate product notes"]) assert.match(source, new RegExp(value));
+  for (const value of [
+    "Platform",
+    "Solutions",
+    "Industries",
+    "Resources",
+    "Company",
+    "Legal",
+    "Social",
+    "VAYON product notes",
+  ])
+    assert.match(source, new RegExp(value));
   assert.match(source, /captureLeadAction/);
   assert.match(source, /name="kind" value="newsletter"/);
 });

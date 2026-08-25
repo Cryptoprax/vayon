@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CommercialCatalogDetail } from "@/features/marketing/components/CommercialCatalogPage";
-import { industryCatalog } from "@/features/marketing/content/commercial-catalog";
+import { productCatalog } from "@/features/marketing/content/commercial-catalog";
 export function generateStaticParams() {
-  return industryCatalog.map(({ slug }) => ({ slug }));
+  return productCatalog.map(({ slug }) => ({ slug }));
 }
 export async function generateMetadata({
   params,
@@ -11,16 +11,16 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params,
-    e = industryCatalog.find((x) => x.slug === slug);
+    e = productCatalog.find((x) => x.slug === slug);
   return e
     ? {
-        title: `VAYON for ${e.name}`,
+        title: e.name,
         description: e.summary,
-        alternates: { canonical: `/industries/${slug}` },
+        alternates: { canonical: `/features/${slug}` },
         openGraph: {
-          title: `VAYON for ${e.name}`,
+          title: e.name,
           description: e.summary,
-          url: `/industries/${slug}`,
+          url: `/features/${slug}`,
         },
       }
     : {};
@@ -31,7 +31,7 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const e = industryCatalog.find((x) => x.slug === slug);
+  const e = productCatalog.find((x) => x.slug === slug);
   if (!e) notFound();
-  return <CommercialCatalogDetail eyebrow="Industry solution" entry={e} />;
+  return <CommercialCatalogDetail eyebrow="VAYON product" entry={e} />;
 }

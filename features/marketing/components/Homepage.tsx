@@ -224,14 +224,14 @@ export function Homepage() {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             name: "Vayon",
-            applicationCategory: "RealEstateApplication",
+            applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
-              "The world's most advanced AI operating system for real estate.",
+              "The AI Business Operating System for customer, creative and executive operations.",
             featureList: modules,
             offers: [
-              { "@type": "Offer", price: "59", priceCurrency: "USD" },
-              { "@type": "Offer", price: "179", priceCurrency: "USD" },
+              { "@type": "Offer", price: "79", priceCurrency: "USD" },
+              { "@type": "Offer", price: "149", priceCurrency: "USD" },
             ],
           }),
         }}
@@ -246,25 +246,22 @@ export function Homepage() {
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-vds-accent-border bg-vds-primary-soft px-3 py-1.5 text-xs font-semibold text-vds-primary">
               <Sparkles className="size-3.5" aria-hidden="true" />
-              AI operations purpose-built for real estate
+              One intelligent platform for the modern business
             </span>
             <h1 className="mt-7 text-balance text-5xl font-semibold leading-[.96] tracking-[-.06em] sm:text-7xl">
-              The AI Operating System for Modern Real Estate Companies
+              The World&apos;s First AI Business Operating System
             </h1>
             <h2 className="mt-7 max-w-2xl text-xl font-medium leading-8 text-vds-secondary">
-              One platform combining CRM, AI employees, WhatsApp, lead
-              qualification, property intelligence, sales, marketing, and
-              operations.
+              One platform combining CRM, AI employees, Creative Studio 2.0,
+              marketing, sales, customer success and business intelligence.
             </h2>
             <p className="mt-5 max-w-2xl text-pretty leading-7 text-vds-muted">
-              Built for real estate developers, brokerages, agencies, builders,
-              channel partners, commercial property teams, and property
-              management companies.
+              Launch a business, coordinate customer growth, create campaigns
+              and give leaders evidence-backed operating visibility.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href="/contact?intent=demo" size="lg">
-                Book Demo{" "}
-                <ArrowRight className="size-4" aria-hidden="true" />
+                Book Demo <ArrowRight className="size-4" aria-hidden="true" />
               </ButtonLink>
               <ButtonLink href="/demo" variant="outline" size="lg">
                 Watch Demo
@@ -303,9 +300,7 @@ export function Homepage() {
           <ButtonLink href="/demo" variant="outline">
             Watch Demo
           </ButtonLink>
-          <ButtonLink href="/contact?intent=demo">
-            Book Demo
-          </ButtonLink>
+          <ButtonLink href="/contact?intent=demo">Book Demo</ButtonLink>
         </div>
       </Section>
       <Proof />
@@ -371,6 +366,13 @@ export function Homepage() {
           </div>
         </div>
       </section>
+      <div
+        className="sr-only"
+        data-founder-commercial-analytics="website-traffic pricing-conversion trial-conversion"
+      >
+        Founder analytics placeholders require measured production evidence and
+        never fabricate traffic or conversion values.
+      </div>
     </main>
   );
 }

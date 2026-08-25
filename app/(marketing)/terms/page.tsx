@@ -1,1 +1,13 @@
-import type{Metadata}from"next";import{PublicContentPage}from"@/features/marketing/components/PublicContentPage";import{MarketingService}from"@/features/marketing/services/marketing.service";const page=new MarketingService().page("terms");export const metadata:Metadata={title:page.title,description:page.description,alternates:{canonical:"/terms"},robots:{index:true,follow:true}};export default function Page(){return <PublicContentPage page={page}/>}
+import type { Metadata } from "next";
+import { LegalPolicyPage } from "@/features/marketing/components/LegalPolicyPage";
+import { legalPolicies } from "@/features/marketing/content/legal-content";
+const p = legalPolicies.terms;
+export const metadata: Metadata = {
+  title: p.title,
+  description: p.description,
+  alternates: { canonical: "/terms" },
+  openGraph: { title: p.title, description: p.description, url: "/terms" },
+};
+export default function Page() {
+  return <LegalPolicyPage {...p} />;
+}

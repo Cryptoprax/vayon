@@ -7,13 +7,13 @@ import { captureLeadAction } from "../actions/lead.actions";
 import { MarketingCurrencyProvider } from "../currency/CurrencyDisplay";
 
 const navigation = [
-  { label: "Product", href: "/product" },
-  { label: "AI Employees", href: "/ai-workforce" },
+  { label: "Platform", href: "/product" },
   { label: "Solutions", href: "/solutions" },
-  { label: "Customers", href: "/customers" },
+  { label: "Industries", href: "/industries" },
   { label: "Pricing", href: "/pricing" },
   { label: "Resources", href: "/resources" },
-  { label: "Developers", href: "/developers" },
+  { label: "Company", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 export const realEstateSolutions = [
   "Residential Sales",
@@ -35,114 +35,117 @@ const solutionHref = (label: string) =>
 
 export function MarketingShell({ children }: { readonly children: ReactNode }) {
   return (
-    <MarketingCurrencyProvider><div className="vayon-premium-canvas vayon-marketing min-h-screen text-vds-foreground">
-      <a
-        href="#marketing-content"
-        className="vds-focus sr-only z-50 rounded-lg bg-vds-surface px-4 py-3 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
-      >
-        Skip to content
-      </a>
-      <header className="sticky top-0 z-40 border-b border-vds-border bg-vds-background/70 backdrop-blur-2xl">
-        <div className="mx-auto flex h-18 max-w-[90rem] items-center gap-5 px-5 sm:px-8">
-          <Link
-            href="/"
-            aria-label="Vayon home"
-            className="vds-focus flex shrink-0 items-center rounded-lg"
-          >
-            <BrandLogo size="sm" priority />
-          </Link>
-          <nav
-            aria-label="Primary"
-            className="hidden flex-1 items-center justify-center gap-0.5 xl:flex"
-          >
-            {navigation.map((item) =>
-              item.label === "Solutions" ? (
-                <details className="group relative" key={item.href}>
-                  <summary className="vds-focus cursor-pointer list-none rounded-lg px-2.5 py-2 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground">
-                    Solutions
-                  </summary>
-                  <div className="absolute left-1/2 top-11 grid w-[38rem] -translate-x-1/2 grid-cols-2 gap-1 rounded-2xl border border-vds-border bg-vds-surface p-3 shadow-xl">
-                    {realEstateSolutions.map((solution) => (
-                      <Link
-                        key={solution}
-                        href={solutionHref(solution)}
-                        className="vds-focus rounded-lg px-3 py-2 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"
-                      >
-                        {solution}
-                      </Link>
-                    ))}
-                  </div>
-                </details>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="vds-focus rounded-lg px-2.5 py-2 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"
-                >
-                  {item.label}
-                </Link>
-              ),
-            )}
-          </nav>
-          <div className="ml-auto hidden items-center gap-2 sm:flex">
+    <MarketingCurrencyProvider>
+      <div className="vayon-premium-canvas vayon-marketing min-h-screen text-vds-foreground">
+        <a
+          href="#marketing-content"
+          className="vds-focus sr-only z-50 rounded-lg bg-vds-surface px-4 py-3 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
+        <header className="sticky top-0 z-40 border-b border-vds-border bg-vds-background/70 backdrop-blur-2xl">
+          <div className="mx-auto flex h-18 max-w-[90rem] items-center gap-5 px-5 sm:px-8">
             <Link
-              href="/login"
-              className="vds-focus rounded-xl px-4 py-2 text-sm font-medium text-vds-muted hover:text-vds-foreground"
+              href="/"
+              aria-label="Vayon home"
+              className="vds-focus flex shrink-0 items-center rounded-lg"
             >
-              Login
+              <BrandLogo size="sm" priority />
             </Link>
-            <ButtonLink href="/signup" size="sm">
-              Start Free Trial <ArrowRight className="size-4" aria-hidden="true" />
-            </ButtonLink>
-          </div>
-          <details className="relative ml-auto xl:hidden">
-            <summary
-              aria-label="Open navigation"
-              className="vds-focus grid size-11 list-none place-items-center rounded-xl border border-vds-border"
-            >
-              <Menu className="size-5" aria-hidden="true" />
-            </summary>
             <nav
-              aria-label="Mobile"
-              className="absolute right-0 top-13 grid max-h-[75vh] w-72 gap-1 overflow-y-auto rounded-2xl border border-vds-border bg-vds-surface p-3 shadow-xl"
+              aria-label="Primary"
+              className="hidden flex-1 items-center justify-center gap-0.5 xl:flex"
             >
-              {navigation.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="vds-focus rounded-lg px-3 py-2.5 text-sm hover:bg-vds-hover"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <span className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-vds-subtle">
-                Real estate solutions
-              </span>
-              {realEstateSolutions.map((solution) => (
-                <Link
-                  key={solution}
-                  href={solutionHref(solution)}
-                  className="vds-focus rounded-lg px-3 py-2.5 text-sm hover:bg-vds-hover"
-                >
-                  {solution}
-                </Link>
-              ))}
+              {navigation.map((item) =>
+                item.label === "Solutions" ? (
+                  <details className="group relative" key={item.href}>
+                    <summary className="vds-focus cursor-pointer list-none rounded-lg px-2.5 py-2 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground">
+                      Solutions
+                    </summary>
+                    <div className="absolute left-1/2 top-11 grid w-[38rem] -translate-x-1/2 grid-cols-2 gap-1 rounded-2xl border border-vds-border bg-vds-surface p-3 shadow-xl">
+                      {realEstateSolutions.map((solution) => (
+                        <Link
+                          key={solution}
+                          href={solutionHref(solution)}
+                          className="vds-focus rounded-lg px-3 py-2 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"
+                        >
+                          {solution}
+                        </Link>
+                      ))}
+                    </div>
+                  </details>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="vds-focus rounded-lg px-2.5 py-2 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                ),
+              )}
+            </nav>
+            <div className="ml-auto hidden items-center gap-2 sm:flex">
               <Link
                 href="/login"
-                className="vds-focus rounded-lg px-3 py-2.5 text-sm"
+                className="vds-focus rounded-xl px-4 py-2 text-sm font-medium text-vds-muted hover:text-vds-foreground"
               >
-                Login
+                Sign In
               </Link>
-              <ButtonLink href="/signup" size="sm" fullWidth>
-                Start Free Trial
+              <ButtonLink href="/signup" size="sm">
+                Start Free Trial{" "}
+                <ArrowRight className="size-4" aria-hidden="true" />
               </ButtonLink>
-            </nav>
-          </details>
-        </div>
-      </header>
-      <div id="marketing-content">{children}</div>
-      <MarketingFooter />
-    </div></MarketingCurrencyProvider>
+            </div>
+            <details className="relative ml-auto xl:hidden">
+              <summary
+                aria-label="Open navigation"
+                className="vds-focus grid size-11 list-none place-items-center rounded-xl border border-vds-border"
+              >
+                <Menu className="size-5" aria-hidden="true" />
+              </summary>
+              <nav
+                aria-label="Mobile"
+                className="absolute right-0 top-13 grid max-h-[75vh] w-72 gap-1 overflow-y-auto rounded-2xl border border-vds-border bg-vds-surface p-3 shadow-xl"
+              >
+                {navigation.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="vds-focus rounded-lg px-3 py-2.5 text-sm hover:bg-vds-hover"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <span className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-vds-subtle">
+                  Real estate solutions
+                </span>
+                {realEstateSolutions.map((solution) => (
+                  <Link
+                    key={solution}
+                    href={solutionHref(solution)}
+                    className="vds-focus rounded-lg px-3 py-2.5 text-sm hover:bg-vds-hover"
+                  >
+                    {solution}
+                  </Link>
+                ))}
+                <Link
+                  href="/login"
+                  className="vds-focus rounded-lg px-3 py-2.5 text-sm"
+                >
+                  Sign In
+                </Link>
+                <ButtonLink href="/signup" size="sm" fullWidth>
+                  Start Free Trial
+                </ButtonLink>
+              </nav>
+            </details>
+          </div>
+        </header>
+        <div id="marketing-content">{children}</div>
+        <MarketingFooter />
+      </div>
+    </MarketingCurrencyProvider>
   );
 }
 
@@ -166,7 +169,25 @@ function MarketingFooter() {
         ["ROI Calculator", "/roi-calculator"],
         ["Demo Workspace", "/demo"],
         ["Customers", "/customers"],
-        ["Status", "/trust-center"],
+        ["Status", "/status"],
+      ],
+    ],
+    [
+      "Solutions",
+      [
+        ["Startups", "/solutions/startups"],
+        ["Small Business", "/solutions/small-business"],
+        ["Agencies", "/solutions/agencies"],
+        ["Enterprise", "/solutions/enterprise"],
+      ],
+    ],
+    [
+      "Industries",
+      [
+        ["Solar", "/industries/solar"],
+        ["Real Estate", "/industries/real-estate"],
+        ["Healthcare", "/industries/healthcare"],
+        ["Manufacturing", "/industries/manufacturing"],
       ],
     ],
     [
@@ -179,10 +200,11 @@ function MarketingFooter() {
       ],
     ],
     [
-      "Real Estate",
+      "Trust",
       [
         ["Security", "/security"],
         ["Trust Center", "/trust-center"],
+        ["Status", "/status"],
         ["Pricing", "/pricing"],
         ["Contact Sales", "/contact"],
       ],
@@ -193,6 +215,7 @@ function MarketingFooter() {
         ["About", "/about"],
         ["Careers", "/careers"],
         ["Media Kit", "/media-kit"],
+        ["Partners", "/partners"],
         ["Investors", "/investors"],
       ],
     ],
@@ -204,6 +227,9 @@ function MarketingFooter() {
         ["Cookies", "/cookie-policy"],
         ["Refunds", "/refund-policy"],
         ["Support", "/support-policy"],
+        ["Acceptable Use", "/acceptable-use-policy"],
+        ["AI Usage", "/ai-usage-policy"],
+        ["Data Processing", "/data-processing-addendum"],
       ],
     ],
     [
@@ -220,7 +246,7 @@ function MarketingFooter() {
         <div>
           <BrandLogo size="md" />
           <p className="mt-4 max-w-xs text-sm leading-6 text-vds-muted">
-            The AI operating system for modern real estate companies.
+            The AI Business Operating System for modern companies.
           </p>
           <p className="mt-6 text-xs text-vds-subtle">
             Built with governance at the core.
@@ -228,7 +254,7 @@ function MarketingFooter() {
           <form action={captureLeadAction} className="mt-8 max-w-sm">
             <input type="hidden" name="kind" value="newsletter" />
             <label className="text-sm font-semibold" htmlFor="footer-email">
-              Real estate product notes
+              VAYON product notes
             </label>
             <div className="mt-3 flex gap-2">
               <input
@@ -248,6 +274,28 @@ function MarketingFooter() {
               Product updates. No unsolicited messages.
             </p>
           </form>
+          <form action="/search" className="mt-6 max-w-sm">
+            <label className="text-sm font-semibold" htmlFor="footer-search">
+              Global Search
+            </label>
+            <div className="mt-3 flex gap-2">
+              <input
+                id="footer-search"
+                name="q"
+                maxLength={100}
+                placeholder="Search VAYON"
+                className="min-w-0 flex-1 rounded-xl border border-vds-border bg-vds-input px-3 text-sm"
+              />
+              <Button type="submit" size="sm" variant="outline">
+                Search
+              </Button>
+            </div>
+          </form>
+          <address className="mt-6 text-xs not-italic leading-6 text-vds-subtle">
+            VAYON · India · Monday–Friday, 09:00–18:00 IST
+            <br />
+            hello@vayon.online · sales@vayon.online
+          </address>
         </div>
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 xl:grid-cols-7">
           {groups.map(([title, links]) => (
@@ -270,8 +318,8 @@ function MarketingFooter() {
         </div>
       </div>
       <div className="border-t border-vds-border px-5 py-5 text-center text-xs text-vds-subtle">
-        © {new Date().getUTCFullYear()} Vayon. Real estate AI, under human
-        control.
+        © {new Date().getUTCFullYear()} Vayon. AI business operations, under
+        human control.
       </div>
     </footer>
   );
