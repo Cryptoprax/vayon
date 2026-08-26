@@ -33,30 +33,37 @@ test("commercial packages and comparison matrix cover the Sprint 140 offer", () 
     "Dedicated Success Manager",
     "Private Cloud",
     "Custom Integrations",
-    "Enterprise SLA",
+    '"SLA"',
   ])
     assert.ok(source.includes(evidence), evidence);
 });
 
-test("sales narrative includes cost comparison ROI enterprise FAQ and final conversion", () => {
+test("sales narrative includes plan guidance, comparisons and FAQ", () => {
   const source = pricing();
   for (const evidence of [
+    "Which plan is right for you?",
+    "Perfect for solo founders and startups.",
+    "Recommended for growing teams.",
+    "Built for companies operating across multiple locations.",
+    "Still not sure?",
+    "Book a free strategy call",
+    "Book a Demo",
+    "Talk to Sales",
     "Why VAYON Saves You Money",
     "Software Category",
     "Typical Monthly Cost",
     "$355–1,380+/month",
-    "Why Businesses Choose VAYON",
-    "Lower software costs",
-    "AI employees included",
-    "Estimated monthly software spend",
-    "Savings vary depending on your existing software stack.",
+    "Enterprise comparison",
     "Commercial questions, answered.",
-    "Ready to run your business with AI?",
-    "Talk to Sales",
-    "plan-popularity upgrade-funnel conversion-funnel trial-conversion mrr-projection arr-projection",
-    "no metrics are fabricated",
   ])
     assert.ok(source.includes(evidence), evidence);
+  for (const removed of [
+    "Why Businesses Choose VAYON",
+    "Return on investment",
+    "Ready to run your business with AI?",
+    "Designed around your security, scale and operating model.",
+  ])
+    assert.ok(!source.includes(removed), removed);
 });
 
 test("pricing remains presentation-only and does not bypass commercial authorities", () => {

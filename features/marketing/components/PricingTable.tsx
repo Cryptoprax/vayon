@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Check, CheckCircle2 } from "lucide-react";
+import { Check } from "lucide-react";
 import { Button, ButtonLink } from "@/features/platform/design-system";
 import { CurrencyDisplay } from "../currency/CurrencyDisplay";
 const shell = "mx-auto max-w-[96rem] px-5 py-20 sm:px-8",
@@ -72,15 +72,18 @@ const softwareCosts = [
   ["Document Generation", "$20–50"],
   ["Sales Enablement", "$40–150+"],
 ] as const;
-const valueBenefits = [
-  "Lower software costs",
-  "Fewer subscriptions",
-  "Less context switching",
-  "One AI Workspace",
-  "Unified customer data",
-  "Faster business launch",
-  "Enterprise governance",
-  "AI employees included",
+const planRecommendations = [
+  ["Starter", "Perfect for solo founders and startups."],
+  ["Professional", "Recommended for growing teams."],
+  ["Business", "Ideal for established businesses with multiple departments."],
+  [
+    "Business Plus",
+    "Built for companies operating across multiple locations.",
+  ],
+  [
+    "Enterprise",
+    "Designed for organizations requiring custom security, governance, compliance and integrations.",
+  ],
 ] as const;
 const rows = [
   "AI Business Launch",
@@ -264,6 +267,48 @@ export function PricingTable() {
         </p>
           </div>
       </section>
+      <section className={`${shell} py-24 sm:py-28`}>
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-4xl font-semibold tracking-[-.04em] sm:text-6xl">
+            Which plan is right for you?
+          </h2>
+        </div>
+        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {planRecommendations.map(([name, description]) => {
+            const recommended = name === "Professional";
+            return (
+              <article
+                className={`${card} relative p-6 ${recommended ? "border-vds-accent-border bg-vds-primary-soft shadow-2xl" : ""}`}
+                key={name}
+              >
+                {recommended && (
+                  <span className="absolute right-4 top-4 rounded-full bg-vds-primary px-2 py-1 text-[10px] font-semibold text-vds-on-accent">
+                    RECOMMENDED
+                  </span>
+                )}
+                <h3 className="pr-20 text-lg font-semibold">{name}</h3>
+                <p className="mt-4 text-sm leading-6 text-vds-muted">
+                  {description}
+                </p>
+              </article>
+            );
+          })}
+        </div>
+        <div className="mx-auto mt-12 max-w-2xl text-center">
+          <h3 className="text-2xl font-semibold">Still not sure?</h3>
+          <p className="mt-3 leading-7 text-vds-muted">
+            Book a free strategy call and we&apos;ll help you choose the best plan.
+          </p>
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <ButtonLink href="/contact?intent=demo" variant="outline" size="lg">
+              Book a Demo
+            </ButtonLink>
+            <ButtonLink href="/contact?intent=sales" size="lg">
+              Talk to Sales
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
       <section className="border-b border-vds-border bg-vds-surface/40">
         <div className={`${shell} py-24 sm:py-28`}>
           <div className="mx-auto max-w-3xl text-center">
@@ -328,27 +373,6 @@ export function PricingTable() {
           </div>
         </div>
       </section>
-      <section className={`${shell} py-24 sm:py-28`}>
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-4xl font-semibold tracking-[-.04em] sm:text-6xl">
-            Why Businesses Choose VAYON
-          </h2>
-        </div>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {valueBenefits.map((benefit) => (
-            <article
-              className={`${card} flex min-h-36 flex-col justify-between p-6`}
-              key={benefit}
-            >
-              <CheckCircle2
-                className="size-6 text-vds-primary"
-                aria-hidden="true"
-              />
-              <h3 className="mt-8 text-lg font-semibold">{benefit}</h3>
-            </article>
-          ))}
-        </div>
-      </section>
       <section className="border-y border-vds-border">
         <div className={shell}>
           <Heading
@@ -391,34 +415,6 @@ export function PricingTable() {
         </div>
       </section>
       <section className={shell}>
-        <div
-          className={`${card} grid gap-8 p-8 lg:grid-cols-2 lg:items-center`}
-        >
-          <div>
-            <p className="eyebrow">Return on investment</p>
-            <h2 className="mt-4 text-3xl font-semibold">
-              Invest in outcomes, not another disconnected tool.
-            </h2>
-            <p className="mt-4 leading-7 text-vds-muted">
-              Estimate how much you currently spend across multiple software
-              subscriptions. Then compare it with VAYON&apos;s unified platform.
-              Savings vary depending on your existing software stack.
-            </p>
-          </div>
-          <div className="grid gap-3">
-            <Metric
-              label="Estimated monthly software spend"
-              value="Your current stack"
-            />
-            <div className="text-center text-vds-primary">↓</div>
-            <Metric
-              label="VAYON unified platform"
-              value="Compare with your selected plan"
-            />
-          </div>
-        </div>
-      </section>
-      <section className={shell}>
         <Heading eyebrow="FAQ" title="Commercial questions, answered." />
         <div className="mt-8 grid gap-3 lg:grid-cols-2">
           {faqs.map(([q, a]) => (
@@ -427,68 +423,6 @@ export function PricingTable() {
               <p className="mt-3 text-sm leading-6 text-vds-muted">{a}</p>
             </details>
           ))}
-        </div>
-      </section>
-      <section className="border-y border-vds-border">
-        <div className={shell}>
-          <div
-            className={`${card} overflow-hidden border-vds-accent-border bg-vds-primary-soft p-8 sm:p-12`}
-          >
-            <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div>
-                <p className="eyebrow">Enterprise</p>
-                <h2 className="mt-4 text-4xl font-semibold">
-                  Designed around your security, scale and operating model.
-                </h2>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {[
-                    "Custom AI",
-                    "Dedicated Infrastructure",
-                    "SSO",
-                    "Private Cloud",
-                    "Custom Integrations",
-                    "Dedicated Success Manager",
-                    "Training",
-                    "Priority Support",
-                    "Enterprise SLA",
-                  ].map((x) => (
-                    <span
-                      className="rounded-full border border-vds-border px-3 py-1.5 text-sm"
-                      key={x}
-                    >
-                      {x}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <ButtonLink href="/contact?intent=sales" size="lg">
-                Contact Sales
-              </ButtonLink>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className={`${shell} text-center`}>
-        <h2 className="text-4xl font-semibold">
-          Ready to run your business with AI?
-        </h2>
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <ButtonLink href="/signup" size="lg">
-            Start Free Trial
-          </ButtonLink>
-          <ButtonLink href="/contact?intent=demo" variant="outline" size="lg">
-            Book Demo
-          </ButtonLink>
-          <ButtonLink href="/contact?intent=sales" variant="ghost" size="lg">
-            Talk to Sales
-          </ButtonLink>
-        </div>
-        <div
-          className="sr-only"
-          data-commercial-analytics="plan-popularity upgrade-funnel conversion-funnel trial-conversion mrr-projection arr-projection"
-        >
-          Founder analytics foundation uses existing conversion and subscription
-          evidence; no metrics are fabricated.
         </div>
       </section>
     </>
@@ -501,14 +435,6 @@ function Heading({ eyebrow, title }: { eyebrow: string; title: string }) {
       <h2 className="mt-4 text-3xl font-semibold tracking-[-.035em] sm:text-5xl">
         {title}
       </h2>
-    </div>
-  );
-}
-function Metric({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-2xl border border-vds-border bg-vds-elevated p-5">
-      <p className="text-sm text-vds-muted">{label}</p>
-      <p className="mt-2 text-xl font-semibold">{value}</p>
     </div>
   );
 }
