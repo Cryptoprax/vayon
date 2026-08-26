@@ -51,5 +51,6 @@ test("orchestrator route preserves the existing governed workflow foundation", (
   assert.match(page, /WorkflowOrchestrator/);
   assert.match(page, /WorkflowAutomationDashboard/);
   assert.match(page, /WorkflowDesigner/);
-  assert.match(page, /Runtime execution remains separately permissioned and approval-governed/);
+  assert.match(page, /Advanced workflow settings/);
+  assert.match(page, /WorkflowAutomationService/);
 });

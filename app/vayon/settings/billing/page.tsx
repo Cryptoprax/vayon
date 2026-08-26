@@ -22,48 +22,36 @@ export default async function Page() {
     new PaddleCatalogService().list(),
     billingContext(),
   ]);
+  const hasBillingAccount = Boolean(data.subscription?.providerSubscriptionId);
   return (
     <main className="mx-auto max-w-[96rem] px-5 py-8">
       <BillingHeader
         title="Billing"
-        description="Paddle subscriptions, usage, seats, tax, payments, and billing history for this workspace."
+        description="Choose the plan that fits your business. We’ll use your account email for checkout."
       />
       <SubscriptionStatus subscription={data.subscription} />
-      <div className="mt-5 flex flex-wrap gap-3">
-        <PaddlePortalButton />
-        <Link
-          className="rounded-xl border border-vds-border px-4 py-3 text-sm"
-          href="/vayon/settings/payment-methods"
-        >
-          Payment methods
-        </Link>
-        <Link
-          className="rounded-xl border border-vds-border px-4 py-3 text-sm"
-          href="/vayon/settings/invoices"
-        >
-          Invoices
-        </Link>
-        <Link
-          className="rounded-xl border border-vds-border px-4 py-3 text-sm"
-          href="/vayon/settings/billing/provider-health"
-        >
-          Provider health
-        </Link>
-      </div>
       <CommercialPlans
         catalog={catalog}
         organizationId={context.organizationId}
         workspaceId={context.workspaceId}
       />
-      <section className="mt-6 grid gap-5 lg:grid-cols-2">
-        <BillingContactForm contact={data.contact} />
-        <div className="space-y-5">
-          <BillingContact contact={data.contact} />
-          <SeatManager subscription={data.subscription} />
-        </div>
-      </section>
-      <UsageCharts items={data.usage} />
-      <BillingHistory items={data.events} />
+      {hasBillingAccount && (
+        <details className="mt-8 rounded-3xl border border-vds-border bg-vds-surface p-5">
+          <summary className="cursor-pointer font-medium">Manage billing</summary>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <PaddlePortalButton />
+            <Link className="rounded-xl border border-vds-border px-4 py-3 text-sm" href="/vayon/settings/payment-methods">Payment methods</Link>
+            <Link className="rounded-xl border border-vds-border px-4 py-3 text-sm" href="/vayon/settings/invoices">Invoices</Link>
+            <Link className="rounded-xl border border-vds-border px-4 py-3 text-sm" href="/vayon/settings/billing/provider-health">Billing status</Link>
+          </div>
+          <section className="mt-6 grid gap-5 lg:grid-cols-2">
+            <BillingContactForm contact={data.contact} />
+            <div className="space-y-5"><BillingContact contact={data.contact} /><SeatManager subscription={data.subscription} /></div>
+          </section>
+          <UsageCharts items={data.usage} />
+          <BillingHistory items={data.events} />
+        </details>
+      )}
     </main>
   );
 }

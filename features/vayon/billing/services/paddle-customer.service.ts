@@ -23,7 +23,7 @@ export class PaddleCustomerService {
     const context = await billingContext("manage");
     const linked = await this.linked();
     if (linked) return linked;
-    const [{ data: organization }, { data: contact }] = await Promise.all([
+    const [{ data: organization }, { data: contact }, { data: session }] = await Promise.all([
       context.client
         .from("organizations")
         .select("name,business_email")
@@ -34,9 +34,15 @@ export class PaddleCustomerService {
         .select("billing_email")
         .eq("workspace_id", context.workspaceId)
         .maybeSingle(),
+      context.client.auth.getUser(),
     ]);
-    const email = contact?.billing_email ?? organization?.business_email;
-    if (!email) throw new Error("A billing email is required before checkout.");
+    const email =
+      contact?.billing_email ?? organization?.business_email ?? session.user?.email;
+    if (!email)
+      throw Object.assign(
+        new Error("A billing email is required before checkout."),
+        { code: "BILLING_EMAIL_REQUIRED" as const },
+      );
     const customer = await paddleRequest<{ id: string }>("/customers", {
       method: "POST",
       body: JSON.stringify({

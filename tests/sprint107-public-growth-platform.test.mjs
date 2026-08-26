@@ -107,11 +107,11 @@ test("onboarding retains persistent progress and launch checklist", async () => 
   );
   for (const value of [
     "saveOnboardingProgressAction",
-    "Progress",
-    "Invite",
-    "Import",
+    "Setup",
+    "Connect",
+    "CRM",
     "AI",
-    "Launch",
+    "Create recommended workspace",
   ])
     assert.ok(source.includes(value), value);
 });

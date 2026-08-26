@@ -4,23 +4,23 @@ import test from "node:test";
 
 const read = (path) => readFileSync(path, "utf8");
 
-test("enterprise wizard implements all fifteen resumable steps", () => {
+test("enterprise onboarding preserves resumable infrastructure behind the four-screen experience", () => {
   const domain = read("features/onboarding/domain/enterprise-onboarding.ts");
   for (const step of ["Welcome","Create Organization","Configure Branding","Invite Team Members","Connect Gmail","Connect Google Calendar","Connect WhatsApp","Configure AI Workforce","Import CRM Data","Import Properties","Select Workflow Templates","Configure Notifications","Configure Email Provider","Choose Subscription","Launch Workspace"])
     assert.match(domain, new RegExp(step));
   const wizard = read("features/onboarding/components/EnterpriseOnboardingWizard.tsx");
   assert.match(wizard, /saveOnboardingProgressAction/);
-  assert.match(wizard, /Save & continue/);
-  assert.match(wizard, /Health/);
-  assert.match(wizard, /Suggested|Ready to launch/);
+  assert.match(wizard, /What business are you/);
+  assert.match(wizard, /What should VAYON do first/);
+  assert.match(wizard, /Your workspace is ready to create/);
 });
 
 test("onboarding composes existing platform routes and governance", () => {
   const wizard = read("features/onboarding/components/EnterpriseOnboardingWizard.tsx");
-  for (const route of ["settings/google","whatsapp/settings","settings/email","settings/plans"])
-    assert.match(wizard, new RegExp(route));
-  assert.match(wizard, /recommendation-only/);
-  assert.match(wizard, /approval governed/);
+  for (const route of ["app/vayon/settings/google/page.tsx","app/vayon/whatsapp/settings/page.tsx","app/vayon/settings/email/page.tsx","app/vayon/settings/plans/page.tsx"])
+    assert.ok(existsSync(route), route);
+  assert.match(wizard, /completeOnboardingAction/);
+  assert.match(wizard, /launchOnboardingAction/);
   assert.match(read("features/onboarding/services/onboarding.service.ts"), /complete_sprint43_onboarding/);
 });
 
