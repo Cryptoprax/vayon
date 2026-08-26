@@ -15,17 +15,17 @@ test("Growth Intelligence is a first-class sidebar module", () => {
 test("executive overview is evidence-safe and every surface offers a next action", () => {
   const overview = read("features/vayon/growth-intelligence/GrowthOverview.tsx");
   for (const surface of ["Content Queue", "Campaign Pipeline", "Publishing Status", "Brand Health", "Community Growth", "Traffic Snapshot", "Lead Generation", "Upcoming Launches", "Recent Wins"]) assert.match(overview, new RegExp(surface));
-  assert.match(overview, /unavailable until a governed source/);
+  assert.match(overview, /No governed traffic source is connected/);
   assert.match(overview, /ButtonLink/);
   assert.doesNotMatch(overview, /\$\d|\d+%|followers|impressions:\s*\d/i);
 });
 
 test("AI CMO prepares recommendations and preserves human approval", () => {
-  const cmo = read("features/vayon/growth-intelligence/AiCmoPanel.tsx");
-  assert.match(cmo, /Chief Marketing Officer/);
-  assert.match(cmo, /Never auto-publishes/);
-  assert.match(cmo, /No content was published/);
-  assert.match(cmo, /disabled={!brief.trim\(\)}/);
+  const cmo = read("features/vayon/growth-intelligence/StrategyWorkspace.tsx");
+  assert.match(cmo, /Strategy Generator/);
+  assert.match(cmo, /Nothing executes automatically/);
+  assert.match(cmo, /Add to review queue/);
+  assert.match(cmo, /disabled={!goal.trim\(\) \|\| !audience.trim\(\)}/);
   assert.doesNotMatch(cmo, /fetch\(|\/api\//);
 });
 

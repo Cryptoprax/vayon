@@ -11,6 +11,7 @@
     "audit:responsive": "node scripts/audit-ux-simplification.mjs responsive",
     "audit:ttfv": "node scripts/audit-ttfv.mjs",
     "audit:vgi": "node scripts/audit-vgi-foundation.mjs",
+    "audit:executive-ux": "node scripts/audit-ai-cmo-executive-ux.mjs",
     "audit:simplification": "node scripts/audit-ux-simplification.mjs simplification",
     "audit:production": "node scripts/audit-production-readiness.mjs",
     "audit:cta": "node scripts/audit-cta-migration.mjs",
