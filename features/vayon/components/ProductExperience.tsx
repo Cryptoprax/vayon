@@ -10,6 +10,7 @@ import { ShellSidebar } from "../product-shell/ShellSidebar";
 import type { ShellIdentity } from "../product-shell/types";
 import { PremiumWelcomeExperience } from "@/features/onboarding/components/PremiumWelcomeExperience";
 import { FloatingLayoutManager, FloatingSurface } from "../floating-layout/FloatingLayoutManager";
+import { TTFVObserver } from "../ttfv/TTFVObserver";
 const storageKey = "vayon.shell.sidebar.collapsed.v1";
 const storageEvent = "vayon-shell-collapse";
 const VayonIntelligence = dynamic(
@@ -75,6 +76,7 @@ export function ProductExperience({
     <FloatingLayoutManager sidebarCollapsed={collapsed}>
     <div className="vayon-premium-canvas vayon-product min-h-dvh text-vds-foreground">
       <PremiumWelcomeExperience userName={identity.userName} />
+      <TTFVObserver workspaceReady={Boolean(identity.workspaceName)} />
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>

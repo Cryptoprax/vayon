@@ -1,3 +1,4 @@
+import { ButtonLink } from "@/features/platform/design-system";
 import type {
   CalendarSnapshot,
   ScheduleEvent,
@@ -89,9 +90,7 @@ export function EntityList({
           <ScheduleRow event={event} key={event.id} />
         ))}
         {!events.length && (
-          <p className="py-12 text-center text-sm text-vds-muted">
-            No records are available.
-          </p>
+          <div className="py-10 text-center"><p className="font-medium">Schedule your first appointment.</p><p className="mt-1 text-sm text-vds-muted">Create a useful calendar moment in under a minute.</p><ButtonLink href="/vayon/calendar/meetings" className="mt-4">Create appointment</ButtonLink></div>
         )}
       </div>
     </section>

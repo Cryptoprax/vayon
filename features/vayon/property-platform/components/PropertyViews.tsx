@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ButtonLink } from "@/features/platform/design-system";
 import type {
   PropertyAnalytics,
   PropertyAsset,
@@ -84,9 +85,11 @@ export function PropertyGrid({
         </article>
       ))}
       {!properties.length && (
-        <p className="col-span-full py-12 text-center text-sm text-vds-muted">
-          No properties are available.
-        </p>
+        <div className="col-span-full rounded-2xl border border-dashed border-vds-border p-8 text-center">
+          <p className="font-medium">Create your first property listing.</p>
+          <p className="mt-1 text-sm text-vds-muted">Add the essential details now; enrich the listing whenever you are ready.</p>
+          <ButtonLink href="/vayon/properties/new" className="mt-4">Create property</ButtonLink>
+        </div>
       )}
     </section>
   );

@@ -9,6 +9,7 @@
     "audit:ux": "node scripts/audit-commercial-readiness.mjs",
     "audit:accessibility": "node scripts/audit-ux-simplification.mjs accessibility",
     "audit:responsive": "node scripts/audit-ux-simplification.mjs responsive",
+    "audit:ttfv": "node scripts/audit-ttfv.mjs",
     "audit:simplification": "node scripts/audit-ux-simplification.mjs simplification",
     "audit:production": "node scripts/audit-production-readiness.mjs",
     "audit:cta": "node scripts/audit-cta-migration.mjs",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ButtonLink } from "@/features/platform/design-system";
 import type {
   Campaign,
   CommunicationTemplate,
@@ -96,7 +97,7 @@ export function ConversationLinks({
           </span>
         </Link>
       ))}
-      {!items.length && <Empty text="No conversations are available." />}
+      {!items.length && <Empty title="Start your first customer conversation." href="/vayon/communications/inbox" action="Open inbox" />}
     </div>
   );
 }
@@ -141,7 +142,7 @@ export function ConversationView({ detail }: { detail: ConversationDetail }) {
             </article>
           ))}
           {!detail.timeline.length && (
-            <Empty text="No timeline items are available." />
+            <Empty title="Add the first meaningful touchpoint." href="/vayon/communications/inbox" action="Open inbox" />
           )}
         </div>
       </section>
@@ -202,7 +203,7 @@ export function CampaignList({ items }: { items: readonly Campaign[] }) {
           </article>
         ))
       ) : (
-        <Empty text="No campaign data is available for this workspace." />
+        <Empty title="Generate your first campaign." href="/vayon/communications/campaigns" action="Create campaign" />
       )}
     </div>
   );
@@ -225,7 +226,7 @@ export function NotificationList({
           </Link>
         ))
       ) : (
-        <Empty text="No governed notifications are available." />
+        <Empty title="You are ready for your next action." href="/vayon/tasks" action="Open tasks" />
       )}
     </div>
   );
@@ -249,10 +250,11 @@ function Panel({ title, data }: { title: string; data: object }) {
     </section>
   );
 }
-function Empty({ text }: { text: string }) {
+function Empty({ title, href, action }: { title: string; href: string; action: string }) {
   return (
-    <div className="col-span-full rounded-2xl border border-dashed border-vds-border p-10 text-center text-sm text-vds-muted">
-      {text}
+    <div className="col-span-full rounded-2xl border border-dashed border-vds-border p-8 text-center">
+      <p className="font-medium">{title}</p>
+      <ButtonLink href={href} className="mt-4">{action}</ButtonLink>
     </div>
   );
 }

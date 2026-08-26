@@ -52,7 +52,8 @@ test("dashboard setup center is dynamic, clickable, and non-blocking", () => {
     assert.match(setup, new RegExp(label));
   assert.match(setup, /completed_steps/);
   assert.match(setup, /health/);
-  assert.match(read("app/vayon/home/page.tsx"), /WorkspaceSetupCenter/);
+  assert.match(read("app/vayon/home/page.tsx"), /AdaptiveWorkspace/);
+  assert.doesNotMatch(read("app/vayon/home/page.tsx"), /WorkspaceSetupCenter/);
 });
 
 test("existing onboarding is targetable without numbered UX", () => {
