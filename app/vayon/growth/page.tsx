@@ -1,3 +1,6 @@
-import type { Metadata } from "next";import { GrowthDashboard } from "@/features/vayon/growth/components/GrowthDashboard";import { OrganizationService } from "@/features/onboarding/services/organization.service";import { auroraBusinessActivity } from "@/features/vayon/demo-workspace";import { GrowthActivityPanel } from "@/features/vayon/demo-workspace/business-activity/ActivityPanels";
-export const metadata:Metadata={title:"Growth Hub | Vayon OS",description:"Modular marketing architecture and customer-ready Growth Hub."};
-export default async function GrowthPage(){const organization=await new OrganizationService().current();return <main className="mx-auto max-w-[100rem] px-4 py-8 sm:px-6"><GrowthDashboard/>{!organization&&<GrowthActivityPanel campaigns={auroraBusinessActivity.campaigns} communications={auroraBusinessActivity.communications}/>}</main>}
+import type { Metadata } from "next";
+import { GrowthOverview } from "@/features/vayon/growth-intelligence/GrowthOverview";
+
+export const metadata: Metadata = { title: "Growth Intelligence | VAYON", description: "Executive growth planning with a human-approved AI Chief Marketing Officer." };
+
+export default function GrowthPage() { return <GrowthOverview />; }
