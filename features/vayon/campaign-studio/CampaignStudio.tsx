@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/features/platform/design-system";
+import { SmartEmptyState } from "@/features/vayon/components/SmartEmptyState";
 import {
   BarChart3,
   Check,
@@ -216,14 +217,13 @@ export function CampaignStudio({
               </article>
             ))}
             {!snapshot.campaigns.length && (
-              <Button
-                variant="control"
-                onClick={() => setWizard(true)}
-                className="col-span-full h-40 flex-col rounded-2xl border border-dashed border-vds-border"
-              >
-                <Plus className="mb-2 size-5" />
-                Create your first campaign blueprint
-              </Button>
+              <SmartEmptyState
+                className="col-span-full"
+                title="Create your first AI campaign."
+                description="Turn a business goal into a governed campaign blueprint with Creative Director AI."
+                primaryLabel="Generate with AI"
+                onPrimary={() => setWizard(true)}
+              />
             )}
           </div>
         </section>

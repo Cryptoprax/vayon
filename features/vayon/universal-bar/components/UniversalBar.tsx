@@ -35,6 +35,8 @@ import { AuroraSalesOperationsSearchProvider } from "@/features/vayon/demo-works
 import { AuroraBusinessActivitySearchProvider } from "@/features/vayon/demo-workspace/business-activity/search.provider";
 
 const scopes: readonly UniversalSearchScope[] = [
+  "projects",
+  "inventory",
   "properties",
   "leads",
   "deals",
@@ -44,6 +46,8 @@ const scopes: readonly UniversalSearchScope[] = [
   "meetings",
   "tasks",
   "documents",
+  "creative-assets",
+  "reports",
   "communications",
   "employees",
   "workflows",
@@ -200,6 +204,9 @@ export function UniversalBar({
     } else if (event.key === "End") {
       event.preventDefault();
       setActive(Math.max(results.length - 1, 0));
+    } else if (event.key === "Enter" && mode === "ask" && query.trim()) {
+      event.preventDefault();
+      openCopilot(query);
     } else if (event.key === "Enter" && selected) {
       event.preventDefault();
       choose(selected);
@@ -207,6 +214,12 @@ export function UniversalBar({
       event.preventDefault();
       close();
     }
+  }
+  function openCopilot(prompt: string) {
+    window.dispatchEvent(
+      new CustomEvent("vayon:copilot:open", { detail: { prompt } }),
+    );
+    close();
   }
   function toggle(kind: "pinned" | "favorites", result: UniversalBarResult) {
     history.toggle(kind, {
@@ -301,17 +314,13 @@ export function UniversalBar({
                     type="button"
                     role="tab"
                     aria-selected={mode === item}
-                    disabled={item === "ask"}
                     onClick={() => {
                       setMode(item);
                       setActive(0);
                     }}
                     className={`rounded-lg px-3 py-1.5 text-xs capitalize transition ${mode === item ? "bg-vds-primary-soft text-vds-primary" : "text-vds-subtle hover:bg-vds-surface/[.04] hover:text-vds-secondary"} disabled:cursor-not-allowed disabled:opacity-50`}
                   >
-                    {item}
-                    {item === "ask" && (
-                      <span className="ml-1.5 text-[9px] uppercase">Soon</span>
-                    )}
+                    {item === "ask" ? "Ask Copilot" : item}
                   </Button>
                 ))}
                 <span className="ml-auto hidden text-[10px] text-vds-subtle sm:block">
@@ -325,10 +334,15 @@ export function UniversalBar({
                   <span className="mx-auto grid size-12 place-items-center rounded-2xl bg-vds-accent/[.08] text-vds-accent">
                     <Sparkles aria-hidden="true" />
                   </span>
-                  <h2 className="mt-4 font-semibold">Ask mode is reserved</h2>
+                  <h2 className="mt-4 font-semibold">Ask VAYON Copilot</h2>
                   <p className="mt-2 text-sm text-vds-muted">
-                    AI mode will become available after workspace AI activation.
+                    Press Enter to send this request to the context-aware Copilot. Actions remain user initiated.
                   </p>
+                  <div className="mt-5 flex flex-wrap justify-center gap-2">
+                    {["Summarize today's activity", "Create a proposal", "Open CRM"].map((prompt) => (
+                      <Button variant="secondary" size="sm" onClick={() => openCopilot(prompt)} key={prompt}>{prompt}</Button>
+                    ))}
+                  </div>
                 </div>
               </div>
             ) : (

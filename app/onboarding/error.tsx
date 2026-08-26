@@ -1,1 +1,5 @@
-"use client";import{Button}from"@/features/platform/design-system";export default function Error({reset}:{reset:()=>void}){return <main className="grid min-h-dvh place-items-center bg-[var(--vds-color-background)]"><div className="text-center text-vds-foreground"><h1 className="text-2xl font-semibold">Setup could not load</h1><p className="mt-2 text-vds-muted">Your progress is safe. Try again.</p><Button className="mt-5" onClick={reset}>Retry</Button></div></main>}
+"use client";
+import { RouteError } from "@/features/vayon/components/RouteStates";
+export default function Error({ reset }: { reset: () => void }) {
+  return <RouteError reset={reset} title="Workspace setup could not load" />;
+}

@@ -6,7 +6,6 @@ import {
   ChevronRight,
   Clock3,
   FilePlus2,
-  FileText,
   History,
   MessageSquare,
   Redo2,
@@ -14,6 +13,7 @@ import {
   Undo2,
 } from "lucide-react";
 import { Button } from "@/features/platform/design-system";
+import { SmartEmptyState } from "@/features/vayon/components/SmartEmptyState";
 import { editDocumentBlock, generateDocument } from "./actions";
 import {
   documentTypes,
@@ -252,17 +252,13 @@ export function DocumentStudio({
               ))}
             </div>
           ) : (
-            <div className="mt-8 rounded-2xl border border-dashed border-vds-border p-8 text-center">
-              <FileText className="mx-auto size-8 text-vds-primary" />
-              <h3 className="mt-3 font-semibold">Create your first document</h3>
-              <p className="mx-auto mt-2 max-w-md text-sm text-vds-muted">
-                Start from a natural-language brief. A document is created only
-                after the governed runtime returns an output.
-              </p>
-              <Button className="mt-4" onClick={() => setWizard(true)}>
-                Start a brief
-              </Button>
-            </div>
+            <SmartEmptyState
+              className="mt-8"
+              title="Generate your first proposal."
+              description="Start with a natural-language brief and move through the governed Creative Runtime."
+              primaryLabel="Generate with AI"
+              onPrimary={() => setWizard(true)}
+            />
           )}
         </article>
         <aside className={`${card} p-5`}>

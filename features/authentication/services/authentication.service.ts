@@ -17,7 +17,7 @@ export class AuthenticationService {
       password,
       options: {
         data: { name },
-        emailRedirectTo: `${origin}/auth/callback?next=/onboarding`,
+        emailRedirectTo: `${origin}/auth/callback?next=/vayon`,
       },
     });
   }

@@ -1,5 +1,0 @@
-export const planCatalog=[
-  {code:"starter",name:"Starter",monthlyPrice:4999,currency:"INR",aiEmployees:3,users:3,features:["CRM","Leads","Deals","Gmail","Calendar"],limits:{ai_employees:3,users:3,ai_requests:1000,tokens:1_000_000,storage_gb:10,whatsapp_messages:0,emails:5000,calendar_events:1000,api_calls:10000}},
-  {code:"professional",name:"Professional",monthlyPrice:14999,currency:"INR",aiEmployees:8,users:null,features:["CRM","WhatsApp","Calendar","Gmail","Analytics","Automations"],limits:{ai_employees:8,users:null,ai_requests:10000,tokens:10_000_000,storage_gb:100,whatsapp_messages:10000,emails:50000,calendar_events:10000,api_calls:100000}},
-  {code:"enterprise",name:"Enterprise",monthlyPrice:null,currency:"INR",aiEmployees:null,users:null,features:["Everything enabled","Unlimited users","Unlimited AI employees","Custom governance"],limits:{ai_employees:null,users:null,ai_requests:null,tokens:null,storage_gb:null,whatsapp_messages:null,emails:null,calendar_events:null,api_calls:null}},
-]as const;

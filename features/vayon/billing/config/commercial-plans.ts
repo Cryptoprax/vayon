@@ -2,8 +2,6 @@ export const commercialPlanCatalog = Object.freeze([
   {
     code: "starter",
     name: "Starter",
-    monthlyUsd: 59,
-    annualUsd: 590,
     trialDays: 14,
     seatLimit: 3,
     features: ["inventory", "communications", "reports"],
@@ -17,8 +15,6 @@ export const commercialPlanCatalog = Object.freeze([
   {
     code: "professional",
     name: "Professional",
-    monthlyUsd: 179,
-    annualUsd: 1790,
     trialDays: 14,
     seatLimit: 15,
     features: [
@@ -38,8 +34,6 @@ export const commercialPlanCatalog = Object.freeze([
   {
     code: "business",
     name: "Business",
-    monthlyUsd: 399,
-    annualUsd: 3990,
     trialDays: 14,
     seatLimit: 50,
     features: [
@@ -61,8 +55,6 @@ export const commercialPlanCatalog = Object.freeze([
   {
     code: "enterprise",
     name: "Enterprise",
-    monthlyUsd: null,
-    annualUsd: null,
     trialDays: 0,
     seatLimit: null,
     features: [

@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/features/platform/design-system";
+import { SmartEmptyState } from "@/features/vayon/components/SmartEmptyState";
 import {
   Archive,
   Check,
@@ -202,14 +203,13 @@ export function ImageStudio({
               </Button>
             ))}
             {!images.length && (
-              <Button
-                variant="control"
-                onClick={() => setCreate(true)}
-                className="col-span-full h-52 flex-col rounded-2xl border border-dashed border-vds-border text-vds-muted"
-              >
-                <Plus className="mb-2 size-6" />
-                Create or upload your first image
-              </Button>
+              <SmartEmptyState
+                className="col-span-full"
+                title="Create your first campaign image."
+                description="Describe the result and let Image Studio prepare a brand-aware creative request."
+                primaryLabel="Generate with AI"
+                onPrimary={() => setCreate(true)}
+              />
             )}
           </div>
         </div>

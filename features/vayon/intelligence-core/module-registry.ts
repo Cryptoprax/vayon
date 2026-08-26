@@ -78,7 +78,7 @@ const modules: readonly IntelligenceModule[] = [
     id: "marketing",
     name: "Marketing",
     description: "Campaigns, Brand Kits, assets and approvals.",
-    routePrefixes: ["/vayon/creative-studio", "/vayon/growth"],
+    routePrefixes: ["/vayon/creative-studio", "/vayon/creative", "/vayon/growth"],
     capabilities: ["campaign guidance", "draft recommendations"],
     helpResources: [
       { label: "Marketing guides", href: "/vayon/knowledge/help?q=Marketing" },
@@ -97,6 +97,22 @@ const modules: readonly IntelligenceModule[] = [
       ),
     ],
     futureTools: ["creative advisor"],
+  },
+  {
+    id: "workforce",
+    name: "AI Workforce",
+    description: "Governed AI employees, tasks, knowledge and collaboration.",
+    routePrefixes: ["/vayon/ai", "/vayon/workforce"],
+    capabilities: ["role guidance", "task guidance", "employee recommendations"],
+    helpResources: [
+      { label: "AI Workforce guides", href: "/vayon/knowledge/help?q=AI%20Workforce" },
+    ],
+    suggestedPrompts: ["Create an AI Sales Employee", "Explain AI employee governance", "Show AI tasks"],
+    actions: [
+      action("navigate", "Create AI Employee", "/onboarding/ai-workforce"),
+      action("navigate", "Open AI Workforce", "/vayon/ai/workforce"),
+    ],
+    futureTools: ["workforce capacity advisor"],
   },
   {
     id: "billing",

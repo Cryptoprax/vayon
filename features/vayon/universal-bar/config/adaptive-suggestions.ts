@@ -42,4 +42,16 @@ export const defaultAdaptiveSuggestions: readonly AdaptiveSuggestion[] = [
     hint: "Review growth workspace",
     href: "/vayon/growth",
   },
+  {
+    id: "morning-brief",
+    label: "Generate Morning Brief",
+    hint: "Ask Copilot for an evidence-safe executive brief",
+    query: "Morning Brief",
+  },
+  {
+    id: "open-founder-dashboard",
+    label: "Open Founder Dashboard",
+    hint: "Review cross-workspace executive evidence",
+    href: "/platform/founder",
+  },
 ];

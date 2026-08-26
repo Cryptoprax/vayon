@@ -16,6 +16,25 @@ export const onboardingSteps = [
   "Launch Workspace",
 ] as const;
 
+export const onboardingSetupTargets: Readonly<Record<string, number>> = {
+  organization: 2,
+  branding: 3,
+  team: 4,
+  gmail: 5,
+  calendar: 6,
+  whatsapp: 7,
+  "ai-workforce": 8,
+  crm: 9,
+  properties: 10,
+  workflow: 11,
+  workflows: 11,
+  notifications: 12,
+  email: 13,
+  subscription: 14,
+  billing: 14,
+  launch: 15,
+};
+
 export const productTour = [
   ["Dashboard", "/vayon/home"],
   ["CRM", "/vayon/crm"],

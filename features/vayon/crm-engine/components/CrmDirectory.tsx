@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SmartEmptyState } from "@/features/vayon/components/SmartEmptyState";
 import type {
   CrmCompany,
   CrmLeadRow,
@@ -46,7 +47,17 @@ export function CustomerDirectory({ items }: { items: readonly CrmLeadRow[] }) {
           </Link>
         ))
       ) : (
-        <Empty message="No customer records are available for this workspace." />
+        <SmartEmptyState
+          className="col-span-full"
+          title="Let's build your customer pipeline."
+          description="Bring in your existing contacts or create the first relationship in your workspace."
+          primaryLabel="Import CSV"
+          primaryHref="/onboarding?setup=crm"
+          secondaryActions={[
+            { label: "Create Contact", href: "/vayon/leads/new" },
+            { label: "Ask AI", href: "/vayon/ai" },
+          ]}
+        />
       )}
     </div>
   );

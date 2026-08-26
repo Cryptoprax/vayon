@@ -1,13 +1,16 @@
 import "server-only";
 
-export type PaddlePlanCode =
-  | "starter"
-  | "professional"
-  | "business"
-  | "business_plus";
-export type PaddleBillingPeriod = "monthly" | "annual";
+import type {
+  PaddleBillingPeriod,
+  PaddlePlanCode,
+} from "./paddle-catalog.types";
 
-const plans: readonly PaddlePlanCode[] = [
+export type {
+  PaddleBillingPeriod,
+  PaddlePlanCode,
+} from "./paddle-catalog.types";
+
+export const paddlePlanCodes: readonly PaddlePlanCode[] = [
   "starter",
   "professional",
   "business",
@@ -15,7 +18,7 @@ const plans: readonly PaddlePlanCode[] = [
 ];
 
 export function isPaddlePlanCode(value: string): value is PaddlePlanCode {
-  return plans.includes(value as PaddlePlanCode);
+  return paddlePlanCodes.includes(value as PaddlePlanCode);
 }
 
 export function paddleCatalogEntry(
@@ -31,7 +34,7 @@ export function paddleCatalogEntry(
 }
 
 export function planForPaddlePrice(priceId: string) {
-  for (const plan of plans) {
+  for (const plan of paddlePlanCodes) {
     for (const period of ["monthly", "annual"] as const) {
       if (process.env[`PADDLE_PRICE_${plan.toUpperCase()}_${period.toUpperCase()}`] === priceId)
         return { plan, period };

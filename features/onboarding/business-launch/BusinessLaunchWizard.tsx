@@ -128,8 +128,8 @@ export function BusinessLaunchWizard({
               </p>
             </div>
             <div className="rounded-2xl border border-vds-border bg-vds-elevated px-4 py-3 text-sm">
-              <span className="text-vds-muted">Step</span>{" "}
-              <strong>{step} / 6</strong>
+              <span className="text-vds-muted">Setup progress</span>{" "}
+              <strong>{Math.round((step / 6) * 100)}%</strong>
             </div>
           </div>
         </header>

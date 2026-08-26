@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/features/platform/design-system";
 import { completeOnboardingAction } from "../actions/onboarding.actions";
@@ -33,12 +33,14 @@ const connections = [
 export function EnterpriseOnboardingWizard({
   session,
   provisioned,
+  initialStep,
 }: {
   session: Session;
   provisioned: boolean;
+  initialStep?: number;
 }) {
   const [step, setStep] = useState(
-    Math.max(1, Math.min(15, session?.current_step ?? 1)),
+    Math.max(1, Math.min(15, initialStep ?? session?.current_step ?? 1)),
   );
   const [completed, setCompleted] = useState<number[]>(
     session?.completed_steps ?? [],
@@ -64,6 +66,39 @@ export function EnterpriseOnboardingWizard({
       ),
     [configuration, progress],
   );
+
+  useEffect(() => {
+    let active = true;
+    const locale = navigator.language || "en-US";
+    const region = new Intl.Locale(locale).region ?? "US";
+    const currencyByRegion: Readonly<Record<string, string>> = {
+      AU: "AUD",
+      CA: "CAD",
+      GB: "GBP",
+      IN: "INR",
+      JP: "JPY",
+      SG: "SGD",
+      US: "USD",
+    };
+    queueMicrotask(() => {
+      if (!active) return;
+      setConfiguration((current) => ({
+        country: current.country ?? region,
+        currency: current.currency ?? currencyByRegion[region] ?? "USD",
+        language:
+          current.language ?? locale.split("-")[0]?.toLowerCase() ?? "en",
+        locale: current.locale ?? locale,
+        timezone:
+          current.timezone ??
+          Intl.DateTimeFormat().resolvedOptions().timeZone ??
+          "UTC",
+        ...current,
+      }));
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   function move(next: number) {
     const done = completed.includes(step) ? completed : [...completed, step];
@@ -127,7 +162,7 @@ export function EnterpriseOnboardingWizard({
                   {completed.includes(index + 1) ? (
                     <CheckCircle2 className="size-3.5" />
                   ) : (
-                    <span className="w-3.5 text-center">{index + 1}</span>
+                    <span className="size-2 rounded-full bg-vds-subtle" />
                   )}
                   {label}
                 </Button>
@@ -137,7 +172,7 @@ export function EnterpriseOnboardingWizard({
         </aside>
         <section className="p-6 sm:p-10">
           <p className="text-xs uppercase tracking-wider text-vds-muted">
-            Step {step} of 15
+            Setup progress · {progress}% complete
           </p>
           <h2 className="mt-2 text-3xl font-semibold">
             {onboardingSteps[step - 1]}
@@ -552,16 +587,20 @@ function ProvisionForm({
         name="website"
         value={String(configuration.website ?? "")}
       />
-      <input type="hidden" name="country" value="IN" />
+      <input
+        type="hidden"
+        name="country"
+        value={String(configuration.country ?? "US")}
+      />
       <input
         type="hidden"
         name="currency"
-        value={String(configuration.currency ?? "INR")}
+        value={String(configuration.currency ?? "USD")}
       />
       <input
         type="hidden"
         name="timezone"
-        value={String(configuration.timezone ?? "Asia/Kolkata")}
+        value={String(configuration.timezone ?? "UTC")}
       />
       <input
         type="hidden"

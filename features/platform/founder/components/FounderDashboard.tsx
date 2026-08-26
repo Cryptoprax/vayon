@@ -72,6 +72,7 @@ export function FounderDashboard({ data }: { data: FounderSnapshot }) {
           </time>
         </div>
       </header>
+      <FounderPortfolioOverview data={data} />
       <section aria-labelledby="founder-kpis">
         <h2 className="sr-only" id="founder-kpis">
           Executive key performance indicators
@@ -310,6 +311,62 @@ export function FounderDashboard({ data }: { data: FounderSnapshot }) {
         </div>
       </section>
     </main>
+  );
+}
+
+function FounderPortfolioOverview({ data }: { readonly data: FounderSnapshot }) {
+  const byId = (id: string) => data.kpis.find((item) => item.id === id);
+  const connectedHealth = data.health.filter(
+    (item) => item.state !== "unavailable",
+  ).length;
+  const overview = [
+    ["Revenue", byId("total-revenue")],
+    ["MRR", byId("mrr")],
+    ["ARR", byId("arr")],
+    ["AI usage", byId("ai-tokens")],
+    ["Customer organizations", byId("organizations")],
+  ] as const;
+  return (
+    <section aria-labelledby="cross-workspace-title">
+      <SectionHeading
+        icon={Building2}
+        title="Cross-workspace overview"
+        detail="Authoritative commercial, customer, AI, and workspace signals"
+      />
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6">
+        {overview.map(([label, item], index) =>
+          item ? (
+            <KpiCard item={{ ...item, label }} index={index} key={label} />
+          ) : (
+            <UnavailableFounderCard label={label} key={label} />
+          ),
+        )}
+        <article className={`${card} min-h-32 p-4`}>
+          <p className="text-[10px] font-medium uppercase tracking-[.13em] text-vds-subtle">
+            Workspace health
+          </p>
+          <p className="mt-4 text-2xl font-semibold tracking-tight">
+            {connectedHealth}/{data.health.length}
+          </p>
+          <p className="mt-2 text-[10px] uppercase tracking-[.12em] text-vds-subtle">
+            connected signals
+          </p>
+        </article>
+      </div>
+      <p className="mt-3 text-xs text-vds-subtle">
+        Customer growth appears when a governed period-over-period customer metric is available; totals are never presented as growth.
+      </p>
+    </section>
+  );
+}
+
+function UnavailableFounderCard({ label }: { readonly label: string }) {
+  return (
+    <article className={`${card} min-h-32 p-4`}>
+      <p className="text-[10px] font-medium uppercase tracking-[.13em] text-vds-subtle">{label}</p>
+      <p className="mt-4 text-2xl font-semibold">—</p>
+      <p className="mt-2 text-[10px] uppercase tracking-[.12em] text-vds-subtle">unavailable</p>
+    </article>
   );
 }
 

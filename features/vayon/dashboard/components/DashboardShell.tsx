@@ -1,5 +1,5 @@
 import { ButtonLink } from "@/features/platform/design-system";
-import { BarChart3, Bot, Check } from "lucide-react";
+import { BarChart3, Bot } from "lucide-react";
 import type { ExecutiveDashboardData, KpiMetric } from "../types";
 import { ActivityTimeline } from "./ActivityTimeline";
 import { AICommandBar } from "./AICommandBar";
@@ -10,17 +10,18 @@ import { PipelineBoard } from "./PipelineBoard";
 import { QuickActions } from "./QuickActions";
 import { RevenueChartLoader } from "./RevenueChartLoader";
 import { WhatsAppConversations } from "./WhatsAppConversations";
+import { ExecutiveCommandCenter } from "./ExecutiveCommandCenter";
 
 export function DashboardShell({
   data,
-  welcome = false,
   onBlockedAction,
   aiPrompts,
+  userName = "Executive",
 }: {
   readonly data: ExecutiveDashboardData;
-  readonly welcome?: boolean;
   readonly onBlockedAction?: () => void;
   readonly aiPrompts?: readonly string[];
+  readonly userName?: string;
 }) {
   const metric = (key: string) => data.kpis.find((item) => item.key === key);
   const online = data.aiWorkforce.filter(
@@ -46,35 +47,7 @@ export function DashboardShell({
 
   return (
     <div className="mx-auto max-w-[100rem] space-y-6 px-4 py-7 sm:px-6 sm:py-9">
-      <header className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">
-            {data.workspaceName}
-          </p>
-          <div className="mt-3 flex items-center gap-3">
-            {welcome && (
-              <span className="grid size-10 place-items-center rounded-2xl bg-vds-success-soft text-vds-success">
-                <Check className="size-5" />
-              </span>
-            )}
-            <h1 className="text-3xl font-semibold tracking-[-.035em] sm:text-4xl">
-              {welcome
-                ? "Your workspace is ready"
-                : "Good morning. Here’s your business."}
-            </h1>
-          </div>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-vds-muted">
-            Live workspace performance, customer momentum, and operational
-            priorities for {data.organizationName}.
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <ButtonLink href="/vayon/leads/new">Add lead</ButtonLink>
-          <ButtonLink variant="secondary" href="/vayon/properties/new">
-            Add property
-          </ButtonLink>
-        </div>
-      </header>
+      <ExecutiveCommandCenter data={data} userName={userName} />
       <AICommandBar onBlockedAction={onBlockedAction} prompts={aiPrompts} />
       {data.isEmpty && <EmptyDashboard />}
       <section

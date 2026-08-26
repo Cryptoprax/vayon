@@ -58,11 +58,12 @@ test("keyboard model covers shortcuts navigation selection and focus restoration
   assert.match(source, /role="combobox"/);
 });
 
-test("Ask is a disabled third mode with activation guidance", () => {
+test("Ask connects the third mode to the local context-aware Copilot", () => {
   const source = read("features/vayon/universal-bar/components/UniversalBar.tsx");
   assert.match(source, /"search", "actions", "ask"/);
-  assert.match(source, /disabled=\{item === "ask"\}/);
-  assert.match(source, /AI mode will become available after workspace AI activation\./);
+  assert.doesNotMatch(source, /disabled=\{item === "ask"\}/);
+  assert.match(source, /vayon:copilot:open/);
+  assert.match(source, /Actions remain user initiated\./);
   assert.doesNotMatch(source, /openai|anthropic|gemini|fetch\(|axios/i);
 });
 

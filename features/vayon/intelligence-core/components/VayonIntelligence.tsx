@@ -10,6 +10,7 @@ import {
   Pin,
   Plus,
   Search,
+  Send,
   Sparkles,
   X,
 } from "lucide-react";
@@ -22,6 +23,7 @@ import type {
   SuccessSnapshot,
 } from "../contracts";
 import { buildContextGraph } from "../context-graph";
+import { resolveCopilotCommand } from "../copilot-commands";
 import {
   detectOnboardingMilestone,
   detectSuccessSignals,
@@ -82,6 +84,8 @@ export function VayonIntelligence({
     ),
     [active, setActive] = useState(""),
     [query, setQuery] = useState(""),
+    [prompt, setPrompt] = useState(""),
+    [dismissedRecommendation, setDismissedRecommendation] = useState(false),
     [successState, setSuccessState] = useState<SuccessSnapshot>(() => {
       const visitKey = `vayon.intelligence.visited.${workspace}.${intelligenceModule.id}`;
       const failureKey = `vayon.intelligence.failures.${workspace}.${intelligenceModule.id}`;
@@ -121,7 +125,7 @@ export function VayonIntelligence({
       };
     }),
     successSignals = detectSuccessSignals(successState, intelligenceModule),
-    proactive = successSignals[0],
+    proactive = dismissedRecommendation ? undefined : successSignals[0],
     safeFailure = explainFailure(diagnostic ?? null),
     [milestone] = useState(() => {
       const detected = detectOnboardingMilestone(
@@ -167,6 +171,16 @@ export function VayonIntelligence({
       window.removeEventListener("keydown", active);
     };
   }, []);
+  useEffect(() => {
+    const openCopilot = (event: Event) => {
+      const detail = (event as CustomEvent<{ prompt?: string }>).detail;
+      setOpen(true);
+      setTab("assistant");
+      if (detail?.prompt) setPrompt(clean(detail.prompt));
+    };
+    window.addEventListener("vayon:copilot:open", openCopilot);
+    return () => window.removeEventListener("vayon:copilot:open", openCopilot);
+  }, []);
   const visible = useMemo(
     () =>
       items.filter((item) =>
@@ -178,16 +192,21 @@ export function VayonIntelligence({
     track("search_performed", { topic: contextGraph.moduleId });
     const now = new Date().toISOString(),
       id = crypto.randomUUID(),
-      conversation = {
+      resolution = resolveCopilotCommand(prompt, contextGraph),
+      conversation: IntelligenceConversation = {
         id,
         title: `${intelligenceModule.name}: ${prompt}`.slice(0, 80),
         pinned: false,
-        messages: [],
+        messages: [
+          { id: `${id}-user`, role: "user", content: clean(prompt), createdAt: now },
+          { id: `${id}-assistant`, role: "assistant", content: resolution.response, createdAt: now },
+        ],
         createdAt: now,
         updatedAt: now,
       };
     setItems((current) => [conversation, ...current]);
     setActive(id);
+    setPrompt("");
   }
   function track(
     name: "quick_action_used" | "search_performed" | "feedback_submitted",
@@ -239,7 +258,7 @@ export function VayonIntelligence({
             </Button>
           )}
           <Button
-            aria-label="Open Vayon Intelligence"
+            aria-label="Open VAYON Copilot"
             title={proactive?.title}
             className="size-14 rounded-full shadow-2xl"
             onClick={() => setOpen(true)}
@@ -250,16 +269,16 @@ export function VayonIntelligence({
       ) : (
         <aside
           role="dialog"
-          aria-label="Vayon Intelligence"
+          aria-label="VAYON Copilot"
           aria-modal={full || undefined}
-          className={`overflow-hidden border border-vds-border bg-vds-surface/95 shadow-2xl backdrop-blur-xl transition-all ${full ? "h-full w-full rounded-3xl" : "h-[min(42rem,calc(100dvh-2rem))] w-[min(29rem,calc(100vw-2rem))] rounded-3xl max-md:h-dvh max-md:w-screen max-md:rounded-none"}`}
+          className={`overflow-hidden border border-vds-border bg-vds-surface/95 shadow-2xl backdrop-blur-xl transition-all motion-reduce:transition-none ${full ? "h-full w-full rounded-3xl" : "h-[min(42rem,calc(100dvh-2rem))] w-[min(29rem,calc(100vw-2rem))] rounded-3xl max-md:h-[min(85dvh,44rem)] max-md:w-screen max-md:rounded-b-none max-md:rounded-t-3xl"}`}
         >
           <header className="flex items-center gap-2 border-b border-vds-border p-3">
             <Bot className="text-vds-primary" />
             <div className="min-w-0 flex-1">
-              <p className="font-semibold">Vayon Intelligence</p>
+              <p className="font-semibold">VAYON Copilot</p>
               <p className="truncate text-xs text-vds-muted">
-                {intelligenceModule.name} · {workspace}
+                Chief Operating Officer · {intelligenceModule.name}
               </p>
             </div>
             <Button
@@ -271,7 +290,7 @@ export function VayonIntelligence({
             </Button>
             <Button
               variant="ghost"
-              aria-label="Minimize Vayon Intelligence"
+              aria-label="Minimize VAYON Copilot"
               onClick={() => setOpen(false)}
             >
               <X />
@@ -351,13 +370,28 @@ export function VayonIntelligence({
                     Page-aware foundation
                   </p>
                   <h2 className="mt-2 text-xl font-semibold">
-                    How can Intelligence help with {intelligenceModule.name}?
+                    How can I help run {workspace}?
                   </h2>
                   <p className="mt-2 text-sm text-vds-muted">
-                    Current page and tenant-safe identity are detected
-                    automatically. Actions are recommendations only and never
-                    execute autonomously.
+                    I understand the current page and tenant-safe workspace context. I never infer a customer, campaign, project, document, or employee that is not present in the route.
                   </p>
+                  <div className="mt-4 flex flex-wrap gap-2 text-[10px] uppercase tracking-[.12em] text-vds-subtle" aria-label="Active Copilot context">
+                    <span className="rounded-full border border-vds-border px-2.5 py-1">Page · {contextGraph.page}</span>
+                    <span className="rounded-full border border-vds-border px-2.5 py-1">Workspace · {workspace}</span>
+                    <span className="rounded-full border border-vds-border px-2.5 py-1">Module · {contextGraph.moduleName}</span>
+                    {contextGraph.selectedRecord && <span className="rounded-full border border-vds-border px-2.5 py-1">Selected record · {contextGraph.selectedRecord}</span>}
+                  </div>
+                  <form className="mt-4 rounded-2xl border border-vds-accent-border bg-vds-primary-soft p-3" onSubmit={(event) => { event.preventDefault(); if (prompt.trim()) add(prompt); }}>
+                    <label className="sr-only" htmlFor="copilot-prompt">Ask VAYON Copilot</label>
+                    <textarea id="copilot-prompt" rows={3} value={prompt} onChange={(event) => setPrompt(clean(event.target.value))} placeholder="Create a proposal, summarize activity, or open any workspace…" className="vds-focus w-full resize-none rounded-xl border border-vds-border bg-vds-input p-3 text-sm" />
+                    <div className="mt-2 flex items-center justify-between gap-3"><span className="text-[10px] text-vds-subtle">Recommendations only · no autonomous execution</span><Button type="submit" size="sm" disabled={!prompt.trim()}><Send className="size-4" aria-hidden="true" />Send</Button></div>
+                  </form>
+                  {active && (() => { const conversation = items.find((item) => item.id === active); const resolution = conversation ? resolveCopilotCommand(conversation.messages[0]?.content ?? "", contextGraph) : undefined; return conversation ? <article className="mt-4 space-y-3" aria-live="polite">{conversation.messages.map((message) => <div className={`rounded-2xl p-3 text-sm leading-6 ${message.role === "user" ? "ml-6 bg-vds-primary-soft" : "mr-6 border border-vds-border bg-vds-elevated"}`} key={message.id}><p className="text-[10px] font-semibold uppercase tracking-[.12em] text-vds-subtle">{message.role === "user" ? "You" : "Copilot"}</p><p className="mt-1 text-vds-muted">{message.content}</p></div>)}{resolution?.href && <Link className="vds-focus inline-flex rounded-xl border border-vds-border px-3 py-2 text-sm font-semibold text-vds-primary" href={resolution.href}>{resolution.actionLabel}</Link>}</article> : null; })()}
+                  <div className="mt-4">
+                    <h3 className="text-sm font-semibold">Executive brief</h3>
+                    <div className="mt-2 flex flex-wrap gap-2">{["Morning Brief", "Afternoon Brief", "End of Day Summary"].map((brief) => <Button variant="secondary" size="sm" onClick={() => add(brief)} key={brief}>{brief}</Button>)}</div>
+                    <p className="mt-2 text-xs text-vds-subtle">Briefs use only context available in this experience and disclose missing evidence.</p>
+                  </div>
                   {safeFailure && (
                     <div
                       className="mt-4 rounded-2xl border border-vds-danger bg-vds-danger-soft p-4"
@@ -386,6 +420,7 @@ export function VayonIntelligence({
                       <div className="flex items-center gap-2 font-semibold">
                         <Sparkles className="size-4 text-vds-primary" />
                         {proactive.title}
+                        <Button variant="ghost" size="sm" className="ml-auto size-8 p-0" aria-label={`Dismiss ${proactive.title}`} onClick={() => setDismissedRecommendation(true)}><X className="size-4" aria-hidden="true" /></Button>
                       </div>
                       <p className="mt-2 text-sm text-vds-muted">
                         {proactive.explanation}

@@ -11,11 +11,17 @@ import { BillingContactForm } from "@/features/vayon/billing/components/BillingF
 import { PaddlePortalButton } from "@/features/vayon/billing/components/PaddleBilling";
 import { CommercialPlans } from "@/features/vayon/billing/components/CommercialPlatform";
 import { BillingService } from "@/features/vayon/billing/services/billing.service";
+import { billingContext } from "@/features/vayon/billing/services/billing-context";
+import { PaddleCatalogService } from "@/features/vayon/billing/services/paddle-catalog.service";
 import { enforcePagePermission } from "@/features/platform/permissions/runtime/http";
 
 export default async function Page() {
   await enforcePagePermission("billing");
-  const data = await new BillingService().dashboard();
+  const [data, catalog, context] = await Promise.all([
+    new BillingService().dashboard(),
+    new PaddleCatalogService().list(),
+    billingContext(),
+  ]);
   return (
     <main className="mx-auto max-w-[96rem] px-5 py-8">
       <BillingHeader
@@ -44,7 +50,11 @@ export default async function Page() {
           Provider health
         </Link>
       </div>
-      <CommercialPlans />
+      <CommercialPlans
+        catalog={catalog}
+        organizationId={context.organizationId}
+        workspaceId={context.workspaceId}
+      />
       <section className="mt-6 grid gap-5 lg:grid-cols-2">
         <BillingContactForm contact={data.contact} />
         <div className="space-y-5">

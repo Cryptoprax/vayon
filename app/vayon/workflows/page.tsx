@@ -1,1 +1,23 @@
-import{WorkflowDesigner}from"@/features/platform/workflows/components/WorkflowDesigner";import{WorkflowAutomationDashboard}from"@/features/platform/workflows/components/WorkflowAutomationDashboard";import{WorkflowAutomationService}from"@/features/platform/workflows/services/automation.service";export default async function Page(){const snapshot=await new WorkflowAutomationService().snapshot();return <main className="mx-auto max-w-[110rem] px-4 py-8 sm:px-6"><header className="mb-6"><p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">VAYON automation</p><h1 className="mt-2 text-3xl font-semibold">Enterprise Workflow Automation</h1><p className="mt-2 max-w-3xl text-sm text-vds-muted">Design and persist tenant-scoped automations across CRM, AI, communications, billing, organizations, notifications, and email. Execution remains recommendation-first and approval-governed.</p></header><WorkflowAutomationDashboard snapshot={snapshot}/><section className="mt-8"><WorkflowDesigner definition={snapshot.definitions[0]}/></section></main>}
+import { WorkflowDesigner } from "@/features/platform/workflows/components/WorkflowDesigner";
+import { WorkflowAutomationDashboard } from "@/features/platform/workflows/components/WorkflowAutomationDashboard";
+import { WorkflowAutomationService } from "@/features/platform/workflows/services/automation.service";
+import { WorkflowOrchestrator } from "@/features/vayon/workflow-orchestrator/components/WorkflowOrchestrator";
+
+export default async function Page() {
+  const snapshot = await new WorkflowAutomationService().snapshot();
+  return (
+    <main className="mx-auto max-w-[110rem] space-y-10 px-4 py-8 sm:px-6">
+      <WorkflowOrchestrator />
+      <section aria-labelledby="existing-automation-title">
+        <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">Existing automation foundation</p>
+        <h2 id="existing-automation-title" className="mt-2 text-2xl font-semibold">Governed workflow library and monitoring</h2>
+        <p className="mt-2 max-w-3xl text-sm text-vds-muted">The orchestrator reuses these tenant-scoped automations. Runtime execution remains separately permissioned and approval-governed.</p>
+        <div className="mt-6"><WorkflowAutomationDashboard snapshot={snapshot} /></div>
+      </section>
+      <section aria-labelledby="workflow-designer-title">
+        <h2 id="workflow-designer-title" className="mb-4 text-2xl font-semibold">Workflow designer</h2>
+        <WorkflowDesigner definition={snapshot.definitions[0]} />
+      </section>
+    </main>
+  );
+}

@@ -1,4 +1,4 @@
-import { readFile, readdir, stat, writeFile } from "node:fs/promises";
+import { readFile, readdir, writeFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 
 const root = process.cwd(), docs = join(root, "docs"), app = join(root, "app"), features = join(root, "features");

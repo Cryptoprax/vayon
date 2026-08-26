@@ -58,19 +58,18 @@ test("Razorpay supports subscriptions invoices Indian payment methods GST and ve
   assert.match(service, /record_commercial_webhook/);
   assert.ok(existsSync("app/api/webhooks/razorpay/route.ts"));
 });
-test("commercial plans use canonical USD monthly annual trials seats and four tiers", () => {
+test("commercial entitlement plans preserve trials seats and four tiers", () => {
   const source = read("features/vayon/billing/config/commercial-plans.ts");
   for (const value of [
     "starter",
     "professional",
     "business",
     "enterprise",
-    "monthlyUsd",
-    "annualUsd",
     "trialDays",
     "seatLimit",
   ])
     assert.match(source, new RegExp(value));
+  assert.doesNotMatch(source, /monthlyUsd|annualUsd/);
   assert.doesNotMatch(source, /currency:\s*"INR"/);
 });
 test("subscription licensing covers every commercial module", () => {

@@ -105,20 +105,5 @@ export async function refreshSession(request: NextRequest) {
   }
   if (isPublic) return response;
 
-  if (user && path !== "/onboarding" && !path.startsWith("/auth/")) {
-    const { data: membership, error } = await supabase
-      .from("organization_members")
-      .select("organization_id")
-      .eq("user_id", user.id)
-      .eq("status", "active")
-      .limit(1)
-      .maybeSingle();
-    if (!error && !membership) {
-      const target = request.nextUrl.clone();
-      target.pathname = "/onboarding";
-      target.search = "";
-      return NextResponse.redirect(target);
-    }
-  }
   return response;
 }

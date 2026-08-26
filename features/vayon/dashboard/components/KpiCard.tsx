@@ -30,7 +30,7 @@ export function KpiCard({ metric }: { metric: KpiMetric }) {
     <Link
       href={metric.href}
       aria-label={`${metric.label}: ${metric.displayValue}`}
-      className="group focus-ring relative overflow-hidden rounded-3xl border border-vds-border/[0.075] bg-gradient-to-br from-vds-surface to-vds-surface p-5 shadow-[0_18px_50px_var(--vds-shadow-color)] hover:-translate-y-1 hover:border-vds-accent-border hover:shadow-[0_24px_60px_var(--vds-shadow-color)]"
+      className="group focus-ring vds-card-motion relative overflow-hidden rounded-3xl border border-vds-border/[0.075] bg-gradient-to-br from-vds-surface to-vds-surface p-5 shadow-[0_18px_50px_var(--vds-shadow-color)] motion-reduce:transition-none hover:-translate-y-1 hover:border-vds-accent-border hover:shadow-[0_24px_60px_var(--vds-shadow-color)] motion-reduce:transform-none"
     >
       <div className="absolute right-0 top-0 size-24 rounded-full bg-vds-primary/[0.035] blur-2xl transition group-hover:bg-vds-primary/[0.08]" />
       <div className="flex items-center justify-between">
@@ -45,7 +45,7 @@ export function KpiCard({ metric }: { metric: KpiMetric }) {
           ) : (
             <TrendingDown className="size-4" />
           )}
-          {Math.abs(metric.trend)}%
+          <span>{Math.abs(metric.trend)}% <span className="sr-only">against previous period</span></span>
         </span>
       </div>
       <p className="mt-5 text-xs font-medium uppercase tracking-[.14em] text-vds-muted">
@@ -53,7 +53,7 @@ export function KpiCard({ metric }: { metric: KpiMetric }) {
       </p>
       <div className="mt-2 flex items-end justify-between gap-3">
         <div className="min-w-0">
-          <p className="truncate text-3xl font-semibold tracking-tight text-vds-foreground">
+          <p className="truncate text-3xl font-semibold tracking-tight text-vds-foreground tabular-nums motion-safe:animate-[vds-fade-rise_300ms_ease-out]">
             {metric.displayValue}
           </p>
           {metric.detail && (

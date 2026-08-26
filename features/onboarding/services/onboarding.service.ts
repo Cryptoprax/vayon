@@ -5,7 +5,7 @@ import type { OnboardingInput } from "../validation/onboarding";
 type Result = { organization_id: string; workspace_id: string };
 
 export class OnboardingService {
-  async complete(input: OnboardingInput, logo?: File) {
+  async provision(input: OnboardingInput, logo?: File) {
     const client = await createSupabaseServerClient();
     const { data: { user }, error: userError } = await client.auth.getUser();
     if (userError || !user) throw new Error("Your session expired. Please sign in again.");
@@ -22,6 +22,12 @@ export class OnboardingService {
       const upload = await client.storage.from("leadestate-assets").upload(path, logo, { upsert: true, contentType: logo.type });
       if (!upload.error) await client.rpc("set_organization_logo", { p_organization_id: result.organization_id, p_logo_path: path });
     }
+    return result;
+  }
+
+  async complete(input: OnboardingInput, logo?: File) {
+    const result = await this.provision(input, logo);
+    const client = await createSupabaseServerClient();
     // Finalizes the same persisted session after the existing atomic tenant bootstrap.
     const { error: completionError } = await client.rpc("complete_enterprise_onboarding");
     if (completionError) throw new Error(completionError.message);

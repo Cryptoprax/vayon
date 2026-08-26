@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/features/platform/design-system";
+import { SmartEmptyState } from "@/features/vayon/components/SmartEmptyState";
 import { generateVideo } from "./actions";
 import {
   videoOutputs,
@@ -131,14 +132,13 @@ export function VideoStudio({
               ))}
             </div>
           ) : (
-            <div className="mt-6 rounded-2xl border border-dashed border-vds-border p-10 text-center">
-              <Film className="mx-auto size-8 text-vds-primary" />
-              <h3 className="mt-3 font-semibold">No generated videos</h3>
-              <p className="mt-2 text-sm text-vds-muted">
-                Videos appear only after a live provider completes and the
-                private asset is stored.
-              </p>
-            </div>
+            <SmartEmptyState
+              className="mt-6"
+              title="Create your first marketing video."
+              description="Start with a creative brief and build a governed storyboard, voiceover, and production plan."
+              primaryLabel="Generate with AI"
+              onPrimary={() => setOpen(true)}
+            />
           )}
         </article>
         <aside className={`${card} p-5`}>
