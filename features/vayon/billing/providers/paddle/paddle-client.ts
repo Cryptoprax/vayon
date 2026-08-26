@@ -24,10 +24,20 @@ export async function paddleRequest<T>(
     },
     cache: "no-store",
   });
-  const body = (await response.json()) as PaddleResponse<T> & {
-    error?: { detail?: string };
-  };
+  const text = await response.text();
+  let body: (PaddleResponse<T> & { error?: { detail?: string } }) | null = null;
+  if (text) {
+    try {
+      body = JSON.parse(text) as PaddleResponse<T> & {
+        error?: { detail?: string };
+      };
+    } catch {
+      throw new Error(`Paddle API returned invalid JSON (${response.status}).`);
+    }
+  }
   if (!response.ok)
-    throw new Error(body.error?.detail ?? `Paddle API failed (${response.status}).`);
+    throw new Error(body?.error?.detail ?? `Paddle API failed (${response.status}).`);
+  if (!body || !("data" in body))
+    throw new Error(`Paddle API returned an empty response (${response.status}).`);
   return body.data;
 }

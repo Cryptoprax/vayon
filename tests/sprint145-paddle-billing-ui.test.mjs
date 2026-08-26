@@ -52,7 +52,7 @@ test("all commercial cards post the existing checkout contract and redirect", ()
   ])
     assert.match(billingUi, new RegExp(field));
   assert.match(billingUi, /fetch\("\/api\/billing\/paddle\/checkout"/);
-  assert.match(billingUi, /window\.location\.assign\(result\.url\)/);
+  assert.match(billingUi, /window\.location\.assign\(result\.checkoutUrl\)/);
   assert.match(billingUi, /onClick=\{\(\) => checkout\(plan\)\}/);
 });
 

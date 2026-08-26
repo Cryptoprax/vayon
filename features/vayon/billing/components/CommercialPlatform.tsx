@@ -19,6 +19,24 @@ const planLabels = {
   business_plus: "Business Plus",
 } as const;
 
+type CheckoutResponse =
+  | {
+      success: true;
+      checkoutUrl: string;
+      transactionId?: string;
+      provider: "paddle";
+    }
+  | { success: false; error: string; code: string };
+
+function checkoutResponse(text: string): CheckoutResponse | null {
+  if (!text.trim()) return null;
+  try {
+    return JSON.parse(text) as CheckoutResponse;
+  } catch {
+    return null;
+  }
+}
+
 function displayPrice(amount: string, currency: string) {
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -60,10 +78,20 @@ export function CommercialPlans({
           seatQuantity: 1,
         }),
       });
-      const result = (await response.json()) as { url?: string; error?: string };
-      if (!response.ok || !result.url)
-        throw new Error(result.error ?? "Paddle Checkout is unavailable.");
-      window.location.assign(result.url);
+      const result = checkoutResponse(await response.text());
+      if (!result)
+        throw new Error(
+          "Paddle Checkout returned an invalid response. Please try again.",
+        );
+      if (!response.ok || !result.success)
+        throw new Error(
+          result.success
+            ? "Paddle Checkout is unavailable."
+            : result.error,
+        );
+      if (!result.checkoutUrl)
+        throw new Error("Paddle did not return a checkout link. Please try again.");
+      window.location.assign(result.checkoutUrl);
     } catch (cause) {
       setError(
         cause instanceof Error ? cause.message : "Paddle Checkout is unavailable.",
