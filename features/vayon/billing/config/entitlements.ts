@@ -1,4 +1,4 @@
-export const planCodes = ["starter", "professional", "business", "enterprise"] as const;
+export const planCodes = ["starter", "professional", "business", "business_plus", "enterprise"] as const;
 export type SubscriptionPlanCode = (typeof planCodes)[number];
 
 export const entitlementFeatures = [
@@ -46,6 +46,10 @@ export const subscriptionEntitlementCatalog = Object.freeze({
   business: {
     code: "business", name: "Business", audience: "Growing companies", features: businessFeatures,
     quotas: { workspaces: 10, users: 50, storage_gb: 500, ai_requests: 50_000, exports: 2_500, reports: 2_500, workflows: 1_000, automations: 1_000, integrations: 25, knowledge_articles: 10_000, creative_assets: 2_500, api_calls: 100_000 },
+  },
+  business_plus: {
+    code: "business_plus", name: "Business Plus", audience: "Multi-location companies", features: entitlementFeatures,
+    quotas: { workspaces: null, users: null, storage_gb: null, ai_requests: null, exports: null, reports: null, workflows: null, automations: null, integrations: null, knowledge_articles: null, creative_assets: null, api_calls: null },
   },
   enterprise: {
     code: "enterprise", name: "Enterprise", audience: "Enterprise organizations", features: entitlementFeatures,
