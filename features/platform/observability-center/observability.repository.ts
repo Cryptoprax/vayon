@@ -18,4 +18,9 @@ export class ObservabilityRepository{
   aiOutputs(){return this.safe(this.client.from("ai_runtime_outputs").select("employee_id,latency_ms,created_at").order("created_at",{ascending:false}).limit(1000))}
   learningJobs(){return this.safe(this.client.from("continuous_learning_jobs").select("status,latency_ms,started_at,completed_at").order("started_at",{ascending:false}).limit(500))}
   notificationQueue(){return this.safe(this.client.from("notification_queue").select("status,attempts,created_at,updated_at").order("created_at",{ascending:false}).limit(500))}
+  auditTimeline(){return this.safe(this.client.from("activity_events").select("event_type,title,occurred_at").order("occurred_at",{ascending:false}).limit(100))}
+  operationalLogs(){return this.safe(this.client.from("integration_logs").select("level,event,duration_ms,occurred_at").is("deleted_at",null).order("occurred_at",{ascending:false}).limit(1000))}
+  webhookDeliveries(){return this.safe(this.client.from("integration_webhooks").select("direction,event_type,status,attempts,received_at,processed_at").is("deleted_at",null).order("received_at",{ascending:false}).limit(250))}
+  synchronizationHistory(){return this.safe(this.client.from("integration_sync_history").select("entity_type,status,started_at,completed_at,duration_ms,records_processed").order("started_at",{ascending:false}).limit(250))}
+  performanceEvents(){return this.safe(this.client.from("workspace_analytics_events").select("event_name,duration_ms,metadata,occurred_at").order("occurred_at",{ascending:false}).limit(1000))}
 }

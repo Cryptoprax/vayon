@@ -21,6 +21,7 @@
     "audit:founder-command-center": "node scripts/audit-founder-command-center.mjs",
     "audit:gmail-production": "node scripts/audit-gmail-production.mjs",
     "audit:google-calendar-production": "node scripts/audit-google-calendar-production.mjs",
+    "audit:monitoring": "node scripts/audit-production-monitoring.mjs",
     "audit:vgi": "node scripts/audit-vgi-foundation.mjs",
     "audit:executive-ux": "node scripts/audit-ai-cmo-executive-ux.mjs",
     "audit:simplification": "node scripts/audit-ux-simplification.mjs simplification",
