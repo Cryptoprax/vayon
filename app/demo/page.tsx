@@ -7,12 +7,34 @@ import { MarketingCurrencyProvider } from "@/features/marketing/currency/Currenc
 import type { DemoMode } from "@/features/vayon/demo-experience/domain/contracts";
 
 export const metadata: Metadata = {
-  title: "Vayon OS Demo — Aurora Realty Group",
+  title: "Vayon OS Demo — Prime Properties Realty",
   description:
-    "Explore the isolated, read-only Aurora Realty Group enterprise demo workspace.",
+    "Explore the isolated, read-only Prime Properties Realty real estate demo workspace.",
 };
-const modes: readonly DemoMode[] = ["visitor", "sales", "investor", "founder", "enterprise"];
-export default async function DemoPage({ searchParams }: { searchParams: Promise<{ mode?: string }> }) {
-  const requested = (await searchParams).mode, initialMode = modes.includes(requested as DemoMode) ? requested as DemoMode : "visitor";
-  return <MarketingCurrencyProvider><MarketingAnalytics /><ConsentManager /><DemoExperience model={new DemoExperienceService().load()} initialMode={initialMode} /></MarketingCurrencyProvider>;
+const modes: readonly DemoMode[] = [
+  "visitor",
+  "sales",
+  "investor",
+  "founder",
+  "enterprise",
+];
+export default async function DemoPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ mode?: string }>;
+}) {
+  const requested = (await searchParams).mode,
+    initialMode = modes.includes(requested as DemoMode)
+      ? (requested as DemoMode)
+      : "visitor";
+  return (
+    <MarketingCurrencyProvider>
+      <MarketingAnalytics />
+      <ConsentManager />
+      <DemoExperience
+        model={new DemoExperienceService().load()}
+        initialMode={initialMode}
+      />
+    </MarketingCurrencyProvider>
+  );
 }

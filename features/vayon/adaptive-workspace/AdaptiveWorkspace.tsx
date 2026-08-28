@@ -2,26 +2,323 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { ArrowRight, Check, Circle, EyeOff, GripVertical, Pin, RotateCcw, Sparkles, Star, WandSparkles, X } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  Circle,
+  EyeOff,
+  GripVertical,
+  Pin,
+  RotateCcw,
+  Sparkles,
+  Star,
+  WandSparkles,
+  X,
+} from "lucide-react";
 import { Button, ButtonLink } from "@/features/platform/design-system";
-import { readTtfvEvents, ttfvEventName, type TtfvEvent, type TtfvMilestone } from "@/features/vayon/ttfv/ttfv-events";
+import {
+  readTtfvEvents,
+  ttfvEventName,
+  type TtfvEvent,
+  type TtfvMilestone,
+} from "@/features/vayon/ttfv/ttfv-events";
 
 type Module = { label: string; href: string; action: string };
 type JourneyAction = Module & { id: string; milestone?: TtfvMilestone };
-type Experience = { title: string; modules: Module[]; journey: JourneyAction[] };
+type Experience = {
+  title: string;
+  modules: Module[];
+  journey: JourneyAction[];
+};
 
 const experiences: Record<string, Experience> = {
-  "real estate": { title: "Your real estate business", journey: [{ id: "workspace", label: "Workspace ready", href: "/vayon/home", action: "Open workspace", milestone: "workspace_created" }, { id: "property", label: "Create your first property listing", href: "/vayon/properties/new", action: "Create property" }, { id: "sales-ai", label: "Activate your AI sales agent", href: "/vayon/ai/employees", action: "Create AI sales agent", milestone: "first_ai_employee" }], modules: [{ label: "Properties", href: "/vayon/properties", action: "View properties" }, { label: "Buyers", href: "/vayon/crm/customers", action: "View buyers" }, { label: "Listings", href: "/vayon/properties/inventory", action: "View listings" }, { label: "Appointments", href: "/vayon/calendar", action: "Open calendar" }, { label: "AI Sales Agent", href: "/vayon/ai/employees", action: "Open Sales AI" }] },
-  "marketing agency": { title: "Your agency workspace", journey: [{ id: "workspace", label: "Workspace ready", href: "/vayon/home", action: "Open workspace", milestone: "workspace_created" }, { id: "campaign", label: "Generate your first campaign", href: "/vayon/communications/campaigns", action: "Generate campaign", milestone: "first_campaign" }], modules: [{ label: "Campaigns", href: "/vayon/communications/campaigns", action: "View campaigns" }, { label: "Clients", href: "/vayon/crm/customers", action: "View clients" }, { label: "Ads", href: "/vayon/growth", action: "Plan ads" }, { label: "Creative Studio", href: "/vayon/creative-studio", action: "Create content" }, { label: "AI Marketing Team", href: "/vayon/ai/employees", action: "Open Marketing AI" }] },
-  construction: { title: "Your construction operations", journey: [{ id: "workspace", label: "Workspace ready", href: "/vayon/home", action: "Open workspace", milestone: "workspace_created" }, { id: "project", label: "Create your first project", href: "/vayon/properties/projects", action: "Create project" }, { id: "proposal", label: "Generate your first proposal", href: "/vayon/deals/offers", action: "Generate proposal", milestone: "first_proposal" }], modules: [{ label: "Projects", href: "/vayon/properties/projects", action: "View projects" }, { label: "Contracts", href: "/vayon/deals/contracts", action: "View contracts" }, { label: "Documents", href: "/vayon/storage", action: "Open documents" }, { label: "Approvals", href: "/vayon/approvals", action: "Review approvals" }, { label: "AI Project Manager", href: "/vayon/ai/employees", action: "Open Operations AI" }] },
-  healthcare: { title: "Your healthcare operations", journey: [{ id: "workspace", label: "Workspace ready", href: "/vayon/home", action: "Open workspace", milestone: "workspace_created" }, { id: "appointment", label: "Create your first appointment", href: "/vayon/calendar/meetings", action: "Create appointment" }, { id: "appointment-workflow", label: "Prepare your appointment workflow", href: "/vayon/workflows", action: "Open workflows" }], modules: [{ label: "Patients", href: "/vayon/crm/customers", action: "View patients" }, { label: "Appointments", href: "/vayon/calendar", action: "Open appointments" }, { label: "Compliance", href: "/vayon/approvals", action: "Review compliance" }, { label: "AI Receptionist", href: "/vayon/ai/employees", action: "Open Support AI" }] },
-  retail: { title: "Your retail business", journey: [{ id: "workspace", label: "Workspace ready", href: "/vayon/home", action: "Open workspace", milestone: "workspace_created" }, { id: "products", label: "Import your first products", href: "/vayon/properties/inventory", action: "Import products" }, { id: "customers", label: "Import your first customers", href: "/vayon/crm/customers", action: "Import customers", milestone: "first_crm_contact" }], modules: [{ label: "Products", href: "/vayon/properties/inventory", action: "View products" }, { label: "Orders", href: "/vayon/deals", action: "View orders" }, { label: "Inventory", href: "/vayon/properties/inventory", action: "Open inventory" }, { label: "Customers", href: "/vayon/crm/customers", action: "View customers" }, { label: "Marketing", href: "/vayon/growth", action: "Create campaign" }] },
+  "real estate": {
+    title: "Your real estate business",
+    journey: [
+      {
+        id: "workspace",
+        label: "Workspace ready",
+        href: "/vayon/home",
+        action: "Open workspace",
+        milestone: "workspace_created",
+      },
+      {
+        id: "property",
+        label: "Create your first property listing",
+        href: "/vayon/properties/new",
+        action: "Create property",
+      },
+      {
+        id: "sales-ai",
+        label: "Activate your AI sales agent",
+        href: "/vayon/ai/employees",
+        action: "Create AI sales agent",
+        milestone: "first_ai_employee",
+      },
+    ],
+    modules: [
+      {
+        label: "Properties",
+        href: "/vayon/properties",
+        action: "View properties",
+      },
+      { label: "Buyers", href: "/vayon/crm/customers", action: "View buyers" },
+      {
+        label: "Listings",
+        href: "/vayon/properties/inventory",
+        action: "View listings",
+      },
+      {
+        label: "Appointments",
+        href: "/vayon/calendar",
+        action: "Open calendar",
+      },
+      {
+        label: "AI Sales Agent",
+        href: "/vayon/ai/employees",
+        action: "Open Sales AI",
+      },
+    ],
+  },
+  "marketing agency": {
+    title: "Your agency workspace",
+    journey: [
+      {
+        id: "workspace",
+        label: "Workspace ready",
+        href: "/vayon/home",
+        action: "Open workspace",
+        milestone: "workspace_created",
+      },
+      {
+        id: "campaign",
+        label: "Generate your first campaign",
+        href: "/vayon/communications/campaigns",
+        action: "Generate campaign",
+        milestone: "first_campaign",
+      },
+    ],
+    modules: [
+      {
+        label: "Campaigns",
+        href: "/vayon/communications/campaigns",
+        action: "View campaigns",
+      },
+      {
+        label: "Clients",
+        href: "/vayon/crm/customers",
+        action: "View clients",
+      },
+      { label: "Ads", href: "/vayon/growth", action: "Plan ads" },
+      {
+        label: "Creative Studio",
+        href: "/vayon/creative-studio",
+        action: "Create content",
+      },
+      {
+        label: "AI Marketing Team",
+        href: "/vayon/ai/employees",
+        action: "Open Marketing AI",
+      },
+    ],
+  },
+  construction: {
+    title: "Your construction operations",
+    journey: [
+      {
+        id: "workspace",
+        label: "Workspace ready",
+        href: "/vayon/home",
+        action: "Open workspace",
+        milestone: "workspace_created",
+      },
+      {
+        id: "project",
+        label: "Create your first project",
+        href: "/vayon/properties/projects",
+        action: "Create project",
+      },
+      {
+        id: "proposal",
+        label: "Generate your first proposal",
+        href: "/vayon/deals/offers",
+        action: "Generate proposal",
+        milestone: "first_proposal",
+      },
+    ],
+    modules: [
+      {
+        label: "Projects",
+        href: "/vayon/properties/projects",
+        action: "View projects",
+      },
+      {
+        label: "Contracts",
+        href: "/vayon/deals/contracts",
+        action: "View contracts",
+      },
+      { label: "Documents", href: "/vayon/storage", action: "Open documents" },
+      {
+        label: "Approvals",
+        href: "/vayon/approvals",
+        action: "Review approvals",
+      },
+      {
+        label: "AI Project Manager",
+        href: "/vayon/ai/employees",
+        action: "Open Operations AI",
+      },
+    ],
+  },
+  healthcare: {
+    title: "Your healthcare operations",
+    journey: [
+      {
+        id: "workspace",
+        label: "Workspace ready",
+        href: "/vayon/home",
+        action: "Open workspace",
+        milestone: "workspace_created",
+      },
+      {
+        id: "appointment",
+        label: "Create your first appointment",
+        href: "/vayon/calendar/meetings",
+        action: "Create appointment",
+      },
+      {
+        id: "appointment-workflow",
+        label: "Prepare your appointment workflow",
+        href: "/vayon/workflows",
+        action: "Open workflows",
+      },
+    ],
+    modules: [
+      {
+        label: "Patients",
+        href: "/vayon/crm/customers",
+        action: "View patients",
+      },
+      {
+        label: "Appointments",
+        href: "/vayon/calendar",
+        action: "Open appointments",
+      },
+      {
+        label: "Compliance",
+        href: "/vayon/approvals",
+        action: "Review compliance",
+      },
+      {
+        label: "AI Receptionist",
+        href: "/vayon/ai/employees",
+        action: "Open Support AI",
+      },
+    ],
+  },
+  retail: {
+    title: "Your retail business",
+    journey: [
+      {
+        id: "workspace",
+        label: "Workspace ready",
+        href: "/vayon/home",
+        action: "Open workspace",
+        milestone: "workspace_created",
+      },
+      {
+        id: "products",
+        label: "Import your first products",
+        href: "/vayon/properties/inventory",
+        action: "Import products",
+      },
+      {
+        id: "customers",
+        label: "Import your first customers",
+        href: "/vayon/crm/customers",
+        action: "Import customers",
+        milestone: "first_crm_contact",
+      },
+    ],
+    modules: [
+      {
+        label: "Products",
+        href: "/vayon/properties/inventory",
+        action: "View products",
+      },
+      { label: "Orders", href: "/vayon/deals", action: "View orders" },
+      {
+        label: "Inventory",
+        href: "/vayon/properties/inventory",
+        action: "Open inventory",
+      },
+      {
+        label: "Customers",
+        href: "/vayon/crm/customers",
+        action: "View customers",
+      },
+      { label: "Marketing", href: "/vayon/growth", action: "Create campaign" },
+    ],
+  },
 };
-const fallback: Experience = { title: "Your business today", journey: [{ id: "workspace", label: "Workspace ready", href: "/vayon/home", action: "Open workspace", milestone: "workspace_created" }, { id: "contacts", label: "Import your first contacts", href: "/vayon/crm/customers", action: "Import contacts", milestone: "first_crm_contact" }, { id: "ai", label: "Create your first AI employee", href: "/vayon/ai/employees", action: "Create AI employee", milestone: "first_ai_employee" }], modules: [{ label: "Customers", href: "/vayon/crm", action: "Open customers" }, { label: "Tasks", href: "/vayon/tasks", action: "View tasks" }, { label: "Meetings", href: "/vayon/meetings", action: "View meetings" }, { label: "Analytics", href: "/vayon/analytics", action: "Analyze business" }, { label: "AI Team", href: "/vayon/ai/employees", action: "Open AI team" }] };
+const fallback: Experience = {
+  title: "Your business today",
+  journey: [
+    {
+      id: "workspace",
+      label: "Workspace ready",
+      href: "/vayon/home",
+      action: "Open workspace",
+      milestone: "workspace_created",
+    },
+    {
+      id: "contacts",
+      label: "Import your first contacts",
+      href: "/vayon/crm/customers",
+      action: "Import contacts",
+      milestone: "first_crm_contact",
+    },
+    {
+      id: "ai",
+      label: "Create your first AI employee",
+      href: "/vayon/ai/employees",
+      action: "Create AI employee",
+      milestone: "first_ai_employee",
+    },
+  ],
+  modules: [
+    { label: "Customers", href: "/vayon/crm", action: "Open customers" },
+    { label: "Tasks", href: "/vayon/tasks", action: "View tasks" },
+    { label: "Meetings", href: "/vayon/meetings", action: "View meetings" },
+    {
+      label: "Analytics",
+      href: "/vayon/analytics",
+      action: "Analyze business",
+    },
+    { label: "AI Team", href: "/vayon/ai/employees", action: "Open AI team" },
+  ],
+};
 const storageKey = "vayon.adaptive-workspace.v1";
 const hintKey = "vayon.ttfv.hint.dismissed.v1";
-const successCopy: Record<TtfvMilestone, string> = { workspace_created: "Workspace ready.", first_ai_employee: "First AI employee ready.", first_crm_contact: "First CRM contact added.", first_campaign: "First campaign created.", first_proposal: "First proposal generated.", first_upgrade: "Workspace upgraded.", first_property: "First property listing created.", first_project: "First project created.", first_appointment: "First appointment created.", first_product_import: "First products imported." };
-const journeyMilestones: Partial<Record<string, TtfvMilestone>> = { property: "first_property", project: "first_project", appointment: "first_appointment", "appointment-workflow": "first_appointment", products: "first_product_import" };
+const successCopy: Record<TtfvMilestone, string> = {
+  workspace_created: "Workspace ready.",
+  first_ai_employee: "First AI employee ready.",
+  first_crm_contact: "First CRM contact added.",
+  first_campaign: "First campaign created.",
+  first_proposal: "First proposal generated.",
+  first_upgrade: "Workspace upgraded.",
+  first_property: "First property listing created.",
+  first_project: "First project created.",
+  first_appointment: "First appointment created.",
+  first_product_import: "First products imported.",
+};
+const journeyMilestones: Partial<Record<string, TtfvMilestone>> = {
+  property: "first_property",
+  project: "first_project",
+  appointment: "first_appointment",
+  "appointment-workflow": "first_appointment",
+  products: "first_product_import",
+};
 
 export function AdaptiveWorkspace({ businessType }: { businessType?: string }) {
   const experience = experiences[businessType?.toLowerCase() ?? ""] ?? fallback;
@@ -35,32 +332,321 @@ export function AdaptiveWorkspace({ businessType }: { businessType?: string }) {
   const [ready, setReady] = useState(false);
   useEffect(() => {
     queueMicrotask(() => {
-      try { const saved = JSON.parse(localStorage.getItem(storageKey) ?? "{}"); setHidden(saved.hidden ?? []); setPinned(saved.pinned ?? []); setRecents(saved.recents ?? []); setCompleted(saved.completed ?? []); } catch { /* Personalization remains optional. */ }
-      setEvents(readTtfvEvents()); setHintDismissed(localStorage.getItem(hintKey) === "true"); setReady(true);
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey) ?? "{}");
+        setHidden(saved.hidden ?? []);
+        setPinned(saved.pinned ?? []);
+        setRecents(saved.recents ?? []);
+        setCompleted(saved.completed ?? []);
+      } catch {
+        /* Personalization remains optional. */
+      }
+      setEvents(readTtfvEvents());
+      setHintDismissed(localStorage.getItem(hintKey) === "true");
+      setReady(true);
     });
-    const onMilestone = (event: Event) => { const detail = (event as CustomEvent<TtfvEvent>).detail; setEvents(readTtfvEvents()); setCelebration(successCopy[detail.milestone]); };
+    const onMilestone = (event: Event) => {
+      const detail = (event as CustomEvent<TtfvEvent>).detail;
+      setEvents(readTtfvEvents());
+      setCelebration(successCopy[detail.milestone]);
+    };
     window.addEventListener(ttfvEventName, onMilestone);
     return () => window.removeEventListener(ttfvEventName, onMilestone);
   }, []);
-  function remember(next: { hidden?: string[]; pinned?: string[]; recents?: Module[]; completed?: string[] }) {
-    const value = { hidden: next.hidden ?? hidden, pinned: next.pinned ?? pinned, recents: next.recents ?? recents, completed: next.completed ?? completed };
-    setHidden(value.hidden); setPinned(value.pinned); setRecents(value.recents); setCompleted(value.completed);
-    try { localStorage.setItem(storageKey, JSON.stringify(value)); } catch { /* Browser storage may be unavailable. */ }
+  function remember(next: {
+    hidden?: string[];
+    pinned?: string[];
+    recents?: Module[];
+    completed?: string[];
+  }) {
+    const value = {
+      hidden: next.hidden ?? hidden,
+      pinned: next.pinned ?? pinned,
+      recents: next.recents ?? recents,
+      completed: next.completed ?? completed,
+    };
+    setHidden(value.hidden);
+    setPinned(value.pinned);
+    setRecents(value.recents);
+    setCompleted(value.completed);
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(value));
+    } catch {
+      /* Browser storage may be unavailable. */
+    }
   }
-  function visit(module: Module, journeyId?: string) { void journeyId; remember({ recents: [module, ...recents.filter((item) => item.href !== module.href)].slice(0, 5) }); }
-  const isComplete = (item: JourneyAction) => { const milestone = item.milestone ?? journeyMilestones[item.id]; return Boolean(milestone && events.some((event) => event.milestone === milestone)); };
-  const primary = experience.journey.find((item) => !isComplete(item)) ?? experience.journey.at(-1)!;
+  function visit(module: Module, journeyId?: string) {
+    void journeyId;
+    remember({
+      recents: [
+        module,
+        ...recents.filter((item) => item.href !== module.href),
+      ].slice(0, 5),
+    });
+  }
+  const isComplete = (item: JourneyAction) => {
+    const milestone = item.milestone ?? journeyMilestones[item.id];
+    return Boolean(
+      milestone && events.some((event) => event.milestone === milestone),
+    );
+  };
+  const primary =
+    experience.journey.find((item) => !isComplete(item)) ??
+    experience.journey.at(-1)!;
   const completeCount = experience.journey.filter(isComplete).length;
-  const progress = Math.round((completeCount / experience.journey.length) * 100);
-  const modules = useMemo(() => [...experience.modules].sort((a, b) => Number(pinned.includes(b.label)) - Number(pinned.includes(a.label))).filter((item) => !hidden.includes(item.label)), [experience.modules, hidden, pinned]);
-  return <section className={`space-y-5 transition-opacity duration-200 motion-reduce:transition-none ${ready ? "opacity-100" : "opacity-0"}`} aria-labelledby="adaptive-workspace-title">
-    {celebration && <div role="status" className="animate-in fade-in slide-in-from-top-1 flex items-center gap-3 rounded-2xl border border-vds-success bg-vds-success-soft px-4 py-3 text-sm text-vds-success motion-reduce:animate-none"><span className="grid size-7 place-items-center rounded-full bg-vds-success-soft"><Check className="size-4" /></span><span className="font-medium">{celebration}</span><Button variant="ghost" size="sm" className="ml-auto size-8 p-0" aria-label="Dismiss success message" onClick={() => setCelebration(null)}><X className="size-4" /></Button></div>}
-    <div className="rounded-[2rem] border border-vds-accent-border bg-gradient-to-br from-vds-primary-soft via-vds-surface to-vds-accent-soft p-6 sm:p-8"><p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[.18em] text-vds-primary"><Sparkles className="size-4" />Your recommended objective</p><div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between"><div><h1 id="adaptive-workspace-title" className="text-2xl font-semibold sm:text-3xl">Let&apos;s {primary.label.charAt(0).toLowerCase() + primary.label.slice(1)}.</h1><p className="mt-2 text-sm text-vds-muted">The fastest route to a useful result in your workspace.</p></div><ButtonLink href={primary.href} onClick={() => visit(primary, primary.id)}>{primary.action}<ArrowRight className="size-4" /></ButtonLink></div></div>
-    <section className="rounded-2xl border border-vds-border bg-vds-surface p-5" aria-labelledby="launch-readiness-title"><div className="flex items-end justify-between gap-4"><div><p className="text-xs font-semibold uppercase tracking-[.16em] text-vds-primary">First value journey</p><h2 id="launch-readiness-title" className="mt-1 text-lg font-semibold">You&apos;re {progress}% ready to launch.</h2></div><span className="text-sm text-vds-muted">{completeCount} complete</span></div><div className="mt-4 h-2 overflow-hidden rounded-full bg-vds-surface-muted"><div className="h-full rounded-full bg-vds-primary transition-[width] motion-reduce:transition-none" style={{ width: `${progress}%` }} /></div><p className="mt-4 text-sm font-medium">Remaining</p><ul className="mt-2 grid gap-2 sm:grid-cols-2">{experience.journey.map((item) => <li key={item.id} className="flex items-center gap-2 text-sm">{isComplete(item) ? <Check className="size-4 text-vds-success" /> : <Circle className="size-4 text-vds-subtle" />}<Link href={item.href} onClick={() => visit(item, item.id)} className={isComplete(item) ? "text-vds-muted line-through" : "hover:text-vds-primary"}>{item.label}</Link></li>)}</ul></section>
-    {!hintDismissed && <aside className="flex items-start gap-3 rounded-2xl border border-vds-accent-border bg-vds-accent-soft p-4" aria-label="Contextual hint"><Sparkles className="mt-0.5 size-4 text-vds-primary" /><p className="min-w-0 flex-1 text-sm">Start with <Link href={primary.href} className="font-medium text-vds-primary" onClick={() => visit(primary, primary.id)}>{primary.label.toLowerCase()}</Link>. You can explore everything else afterward.</p><Button variant="ghost" size="sm" className="size-8 p-0" aria-label="Dismiss hint" onClick={() => { setHintDismissed(true); localStorage.setItem(hintKey, "true"); }}><X className="size-4" /></Button></aside>}
-    <div className="flex items-center justify-between gap-4"><div><p className="text-xs font-semibold uppercase tracking-[.16em] text-vds-primary">Made for you</p><h2 className="mt-1 text-xl font-semibold">{experience.title}</h2></div>{(hidden.length > 0 || pinned.length > 0) && <Button variant="ghost" size="sm" onClick={() => remember({ hidden: [], pinned: [] })}><RotateCcw className="size-4" />Reset layout</Button>}</div>
-    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">{modules.map((module) => <article key={module.label} className="group rounded-2xl border border-vds-border bg-vds-surface p-5 transition hover:-translate-y-0.5 hover:border-vds-accent-border motion-reduce:transition-none"><div className="flex items-center justify-between"><GripVertical className="size-4 text-vds-subtle" aria-hidden="true" /><div className="flex"><Button variant="ghost" size="sm" className="size-8 p-0" aria-label={`${pinned.includes(module.label) ? "Unpin" : "Pin"} ${module.label}`} aria-pressed={pinned.includes(module.label)} onClick={() => remember({ pinned: pinned.includes(module.label) ? pinned.filter((item) => item !== module.label) : [...pinned, module.label] })}>{pinned.includes(module.label) ? <Star className="size-4 fill-current text-vds-primary" /> : <Pin className="size-4" />}</Button><Button variant="ghost" size="sm" className="size-8 p-0" aria-label={`Hide ${module.label}`} onClick={() => remember({ hidden: [...hidden, module.label] })}><EyeOff className="size-4" /></Button></div></div><h3 className="mt-6 font-semibold">{module.label}</h3><Link href={module.href} onClick={() => visit(module)} className="mt-3 inline-flex items-center gap-1 text-sm text-vds-primary">{module.action}<ArrowRight className="size-3" /></Link></article>)}</div>
-    {recents.length > 0 && <section aria-labelledby="recent-work-title"><h2 id="recent-work-title" className="text-lg font-semibold">Continue where you left off</h2><div className="mt-3 flex gap-3 overflow-x-auto pb-2">{recents.map((item) => <Link key={item.href} href={item.href} className="min-w-48 rounded-2xl border border-vds-border bg-vds-surface p-4 text-sm hover:border-vds-accent-border"><span className="font-medium">{item.label}</span><span className="mt-1 block text-xs text-vds-muted">Continue</span></Link>)}</div></section>}
-    <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-dashed border-vds-border p-4"><WandSparkles className="size-5 text-vds-primary" /><p className="min-w-0 flex-1 text-sm text-vds-muted">Prefer to explore first? Open a complete sample workspace. Sample data stays separate and can be removed in one action.</p><ButtonLink href="/demo" variant="secondary">Open Sample Workspace</ButtonLink></div>
-  </section>;
+  const progress = Math.round(
+    (completeCount / experience.journey.length) * 100,
+  );
+  const modules = useMemo(
+    () =>
+      [...experience.modules]
+        .sort(
+          (a, b) =>
+            Number(pinned.includes(b.label)) - Number(pinned.includes(a.label)),
+        )
+        .filter((item) => !hidden.includes(item.label)),
+    [experience.modules, hidden, pinned],
+  );
+  return (
+    <section
+      className={`space-y-5 transition-opacity duration-200 motion-reduce:transition-none ${ready ? "opacity-100" : "opacity-0"}`}
+      aria-labelledby="adaptive-workspace-title"
+    >
+      {celebration && (
+        <div
+          role="status"
+          className="animate-in fade-in slide-in-from-top-1 flex items-center gap-3 rounded-2xl border border-vds-success bg-vds-success-soft px-4 py-3 text-sm text-vds-success motion-reduce:animate-none"
+        >
+          <span className="grid size-7 place-items-center rounded-full bg-vds-success-soft">
+            <Check className="size-4" />
+          </span>
+          <span className="font-medium">{celebration}</span>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="ml-auto size-8 p-0"
+            aria-label="Dismiss success message"
+            onClick={() => setCelebration(null)}
+          >
+            <X className="size-4" />
+          </Button>
+        </div>
+      )}
+      <div className="rounded-[2rem] border border-vds-accent-border bg-gradient-to-br from-vds-primary-soft via-vds-surface to-vds-accent-soft p-6 sm:p-8">
+        <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">
+          <Sparkles className="size-4" />
+          Your recommended objective
+        </p>
+        <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h1
+              id="adaptive-workspace-title"
+              className="text-2xl font-semibold sm:text-3xl"
+            >
+              Let&apos;s{" "}
+              {primary.label.charAt(0).toLowerCase() + primary.label.slice(1)}.
+            </h1>
+            <p className="mt-2 text-sm text-vds-muted">
+              The fastest route to a useful result in your workspace.
+            </p>
+          </div>
+          <ButtonLink
+            href={primary.href}
+            onClick={() => visit(primary, primary.id)}
+          >
+            {primary.action}
+            <ArrowRight className="size-4" />
+          </ButtonLink>
+        </div>
+      </div>
+      <section
+        className="rounded-2xl border border-vds-border bg-vds-surface p-5"
+        aria-labelledby="launch-readiness-title"
+      >
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[.16em] text-vds-primary">
+              First value journey
+            </p>
+            <h2
+              id="launch-readiness-title"
+              className="mt-1 text-lg font-semibold"
+            >
+              You&apos;re {progress}% ready to launch.
+            </h2>
+          </div>
+          <span className="text-sm text-vds-muted">
+            {completeCount} complete
+          </span>
+        </div>
+        <div className="mt-4 h-2 overflow-hidden rounded-full bg-vds-surface-muted">
+          <div
+            className="h-full rounded-full bg-vds-primary transition-[width] motion-reduce:transition-none"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+        <p className="mt-4 text-sm font-medium">Remaining</p>
+        <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+          {experience.journey.map((item) => (
+            <li key={item.id} className="flex items-center gap-2 text-sm">
+              {isComplete(item) ? (
+                <Check className="size-4 text-vds-success" />
+              ) : (
+                <Circle className="size-4 text-vds-subtle" />
+              )}
+              <Link
+                href={item.href}
+                onClick={() => visit(item, item.id)}
+                className={
+                  isComplete(item)
+                    ? "text-vds-muted line-through"
+                    : "hover:text-vds-primary"
+                }
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+      {!hintDismissed && (
+        <aside
+          className="flex items-start gap-3 rounded-2xl border border-vds-accent-border bg-vds-accent-soft p-4"
+          aria-label="Contextual hint"
+        >
+          <Sparkles className="mt-0.5 size-4 text-vds-primary" />
+          <p className="min-w-0 flex-1 text-sm">
+            Start with{" "}
+            <Link
+              href={primary.href}
+              className="font-medium text-vds-primary"
+              onClick={() => visit(primary, primary.id)}
+            >
+              {primary.label.toLowerCase()}
+            </Link>
+            . You can explore everything else afterward.
+          </p>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="size-8 p-0"
+            aria-label="Dismiss hint"
+            onClick={() => {
+              setHintDismissed(true);
+              localStorage.setItem(hintKey, "true");
+            }}
+          >
+            <X className="size-4" />
+          </Button>
+        </aside>
+      )}
+      <div className="flex items-center justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[.16em] text-vds-primary">
+            Made for you
+          </p>
+          <h2 className="mt-1 text-xl font-semibold">{experience.title}</h2>
+        </div>
+        {(hidden.length > 0 || pinned.length > 0) && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => remember({ hidden: [], pinned: [] })}
+          >
+            <RotateCcw className="size-4" />
+            Reset layout
+          </Button>
+        )}
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+        {modules.map((module) => (
+          <article
+            key={module.label}
+            className="group rounded-2xl border border-vds-border bg-vds-surface p-5 transition hover:-translate-y-0.5 hover:border-vds-accent-border motion-reduce:transition-none"
+          >
+            <div className="flex items-center justify-between">
+              <GripVertical
+                className="size-4 text-vds-subtle"
+                aria-hidden="true"
+              />
+              <div className="flex">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="size-8 p-0"
+                  aria-label={`${pinned.includes(module.label) ? "Unpin" : "Pin"} ${module.label}`}
+                  aria-pressed={pinned.includes(module.label)}
+                  onClick={() =>
+                    remember({
+                      pinned: pinned.includes(module.label)
+                        ? pinned.filter((item) => item !== module.label)
+                        : [...pinned, module.label],
+                    })
+                  }
+                >
+                  {pinned.includes(module.label) ? (
+                    <Star className="size-4 fill-current text-vds-primary" />
+                  ) : (
+                    <Pin className="size-4" />
+                  )}
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="size-8 p-0"
+                  aria-label={`Hide ${module.label}`}
+                  onClick={() =>
+                    remember({ hidden: [...hidden, module.label] })
+                  }
+                >
+                  <EyeOff className="size-4" />
+                </Button>
+              </div>
+            </div>
+            <h3 className="mt-6 font-semibold">{module.label}</h3>
+            <Link
+              href={module.href}
+              onClick={() => visit(module)}
+              className="mt-3 inline-flex items-center gap-1 text-sm text-vds-primary"
+            >
+              {module.action}
+              <ArrowRight className="size-3" />
+            </Link>
+          </article>
+        ))}
+      </div>
+      {recents.length > 0 && (
+        <section aria-labelledby="recent-work-title">
+          <h2 id="recent-work-title" className="text-lg font-semibold">
+            Continue where you left off
+          </h2>
+          <div className="mt-3 flex gap-3 overflow-x-auto pb-2">
+            {recents.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="min-w-48 rounded-2xl border border-vds-border bg-vds-surface p-4 text-sm hover:border-vds-accent-border"
+              >
+                <span className="font-medium">{item.label}</span>
+                <span className="mt-1 block text-xs text-vds-muted">
+                  Continue
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-dashed border-vds-border p-4">
+        <WandSparkles className="size-5 text-vds-primary" />
+        <p className="min-w-0 flex-1 text-sm text-vds-muted">
+          Prefer to explore first? Open Prime Properties Realty with complete,
+          isolated sample data. Production workspace data remains untouched.
+        </p>
+        <ButtonLink href="/demo" variant="secondary">
+          Explore Demo Workspace
+        </ButtonLink>
+        <ButtonLink href="/demo">Use Sample Data</ButtonLink>
+      </div>
+    </section>
+  );
 }

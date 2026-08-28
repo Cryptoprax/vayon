@@ -15,17 +15,24 @@ import type {
 import type { DemoExperienceModel, DemoRepository } from "../domain/contracts";
 import { AuroraDemoRepository } from "../repository/aurora-demo.repository";
 import { AuroraEnterpriseDemoRepository } from "../repository/aurora-enterprise.repository";
-import { convertToUsd, formatMarketingCurrency } from "@/features/marketing/currency/currency";
+import {
+  convertToUsd,
+  formatMarketingCurrency,
+} from "@/features/marketing/currency/currency";
 
 const stages = [
   "new",
   "qualified",
-  "site-visit",
+  "contacted",
+  "appointment-scheduled",
+  "property-visit",
   "negotiation",
-  "closed-won",
+  "won",
+  "lost",
 ] as const;
 const usd = (value: number) => convertToUsd(value, "INR");
-const money = (valueUsd: number) => formatMarketingCurrency(valueUsd, "USD", true);
+const money = (valueUsd: number) =>
+  formatMarketingCurrency(valueUsd, "USD", true);
 export class DemoExperienceService {
   constructor(
     private readonly repository: DemoRepository = new AuroraDemoRepository(),
@@ -40,7 +47,10 @@ export class DemoExperienceService {
         (item) => !["closed-won", "closed-lost"].includes(item.stage),
       );
     const value = (deal: (typeof auroraDeals)[number]) =>
-      usd(auroraProperties.find((item) => item.id === deal.propertyId)?.priceRange.minimum ?? 0);
+      usd(
+        auroraProperties.find((item) => item.id === deal.propertyId)?.priceRange
+          .minimum ?? 0,
+      );
     const pipelineValue = activeDeals.reduce(
         (sum, item) => sum + value(item),
         0,
@@ -94,14 +104,19 @@ export class DemoExperienceService {
       },
     ];
     const pipeline: PipelineColumn[] = stages.map((stage) => {
-      const records = auroraDeals.filter((item) => item.stage === stage);
+      const records = inventory.leads.filter((item) => item.status === stage),
+        sampleValue = records.reduce(
+          (sum, _, index) =>
+            sum + value(auroraDeals[index % auroraDeals.length]!),
+          0,
+        );
       return {
         id: stage,
         label: stage
           .replaceAll("-", " ")
           .replace(/\b\w/g, (value) => value.toUpperCase()),
         count: records.length,
-        value: records.reduce((sum, item) => sum + value(item), 0),
+        value: sampleValue,
         trend: (stages.indexOf(stage) + 1) * 3,
         href: "/demo",
       };
@@ -132,56 +147,51 @@ export class DemoExperienceService {
         eventType: item.subtitle,
         title: item.title,
         occurredAt: item.occurredAt!,
-        workspace: "Aurora Realty Group",
+        workspace: "Prime Properties Realty",
         href: "/demo",
       }));
     const workforceNames = [
-      "Sales AI",
-      "WhatsApp AI",
-      "Voice AI",
-      "CRM AI",
-      "Marketing AI",
-      "Support AI",
-      "Operations AI",
+      "AI Sales Manager",
+      "AI Marketing Manager",
+      "AI Operations Manager",
+      "AI Customer Success Manager",
+      "AI Founder Assistant",
     ];
     const dashboard: ExecutiveDashboardData = {
-      organizationName: "Aurora Realty Group",
-      workspaceName: "Demo Environment",
+      organizationName: "Prime Properties Realty",
+      workspaceName:
+        "Residential + Commercial Brokerage · 18 Agents · Established 2018",
       currency: "USD",
       kpis,
       pipeline,
       charts,
       activities,
-      calendar: auroraMeetings
-        .slice(0, 8)
-        .map((item) => ({
-          id: item.id,
-          kind: item.kind === "property-visit" ? "visit" : "meeting",
-          title: item.title,
-          startsAt: item.startsAt,
-          meta: item.location,
-          href: "/demo",
-        })),
+      calendar: auroraMeetings.slice(0, 8).map((item) => ({
+        id: item.id,
+        kind: item.kind === "property-visit" ? "visit" : "meeting",
+        title: item.title,
+        startsAt: item.startsAt,
+        meta: item.location,
+        href: "/demo",
+      })),
       ai: {
-        conversations: 240,
+        conversations: inventory.communications.length,
         appointments: auroraMeetings.length,
         followUps: auroraTasks.filter((item) => item.kind === "follow-up")
           .length,
-        recommendations: auroraProperties.length,
+        recommendations: inventory.properties.length,
         emails: 120,
-        whatsapp: 240,
+        whatsapp: inventory.communications.length,
       },
       aiWorkforce: workforceNames.map((name, index) => ({
         id: `demo-ai-${index + 1}`,
         name,
         role: [
-          "Sales",
-          "Communications",
-          "Operations",
-          "CRM",
-          "Marketing",
-          "Customer Success",
-          "Operations",
+          "Sales and lead qualification",
+          "Marketing and campaign planning",
+          "Operations and workflow coordination",
+          "Buyer follow-up and appointments",
+          "Founder briefings and growth",
         ][index]!,
         status: "online",
         tasksCompleted: 84 + index * 13,

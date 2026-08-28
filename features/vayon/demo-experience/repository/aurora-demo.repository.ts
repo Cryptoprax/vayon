@@ -16,31 +16,65 @@ import { convertToUsd } from "@/features/marketing/currency/currency";
 const frozen = <T>(value: T): T => Object.freeze(value);
 export class AuroraDemoRepository implements DemoRepository {
   load(): DemoInventory {
-    const properties = auroraProperties.map((item) =>
-      frozen<DemoRecord>({
-        id: item.id,
+    const demoPropertyTypes = [
+      "apartment",
+      "villa",
+      "commercial office",
+      "retail",
+      "plot",
+      "luxury home",
+    ] as const;
+    const properties = Array.from({ length: 500 }, (_, index) => {
+      const item = auroraProperties[index % auroraProperties.length]!,
+        assignedAgent = auroraEmployees[index % 18]!,
+        bedrooms =
+          item.propertyType.includes("commercial") ||
+          item.propertyType === "plot"
+            ? 0
+            : 1 + (index % 5),
+        bathrooms =
+          bedrooms === 0
+            ? 1 + (index % 3)
+            : Math.max(1, bedrooms - (index % 2));
+      return frozen<DemoRecord>({
+        id: `prime-property-${index + 1}`,
         kind: "properties",
-        title: item.name,
-        subtitle: `${item.locality}, ${item.city}`,
+        title: `${item.name} · ${String(index + 1).padStart(3, "0")}`,
+        subtitle: `${12 + (index % 88)} ${item.locality} Road, ${item.city}`,
         status: item.status,
         meta: [
-          item.propertyType.replaceAll("-", " "),
+          demoPropertyTypes[index % demoPropertyTypes.length]!,
+          `${bedrooms} bedrooms`,
+          `${bathrooms} bathrooms`,
           `${item.areaSquareFeet.toLocaleString("en-IN")} sq ft`,
-          item.assignedSalesTeam,
+          assignedAgent.name,
         ],
         image: item.thumbnailPlaceholder,
         monetaryRangeUsd: {
-          minimum: item.priceRange.minimum == null ? undefined : convertToUsd(item.priceRange.minimum, "INR"),
-          maximum: item.priceRange.maximum == null ? undefined : convertToUsd(item.priceRange.maximum, "INR"),
+          minimum:
+            item.priceRange.minimum == null
+              ? undefined
+              : convertToUsd(item.priceRange.minimum, "INR"),
+          maximum:
+            item.priceRange.maximum == null
+              ? undefined
+              : convertToUsd(item.priceRange.maximum, "INR"),
         },
-      }),
-    );
-    const leads = Array.from({ length: 520 }, (_, index) => {
+      });
+    });
+    const leadStatuses = [
+      "new",
+      "qualified",
+      "contacted",
+      "appointment-scheduled",
+      "property-visit",
+      "negotiation",
+      "won",
+      "lost",
+    ] as const;
+    const leads = Array.from({ length: 1000 }, (_, index) => {
       const source = auroraLeads[index % auroraLeads.length]!,
-        contact = auroraContacts.find((item) => item.id === source.contactId)!,
-        property = auroraProperties.find(
-          (item) => item.id === source.preferredPropertyId,
-        )!;
+        contact = auroraContacts.find((item) => item.id === source.contactId)!;
       return frozen<DemoRecord>({
         id: `demo-lead-${index + 1}`,
         kind: "leads",
@@ -49,12 +83,12 @@ export class AuroraDemoRepository implements DemoRepository {
             ? contact.name
             : `${contact.name} · Portfolio ${Math.floor(index / auroraLeads.length) + 1}`,
         subtitle: `${contact.email} · ${contact.phone}`,
-        status: source.status,
+        status: leadStatuses[index % leadStatuses.length]!,
         meta: [
           source.priority,
           source.budgetRange,
           source.source.replaceAll("-", " "),
-          property.name,
+          properties[index % properties.length]!.title,
           source.buyingTimeline.replaceAll("-", " "),
         ],
       });
@@ -78,8 +112,14 @@ export class AuroraDemoRepository implements DemoRepository {
             ?.name ?? "Assigned sales team",
         ],
         monetaryRangeUsd: {
-          minimum: property.priceRange.minimum == null ? undefined : convertToUsd(property.priceRange.minimum, "INR"),
-          maximum: property.priceRange.maximum == null ? undefined : convertToUsd(property.priceRange.maximum, "INR"),
+          minimum:
+            property.priceRange.minimum == null
+              ? undefined
+              : convertToUsd(property.priceRange.minimum, "INR"),
+          maximum:
+            property.priceRange.maximum == null
+              ? undefined
+              : convertToUsd(property.priceRange.maximum, "INR"),
         },
       });
     });
@@ -96,7 +136,16 @@ export class AuroraDemoRepository implements DemoRepository {
         subtitle: item.preview,
         status:
           index % 7 === 0 ? "unread" : index % 19 === 0 ? "typing" : "replied",
-        meta: [item.direction, item.subject],
+        meta: [
+          [
+            "email thread",
+            "whatsapp conversation",
+            "meeting notes",
+            "call summary",
+          ][index % 4]!,
+          item.direction,
+          item.subject,
+        ],
         occurredAt: item.occurredAt,
       });
     });
@@ -115,7 +164,7 @@ export class AuroraDemoRepository implements DemoRepository {
         }),
       );
     return frozen({
-      organization: "Aurora Realty Group",
+      organization: "Prime Properties Realty",
       persistence: "seeded-json-fixtures",
       readOnly: true,
       properties: frozen(properties),

@@ -79,7 +79,7 @@ export const comparisons = Object.entries(comparisonNames).map(
       {
         label: "Demo evidence",
         vayon:
-          "Read-only, isolated Aurora demo workspace with deterministic sample data.",
+          "Read-only, isolated Prime Properties Realty demo workspace with deterministic sample data.",
         alternative:
           "Validate using the vendor’s current product documentation and trial.",
       },

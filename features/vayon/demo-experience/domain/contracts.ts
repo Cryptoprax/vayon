@@ -2,8 +2,15 @@ import type { ExecutiveDashboardData } from "@/features/vayon/dashboard/types";
 
 export type DemoCollection =
   "properties" | "leads" | "deals" | "communications" | "activity";
-export type DemoMode = "visitor" | "sales" | "investor" | "founder" | "enterprise";
-export interface DemoModeProfile { readonly id:DemoMode;readonly label:string;readonly audience:string;readonly openingTab:string;readonly highlights:readonly string[] }
+export type DemoMode =
+  "visitor" | "sales" | "investor" | "founder" | "enterprise";
+export interface DemoModeProfile {
+  readonly id: DemoMode;
+  readonly label: string;
+  readonly audience: string;
+  readonly openingTab: string;
+  readonly highlights: readonly string[];
+}
 export interface DemoRecord {
   readonly id: string;
   readonly kind: DemoCollection;
@@ -16,7 +23,7 @@ export interface DemoRecord {
   readonly monetaryRangeUsd?: Readonly<{ minimum?: number; maximum?: number }>;
 }
 export interface DemoInventory {
-  readonly organization: "Aurora Realty Group";
+  readonly organization: "Prime Properties Realty";
   readonly persistence: "seeded-json-fixtures";
   readonly readOnly: true;
   readonly properties: readonly DemoRecord[];
@@ -42,25 +49,39 @@ export interface DemoRepository {
   load(): DemoInventory;
 }
 
-export interface DemoEnterpriseItem { readonly id:string;readonly title:string;readonly detail:string;readonly status:string;readonly relatedIds:readonly string[];readonly monetaryValueUsd?:number }
+export interface DemoEnterpriseItem {
+  readonly id: string;
+  readonly title: string;
+  readonly detail: string;
+  readonly status: string;
+  readonly relatedIds: readonly string[];
+  readonly monetaryValueUsd?: number;
+}
 export interface DemoEnterpriseProjection {
-  readonly datasetVersion:"aurora-enterprise-v1";
-  readonly demoData:true;
-  readonly team:readonly DemoEnterpriseItem[];
-  readonly workflows:readonly DemoEnterpriseItem[];
-  readonly aiRecommendations:readonly DemoEnterpriseItem[];
-  readonly notifications:readonly DemoEnterpriseItem[];
-  readonly billing:readonly DemoEnterpriseItem[];
-  readonly analytics:readonly DemoEnterpriseItem[];
-  readonly campaigns:readonly DemoEnterpriseItem[];
-  readonly subscriptions:readonly DemoEnterpriseItem[];
-  readonly knowledge:readonly DemoEnterpriseItem[];
-  readonly creative:readonly DemoEnterpriseItem[];
-  readonly customerSuccess:readonly DemoEnterpriseItem[];
-  readonly reports:readonly DemoEnterpriseItem[];
-  readonly aiDemonstrations:readonly DemoEnterpriseItem[];
-  readonly investor:readonly DemoEnterpriseItem[];
-  readonly executiveStory:readonly DemoEnterpriseItem[];
-  readonly modes:readonly DemoModeProfile[];
-  readonly tour:readonly DemoEnterpriseItem[];
+  readonly datasetVersion: "prime-properties-v1";
+  readonly demoData: true;
+  readonly team: readonly DemoEnterpriseItem[];
+  readonly workflows: readonly DemoEnterpriseItem[];
+  readonly aiRecommendations: readonly DemoEnterpriseItem[];
+  readonly notifications: readonly DemoEnterpriseItem[];
+  readonly billing: readonly DemoEnterpriseItem[];
+  readonly analytics: readonly DemoEnterpriseItem[];
+  readonly campaigns: readonly DemoEnterpriseItem[];
+  readonly subscriptions: readonly DemoEnterpriseItem[];
+  readonly knowledge: readonly DemoEnterpriseItem[];
+  readonly creative: readonly DemoEnterpriseItem[];
+  readonly customerSuccess: readonly DemoEnterpriseItem[];
+  readonly reports: readonly DemoEnterpriseItem[];
+  readonly aiDemonstrations: readonly DemoEnterpriseItem[];
+  readonly aiEmployees: readonly DemoEnterpriseItem[];
+  readonly calendar: readonly DemoEnterpriseItem[];
+  readonly tasks: readonly DemoEnterpriseItem[];
+  readonly communications: readonly DemoEnterpriseItem[];
+  readonly marketingAssets: readonly DemoEnterpriseItem[];
+  readonly executiveDashboard: readonly DemoEnterpriseItem[];
+  readonly founderDashboard: readonly DemoEnterpriseItem[];
+  readonly investor: readonly DemoEnterpriseItem[];
+  readonly executiveStory: readonly DemoEnterpriseItem[];
+  readonly modes: readonly DemoModeProfile[];
+  readonly tour: readonly DemoEnterpriseItem[];
 }

@@ -33,7 +33,8 @@ test("demo inventory exceeds required experience volumes", () => {
   const source = read(
     "features/vayon/demo-experience/repository/aurora-demo.repository.ts",
   );
-  assert.match(source, /length:\s*520/);
+  assert.match(source, /length:\s*1000/);
+  assert.match(source, /length:\s*500/);
   assert.match(source, /length:\s*240/);
   assert.match(source, /slice\(-720\)/);
   assert.match(source, /auroraProperties/);

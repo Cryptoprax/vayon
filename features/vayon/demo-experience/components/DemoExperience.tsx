@@ -27,7 +27,10 @@ import { BrandLogo } from "@/components/brand";
 import { DemoObservabilityService } from "../services/demo-observability.service";
 import { useMarketingCurrency } from "@/features/marketing/currency/CurrencyDisplay";
 import { convertToUsd } from "@/features/marketing/currency/currency";
-import { FloatingLayoutManager, FloatingSurface } from "@/features/vayon/floating-layout/FloatingLayoutManager";
+import {
+  FloatingLayoutManager,
+  FloatingSurface,
+} from "@/features/vayon/floating-layout/FloatingLayoutManager";
 
 const tabs = [
   "dashboard",
@@ -35,6 +38,8 @@ const tabs = [
   "leads",
   "deals",
   "communications",
+  "calendar",
+  "tasks",
   "activity",
   "team",
   "workflows",
@@ -51,6 +56,7 @@ const tabs = [
   "creative",
   "reports",
   "investor",
+  "founder",
 ] as const;
 type Tab = (typeof tabs)[number];
 const enterpriseTabs = [
@@ -69,8 +75,12 @@ const enterpriseTabs = [
   "creative",
   "reports",
   "investor",
+  "calendar",
+  "tasks",
+  "founder",
 ] as const;
 const pageSize = 24;
+const demoSafetyLabel = "Seeded, isolated fixtures";
 const investorTours = [
   ["Executive Tour", "dashboard", 0],
   ["Founder Dashboard Tour", "dashboard", 0],
@@ -110,7 +120,8 @@ export function DemoExperience({
     [presentation, setPresentation] = useState(false),
     [screenshot, setScreenshot] = useState(false),
     [storyStep, setStoryStep] = useState(0),
-    [resetCount, setResetCount] = useState(0);
+    [resetCount, setResetCount] = useState(0),
+    [generation, setGeneration] = useState(0);
   useEffect(() => {
     const telemetry = new DemoObservabilityService();
     if (tab === "dashboard") telemetry.launch(tab);
@@ -120,8 +131,12 @@ export function DemoExperience({
     if (!presentation) return;
     const navigate = (event: KeyboardEvent) => {
       if (event.key === "Escape") setPresentation(false);
-      if (event.key === "ArrowRight") setStoryStep((value) => Math.min(model.enterprise.executiveStory.length - 1, value + 1));
-      if (event.key === "ArrowLeft") setStoryStep((value) => Math.max(0, value - 1));
+      if (event.key === "ArrowRight")
+        setStoryStep((value) =>
+          Math.min(model.enterprise.executiveStory.length - 1, value + 1),
+        );
+      if (event.key === "ArrowLeft")
+        setStoryStep((value) => Math.max(0, value - 1));
     };
     window.addEventListener("keydown", navigate);
     return () => window.removeEventListener("keydown", navigate);
@@ -163,15 +178,21 @@ export function DemoExperience({
       return [];
     const records =
       tab === "dashboard" ? [] : model.inventory[tab as DemoCollection];
+    const seededRecords = records.length
+      ? [
+          ...records.slice(generation % records.length),
+          ...records.slice(0, generation % records.length),
+        ]
+      : records;
     const term = query.trim().toLocaleLowerCase();
     return term
-      ? records.filter((item) =>
+      ? seededRecords.filter((item) =>
           [item.title, item.subtitle, item.status, ...item.meta].some((value) =>
             value.toLocaleLowerCase().includes(term),
           ),
         )
-      : records;
-  }, [model.inventory, query, tab]);
+      : seededRecords;
+  }, [generation, model.inventory, query, tab]);
   const visible = filtered.slice(page * pageSize, (page + 1) * pageSize),
     pages = Math.max(1, Math.ceil(filtered.length / pageSize));
   function select(next: Tab) {
@@ -189,199 +210,286 @@ export function DemoExperience({
   }
   return (
     <FloatingLayoutManager sidebarCollapsed>
-    <div
-      onClickCapture={protect}
-      className={`min-h-dvh bg-vds-background text-vds-foreground ${screenshot ? "demo-screenshot-mode" : ""}`}
-      data-demo-tenant="aurora-demo-workspace"
-      data-demo-mode={mode}
-    >
-      {!presentation && <header className="sticky top-0 z-50 border-b border-vds-border bg-vds-background/95 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-[106rem] items-center gap-3 px-4 sm:px-6">
-          <BrandLogo size="sm" priority />
-          <div className="min-w-0">
-            <p className="truncate text-[10px] text-vds-subtle">
-              Aurora Realty Group
-            </p>
-          </div>
-          <span className="ml-auto hidden items-center gap-2 rounded-full border border-vds-warning/20 bg-vds-warning-soft px-3 py-1.5 text-xs text-vds-warning sm:inline-flex">
-            <LockKeyhole className="size-4" />
-            Read-only demo
-          </span>
-          <label className="hidden text-xs text-vds-muted md:block"><span className="sr-only">Demo mode</span><select className="h-9 rounded-lg border border-vds-border bg-vds-input px-2" value={mode} onChange={(event)=>{const next=event.target.value as DemoMode;setMode(next);const profile=model.enterprise.modes.find(item=>item.id===next);if(profile?.openingTab&&tabs.includes(profile.openingTab as Tab))select(profile.openingTab as Tab);}}>{model.enterprise.modes.map((item)=><option key={item.id} value={item.id}>{item.label}</option>)}</select></label>
-          <ButtonLink href="/signup" className="shrink-0">
-            Start free
-          </ButtonLink>
-        </div>
-      </header>}
-      {!presentation && <section className="border-b border-vds-border bg-vds-warning-soft">
-        <div className="mx-auto flex max-w-[106rem] flex-col gap-2 px-4 py-3 text-xs sm:flex-row sm:items-center sm:px-6">
-          <strong className="flex items-center gap-2 text-vds-warning">
-            <Building2 className="size-4" />
-            Demo Environment
-          </strong>
-          <span className="text-vds-muted">
-            Using Aurora Realty Group · Changes are not persisted.
-          </span>
-          <span className="sm:ml-auto text-vds-subtle">
-            Seeded, isolated fixtures
-          </span>
-        </div>
-      </section>}
-      {!presentation && <nav
-        aria-label="Demo sections"
-        className="sticky top-16 z-40 overflow-x-auto border-b border-vds-border bg-vds-background/90 px-4 backdrop-blur-xl sm:px-6"
+      <div
+        onClickCapture={protect}
+        className={`min-h-dvh bg-vds-background text-vds-foreground ${screenshot ? "demo-screenshot-mode" : ""}`}
+        data-demo-tenant="prime-properties-demo-workspace"
+        data-demo-mode={mode}
       >
-        <div className="mx-auto flex max-w-[100rem] gap-1 py-2">
-          {tabs.map((item) => (
-            <Button
-              key={item}
-              variant="control"
-              type="button"
-              onClick={() => select(item)}
-              aria-current={tab === item ? "page" : undefined}
-              className={`shrink-0 rounded-xl px-4 py-2 text-xs capitalize ${tab === item ? "bg-vds-primary-soft text-vds-primary" : "text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"}`}
-            >
-              {item}
-            </Button>
-          ))}
-        </div>
-      </nav>}
-      {presentation ? <PresentationStory records={model.enterprise.executiveStory} step={storyStep} onStep={setStoryStep} onClose={()=>setPresentation(false)}/> : tab === "dashboard" ? (
-        <DashboardShell
-          data={dashboard}
-          onBlockedAction={() => setNotice(true)}
-          aiPrompts={[
-            `Find buyers interested in villas below ${format(convertToUsd(30_000_000, "INR"), true)}`,
-            "Show today's meetings",
-            "Book site visits",
-            "Create WhatsApp campaign",
-            "Show highest priority leads",
-          ]}
-        />
-      ) : enterpriseTabs.includes(tab as (typeof enterpriseTabs)[number]) ? (
-        <EnterpriseBrowser
-          title={tab}
-          records={enterpriseRecords(model,tab)}
-        />
-      ) : (
-        <DemoBrowser
-          tab={tab}
-          query={query}
-          onQuery={(value) => {
-            setQuery(value);
-            setPage(0);
-          }}
-          records={visible}
-          total={filtered.length}
-          page={page}
-          pages={pages}
-          onPage={setPage}
-        />
-      )}
-      {!presentation && <FloatingSurface id="demo-tour-actions" kind="action" priority={50}>
-      <div className="flex items-end gap-2">
-        <details className="group rounded-xl bg-vds-surface shadow-vds-lg">
-          <summary className="vds-focus flex cursor-pointer list-none items-center gap-2 rounded-xl border border-vds-border px-4 py-2 text-sm">
-            <Play className="size-4" />
-            Start tour · Investor tours
-          </summary>
-          <div className="absolute bottom-12 left-0 grid w-56 gap-1 rounded-xl border border-vds-border bg-vds-surface p-2 shadow-vds-lg">
-            {investorTours.map(([label, nextTab, step]) => (
+        {!presentation && (
+          <header className="sticky top-0 z-50 border-b border-vds-border bg-vds-background/95 backdrop-blur-xl">
+            <div className="mx-auto flex h-16 max-w-[106rem] items-center gap-3 px-4 sm:px-6">
+              <BrandLogo size="sm" priority />
+              <div className="min-w-0">
+                <p className="truncate text-[10px] text-vds-subtle">
+                  Prime Properties Realty
+                </p>
+              </div>
+              <span className="ml-auto hidden items-center gap-2 rounded-full border border-vds-warning/20 bg-vds-warning-soft px-3 py-1.5 text-xs text-vds-warning sm:inline-flex">
+                <LockKeyhole className="size-4" />
+                Read-only demo · Demo Workspace
+              </span>
+              <label className="hidden text-xs text-vds-muted md:block">
+                <span className="sr-only">Demo mode</span>
+                <select
+                  className="h-9 rounded-lg border border-vds-border bg-vds-input px-2"
+                  value={mode}
+                  onChange={(event) => {
+                    const next = event.target.value as DemoMode;
+                    setMode(next);
+                    const profile = model.enterprise.modes.find(
+                      (item) => item.id === next,
+                    );
+                    if (
+                      profile?.openingTab &&
+                      tabs.includes(profile.openingTab as Tab)
+                    )
+                      select(profile.openingTab as Tab);
+                  }}
+                >
+                  {model.enterprise.modes.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <ButtonLink href="/signup" className="shrink-0">
+                Start free
+              </ButtonLink>
+            </div>
+          </header>
+        )}
+        {!presentation && (
+          <section className="border-b border-vds-border bg-vds-warning-soft">
+            <div className="mx-auto flex max-w-[106rem] flex-col gap-2 px-4 py-3 text-xs sm:flex-row sm:items-center sm:px-6">
+              <strong className="flex items-center gap-2 text-vds-warning">
+                <Building2 className="size-4" />
+                Demo Workspace
+              </strong>
+              <span className="text-vds-muted">
+                Prime Properties Realty · Residential + Commercial Brokerage ·
+                18 Agents · Established 2018 · Changes are not persisted.
+              </span>
+              <span className="sm:ml-auto text-vds-subtle">
+                Sample Data · No production information · {demoSafetyLabel}
+              </span>
+            </div>
+          </section>
+        )}
+        {!presentation && (
+          <nav
+            aria-label="Demo sections"
+            className="sticky top-16 z-40 overflow-x-auto border-b border-vds-border bg-vds-background/90 px-4 backdrop-blur-xl sm:px-6"
+          >
+            <div className="mx-auto flex max-w-[100rem] gap-1 py-2">
+              {tabs.map((item) => (
+                <Button
+                  key={item}
+                  variant="control"
+                  type="button"
+                  onClick={() => select(item)}
+                  aria-current={tab === item ? "page" : undefined}
+                  className={`shrink-0 rounded-xl px-4 py-2 text-xs capitalize ${tab === item ? "bg-vds-primary-soft text-vds-primary" : "text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"}`}
+                >
+                  {item}
+                </Button>
+              ))}
+            </div>
+          </nav>
+        )}
+        {presentation ? (
+          <PresentationStory
+            records={model.enterprise.executiveStory}
+            step={storyStep}
+            onStep={setStoryStep}
+            onClose={() => setPresentation(false)}
+          />
+        ) : tab === "dashboard" ? (
+          <DashboardShell
+            data={dashboard}
+            onBlockedAction={() => setNotice(true)}
+            aiPrompts={[
+              `Find buyers interested in villas below ${format(convertToUsd(30_000_000, "INR"), true)}`,
+              "Show today's meetings",
+              "Book site visits",
+              "Create WhatsApp campaign",
+              "Show highest priority leads",
+            ]}
+          />
+        ) : enterpriseTabs.includes(tab as (typeof enterpriseTabs)[number]) ? (
+          <EnterpriseBrowser
+            title={tab}
+            records={enterpriseRecords(model, tab)}
+          />
+        ) : (
+          <DemoBrowser
+            tab={tab}
+            query={query}
+            onQuery={(value) => {
+              setQuery(value);
+              setPage(0);
+            }}
+            records={visible}
+            total={filtered.length}
+            page={page}
+            pages={pages}
+            onPage={setPage}
+          />
+        )}
+        {!presentation && (
+          <FloatingSurface id="demo-tour-actions" kind="action" priority={50}>
+            <div className="flex items-end gap-2">
+              <details className="group rounded-xl bg-vds-surface shadow-vds-lg">
+                <summary className="vds-focus flex cursor-pointer list-none items-center gap-2 rounded-xl border border-vds-border px-4 py-2 text-sm">
+                  <Play className="size-4" />
+                  Start tour · Investor tours
+                </summary>
+                <div className="absolute bottom-12 left-0 grid w-56 gap-1 rounded-xl border border-vds-border bg-vds-surface p-2 shadow-vds-lg">
+                  {investorTours.map(([label, nextTab, step]) => (
+                    <Button
+                      key={label}
+                      variant="control"
+                      className="justify-start"
+                      onClick={() => {
+                        select(nextTab);
+                        setTourStep(step);
+                      }}
+                    >
+                      {label}
+                    </Button>
+                  ))}
+                </div>
+              </details>
               <Button
-                key={label}
-                variant="control"
-                className="justify-start"
+                variant="secondary"
                 onClick={() => {
-                  select(nextTab);
-                  setTourStep(step);
+                  setStoryStep(0);
+                  setPresentation(true);
+                }}
+                aria-label="Start fullscreen-friendly presentation mode"
+              >
+                <Maximize2 className="size-4" />
+                Present
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => setScreenshot((value) => !value)}
+                aria-pressed={screenshot}
+              >
+                <Camera className="size-4" />
+                Screenshot
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  new DemoObservabilityService().reset();
+                  setResetCount((value) => value + 1);
+                  setTab("dashboard");
+                  setQuery("");
+                  setPage(0);
+                  setNotice(true);
                 }}
               >
-                {label}
+                <RotateCcw className="size-4" />
+                Reset Demo
               </Button>
-            ))}
-          </div>
-        </details>
-        <Button variant="secondary" onClick={()=>{setStoryStep(0);setPresentation(true);}} aria-label="Start fullscreen-friendly presentation mode"><Maximize2 className="size-4"/>Present</Button>
-        <Button variant="secondary" onClick={()=>setScreenshot(value=>!value)} aria-pressed={screenshot}><Camera className="size-4"/>Screenshot</Button>
-        <Button
-          variant="secondary"
-          onClick={() => {
-            new DemoObservabilityService().reset();
-            setResetCount((value) => value + 1);
-            setTab("dashboard");
-            setQuery("");
-            setPage(0);
-            setNotice(true);
-          }}
-        >
-          <RotateCcw className="size-4" />
-          Reset demo
-        </Button>
-      </div>
-      </FloatingSurface>}
-      {tourStep !== null && (
-        <FloatingSurface id="demo-walkthrough" kind="walkthrough" priority={20}>
-        <div className="max-w-lg rounded-2xl border border-vds-accent-border bg-vds-surface p-5 shadow-vds-lg">
-          <p className="text-xs text-vds-primary">
-            Guided tour · {tourStep + 1}/{model.enterprise.tour.length}
-          </p>
-          <h2 className="mt-2 font-semibold">
-            {model.enterprise.tour[tourStep]?.title}
-          </h2>
-          <p className="mt-1 text-sm text-vds-muted">
-            {model.enterprise.tour[tourStep]?.detail}
-          </p>
-          <div className="mt-4 flex justify-end gap-2">
-            <Button variant="ghost" onClick={() => setTourStep(null)}>
-              Close
-            </Button>
-            <Button
-              onClick={() =>
-                setTourStep((value) => {
-                  if (
-                    value !== null &&
-                    value < model.enterprise.tour.length - 1
-                  )
-                    return value + 1;
-                  new DemoObservabilityService().completeTour();
-                  return null;
-                })
-              }
-            >
-              Next
-            </Button>
-          </div>
-        </div>
-        </FloatingSurface>
-      )}
-      {notice && (
-        <FloatingSurface id="demo-notice" kind="toast" priority={30}>
-        <div
-          role="status"
-          className="flex max-w-sm items-start gap-3 rounded-2xl border border-vds-warning/25 bg-vds-surface p-4 shadow-xl shadow-vds-shadow"
-        >
-          <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-vds-warning" />
-          <div>
-            <p className="text-sm font-medium">
-              Demo Mode — Changes are not saved.
-            </p>
-            <p className="mt-1 text-xs text-vds-muted">
-              Create and edit actions are disabled in this isolated environment.
-            </p>
-          </div>
-          <Button
-            variant="control"
-            type="button"
-            aria-label="Dismiss message"
-            onClick={() => setNotice(false)}
-            className="p-1 text-vds-muted"
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setQuery("");
+                  setPage(0);
+                  setResetCount((value) => value + 1);
+                  setNotice(true);
+                }}
+              >
+                <RotateCcw className="size-4" />
+                Reload Demo
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setGeneration((value) => value + 17);
+                  setTab("dashboard");
+                  setQuery("");
+                  setPage(0);
+                  setNotice(true);
+                }}
+              >
+                <Building2 className="size-4" />
+                Generate New Demo
+              </Button>
+            </div>
+          </FloatingSurface>
+        )}
+        {tourStep !== null && (
+          <FloatingSurface
+            id="demo-walkthrough"
+            kind="walkthrough"
+            priority={20}
           >
-            <X className="size-4" />
-          </Button>
-        </div>
-        </FloatingSurface>
-      )}
-    </div>
+            <div className="max-w-lg rounded-2xl border border-vds-accent-border bg-vds-surface p-5 shadow-vds-lg">
+              <p className="text-xs text-vds-primary">
+                Guided tour · {tourStep + 1}/{model.enterprise.tour.length}
+              </p>
+              <h2 className="mt-2 font-semibold">
+                {model.enterprise.tour[tourStep]?.title}
+              </h2>
+              <p className="mt-1 text-sm text-vds-muted">
+                {model.enterprise.tour[tourStep]?.detail}
+              </p>
+              <div className="mt-4 flex justify-end gap-2">
+                <Button variant="ghost" onClick={() => setTourStep(null)}>
+                  Close
+                </Button>
+                <Button
+                  onClick={() =>
+                    setTourStep((value) => {
+                      if (
+                        value !== null &&
+                        value < model.enterprise.tour.length - 1
+                      )
+                        return value + 1;
+                      new DemoObservabilityService().completeTour();
+                      return null;
+                    })
+                  }
+                >
+                  Next
+                </Button>
+              </div>
+            </div>
+          </FloatingSurface>
+        )}
+        {notice && (
+          <FloatingSurface id="demo-notice" kind="toast" priority={30}>
+            <div
+              role="status"
+              className="flex max-w-sm items-start gap-3 rounded-2xl border border-vds-warning/25 bg-vds-surface p-4 shadow-xl shadow-vds-shadow"
+            >
+              <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-vds-warning" />
+              <div>
+                <p className="text-sm font-medium">
+                  Demo Mode — Changes are not saved.
+                </p>
+                <p className="mt-1 text-xs text-vds-muted">
+                  Create and edit actions are disabled in this isolated
+                  environment.
+                </p>
+              </div>
+              <Button
+                variant="control"
+                type="button"
+                aria-label="Dismiss message"
+                onClick={() => setNotice(false)}
+                className="p-1 text-vds-muted"
+              >
+                <X className="size-4" />
+              </Button>
+            </div>
+          </FloatingSurface>
+        )}
+      </div>
     </FloatingLayoutManager>
   );
 }
@@ -431,23 +539,85 @@ function EnterpriseBrowser({
 }
 
 function enterpriseRecords(model: DemoExperienceModel, tab: Tab) {
-  if (tab === "ai" || tab === "assistant") return model.enterprise.aiDemonstrations;
-  if (tab === "marketing") return model.enterprise.campaigns;
-  if (tab === "growth" || tab === "landing-pages" || tab === "workflows") return model.enterprise.workflows;
-  if (tab === "billing") return [...model.enterprise.subscriptions, ...model.enterprise.billing];
+  if (tab === "ai" || tab === "assistant") return model.enterprise.aiEmployees;
+  if (tab === "marketing")
+    return [...model.enterprise.campaigns, ...model.enterprise.marketingAssets];
+  if (tab === "growth" || tab === "landing-pages")
+    return model.enterprise.marketingAssets;
+  if (tab === "workflows") return model.enterprise.workflows;
+  if (tab === "billing")
+    return [...model.enterprise.subscriptions, ...model.enterprise.billing];
   if (tab === "knowledge") return model.enterprise.knowledge;
   if (tab === "customer-success") return model.enterprise.customerSuccess;
   if (tab === "creative") return model.enterprise.creative;
   if (tab === "reports") return model.enterprise.reports;
   if (tab === "investor") return model.enterprise.investor;
+  if (tab === "calendar") return model.enterprise.calendar;
+  if (tab === "tasks") return model.enterprise.tasks;
+  if (tab === "founder") return model.enterprise.founderDashboard;
   if (tab === "team") return model.enterprise.team;
   if (tab === "notifications") return model.enterprise.notifications;
-  return model.enterprise.analytics;
+  return [
+    ...model.enterprise.analytics,
+    ...model.enterprise.executiveDashboard,
+  ];
 }
 
-function PresentationStory({ records, step, onStep, onClose }: { records: DemoExperienceModel["enterprise"]["executiveStory"]; step: number; onStep: (value: number) => void; onClose: () => void }) {
+function PresentationStory({
+  records,
+  step,
+  onStep,
+  onClose,
+}: {
+  records: DemoExperienceModel["enterprise"]["executiveStory"];
+  step: number;
+  onStep: (value: number) => void;
+  onClose: () => void;
+}) {
   const record = records[step];
-  return <main className="grid min-h-dvh place-items-center overflow-hidden px-5 py-12" aria-live="polite"><section className="w-full max-w-6xl rounded-[2.5rem] border border-vds-accent-border bg-vds-surface/80 p-8 shadow-2xl backdrop-blur-xl sm:p-14 lg:p-20"><p className="text-xs font-semibold uppercase tracking-[.24em] text-vds-primary">Executive story · Demo content · {step+1}/{records.length}</p><h1 className="mt-6 text-4xl font-semibold tracking-[-.05em] sm:text-6xl lg:text-8xl">{record?.title}</h1><p className="mt-6 max-w-4xl text-lg leading-8 text-vds-muted sm:text-2xl sm:leading-10">{record?.detail}</p><div className="mt-12 flex flex-wrap items-center justify-between gap-4"><p className="text-xs text-vds-subtle">Use ← and → to navigate · Esc to exit</p><div className="flex gap-2"><Button variant="secondary" disabled={step===0} onClick={()=>onStep(Math.max(0,step-1))}><ChevronLeft className="size-4"/>Previous</Button><Button variant="secondary" onClick={onClose}>Exit</Button><Button disabled={step===records.length-1} onClick={()=>onStep(Math.min(records.length-1,step+1))}>Next<ChevronRight className="size-4"/></Button></div></div></section></main>;
+  return (
+    <main
+      className="grid min-h-dvh place-items-center overflow-hidden px-5 py-12"
+      aria-live="polite"
+    >
+      <section className="w-full max-w-6xl rounded-[2.5rem] border border-vds-accent-border bg-vds-surface/80 p-8 shadow-2xl backdrop-blur-xl sm:p-14 lg:p-20">
+        <p className="text-xs font-semibold uppercase tracking-[.24em] text-vds-primary">
+          Executive story · Demo content · {step + 1}/{records.length}
+        </p>
+        <h1 className="mt-6 text-4xl font-semibold tracking-[-.05em] sm:text-6xl lg:text-8xl">
+          {record?.title}
+        </h1>
+        <p className="mt-6 max-w-4xl text-lg leading-8 text-vds-muted sm:text-2xl sm:leading-10">
+          {record?.detail}
+        </p>
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
+          <p className="text-xs text-vds-subtle">
+            Use ← and → to navigate · Esc to exit
+          </p>
+          <div className="flex gap-2">
+            <Button
+              variant="secondary"
+              disabled={step === 0}
+              onClick={() => onStep(Math.max(0, step - 1))}
+            >
+              <ChevronLeft className="size-4" />
+              Previous
+            </Button>
+            <Button variant="secondary" onClick={onClose}>
+              Exit
+            </Button>
+            <Button
+              disabled={step === records.length - 1}
+              onClick={() => onStep(Math.min(records.length - 1, step + 1))}
+            >
+              Next
+              <ChevronRight className="size-4" />
+            </Button>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }
 
 function DemoBrowser({
@@ -474,7 +644,7 @@ function DemoBrowser({
       <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">
-            Aurora workspace
+            Prime Properties demo workspace
           </p>
           <h1 className="mt-2 text-3xl font-semibold capitalize tracking-tight">
             {tab}
