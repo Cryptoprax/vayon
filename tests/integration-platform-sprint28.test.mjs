@@ -82,11 +82,11 @@ test("retry and rate-limit contracts are provider neutral", () => {
   assert.match(policies, /exponential/);
   assert.match(retry, /retryableCodes/);
 });
-test("existing Integration Center composes the Sprint 28 status dashboard", () => {
+test("Connected Apps preserves the provider control plane without duplicate dashboard calls", () => {
   const page = read("app/vayon/settings/integrations/page.tsx");
   assert.match(page, /IntegrationCenter/);
-  assert.match(page, /ProviderStatusDashboard/);
-  assert.match(page, /IntegrationPlatformService/);
+  assert.doesNotMatch(page, /ProviderStatusDashboard/);
+  assert.doesNotMatch(page, /IntegrationPlatformService/);
 });
 test("Sprint 28 documentation records deterministic safety boundaries", () => {
   const source = read("docs/INTEGRATION_PLATFORM.md");

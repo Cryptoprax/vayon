@@ -168,7 +168,7 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
       },
       { label: "Settings", href: "/vayon/settings/appearance", icon: Settings },
       {
-        label: "Integrations",
+        label: "Connected Apps",
         href: "/vayon/settings/integrations",
         icon: Network,
       },

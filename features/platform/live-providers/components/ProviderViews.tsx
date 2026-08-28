@@ -209,7 +209,7 @@ export function ProviderDetail({
             variant="outline"
             className="mt-5"
           >
-            Open Integration Center
+            Open Connected Apps
           </ButtonLink>
         </Card>
       </div>

@@ -118,7 +118,9 @@ export const integrationCenterRegistry = Object.freeze([
   provider("linkedin", "LinkedIn", "social"),
   provider("telegram", "Telegram", "communication"),
   provider("slack", "Slack", "communication"),
+  provider("zapier", "Zapier", "productivity"),
   provider("zoom", "Zoom", "communication"),
+  provider("docusign", "DocuSign", "productivity"),
   provider("stripe", "Stripe", "payments", {
     featureFlag: "stripe",
     settingsHref: "/vayon/settings/billing",
@@ -167,6 +169,10 @@ export const integrationCenterRegistry = Object.freeze([
   provider("openrouter", "OpenRouter", "ai"),
   provider("hubspot", "HubSpot", "crm"),
   provider("salesforce", "Salesforce", "crm"),
+  provider("quickbooks", "QuickBooks", "payments"),
+  provider("xero", "Xero", "payments"),
+  provider("tiktok", "TikTok", "social"),
+  provider("youtube", "YouTube", "social"),
   provider("workflow_engine", "Workflow Engine", "productivity", {
     settingsHref: "/vayon/workflows",
     available: true,
