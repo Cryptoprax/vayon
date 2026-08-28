@@ -13,10 +13,11 @@ export class IntegrationCenterService {
   async model(): Promise<IntegrationCenterModel> {
     const ctx = await integrationContext();
     const flagProvider = new EnvironmentFeatureFlagProvider();
-    const [google, microsoft, whatsapp, healthResult, ...featureFlags] = await Promise.all([
+    const [google, microsoft, whatsapp, calendarConnection, healthResult, ...featureFlags] = await Promise.all([
       new GoogleRepository(ctx.client, ctx.organizationId, ctx.workspaceId).credential(),
       new MicrosoftCookieCredentialVault().load(ctx.workspaceId),
       ctx.client.from("whatsapp_connections").select("id,status").eq("workspace_id", ctx.workspaceId).eq("status", "connected").is("deleted_at", null).maybeSingle(),
+      ctx.client.from("integration_connections").select("configuration,integration_providers!inner(code)").eq("workspace_id",ctx.workspaceId).eq("integration_providers.code","google_calendar").is("deleted_at",null).maybeSingle(),
       ctx.client.from("integration_health").select("provider_id,status,checked_at,last_success_at,last_failure_at,retry_count,integration_providers(code)").eq("organization_id", ctx.organizationId).eq("workspace_id", ctx.workspaceId),
       ...productionFeatureKeys.map((key) => flagProvider.evaluate(ctx.workspaceId, key)),
     ]);
@@ -46,7 +47,7 @@ export class IntegrationCenterService {
           connectedEmail: isGoogle ? (google?.email ?? null) : isMicrosoft ? (microsoft?.email ?? null) : null,
           connectedAccount: isGoogle ? (google?.email ?? null) : isMicrosoft ? (microsoft?.displayName ?? microsoft?.email ?? null) : null,
           lastAuthentication: isGoogle ? (evidence?.checked_at ?? null) : isMicrosoft ? (microsoft?.validatedAt ?? null) : null,
-          selectedCalendar: definition.code === "google_calendar" && connected ? "Primary calendar" : null,
+          selectedCalendar: definition.code === "google_calendar" && connected ? String((calendarConnection.data?.configuration as {selectedCalendar?:string}|null)?.selectedCalendar ?? "Primary calendar") : null,
           configuredModel: definition.code === "openai" ? (process.env.OPENAI_MODEL ?? "gpt-5") : null,
           creditAvailability: definition.code === "openai" ? (["credit_balance_exhausted", "insufficient_quota"].includes(evidence?.status ?? "") ? "Credits unavailable" : "Not reported by provider") : null,
           recentRequestStatus: definition.code === "openai" ? (evidence?.last_failure_at ? "Needs Attention" : evidence?.last_success_at ? "Successful" : "No requests recorded") : null,
