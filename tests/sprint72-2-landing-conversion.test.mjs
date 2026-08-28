@@ -7,7 +7,7 @@ const read = (path) => readFile(path, "utf8");
 test("hero prioritizes demo conversion with visible trust", async () => {
   const source = await read("features/marketing/components/Homepage.tsx");
   assert.match(source, /Book Demo/);
-  assert.match(source, /Watch 2 Minute Demo/);
+  assert.match(source, /Watch 2-Minute Demo/);
   assert.match(source, /Start Free/);
   for (const value of [
     "Secure by design",

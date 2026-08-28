@@ -19,19 +19,12 @@ import { Button } from "@/features/platform/design-system";
 import { CurrencyDisplay } from "../currency/CurrencyDisplay";
 
 const productViews = [
-  "CRM",
+  "Property Pipeline",
   "AI Employees",
-  "Pipeline",
-  "Analytics",
-  "Calendar",
-  "Automation",
-  "WhatsApp",
-  "Deals",
-  "Leads",
-  "Voice AI",
-  "Approvals",
+  "Property Listings",
+  "Lead Qualification",
+  "Appointments",
   "Executive Dashboard",
-  "Property Intelligence",
 ] as const;
 export const productViewContinuity = [
   "AI Workforce",
@@ -42,70 +35,35 @@ const metrics: Record<
   (typeof productViews)[number],
   readonly [string, string | { readonly valueUsd: number }][]
 > = {
-  CRM: [
-    ["Active relationships", "2,418"],
-    ["Pipeline", { valueUsd: 512575 }],
-    ["Follow-ups", "18"],
+  "Property Pipeline": [
+    ["Active opportunities", "48"],
+    ["Qualified buyers", "19"],
+    ["Next actions", "12"],
   ],
   "AI Employees": [
     ["Employees online", "8"],
     ["Recommendations", "146"],
     ["Approvals", "12"],
   ],
-  Pipeline: [
-    ["Pipeline value", { valueUsd: 512575 }],
-    ["Weighted forecast", { valueUsd: 222754 }],
-    ["At risk", "4"],
+  "Property Listings": [
+    ["Active listings", "248"],
+    ["Buyer matches", "36"],
+    ["Site visits", "14"],
   ],
-  Analytics: [
-    ["Revenue trend", "+18.4%"],
-    ["Conversion", "24.8%"],
-    ["Forecast", { valueUsd: 613174 }],
+  "Lead Qualification": [
+    ["New enquiries", "86"],
+    ["High-intent leads", "19"],
+    ["Ready for follow-up", "61"],
   ],
-  Calendar: [
-    ["Meetings today", "12"],
+  Appointments: [
+    ["Appointments today", "12"],
     ["Property visits", "7"],
-    ["Follow-ups", "18"],
-  ],
-  Automation: [
-    ["Active workflows", "24"],
-    ["Completed", "186"],
-    ["Approvals", "9"],
-  ],
-  WhatsApp: [
-    ["Priority chats", "23"],
-    ["Response time", "4m"],
-    ["Drafts ready", "17"],
-  ],
-  Deals: [
-    ["Pipeline value", { valueUsd: 512575 }],
-    ["At risk", "4"],
-    ["Negotiation", "11"],
-  ],
-  Leads: [
-    ["New today", "86"],
-    ["Hot leads", "19"],
-    ["Qualified", "71%"],
-  ],
-  "Voice AI": [
-    ["Calls reviewed", "48"],
-    ["Follow-ups", "16"],
-    ["Meeting intent", "12"],
-  ],
-  Approvals: [
-    ["Pending", "12"],
-    ["Approved today", "31"],
-    ["SLA", "96%"],
+    ["Follow-ups ready", "18"],
   ],
   "Executive Dashboard": [
     ["Business health", "91"],
     ["Critical risks", "2"],
     ["AI activity", "384"],
-  ],
-  "Property Intelligence": [
-    ["Active inventory", "248"],
-    ["Best matches", "36"],
-    ["Site visits", "14"],
   ],
 };
 
@@ -182,7 +140,11 @@ export function HeroProductMockup() {
                     >
                       <p className="text-xs text-vds-muted">{label}</p>
                       <p className="mt-3 text-xl font-semibold">
-                        {typeof value === "string" ? value : <CurrencyDisplay valueUsd={value.valueUsd} compact />}
+                        {typeof value === "string" ? (
+                          value
+                        ) : (
+                          <CurrencyDisplay valueUsd={value.valueUsd} compact />
+                        )}
                       </p>
                     </div>
                   ))}
@@ -404,7 +366,10 @@ const dashboardTabs = [
   "Deals",
   "Documents",
 ] as const;
-const dashboardMetrics: readonly [string, string | { readonly valueUsd: number }][] = [
+const dashboardMetrics: readonly [
+  string,
+  string | { readonly valueUsd: number },
+][] = [
   ["Revenue", { valueUsd: 100600 }],
   ["Meetings", "42"],
   ["Pipeline", { valueUsd: 512575 }],
@@ -447,7 +412,11 @@ export function EnterpriseDashboardPreview() {
                 >
                   <p className="text-xs text-vds-muted">{label}</p>
                   <p className="mt-3 text-2xl font-semibold">
-                    {typeof value === "string" ? value : <CurrencyDisplay valueUsd={value.valueUsd} compact />}
+                    {typeof value === "string" ? (
+                      value
+                    ) : (
+                      <CurrencyDisplay valueUsd={value.valueUsd} compact />
+                    )}
                   </p>
                 </div>
               ))}

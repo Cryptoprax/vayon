@@ -122,9 +122,9 @@ export const launchExperienceContinuity = [
   "Marketing Automation",
   "Property Intelligence",
   "Secure Workspaces",
-  "Start Free",
+  "Start Free Trial",
   "Book Demo",
-  "Watch 2 Minute Demo",
+  "Watch 2-Minute Demo",
   "How Vayon Works",
   "AI Recommends Properties",
   "AI Drafts WhatsApp",
@@ -254,26 +254,28 @@ export function Homepage() {
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-vds-accent-border bg-vds-primary-soft px-3 py-1.5 text-xs font-semibold text-vds-primary">
               <Sparkles className="size-3.5" aria-hidden="true" />
-              Built specifically for modern real estate companies
+              The complete AI platform for modern real estate companies
             </span>
             <h1 className="mt-7 text-balance text-5xl font-semibold leading-[.96] tracking-[-.06em] sm:text-7xl">
-              The AI Operating System Built for Modern Real Estate Companies
+              The World&apos;s Most Advanced AI Operating System for Real Estate
             </h1>
             <h2 className="mt-7 max-w-2xl text-xl font-medium leading-8 text-vds-secondary">
-              Manage leads, properties, agents, marketing, appointments,
-              customer communication and AI employees from one intelligent
-              platform.
+              Run your entire real estate business from one intelligent
+              platform. Manage leads, listings, agents, marketing, appointments,
+              AI employees, customer communication, and business growth—all in
+              one place.
             </h2>
             <p className="mt-5 max-w-2xl text-pretty leading-7 text-vds-muted">
               Replace disconnected software with one AI-powered operating system
-              built specifically for real estate businesses.
+              built specifically for modern real estate companies.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href="/signup" size="lg">
-                Start Free <ArrowRight className="size-4" aria-hidden="true" />
+                Start Free Trial{" "}
+                <ArrowRight className="size-4" aria-hidden="true" />
               </ButtonLink>
               <ButtonLink href="/demo" variant="outline" size="lg">
-                Watch 2 Minute Demo
+                Watch 2-Minute Demo
               </ButtonLink>
               <ButtonLink href="/contact?intent=demo" variant="ghost" size="lg">
                 Book Live Demo

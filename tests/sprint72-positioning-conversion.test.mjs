@@ -7,7 +7,7 @@ test("hero defines the AI operating system category for real estate", () => {
   const source = read("features/marketing/components/Homepage.tsx");
   assert.match(
     source,
-    /The AI Operating System Built for Modern Real Estate Companies/,
+    /The World&apos;s Most Advanced AI Operating System for Real Estate/,
   );
   for (const item of [
     "AI Employees",
@@ -18,9 +18,9 @@ test("hero defines the AI operating system category for real estate", () => {
     "Property Intelligence",
     "Deal & Revenue Tracking",
     "Secure Workspaces",
-    "Start Free",
+    "Start Free Trial",
     "Book Live Demo",
-    "Watch 2 Minute Demo",
+    "Watch 2-Minute Demo",
   ])
     assert.match(source, new RegExp(item));
 });
@@ -28,16 +28,12 @@ test("hero defines the AI operating system category for real estate", () => {
 test("product preview shows actual real estate operating modules", () => {
   const source = read("features/marketing/components/EnterpriseExperience.tsx");
   for (const item of [
-    "CRM",
+    "Property Pipeline",
     "AI Employees",
-    "WhatsApp",
-    "Analytics",
-    "Deals",
-    "Leads",
-    "Voice AI",
-    "Approvals",
+    "Property Listings",
+    "Lead Qualification",
+    "Appointments",
     "Executive Dashboard",
-    "Property Intelligence",
   ])
     assert.match(source, new RegExp(item));
 });
