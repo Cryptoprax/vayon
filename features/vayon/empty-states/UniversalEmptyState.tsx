@@ -58,7 +58,9 @@ export function UniversalEmptyState({
           <Sparkles className="size-5" />
         </span>
         <h2 id={`${module}-empty-title`} className="mt-4 font-semibold">{title}</h2>
+        <p className="mt-2 text-sm font-medium text-vds-secondary">Your AI Team is waiting to start working.</p>
         <p className="mt-2 text-sm text-vds-muted">{description}</p>
+        <p className="mt-2 text-xs text-vds-subtle">Create your first property, import your first lead, or launch your first campaign.</p>
         <div className="mt-5 flex flex-wrap justify-center gap-2">
           {primary && <ButtonLink href={primary.href}>{primary.label}</ButtonLink>}
           {secondary && <ButtonLink variant="secondary" href={secondary.href}>{secondary.label}</ButtonLink>}

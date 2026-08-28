@@ -75,7 +75,7 @@ export function ProductExperience({
   return (
     <FloatingLayoutManager sidebarCollapsed={collapsed}>
     <div className="vayon-premium-canvas vayon-product min-h-dvh text-vds-foreground">
-      <PremiumWelcomeExperience userName={identity.userName} />
+      <PremiumWelcomeExperience userName={identity.userName} workspaceName={identity.workspaceName} />
       <TTFVObserver workspaceReady={Boolean(identity.workspaceName)} />
       <a href="#main-content" className="skip-link">
         Skip to content

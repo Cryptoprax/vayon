@@ -6,7 +6,7 @@ import { MicrosoftCookieCredentialVault } from "@/features/platform/integrations
 import { integrationCenterRegistry } from "./registry";
 import type { IntegrationCenterItem, IntegrationCenterModel, IntegrationDisplayStatus, IntegrationHealth } from "./contracts";
 
-type HealthRow = { provider_id: string; status: string; checked_at: string | null; last_success_at: string | null; last_failure_at: string | null; retry_count: number | null };
+type HealthRow = { provider_id: string; status: string; checked_at: string | null; last_success_at: string | null; last_failure_at: string | null; retry_count: number | null; integration_providers:{code:string}|null };
 const displayStatus = (available: boolean, connected: boolean, health: IntegrationHealth, syncing: boolean): IntegrationDisplayStatus => !available ? "Coming Soon" : syncing ? "Syncing" : health === "needs_attention" || health === "authorization_required" ? "Needs Attention" : connected && health === "healthy" ? "Connected" : "Not Connected";
 
 export class IntegrationCenterService {
@@ -17,11 +17,11 @@ export class IntegrationCenterService {
       new GoogleRepository(ctx.client, ctx.organizationId, ctx.workspaceId).credential(),
       new MicrosoftCookieCredentialVault().load(ctx.workspaceId),
       ctx.client.from("whatsapp_connections").select("id,status").eq("workspace_id", ctx.workspaceId).eq("status", "connected").is("deleted_at", null).maybeSingle(),
-      ctx.client.from("integration_health").select("provider_id,status,checked_at,last_success_at,last_failure_at,retry_count").eq("organization_id", ctx.organizationId).eq("workspace_id", ctx.workspaceId),
+      ctx.client.from("integration_health").select("provider_id,status,checked_at,last_success_at,last_failure_at,retry_count,integration_providers(code)").eq("organization_id", ctx.organizationId).eq("workspace_id", ctx.workspaceId),
       ...productionFeatureKeys.map((key) => flagProvider.evaluate(ctx.workspaceId, key)),
     ]);
     if (healthResult.error) throw healthResult.error;
-    const healthRows = new Map(((healthResult.data ?? []) as HealthRow[]).map((row) => [row.provider_id, row]));
+    const healthRows = new Map(((healthResult.data ?? []) as unknown as HealthRow[]).map((row) => [row.integration_providers?.code ?? row.provider_id, row]));
     const items = integrationCenterRegistry.map((definition): IntegrationCenterItem => {
       const feature = definition.featureFlag ? featureFlags.find((flag) => flag.key === definition.featureFlag) : null;
       const featureEnabled = definition.featureFlag ? (feature?.enabled ?? false) : definition.available;

@@ -90,7 +90,7 @@ test("contextual AI setup and automatic regional defaults are present", () => {
     "features/onboarding/services/workspace-bootstrap.service.ts",
   );
   for (const value of [
-    "hasn't been configured yet",
+    "Meet Your AI Team",
     "45 seconds",
     "Configure AI Workforce",
     "Later",

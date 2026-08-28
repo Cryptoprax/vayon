@@ -48,7 +48,8 @@ export class SupabaseWorkforceRepository implements WorkforceRepository {
       return {
         ...base,
         id: String(row.id),
-        name: String(row.name ?? def[1]),
+        name: /\bai\b|agent|assistant|advisor/i.test(String(row.name ?? "")) ? def[1] : String(row.name ?? def[1]),
+        role: /\bai\b|agent|assistant|advisor/i.test(String(row.name ?? "")) ? def[2] : base.role,
         avatar: String(row.avatar ?? def[4]),
         status: row.status === "ready" ? ("idle" as const) : ("offline" as const),
         permissions: Array.isArray(row.permissions)

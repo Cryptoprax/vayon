@@ -5,8 +5,8 @@ export default async function Page() {
   const snapshot = await (await WorkforceService.production()).snapshot();
   return (
     <WorkforceShell
-      title="AI Command Center"
-      description="Mission control for live, governed Vayon AI employees with workspace-attributed conversations and provider health."
+      title="Meet Your AI Team"
+      description="See workloads, team health, today’s productivity, current priorities, suggested actions and upcoming deadlines in one place."
     >
       <CommandCenter snapshot={snapshot} />
     </WorkforceShell>

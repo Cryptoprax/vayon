@@ -9,9 +9,11 @@ test("landing page follows the final unique information architecture", () => {
   const order = [
     'eyebrow="Product demo"',
     "<Proof />",
-    'eyebrow="One real estate operating system"',
+    'eyebrow="Your AI team, working together"',
     'eyebrow="Complete platform"',
-    'eyebrow="AI employees"',
+    'eyebrow="Working from day one"',
+    'title="Everything Your AI Team Can Do"',
+    'title="How It Works"',
     "<RealEstateBusinesses />",
     'eyebrow="Business case"',
     "<Testimonials />",

@@ -4,21 +4,21 @@ import test from "node:test";
 
 const read = (path) => readFileSync(path, "utf8");
 
-test("first login offers exactly the three approved choices", () => {
+test("first login introduces the AI company and remains accessible", () => {
   const source = read("features/onboarding/components/PremiumWelcomeExperience.tsx");
-  for (const label of ["Explore Demo Workspace", "Create My Workspace", "Watch 2-Minute Product Tour"])
+  for (const label of ["Building Your AI Real Estate Company", "Hiring Sales Manager", "Meet Your AI Team"])
     assert.match(source, new RegExp(label));
   assert.match(source, /Welcome to VAYON/);
   assert.match(source, /role="dialog"/);
   assert.match(source, /aria-modal="true"/);
 });
 
-test("product tour covers the launch journey and remains skippable", () => {
+test("first-login preparation remains skippable and workspace scoped", () => {
   const source = read("features/onboarding/components/PremiumWelcomeExperience.tsx");
-  for (const stop of ["Dashboard", "CRM", "Properties", "AI Employees", "Marketing", "Calendar", "Communications", "Billing"])
-    assert.match(source, new RegExp(`\\["${stop}"`));
-  assert.match(source, /Skip tour/);
-  assert.match(source, /You&apos;re ready to start using VAYON\./);
+  for (const stop of ["Hiring Marketing Director", "Hiring Property Advisor", "Preparing Workspace", "Training AI Team", "Connecting Intelligence"])
+    assert.match(source, new RegExp(stop));
+  assert.match(source, /workspaceName/);
+  assert.match(source, />Skip</);
 });
 
 test("global help exposes every customer support destination", () => {

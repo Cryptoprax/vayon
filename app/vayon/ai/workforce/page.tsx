@@ -6,15 +6,15 @@ export default async function Page() {
   const snapshot = await (await WorkforceService.production()).snapshot();
   return (
     <WorkforceShell
-      title="AI Workforce"
-      description="A live directory of specialized digital employees with governed access, visible workload, workspace memory, and team collaboration."
+      title="Meet Your AI Team"
+      description="Your real estate specialists are ready with visible workloads, verified activity and recommendations that stay under your control."
     >
       {snapshot.employees.length ? (
         <WorkforceDirectory items={snapshot.employees} />
       ) : (
         <ContextualSetupState
-          title="AI Workforce"
-          description="Your AI Workforce hasn't been configured yet."
+          title="Meet Your AI Team"
+          description="Sarah is waiting for her first leads. Emma is waiting for properties. Alex is ready to launch your first campaign."
           estimatedTime="45 seconds"
           href="/onboarding?setup=ai-workforce"
           recommendations={["Sales Agent", "Marketing Agent", "Support Agent"]}

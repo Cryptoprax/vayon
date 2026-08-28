@@ -43,8 +43,8 @@ test("local Universal Bar discovery is limited to the Aurora demo identity", () 
   assert.match(shell, /includeAuroraCrm=\{identity\.demoWorkspace==="aurora"\}/);
 });
 
-test("Executive Home avoids fabricated ranking and recency", () => {
-  assert.match(home, /!organization && <CrmNetworkPanel/);
+test("Founder Command Center avoids fabricated ranking and recency", () => {
+  assert.match(home, /ExecutiveDashboardService/);
   assert.match(service, /topCompanies:Object\.freeze\(\[\]\)/);
   assert.match(service, /newestContacts:Object\.freeze\(\[\]\)/);
   assert.match(service, /analytics:"none"/);

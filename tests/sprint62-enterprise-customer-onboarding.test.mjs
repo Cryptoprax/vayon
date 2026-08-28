@@ -10,9 +10,10 @@ test("enterprise onboarding preserves resumable infrastructure behind the four-s
     assert.match(domain, new RegExp(step));
   const wizard = read("features/onboarding/components/EnterpriseOnboardingWizard.tsx");
   assert.match(wizard, /saveOnboardingProgressAction/);
-  assert.match(wizard, /What business are you/);
+  assert.match(wizard, /Choose your business/);
   assert.match(wizard, /What should VAYON do first/);
-  assert.match(wizard, /Your workspace is ready to create/);
+  assert.match(wizard, /Meet your AI Team/);
+  assert.match(wizard, /prepared automatically/);
 });
 
 test("onboarding composes existing platform routes and governance", () => {

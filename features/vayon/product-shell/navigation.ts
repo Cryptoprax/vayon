@@ -140,11 +140,15 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
   },
   {
     id: "ai",
-    label: "AI",
+    label: "AI Team",
     icon: Sparkles,
     items: [
       { label: "Workforce", href: "/vayon/workforce", icon: Bot },
-      { label: "AI Employees", href: "/vayon/ai/employees", icon: Users },
+      { label: "Sarah", href: "/vayon/ai/workforce/sales-ai", icon: Users, description: "Sales Manager" },
+      { label: "Emma", href: "/vayon/ai/workforce/crm-ai", icon: Users, description: "Property Advisor" },
+      { label: "Alex", href: "/vayon/ai/workforce/marketing-ai", icon: Users, description: "Marketing Director" },
+      { label: "David", href: "/vayon/ai/workforce/operations-ai", icon: Users, description: "Operations Manager" },
+      { label: "Olivia", href: "/vayon/ai/workforce/whatsapp-ai", icon: Users, description: "Customer Success" },
       {
         label: "VAYON Intelligence",
         href: "/vayon/intelligence",

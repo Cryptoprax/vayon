@@ -1,0 +1,20 @@
+import { readFileSync } from "node:fs";
+const read = (file) => readFileSync(new URL(`../${file}`, import.meta.url), "utf8");
+const homepage = read("features/marketing/components/Homepage.tsx");
+const metadata = read("app/layout.tsx");
+const onboarding = read("features/onboarding/components/EnterpriseOnboardingWizard.tsx");
+const dashboard = read("features/vayon/executive-home/components/ExecutiveGreeting.tsx");
+const employees = read("features/vayon/operational-workforce/components/WorkforceViews.tsx");
+const empty = read("features/vayon/empty-states/UniversalEmptyState.tsx");
+const failures = [];
+const requireText = (source, pattern, message) => { if (!pattern.test(source)) failures.push(message); };
+for (const copy of ["Hire Your Entire AI Real Estate Team in Under 5 Minutes", "Powered by the World", "Meet your complete AI workforce", "Start Free Trial", "Watch 2-Minute Demo", "Book Live Demo", "Meet Your AI Team", "Everything Your AI Team Can Do", "Create Your Workspace", "Start Growing", "Connected Apps"]) requireText(homepage, new RegExp(copy), `Missing homepage message: ${copy}`);
+for (const role of ["Sarah · Sales Manager", "Emma · Property Advisor", "Alex · Marketing Director", "Olivia · Customer Success Manager", "David · Operations Manager"]) requireText(homepage, new RegExp(role), `Missing AI Team role: ${role}`);
+requireText(metadata, /Meet Your AI Team \| VAYON/, "Homepage SEO title is incorrect.");
+requireText(metadata, /Hire an entire AI Real Estate Team in under five minutes/, "Homepage SEO description is incorrect.");
+requireText(dashboard, /Meet Your AI Team.*Your AI Team is already working.*Today.*Recommended actions/s, "Dashboard AI Team summary is incomplete.");
+requireText(onboarding, /Meet your AI Team.*Choose your business.*prepared automatically/s, "Onboarding AI Team journey is incomplete.");
+requireText(empty, /Your AI Team is waiting to start working.*Create your first property.*import your first lead.*launch your first campaign/is, "AI Team empty-state guidance is incomplete.");
+for (const field of ["Profile", "Current Work", "Performance", "Recommendations", "Activity Feed", "Today&apos;s Work"]) requireText(employees, new RegExp(field), `Employee profile field missing: ${field}`);
+if (failures.length) { console.error(failures.map((failure) => `FAIL: ${failure}`).join("\n")); process.exit(1); }
+console.log("AI Team brand audit passed: homepage, SEO, dashboard, onboarding, empty states, and employee profiles are aligned.");

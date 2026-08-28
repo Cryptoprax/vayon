@@ -23,11 +23,11 @@ type LayoutProps = {
 export const metadata: Metadata = {
   metadataBase: new URL(publicSiteUrl),
   title: {
-    default: "VAYON | AI Operating System for Real Estate Companies",
+    default: "Meet Your AI Team | VAYON",
     template: "%s | VAYON",
   },
   description:
-    "Manage leads, listings, agents, appointments, AI employees, marketing and operations with one AI-powered operating system built for modern real estate businesses.",
+    "Hire an entire AI Real Estate Team in under five minutes. Meet AI Sales, Marketing, Property, Operations and Customer Success professionals powered by the World's Most Advanced AI Operating System for Real Estate.",
   alternates: { canonical: "/" },
   applicationName: "Vayon OS",
   manifest: "/manifest.webmanifest",
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
     apple: "/assets/brand/apple-touch-icon.png",
   },
   openGraph: {
-    title: "VAYON | AI Operating System for Real Estate Companies",
+    title: "Meet Your AI Team | VAYON",
     description:
-      "Manage leads, listings, agents, appointments, AI employees, marketing and operations with one AI-powered operating system built for modern real estate businesses.",
+      "Hire an entire AI Real Estate Team in under five minutes. Meet AI Sales, Marketing, Property, Operations and Customer Success professionals powered by the World's Most Advanced AI Operating System for Real Estate.",
     url: "/",
     type: "website",
     siteName: "Vayon",
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vayon — The AI Operating System for Real Estate",
+    title: "Meet Your AI Team | VAYON",
     description:
-      "One intelligent AI workforce for modern real estate companies.",
+      "Hire an entire AI Real Estate Team in under five minutes, powered by the World's Most Advanced AI Operating System for Real Estate.",
     images: ["/assets/brand/twitter-image.png"],
   },
 };

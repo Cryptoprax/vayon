@@ -1,0 +1,18 @@
+import "server-only";
+import { GmailService } from "@/features/platform/integrations/google/services/gmail.service";
+import { GoogleRepository } from "@/features/platform/integrations/google/repositories/google.repository";
+import { operationsContext } from "@/features/vayon/operations/services/context";
+
+type PermissionKey = "readEmail" | "sendEmail" | "draftReplies" | "crmSynchronization" | "threadSummaries";
+export type GmailPermissions = Readonly<Record<PermissionKey, boolean>>;
+export type GmailSyncState = Readonly<{connected:boolean;account:string|null;lastSync:string|null;permissions:GmailPermissions}>;
+const defaults:GmailPermissions=Object.freeze({readEmail:true,sendEmail:true,draftReplies:true,crmSynchronization:true,threadSummaries:true});
+
+function participants(message:Awaited<ReturnType<GmailService["message"]>>){return [...new Set([message.sender.email,...message.to.map(x=>x.email),...message.cc.map(x=>x.email),...message.bcc.map(x=>x.email)].map(x=>x.trim().toLowerCase()).filter(Boolean))]}
+function metadata(message:Awaited<ReturnType<GmailService["message"]>>,direction:"inbound"|"outbound"){return{externalId:message.id,threadId:message.threadId,subject:message.subject||"Email conversation",direction,timestamp:message.timestamp,participants:participants(message),labels:message.labels,unread:message.labels.includes("UNREAD"),hasAttachments:message.attachments.length>0}}
+
+export class GmailProductionSyncService{
+  async state():Promise<GmailSyncState>{const ctx=await operationsContext(),repository=new GoogleRepository(ctx.client,ctx.organizationId,ctx.workspaceId),[credential,connection]=await Promise.all([repository.credential(),ctx.client.from("integration_connections").select("configuration,last_sync_at,integration_providers!inner(code)").eq("workspace_id",ctx.workspaceId).eq("integration_providers.code","gmail").is("deleted_at",null).maybeSingle()]);if(connection.error)throw connection.error;const configured=(connection.data?.configuration as {permissions?:Partial<GmailPermissions>}|null)?.permissions??{};return{connected:Boolean(credential),account:credential?.email??null,lastSync:connection.data?.last_sync_at??null,permissions:Object.freeze({...defaults,...configured})}}
+  async synchronize(){const ctx=await operationsContext(),state=await this.state();if(!state.connected)throw new Error("Gmail is not connected.");if(!state.permissions.readEmail||!state.permissions.crmSynchronization)throw new Error("Enable Read Email and CRM Synchronization before syncing.");const after=state.lastSync?new Date(new Date(state.lastSync).getTime()-60_000).toISOString().slice(0,10).replaceAll("-","/"):undefined,gmail=new GmailService();try{const[inbox,sent,labels]=await Promise.all([gmail.list("inbox",after?`after:${after}`:"newer_than:30d"),gmail.list("sent",after?`after:${after}`:"newer_than:30d"),gmail.labels()]),payload=[...inbox.messages.map(x=>metadata(x,"inbound")),...sent.messages.map(x=>metadata(x,"outbound"))],{data,error}=await ctx.client.rpc("sync_gmail_metadata",{p_workspace_id:ctx.workspaceId,p_messages:payload,p_labels:labels.map(x=>({id:x.id,name:x.name,type:x.type}))});if(error)throw error;return data as {imported:number;duplicates:number;linked:number}}catch(reason){const message=reason instanceof Error?reason.message:"Gmail synchronization failed.";await ctx.client.rpc("record_gmail_sync_failure",{p_workspace_id:ctx.workspaceId,p_reason:message.slice(0,240)});throw reason}}
+  async permissions(input:GmailPermissions){const ctx=await operationsContext(),{error}=await ctx.client.rpc("update_gmail_permissions",{p_workspace_id:ctx.workspaceId,p_permissions:input});if(error)throw error}
+}

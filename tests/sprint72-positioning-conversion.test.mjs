@@ -7,10 +7,11 @@ test("hero defines the AI operating system category for real estate", () => {
   const source = read("features/marketing/components/Homepage.tsx");
   assert.match(
     source,
-    /The World&apos;s Most Advanced AI Operating System for Real Estate/,
+    /Powered by the World&apos;s Most Advanced AI Operating System for Real Estate/,
   );
   for (const item of [
     "AI Employees",
+    "Hire Your Entire AI Real Estate Team in Under 5 Minutes",
     "Real Estate CRM",
     "WhatsApp Automation",
     "AI Voice Agents",

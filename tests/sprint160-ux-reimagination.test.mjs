@@ -6,7 +6,7 @@ const read = (path) => readFileSync(path, "utf8");
 const onboarding = read("features/onboarding/components/EnterpriseOnboardingWizard.tsx");
 
 test("onboarding is a four-screen choice-driven experience", () => {
-  for (const copy of ["What business are you?", "What should VAYON do first?", "Connect your everyday tools", "Your workspace is ready to create"])
+  for (const copy of ["Choose your business", "What should VAYON do first?", "Connect your everyday tools", "Meet your AI Team"])
     assert.match(onboarding, new RegExp(copy.replace(/[?]/g, "\\?")));
   assert.match(onboarding, /\{step\} of 4/);
   for (const business of ["Real Estate", "Marketing Agency", "Consulting", "Construction", "Healthcare", "Education", "Retail", "Other"])
@@ -31,5 +31,6 @@ test("billing and workflows progressively disclose advanced controls", () => {
 test("AI employee entry point uses customer language", () => {
   const workforce = read("app/vayon/ai/employees/page.tsx");
   assert.doesNotMatch(workforce, /GPT workforce|model name|token|context window/i);
-  assert.match(workforce, /Choose a specialist and put it to work/);
+  assert.match(workforce, /Meet Your AI Team/);
+  assert.match(workforce, /AI real estate specialists are prepared/);
 });

@@ -1,0 +1,11 @@
+import { readFile } from "node:fs/promises";
+const read=path=>readFile(new URL(`../${path}`,import.meta.url),"utf8");
+const identity=await read("features/vayon/operational-workforce/identity/employee-identities.ts"),identityPanel=await read("features/vayon/operational-workforce/components/EmployeeIdentityPanel.tsx"),memory=await read("features/vayon/operational-workforce/components/EmployeeMemoryPanel.tsx"),collaboration=await read("features/vayon/operational-workforce/components/EmployeeCollaborationPanel.tsx"),route=await read("app/vayon/ai/workforce/[employeeId]/page.tsx");
+const requireAll=(source,values,area)=>{for(const value of values)if(!source.includes(value))throw new Error(`${area} missing: ${value}`)};
+requireAll(identity,["Sarah","Emerald Green","Every conversation moves a deal forward.","Emma","Royal Blue","The perfect property for every buyer.","Alex","Royal Purple","Every property deserves attention.","David","Orange","Smooth operations create exceptional experiences.","Olivia","Teal","Happy customers become lifelong advocates."],"Identity catalog");
+requireAll(identityPanel,["Identity","Mission","Working Style","Communication Style","Professional Motto","Personality Traits","Current Focus","Employee strengths and badges"],"Identity UI");
+requireAll(memory,["Memory Foundation","Known Customers","Known Properties","Recent Conversations","Recent Recommendations","Recent Activities","Current Priorities","Waiting For","Completed Work","Recent Wins","Current Goals","Waiting to build experience with your business.","Workspace Knowledge","Knowledge Coverage","Awaiting Data","Learning","Ready","Expert","AI Memory Timeline"],"Memory UI");
+requireAll(collaboration,["Team Collaboration","collaboration graph","Frequent collaborator","recommendation-only","No automatic execution"],"Collaboration UI");
+requireAll(route,["EmployeeIdentityPanel","EmployeeMemoryPanel","EmployeeCollaborationPanel","dynamic("],"Employee dashboard");
+for(const source of [identity,identityPanel,memory,collaboration])if(/createSupabaseServerClient|Paddle|AIProvider|fetch\(|\.from\(/.test(source))throw new Error("Protected integration boundary found in identity or memory presentation.");
+console.log("AI Identity audit passed.\nAI Memory audit passed.");

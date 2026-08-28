@@ -29,7 +29,7 @@ export function AIWorkforceGrid({
         <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
           {members.slice(0, 5).map((member) => (
             <Link
-              href="/vayon/ai"
+              href={`/vayon/ai/workforce/${member.id}`}
               key={member.id}
               className="group focus-ring rounded-2xl border border-vds-border bg-vds-surface p-4 shadow-sm shadow-vds-shadow transition hover:-translate-y-0.5 hover:border-vds-accent-border"
             >
@@ -45,9 +45,10 @@ export function AIWorkforceGrid({
                 </span>
               </div>
               <h3 className="mt-4 font-medium text-vds-foreground">
-                {member.name}
+                {identity(member).name}
               </h3>
-              <p className="mt-1 text-xs text-vds-muted">{member.role}</p>
+              <p className="mt-1 text-xs text-vds-muted">{identity(member).role}</p>
+              <p className="mt-4 text-xs text-vds-muted"><span className="block text-vds-subtle">Current task</span><strong className="mt-1 block font-medium text-vds-secondary">{member.tasksCompleted ? "Reviewing today’s verified priorities" : identity(member).waiting}</strong></p>
               <div className="mt-5 grid grid-cols-2 gap-2 border-t border-vds-divider pt-4 text-xs">
                 <div>
                   <span className="block text-vds-subtle">Completed</span>
@@ -64,6 +65,8 @@ export function AIWorkforceGrid({
                   </strong>
                 </div>
               </div>
+              <p className="mt-4 border-t border-vds-divider pt-3 text-xs text-vds-muted"><span className="block text-vds-subtle">Recommendation</span><span className="mt-1 block">{identity(member).recommendation}</span></p>
+              <span className="mt-4 inline-block text-xs font-medium text-vds-primary">Open Workspace →</span>
             </Link>
           ))}
         </div>
@@ -78,4 +81,14 @@ export function AIWorkforceGrid({
       )}
     </section>
   );
+}
+
+function identity(member: AiWorkforceMember) {
+  const key = `${member.id} ${member.name} ${member.role}`.toLowerCase();
+  if (/sales/.test(key)) return { name: "Sarah", role: "Sales Manager", waiting: "Waiting for first assignment.", recommendation: "Import your first leads so Sarah can prepare follow-ups." };
+  if (/crm|property/.test(key)) return { name: "Emma", role: "Property Advisor", waiting: "Waiting for first assignment.", recommendation: "Add properties so Emma can prepare buyer matches." };
+  if (/market|growth/.test(key)) return { name: "Alex", role: "Marketing Director", waiting: "Waiting for first assignment.", recommendation: "Choose a campaign objective for Alex to prepare." };
+  if (/operation/.test(key)) return { name: "David", role: "Operations Manager", waiting: "Waiting for first assignment.", recommendation: "Add today’s tasks so David can organize priorities." };
+  if (/support|whatsapp|customer/.test(key)) return { name: "Olivia", role: "Customer Success Manager", waiting: "Waiting for first assignment.", recommendation: "Connect customer conversations for Olivia to review." };
+  return { name: member.name, role: member.role, waiting: "Waiting for first assignment.", recommendation: "Assign a verified workspace priority." };
 }

@@ -10,13 +10,13 @@ test("premium welcome is brief, skippable, accessible, and shown once", () => {
   );
   const shell = read("features/vayon/components/ProductExperience.tsx");
   for (const value of [
-    "Preparing your AI Business Operating System",
-    "Checking workspace",
-    "Preparing AI",
-    "Loading business intelligence",
-    "Workspace ready",
+    "Building Your AI Real Estate Company",
+    "Hiring Sales Manager",
+    "Training AI Team",
+    "Connecting Intelligence",
+    "Meet Your AI Team",
     "Skip",
-    "2400",
+    "650",
     "prefers-reduced-motion",
     "localStorage",
     "aria-live",

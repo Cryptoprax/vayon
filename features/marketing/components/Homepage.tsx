@@ -179,26 +179,28 @@ const modules = [
 ] as const;
 const aiTeam = [
   [
-    "AI Sales Manager",
-    ["Qualifies leads", "Books appointments", "Assigns agents"],
+    "Sarah · Sales Manager",
+    ["Lead qualification", "Pipeline", "Follow-ups", "Appointments", "Negotiations"],
   ],
   [
-    "AI Marketing Manager",
-    ["Creates campaigns", "Launches ads", "Builds social content"],
+    "Emma · Property Advisor",
+    ["Property matching", "Buyer recommendations", "Property intelligence", "Availability", "Comparisons"],
   ],
   [
-    "AI Operations Manager",
-    ["Tracks deals", "Coordinates teams", "Automates workflows"],
+    "Alex · Marketing Director",
+    ["Campaigns", "Creative", "Social Media", "Email Marketing", "Advertisements"],
   ],
   [
-    "AI Customer Success Manager",
-    ["Follows up buyers", "Answers questions", "Schedules meetings"],
+    "Olivia · Customer Success Manager",
+    ["Customer support", "Reviews", "Retention", "Follow-ups", "Tickets"],
   ],
   [
-    "AI Founder Dashboard",
-    ["Business insights", "Revenue", "Pipeline", "Growth"],
+    "David · Operations Manager",
+    ["Tasks", "Calendar", "Documents", "Approvals", "Automation"],
   ],
 ] as const;
+const aiTeamCapabilities = ["Qualify Leads", "Book Meetings", "Generate Listings", "Design Flyers", "Generate Videos", "Run Marketing", "Manage CRM", "Schedule Viewings", "Generate Reports", "Write Emails", "Answer Customers", "Manage Documents"] as const;
+const aiTeamJourney = [["Create Your Workspace", "Choose your real estate business and create a secure workspace."], ["Meet Your AI Team", "Your sales, property, marketing, customer success and operations specialists are prepared automatically."], ["Start Growing", "Give your team its first goal and keep control of every important action."]] as const;
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -254,20 +256,16 @@ export function Homepage() {
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-vds-accent-border bg-vds-primary-soft px-3 py-1.5 text-xs font-semibold text-vds-primary">
               <Sparkles className="size-3.5" aria-hidden="true" />
-              The complete AI platform for modern real estate companies
+              Your complete AI real estate team, ready in minutes
             </span>
             <h1 className="mt-7 text-balance text-5xl font-semibold leading-[.96] tracking-[-.06em] sm:text-7xl">
-              The World&apos;s Most Advanced AI Operating System for Real Estate
+              Hire Your Entire AI Real Estate Team in Under 5 Minutes.
             </h1>
             <h2 className="mt-7 max-w-2xl text-xl font-medium leading-8 text-vds-secondary">
-              Run your entire real estate business from one intelligent
-              platform. Manage leads, listings, agents, marketing, appointments,
-              AI employees, customer communication, and business growth—all in
-              one place.
+              Powered by the World&apos;s Most Advanced AI Operating System for Real Estate.
             </h2>
             <p className="mt-5 max-w-2xl text-pretty leading-7 text-vds-muted">
-              Replace disconnected software with one AI-powered operating system
-              built specifically for modern real estate companies.
+              Meet your complete AI workforce that helps you generate leads, qualify buyers, market properties, schedule appointments, manage operations, follow up automatically, and close more deals — all from one intelligent platform built exclusively for real estate professionals.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href="/signup" size="lg">
@@ -316,9 +314,9 @@ export function Homepage() {
       </Section>
       <Proof />
       <Section
-        eyebrow="One real estate operating system"
-        title="Run Your Entire Real Estate Business With AI"
-        copy="CRM, AI Employees, Marketing, Property Management, Lead Qualification, Appointments, Automation, Creative Studio and Growth Intelligence—all inside one platform."
+        eyebrow="Your AI team, working together"
+        title="Powered by the World's Most Advanced AI Operating System for Real Estate"
+        copy="AI Employees, CRM, Marketing, Communications, Automation, Calendar, Properties, Creative Studio, Growth Intelligence, Analytics and Connected Apps—everything working together."
       >
         <ModuleGrid />
       </Section>
@@ -332,11 +330,19 @@ export function Homepage() {
         </Section>
       </Band>
       <Section
-        eyebrow="AI employees"
-        title="Meet Your AI Real Estate Team"
-        copy="Each specialist prepares the next best action for your team. People remain in control of every consequential decision and publication."
+        eyebrow="Working from day one"
+        title="Meet Your AI Team"
+        copy="Your complete real estate workforce is prepared to qualify buyers, market properties, coordinate operations and follow up—while you remain in control."
       >
         <AiTeamGrid />
+      </Section>
+      <Band>
+        <Section eyebrow="One team, every outcome" title="Everything Your AI Team Can Do" copy="Give your AI Team a business goal and let each specialist prepare the work needed to move deals forward.">
+          <AiTeamCapabilities />
+        </Section>
+      </Band>
+      <Section eyebrow="Ready in minutes" title="How It Works" copy="Start with your business, meet the team prepared for you, and move directly into useful work.">
+        <AiTeamJourney />
       </Section>
       <PublicGrowthPlatform />
       <RealEstateBusinesses />
@@ -576,7 +582,7 @@ function ModuleGrid() {
 function AiTeamGrid() {
   return (
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-      {aiTeam.map(([role, responsibilities]) => (
+      {aiTeam.map(([role, responsibilities], index) => (
         <article
           className="rounded-3xl border border-vds-border bg-vds-surface p-6"
           key={role}
@@ -584,7 +590,7 @@ function AiTeamGrid() {
           <span className="grid size-10 place-items-center rounded-xl bg-vds-primary-soft text-vds-primary">
             <Bot className="size-5" aria-hidden="true" />
           </span>
-          <h3 className="mt-5 font-semibold">{role}</h3>
+          <div className="mt-5 flex items-center justify-between gap-2"><h3 className="font-semibold">{role}</h3><span className="inline-flex items-center gap-1 text-xs text-vds-success"><i className="size-2 rounded-full bg-vds-success motion-safe:animate-pulse"/>Working</span></div>
           <ul className="mt-4 space-y-3">
             {responsibilities.map((responsibility) => (
               <li
@@ -599,10 +605,17 @@ function AiTeamGrid() {
               </li>
             ))}
           </ul>
+          <ButtonLink href={`/login?next=/vayon/ai/workforce/${["sales-ai","crm-ai","marketing-ai","whatsapp-ai","operations-ai"][index]}`} variant="ghost" size="sm" className="mt-5">Open Headquarters</ButtonLink>
         </article>
       ))}
     </div>
   );
+}
+function AiTeamCapabilities() {
+  return <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{aiTeamCapabilities.map((capability) => <article key={capability} className="flex items-center gap-3 rounded-2xl border border-vds-border bg-vds-surface p-5"><span className="grid size-9 place-items-center rounded-xl bg-vds-primary-soft text-vds-primary"><Sparkles className="size-4" aria-hidden="true"/></span><h3 className="font-semibold">{capability}</h3></article>)}</div>;
+}
+function AiTeamJourney() {
+  return <div className="grid gap-4 lg:grid-cols-3">{aiTeamJourney.map(([title, description]) => <article key={title} className="rounded-3xl border border-vds-border bg-vds-surface p-7"><span className="grid size-11 place-items-center rounded-2xl bg-vds-primary-soft text-vds-primary"><Bot className="size-5" aria-hidden="true"/></span><h3 className="mt-6 text-xl font-semibold">{title}</h3><p className="mt-3 text-sm leading-6 text-vds-muted">{description}</p></article>)}</div>;
 }
 function Section({
   eyebrow,

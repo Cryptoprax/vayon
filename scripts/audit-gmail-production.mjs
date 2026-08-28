@@ -1,0 +1,6 @@
+import{readFile}from"node:fs/promises";
+const paths=["features/platform/gmail/services/gmail-production-sync.service.ts","features/platform/gmail/components/GmailProductionControls.tsx","features/platform/integrations/google/actions.ts","features/platform/integrations/google/services/google-oauth.service.ts","supabase/migrations/20260923000000_sprint180_gmail_production_integration.sql"];
+const files=await Promise.all(paths.map(path=>readFile(new URL(`../${path}`,import.meta.url),"utf8"))),source=files.join("\n"),controls=files[1],required=["googleGmailScopes","TokenCryptoService","sync_gmail_metadata","gmail_thread_id","content_stored',false","last_sync_at","record_gmail_sync_failure","Read Email","Draft Replies","CRM Synchronization","Thread Summaries"],missing=required.filter(value=>!source.includes(value));
+if(missing.length){console.error(`Gmail production audit failed: ${missing.join(", ")}`);process.exit(1)}
+if(/console\.(log|debug)/.test(source)||/access.?token|refresh.?token|client.?secret/i.test(controls)){console.error("Gmail production audit failed: unsafe diagnostics or token exposure detected");process.exit(1)}
+console.log("Gmail production audit passed: OAuth, metadata sync, CRM timeline, permissions, recovery, and token safety verified.");

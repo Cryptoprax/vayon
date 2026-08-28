@@ -1,16 +1,18 @@
 import {
   AICollaborationService,
-  ExecutiveCollaborationDashboard,
 } from "@/features/platform/ai-collaboration";
 import { WorkforceShell } from "@/features/vayon/operational-workforce/components/WorkforceShell";
+import { TeamCollaborationCenter } from "@/features/platform/ai-collaboration/components/TeamCollaborationCenter";
+import { AuthenticationService } from "@/features/authentication/services/authentication.service";
 export default async function Page() {
-  const data = await (await AICollaborationService.production()).dashboard();
+  const [data,user] = await Promise.all([(await AICollaborationService.production()).dashboard(),new AuthenticationService().user()]);
+  const userName=String(user?.user_metadata?.full_name??user?.user_metadata?.name??user?.email?.split("@")[0]??"Executive").split(" ")[0];
   return (
     <WorkforceShell
-      title="AI Collaboration"
-      description="Governed cross-employee recommendations, shared context, approval visibility, and collaboration observability."
+      title="Team Collaboration"
+      description="The command center for evidence-backed teamwork, transparent recommendations and governed approvals."
     >
-      <ExecutiveCollaborationDashboard data={data} />
+      <TeamCollaborationCenter data={data} userName={userName}/>
     </WorkforceShell>
   );
 }

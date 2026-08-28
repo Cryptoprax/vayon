@@ -6,11 +6,12 @@ import type {
   WorkforceTask,
 } from "../domain/models";
 import { workforceSummary } from "../view-models/workforce";
-import { WorkforceDirectory, WorkforceMemory } from "./WorkforceDirectory";
+import { WorkforceDirectory } from "./WorkforceDirectory";
 const card = "rounded-2xl border border-vds-border bg-vds-surface p-5";
 export function CommandCenter({ snapshot }: { snapshot: WorkforceSnapshot }) {
   return (
     <div className="space-y-6">
+      <section className="rounded-[2rem] border border-vds-border bg-gradient-to-br from-vds-primary-soft via-vds-surface to-vds-elevated p-6 sm:p-8" aria-labelledby="team-dashboard-title"><p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">Your AI Real Estate Company</p><h1 id="team-dashboard-title" className="mt-3 text-3xl font-semibold sm:text-4xl">Meet Your AI Team</h1><p className="mt-3 text-sm text-vds-muted">Your specialists prepare work from verified workspace evidence. You approve every important action.</p><div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{[["Workload Overview", snapshot.tasks.filter((task) => task.status === "pending" || task.status === "running").length ? `${snapshot.tasks.filter((task) => task.status === "pending" || task.status === "running").length} active assignments` : "Waiting for first assignments"],["Employee Health", snapshot.employees.some((employee) => employee.health === "degraded") ? "Needs attention" : "Team ready"],["Today's Productivity", `${snapshot.tasks.filter((task) => task.status === "completed").length} verified tasks completed`],["Current Priorities", snapshot.tasks.find((task) => task.status === "running")?.title ?? "Assign the first priority"],["Suggested Actions", "Review each employee’s recommendation"],["Upcoming Deadlines", snapshot.tasks.some((task) => task.deadline) ? "Review scheduled work" : "No verified deadlines"]].map(([label,value])=><article className={card} key={label}><p className="text-xs text-vds-muted">{label}</p><p className="mt-2 font-medium">{value}</p></article>)}</div></section>
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-6">
         {workforceSummary(snapshot).map((x) => (
           <article key={x.label} className={card}>
@@ -67,7 +68,7 @@ export function CommandCenter({ snapshot }: { snapshot: WorkforceSnapshot }) {
           />
         </section>
       </div>
-      <section className={card}>
+      <section className="relative overflow-hidden rounded-[2rem] border border-vds-border bg-gradient-to-br from-vds-primary-soft via-vds-surface to-vds-elevated p-6 shadow-xl shadow-vds-shadow/10 sm:p-8">
         <h2 className="font-semibold">System observability</h2>
         <dl className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {Object.entries(snapshot.observability).map(([key, value]) => (
@@ -150,7 +151,7 @@ export function TaskList({ items }: { items: readonly WorkforceTask[] }) {
           </article>
         ))
       ) : (
-        <Empty text="No tasks are available in this queue." />
+        <Empty text="Your AI Team is waiting to start working. Create your first property, import your first lead, or launch your first campaign." />
       )}
     </div>
   );
@@ -176,7 +177,7 @@ export function ActivityList({
           </article>
         ))
       ) : (
-        <Empty text="No deterministic workforce activity has been recorded." />
+        <Empty text="Your AI Team is waiting to start working. Assign the first approved task to begin the activity feed." />
       )}
     </div>
   );
@@ -194,7 +195,7 @@ export function EmployeeProfile({
     <div className="space-y-6">
       <section className={card}>
         <div className="flex flex-col gap-4 md:flex-row md:items-center">
-          <span className="grid size-16 place-items-center rounded-2xl bg-vds-primary-soft text-xl font-semibold text-vds-primary">
+          <span className="grid size-24 place-items-center rounded-[2rem] border border-vds-accent-border bg-vds-primary-soft text-3xl font-semibold text-vds-primary shadow-lg">
             {item.avatar}
           </span>
           <div>
@@ -203,28 +204,36 @@ export function EmployeeProfile({
               {item.role} · v{item.version}
             </p>
           </div>
-          <span className="md:ml-auto rounded-full border border-vds-border px-3 py-1 text-xs capitalize">
-            {item.status} · {item.health}
+          <span className="md:ml-auto inline-flex items-center gap-2 rounded-full border border-vds-border bg-vds-input px-3 py-1.5 text-xs capitalize">
+            <i className={`size-2 rounded-full ${item.status === "processing" ? "bg-vds-warning motion-safe:animate-pulse" : item.status === "error" || item.status === "offline" ? "bg-vds-danger" : "bg-vds-success"}`}/>{headquartersStatus(item)}
           </span>
         </div>
-        <p className="mt-5 max-w-3xl text-sm text-vds-muted">
-          {item.description}
-        </p>
+        <div className="mt-6 max-w-3xl"><p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Mission</p><p className="mt-2 text-sm leading-6 text-vds-muted">{item.description}</p></div>
       </section>
       <div className="grid gap-5 xl:grid-cols-3">
         <Panel title="Overview">
           <p>{item.description}</p>
-          <p className="mt-3">Current queue: {item.currentQueue}</p>
+          <p className="mt-3"><b>Availability:</b> {item.availability}</p>
         </Panel>
-        <Panel title="Capabilities">
-          <List items={item.capabilities} />
+        <Panel title="Personality">
+          <p><b>Working Style:</b> {personality(item.code).workingStyle}</p>
+          <p className="mt-2"><b>Strengths:</b> {personality(item.code).strengths}</p>
+          <p className="mt-2"><b>Communication Style:</b> {personality(item.code).communication}</p>
         </Panel>
-        <Panel title="Permissions">
-          <List items={item.permissions} />
+        <Panel title="Experience and Mission">
+          <p><b>Specialization:</b> {item.capabilities.slice(0, 3).join(", ")}</p>
+          <p className="mt-2"><b>Experience:</b> Real estate operations and customer journey support.</p>
+          <p className="mt-2"><b>Mission:</b> {personality(item.code).mission}</p>
         </Panel>
+        <Panel title="Recommendations">
+          <p>{tasks.length ? "Review the highest-priority assignment and approve the recommended next action." : waitingMessage(item.code)}</p>
+          <p className="mt-3">Recommendations prepare actions only. You remain in control.</p>
+        </Panel>
+        <Panel title="Assigned Customers"><p>{item.memory.assignedCustomers ? `${item.memory.assignedCustomers} assigned customers` : `${item.name} is waiting for assigned customers.`}</p></Panel>
+        <Panel title="Assigned Properties"><p>{item.code === "crm-ai" ? "Emma is waiting for properties." : "Property assignments will appear when verified workspace records are connected."}</p></Panel>
       </div>
       <section>
-        <h2 className="mb-3 font-semibold">Current queue and recent tasks</h2>
+        <h2 className="mb-3 font-semibold">Today&apos;s Work and Current Work</h2>
         <TaskList items={tasks} />
       </section>
       <div className="grid gap-5 lg:grid-cols-2">
@@ -257,17 +266,23 @@ export function EmployeeProfile({
           </p>
         </Panel>
       </div>
-      <WorkforceMemory item={item} />
       <section>
-        <h2 className="mb-3 font-semibold">Activity timeline</h2>
+        <h2 className="mb-3 font-semibold">Activity Feed</h2>
         <ActivityList items={activity} />
       </section>
-      <Panel title="Settings">
-        <dl className="grid gap-3 sm:grid-cols-2"><div><dt>Memory limit</dt><dd className="text-vds-foreground">Workspace policy</dd></div><div><dt>Creativity</dt><dd className="text-vds-foreground">Governed runtime default</dd></div><div><dt>Response style</dt><dd className="text-vds-foreground">Professional and evidence-based</dd></div><div><dt>Allowed tools</dt><dd className="text-vds-foreground">{item.permissions.join(", ")}</dd></div><div><dt>Allowed data</dt><dd className="text-vds-foreground">Tenant-scoped workspace repositories</dd></div><div><dt>Escalation</dt><dd className="text-vds-foreground">Human approval required</dd></div></dl>
-      </Panel>
+      <div className="grid gap-5 lg:grid-cols-2"><Panel title="Upcoming Tasks"><p>{tasks.some((task) => task.status === "pending") ? "Upcoming assignments are listed in Today’s Work." : "Waiting for first assignment."}</p></Panel><Panel title="Recent Achievements"><p>{activity.length ? `${activity.length} verified achievement${activity.length === 1 ? "" : "s"} recorded.` : "Achievements will appear after completed, verified work."}</p></Panel></div>
     </div>
   );
 }
+function personality(code: string) { const profiles: Record<string, {workingStyle:string;strengths:string;communication:string;mission:string}> = {
+  "sales-ai": { workingStyle: "Persistent and relationship-focused", strengths: "Lead qualification and negotiation", communication: "Confident, clear and considerate", mission: "Help the sales team focus on the buyers and deals that matter most." },
+  "crm-ai": { workingStyle: "Analytical and attentive", strengths: "Buyer matching and neighborhood knowledge", communication: "Practical and consultative", mission: "Connect every buyer with the right verified property context." },
+  "marketing-ai": { workingStyle: "Creative and growth-focused", strengths: "Campaign strategy and storytelling", communication: "Concise, energetic and brand-aware", mission: "Prepare campaigns that create demand and support revenue growth." },
+  "operations-ai": { workingStyle: "Organized and dependable", strengths: "Prioritization and coordination", communication: "Calm, direct and structured", mission: "Keep the real estate operation moving without missed work." },
+  "whatsapp-ai": { workingStyle: "Warm and customer-focused", strengths: "Customer care and retention", communication: "Empathetic, timely and professional", mission: "Make every customer feel heard and supported." },
+}; return profiles[code] ?? { workingStyle: "Thoughtful and evidence-led", strengths: "Business support", communication: "Professional and clear", mission: "Prepare useful work while keeping people in control." }; }
+function waitingMessage(code: string) { return ({"sales-ai":"Sarah is waiting for her first leads.","crm-ai":"Emma is waiting for properties.","marketing-ai":"Alex is ready to launch your first campaign.","operations-ai":"David is waiting to organize your operations.","whatsapp-ai":"Olivia is ready to support your customers."} as Record<string,string>)[code] ?? "Waiting for first assignment."; }
+function headquartersStatus(item: WorkforceEmployee) { if (item.status === "processing") return "Working"; if (item.status === "error") return "Review Required"; if (item.status === "offline") return "Offline"; return "Available"; }
 function Panel({
   title,
   children,
@@ -280,15 +295,6 @@ function Panel({
       <h2 className="mb-4 font-semibold">{title}</h2>
       <div className="text-sm leading-6 text-vds-muted">{children}</div>
     </section>
-  );
-}
-function List({ items }: { items: readonly string[] }) {
-  return (
-    <ul className="space-y-2">
-      {items.map((x) => (
-        <li key={x}>• {x}</li>
-      ))}
-    </ul>
   );
 }
 function Empty({ text }: { text: string }) {

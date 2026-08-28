@@ -11,6 +11,11 @@ import { WhatsAppAIDashboard, WhatsAppAIService } from "@/features/platform/what
 import { MarketingAIDashboard, MarketingAIService } from "@/features/platform/marketing-ai";
 import { ExecutiveAIDashboard, ExecutiveAIService } from "@/features/platform/executive-ai";
 import { AICollaborationService, ExecutiveCollaborationDashboard } from "@/features/platform/ai-collaboration";
+import dynamic from "next/dynamic";
+import { EmployeeIdentityPanel } from "@/features/vayon/operational-workforce/components/EmployeeIdentityPanel";
+const EmployeeHeadquartersSecondary = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeHeadquartersSecondary"));
+const EmployeeMemoryPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeMemoryPanel"));
+const EmployeeCollaborationPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeCollaborationPanel"));
 export default async function Page({
   params,
 }: {
@@ -36,7 +41,7 @@ export default async function Page({
   return (
     <WorkforceShell
       title={result.employee.name}
-      description="Operational employee profile with deterministic memory, governed capabilities, queue visibility, and explainable activity."
+      description={`${result.employee.role} · ${result.employee.availability}. Review today's work, recommendations, achievements and conversation.`}
     >
       {salesDashboard && <SalesAIDashboard data={salesDashboard} />}
       {crmDashboard && <CRMAIDashboard data={crmDashboard} />}
@@ -44,11 +49,16 @@ export default async function Page({
       {marketingDashboard && <MarketingAIDashboard data={marketingDashboard} />}
       {executiveDashboard && <ExecutiveAIDashboard data={executiveDashboard} />}
       {collaborationDashboard && <ExecutiveCollaborationDashboard data={collaborationDashboard} />}
+      <EmployeeIdentityPanel item={result.employee}/>
       <EmployeeProfile
         item={result.employee}
         tasks={result.tasks}
         activity={result.activity}
       />
+      <EmployeeHeadquartersSecondary item={result.employee} tasks={result.tasks} activity={result.activity}/>
+      <EmployeeMemoryPanel item={result.employee} tasks={result.tasks} activity={result.activity}/>
+      <EmployeeCollaborationPanel item={result.employee}/>
+      <section className="rounded-3xl border border-vds-border bg-vds-surface p-5 sm:p-7" aria-labelledby="employee-conversation-title"><p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Conversation</p><h2 id="employee-conversation-title" className="mt-2 text-2xl font-semibold">{result.employee.name} · {result.employee.role}</h2><p className="mt-2 text-sm text-vds-muted">What should I prioritize today? · Which buyers need attention? · Summarize today&apos;s opportunities. · Prepare follow-up plan. · Generate proposal.</p><p className="mt-3 text-xs text-vds-muted">Chat remains approval-based. Nothing is executed autonomously.</p></section>
       <WorkforceChatPanel employee={employee} initial={history} health={health} />
     </WorkforceShell>
   );

@@ -7,12 +7,12 @@ test("operational workforce defines all eight first-class employees", () => {
     "features/vayon/operational-workforce/repositories/workforce-data.ts",
   );
   for (const name of [
-    "Sales AI",
-    "CRM AI",
-    "WhatsApp AI",
+    "Sarah",
+    "Emma",
+    "Olivia",
     "Voice AI",
-    "Marketing AI",
-    "Operations AI",
+    "Alex",
+    "David",
     "Finance AI",
     "Executive AI",
   ])

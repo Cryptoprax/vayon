@@ -89,7 +89,7 @@ export function ExecutiveCommandCenter({
               Good morning, {userName}
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-vds-muted sm:text-base">
-              Today’s verified priorities, signals, meetings, and decisions for {data.organizationName}.
+              Your AI Team is already working. Review its verified priorities, recommendations, and upcoming work for {data.organizationName}.
             </p>
           </div>
           <div className="rounded-2xl border border-vds-border bg-vds-input px-4 py-3">
