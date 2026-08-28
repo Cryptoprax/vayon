@@ -17,6 +17,7 @@ import { ContactsExecutiveSnapshot } from "@/features/platform/external-contacts
 import { MicrosoftExecutiveSnapshot } from "@/features/platform/integrations/microsoft/components/MicrosoftExecutiveSnapshot";
 import { EnterpriseOnboardingService } from "@/features/onboarding/services/enterprise-onboarding.service";
 import { AdaptiveWorkspace } from "@/features/vayon/adaptive-workspace/AdaptiveWorkspace";
+import { WorkspaceSetupCenter } from "@/features/onboarding/components/WorkspaceSetupCenter";
 
 export const metadata: Metadata = { title: "Executive Home | Vayon OS", description: "A calm executive view across Vayon OS." };
 
@@ -27,6 +28,9 @@ export default async function ExecutiveHomePage() {
   const businessType = String(onboarding?.configuration?.businessType ?? "");
   return <main className="mx-auto max-w-[100rem] space-y-6 px-4 py-8 sm:px-6">
     <AdaptiveWorkspace businessType={businessType}/>
+    {organization && !onboarding?.completed_at && (
+      <WorkspaceSetupCenter session={onboarding} provisioned userName={userName} />
+    )}
     <ExecutiveHome model={organization ? createAwaitingExecutiveHome() : auroraExecutiveIntelligence.executiveHome()} userName={userName} workspaceName={organization?.name ?? demo.workspaceName} organizationDescription={organization ? undefined : demo.organizationDescription} people={organization ? undefined : auroraOrganizationChart.peopleWorkspace()}/>
     {organization && <GmailExecutiveSnapshot/>}
     {organization && <CalendarExecutiveSnapshot/>}

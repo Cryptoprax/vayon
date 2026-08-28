@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import type { User } from "@supabase/supabase-js";
 import { OrganizationService } from "./organization.service";
 import { OnboardingService } from "./onboarding.service";
+import { EnterpriseOnboardingService } from "./enterprise-onboarding.service";
 
 const currencies: Readonly<Record<string, string>> = {
   AU: "AUD",
@@ -43,11 +44,11 @@ export class WorkspaceBootstrapService {
     await new OnboardingService().provision({
       organizationName: `${name} Organization`,
       workspaceName: `${name} Workspace`,
-      businessType: "Business",
+      businessType: "Real Estate",
       companySize: "1-10",
       phone: "0000000",
       website: "",
-      industry: "Business services",
+      industry: "Real Estate",
       country,
       currency: currencies[country] ?? "USD",
       timezone,
@@ -56,6 +57,13 @@ export class WorkspaceBootstrapService {
       branch: "",
       invitations: [],
     });
+
+    await new EnterpriseOnboardingService().save(
+      3,
+      { businessType: "Real Estate", country, currency: currencies[country] ?? "USD", timezone, language },
+      [1, 2],
+      false,
+    ).catch(() => undefined);
 
     return new OrganizationService().current();
   }
