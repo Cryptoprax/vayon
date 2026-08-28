@@ -124,6 +124,14 @@ export const integrationCenterRegistry = Object.freeze([
     settingsHref: "/vayon/settings/billing",
     available: true,
   }),
+  provider("paddle", "Paddle Billing", "payments", {
+    settingsHref: "/vayon/settings/billing/provider-health",
+    available: true,
+  }),
+  provider("transactional_email", "Transactional Email", "communication", {
+    settingsHref: "/vayon/settings/email",
+    available: true,
+  }),
   provider("razorpay", "Razorpay", "payments", {
     featureFlag: "stripe",
     settingsHref: "/vayon/settings/billing",

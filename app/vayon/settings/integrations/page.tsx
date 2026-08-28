@@ -39,11 +39,11 @@ export default async function Page({
           {q.success}
         </p>
       )}
+      <IntegrationCenter model={model} query={q.q} category={q.category} status={q.status} />
       <OneClickConnections />
       <details className="mx-auto mb-8 max-w-[96rem] rounded-2xl border border-vds-border bg-vds-surface p-5">
-        <summary className="cursor-pointer font-medium">Advanced Settings</summary>
-        <p className="mt-2 text-sm text-vds-muted">Connection health, permissions, and diagnostics for workspace administrators.</p>
-        <IntegrationCenter model={model} query={q.q} category={q.category} status={q.status} />
+        <summary className="cursor-pointer font-medium">Advanced diagnostics</summary>
+        <p className="mt-2 text-sm text-vds-muted">Provider-level diagnostics for workspace administrators.</p>
         <ProviderStatusDashboard model={platform} />
       </details>
     </>

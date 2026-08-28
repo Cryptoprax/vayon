@@ -11,6 +11,7 @@
     "audit:responsive": "node scripts/audit-ux-simplification.mjs responsive",
     "audit:ttfv": "node scripts/audit-ttfv.mjs",
     "audit:routes": "node scripts/audit-route-integrity.mjs",
+    "audit:integration-status": "node scripts/audit-integration-status.mjs",
     "audit:vgi": "node scripts/audit-vgi-foundation.mjs",
     "audit:executive-ux": "node scripts/audit-ai-cmo-executive-ux.mjs",
     "audit:simplification": "node scripts/audit-ux-simplification.mjs simplification",
