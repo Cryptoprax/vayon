@@ -62,7 +62,7 @@ export const marketingPages: Readonly<
       {
         title: "AI Workforce + CRM",
         description:
-          "Specialist AI employees work from governed customer and sales context.",
+          "Specialist AI employees work from governed buyer, seller, property, and deal context.",
       },
       {
         title: "Creative Cloud + Marketing",
@@ -72,7 +72,7 @@ export const marketingPages: Readonly<
       {
         title: "Sales + Customer Success",
         description:
-          "Acquisition, pipeline, adoption, renewal and customer health stay connected.",
+          "Lead acquisition, property matching, site visits, offers, and buyer follow-up stay connected.",
       },
       {
         title: "Founder OS + Business Intelligence",
@@ -117,8 +117,8 @@ export const marketingPages: Readonly<
   crm: page(
     "crm",
     "CRM",
-    "Customer context without fragmented workflows.",
-    "Connect leads, contacts, companies, activities, and follow-ups through a consistent enterprise CRM experience.",
+    "Buyer, seller, and property context without fragmented workflows.",
+    "Connect leads, contacts, agents, properties, activities, site visits, and follow-ups through a consistent real estate CRM experience.",
     [
       {
         title: "Customer 360",
@@ -199,8 +199,8 @@ export const marketingPages: Readonly<
   communications: page(
     "communications",
     "Communications",
-    "One workspace for every business conversation.",
-    "Prepare teams for provider-neutral email, messaging, meetings, calls, templates, and internal collaboration.",
+    "One workspace for every property conversation.",
+    "Prepare agents for provider-neutral WhatsApp, email, buyer calls, seller updates, meeting templates, and internal collaboration.",
     [
       {
         title: "Unified inbox",
@@ -454,12 +454,12 @@ export const marketingPages: Readonly<
       {
         title: "Mission",
         description:
-          "Give every business a coherent, accountable operating system powered by governed AI.",
+          "Give every real estate company a coherent, accountable operating system powered by governed AI.",
       },
       {
         title: "Vision",
         description:
-          "A future where teams coordinate customers, creativity and decisions without fragmented context.",
+          "A future where property teams coordinate buyers, sellers, listings, agents, creativity, and decisions without fragmented context.",
       },
       {
         title: "Leadership",
@@ -476,7 +476,7 @@ export const marketingPages: Readonly<
   careers: page(
     "careers",
     "Careers",
-    "Help build a more coherent business operating system.",
+    "Help build the AI operating system for modern real estate.",
     "Future roles will be published here when hiring opens. Vayon does not currently list active positions on this page.",
     [],
     ["Engineering", "Product and design", "Customer experience"],

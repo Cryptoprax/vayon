@@ -28,7 +28,7 @@ test("theme preference persists only in browser local storage", () => {
 
 test("bootstrap applies appearance before hydrated content", () => {
   const layout = read("app/layout.tsx"), bootstrap = read("features/platform/design-system/theme/ThemeBootstrap.tsx");
-  assert.match(layout, /<head><ThemeBootstrap \/><\/head>/);
+  assert.match(layout, /<head>\s*<ThemeBootstrap \/>\s*<\/head>/);
   assert.match(layout, /suppressHydrationWarning/);
   assert.match(bootstrap, /document\.documentElement\.dataset\.vdsTheme/);
 });

@@ -4,7 +4,7 @@ import { industryCatalog } from "@/features/marketing/content/commercial-catalog
 export const metadata: Metadata = {
   title: "Industries",
   description:
-    "VAYON industry solutions for customer acquisition, creative production, sales and operations.",
+    "VAYON solutions for residential, commercial, luxury, developer, brokerage and property investment teams.",
   alternates: { canonical: "/industries" },
   openGraph: {
     title: "VAYON Industries",

@@ -10,7 +10,7 @@ test("pricing starts with simple plan selection and omits duplicated marketing",
   for (const evidence of [
     "Simple pricing",
     "Choose the plan that fits your business.",
-    "Start Free Trial",
+    "Start Free",
     "Annual · save 20%",
     "Monthly",
   ])
@@ -42,7 +42,7 @@ test("sales narrative includes plan guidance, comparisons and FAQ", () => {
   const source = pricing();
   for (const evidence of [
     "Which plan is right for you?",
-    "Perfect for solo founders and startups.",
+    "Perfect for independent agents and small real estate teams.",
     "Recommended for growing teams.",
     "Built for companies operating across multiple locations.",
     "Still not sure?",

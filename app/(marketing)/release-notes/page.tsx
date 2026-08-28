@@ -20,7 +20,7 @@ export default function Page() {
         {
           title: "v1.0.0 RC1",
           description:
-            "Release candidate covering the connected AI Business Operating System, governance, customer operations, Creative Studio and commercial launch experience.",
+            "Release candidate covering the connected AI Operating System for real estate, governance, property operations, Creative Studio and commercial launch experience.",
           state: "operational",
         },
       ]}

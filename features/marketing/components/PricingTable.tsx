@@ -11,7 +11,7 @@ const plans = [
     name: "Starter",
     price: 79,
     tag: "Launch your business with AI",
-    audience: "Founders and startups",
+    audience: "Independent agents and small real estate teams",
     users: "3",
     workspaces: "1",
     storage: "10 GB",
@@ -73,13 +73,10 @@ const softwareCosts = [
   ["Sales Enablement", "$40–150+"],
 ] as const;
 const planRecommendations = [
-  ["Starter", "Perfect for solo founders and startups."],
+  ["Starter", "Perfect for independent agents and small real estate teams."],
   ["Professional", "Recommended for growing teams."],
   ["Business", "Ideal for established businesses with multiple departments."],
-  [
-    "Business Plus",
-    "Built for companies operating across multiple locations.",
-  ],
+  ["Business Plus", "Built for companies operating across multiple locations."],
   [
     "Enterprise",
     "Designed for organizations requiring custom security, governance, compliance and integrations.",
@@ -203,69 +200,71 @@ export function PricingTable() {
               </Button>
             </div>
           </div>
-        <div
-          aria-label="Commercial packages"
-          className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5"
-        >
-          {plans.map((plan) => (
-            <article
-              key={plan.name}
-              className={`${card} relative p-6 ${plan.popular ? "border-vds-accent-border shadow-2xl" : ""}`}
-            >
-              {plan.popular && (
-                <span className="absolute right-4 top-4 rounded-full bg-vds-primary px-2 py-1 text-[10px] font-semibold text-vds-on-accent">
-                  MOST POPULAR
-                </span>
-              )}
-              <p className="text-sm font-semibold text-vds-primary">
-                {plan.name}
-              </p>
-              <p className="mt-5 text-4xl font-semibold">
-                {plan.price === null ? (
-                  "Custom"
-                ) : (
-                  <CurrencyDisplay
-                    valueUsd={
-                      annual ? Math.round(plan.price * 0.8) : plan.price
-                    }
-                  />
-                )}{" "}
-                {plan.price !== null && (
-                  <span className="text-xs font-normal text-vds-muted">
-                    / month
+          <div
+            aria-label="Commercial packages"
+            className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5"
+          >
+            {plans.map((plan) => (
+              <article
+                key={plan.name}
+                className={`${card} relative p-6 ${plan.popular ? "border-vds-accent-border shadow-2xl" : ""}`}
+              >
+                {plan.popular && (
+                  <span className="absolute right-4 top-4 rounded-full bg-vds-primary px-2 py-1 text-[10px] font-semibold text-vds-on-accent">
+                    MOST POPULAR
                   </span>
                 )}
-              </p>
-              <p className="mt-4 min-h-12 text-sm text-vds-muted">{plan.tag}</p>
-              <p className="mt-4 text-xs text-vds-subtle">{plan.audience}</p>
-              <ul className="mt-5 space-y-2 text-sm">
-                <li>✓ {plan.users} team members</li>
-                <li>✓ {plan.workspaces} workspaces</li>
-                <li>✓ {plan.storage} storage</li>
-              </ul>
-              <ButtonLink
-                fullWidth
-                className="mt-7"
-                variant={plan.popular ? "primary" : "outline"}
-                href={
-                  plan.name === "Enterprise" || plan.name === "Business Plus"
-                    ? "/contact?intent=sales"
-                    : `/signup?plan=${plan.name.toLowerCase()}`
-                }
-              >
-                {plan.name === "Enterprise" || plan.name === "Business Plus"
-                  ? "Contact Sales"
-                  : "Start Free Trial"}
-              </ButtonLink>
-            </article>
-          ))}
-        </div>
-        <p className="mt-5 text-xs text-vds-subtle">
-          Displayed prices are commercial packaging for sales evaluation.
-          Checkout, billing state and entitlements remain authoritative in the
-          existing Subscription and Stripe systems.
-        </p>
+                <p className="text-sm font-semibold text-vds-primary">
+                  {plan.name}
+                </p>
+                <p className="mt-5 text-4xl font-semibold">
+                  {plan.price === null ? (
+                    "Custom"
+                  ) : (
+                    <CurrencyDisplay
+                      valueUsd={
+                        annual ? Math.round(plan.price * 0.8) : plan.price
+                      }
+                    />
+                  )}{" "}
+                  {plan.price !== null && (
+                    <span className="text-xs font-normal text-vds-muted">
+                      / month
+                    </span>
+                  )}
+                </p>
+                <p className="mt-4 min-h-12 text-sm text-vds-muted">
+                  {plan.tag}
+                </p>
+                <p className="mt-4 text-xs text-vds-subtle">{plan.audience}</p>
+                <ul className="mt-5 space-y-2 text-sm">
+                  <li>✓ {plan.users} team members</li>
+                  <li>✓ {plan.workspaces} workspaces</li>
+                  <li>✓ {plan.storage} storage</li>
+                </ul>
+                <ButtonLink
+                  fullWidth
+                  className="mt-7"
+                  variant={plan.popular ? "primary" : "outline"}
+                  href={
+                    plan.name === "Enterprise" || plan.name === "Business Plus"
+                      ? "/contact?intent=sales"
+                      : `/signup?plan=${plan.name.toLowerCase()}`
+                  }
+                >
+                  {plan.name === "Enterprise" || plan.name === "Business Plus"
+                    ? "Contact Sales"
+                    : "Start Free"}
+                </ButtonLink>
+              </article>
+            ))}
           </div>
+          <p className="mt-5 text-xs text-vds-subtle">
+            Displayed prices are commercial packaging for sales evaluation.
+            Checkout, billing state and entitlements remain authoritative in the
+            existing Subscription and Stripe systems.
+          </p>
+        </div>
       </section>
       <section className={`${shell} py-24 sm:py-28`}>
         <div className="mx-auto max-w-3xl text-center">
@@ -297,7 +296,8 @@ export function PricingTable() {
         <div className="mx-auto mt-12 max-w-2xl text-center">
           <h3 className="text-2xl font-semibold">Still not sure?</h3>
           <p className="mt-3 leading-7 text-vds-muted">
-            Book a free strategy call and we&apos;ll help you choose the best plan.
+            Book a free strategy call and we&apos;ll help you choose the best
+            plan.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <ButtonLink href="/contact?intent=demo" variant="outline" size="lg">
@@ -317,7 +317,7 @@ export function PricingTable() {
             </h2>
             <p className="mt-6 text-lg leading-8 text-vds-muted">
               Instead of buying and managing many disconnected tools, VAYON
-              combines everything into one AI Business Operating System.
+              combines everything into one AI Operating System for real estate.
             </p>
           </div>
           <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-3xl border border-vds-border bg-vds-surface/80 shadow-2xl shadow-vds-shadow/10">
@@ -368,7 +368,11 @@ export function PricingTable() {
               intelligent platform.
             </p>
             <p className="mt-7 text-2xl font-semibold leading-relaxed">
-              One login.<br />One workspace.<br />One AI operating system.
+              One login.
+              <br />
+              One workspace.
+              <br />
+              One AI operating system.
             </p>
           </div>
         </div>

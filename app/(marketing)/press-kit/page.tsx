@@ -20,7 +20,7 @@ export default function Page() {
         {
           title: "Company overview",
           description:
-            "The AI Business Operating System for customer, creative and executive operations.",
+            "The AI Operating System for real estate sales, marketing, customer communication and operations.",
           href: "/about",
         },
         {

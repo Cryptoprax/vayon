@@ -4,7 +4,7 @@ import { productCatalog } from "@/features/marketing/content/commercial-catalog"
 export const metadata: Metadata = {
   title: "VAYON Products",
   description:
-    "Explore the complete VAYON AI Business Operating System product catalog.",
+    "Explore the complete VAYON AI Operating System for modern real estate companies.",
   alternates: { canonical: "/features" },
   openGraph: {
     title: "VAYON Products",

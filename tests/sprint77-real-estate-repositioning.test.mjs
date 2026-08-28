@@ -13,29 +13,27 @@ const publicMarketing = () =>
 
 test("public positioning preserves real estate while supporting the commercial catalog", () => {
   const source = publicMarketing();
-  assert.match(source, /AI Business Operating System/);
+  assert.match(source, /AI Operating System/);
   assert.match(source, /Real Estate/);
 });
 
-test("navigation preserves real estate solutions and exposes industries", () => {
+test("navigation links directly to the focused real estate solutions experience", () => {
   const source = read("features/marketing/components/MarketingShell.tsx");
-  for (const solution of [
-    "Residential Sales",
-    "Commercial Real Estate",
-    "Property Developers",
-    "Real Estate Brokerages",
-    "Luxury Real Estate",
-    "Property Management",
-    "Channel Partners",
-    "Builder Sales",
-    "Pre-Sales Teams",
-    "CRM Automation",
+  for (const item of [
+    "Platform",
+    "Solutions",
     "AI Employees",
-    "Lead Qualification",
-    "Property Intelligence",
+    "Pricing",
+    "Resources",
+    "Book Demo",
+    "Start Free",
   ])
-    assert.match(source, new RegExp(solution));
-  assert.match(source, /label: "Industries"/);
+    assert.match(source, new RegExp(item));
+  assert.match(source, /label: "Solutions", href: "\/solutions"/);
+  assert.doesNotMatch(
+    source,
+    /label: "Industries"|realEstateSolutions|solutionHref|group relative/,
+  );
 });
 
 test("real estate audiences, AI employees, customer templates, and SEO are present", () => {
@@ -45,14 +43,12 @@ test("real estate audiences, AI employees, customer templates, and SEO are prese
   );
   const metadata = read("app/layout.tsx");
   for (const audience of [
-    "Residential Agencies",
-    "Commercial Brokerages",
-    "Real Estate Developers",
-    "Builders",
-    "Luxury Property Firms",
-    "Property Management",
-    "Channel Partner Networks",
-    "Large Real Estate Groups",
+    "Agencies",
+    "Brokerages",
+    "Property Developers",
+    "Commercial Real Estate",
+    "Luxury Real Estate",
+    "Property Investment Firms",
   ])
     assert.match(homepage, new RegExp(audience));
   for (const employee of [

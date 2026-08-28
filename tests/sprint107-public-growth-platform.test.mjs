@@ -19,9 +19,9 @@ test("public growth narrative covers requested product outcomes", async () => {
     "Sales AI",
     "Founder AI",
     "Creative Studio",
-    "Knowledge Platform",
+    "Property Knowledge",
     "Integrations",
-    "Customer Success",
+    "Buyer Success",
     "Enterprise security",
   ])
     assert.ok(source.includes(value), value);
@@ -37,7 +37,7 @@ test("interactive tour works without authentication and covers seven products", 
     "Founder Dashboard",
     "Creative Studio",
     "Knowledge",
-    "AI Workforce",
+    "AI Real Estate Team",
     "/demo",
   ])
     assert.ok(source.includes(value), value);

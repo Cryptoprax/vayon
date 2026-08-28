@@ -37,12 +37,12 @@ test("homepage covers focused positioning and interactive conversion", () => {
   for (const x of [
     "Product demo",
     "WorkflowMotion",
-    "Core features",
-    "WorkforceOrbit",
-    "Built for Every Real Estate Business",
+    "Complete Real Estate Operating System",
+    "AiTeamGrid",
+    "Built Specifically For Real Estate",
     "LandingRoiCalculator",
     "PricingTable",
-    "Start Free Trial",
+    "Start Free",
     "Book Demo",
   ])
     assert.match(s, new RegExp(x, "i"));

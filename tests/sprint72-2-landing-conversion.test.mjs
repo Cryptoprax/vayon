@@ -7,8 +7,8 @@ const read = (path) => readFile(path, "utf8");
 test("hero prioritizes demo conversion with visible trust", async () => {
   const source = await read("features/marketing/components/Homepage.tsx");
   assert.match(source, /Book Demo/);
-  assert.match(source, /Watch Demo/);
-  assert.match(source, /Start Free Trial/);
+  assert.match(source, /Watch 2 Minute Demo/);
+  assert.match(source, /Start Free/);
   for (const value of [
     "Secure by design",
     "Human approval controls",
@@ -20,12 +20,14 @@ test("hero prioritizes demo conversion with visible trust", async () => {
 test("homepage tells the complete lead-to-revenue workflow", async () => {
   const source = await read("features/marketing/components/Homepage.tsx");
   for (const step of [
-    "Lead arrives",
-    "AI responds",
-    "Lead qualifies",
-    "Meeting booked",
-    "Deal tracked",
-    "Revenue generated",
+    "Lead enters",
+    "AI qualifies",
+    "Property matching",
+    "Appointment booked",
+    "Agent assigned",
+    "Follow up",
+    "Offer sent",
+    "Deal won",
   ])
     assert.match(source, new RegExp(step));
 });
@@ -44,7 +46,7 @@ test("product preview covers launch modules and one AI employee presentation", a
     "Automation",
   ])
     assert.match(experience, new RegExp(view));
-  assert.match(homepage, /<WorkforceOrbit \/>/);
+  assert.match(homepage, /<AiTeamGrid \/>/);
   assert.doesNotMatch(homepage, /ConversionWorkforce/);
 });
 
@@ -68,7 +70,7 @@ test("interactive ROI calculator uses transparent requested inputs and outputs",
 
 test("customer proof is launch-ready without fabricated endorsements", async () => {
   const source = await read("features/marketing/components/Homepage.tsx");
-  assert.match(source, /never fabricated endorsements/i);
+  assert.match(source, /no fabricated metrics or endorsements/i);
   assert.match(source, /pending customer approval/i);
   assert.match(source, /pending verification/i);
 });
@@ -78,9 +80,8 @@ test("footer has complete information architecture and functional newsletter cap
   for (const value of [
     "Platform",
     "Solutions",
-    "Industries",
     "Resources",
-    "Company",
+    "Solutions for",
     "Legal",
     "Social",
     "VAYON product notes",

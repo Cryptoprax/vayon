@@ -47,12 +47,12 @@ test("launch homepage communicates the operating system positioning and complete
     "Property Intelligence",
     "Sales Pipeline",
     "Secure Workspaces",
-    "Lead arrives",
+    "Lead enters",
     "AI qualifies",
     "Approval",
-    "Start Free Trial",
+    "Start Free",
     "Book Demo",
-    "Built for Every Real Estate Business",
+    "Built Specifically For Real Estate",
   ])
     assert.match(source, new RegExp(item, "i"));
   assert.match(source, /SoftwareApplication/);
@@ -63,14 +63,12 @@ test("global navigation and footer expose enterprise information architecture", 
   for (const item of [
     "Platform",
     "Solutions",
-    "Industries",
+    "AI Employees",
     "Pricing",
     "Resources",
-    "Company",
-    "Contact",
     "Documentation",
     "Sign In",
-    "Start Free Trial",
+    "Start Free",
     "Legal",
     "Trust Center",
   ])

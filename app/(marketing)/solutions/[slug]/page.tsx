@@ -33,5 +33,5 @@ export default async function Page({
   const { slug } = await params;
   const e = solutionCatalog.find((x) => x.slug === slug);
   if (!e) notFound();
-  return <CommercialCatalogDetail eyebrow="Business solutions" entry={e} />;
+  return <CommercialCatalogDetail eyebrow="Real estate solutions" entry={e} />;
 }

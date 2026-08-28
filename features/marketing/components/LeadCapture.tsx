@@ -22,7 +22,7 @@ export function LeadCapture({
     <main className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
       <p className="eyebrow">Contact VAYON</p>
       <h1 className="mt-4 max-w-4xl text-5xl font-semibold tracking-[-.05em]">
-        Start a serious business conversation.
+        Start a serious real estate growth conversation.
       </h1>
       <p className="mt-5 max-w-3xl text-vds-muted">
         Choose the most relevant request. We use submitted details only to
@@ -75,7 +75,7 @@ export function LeadCapture({
             className="h-12 w-full rounded-xl border border-vds-border bg-vds-input px-4"
           >
             <option value="demo">Book Demo</option>
-            <option value="trial">Start Free Trial</option>
+            <option value="trial">Start Free</option>
             <option value="sales">Contact Sales</option>
             <option value="enterprise">Enterprise inquiry</option>
             <option value="newsletter">Newsletter</option>

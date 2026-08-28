@@ -59,7 +59,7 @@ export function LaunchInformationPage({
       </div>
       {cta && (
         <div className="mt-12 flex flex-wrap gap-3">
-          <ButtonLink href="/signup">Start Free Trial</ButtonLink>
+          <ButtonLink href="/signup">Start Free</ButtonLink>
           <ButtonLink href="/contact" variant="outline">
             Contact VAYON
           </ButtonLink>

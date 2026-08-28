@@ -9,29 +9,10 @@ import { MarketingCurrencyProvider } from "../currency/CurrencyDisplay";
 const navigation = [
   { label: "Platform", href: "/product" },
   { label: "Solutions", href: "/solutions" },
-  { label: "Industries", href: "/industries" },
+  { label: "AI Employees", href: "/ai-workforce" },
   { label: "Pricing", href: "/pricing" },
   { label: "Resources", href: "/resources" },
-  { label: "Company", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ] as const;
-export const realEstateSolutions = [
-  "Residential Sales",
-  "Commercial Real Estate",
-  "Property Developers",
-  "Real Estate Brokerages",
-  "Luxury Real Estate",
-  "Property Management",
-  "Channel Partners",
-  "Builder Sales",
-  "Pre-Sales Teams",
-  "CRM Automation",
-  "AI Employees",
-  "Lead Qualification",
-  "Property Intelligence",
-] as const;
-const solutionHref = (label: string) =>
-  `/solutions#${label.toLowerCase().replaceAll(" ", "-")}`;
 
 export function MarketingShell({ children }: { readonly children: ReactNode }) {
   return (
@@ -56,34 +37,15 @@ export function MarketingShell({ children }: { readonly children: ReactNode }) {
               aria-label="Primary"
               className="hidden flex-1 items-center justify-center gap-0.5 xl:flex"
             >
-              {navigation.map((item) =>
-                item.label === "Solutions" ? (
-                  <details className="group relative" key={item.href}>
-                    <summary className="vds-focus cursor-pointer list-none rounded-lg px-2.5 py-2 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground">
-                      Solutions
-                    </summary>
-                    <div className="absolute left-1/2 top-11 grid w-[38rem] -translate-x-1/2 grid-cols-2 gap-1 rounded-2xl border border-vds-border bg-vds-surface p-3 shadow-xl">
-                      {realEstateSolutions.map((solution) => (
-                        <Link
-                          key={solution}
-                          href={solutionHref(solution)}
-                          className="vds-focus rounded-lg px-3 py-2 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"
-                        >
-                          {solution}
-                        </Link>
-                      ))}
-                    </div>
-                  </details>
-                ) : (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="vds-focus rounded-lg px-2.5 py-2 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                ),
-              )}
+              {navigation.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="vds-focus rounded-lg px-2.5 py-2 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </nav>
             <div className="ml-auto hidden items-center gap-2 sm:flex">
               <Link
@@ -92,9 +54,15 @@ export function MarketingShell({ children }: { readonly children: ReactNode }) {
               >
                 Sign In
               </Link>
+              <ButtonLink
+                href="/contact?intent=demo"
+                size="sm"
+                variant="outline"
+              >
+                Book Demo
+              </ButtonLink>
               <ButtonLink href="/signup" size="sm">
-                Start Free Trial{" "}
-                <ArrowRight className="size-4" aria-hidden="true" />
+                Start Free <ArrowRight className="size-4" aria-hidden="true" />
               </ButtonLink>
             </div>
             <details className="relative ml-auto xl:hidden">
@@ -117,32 +85,29 @@ export function MarketingShell({ children }: { readonly children: ReactNode }) {
                     {item.label}
                   </Link>
                 ))}
-                <span className="px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-vds-subtle">
-                  Real estate solutions
-                </span>
-                {realEstateSolutions.map((solution) => (
-                  <Link
-                    key={solution}
-                    href={solutionHref(solution)}
-                    className="vds-focus rounded-lg px-3 py-2.5 text-sm hover:bg-vds-hover"
-                  >
-                    {solution}
-                  </Link>
-                ))}
                 <Link
                   href="/login"
                   className="vds-focus rounded-lg px-3 py-2.5 text-sm"
                 >
                   Sign In
                 </Link>
+                <ButtonLink
+                  href="/contact?intent=demo"
+                  size="sm"
+                  variant="outline"
+                  fullWidth
+                >
+                  Book Demo
+                </ButtonLink>
                 <ButtonLink href="/signup" size="sm" fullWidth>
-                  Start Free Trial
+                  Start Free
                 </ButtonLink>
               </nav>
             </details>
           </div>
         </header>
         <div id="marketing-content">{children}</div>
+        <ConversionCta />
         <MarketingFooter />
       </div>
     </MarketingCurrencyProvider>
@@ -173,21 +138,13 @@ function MarketingFooter() {
       ],
     ],
     [
-      "Solutions",
+      "Solutions for",
       [
-        ["Startups", "/solutions/startups"],
-        ["Small Business", "/solutions/small-business"],
-        ["Agencies", "/solutions/agencies"],
-        ["Enterprise", "/solutions/enterprise"],
-      ],
-    ],
-    [
-      "Industries",
-      [
-        ["Solar", "/industries/solar"],
-        ["Real Estate", "/industries/real-estate"],
-        ["Healthcare", "/industries/healthcare"],
-        ["Manufacturing", "/industries/manufacturing"],
+        ["AI Sales Employees", "/solutions/ai-sales-employees"],
+        ["Real Estate CRM", "/solutions/real-estate-crm"],
+        ["Property Management", "/solutions/property-management"],
+        ["WhatsApp Automation", "/solutions/whatsapp-automation"],
+        ["Growth Intelligence", "/solutions/growth-intelligence"],
       ],
     ],
     [
@@ -246,7 +203,7 @@ function MarketingFooter() {
         <div>
           <BrandLogo size="md" />
           <p className="mt-4 max-w-xs text-sm leading-6 text-vds-muted">
-            The AI Business Operating System for modern companies.
+            The AI Operating System built for modern real estate companies.
           </p>
           <p className="mt-6 text-xs text-vds-subtle">
             Built with governance at the core.
@@ -318,9 +275,43 @@ function MarketingFooter() {
         </div>
       </div>
       <div className="border-t border-vds-border px-5 py-5 text-center text-xs text-vds-subtle">
-        © {new Date().getUTCFullYear()} Vayon. AI business operations, under
-        human control.
+        © {new Date().getUTCFullYear()} Vayon. Real estate operations powered by
+        AI, under human control.
       </div>
     </footer>
+  );
+}
+
+function ConversionCta() {
+  return (
+    <section
+      aria-labelledby="public-conversion-heading"
+      className="border-t border-vds-border px-5 py-20 sm:px-8"
+    >
+      <div className="mx-auto max-w-5xl rounded-[2rem] border border-vds-accent-border bg-vds-surface px-6 py-14 text-center shadow-2xl sm:px-12">
+        <p className="eyebrow">Move your real estate business forward</p>
+        <h2
+          id="public-conversion-heading"
+          className="mt-4 text-3xl font-semibold tracking-[-.04em] sm:text-5xl"
+        >
+          See how VAYON turns property enquiries into closed deals.
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl leading-7 text-vds-muted">
+          Start a workspace, explore the product, or plan a live walkthrough for
+          your agents and leadership team.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <ButtonLink href="/signup" size="lg">
+            Start Free Trial
+          </ButtonLink>
+          <ButtonLink href="/contact?intent=demo" size="lg" variant="outline">
+            Book Live Demo
+          </ButtonLink>
+          <ButtonLink href="/demo" size="lg" variant="ghost">
+            Watch 2-Minute Demo
+          </ButtonLink>
+        </div>
+      </div>
+    </section>
   );
 }

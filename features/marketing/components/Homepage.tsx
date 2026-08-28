@@ -23,11 +23,7 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/features/platform/design-system";
 import { PricingTable } from "./PricingTable";
 import { Reveal, WorkflowMotion } from "./LaunchMotion";
-import {
-  EnterpriseFaq,
-  HeroProductMockup,
-  WorkforceOrbit,
-} from "./EnterpriseExperience";
+import { EnterpriseFaq, HeroProductMockup } from "./EnterpriseExperience";
 import { LandingRoiCalculator } from "./LandingRoiCalculator";
 import { PublicGrowthPlatform } from "./PublicGrowthPlatform";
 
@@ -109,12 +105,14 @@ const features = [
   ],
 ] as const;
 const workflow = [
-  "Lead arrives",
-  "AI responds",
-  "Lead qualifies",
-  "Meeting booked",
-  "Deal tracked",
-  "Revenue generated",
+  "Lead enters",
+  "AI qualifies",
+  "Property matching",
+  "Appointment booked",
+  "Agent assigned",
+  "Follow up",
+  "Offer sent",
+  "Deal won",
 ] as const;
 export const workflowContinuity = ["Lead arrives", "AI qualifies"] as const;
 export const launchExperienceContinuity = [
@@ -124,9 +122,9 @@ export const launchExperienceContinuity = [
   "Marketing Automation",
   "Property Intelligence",
   "Secure Workspaces",
-  "Start Free Trial",
+  "Start Free",
   "Book Demo",
-  "Watch Demo",
+  "Watch 2 Minute Demo",
   "How Vayon Works",
   "AI Recommends Properties",
   "AI Drafts WhatsApp",
@@ -135,61 +133,71 @@ export const launchExperienceContinuity = [
   "Proposal created",
   "CRM updated",
   "Analytics refreshed",
-  "120+",
-  "40+",
   "real estate customer story placeholders",
   "Encrypted Credentials",
 ] as const;
 const realEstateBusinesses = [
   [
-    "Residential Agencies",
+    "Agencies",
     "Manage buyers, sellers, listings, visits, and agent follow-up.",
   ],
   [
-    "Commercial Brokerages",
+    "Brokerages",
     "Coordinate occupiers, owners, mandates, properties, and complex deals.",
   ],
   [
-    "Real Estate Developers",
+    "Property Developers",
     "Connect inventory, project campaigns, channel partners, and homebuyers.",
   ],
   [
-    "Builders",
-    "Move enquiries from project discovery to visits, proposals, and bookings.",
+    "Commercial Real Estate",
+    "Coordinate occupiers, owners, investors, properties, and complex deals.",
   ],
   [
-    "Luxury Property Firms",
+    "Luxury Real Estate",
     "Deliver discreet, high-context service for premium buyers and sellers.",
   ],
   [
-    "Property Management",
-    "Keep properties, owners, tenants, communications, and tasks aligned.",
-  ],
-  [
-    "Channel Partner Networks",
-    "Distribute inventory, qualify demand, and track every partner-led opportunity.",
-  ],
-  [
-    "Large Real Estate Groups",
-    "Standardize property sales operations across teams, projects, and regions.",
+    "Property Investment Firms",
+    "Track opportunities, investor communication, property performance, and decisions.",
   ],
 ] as const;
 const modules = [
-  "Real Estate CRM",
-  "Calendar",
-  "Site Visits",
-  "Email",
+  "CRM",
+  "Lead Management",
+  "Property Database",
+  "Appointments",
   "WhatsApp",
+  "Email",
   "AI Employees",
-  "Voice",
-  "Property Inventory",
-  "Lead Qualification",
-  "Sales Pipeline",
-  "Approvals",
-  "Revenue Tracking",
-  "Operations",
-  "Channel Partners",
-  "Workflows",
+  "Creative Studio",
+  "Growth Marketing",
+  "Analytics",
+  "Executive Dashboard",
+  "Automation",
+  "Investor Reports",
+] as const;
+const aiTeam = [
+  [
+    "AI Sales Manager",
+    ["Qualifies leads", "Books appointments", "Assigns agents"],
+  ],
+  [
+    "AI Marketing Manager",
+    ["Creates campaigns", "Launches ads", "Builds social content"],
+  ],
+  [
+    "AI Operations Manager",
+    ["Tracks deals", "Coordinates teams", "Automates workflows"],
+  ],
+  [
+    "AI Customer Success Manager",
+    ["Follows up buyers", "Answers questions", "Schedules meetings"],
+  ],
+  [
+    "AI Founder Dashboard",
+    ["Business insights", "Revenue", "Pipeline", "Growth"],
+  ],
 ] as const;
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -227,7 +235,7 @@ export function Homepage() {
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
-              "The AI Business Operating System for customer, creative and executive operations.",
+              "Manage leads, listings, agents, appointments, AI employees, marketing and operations with one AI-powered operating system built for modern real estate businesses.",
             featureList: modules,
             offers: [
               { "@type": "Offer", price: "79", priceCurrency: "USD" },
@@ -246,28 +254,29 @@ export function Homepage() {
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-vds-accent-border bg-vds-primary-soft px-3 py-1.5 text-xs font-semibold text-vds-primary">
               <Sparkles className="size-3.5" aria-hidden="true" />
-              One intelligent platform for the modern business
+              Built specifically for modern real estate companies
             </span>
             <h1 className="mt-7 text-balance text-5xl font-semibold leading-[.96] tracking-[-.06em] sm:text-7xl">
-              The World&apos;s First AI Business Operating System
+              The AI Operating System Built for Modern Real Estate Companies
             </h1>
             <h2 className="mt-7 max-w-2xl text-xl font-medium leading-8 text-vds-secondary">
-              One platform combining CRM, AI employees, Creative Studio 2.0,
-              marketing, sales, customer success and business intelligence.
+              Manage leads, properties, agents, marketing, appointments,
+              customer communication and AI employees from one intelligent
+              platform.
             </h2>
             <p className="mt-5 max-w-2xl text-pretty leading-7 text-vds-muted">
-              Launch a business, coordinate customer growth, create campaigns
-              and give leaders evidence-backed operating visibility.
+              Replace disconnected software with one AI-powered operating system
+              built specifically for real estate businesses.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <ButtonLink href="/contact?intent=demo" size="lg">
-                Book Demo <ArrowRight className="size-4" aria-hidden="true" />
+              <ButtonLink href="/signup" size="lg">
+                Start Free <ArrowRight className="size-4" aria-hidden="true" />
               </ButtonLink>
               <ButtonLink href="/demo" variant="outline" size="lg">
-                Watch Demo
+                Watch 2 Minute Demo
               </ButtonLink>
-              <ButtonLink href="/signup" variant="ghost" size="lg">
-                Start Free Trial
+              <ButtonLink href="/contact?intent=demo" variant="ghost" size="lg">
+                Book Live Demo
               </ButtonLink>
             </div>
             <div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-xs text-vds-muted">
@@ -304,21 +313,28 @@ export function Homepage() {
         </div>
       </Section>
       <Proof />
+      <Section
+        eyebrow="One real estate operating system"
+        title="Run Your Entire Real Estate Business With AI"
+        copy="CRM, AI Employees, Marketing, Property Management, Lead Qualification, Appointments, Automation, Creative Studio and Growth Intelligence—all inside one platform."
+      >
+        <ModuleGrid />
+      </Section>
       <Band>
         <Section
-          eyebrow="Core features"
-          title="Run property sales from one connected workspace."
-          copy="Respond faster, maintain complete context, and keep every commercial action accountable."
+          eyebrow="Complete platform"
+          title="Complete Real Estate Operating System"
+          copy="Manage buyers, sellers, listings, agents, appointments, communications and closing activity without losing context between tools."
         >
           <FeatureGrid />
         </Section>
       </Band>
       <Section
         eyebrow="AI employees"
-        title="Specialists for every stage of the property journey."
-        copy="Each AI employee supports a defined outcome while consequential actions remain under human control."
+        title="Meet Your AI Real Estate Team"
+        copy="Each specialist prepares the next best action for your team. People remain in control of every consequential decision and publication."
       >
-        <WorkforceOrbit />
+        <AiTeamGrid />
       </Section>
       <PublicGrowthPlatform />
       <RealEstateBusinesses />
@@ -355,10 +371,10 @@ export function Homepage() {
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <ButtonLink href="/signup" size="lg">
-              Start Free Trial
+              Start Free
             </ButtonLink>
             <ButtonLink href="/contact" variant="outline" size="lg">
-              Book Demo
+              Book Live Demo
             </ButtonLink>
             <ButtonLink href="/contact?intent=sales" variant="ghost" size="lg">
               Contact Sales
@@ -407,7 +423,7 @@ function RealEstateBusinesses() {
     <Band>
       <Section
         eyebrow="Real estate, end to end"
-        title="Built for Every Real Estate Business"
+        title="Built Specifically For Real Estate"
         copy="Purpose-built operating workflows for the teams that develop, market, sell, lease, and manage property."
       >
         <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -461,8 +477,8 @@ function Testimonials() {
     <Band>
       <Section
         eyebrow="Customer proof"
-        title="Designed for verified stories, never fabricated endorsements."
-        copy="This launch-ready layout will publish customer identity, ratings, and quantified results only after explicit approval."
+        title="Trusted by growing real estate teams"
+        copy="Designed for agencies from 5 to 500+ agents. Example customer-story layouts below are clearly labeled and publish no fabricated metrics or endorsements."
       >
         <div className="grid gap-4 lg:grid-cols-3">
           {cards.map(([title, logo, photo, result]) => (
@@ -525,6 +541,63 @@ function FeatureGrid() {
             <p className="mt-3 text-sm leading-6 text-vds-muted">{copy}</p>
           </article>
         </Reveal>
+      ))}
+    </div>
+  );
+}
+function ModuleGrid() {
+  const valueModules = [
+    "CRM",
+    "AI Employees",
+    "Marketing",
+    "Property Management",
+    "Lead Qualification",
+    "Appointments",
+    "Automation",
+    "Creative Studio",
+    "Growth Intelligence",
+  ] as const;
+  return (
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {valueModules.map((module) => (
+        <div
+          className="flex items-center gap-3 rounded-2xl border border-vds-border bg-vds-surface p-5"
+          key={module}
+        >
+          <Check className="size-4 text-vds-primary" aria-hidden="true" />
+          <strong>{module}</strong>
+        </div>
+      ))}
+    </div>
+  );
+}
+function AiTeamGrid() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+      {aiTeam.map(([role, responsibilities]) => (
+        <article
+          className="rounded-3xl border border-vds-border bg-vds-surface p-6"
+          key={role}
+        >
+          <span className="grid size-10 place-items-center rounded-xl bg-vds-primary-soft text-vds-primary">
+            <Bot className="size-5" aria-hidden="true" />
+          </span>
+          <h3 className="mt-5 font-semibold">{role}</h3>
+          <ul className="mt-4 space-y-3">
+            {responsibilities.map((responsibility) => (
+              <li
+                className="flex gap-2 text-sm text-vds-muted"
+                key={responsibility}
+              >
+                <Check
+                  className="mt-0.5 size-4 shrink-0 text-vds-success"
+                  aria-hidden="true"
+                />
+                {responsibility}
+              </li>
+            ))}
+          </ul>
+        </article>
       ))}
     </div>
   );

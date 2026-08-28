@@ -2,22 +2,23 @@ import type { Metadata } from "next";
 import { CommercialCatalogIndex } from "@/features/marketing/components/CommercialCatalogPage";
 import { solutionCatalog } from "@/features/marketing/content/commercial-catalog";
 export const metadata: Metadata = {
-  title: "Business Solutions",
+  title: "Real Estate Solutions",
   description:
-    "VAYON solutions for startups, small businesses, agencies, growing companies and enterprises.",
+    "Explore VAYON solutions for real estate sales, CRM, property management, marketing, creative work and executive growth.",
   alternates: { canonical: "/solutions" },
   openGraph: {
-    title: "VAYON Business Solutions",
-    description: "One AI business operating system for every stage of growth.",
+    title: "VAYON Real Estate Solutions",
+    description:
+      "Nine connected AI solutions for modern real estate companies.",
     url: "/solutions",
   },
 };
 export default function Page() {
   return (
     <CommercialCatalogIndex
-      eyebrow="Business solutions"
-      title="Operate with clarity at every stage of growth."
-      description="Choose a business path to see the problems VAYON solves, the outcomes it supports and the connected modules recommended for your team."
+      eyebrow="Real estate solutions"
+      title="Turn more property opportunities into closed deals."
+      description="Explore nine connected solutions for lead response, property operations, buyer communication, marketing, creative execution and executive growth."
       entries={solutionCatalog}
       basePath="/solutions"
     />
