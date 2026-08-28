@@ -11,7 +11,12 @@ import { paddleCatalogEntry, type PaddleBillingPeriod } from "./paddle-catalog";
 
 const supportedEvents = new Set([
   "transaction.completed",
+  "transaction.paid",
+  "transaction.payment_failed",
   "subscription.created",
+  "subscription.activated",
+  "subscription.trialing",
+  "subscription.past_due",
   "subscription.updated",
   "subscription.paused",
   "subscription.resumed",

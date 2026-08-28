@@ -4,6 +4,7 @@ import { paddleRequest } from "../providers/paddle/paddle-client";
 import { PaddleBillingProvider } from "../providers/paddle/paddle.provider";
 import { SubscriptionRepository } from "../repositories/subscription.repository";
 import { billingContext } from "./billing-context";
+import { paddleEnvironment } from "../providers/paddle/paddle-client";
 
 export class PaddleCustomerService {
   async linked() {
@@ -61,7 +62,7 @@ export class PaddleCustomerService {
         workspace_id: context.workspaceId,
         provider: "paddle",
         provider_customer_id: customer.id,
-        livemode: process.env.PADDLE_ENVIRONMENT !== "sandbox",
+        livemode: paddleEnvironment() === "live",
         email,
       },
       { onConflict: "workspace_id" },

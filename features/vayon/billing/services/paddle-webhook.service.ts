@@ -12,18 +12,27 @@ export class PaddleWebhookService {
   async process(payload: string, signature: string) {
     const correlationId = crypto.randomUUID();
     log("paddle.webhook.received", { correlationId });
-    const event = await this.provider.verifyWebhook(payload, signature);
-    await this.sync.project(event.eventId, event.type, event.data);
-    log("paddle.webhook.processed", {
-      correlationId,
-      eventId: event.eventId,
-      eventType: event.type,
-      retryCount: 0,
-    });
-    if (event.type === "payment.failed")
-      log("paddle.payment.failed", { correlationId, eventId: event.eventId });
-    if (event.type === "transaction.completed")
-      log("paddle.checkout.completed", { correlationId, eventId: event.eventId });
-    return event;
+    try {
+      const event = await this.provider.verifyWebhook(payload, signature);
+      await this.sync.project(event.eventId, event.type, event.data);
+      log("paddle.webhook.processed", {
+        correlationId,
+        eventId: event.eventId,
+        eventType: event.type,
+        retryCount: 0,
+      });
+      if (event.type === "payment.failed" || event.type === "transaction.payment_failed")
+        log("paddle.payment.failed", { correlationId, eventId: event.eventId });
+      if (event.type === "transaction.completed" || event.type === "transaction.paid")
+        log("paddle.checkout.completed", { correlationId, eventId: event.eventId });
+      if (event.type === "subscription.trialing")
+        log("paddle.trial.started", { correlationId, eventId: event.eventId });
+      if (event.type === "subscription.activated")
+        log("paddle.trial.converted", { correlationId, eventId: event.eventId });
+      return event;
+    } catch (reason) {
+      log("paddle.webhook.failed", { correlationId, failure: reason instanceof Error ? reason.name : "PaddleWebhookError" });
+      throw reason;
+    }
   }
 }

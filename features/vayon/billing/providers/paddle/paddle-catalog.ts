@@ -30,6 +30,8 @@ export function paddleCatalogEntry(
   const priceId = process.env[`PADDLE_PRICE_${suffix}`];
   if (!productId || !priceId)
     throw new Error(`Paddle catalog is not configured for ${plan} ${period}.`);
+  if (!/^pro_[a-z0-9]+$/.test(productId) || !/^pri_[a-z0-9]+$/.test(priceId))
+    throw new Error(`Paddle catalog IDs are invalid for ${plan} ${period}.`);
   return { productId, priceId };
 }
 

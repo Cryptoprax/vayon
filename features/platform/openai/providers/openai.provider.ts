@@ -15,6 +15,7 @@ import type {
   TokenUsage,
 } from "../domain/models";
 import { OpenAIModelRegistry } from "../services/model-registry";
+import { environmentOpenAIConfiguration, type OpenAIRuntimeConfiguration } from "../services/runtime-configuration";
 
 type Client = Pick<OpenAI, "responses" | "embeddings" | "moderations">;
 const pool = new Map<string, Client>();
@@ -67,9 +68,11 @@ const diagnostics: Record<OpenAIHealthDiagnostic, string> = {
   authentication_failed: "Authentication failed",
   billing_required: "Billing required",
   insufficient_quota: "Insufficient quota",
+  rate_limited: "Rate limited",
   model_unavailable: "Model unavailable",
   network_error: "Network error",
   timeout: "Timeout",
+  provider_unavailable: "Provider unavailable",
   provider_exception: "Unknown provider error",
 };
 
@@ -84,9 +87,11 @@ export function classifyOpenAIHealthError(reason: unknown): OpenAIHealthDiagnost
   if (error?.status === 401 || type.includes("authentication")) return "authentication_failed";
   if (code.includes("billing") || message.includes("billing")) return "billing_required";
   if (code === "insufficient_quota" || code === "credit_balance_exhausted" || type === "insufficient_quota" || message.includes("quota")) return "insufficient_quota";
+  if (error?.status === 429) return "rate_limited";
   if (error?.status === 404 || code.includes("model_not_found") || message.includes("model") && message.includes("access")) return "model_unavailable";
   if (name.includes("abort") || name.includes("timeout") || code.includes("timeout")) return "timeout";
   if (name.includes("connection") || code.includes("connection") || code.includes("network") || message.includes("fetch failed")) return "network_error";
+  if (typeof error?.status === "number" && error.status >= 500) return "provider_unavailable";
   return "provider_exception";
 }
 
@@ -96,12 +101,12 @@ export class OpenAIProvider implements OpenAIProviderContract {
   readonly version = "1.1.0";
   private models = new OpenAIModelRegistry();
 
-  constructor(private api?: Client) {}
+  constructor(private api?: Client, private configuration: OpenAIRuntimeConfiguration = environmentOpenAIConfiguration()) {}
   async connect(): Promise<never> { redirect("/vayon/settings/ai/openai"); }
   async disconnect(): Promise<never> { throw new Error("OpenAI credentials are environment-managed and cannot be disconnected in the application."); }
 
   async health() {
-    const model = this.models.resolve();
+    const model = this.models.resolve(this.configuration.model);
     const started = performance.now();
     try {
       const api = this.api ?? client(configured());
@@ -149,15 +154,17 @@ export class OpenAIProvider implements OpenAIProviderContract {
   async responses(input: OpenAIRequest): Promise<OpenAIResult> {
     this.validatePrompt(input);
     await this.ensureSafe(`${input.system}\n${input.prompt}`, input.signal);
-    const model = this.models.resolve(input.model);
+    const model = this.models.resolve(input.model ?? this.configuration.model);
     const api = this.api ?? client(configured());
     const started = performance.now();
-    const response = await api.responses.create({
-      model: String(model.id), instructions: input.system, input: input.prompt,
-      max_output_tokens: Math.min(input.maxOutputTokens ?? 4096, model.maximumOutputTokens), store: false,
-    }, { signal: abortSignal(input.signal) });
+    const response = await this.withModelFallback(model.id, async (modelId) => api.responses.create({
+      model: String(modelId), instructions: input.system, input: input.prompt,
+      max_output_tokens: Math.min(input.maxOutputTokens ?? this.configuration.maxOutputTokens, model.maximumOutputTokens), store: false,
+      reasoning: { effort: this.configuration.reasoningLevel },
+    }, { signal: abortSignal(input.signal) }));
     const usage = this.usage(response.usage?.input_tokens, response.usage?.output_tokens);
-    return { output: response.output_text, provider: "openai", model: String(model.id), latencyMs: Math.round(performance.now() - started), usage, cost: this.models.estimate(String(model.id), usage.promptTokens, usage.completionTokens), recommendationOnly: true, executionAllowed: false };
+    const usedModel = String(response.model ?? model.id);
+    return { output: response.output_text, provider: "openai", model: usedModel, latencyMs: Math.round(performance.now() - started), usage, cost: this.models.estimate(usedModel, usage.promptTokens, usage.completionTokens), recommendationOnly: true, executionAllowed: false };
   }
 
   embeddings(input: readonly string[], workspaceId: string, signal?: AbortSignal) {
@@ -193,21 +200,23 @@ export class OpenAIProvider implements OpenAIProviderContract {
   async *stream(input: OpenAIRequest): AsyncIterable<string> {
     this.validatePrompt(input);
     await this.ensureSafe(`${input.system}\n${input.prompt}`, input.signal);
-    const model = this.models.resolve(input.model);
+    const model = this.models.resolve(input.model ?? this.configuration.model);
     const api = this.api ?? client(configured());
-    const stream = await api.responses.create({ model: String(model.id), instructions: input.system, input: input.prompt, max_output_tokens: Math.min(input.maxOutputTokens ?? 4096, model.maximumOutputTokens), store: false, stream: true }, { signal: abortSignal(input.signal) });
+    if (!this.configuration.streaming) { const response = await this.responses(input); yield String(response.output); return; }
+    const stream = await this.withModelFallback(model.id, async (modelId) => api.responses.create({ model: String(modelId), instructions: input.system, input: input.prompt, max_output_tokens: Math.min(input.maxOutputTokens ?? this.configuration.maxOutputTokens, model.maximumOutputTokens), store: false, stream: true, reasoning: { effort: this.configuration.reasoningLevel } }, { signal: abortSignal(input.signal) }));
     for await (const event of stream) if (event.type === "response.output_text.delta") yield event.delta;
   }
   private async structured<T>(input: OpenAIRequest, schema: z.ZodType<T>, name: string): Promise<OpenAIResult<T>> {
     this.validatePrompt(input);
     await this.ensureSafe(`${input.system}\n${input.prompt}`, input.signal);
-    const model = this.models.resolve(input.model);
+    const model = this.models.resolve(input.model ?? this.configuration.model);
     const api = this.api ?? client(configured());
     const started = performance.now();
-    const response = await api.responses.parse({ model: String(model.id), instructions: input.system, input: input.prompt, max_output_tokens: Math.min(input.maxOutputTokens ?? 4096, model.maximumOutputTokens), store: false, text: { format: zodTextFormat(schema, name) } }, { signal: abortSignal(input.signal) });
+    const response = await this.withModelFallback(model.id, async (modelId) => api.responses.parse({ model: String(modelId), instructions: input.system, input: input.prompt, max_output_tokens: Math.min(input.maxOutputTokens ?? this.configuration.maxOutputTokens, model.maximumOutputTokens), store: false, reasoning: { effort: this.configuration.reasoningLevel }, text: { format: zodTextFormat(schema, name) } }, { signal: abortSignal(input.signal) }));
     if (!response.output_parsed) throw new Error("OpenAI returned no validated output.");
     const usage = this.usage(response.usage?.input_tokens, response.usage?.output_tokens);
-    return { output: schema.parse(response.output_parsed), provider: "openai", model: String(model.id), latencyMs: Math.round(performance.now() - started), usage, cost: this.models.estimate(String(model.id), usage.promptTokens, usage.completionTokens), recommendationOnly: true, executionAllowed: false };
+    const usedModel = String(response.model ?? model.id);
+    return { output: schema.parse(response.output_parsed), provider: "openai", model: usedModel, latencyMs: Math.round(performance.now() - started), usage, cost: this.models.estimate(usedModel, usage.promptTokens, usage.completionTokens), recommendationOnly: true, executionAllowed: false };
   }
   private async ensureSafe(input: string, signal?: AbortSignal) { const result = await this.moderate(input, signal); if (result.flagged) throw new Error("Prompt was blocked by content safety policy."); }
   private validatePrompt(input: OpenAIRequest) {
@@ -215,6 +224,16 @@ export class OpenAIProvider implements OpenAIProviderContract {
     if (!input.system.trim() || !input.prompt.trim()) throw new Error("System and user prompts are required.");
     const maximum = Number(process.env.OPENAI_MAX_PROMPT_CHARACTERS ?? 100_000);
     if (input.system.length + input.prompt.length > maximum) throw new Error("Prompt exceeds the configured maximum size.");
+  }
+  private async withModelFallback<T>(primary: string, request: (model: string) => Promise<T>): Promise<T> {
+    try { return await request(primary); }
+    catch (reason) {
+      const diagnostic = classifyOpenAIHealthError(reason), fallback = this.configuration.fallbackModel;
+      log("openai.request.failed", { diagnostic, model: primary, retryAttempts: 2 });
+      if (!fallback || fallback === primary || !["model_unavailable", "provider_unavailable", "rate_limited", "timeout"].includes(diagnostic)) throw reason;
+      log("openai.model.fallback", { diagnostic, primaryModel: primary, fallbackModel: String(fallback) });
+      return request(String(fallback));
+    }
   }
   private usage(input = 0, output = 0): TokenUsage { return { promptTokens: input, completionTokens: output, totalTokens: input + output, estimated: false }; }
 }

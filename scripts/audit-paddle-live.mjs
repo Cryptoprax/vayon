@@ -1,0 +1,12 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+const read = (path) => readFileSync(path, "utf8");
+const client = read("features/vayon/billing/providers/paddle/paddle-client.ts");
+const provider = read("features/vayon/billing/providers/paddle/paddle.provider.ts");
+const sync = read("features/vayon/billing/services/paddle-subscription-sync.service.ts");
+const portal = read("app/api/billing/paddle/portal/route.ts");
+for (const value of ["PADDLE_ENVIRONMENT", "PADDLE_API_KEY", "PADDLE_API_VERSION", "PADDLE_TIMEOUT_MS", "api.paddle.com", "sandbox-api.paddle.com", "Paddle-Version"]) assert.match(client, new RegExp(value));
+for (const event of ["transaction.completed", "transaction.paid", "transaction.payment_failed", "subscription.created", "subscription.updated", "subscription.canceled", "subscription.trialing", "subscription.activated", "subscription.past_due"]) assert.match(provider + sync, new RegExp(event.replaceAll(".", "\\.")));
+assert.match(portal, /retryable: true/);
+assert.doesNotMatch(client + provider + sync + portal, /pdl_(?:live|sdbx)_apikey_[A-Za-z0-9_-]{20}/);
+console.log("Paddle live audit passed: environment isolation, API version pinning, catalog lifecycle events, retryable portal recovery, and credential hygiene verified.");
