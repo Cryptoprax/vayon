@@ -11,7 +11,7 @@ import { MediaManager } from "@/features/vayon/property-intelligence/components/
 import { listingTypes, propertyStatuses, propertyTypes } from "../config/catalogs";
 import type { PropertyRecord } from "../types";
 
-const sections = ["Basic", "Location", "Pricing", "Amenities", "Media", "Ownership", "Availability", "Legal", "SEO", "Internal notes"];
+const sections = ["Basic", "Location", "Pricing", "Pricing Details", "Media", "Amenities", "Ownership", "Documents", "Review", "Publish"];
 
 function Submit({ editing }: { editing: boolean }) {
   const { pending } = useFormStatus();
@@ -47,7 +47,28 @@ export function PropertyWizard({ action, property, error }: { action: (form: For
       <div><p className="text-xs uppercase tracking-widest text-vds-primary">Section {step} of {sections.length}</p><h2 className="mt-1 text-xl font-semibold">{sections[step - 1]}</h2></div>
       <p aria-live="polite" className="flex items-center gap-2 text-xs text-vds-muted"><Cloud className="size-4 text-vds-success" />{savedAt ? `Draft saved locally at ${savedAt}` : "Changes auto-save locally"}</p>
     </div>
-    <nav className="mt-5 overflow-x-auto" aria-label="Property form progress"><ol className="flex min-w-max gap-2 pb-1">{sections.map((section, index) => { const number=index+1,active=number===step,complete=number<step;return <li key={section}><Button variant="control" type="button" title={section} aria-label={`Step ${number} of ${sections.length}, ${section}`} aria-current={active?"step":undefined} onClick={() => setStep(number)} className={`focus-ring inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-full px-3 text-sm transition ${active?"bg-vds-primary text-vds-on-accent":complete?"bg-vds-primary-soft text-vds-primary":"border border-vds-border bg-vds-surface text-vds-muted"}`}><span aria-hidden="true" className="grid size-5 shrink-0 place-items-center rounded-full border border-current text-xs">{number}</span><span className={active?"inline":"hidden sm:inline"}>{section}</span></Button></li>})}</ol></nav>
+    <nav className="mt-5 overflow-x-auto overscroll-x-contain pb-2" aria-label="Property form sections">
+      <ol className="flex min-w-max snap-x snap-mandatory gap-3">
+        {sections.map((section, index) => {
+          const number = index + 1;
+          const active = number === step;
+          return (
+            <li key={section} className="shrink-0 snap-start">
+              <button
+                type="button"
+                aria-label={`Step ${number} of ${sections.length}, ${section}`}
+                aria-current={active ? "step" : undefined}
+                onClick={() => setStep(number)}
+                className={`focus-ring flex min-h-12 min-w-[140px] items-center justify-start gap-2.5 whitespace-nowrap rounded-xl border px-5 py-3 text-sm transition-colors ${active ? "border-vds-success bg-vds-success font-bold text-vds-on-accent" : "border-vds-border bg-vds-elevated text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"}`}
+              >
+                <span aria-hidden="true" className="font-semibold">{number}</span>
+                <span>{section}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
     {error && <p role="alert" className="mt-4 rounded-xl bg-vds-danger-soft p-3 text-sm text-vds-danger">{error}</p>}
 
     <Section show={step === 1}><Input id="title" name="title" label="Property name" defaultValue={property?.title} required /><Input id="reference" name="reference" label="Property code" defaultValue={property?.reference} required /><Select name="propertyType" label="Property type" items={propertyTypes} value={property?.propertyType} /><Select name="listingType" label="Listing type" items={listingTypes} value={property?.listingType} /><Select name="status" label="Status" items={propertyStatuses} value={property?.status ?? "available"} /><TextArea name="description" label="Description" value={property?.description} wide /></Section>
