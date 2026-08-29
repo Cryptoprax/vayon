@@ -324,20 +324,15 @@ export class ExecutiveDashboardService {
         href: "/vayon/settings/invoices",
       },
     ];
-    const stages: [
-      [string, string],
-      [string, string],
-      [string, string],
-      [string, string],
-      [string, string],
-      [string, string],
-    ] = [
-      ["new_lead", "New"],
+    const stages: readonly [string, string][] = [
+      ["new_lead", "New Leads"],
       ["qualified", "Qualified"],
       ["site_visit_scheduled", "Viewing Scheduled"],
       ["negotiation", "Negotiation"],
-      ["completed", "Closed Won"],
-      ["lost", "Closed Lost"],
+      ["booking", "Booking"],
+      ["registration", "Registration"],
+      ["completed", "Completed"],
+      ["lost", "Lost"],
     ];
     const pipeline: PipelineColumn[] = stages.map(([id, label]) => {
       const rows = deals.filter((row) => row.stage_id === id),

@@ -27,6 +27,15 @@ interface Registration {
   readonly expanded: boolean;
 }
 
+const kindOrder: Record<FloatingKind, number> = {
+  banner: 0,
+  walkthrough: 10,
+  toast: 20,
+  assistant: 30,
+  action: 40,
+  help: 50,
+};
+
 interface FloatingContextValue {
   readonly root: HTMLElement | null;
   readonly register: (registration: Registration) => () => void;
@@ -65,12 +74,11 @@ export function FloatingLayoutManager({
     if (!dock) return;
     const update = () => {
       const visual = window.visualViewport;
-      const width = dock.getBoundingClientRect().width;
-      const height = dock.getBoundingClientRect().height;
+      const { width, height } = dock.getBoundingClientRect();
       const zoom = visual ? window.innerWidth / visual.width : 1;
       document.documentElement.style.setProperty(
         "--vayon-floating-safe-bottom",
-        expanded ? "1rem" : `${Math.min(height + 32, 176)}px`,
+        expanded ? "1rem" : `${Math.min(height + 40, window.innerHeight * 0.8)}px`,
       );
       document.documentElement.style.setProperty(
         "--vayon-floating-safe-right",
@@ -85,18 +93,18 @@ export function FloatingLayoutManager({
     const resize = new ResizeObserver(update);
     const mutation = new MutationObserver(update);
     resize.observe(dock);
-    mutation.observe(document.body, {
+    mutation.observe(dock, {
+      childList: true,
       attributes: true,
-      subtree: true,
-      attributeFilter: ["data-drawer-open", "aria-modal", "open"],
+      attributeFilter: ["data-floating-expanded", "data-floating-fullscreen"],
     });
-    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
     window.visualViewport?.addEventListener("resize", update);
     update();
     return () => {
       resize.disconnect();
       mutation.disconnect();
-      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
       window.visualViewport?.removeEventListener("resize", update);
     };
   }, [expanded, sidebarCollapsed, registrations.length]);
@@ -143,7 +151,7 @@ export function FloatingSurface({
       data-floating-surface={kind}
       data-floating-expanded={expanded || undefined}
       data-floating-fullscreen={fullscreen || undefined}
-      style={{ order: priority }}
+      style={{ order: kindOrder[kind] * 100 + priority }}
       className="vayon-floating-surface"
     >
       {children}

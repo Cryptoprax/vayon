@@ -11,6 +11,7 @@ import { RevenueChartLoader } from "./RevenueChartLoader";
 import { WhatsAppConversations } from "./WhatsAppConversations";
 import { ExecutiveCommandCenter } from "./ExecutiveCommandCenter";
 import { RealEstateKpiGrid } from "./RealEstateKpiGrid";
+import { RealEstateIntelligence } from "./RealEstateIntelligence";
 
 export function DashboardShell({
   data,
@@ -29,16 +30,12 @@ export function DashboardShell({
       <AICommandBar onBlockedAction={onBlockedAction} prompts={aiPrompts} />
       {data.isEmpty && <EmptyDashboard />}
       <RealEstateKpiGrid data={data} />
-      <div className="grid gap-5 2xl:grid-cols-[1.15fr_.85fr]">
-        <RevenueChartLoader data={data.charts} currency={data.currency} />
-        <CalendarWidget items={data.calendar} />
-      </div>
-      <PipelineBoard
-        items={data.pipeline.filter((item) => item.id !== "lost")}
-        currency={data.currency}
-      />
+      <RealEstateIntelligence data={data} />
+      <PipelineBoard items={data.pipeline} currency={data.currency} />
+      <RevenueChartLoader data={data.charts} currency={data.currency} />
       <AIWorkforceGrid members={data.aiWorkforce} />
       <div className="grid gap-5 xl:grid-cols-2">
+        <CalendarWidget items={data.calendar} />
         <ActivityTimeline items={data.activities} />
         <WhatsAppConversations conversations={data.whatsappConversations} />
       </div>

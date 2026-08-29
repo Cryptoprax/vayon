@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/features/platform/design-system";
+import { FloatingSurface } from "@/features/vayon/floating-layout/FloatingLayoutManager";
 import {
   Boxes,
   BriefcaseBusiness,
@@ -387,19 +388,13 @@ export function CreativeStudioHome({
           </div>
         </section>
       </div>
-      <Button
-        onClick={() => setAssistant((value) => !value)}
-        aria-expanded={assistant}
-        className="focus-ring fixed bottom-5 right-5 z-40 grid size-12 place-items-center rounded-full bg-vds-primary text-vds-on-primary shadow-xl"
-        title="Creative Assistant"
-      >
-        <PanelRight className="size-5" />
-      </Button>
-      {assistant && (
-        <aside
-          aria-label="AI Creative Assistant"
-          className={`${card} fixed bottom-20 right-5 z-30 w-[min(23rem,calc(100vw-2.5rem))] p-5`}
-        >
+      <FloatingSurface id="creative-assistant" kind="assistant" priority={20}>
+        <div className="flex flex-col items-end gap-3">
+        {assistant && (
+          <aside
+            aria-label="AI Creative Assistant"
+            className={`${card} w-[min(23rem,calc(100vw-2rem))] p-5`}
+          >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Sparkles className="size-5 text-vds-primary" />
@@ -422,8 +417,19 @@ export function CreativeStudioHome({
           >
             Start a creative brief
           </Button>
-        </aside>
-      )}
+          </aside>
+        )}
+        <Button
+          onClick={() => setAssistant((value) => !value)}
+          aria-expanded={assistant}
+          aria-label={assistant ? "Close Creative Assistant" : "Open Creative Assistant"}
+          className="focus-ring grid size-12 place-items-center rounded-full bg-vds-primary text-vds-on-primary shadow-xl"
+          title="Creative Assistant"
+        >
+          <PanelRight className="size-5" />
+        </Button>
+        </div>
+      </FloatingSurface>
       {dialog && (
         <div
           className="fixed inset-0 z-[90] grid place-items-center bg-vds-overlay p-4"

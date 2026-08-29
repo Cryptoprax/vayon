@@ -35,7 +35,7 @@ export function AICommandBar({
   }
 
   return (
-    <section className="relative overflow-hidden rounded-3xl border border-vds-accent-border bg-vds-surface p-5 shadow-[0_24px_80px_var(--vds-shadow-color)] sm:p-7">
+    <section className="relative overflow-hidden rounded-3xl border border-vds-accent-border bg-vds-surface p-5 shadow-[0_24px_80px_var(--vds-shadow-color)] sm:p-7 2xl:p-8">
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-vds-primary" />
       <div className="relative">
         <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">
