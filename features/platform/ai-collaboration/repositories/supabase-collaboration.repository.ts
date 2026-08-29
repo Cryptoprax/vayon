@@ -158,7 +158,7 @@ export class SupabaseCollaborationRepository implements CollaborationRepositoryC
         });
     if (error) throw error;
   }
-  async addRecommendation(input: Omit<RecommendationNode, "id">) {
+  async addRecommendation(input: Omit<RecommendationNode, "id" | "createdAt">) {
     const user = await this.user(),
       { error } = await this.client
         .from("ai_collaboration_recommendations")
@@ -240,6 +240,7 @@ export class SupabaseCollaborationRepository implements CollaborationRepositoryC
         relatedCustomer: r.related_customer_id
           ? str(r.related_customer_id)
           : null,
+        createdAt: str(r.created_at),
         promptTokens: num(r.prompt_tokens),
         completionTokens: num(r.completion_tokens),
         latencyMs: r.latency_ms == null ? null : num(r.latency_ms),

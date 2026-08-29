@@ -143,6 +143,8 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
     label: "AI Team",
     icon: Sparkles,
     items: [
+      { label: "Orchestration Center", href: "/vayon/ai/collaboration", icon: Network, description: "AI executive boardroom" },
+      { label: "Founder Approval Center", href: "/vayon/founder/approvals", icon: ShieldCheck, description: "Approval Center · Executive Decisions" },
       { label: "Workforce", href: "/vayon/workforce", icon: Bot },
       { label: "Sarah", href: "/vayon/ai/workforce/sales-ai", icon: Users, description: "Sales Manager" },
       { label: "Emma", href: "/vayon/ai/workforce/crm-ai", icon: Users, description: "Property Advisor" },
@@ -162,6 +164,7 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
     label: "Platform",
     icon: Settings,
     items: [
+      { label: "Launch Readiness", href: "/vayon/platform/launch-readiness", icon: Gauge, description: "Beta launch control center" },
       { label: "Team", href: "/vayon/team", icon: UsersRound },
       { label: "Administration", href: "/vayon/admin", icon: ShieldCheck },
       { label: "Knowledge", href: "/vayon/knowledge", icon: LibraryBig },

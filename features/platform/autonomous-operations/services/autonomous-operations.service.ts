@@ -91,7 +91,7 @@ export class AutonomousOperationsService {
         health(
           "AI Workforce",
           integrations.providers.find((item) => item.code === "openai")
-            ?.state === "Healthy"
+            ?.state === "Connected"
             ? 90
             : null,
           "OpenAI provider health and workforce availability.",
@@ -203,7 +203,7 @@ export class AutonomousOperationsService {
           evidence: item.reason,
         })),
         ...integrations.providers
-          .filter((item) => item.state === "Error")
+          .filter((item) => item.state === "Needs Attention")
           .map((item) => ({
             id: `provider-${item.code}`,
             title: `Integration outage: ${item.name}`,

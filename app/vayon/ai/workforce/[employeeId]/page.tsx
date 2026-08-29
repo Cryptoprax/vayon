@@ -16,6 +16,7 @@ import { EmployeeIdentityPanel } from "@/features/vayon/operational-workforce/co
 const EmployeeHeadquartersSecondary = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeHeadquartersSecondary"));
 const EmployeeMemoryPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeMemoryPanel"));
 const EmployeeCollaborationPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeCollaborationPanel"));
+const EmployeeDailyWorkspace = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeDailyWorkspace"));
 export default async function Page({
   params,
 }: {
@@ -37,7 +38,25 @@ export default async function Page({
   const whatsappDashboard = employee === "whatsapp-ai" ? await (await WhatsAppAIService.production()).dashboard() : null;
   const marketingDashboard = employee === "marketing-ai" ? await (await MarketingAIService.production()).dashboard() : null;
   const executiveDashboard = employee === "executive-ai" ? await (await ExecutiveAIService.production()).dashboard() : null;
-  const collaborationDashboard = employee === "executive-ai" ? await (await AICollaborationService.production()).dashboard() : null;
+  const collaborationDashboard = await (await AICollaborationService.production()).dashboard();
+  const employeeRecommendations = collaborationDashboard.recommendationPipeline.filter((entry) => entry.employee === employee);
+  const conversationContext = {
+    name: result.employee.name,
+    role: result.employee.role,
+    avatar: result.employee.avatar,
+    workspace: "Current workspace",
+    currentFocus: result.employee.memory.currentObjectives || "Awaiting verified workspace activity",
+    goals: result.tasks.slice(0, 3).map((task) => task.title),
+    knowledgeCoverage: result.employee.memory.knowledgeReferences ? `${result.employee.memory.knowledgeReferences} verified references` : "Ready to learn from verified activity",
+    businessImpact: result.employee.department,
+    evidenceCount: result.tasks.length + result.activity.length + employeeRecommendations.length,
+    sourceModules: Array.from(new Set([result.employee.department, ...result.tasks.map((task) => task.type)])),
+    relatedRecords: [
+      ...result.tasks.slice(0, 4).map((task) => ({ type: task.type === "Meeting Scheduling" ? "Meeting" : task.type === "Campaign Suggestion" ? "Campaign" : "Task", label: task.title })),
+    ],
+    lastActivity: result.activity[0]?.title ?? null,
+    recommendationIds: employeeRecommendations.map((entry) => entry.id),
+  } as const;
   return (
     <WorkforceShell
       title={result.employee.name}
@@ -48,7 +67,8 @@ export default async function Page({
       {whatsappDashboard && <WhatsAppAIDashboard data={whatsappDashboard} />}
       {marketingDashboard && <MarketingAIDashboard data={marketingDashboard} />}
       {executiveDashboard && <ExecutiveAIDashboard data={executiveDashboard} />}
-      {collaborationDashboard && <ExecutiveCollaborationDashboard data={collaborationDashboard} />}
+      {employee === "executive-ai" && <ExecutiveCollaborationDashboard data={collaborationDashboard} />}
+      <EmployeeDailyWorkspace item={result.employee} tasks={result.tasks} activity={result.activity} collaboration={collaborationDashboard}/>
       <EmployeeIdentityPanel item={result.employee}/>
       <EmployeeProfile
         item={result.employee}
@@ -58,8 +78,8 @@ export default async function Page({
       <EmployeeHeadquartersSecondary item={result.employee} tasks={result.tasks} activity={result.activity}/>
       <EmployeeMemoryPanel item={result.employee} tasks={result.tasks} activity={result.activity}/>
       <EmployeeCollaborationPanel item={result.employee}/>
-      <section className="rounded-3xl border border-vds-border bg-vds-surface p-5 sm:p-7" aria-labelledby="employee-conversation-title"><p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Conversation</p><h2 id="employee-conversation-title" className="mt-2 text-2xl font-semibold">{result.employee.name} · {result.employee.role}</h2><p className="mt-2 text-sm text-vds-muted">What should I prioritize today? · Which buyers need attention? · Summarize today&apos;s opportunities. · Prepare follow-up plan. · Generate proposal.</p><p className="mt-3 text-xs text-vds-muted">Chat remains approval-based. Nothing is executed autonomously.</p></section>
-      <WorkforceChatPanel employee={employee} initial={history} health={health} />
+      <section className="rounded-3xl border border-vds-border bg-vds-surface p-5 sm:p-7" aria-labelledby="employee-conversation-title"><p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Conversation</p><h2 id="employee-conversation-title" className="mt-2 text-2xl font-semibold">{result.employee.name} · {result.employee.role}</h2><p className="mt-2 text-sm text-vds-muted">What should I follow up today? · Which buyers are hottest? · Which deals are at risk? · Summarize today&apos;s opportunities. · Prepare follow-up plan.</p><p className="mt-3 text-xs text-vds-muted">Chat prepares actions only and remains approval-based. Nothing is executed autonomously.</p></section>
+      <WorkforceChatPanel employee={employee} initial={history} health={health} context={conversationContext}/>
     </WorkforceShell>
   );
 }

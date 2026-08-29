@@ -96,7 +96,7 @@ export class UnifiedAIContextService {
         },
       ],
       providerHealthy = integrations.providers.filter(
-        (item) => item.state === "Healthy",
+        (item) => item.state === "Connected",
       ).length,
       observability = {
         memoryUsage: counts("ai_conversation"),

@@ -17,7 +17,7 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { deliverableGroups } from "./catalog";
 import { buildCampaignBlueprint } from "./creative-director";
 import type {
@@ -73,13 +73,13 @@ const card =
     "Government",
   ],
   steps = [
-    "Campaign details",
-    "Campaign objective",
-    "Target audience",
+    "Campaign Details",
+    "Campaign Objective",
+    "Target Audience",
     "Brand",
     "Deliverables",
-    "Campaign style",
-    "AI Creative Recommendation",
+    "Campaign Style",
+    "Creative Recommendation",
   ];
 const empty: CampaignBrief = {
   name: "",
@@ -111,6 +111,8 @@ export function CampaignStudio({
         ),
       [brief, snapshot.brands],
     );
+  useEffect(() => { const saved = window.localStorage.getItem("vayon-campaign-draft"); if (!saved) return; queueMicrotask(() => { try { setBrief({ ...empty, ...JSON.parse(saved) as CampaignBrief }); } catch { window.localStorage.removeItem("vayon-campaign-draft"); } }); }, []);
+  useEffect(() => { window.localStorage.setItem("vayon-campaign-draft", JSON.stringify(brief)); }, [brief]);
   const kpis: readonly {
     readonly label: string;
     readonly value: string | number;
@@ -334,6 +336,11 @@ function Wizard({
   blueprint: ReturnType<typeof buildCampaignBlueprint>;
   close: () => void;
 }) {
+  const requirements = [
+    ["Campaign Name", Boolean(brief.name.trim())], ["Business Type", Boolean(brief.businessType.trim())], ["Industry", Boolean(brief.industry.trim())], ["Target Country", Boolean(brief.targetCountry.trim())], ["Campaign Goal", Boolean(brief.objective)], ["Language", brief.languages.length > 0], ["Primary Deliverable", brief.deliverables.length > 0],
+  ] as const;
+  const valid = step === 0 ? requirements.slice(0, 6).every(([, done]) => done) : step === 1 ? Boolean(brief.objective) : step === 2 ? brief.audiences.length > 0 : step === 4 ? brief.deliverables.length > 0 : true;
+  const complete = requirements.every(([, done]) => done);
   return (
     <div className="fixed inset-0 z-[90] grid place-items-center overflow-y-auto bg-vds-overlay p-4">
       <section
@@ -345,7 +352,7 @@ function Wizard({
         <div className="flex justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-vds-primary">
-              Step {step + 1} of 7
+              {Math.round(((step + 1) / 7) * 100)}% complete · {step} completed · {6 - step} remaining
             </p>
             <h2 className="mt-2 text-xl font-semibold" id="campaign-wizard">
               {steps[step]}
@@ -374,7 +381,7 @@ function Wizard({
                 ] as const
               ).map((key) => (
                 <label className="text-sm" key={key}>
-                  {key.replace(/([A-Z])/g, " $1")}
+                  {key.replace(/([A-Z])/g, " $1").replace(/^./, (value) => value.toUpperCase())} *
                   <input
                     value={brief[key]}
                     onChange={(event) =>
@@ -388,7 +395,7 @@ function Wizard({
                 </label>
               ))}
               <label className="text-sm">
-                Languages
+                Language *
                 <input
                   value={brief.languages.join(", ")}
                   onChange={(event) =>
@@ -475,7 +482,7 @@ function Wizard({
               }
             />
           )}{" "}
-          {step === 6 && <Blueprint blueprint={blueprint} />}
+          {step === 6 && (complete ? <Blueprint blueprint={blueprint} /> : <div className="rounded-2xl border border-vds-border bg-vds-elevated p-5"><h3 className="font-semibold">Complete the required campaign information before AI recommendations can be generated.</h3><ul className="mt-4 grid gap-2 text-sm text-vds-muted sm:grid-cols-2">{requirements.map(([label, done]) => <li key={label}>{done ? "✓" : "○"} {label}</li>)}</ul></div>)}
         </div>
         <div className="mt-6 flex justify-between">
           <Button
@@ -487,7 +494,7 @@ function Wizard({
             Back
           </Button>
           {step < 6 ? (
-            <Button onClick={() => setStep(Math.min(6, step + 1))}>
+            <Button disabled={!valid} onClick={() => valid && setStep(Math.min(6, step + 1))}>
               Continue
               <ChevronRight className="size-4" />
             </Button>

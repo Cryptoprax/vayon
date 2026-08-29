@@ -8,8 +8,8 @@ const read = (path) =>
 
 test("every authenticated route receives an explicit evidence-safe certification status", async () => {
   const result = await certifyProduct();
-  assert.equal(result.evidence.routeCount, 207);
-  assert.equal(result.routes.length, 207);
+  assert.equal(result.evidence.routeCount, 209);
+  assert.equal(result.routes.length, 209);
   assert.equal(
     result.routes.every((item) =>
       ["PASS", "WARNING", "FAIL"].includes(item.status),

@@ -9,7 +9,7 @@ const homepage = await read("features/marketing/components/Homepage.tsx");
 const requireAll = (source, values, area) => { for (const value of values) if (!source.includes(value)) throw new Error(`${area} missing: ${value}`); };
 requireAll(profile,["Mission","Working","Available","Review Required","Offline","Today&apos;s Work","Recommendations","Activity Feed"],"Headquarters profile");
 requireAll(secondary,["Workload","Capacity","Assigned Leads","Properties","Meetings","Tasks","Campaigns","Documents","Current Deals","Matching Queue","Content Queue","Open Conversations","Command Center","Assign Work","Review Recommendations","Weekly and Monthly Overview","Awaiting first activity.","Team Collaboration"],"Headquarters panels");
-requireAll(route,["dynamic(","What should I prioritize today?","Which buyers need attention?","Generate proposal.","approval-based"],"Headquarters route");
+requireAll(route,["dynamic(","What should I follow up today?","Which buyers are hottest?","Which deals are at risk?","approval-based"],"Headquarters route");
 requireAll(navigation,["AI Team","Sarah","Emma","Alex","David","Olivia"],"AI Team navigation");
 requireAll(sidebar,["aiTeamOpen","setAiTeamOpen","aria-expanded={aiTeamOpen}","motion-reduce"],"Expandable sidebar");
 requireAll(homepage,["Open Headquarters","/vayon/ai/workforce/"],"Homepage headquarters links");

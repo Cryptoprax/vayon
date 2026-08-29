@@ -23,7 +23,7 @@ const actions = [
   ["Autonomous Operations Center", "/platform/founder/operations"],
   ["Unified AI Memory", "/platform/founder/memory"],
   ["Workflow & AI Orchestration", "/platform/founder/workflows"],
-  ["Enterprise Integration Hub", "/platform/founder/integrations"],
+  ["Business Connections", "/platform/founder/integrations"],
   ["Platform Observability", "/platform/founder/observability"],
   ["AI Creative Runtime", "/vayon/creative/runtime"],
   ["Creative Execution Engine", "/vayon/creative/runtime/execution"],

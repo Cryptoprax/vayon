@@ -1,1 +1,5 @@
-import{LaunchReadinessDashboard}from"@/features/platform/launch-readiness/components/LaunchReadinessDashboard";import{LaunchReadinessService}from"@/features/platform/launch-readiness/services/launch-readiness.service";export const dynamic="force-dynamic";export default async function Page(){return <LaunchReadinessDashboard data={await new LaunchReadinessService().snapshot()}/>}
+import { redirect } from "next/navigation";
+
+export default function Page() {
+  redirect("/vayon/platform/launch-readiness");
+}

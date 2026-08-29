@@ -83,7 +83,7 @@ export async function googleLoginAction(form?: FormData) {
       await origin(),
       next,
     );
-  if (error || !data?.url) fail("/login", "Unable to start Google sign in.");
+  if (error || !data?.url) fail("/login", "Google authentication is temporarily unavailable.");
   redirect(data.url);
 }
 export async function forgotPasswordAction(form: FormData) {

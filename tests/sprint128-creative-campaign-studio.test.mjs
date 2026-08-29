@@ -13,13 +13,13 @@ test("campaign wizard contains seven planning steps and full deliverable groups"
   const ui = read("features/vayon/campaign-studio/CampaignStudio.tsx"),
     catalog = read("features/vayon/campaign-studio/catalog.ts");
   for (const value of [
-    "Campaign details",
-    "Campaign objective",
-    "Target audience",
+    "Campaign Details",
+    "Campaign Objective",
+    "Target Audience",
     "Brand",
     "Deliverables",
-    "Campaign style",
-    "AI Creative Recommendation",
+    "Campaign Style",
+    "Creative Recommendation",
     "Branding",
     "Marketing",
     "Website",

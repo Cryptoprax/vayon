@@ -12,13 +12,15 @@ test("critical verification journey points to automatic workspace and dashboard 
   assert.doesNotMatch(verification, /continue to organization onboarding/);
 });
 
-test("shared errors explain recovery without exposing internal diagnostics", () => {
+test("shared errors explain recovery and onboarding diagnostics remain development-only", () => {
   const state = read("features/vayon/components/RouteStates.tsx");
   const root = read("app/error.tsx");
   const onboarding = read("app/onboarding/error.tsx");
   for (const value of ["temporarily unavailable", "records have not been changed", "Try again", "Dashboard", "Support"]) assert.match(state, new RegExp(value));
-  assert.match(root + onboarding, /RouteError/);
-  assert.doesNotMatch(state + root + onboarding, /error\.message|error\.stack|digest|JSON\.stringify/);
+  assert.match(root, /RouteError/);
+  assert.doesNotMatch(state + root, /error\.message|error\.stack|digest|JSON\.stringify/);
+  assert.match(onboarding, /NODE_ENV === "development"/);
+  assert.match(onboarding, /Developer diagnostics/);
 });
 
 test("critical CRM workflow dashboard and billing journeys have loading boundaries", () => {

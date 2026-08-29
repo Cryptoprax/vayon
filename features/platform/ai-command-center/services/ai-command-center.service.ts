@@ -86,7 +86,7 @@ export class AICommandCenterService {
         .dashboard()
         .catch(() => null),
       providerHealthy = operations.integrations.providers.filter(
-        (item) => item.state === "Healthy",
+        (item) => item.state === "Connected",
       ),
       pending =
         collaboration?.recommendationPipeline.filter(
