@@ -39,6 +39,15 @@ const row = (lead: (typeof auroraLeads)[number]): CrmLeadRow => {
     lastActivity: lead.createdAt,
     aiScore:
       lead.priority === "urgent" ? 92 : lead.priority === "high" ? 78 : 64,
+    interestLevel: lead.priority === "urgent" ? "excellent" : lead.priority === "high" ? "hot" : "warm",
+    intelligenceReason: "Score reflects verified demo budget, property preference, source, and engagement evidence.",
+    intelligenceRecommendation: "Confirm the next property action with the customer.",
+    intelligenceConfidence: 88,
+    intelligenceEvidence: [{signal:"verified demo profile",weight:30},{signal:"property preference",weight:20}],
+    intelligenceUpdatedAt: lead.createdAt,
+    pipelineStage: lead.status,
+    nextRecommendedAction: "Confirm the next property action",
+    followUpDueAt: lead.createdAt,
     createdAt: lead.createdAt,
     location: property.city,
     propertyType: property.propertyType,
@@ -200,6 +209,7 @@ export class AuroraCrmRepository implements CrmRepository {
       })),
       documents: [],
       insights: new CrmRulesService().insight(lead),
+      recommendations: [],
     };
   }
 }

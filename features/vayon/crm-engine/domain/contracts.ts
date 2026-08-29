@@ -23,6 +23,15 @@ export interface CrmLeadRow {
   readonly propertyInterest: string;
   readonly lastActivity?: string;
   readonly aiScore?: number;
+  readonly interestLevel: string;
+  readonly intelligenceReason: string;
+  readonly intelligenceRecommendation: string;
+  readonly intelligenceConfidence: number;
+  readonly intelligenceEvidence: readonly { readonly signal:string; readonly weight:number }[];
+  readonly intelligenceUpdatedAt: string;
+  readonly pipelineStage: string;
+  readonly nextRecommendedAction: string;
+  readonly followUpDueAt?: string;
   readonly createdAt: string;
   readonly location?: string;
   readonly propertyType?: string;
@@ -83,7 +92,9 @@ export interface CrmLeadProfile {
   readonly tasks: readonly CrmRelatedItem[];
   readonly documents: readonly CrmRelatedItem[];
   readonly insights: CrmInsight;
+  readonly recommendations: readonly CrmPropertyRecommendation[];
 }
+export interface CrmPropertyRecommendation { readonly id:string;readonly propertyId:string;readonly title:string;readonly reference:string;readonly price:string;readonly location:string;readonly bedrooms?:number;readonly area?:number;readonly status:string;readonly overallScore:number;readonly budgetScore:number;readonly locationScore:number;readonly bedroomScore:number;readonly propertyTypeScore:number;readonly availabilityScore:number;readonly investmentScore:number;readonly rentalScore:number;readonly lifestyleScore:number;readonly recommendation:string;readonly calculatedAt:string }
 export interface CrmCompany {
   readonly id: string;
   readonly name: string;

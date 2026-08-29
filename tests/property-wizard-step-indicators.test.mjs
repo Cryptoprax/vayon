@@ -1,0 +1,6 @@
+import test from "node:test";import assert from "node:assert/strict";import{readFile}from"node:fs/promises";
+const source=await readFile(new URL("../features/vayon/property/components/PropertyWizard.tsx",import.meta.url),"utf8");
+test("property wizard renders every section label as visible button content",()=>{assert.match(source,/>\{section\}<\/span>/);assert.doesNotMatch(source,/h-1\.5 rounded-full/);for(const label of["Basic","Location","Pricing","Amenities","Media","Ownership","Availability","Legal","SEO","Internal notes"])assert.match(source,new RegExp(label))});
+test("current property step has an accessible ordinal announcement",()=>{assert.match(source,/aria-current=\{active\?"step":undefined\}/);assert.match(source,/Step \$\{number\} of \$\{sections\.length\}, \$\{section\}/)});
+test("stepper is responsive without clipping the active title",()=>{assert.match(source,/overflow-x-auto/);assert.match(source,/min-w-max/);assert.match(source,/active\?"inline":"hidden sm:inline"/);assert.match(source,/shrink-0/)});
+test("existing keyboard-native button navigation remains intact",()=>{assert.match(source,/type="button"/);assert.match(source,/onClick=\{\(\) => setStep\(number\)\}/);assert.match(source,/focus-ring/)});

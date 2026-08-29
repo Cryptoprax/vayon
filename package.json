@@ -32,6 +32,7 @@
     "audit:paddle-live": "node scripts/audit-paddle-live.mjs",
     "audit:billing-stability": "node scripts/audit-billing-stability.mjs",
     "audit:crm-onboarding-stability": "node scripts/audit-crm-onboarding-stability.mjs",
+    "audit:crm-completion": "node scripts/audit-crm-completion.mjs",
     "audit:vgi": "node scripts/audit-vgi-foundation.mjs",
     "audit:executive-ux": "node scripts/audit-ai-cmo-executive-ux.mjs",
     "audit:simplification": "node scripts/audit-ux-simplification.mjs simplification",

@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { SmartEmptyState } from "@/features/vayon/components/SmartEmptyState";
-import type {
-  CrmCompany,
-  CrmLeadRow,
-  CrmTimelineItem,
-} from "../domain/contracts";
+import type { CrmLeadRow, CrmTimelineItem } from "../domain/contracts";
+import type { CompanyRecord } from "@/features/vayon/crm-company/domain";
 export function CustomerDirectory({ items }: { items: readonly CrmLeadRow[] }) {
   return (
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -62,27 +59,27 @@ export function CustomerDirectory({ items }: { items: readonly CrmLeadRow[] }) {
     </div>
   );
 }
-export function CompanyDirectory({ items }: { items: readonly CrmCompany[] }) {
+export function CompanyDirectory({ items }: { items: readonly CompanyRecord[] }) {
   return (
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {items.length ? (
         items.map((item) => (
-          <article
+          <Link href={`/vayon/crm/companies/${item.id}`}
             key={item.id}
             className="rounded-2xl border border-vds-border bg-vds-surface p-5"
           >
             <h2 className="font-semibold">{item.name}</h2>
-            <p className="mt-1 text-sm text-vds-muted">{item.industry}</p>
+            <p className="mt-1 text-sm text-vds-muted">{item.industry ?? "Industry not recorded"}</p>
             <div className="mt-5 flex justify-between text-xs">
-              <span>{item.location}</span>
+              <span>{item.address ?? item.country ?? "Location not recorded"}</span>
               <span className="rounded-full bg-vds-primary-soft px-2 py-1 text-vds-primary">
-                {item.relationship}
+                {item.ownerName}
               </span>
             </div>
-          </article>
+          </Link>
         ))
       ) : (
-        <Empty message="Company records are unavailable because this workspace has no compatible company data source." />
+        <SmartEmptyState className="col-span-full" title="No Companies Yet" description="Create the first company to connect contacts, leads, deals, and properties in one account view." primaryLabel="Create Company" primaryHref="/vayon/crm/companies/new" />
       )}
     </div>
   );
