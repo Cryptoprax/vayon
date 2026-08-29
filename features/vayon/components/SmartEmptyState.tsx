@@ -17,6 +17,7 @@ interface SmartEmptyStateProps {
     readonly href: string;
   }[];
   readonly className?: string;
+  readonly aiSuggestion?: string;
 }
 
 export function SmartEmptyState({
@@ -27,6 +28,7 @@ export function SmartEmptyState({
   onPrimary,
   secondaryActions = [],
   className = "",
+  aiSuggestion = "Ask the Real Estate Assistant to recommend the best next step.",
 }: SmartEmptyStateProps) {
   return (
     <section
@@ -38,6 +40,9 @@ export function SmartEmptyState({
       <h3 className="mt-5 text-xl font-semibold tracking-[-.02em]">{title}</h3>
       <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-vds-muted">
         {description}
+      </p>
+      <p className="mx-auto mt-3 max-w-lg text-xs font-medium text-vds-primary">
+        AI suggestion: {aiSuggestion}
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-2">
         {primaryHref ? (

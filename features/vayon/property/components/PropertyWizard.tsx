@@ -54,7 +54,8 @@ export function PropertyWizard({ action, property, error }: { action: (form: For
           const active = number === step;
           return (
             <li key={section} className="shrink-0 snap-start">
-              <button
+              <Button
+                variant="control"
                 type="button"
                 aria-label={`Step ${number} of ${sections.length}, ${section}`}
                 aria-current={active ? "step" : undefined}
@@ -63,7 +64,7 @@ export function PropertyWizard({ action, property, error }: { action: (form: For
               >
                 <span aria-hidden="true" className="font-semibold">{number}</span>
                 <span>{section}</span>
-              </button>
+              </Button>
             </li>
           );
         })}

@@ -21,8 +21,8 @@ test("the sales pipeline uses the existing governed mutation for drag and drop",
   assert.match(board, /onDrop/);
   assert.match(board, /moveDealStageAction/);
   assert.match(board, /Weighted/);
-  assert.match(board, /Filter pipeline by owner/);
-  assert.match(board, /Search pipeline/);
+  assert.match(board, /Filter transactions by assigned agent/);
+  assert.match(board, /Search property transactions/);
 });
 
 test("customer profiles include communications, revenue, history, and governed AI assistance", async () => {

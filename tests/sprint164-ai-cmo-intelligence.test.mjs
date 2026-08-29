@@ -6,10 +6,10 @@ const engine = read("features/vayon/growth-intelligence/strategy-engine.ts");
 const workspace = read("features/vayon/growth-intelligence/StrategyWorkspace.tsx");
 const overview = read("features/vayon/growth-intelligence/GrowthOverview.tsx");
 
-test("executive marketing brief is personalized and evidence safe", () => {
+test("real estate growth brief is personalized and evidence safe", () => {
   assert.match(overview, /Good morning, \{userName\}/);
-  assert.match(overview, /No campaign performance data is available yet/);
-  assert.match(overview, /Nothing is executed automatically/);
+  assert.match(overview, /No verified workspace data is available/);
+  assert.match(overview, /Metrics appear only when workspace-scoped evidence is available/);
   assert.doesNotMatch(overview, /\d+%|followers|impressions:\s*\d/i);
 });
 

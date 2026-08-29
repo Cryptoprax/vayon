@@ -4,7 +4,7 @@ import type {
   WorkflowTemplate,
 } from "../domain/contracts";
 
-const specs = [
+const platformSpecs = [
   ["new-lead-follow-up", "New Lead Follow-up", "Sales", "lead.created", "crm.task.recommend"],
   ["hot-lead-escalation", "Hot Lead Escalation", "Sales", "lead.updated", "user.notify"],
   ["deal-at-risk", "Deal At Risk", "Sales", "deal.stage_changed", "ai.recommend"],
@@ -18,6 +18,26 @@ const specs = [
   readonly [string, string, string, TriggerKind, ActionKind]
 >;
 
+const realEstateSpecs = [
+  ["buyer-qualification", "Buyer Qualification", "Real Estate", "lead.created", "crm.task.recommend"],
+  ["seller-onboarding", "Seller Onboarding", "Real Estate", "contact.created", "crm.task.recommend"],
+  ["property-listing", "Property Listing", "Real Estate", "property.created", "approval.request"],
+  ["property-verification", "Property Verification", "Real Estate", "property.created", "task.create"],
+  ["lead-qualification", "Lead Qualification", "Real Estate", "lead.created", "ai.recommend"],
+  ["property-matching", "Property Matching", "Real Estate", "lead.qualified", "ai.recommend"],
+  ["site-visit", "Site Visit", "Real Estate", "meeting.scheduled", "reminder.create"],
+  ["offer-management", "Offer Management", "Real Estate", "deal.stage_changed", "approval.request"],
+  ["negotiation", "Negotiation", "Real Estate", "deal.stage_changed", "crm.task.recommend"],
+  ["booking", "Booking", "Real Estate", "deal.won", "task.create"],
+  ["loan-processing", "Loan Processing", "Real Estate", "deal.stage_changed", "crm.task.recommend"],
+  ["registration", "Registration", "Real Estate", "deal.won", "task.create"],
+  ["property-handover", "Property Handover", "Real Estate", "deal.won", "task.create"],
+  ["after-sales-follow-up", "After Sales Follow-up", "Real Estate", "deal.won", "crm.task.recommend"],
+  ["referral-campaign", "Referral Campaign", "Real Estate", "deal.won", "approval.request"],
+] as const satisfies ReadonlyArray<readonly [string, string, string, TriggerKind, ActionKind]>;
+
+const specs = [...realEstateSpecs, ...platformSpecs] as const;
+
 export const workflowTemplates: readonly WorkflowTemplate[] = Object.freeze(
   specs.map(([id, name, category, trigger, action]) =>
     Object.freeze({
@@ -25,6 +45,8 @@ export const workflowTemplates: readonly WorkflowTemplate[] = Object.freeze(
       name,
       description: `Governed ${name.toLowerCase()} automation.`,
       category,
+      industryVisibility: category === "Real Estate" ? ["REAL_ESTATE"] as const : ["GENERAL"] as const,
+      roleVisibility: category === "Real Estate" ? ["Founder", "Super Admin", "Admin", "Manager", "Agent", "Employee", "Viewer"] as const : ["Founder", "Super Admin"] as const,
       definition: Object.freeze({
         id: `template-${id}`,
         name,

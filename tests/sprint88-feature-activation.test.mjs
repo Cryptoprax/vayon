@@ -4,18 +4,18 @@ import test from "node:test";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("production-ready capabilities are present in primary navigation", () => {
+test("production-ready capabilities are placed in customer or founder navigation", () => {
   const navigation = read("features/vayon/product-shell/navigation.ts");
   for (const value of [
-    "Growth Intelligence",
-    "Campaigns",
-    "VAYON Intelligence",
-    "Knowledge",
+    "Growth",
+    "Lead Generation",
+    "AI Assistant",
+    "Knowledge Engine",
     "Product Intelligence",
   ]) assert.match(navigation, new RegExp(value));
   for (const route of [
-    "/vayon/creative-studio",
-    "/vayon/creative-studio/growth",
+    "/vayon/growth/marketing",
+    "/vayon/growth/lead-generation",
     "/vayon/intelligence",
     "/vayon/knowledge",
     "/vayon/settings/product-intelligence",

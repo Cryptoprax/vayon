@@ -6,7 +6,7 @@ const source = await readFile(new URL("../features/vayon/property/components/Pro
 const stepper = source.slice(source.indexOf('<nav className="mt-5'), source.indexOf("{error &&"));
 
 test("property wizard uses ten real navigation buttons with visible number and title", () => {
-  assert.match(stepper, /<button/);
+  assert.match(stepper, /<Button/);
   assert.match(stepper, /<span aria-hidden="true" className="font-semibold">\{number\}<\/span>/);
   assert.match(stepper, /<span>\{section\}<\/span>/);
   for (const label of ["Basic", "Location", "Pricing", "Pricing Details", "Media", "Amenities", "Ownership", "Documents", "Review", "Publish"]) {

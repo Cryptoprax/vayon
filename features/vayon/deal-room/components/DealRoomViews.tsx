@@ -12,7 +12,7 @@ const card =
   "rounded-2xl border border-vds-border bg-vds-surface p-5 shadow-vds-sm";
 export function DealRoomShell({ children }: { children: ReactNode }) {
   const nav = [
-    ["Deals", "/vayon/deals"],
+    ["Transactions", "/vayon/deals"],
     ["Pipeline", "/vayon/deals/pipeline"],
     ["Offers", "/vayon/deals/offers"],
     ["Contracts", "/vayon/deals/contracts"],
@@ -49,7 +49,7 @@ export function Header({
   return (
     <header>
       <p className="text-xs uppercase tracking-[.2em] text-vds-primary">
-        Enterprise Deal Room
+        Real Estate Transaction Center
       </p>
       <h1 className="mt-2 text-3xl font-semibold">{title}</h1>
       <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>
@@ -115,7 +115,7 @@ function Records({
                 {"offerNumber" in x ? x.offerNumber : x.title}
               </p>
               <p className="mt-1 text-xs text-vds-muted">
-                Deal {x.dealId} ·{" "}
+                Transaction {x.dealId} ·{" "}
                 {"amount" in x
                   ? `${x.currency} ${x.amount.toLocaleString()}`
                   : `Version ${x.version}`}
@@ -147,7 +147,7 @@ export function Checklists({ items }: { items: readonly DealChecklist[] }) {
       {items.map((x) => (
         <article className={card} key={x.dealId}>
           <div className="flex justify-between">
-            <h2 className="font-semibold">Deal {x.dealId}</h2>
+            <h2 className="font-semibold">Transaction {x.dealId}</h2>
             <span>{x.completionPercentage}%</span>
           </div>
           <div className="mt-4 space-y-2">

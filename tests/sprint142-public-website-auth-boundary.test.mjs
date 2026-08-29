@@ -6,7 +6,6 @@ const proxy = readFileSync("lib/supabase/proxy.ts", "utf8");
 
 const publicRoutes = [
   "/",
-  "/platform",
   "/features",
   "/pricing",
   "/solutions/startups",
@@ -79,5 +78,5 @@ test("nested public content is intentional and application prefixes are not", ()
     assert.match(proxy, new RegExp(`"${route}"`));
   }
   assert.doesNotMatch(proxy, /PUBLIC_ROUTE_PREFIXES[\s\S]*?"\/platform"/);
+  assert.doesNotMatch(proxy, /^\s*"\/platform",\s*$/m);
 });
-

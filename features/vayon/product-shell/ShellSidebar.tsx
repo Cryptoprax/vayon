@@ -6,13 +6,14 @@ import { useEffect, useRef, useState } from "react";
 import { shellNavigation } from "./navigation";
 import { filterNavigationForRole } from "@/features/platform/permissions/runtime/navigation";
 import type { WorkspaceRoleCode } from "@/features/platform/organization/config/workspace-role-catalog";
+import type { PlatformVisibilityContext } from "@/features/platform/visibility/domain";
 
-export function ShellSidebar({ path, role, collapsed, mobileOpen, onCollapse, onMobileClose }: { readonly path: string; readonly role: WorkspaceRoleCode; readonly collapsed: boolean; readonly mobileOpen: boolean; readonly onCollapse: () => void; readonly onMobileClose: () => void }) {
+export function ShellSidebar({ path, role, visibility, collapsed, mobileOpen, onCollapse, onMobileClose }: { readonly path: string; readonly role: WorkspaceRoleCode; readonly visibility: PlatformVisibilityContext; readonly collapsed: boolean; readonly mobileOpen: boolean; readonly onCollapse: () => void; readonly onMobileClose: () => void }) {
   const [developerOpen, setDeveloperOpen] = useState(false);
   const [aiTeamOpen, setAiTeamOpen] = useState(true);
   const closeButton=useRef<HTMLButtonElement>(null);
   useEffect(()=>{if(!mobileOpen)return;const close=(event:KeyboardEvent)=>{if(event.key==="Escape")onMobileClose()};window.addEventListener("keydown",close);requestAnimationFrame(()=>closeButton.current?.focus());return()=>window.removeEventListener("keydown",close)},[mobileOpen,onMobileClose]);
-  const navigation=filterNavigationForRole(shellNavigation,role);
+  const navigation=filterNavigationForRole(shellNavigation,role,visibility);
   return <><div aria-hidden="true" onClick={onMobileClose} className={`fixed inset-0 z-[65] bg-vds-overlay backdrop-blur-sm transition lg:hidden ${mobileOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}/><aside id="vayon-sidebar" aria-label="Business navigation" className={`fixed inset-y-0 left-0 z-[70] flex w-72 flex-col border-r border-vds-border bg-vds-surface/95 pt-16 shadow-xl shadow-vds-shadow backdrop-blur-xl transition-[width,transform] duration-200 lg:z-50 lg:translate-x-0 ${mobileOpen ? "translate-x-0" : "-translate-x-full"} ${collapsed ? "lg:w-20" : "lg:w-64"}`}>
     <Button variant="control" ref={closeButton} type="button" onClick={onMobileClose} aria-label="Close navigation" className="absolute right-3 top-3 grid size-9 place-items-center rounded-xl text-vds-muted hover:bg-vds-hover hover:text-vds-foreground lg:hidden"><X className="size-4"/></Button>
     <nav className="flex-1 overflow-y-auto px-3 py-5">{navigation.map(group => {

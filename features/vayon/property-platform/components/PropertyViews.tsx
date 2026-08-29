@@ -86,9 +86,9 @@ export function PropertyGrid({
       ))}
       {!properties.length && (
         <div className="col-span-full rounded-2xl border border-dashed border-vds-border p-8 text-center">
-          <p className="font-medium">Create your first property listing.</p>
-          <p className="mt-1 text-sm text-vds-muted">Add the essential details now; enrich the listing whenever you are ready.</p>
-          <ButtonLink href="/vayon/properties/new" className="mt-4">Create property</ButtonLink>
+          <p className="font-medium">No Properties Yet</p>
+          <p className="mt-1 text-sm text-vds-muted">Add your first property listing to begin receiving buyer enquiries.</p>
+          <div className="mt-4 flex flex-wrap justify-center gap-3"><ButtonLink href="/vayon/properties/new">Add property listing</ButtonLink><ButtonLink href="/vayon/properties/inventory" variant="secondary">Import properties</ButtonLink></div>
         </div>
       )}
     </section>

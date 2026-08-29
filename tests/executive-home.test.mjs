@@ -7,7 +7,7 @@ test("Founder Command Center route and default landing are registered", () => {
   assert.match(read("app/vayon/home/page.tsx"), /FounderCommandCenter/);
   assert.match(read("app/vayon/page.tsx"), /redirect\(query\.welcome === "1" \? "\/vayon\/home\?welcome=1" : "\/vayon\/home"\)/);
   const navigation = read("features/platform/builder/config/vayon-navigation.ts");
-  assert.match(navigation, /label: "Home", href: "\/vayon\/home"/);
+  assert.match(navigation, /label: "Dashboard", href: "\/vayon\/dashboard"/);
 });
 
 test("Executive Home contains every requested experience section", () => {

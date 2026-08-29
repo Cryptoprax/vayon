@@ -25,7 +25,7 @@ test("global help exposes every customer support destination", () => {
   const source = read("features/vayon/product-shell/ShellMenus.tsx");
   for (const label of ["Documentation", "Video Tutorials", "Contact Support", "Book Demo", "Report Issue", "Keyboard Shortcuts", "Send Feedback"])
     assert.match(source, new RegExp(label));
-  assert.match(read("features/vayon/product-shell/ShellHeader.tsx"), /<HelpMenu\/>/);
+  assert.match(read("features/vayon/product-shell/ShellHeader.tsx"), /<HelpMenu visibility=\{visibility\}\/>/);
 });
 
 test("shared loading and error states are friendly and actionable", () => {

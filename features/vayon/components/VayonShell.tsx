@@ -6,6 +6,7 @@ import { ProductExperience } from "./ProductExperience";
 import { getAuroraNavigationContext } from "../demo-workspace";
 import { WorkspacePermissionService } from "@/features/platform/permissions/runtime/permission.service";
 import { WorkspaceBootstrapService } from "@/features/onboarding/services/workspace-bootstrap.service";
+import { PlatformVisibilityService } from "@/features/platform/visibility/service";
 // Search/navigation compatibility remains sourced from builder/config/vayon-navigation through ShellHeader.
 
 export async function VayonShell({
@@ -20,6 +21,7 @@ export async function VayonShell({
   const authorization = await new WorkspacePermissionService()
     .context()
     .catch(() => null);
+  const visibility = await new PlatformVisibilityService().context();
   const
     demo = getAuroraNavigationContext(),
     userName = String(
@@ -52,6 +54,7 @@ export async function VayonShell({
     <Suspense>
       <ProductExperience
         identity={identity}
+        visibility={visibility}
         intelligenceEnabled={process.env.FEATURE_VAYON_INTELLIGENCE !== "false"}
         intelligenceOrganization={organization?.id}
         intelligenceRole={role}

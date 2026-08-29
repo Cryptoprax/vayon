@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button, ButtonLink } from "@/features/platform/design-system";
 import type { CrmLeadProfile } from "../domain/contracts";
+import { salesCopilotActions } from "@/features/vayon/real-estate-experience/catalog";
 const tabs = [
   "overview",
   "timeline",
@@ -75,6 +76,22 @@ export function CrmLeadProfileView({ profile }: { profile: CrmLeadProfile }) {
           </div>
         </div>
       </section>
+      <section aria-label="Client intelligence" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          ["Buyer / Seller Profile", profile.buyingPurpose ?? "Not captured"],
+          ["Intent Score", `${lead.aiScore ?? 0}/100`],
+          ["Urgency Score", insights.urgency],
+          ["Budget Confidence", insights.budgetConfidence],
+          ["Mortgage Status", "Not captured"],
+          ["Preferred Communities", profile.preferredLocations.join(", ") || "Not captured"],
+          ["Preferred Builders", "Not captured"],
+          ["Property Matches", `${profile.recommendations.length} verified`],
+          ["Viewing History", `${profile.meetings.length} recorded`],
+          ["Communication Summary", insights.summary],
+          ["AI Next Best Action", lead.nextRecommendedAction],
+          ["Assigned Agent", profile.owner],
+        ].map(([label, value]) => <article key={label} className="rounded-2xl border border-vds-border bg-vds-surface p-4"><p className="text-xs text-vds-muted">{label}</p><p className="mt-2 text-sm font-semibold">{value}</p></article>)}
+      </section>
       <div className="flex gap-1 overflow-x-auto border-b border-vds-border">
         {tabs.map((x) => (
           <Button
@@ -83,7 +100,7 @@ export function CrmLeadProfileView({ profile }: { profile: CrmLeadProfile }) {
             onClick={() => setTab(x)}
             className={`vds-focus shrink-0 border-b-2 px-3 py-3 text-sm capitalize ${tab === x ? "border-vds-primary text-vds-primary" : "border-transparent text-vds-muted"}`}
           >
-            {x}
+            {x === "deals" ? "transactions" : x}
           </Button>
         ))}
       </div>
@@ -182,7 +199,8 @@ export function CrmLeadProfileView({ profile }: { profile: CrmLeadProfile }) {
     </div>
   );
 }
-function AiAssistant({leadId,leadName}:{leadId:string;leadName:string}) { const actions=[["Summarize customer","Summarize this customer using only authoritative workspace evidence."],["Generate follow-up","Draft a follow-up for human review. Do not send it."],["Write proposal","Draft a proposal outline for human review."],["Generate email","Draft a contextual email. Do not send it."],["Meeting agenda","Prepare a meeting agenda using recorded context."],["Risk analysis","Explain customer and deal risks with evidence."],["Suggested next action","Recommend the next action without executing it."]] as const; return <section className="rounded-2xl border border-vds-accent-border bg-vds-primary-soft p-5"><p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Sales AI · recommendation only</p><h3 className="mt-2 text-xl font-semibold">Assist with {leadName}</h3><p className="mt-2 text-sm leading-6 text-vds-muted">Open the existing governed Sales AI runtime with this customer&apos;s identifier. No message, proposal, meeting, or CRM change is executed automatically.</p><div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">{actions.map(([label,prompt])=><ButtonLink key={label} variant="outline" href={`/vayon/ai/workforce/sales-ai?customer=${encodeURIComponent(leadId)}&prompt=${encodeURIComponent(prompt)}`} className="justify-start text-left">{label}</ButtonLink>)}</div></section>}
+const legacySalesActions = ["Summarize customer", "Generate follow-up", "Write proposal", "Generate email", "Meeting agenda", "Risk analysis", "Suggested next action"] as const;
+function AiAssistant({leadId,leadName}:{leadId:string;leadName:string}) { const actions=[...salesCopilotActions,...legacySalesActions.filter(action=>!salesCopilotActions.some(current=>current.toLocaleLowerCase()===action.toLocaleLowerCase()))];return <section className="rounded-2xl border border-vds-accent-border bg-vds-primary-soft p-5"><p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Real Estate Sales Copilot · recommendation only · approval required</p><h3 className="mt-2 text-xl font-semibold">Assist with {leadName}</h3><p className="mt-2 text-sm leading-6 text-vds-muted">Prepare client communication, property recommendations, viewing plans, and transaction documents using the existing governed AI runtime. No message, proposal, meeting, or CRM change is executed automatically.</p><div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">{actions.map(label=><ButtonLink key={label} variant="outline" href={`/vayon/ai/workforce/sales-ai?customer=${encodeURIComponent(leadId)}&prompt=${encodeURIComponent(`${label} using only verified workspace evidence. Prepare for human approval and do not execute.`)}`} className="justify-start text-left">{label}</ButtonLink>)}</div></section>}
 function Info({
   title,
   values,

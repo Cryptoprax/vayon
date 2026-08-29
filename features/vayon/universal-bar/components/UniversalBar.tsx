@@ -368,8 +368,9 @@ export function UniversalBar({
                   )}{" "}
                   {(query || mode === "actions") &&
                     results.map((result, index) => (
+                      <div key={result.id}>
+                      {(index === 0 || results[index - 1]?.scope !== result.scope) && <p className="px-3 pb-1 pt-3 text-[10px] font-semibold uppercase tracking-[.16em] text-vds-subtle">{searchGroup(result.scope)}</p>}
                       <div
-                        key={result.id}
                         id={`universal-result-${result.id}`}
                         role="option"
                         aria-selected={active === index}
@@ -425,6 +426,7 @@ export function UniversalBar({
                           aria-hidden="true"
                         />
                       </div>
+                      </div>
                     ))}
                   {query && !results.length && (
                     <div className="p-10 text-center">
@@ -445,6 +447,10 @@ export function UniversalBar({
       )}
     </div>
   );
+}
+function searchGroup(scope: UniversalSearchScope) {
+  const labels: Partial<Record<UniversalSearchScope, string>> = { properties: "Properties", contacts: "Clients", leads: "Leads", employees: "Agents", companies: "Builders & Developers", deals: "Transactions", documents: "Documents", projects: "Communities", inventory: "Properties" };
+  return labels[scope] ?? "VAYON";
 }
 
 function EmptyExperience({

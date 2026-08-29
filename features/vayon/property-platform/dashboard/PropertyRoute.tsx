@@ -9,6 +9,7 @@ import {
   RelationshipPanel,
 } from "../components/PropertyViews";
 import { PropertyPlatformService } from "../services/property-platform.service";
+import { PropertyAnalyticsWidgets } from "../../real-estate-experience/RealEstateSurfaces";
 
 export async function PropertyPlatformRoute({
   view,
@@ -68,6 +69,7 @@ export async function PropertyPlatformRoute({
         description="Evidence-safe analytics derived only from authoritative repository relationships. Unavailable metrics are never fabricated."
       />
       <AnalyticsPanel analytics={service.analytics(snapshot)} />
+      <PropertyAnalyticsWidgets />
       <RelationshipPanel relationship={relationship} />
       {first && (
         <PropertyAI

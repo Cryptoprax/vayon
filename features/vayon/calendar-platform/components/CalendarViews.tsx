@@ -8,6 +8,7 @@ import {
   schedulingAnalytics,
   type CalendarViewModel,
 } from "../view-models/calendar";
+import { calendarCategories } from "../../real-estate-experience/catalog";
 
 const card =
   "rounded-2xl border border-vds-border bg-vds-surface p-5 shadow-vds-sm";
@@ -31,6 +32,9 @@ export function CalendarHeader({
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight">{title}</h1>
       <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>
+      <div className="mt-4 flex snap-x gap-2 overflow-x-auto pb-2" aria-label="Real estate event categories">
+        {calendarCategories.map((category) => <span className="shrink-0 snap-start rounded-full border border-vds-border bg-vds-surface px-3 py-1.5 text-xs text-vds-muted" key={category}>{category}</span>)}
+      </div>
     </header>
   );
 }
@@ -167,9 +171,9 @@ export function MeetingWorkspaceView({ event }: { event?: ScheduleEvent }) {
       </section>
     );
   const context = [
-    ["Customer Summary", event.customer ?? "Customer context unavailable."],
+    ["Client Summary", event.customer ?? "Client context unavailable."],
     ["Property Summary", event.property ?? "Property context unavailable."],
-    ["Deal Summary", event.deal ?? "Deal context unavailable."],
+    ["Transaction Summary", event.deal ?? "Transaction context unavailable."],
     ["Agenda", "No agenda recorded."],
     ["Attachments", "No attachments recorded."],
     ["Meeting Notes", "No meeting notes recorded."],
@@ -278,7 +282,7 @@ function ScheduleRow({ event }: { event: ScheduleEvent }) {
           min
         </p>
         <p className="mt-1 text-xs text-vds-muted">
-          {event.customer ?? "No customer"} · {event.deal ?? "No deal"} ·{" "}
+          {event.customer ?? "No client"} · {event.deal ?? "No transaction"} ·{" "}
           {event.workflow ?? "No workflow"}
         </p>
       </div>

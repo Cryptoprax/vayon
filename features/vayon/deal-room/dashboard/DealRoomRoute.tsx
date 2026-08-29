@@ -19,7 +19,7 @@ export async function DealRoomRoute({
     <main className="mx-auto max-w-[110rem] px-5 py-8">
       <Header
         title={view[0]!.toUpperCase() + view.slice(1)}
-        description="A governance-first, read-only transaction workspace connecting CRM, properties, communications, calendar, workflows, approvals, documents, tasks, and deterministic AI guidance."
+        description="A governance-first property transaction workspace connecting clients, properties, communications, viewings, approvals, documents, tasks, and evidence-backed guidance."
       />
       {view === "pipeline" && <Pipeline s={s} />}{" "}
       {view === "offers" && <Offers items={s.offers} />}{" "}

@@ -11,6 +11,7 @@ import type { ShellIdentity } from "../product-shell/types";
 import { PremiumWelcomeExperience } from "@/features/onboarding/components/PremiumWelcomeExperience";
 import { FloatingLayoutManager, FloatingSurface } from "../floating-layout/FloatingLayoutManager";
 import { TTFVObserver } from "../ttfv/TTFVObserver";
+import type { PlatformVisibilityContext } from "@/features/platform/visibility/domain";
 const storageKey = "vayon.shell.sidebar.collapsed.v1";
 const storageEvent = "vayon-shell-collapse";
 const VayonIntelligence = dynamic(
@@ -44,6 +45,7 @@ export function ProductExperience({
   intelligenceRole = "workspace-member",
   intelligenceSubscription,
   intelligencePermissions = [],
+  visibility,
 }: {
   readonly children: ReactNode;
   readonly identity: ShellIdentity;
@@ -52,6 +54,7 @@ export function ProductExperience({
   readonly intelligenceRole?: string;
   readonly intelligenceSubscription?: string;
   readonly intelligencePermissions?: readonly string[];
+  readonly visibility: PlatformVisibilityContext;
 }) {
   // Command palette compatibility: ShellHeader owns <ThemeToggle compact/> and <UniversalBar navigation={vayonNavigation}/>; event.metaKey||event.ctrlKey remains handled by UniversalBar. ShellSidebar owns aria-current.
   const path = usePathname(),
@@ -82,12 +85,14 @@ export function ProductExperience({
       </a>
       <ShellHeader
         identity={identity}
+        visibility={visibility}
         collapsed={collapsed}
         onMenu={() => setMobile(true)}
       />
       <ShellSidebar
         path={path}
         role={identity.workspaceRole ?? "guest"}
+        visibility={visibility}
         collapsed={collapsed}
         mobileOpen={mobile}
         onCollapse={toggleCollapse}
@@ -108,7 +113,7 @@ export function ProductExperience({
         </main>
       </div>
       <aside hidden aria-hidden="true" data-future-utility-rail="disabled" />
-      <QuickCreate />
+      <QuickCreate visibility={visibility} />
       {intelligenceEnabled && (
         <VayonIntelligence
           route={path}

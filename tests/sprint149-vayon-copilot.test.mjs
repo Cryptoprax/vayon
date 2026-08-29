@@ -9,8 +9,8 @@ test("Copilot is persistent, responsive, and connected to the global shortcut", 
   const copilot = read("features/vayon/intelligence-core/components/VayonIntelligence.tsx");
   const bar = read("features/vayon/universal-bar/components/UniversalBar.tsx");
   assert.match(shell, /VayonIntelligence/);
-  assert.match(copilot, /VAYON Copilot/);
-  assert.match(copilot, /Chief Operating Officer/);
+  assert.match(copilot, /Real Estate Assistant/);
+  assert.match(copilot, /Property, client and transaction guidance/);
   assert.match(copilot, /max-md:rounded-t-3xl/);
   assert.match(bar, /event\.metaKey \|\| event\.ctrlKey/);
   assert.match(bar, /vayon:copilot:open/);
@@ -58,7 +58,7 @@ test("executive brief options disclose missing evidence", () => {
 test("Copilot uses VDS controls, accessible semantics, and reduced motion", () => {
   const copilot = read("features/vayon/intelligence-core/components/VayonIntelligence.tsx");
   assert.match(copilot, /Button/);
-  assert.match(copilot, /aria-label="VAYON Copilot"/);
+  assert.match(copilot, /aria-label="Real Estate Assistant"/);
   assert.match(copilot, /aria-live="polite"/);
   assert.match(copilot, /motion-reduce:transition-none/);
 });

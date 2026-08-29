@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { getSupabaseConfig } from "./config";
+import { canViewPath, isFounderOnlyPath, normalizeIndustry, normalizeVisibilityRole } from "@/features/platform/visibility/policy";
 const PUBLIC_ROUTES = [
   "/",
   "/login",
@@ -8,7 +9,6 @@ const PUBLIC_ROUTES = [
   "/forgot-password",
   "/reset-password",
   "/auth/callback",
-  "/platform",
   "/demo",
   "/product",
   "/ai-workforce",
@@ -102,6 +102,28 @@ export async function refreshSession(request: NextRequest) {
     target.pathname = "/vayon";
     target.search = "";
     return NextResponse.redirect(target);
+  }
+  if (user && isFounderOnlyPath(path) && !["founder", "super_admin"].includes(String(user.app_metadata?.role ?? ""))) {
+    const target = request.nextUrl.clone();
+    target.pathname = "/_not-found";
+    target.search = "";
+    return NextResponse.rewrite(target, { status: 404 });
+  }
+  if (user && path.startsWith("/vayon")) {
+    const { data: membership } = await supabase.from("workspace_members").select("workspace_id,roles(code)").eq("user_id", user.id).eq("status", "active").limit(1).maybeSingle();
+    const workspaceId = membership?.workspace_id;
+    const { data: workspaceIndustry } = workspaceId
+      ? await supabase.from("workspace_industry").select("industry").eq("workspace_id", workspaceId).maybeSingle()
+      : { data: null };
+    const workspaceRole = (membership as unknown as { roles?: { code?: string } | null } | null)?.roles?.code;
+    const role = normalizeVisibilityRole(user.app_metadata?.role, workspaceRole);
+    const visibility = { role, founder: role === "Founder" || role === "Super Admin", industry: normalizeIndustry(workspaceIndustry?.industry) } as const;
+    if (!canViewPath(visibility, path)) {
+      const target = request.nextUrl.clone();
+      target.pathname = "/_not-found";
+      target.search = "";
+      return NextResponse.rewrite(target, { status: 404 });
+    }
   }
   if (isPublic) return response;
 

@@ -131,10 +131,16 @@ export function ApprovalList({ items }: { items: readonly ApprovalRequest[] }) {
               Requested by {item.requestedBy}
               {item.aiEmployee ? ` for ${item.aiEmployee}` : ""}
             </p>
+            <dl className="mt-4 grid gap-2 text-xs text-vds-muted sm:grid-cols-2 lg:grid-cols-4">
+              <div><dt className="font-medium text-vds-foreground">Requester</dt><dd>{item.requestedBy}</dd></div>
+              <div><dt className="font-medium text-vds-foreground">Approver</dt><dd>{item.humanApprover ?? "Awaiting assignment"}</dd></div>
+              <div><dt className="font-medium text-vds-foreground">Reason</dt><dd>{item.reason ?? "Awaiting decision"}</dd></div>
+              <div><dt className="font-medium text-vds-foreground">Evidence & timeline</dt><dd>Open the approval record</dd></div>
+            </dl>
           </Link>
         ))
       ) : (
-        <Empty text="No approval requests have been created." />
+        <Empty text="No real estate approvals need attention. New property, listing, pricing, offer, campaign, contract, description, or media requests will appear here with evidence and a timeline." />
       )}
     </div>
   );

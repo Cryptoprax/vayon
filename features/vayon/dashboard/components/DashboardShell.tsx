@@ -1,16 +1,16 @@
 import { ButtonLink } from "@/features/platform/design-system";
 import { BarChart3, Bot } from "lucide-react";
-import type { ExecutiveDashboardData, KpiMetric } from "../types";
+import type { ExecutiveDashboardData } from "../types";
 import { ActivityTimeline } from "./ActivityTimeline";
 import { AICommandBar } from "./AICommandBar";
 import { AIWorkforceGrid } from "./AIWorkforceGrid";
 import { CalendarWidget } from "./CalendarWidget";
-import { KpiCard } from "./KpiCard";
 import { PipelineBoard } from "./PipelineBoard";
 import { QuickActions } from "./QuickActions";
 import { RevenueChartLoader } from "./RevenueChartLoader";
 import { WhatsAppConversations } from "./WhatsAppConversations";
 import { ExecutiveCommandCenter } from "./ExecutiveCommandCenter";
+import { RealEstateKpiGrid } from "./RealEstateKpiGrid";
 
 export function DashboardShell({
   data,
@@ -23,41 +23,12 @@ export function DashboardShell({
   readonly aiPrompts?: readonly string[];
   readonly userName?: string;
 }) {
-  const metric = (key: string) => data.kpis.find((item) => item.key === key);
-  const online = data.aiWorkforce.filter(
-    (item) => item.status !== "offline",
-  ).length;
-  const aiMetric: KpiMetric = {
-    key: "ai-workforce",
-    label: "AI Employees",
-    value: online,
-    displayValue: `${online} Online`,
-    detail: `${data.aiWorkforce.length} configured`,
-    trend: 0,
-    sparkline: data.aiWorkforce.map((item) => item.tasksCompleted),
-    icon: "ai",
-    href: "/vayon/ai",
-  };
-  const executiveMetrics = [
-    metric("revenue"),
-    metric("leads"),
-    metric("deals"),
-    aiMetric,
-  ].filter((item): item is KpiMetric => Boolean(item));
-
   return (
     <div className="mx-auto max-w-[100rem] space-y-6 px-4 py-7 sm:px-6 sm:py-9">
       <ExecutiveCommandCenter data={data} userName={userName} />
       <AICommandBar onBlockedAction={onBlockedAction} prompts={aiPrompts} />
       {data.isEmpty && <EmptyDashboard />}
-      <section
-        className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4"
-        aria-label="Executive key performance indicators"
-      >
-        {executiveMetrics.map((item) => (
-          <KpiCard key={item.key} metric={item} />
-        ))}
-      </section>
+      <RealEstateKpiGrid data={data} />
       <div className="grid gap-5 2xl:grid-cols-[1.15fr_.85fr]">
         <RevenueChartLoader data={data.charts} currency={data.currency} />
         <CalendarWidget items={data.calendar} />
@@ -87,7 +58,7 @@ function EmptyDashboard() {
           <div>
             <h2 className="font-semibold">Your executive workspace is ready</h2>
             <p className="mt-2 max-w-xl text-sm text-vds-muted">
-              Add your first lead, property, or deal. Dashboard metrics will
+              Add your first lead, property, or transaction. Dashboard metrics will
               populate from verified workspace records.
             </p>
           </div>

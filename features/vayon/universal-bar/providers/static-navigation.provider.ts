@@ -34,6 +34,7 @@ const allScopes: readonly UniversalSearchScope[] = [
   "growth",
   "settings",
 ];
+const realEstatePriority = ["properties", "inventory", "contacts", "leads", "employees", "companies", "projects", "deals", "documents"] as const;
 export class StaticNavigationSearchProvider implements UniversalSearchProvider {
   readonly id = "static-navigation";
   readonly scopes = allScopes;
@@ -57,8 +58,12 @@ export class StaticNavigationSearchProvider implements UniversalSearchProvider {
         (item) => request.scopes.includes(item.scope) && matches(item, term),
       ),
       ...navigation.filter((item) => request.scopes.includes(item.scope)),
-    ];
+    ].toSorted((left, right) => priority(left.scope) - priority(right.scope));
   }
+}
+function priority(scope: UniversalSearchScope) {
+  const index = realEstatePriority.indexOf(scope as (typeof realEstatePriority)[number]);
+  return index === -1 ? realEstatePriority.length : index;
 }
 function matches(
   item: Pick<UniversalBarResult, "label" | "description" | "keywords">,

@@ -1,4 +1,5 @@
 import type { IntelligenceModule, PageIntelligenceContext } from "./contracts";
+import { assistantQuickActions } from "../real-estate-experience/catalog";
 const action = (
   kind: IntelligenceModule["actions"][number]["kind"],
   label: string,
@@ -30,17 +31,18 @@ const modules: readonly IntelligenceModule[] = [
   },
   {
     id: "crm",
-    name: "CRM",
-    description: "Leads, customers, deals and activities.",
+    name: "Real Estate CRM",
+    description: "Leads, clients, properties, transactions and activities.",
     routePrefixes: ["/vayon/crm", "/vayon/leads", "/vayon/deals"],
     capabilities: ["guidance", "search", "draft recommendations"],
     helpResources: [
       { label: "CRM guides", href: "/vayon/knowledge/help?q=CRM" },
     ],
     suggestedPrompts: [
-      "Import Leads",
-      "Explain this pipeline",
-      "Show CRM documentation",
+      "Find matching properties",
+      "Find matching buyers",
+      "Summarize client conversation",
+      "Draft offer letter",
     ],
     actions: [
       action("navigate", "Create Lead", "/vayon/leads/new"),
@@ -56,17 +58,18 @@ const modules: readonly IntelligenceModule[] = [
   },
   {
     id: "inventory",
-    name: "Inventory",
-    description: "Projects, units, availability and imports.",
+    name: "Properties",
+    description: "Listings, projects, units, availability and property intelligence.",
     routePrefixes: ["/vayon/properties"],
     capabilities: ["import guidance", "field explanation"],
     helpResources: [
       { label: "Inventory guides", href: "/vayon/knowledge/help?q=Inventory" },
     ],
     suggestedPrompts: [
-      "Import Inventory",
-      "Explain availability",
-      "Open project guide",
+      "Generate luxury property description",
+      "Generate listing headline",
+      "Estimate property valuation",
+      "Generate brochure",
     ],
     actions: [
       action("navigate", "Import Inventory", "/vayon/properties/inventory"),
@@ -76,17 +79,17 @@ const modules: readonly IntelligenceModule[] = [
   },
   {
     id: "marketing",
-    name: "Marketing",
-    description: "Campaigns, Brand Kits, assets and approvals.",
+    name: "Property Marketing",
+    description: "Property campaigns, listing creative, brochures and approvals.",
     routePrefixes: ["/vayon/creative-studio", "/vayon/creative", "/vayon/growth"],
     capabilities: ["campaign guidance", "draft recommendations"],
     helpResources: [
       { label: "Marketing guides", href: "/vayon/knowledge/help?q=Marketing" },
     ],
     suggestedPrompts: [
-      "Create Campaign",
-      "Create Flyer",
-      "Explain approval workflow",
+      "Create property marketing campaign",
+      "Generate social media content",
+      "Generate brochure",
     ],
     actions: [
       action("navigate", "Create Campaign", "/vayon/creative-studio/wizard"),
@@ -214,8 +217,8 @@ const modules: readonly IntelligenceModule[] = [
   },
   {
     id: "platform",
-    name: "Vayon",
-    description: "Global product and administration guidance.",
+    name: "Real Estate Assistant",
+    description: "Workspace-aware real estate guidance for properties, clients, leads, viewings and transactions.",
     routePrefixes: ["/vayon"],
     capabilities: ["navigation", "help search"],
     helpResources: [
@@ -223,7 +226,7 @@ const modules: readonly IntelligenceModule[] = [
       { label: "Documentation", href: "/docs" },
       { label: "Release notes", href: "/docs/release-notes" },
     ],
-    suggestedPrompts: ["Show documentation", "Help me get started"],
+    suggestedPrompts: assistantQuickActions,
     actions: [
       action("show_documentation", "Open Help Center", "/vayon/knowledge/help"),
     ],

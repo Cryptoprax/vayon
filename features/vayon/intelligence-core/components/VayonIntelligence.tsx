@@ -258,7 +258,7 @@ export function VayonIntelligence({
             </Button>
           )}
           <Button
-            aria-label="Open VAYON Copilot"
+            aria-label="Open Real Estate Assistant"
             title={proactive?.title}
             className="size-14 rounded-full shadow-2xl"
             onClick={() => setOpen(true)}
@@ -269,16 +269,16 @@ export function VayonIntelligence({
       ) : (
         <aside
           role="dialog"
-          aria-label="VAYON Copilot"
+          aria-label="Real Estate Assistant"
           aria-modal={full || undefined}
           className={`overflow-hidden border border-vds-border bg-vds-surface/95 shadow-2xl backdrop-blur-xl transition-all motion-reduce:transition-none ${full ? "h-full w-full rounded-3xl" : "h-[min(42rem,calc(100dvh-2rem))] w-[min(29rem,calc(100vw-2rem))] rounded-3xl max-md:h-[min(85dvh,44rem)] max-md:w-screen max-md:rounded-b-none max-md:rounded-t-3xl"}`}
         >
           <header className="flex items-center gap-2 border-b border-vds-border p-3">
             <Bot className="text-vds-primary" />
             <div className="min-w-0 flex-1">
-              <p className="font-semibold">VAYON Copilot</p>
+              <p className="font-semibold">Real Estate Assistant</p>
               <p className="truncate text-xs text-vds-muted">
-                Chief Operating Officer · {intelligenceModule.name}
+                Property, client and transaction guidance · {intelligenceModule.name}
               </p>
             </div>
             <Button
@@ -370,10 +370,10 @@ export function VayonIntelligence({
                     Page-aware foundation
                   </p>
                   <h2 className="mt-2 text-xl font-semibold">
-                    How can I help run {workspace}?
+                    How can I help grow {workspace}&apos;s property business?
                   </h2>
                   <p className="mt-2 text-sm text-vds-muted">
-                    I understand the current page and tenant-safe workspace context. I never infer a customer, campaign, project, document, or employee that is not present in the route.
+                    I understand the current page and tenant-safe workspace context. I never infer a client, property, transaction, document, or agent that is not present in the route.
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2 text-[10px] uppercase tracking-[.12em] text-vds-subtle" aria-label="Active Copilot context">
                     <span className="rounded-full border border-vds-border px-2.5 py-1">Page · {contextGraph.page}</span>
@@ -382,8 +382,8 @@ export function VayonIntelligence({
                     {contextGraph.selectedRecord && <span className="rounded-full border border-vds-border px-2.5 py-1">Selected record · {contextGraph.selectedRecord}</span>}
                   </div>
                   <form className="mt-4 rounded-2xl border border-vds-accent-border bg-vds-primary-soft p-3" onSubmit={(event) => { event.preventDefault(); if (prompt.trim()) add(prompt); }}>
-                    <label className="sr-only" htmlFor="copilot-prompt">Ask VAYON Copilot</label>
-                    <textarea id="copilot-prompt" rows={3} value={prompt} onChange={(event) => setPrompt(clean(event.target.value))} placeholder="Create a proposal, summarize activity, or open any workspace…" className="vds-focus w-full resize-none rounded-xl border border-vds-border bg-vds-input p-3 text-sm" />
+                    <label className="sr-only" htmlFor="copilot-prompt">Ask the Real Estate Assistant</label>
+                    <textarea id="copilot-prompt" rows={3} value={prompt} onChange={(event) => setPrompt(clean(event.target.value))} placeholder="Find matching properties, prepare a follow-up, or recommend the next action…" className="vds-focus w-full resize-none rounded-xl border border-vds-border bg-vds-input p-3 text-sm" />
                     <div className="mt-2 flex items-center justify-between gap-3"><span className="text-[10px] text-vds-subtle">Recommendations only · no autonomous execution</span><Button type="submit" size="sm" disabled={!prompt.trim()}><Send className="size-4" aria-hidden="true" />Send</Button></div>
                   </form>
                   {active && (() => { const conversation = items.find((item) => item.id === active); const resolution = conversation ? resolveCopilotCommand(conversation.messages[0]?.content ?? "", contextGraph) : undefined; return conversation ? <article className="mt-4 space-y-3" aria-live="polite">{conversation.messages.map((message) => <div className={`rounded-2xl p-3 text-sm leading-6 ${message.role === "user" ? "ml-6 bg-vds-primary-soft" : "mr-6 border border-vds-border bg-vds-elevated"}`} key={message.id}><p className="text-[10px] font-semibold uppercase tracking-[.12em] text-vds-subtle">{message.role === "user" ? "You" : "Copilot"}</p><p className="mt-1 text-vds-muted">{message.content}</p></div>)}{resolution?.href && <Link className="vds-focus inline-flex rounded-xl border border-vds-border px-3 py-2 text-sm font-semibold text-vds-primary" href={resolution.href}>{resolution.actionLabel}</Link>}</article> : null; })()}
