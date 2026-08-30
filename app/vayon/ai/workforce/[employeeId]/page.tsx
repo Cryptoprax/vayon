@@ -14,6 +14,8 @@ import { AICollaborationService, ExecutiveCollaborationDashboard } from "@/featu
 import dynamic from "next/dynamic";
 import { EmployeeIdentityPanel } from "@/features/vayon/operational-workforce/components/EmployeeIdentityPanel";
 import { AlexOperationsManagerDashboard } from "@/features/vayon/operational-workforce/components/AlexOperationsManagerDashboard";
+import { DavidFinanceManagerDashboard } from "@/features/vayon/operational-workforce/components/DavidFinanceManagerDashboard";
+import { OliviaCustomerSuccessManagerDashboard } from "@/features/vayon/operational-workforce/components/OliviaCustomerSuccessManagerDashboard";
 const EmployeeHeadquartersSecondary = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeHeadquartersSecondary"));
 const EmployeeMemoryPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeMemoryPanel"));
 const EmployeeCollaborationPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeCollaborationPanel"));
@@ -34,8 +36,8 @@ export default async function Page({
     runtime.history(employee).catch(() => ({ conversations: [], messages: [] })),
     runtime.health(),
   ]);
-  const salesDashboard = employee === "sales-ai" ? await (await SalesAIService.production()).dashboard() : null;
-  const crmDashboard = employee === "crm-ai" ? await (await CRMAIService.production()).dashboard() : null;
+  const salesDashboard = employee === "sales-ai" || employee === "finance-ai" ? await (await SalesAIService.production()).dashboard() : null;
+  const crmDashboard = employee === "crm-ai" || employee === "whatsapp-ai" ? await (await CRMAIService.production()).dashboard() : null;
   const whatsappDashboard = employee === "whatsapp-ai" ? await (await WhatsAppAIService.production()).dashboard() : null;
   const marketingDashboard = employee === "marketing-ai" || employee === "crm-ai" ? await (await MarketingAIService.production()).dashboard() : null;
   const executiveDashboard = employee === "executive-ai" ? await (await ExecutiveAIService.production()).dashboard() : null;
@@ -63,14 +65,16 @@ export default async function Page({
       title={result.employee.name}
       description={`${result.employee.role} · ${result.employee.availability}. Review today's work, recommendations, achievements and conversation.`}
     >
-      {salesDashboard && <SalesAIDashboard data={salesDashboard} />}
-      {crmDashboard && <CRMAIDashboard data={crmDashboard} />}
+      {employee === "sales-ai" && salesDashboard && <SalesAIDashboard data={salesDashboard} />}
+      {employee === "finance-ai" && salesDashboard && <DavidFinanceManagerDashboard sales={salesDashboard} tasks={result.tasks} recommendations={employeeRecommendations} />}
+      {employee === "crm-ai" && crmDashboard && <CRMAIDashboard data={crmDashboard} />}
       {whatsappDashboard && <WhatsAppAIDashboard data={whatsappDashboard} />}
       {employee === "crm-ai" && marketingDashboard && <EmmaMarketingManagerDashboard data={marketingDashboard} />}
       {employee === "marketing-ai" && marketingDashboard && <MarketingAIDashboard data={marketingDashboard} />}
       {executiveDashboard && <ExecutiveAIDashboard data={executiveDashboard} />}
       {employee === "executive-ai" && <ExecutiveCollaborationDashboard data={collaborationDashboard} />}
       {employee === "operations-ai" && <AlexOperationsManagerDashboard tasks={result.tasks} activity={result.activity} recommendations={employeeRecommendations} asOf={new Date().toISOString()} />}
+      {employee === "whatsapp-ai" && crmDashboard && whatsappDashboard && <OliviaCustomerSuccessManagerDashboard crm={crmDashboard} whatsapp={whatsappDashboard} tasks={result.tasks} recommendations={employeeRecommendations} />}
       <EmployeeDailyWorkspace item={result.employee} tasks={result.tasks} activity={result.activity} collaboration={collaborationDashboard}/>
       <EmployeeIdentityPanel item={result.employee}/>
       <EmployeeProfile
