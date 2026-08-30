@@ -12,6 +12,7 @@ import { PremiumWelcomeExperience } from "@/features/onboarding/components/Premi
 import { FloatingLayoutManager, FloatingSurface } from "../floating-layout/FloatingLayoutManager";
 import { TTFVObserver } from "../ttfv/TTFVObserver";
 import type { PlatformVisibilityContext } from "@/features/platform/visibility/domain";
+import { AppShell, ContentContainer } from "../product-shell/AppShell";
 const storageKey = "vayon.shell.sidebar.collapsed.v1";
 const storageEvent = "vayon-shell-collapse";
 const VayonIntelligence = dynamic(
@@ -83,13 +84,12 @@ export function ProductExperience({
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
-      <ShellHeader
+      <AppShell sidebarCollapsed={collapsed} header={<ShellHeader
         identity={identity}
         visibility={visibility}
         collapsed={collapsed}
         onMenu={() => setMobile(true)}
-      />
-      <ShellSidebar
+      />} sidebar={<ShellSidebar
         path={path}
         role={identity.workspaceRole ?? "guest"}
         visibility={visibility}
@@ -97,21 +97,18 @@ export function ProductExperience({
         mobileOpen={mobile}
         onCollapse={toggleCollapse}
         onMobileClose={() => setMobile(false)}
-      />
-      <div
-        className={`floating-safe-content min-h-dvh pt-16 transition-[padding] duration-200 ${collapsed ? "lg:pl-20" : "lg:pl-64"}`}
-      >
-        <div className="sticky top-16 z-20 border-b border-vds-border bg-vds-background/90 px-4 py-3 backdrop-blur-lg sm:px-6">
-          <Breadcrumbs path={path} />
+      />}>
+        <div className="sticky top-16 z-20 border-b border-vds-border bg-vds-background/90 backdrop-blur-lg">
+          <ContentContainer><Breadcrumbs path={path} /></ContentContainer>
         </div>
         <main
           id="main-content"
           tabIndex={-1}
-          className="animate-[vds-fade-rise_180ms_cubic-bezier(.16,1,.3,1)]"
+          className="min-w-0 animate-[vds-fade-rise_180ms_cubic-bezier(.16,1,.3,1)]"
         >
-          {children}
+          <ContentContainer>{children}</ContentContainer>
         </main>
-      </div>
+      </AppShell>
       <aside hidden aria-hidden="true" data-future-utility-rail="disabled" />
       <QuickCreate visibility={visibility} />
       {intelligenceEnabled && (

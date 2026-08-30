@@ -234,9 +234,13 @@ export function DataTable<T>({
           </tbody>
         </table>
         {!rows.length && (
-          <p role="status" className="p-8 text-center text-sm text-vds-muted">
-            No rows available.
-          </p>
+          <div role="status" className="grid min-h-40 place-items-center p-8 text-center">
+            <div>
+              <span aria-hidden="true" className="mx-auto grid size-10 place-items-center rounded-xl bg-vds-primary-soft text-vds-primary">⌁</span>
+              <p className="mt-3 text-sm font-medium">No rows available</p>
+              <p className="mt-1 text-xs text-vds-muted">Adjust your filters or add the first record.</p>
+            </div>
+          </div>
         )}
       </div>
       <p className="sr-only" aria-live="polite">

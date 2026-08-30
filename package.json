@@ -11,6 +11,7 @@
     "audit:responsive": "node scripts/audit-ux-simplification.mjs responsive",
     "audit:ttfv": "node scripts/audit-ttfv.mjs",
     "audit:routes": "node scripts/audit-route-integrity.mjs",
+    "audit:visual-consistency": "node scripts/audit-visual-consistency.mjs",
     "audit:integration-status": "node scripts/audit-integration-status.mjs",
     "audit:connected-apps": "node scripts/audit-connected-apps.mjs",
     "audit:business-connections": "node scripts/audit-business-connections.mjs",
