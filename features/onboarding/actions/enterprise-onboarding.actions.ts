@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { EnterpriseOnboardingService } from "../services/enterprise-onboarding.service";
+import { OnboardingCompletionService } from "../services/onboarding-completion.service";
 
 export async function saveOnboardingProgressAction(input: {
   step: number;
@@ -18,6 +19,9 @@ export async function saveOnboardingProgressAction(input: {
 }
 
 export async function launchOnboardingAction() {
-  await new EnterpriseOnboardingService().complete();
-  redirect("/vayon/customer-success?welcome=1&tour=1");
+  const diagnostic = await new OnboardingCompletionService().complete();
+  if (!diagnostic.success && !diagnostic.workspaceId) {
+    redirect(`/onboarding?error=${encodeURIComponent(diagnostic.error ?? "Unable to create workspace.")}`);
+  }
+  redirect("/vayon/dashboard?welcome=1&tour=1");
 }

@@ -2,7 +2,7 @@ import "server-only";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { OnboardingInput } from "../validation/onboarding";
 
-type Result = { organization_id: string; workspace_id: string };
+type Result = { organization_id: string; workspace_id: string; member_id?: string };
 
 export class OnboardingService {
   async provision(input: OnboardingInput, logo?: File) {
@@ -14,6 +14,15 @@ export class OnboardingService {
     });
     if (error) throw new Error(error.message);
     const result = data as Result;
+    if (!result?.organization_id || !result.workspace_id) throw new Error("Workspace creation did not return verified identifiers.");
+    const { data: membership, error: verificationError } = await client.from("workspace_members")
+      .select("id,status,roles(code),workspaces(id,status,created_by),organizations(id)")
+      .eq("workspace_id", result.workspace_id).eq("organization_id", result.organization_id).eq("user_id", user.id).maybeSingle();
+    const verified = membership as unknown as { id: string; status: string; roles: { code: string } | null; workspaces: { id: string; status: string; created_by: string } | null; organizations: { id: string } | null } | null;
+    if (verificationError || !verified?.id || !verified.organizations?.id || !verified.workspaces?.id || verified.status !== "active" || verified.workspaces.status !== "active" || verified.roles?.code !== "organization_owner" || verified.workspaces.created_by !== user.id) {
+      throw new Error(verificationError?.message ?? "Workspace ownership verification failed after creation.");
+    }
+    result.member_id = verified.id;
     if (logo) {
       if (!["image/png", "image/jpeg", "image/webp"].includes(logo.type) || logo.size > 5 * 1024 * 1024)
         throw new Error("Logo must be PNG, JPEG, or WebP and smaller than 5 MB.");

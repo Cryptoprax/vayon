@@ -66,7 +66,7 @@ export class OnboardingRecoveryService {
     private readonly onboarding = new EnterpriseOnboardingService(),
   ) {}
 
-  async prepare(user: User): Promise<{ organization: { id: string; name: string }; session: NonNullable<Session> }> {
+  async prepare(user: User): Promise<{ organization: { id: string; name: string }; session: Session }> {
     const context: Record<string, unknown> = { userId: user.id, organizationId: null, workspaceId: null };
     try {
       let organization = await this.organizations.current();
@@ -81,12 +81,16 @@ export class OnboardingRecoveryService {
       if (!workspace) throw new OnboardingRecoveryError("MEMBERSHIP_NOT_FOUND", "WorkspaceService", "WorkspaceBootstrapService");
       context.workspaceId = workspace.id;
 
-      let session = await this.onboarding.session();
-      if (!session) {
-        await this.onboarding.save(1, {}, [], false);
+      let session: Session = null;
+      try {
         session = await this.onboarding.session();
+        if (!session) {
+          await this.onboarding.save(1, {}, [], false);
+          session = await this.onboarding.session();
+        }
+      } catch (optionalError) {
+        console.error(JSON.stringify({ level: "error", event: "onboarding.stage", stage: "seed_defaults", success: false, error: optionalError instanceof Error ? optionalError.message : "Onboarding progress initialization failed.", ...context, timestamp: new Date().toISOString() }));
       }
-      if (!session) throw new OnboardingRecoveryError("ONBOARDING_NOT_FOUND", "OnboardingRepository", "EnterpriseOnboardingService");
 
       console.info(JSON.stringify({ level: "info", event: "onboarding.recovery.ready", route: "/onboarding", step: "complete", service: "OnboardingRecoveryService", timestamp: new Date().toISOString(), ...context }));
       return { organization, session };

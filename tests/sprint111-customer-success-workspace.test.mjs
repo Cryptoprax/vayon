@@ -157,7 +157,7 @@ test("post-signup launch enters the workspace and documentation is complete", as
   );
   const navigation = await read("features/vayon/product-shell/navigation.ts");
   const docs = await read("docs/CUSTOMER_SUCCESS_WORKSPACE_ONBOARDING.md");
-  assert.match(action, /\/vayon\/customer-success\?welcome=1/);
+  assert.match(action, /\/vayon\/dashboard\?welcome=1&tour=1/);
   assert.match(navigation, /Customer Success/);
   assert.match(docs, /Tenant isolation/);
   assert.match(docs, /No live provider/);
