@@ -8,11 +8,12 @@ import type { AIEmployeeCode } from "@/features/platform/openai/domain/models";
 import { SalesAIDashboard, SalesAIService } from "@/features/platform/sales-ai";
 import { CRMAIDashboard, CRMAIService } from "@/features/platform/crm-ai";
 import { WhatsAppAIDashboard, WhatsAppAIService } from "@/features/platform/whatsapp-ai";
-import { MarketingAIDashboard, MarketingAIService } from "@/features/platform/marketing-ai";
+import { EmmaMarketingManagerDashboard, MarketingAIDashboard, MarketingAIService } from "@/features/platform/marketing-ai";
 import { ExecutiveAIDashboard, ExecutiveAIService } from "@/features/platform/executive-ai";
 import { AICollaborationService, ExecutiveCollaborationDashboard } from "@/features/platform/ai-collaboration";
 import dynamic from "next/dynamic";
 import { EmployeeIdentityPanel } from "@/features/vayon/operational-workforce/components/EmployeeIdentityPanel";
+import { AlexOperationsManagerDashboard } from "@/features/vayon/operational-workforce/components/AlexOperationsManagerDashboard";
 const EmployeeHeadquartersSecondary = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeHeadquartersSecondary"));
 const EmployeeMemoryPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeMemoryPanel"));
 const EmployeeCollaborationPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeCollaborationPanel"));
@@ -36,7 +37,7 @@ export default async function Page({
   const salesDashboard = employee === "sales-ai" ? await (await SalesAIService.production()).dashboard() : null;
   const crmDashboard = employee === "crm-ai" ? await (await CRMAIService.production()).dashboard() : null;
   const whatsappDashboard = employee === "whatsapp-ai" ? await (await WhatsAppAIService.production()).dashboard() : null;
-  const marketingDashboard = employee === "marketing-ai" ? await (await MarketingAIService.production()).dashboard() : null;
+  const marketingDashboard = employee === "marketing-ai" || employee === "crm-ai" ? await (await MarketingAIService.production()).dashboard() : null;
   const executiveDashboard = employee === "executive-ai" ? await (await ExecutiveAIService.production()).dashboard() : null;
   const collaborationDashboard = await (await AICollaborationService.production()).dashboard();
   const employeeRecommendations = collaborationDashboard.recommendationPipeline.filter((entry) => entry.employee === employee);
@@ -65,9 +66,11 @@ export default async function Page({
       {salesDashboard && <SalesAIDashboard data={salesDashboard} />}
       {crmDashboard && <CRMAIDashboard data={crmDashboard} />}
       {whatsappDashboard && <WhatsAppAIDashboard data={whatsappDashboard} />}
-      {marketingDashboard && <MarketingAIDashboard data={marketingDashboard} />}
+      {employee === "crm-ai" && marketingDashboard && <EmmaMarketingManagerDashboard data={marketingDashboard} />}
+      {employee === "marketing-ai" && marketingDashboard && <MarketingAIDashboard data={marketingDashboard} />}
       {executiveDashboard && <ExecutiveAIDashboard data={executiveDashboard} />}
       {employee === "executive-ai" && <ExecutiveCollaborationDashboard data={collaborationDashboard} />}
+      {employee === "operations-ai" && <AlexOperationsManagerDashboard tasks={result.tasks} activity={result.activity} recommendations={employeeRecommendations} asOf={new Date().toISOString()} />}
       <EmployeeDailyWorkspace item={result.employee} tasks={result.tasks} activity={result.activity} collaboration={collaborationDashboard}/>
       <EmployeeIdentityPanel item={result.employee}/>
       <EmployeeProfile
