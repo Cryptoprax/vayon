@@ -70,9 +70,10 @@ test("interactive ROI calculator uses transparent requested inputs and outputs",
 
 test("customer proof is launch-ready without fabricated endorsements", async () => {
   const source = await read("features/marketing/components/Homepage.tsx");
-  assert.match(source, /no fabricated metrics or endorsements/i);
-  assert.match(source, /pending customer approval/i);
-  assert.match(source, /pending verification/i);
+  assert.match(source, /hasCustomerTestimonials = false/i);
+  assert.match(source, /Why Real Estate Teams Choose VAYON/i);
+  assert.doesNotMatch(source, /pending customer approval/i);
+  assert.doesNotMatch(source, /pending verification/i);
 });
 
 test("footer has complete information architecture and functional newsletter capture", async () => {

@@ -111,8 +111,8 @@ test("trust contact resources status and changelog are launch ready without fabr
   ])
     assert.ok(status.includes(service), service);
   assert.match(status, /unknown/);
-  assert.match(home, /website-traffic pricing-conversion trial-conversion/);
-  assert.match(home, /never fabricate/i);
+  assert.match(home, /Founding Customer Offer/);
+  assert.match(home, /hasCustomerTestimonials = false/);
   assert.ok(
     read("app/(marketing)/release-notes/page.tsx").includes("v1.0.0 RC1"),
   );

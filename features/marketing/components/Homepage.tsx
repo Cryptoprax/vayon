@@ -15,7 +15,6 @@ import {
   PhoneCall,
   ShieldCheck,
   Sparkles,
-  Star,
   Target,
   Workflow,
 } from "lucide-react";
@@ -26,6 +25,12 @@ import { Reveal, WorkflowMotion } from "./LaunchMotion";
 import { EnterpriseFaq, HeroProductMockup } from "./EnterpriseExperience";
 import { LandingRoiCalculator } from "./LandingRoiCalculator";
 import { PublicGrowthPlatform } from "./PublicGrowthPlatform";
+import {
+  FOUNDING_MEMBER_ENABLED,
+  FOUNDING_MEMBER_SPOTS_REMAINING,
+} from "../config/marketing.config";
+
+const hasCustomerTestimonials = false;
 
 const features = [
   [
@@ -91,7 +96,7 @@ const features = [
   [
     "Workflow Automation",
     Workflow,
-    "Build visual, governed operating sequences.",
+    "Build clear operating sequences with approvals at every important step.",
   ],
   [
     "Approvals",
@@ -133,7 +138,6 @@ export const launchExperienceContinuity = [
   "Proposal created",
   "CRM updated",
   "Analytics refreshed",
-  "real estate customer story placeholders",
   "Encrypted Credentials",
 ] as const;
 const realEstateBusinesses = [
@@ -211,11 +215,11 @@ const faqJsonLd = {
     },
     {
       name: "Does Vayon replace human decision-making?",
-      text: "No. AI recommendations preserve human approval and governance boundaries.",
+      text: "No. Vayon prepares recommendations while your team stays in control of every important action.",
     },
     {
       name: "Can Vayon replace a fragmented software stack?",
-      text: "Vayon unifies CRM, communications, AI, workflow, knowledge, analytics, and governance while retaining provider integrations.",
+      text: "Vayon brings CRM, communications, AI, workflows, knowledge, and analytics into one connected workspace.",
     },
   ].map((item) => ({
     "@type": "Question",
@@ -267,6 +271,18 @@ export function Homepage() {
             <p className="mt-5 max-w-2xl text-pretty leading-7 text-vds-muted">
               Meet your complete AI workforce that helps you generate leads, qualify buyers, market properties, schedule appointments, manage operations, follow up automatically, and close more deals — all from one intelligent platform built exclusively for real estate professionals.
             </p>
+            {FOUNDING_MEMBER_ENABLED && (
+              <div className="mt-7 max-w-2xl rounded-2xl border border-vds-accent-border bg-vds-primary-soft p-4 shadow-lg shadow-vds-shadow/10">
+                <p className="text-sm font-semibold text-vds-primary">
+                  🚀 Founding Customer Offer
+                </p>
+                <p className="mt-1 text-sm leading-6 text-vds-secondary">
+                  First {FOUNDING_MEMBER_SPOTS_REMAINING} agencies receive
+                  Professional features at Starter pricing ($79/month) for 12
+                  months.
+                </p>
+              </div>
+            )}
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href="/signup" size="lg">
                 Start Free Trial{" "}
@@ -353,7 +369,7 @@ export function Homepage() {
       >
         <LandingRoiCalculator />
       </Section>
-      <Testimonials />
+      {hasCustomerTestimonials ? <Testimonials /> : <WhyTeamsChooseVayon />}
       <section className="border-y border-vds-border bg-vds-elevated/30">
         <PricingTable />
       </section>
@@ -390,13 +406,6 @@ export function Homepage() {
           </div>
         </div>
       </section>
-      <div
-        className="sr-only"
-        data-founder-commercial-analytics="website-traffic pricing-conversion trial-conversion"
-      >
-        Founder analytics placeholders require measured production evidence and
-        never fabricate traffic or conversion values.
-      </div>
     </main>
   );
 }
@@ -461,76 +470,50 @@ function RealEstateBusinesses() {
   );
 }
 function Testimonials() {
-  const cards = [
-    [
-      "Developer customer story",
-      "Company logo",
-      "Customer photo",
-      "Measured result",
-    ],
-    [
-      "Brokerage customer story",
-      "Company logo",
-      "Executive photo",
-      "Verified outcome",
-    ],
-    [
-      "Real estate agency customer story",
-      "Company logo",
-      "Team photo",
-      "Time-to-value",
-    ],
-  ] as const;
+  const cards: readonly { readonly title: string; readonly quote: string; readonly attribution: string }[] = [];
   return (
     <Band>
       <Section
-        eyebrow="Customer proof"
-        title="Trusted by growing real estate teams"
-        copy="Designed for agencies from 5 to 500+ agents. Example customer-story layouts below are clearly labeled and publish no fabricated metrics or endorsements."
+        eyebrow="Customer stories"
+        title="Real estate teams building with VAYON"
+        copy="Customer stories will appear here when they are ready to share."
       >
         <div className="grid gap-4 lg:grid-cols-3">
-          {cards.map(([title, logo, photo, result]) => (
+          {cards.map(({ title, quote, attribution }) => (
             <article
               className="rounded-3xl border border-vds-border bg-vds-surface p-6"
               key={title}
             >
-              <div className="flex items-center justify-between">
-                <div className="grid h-10 w-24 place-items-center rounded-lg border border-dashed border-vds-border text-[10px] text-vds-subtle">
-                  {logo}
-                </div>
-                <div
-                  aria-label="Rating pending verification"
-                  className="flex gap-1 text-vds-warning"
-                >
-                  {[0, 1, 2, 3, 4].map((value) => (
-                    <Star className="size-3.5" key={value} aria-hidden="true" />
-                  ))}
-                </div>
-              </div>
-              <div className="mt-7 flex items-center gap-3">
-                <div className="grid size-11 place-items-center rounded-full border border-dashed border-vds-border text-[9px] text-vds-subtle">
-                  {photo.split(" ")[0]}
-                </div>
-                <div>
-                  <h3 className="font-semibold">{title}</h3>
-                  <p className="text-xs text-vds-muted">
-                    Publication pending customer approval
-                  </p>
-                </div>
-              </div>
-              <div className="mt-6 rounded-2xl bg-vds-primary-soft p-4">
-                <p className="text-xs text-vds-muted">Result field</p>
-                <p className="mt-1 font-semibold">
-                  {result} pending verification
-                </p>
-              </div>
+              <h3 className="font-semibold">{title}</h3>
+              <blockquote className="mt-4 text-sm leading-6 text-vds-muted">{quote}</blockquote>
+              <p className="mt-5 text-xs font-medium text-vds-secondary">{attribution}</p>
             </article>
           ))}
         </div>
-        <div className="mt-8">
-          <ButtonLink href="/customers" variant="outline">
-            View customer story framework
-          </ButtonLink>
+      </Section>
+    </Band>
+  );
+}
+function WhyTeamsChooseVayon() {
+  const reasons = [
+    ["One Platform Instead of 10+ Tools", Workflow, "Manage CRM, marketing, operations, AI, transactions, and reporting from one workspace."],
+    ["Five AI Managers Working Together", Bot, "Sales, Marketing, Operations, Finance, and Customer Success collaborate with evidence-backed recommendations."],
+    ["Built for Real Estate", Building2, "Purpose-built workflows for agencies, brokers, builders, and developers."],
+    ["Enterprise Security", ShieldCheck, "Role-based permissions, approvals, audit history, and secure workspace isolation."],
+    ["AI With Human Control", FileCheck2, "Nothing executes automatically. Every important action stays under your approval."],
+    ["Scalable For Growing Agencies", ChartNoAxesCombined, "Designed to support boutique agencies through enterprise brokerages."],
+  ] as const;
+  return (
+    <Band>
+      <Section eyebrow="A connected operating advantage" title="Why Real Estate Teams Choose VAYON" copy="Bring your people, customer relationships, property work, and AI managers together without sacrificing control.">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {reasons.map(([title, Icon, description]) => (
+            <article className="vds-card-motion rounded-2xl border border-vds-border bg-vds-surface p-6" key={title}>
+              <span className="grid size-10 place-items-center rounded-xl bg-vds-primary-soft text-vds-primary"><Icon className="size-5" aria-hidden="true" /></span>
+              <h3 className="mt-5 font-semibold">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-vds-muted">{description}</p>
+            </article>
+          ))}
         </div>
       </Section>
     </Band>

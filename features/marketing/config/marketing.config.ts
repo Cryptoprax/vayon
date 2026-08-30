@@ -1,0 +1,2 @@
+export const FOUNDING_MEMBER_SPOTS_REMAINING = 20;
+export const FOUNDING_MEMBER_ENABLED = true;

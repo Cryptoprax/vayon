@@ -77,7 +77,7 @@ test("story covers one feature grid audience workflow ROI and customer proof", (
     "Lead enters",
     "Deal won",
     "Business case",
-    "Customer proof",
+    "Why Real Estate Teams Choose VAYON",
     "Property Intelligence",
   ])
     assert.match(source, new RegExp(item));

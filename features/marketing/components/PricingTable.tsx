@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import { Button, ButtonLink } from "@/features/platform/design-system";
 import { CurrencyDisplay } from "../currency/CurrencyDisplay";
+import { FOUNDING_MEMBER_ENABLED, FOUNDING_MEMBER_SPOTS_REMAINING } from "../config/marketing.config";
 const shell = "mx-auto max-w-[96rem] px-5 py-20 sm:px-8",
   card =
     "rounded-3xl border border-vds-border bg-vds-surface/80 shadow-xl shadow-vds-shadow/10";
@@ -123,23 +124,23 @@ const rows = [
 const faqs = [
   [
     "How does billing work?",
-    "Paid editions are billed through the existing Stripe subscription lifecycle. Enterprise agreements follow an approved order form.",
+    "Choose monthly or annual billing for self-service plans. Enterprise customers receive a tailored agreement based on their rollout.",
   ],
   [
     "Can I change plans?",
-    "Yes. Upgrades and downgrades use the existing billing portal and entitlement engine.",
+    "Yes. You can change your plan as your team grows or your needs change.",
   ],
   [
     "Is there a free trial?",
-    "Eligible self-service plans can begin with the existing trial flow before paid conversion.",
+    "Yes. Eligible teams can explore Vayon before choosing a paid plan, with no card required to get started.",
   ],
   [
     "How is data secured?",
-    "VAYON preserves tenant isolation, RBAC, audit history, approvals and provider-side secret protection.",
+    "VAYON protects each workspace with role-based access, secure isolation, approval controls, and a clear audit history.",
   ],
   [
     "How does AI work?",
-    "AI requests use governed runtimes, provider adapters, quotas and human approval where required.",
+    "Every AI action runs through secure, monitored systems. Anything that could affect your business requires your approval before it happens, so you're always in control.",
   ],
   [
     "What is included with Enterprise?",
@@ -147,15 +148,15 @@ const faqs = [
   ],
   [
     "What support is available?",
-    "Support level follows the selected commercial package and signed enterprise agreement.",
+    "Support depends on your plan. Starter and Professional include email support, Business includes priority support, and Enterprise customers receive a dedicated Customer Success Manager.",
   ],
   [
     "What happens to data after a downgrade?",
-    "Access changes follow entitlements; data lifecycle remains governed by the existing subscription and retention systems.",
+    "If you downgrade or cancel your subscription, your data remains securely available during the retention period before permanent deletion, giving you time to export or reactivate without unexpected data loss.",
   ],
   [
     "Is annual billing available?",
-    "Yes. The annual selector presents an estimated 20% annual commitment discount for sales evaluation.",
+    "Yes. Annual billing offers a 20% saving compared with monthly billing.",
   ],
 ] as const;
 export const pricingSectionLabel =
@@ -204,12 +205,18 @@ export function PricingTable() {
             aria-label="Commercial packages"
             className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5"
           >
-            {plans.map((plan) => (
+            {plans.map((plan) => {
+              const foundingPlan = FOUNDING_MEMBER_ENABLED && plan.name === "Professional";
+              return (
               <article
                 key={plan.name}
-                className={`${card} relative p-6 ${plan.popular ? "border-vds-accent-border shadow-2xl" : ""}`}
+                className={`${card} relative p-6 ${plan.popular || foundingPlan ? "border-vds-accent-border shadow-2xl ring-1 ring-vds-primary/30" : ""}`}
               >
-                {plan.popular && (
+                {foundingPlan ? (
+                  <span className="absolute right-4 top-4 rounded-full bg-vds-primary px-2 py-1 text-[10px] font-semibold text-vds-on-accent">
+                    FOUNDING MEMBER PRICING
+                  </span>
+                ) : plan.popular && (
                   <span className="absolute right-4 top-4 rounded-full bg-vds-primary px-2 py-1 text-[10px] font-semibold text-vds-on-accent">
                     MOST POPULAR
                   </span>
@@ -223,7 +230,7 @@ export function PricingTable() {
                   ) : (
                     <CurrencyDisplay
                       valueUsd={
-                        annual ? Math.round(plan.price * 0.8) : plan.price
+                        foundingPlan ? 79 : annual ? Math.round(plan.price * 0.8) : plan.price
                       }
                     />
                   )}{" "}
@@ -237,6 +244,11 @@ export function PricingTable() {
                   {plan.tag}
                 </p>
                 <p className="mt-4 text-xs text-vds-subtle">{plan.audience}</p>
+                {foundingPlan && (
+                  <p className="mt-3 rounded-xl bg-vds-primary-soft px-3 py-2 text-xs font-medium text-vds-primary">
+                    Limited to the first {FOUNDING_MEMBER_SPOTS_REMAINING} agencies. Professional features at $79/month for 12 months.
+                  </p>
+                )}
                 <ul className="mt-5 space-y-2 text-sm">
                   <li>✓ {plan.users} team members</li>
                   <li>✓ {plan.workspaces} workspaces</li>
@@ -257,12 +269,11 @@ export function PricingTable() {
                     : "Start Free"}
                 </ButtonLink>
               </article>
-            ))}
+              );
+            })}
           </div>
           <p className="mt-5 text-xs text-vds-subtle">
-            Displayed prices are commercial packaging for sales evaluation.
-            Checkout, billing state and entitlements remain authoritative in the
-            existing Subscription and Stripe systems.
+            Prices shown in USD. Monthly and annual plans available.
           </p>
         </div>
       </section>

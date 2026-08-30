@@ -12,6 +12,7 @@
     "audit:ttfv": "node scripts/audit-ttfv.mjs",
     "audit:routes": "node scripts/audit-route-integrity.mjs",
     "audit:visual-consistency": "node scripts/audit-visual-consistency.mjs",
+    "audit:homepage-copy": "node scripts/audit-homepage-copy.mjs",
     "audit:integration-status": "node scripts/audit-integration-status.mjs",
     "audit:connected-apps": "node scripts/audit-connected-apps.mjs",
     "audit:business-connections": "node scripts/audit-business-connections.mjs",

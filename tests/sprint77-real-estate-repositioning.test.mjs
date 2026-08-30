@@ -62,11 +62,12 @@ test("real estate audiences, AI employees, customer templates, and SEO are prese
     "AI Executive Assistant",
   ])
     assert.match(workforce, new RegExp(employee));
-  for (const story of [
-    "Developer customer story",
-    "Brokerage customer story",
-    "Real estate agency customer story",
+  for (const value of [
+    "One Platform Instead of 10+ Tools",
+    "Five AI Managers Working Together",
+    "Built for Real Estate",
   ])
-    assert.match(homepage, new RegExp(story, "i"));
+    assert.ok(homepage.toLowerCase().includes(value.toLowerCase()));
+  assert.match(homepage, /hasCustomerTestimonials = false/);
   assert.match(metadata, /AI Operating System for Real Estate/i);
 });

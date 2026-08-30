@@ -35,6 +35,6 @@ test("FAQ, metadata, schema and footer contracts remain accessible", () => {
 
 test("experience preserves evidence boundaries and introduces no backend artifacts", () => {
   const homepage = read("features/marketing/components/Homepage.tsx"), docs = read("docs/SPRINT_71_ENTERPRISE_PRODUCT_EXPERIENCE.md");
-  assert.match(homepage, /no fabricated metrics or endorsements/i); assert.match(homepage, /pending verification/i); assert.match(homepage, /real estate customer story placeholders/i); assert.match(docs, /database schema.*untouched/i);
+  assert.match(homepage, /hasCustomerTestimonials = false/i); assert.match(homepage, /Why Real Estate Teams Choose VAYON/i); assert.doesNotMatch(homepage, /pending verification|customer story placeholders/i); assert.match(docs, /database schema.*untouched/i);
   assert.equal(existsSync("supabase/migrations/20260903000000_sprint71.sql"), false);
 });
