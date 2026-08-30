@@ -11,9 +11,10 @@ const wizard = read(
   "features/onboarding/components/EnterpriseOnboardingWizard.tsx",
 );
 
-test("authenticated users enter VAYON without onboarding redirects", () => {
+test("authenticated users enter a workspace-safe VAYON destination", () => {
   assert.doesNotMatch(proxy, /target\.pathname = "\/onboarding"/);
-  assert.doesNotMatch(read("app/vayon/page.tsx"), /redirect\("\/onboarding"/);
+  assert.match(read("app/vayon/page.tsx"), /if \(!workspace\) redirect\("\/onboarding"\)/);
+  assert.match(read("app/vayon/page.tsx"), /\/vayon\/dashboard/);
   assert.doesNotMatch(callback, /destination=.*onboarding|membership\?/);
   assert.match(callback, /safeAuthenticatedPath\(next\)/);
 });

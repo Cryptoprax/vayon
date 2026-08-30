@@ -5,7 +5,7 @@ const read = path => readFileSync(new URL(`../${path}`, import.meta.url), "utf8"
 
 test("Founder Command Center route and default landing are registered", () => {
   assert.match(read("app/vayon/home/page.tsx"), /FounderCommandCenter/);
-  assert.match(read("app/vayon/page.tsx"), /redirect\(query\.welcome === "1" \? "\/vayon\/home\?welcome=1" : "\/vayon\/home"\)/);
+  assert.match(read("app/vayon/page.tsx"), /redirect\(query\.welcome === "1" \? "\/vayon\/dashboard\?welcome=1" : "\/vayon\/dashboard"\)/);
   const navigation = read("features/platform/builder/config/vayon-navigation.ts");
   assert.match(navigation, /label: "Dashboard", href: "\/vayon\/dashboard"/);
 });

@@ -1,10 +1,12 @@
 const defaultAuthenticatedPath = "/vayon";
+const obsoletePostLoginPaths = new Set(["/vayon/home"]);
 
 export function safeAuthenticatedPath(value: string | null | undefined) {
   if (!value || !value.startsWith("/") || value.startsWith("//")) return defaultAuthenticatedPath;
   try {
     const parsed = new URL(value, "https://vayon.invalid");
     if (parsed.origin !== "https://vayon.invalid") return defaultAuthenticatedPath;
+    if (obsoletePostLoginPaths.has(parsed.pathname)) return defaultAuthenticatedPath;
     return `${parsed.pathname}${parsed.search}${parsed.hash}`;
   } catch {
     return defaultAuthenticatedPath;
