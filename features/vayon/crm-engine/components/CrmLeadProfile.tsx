@@ -152,7 +152,7 @@ export function CrmLeadProfileView({ profile }: { profile: CrmLeadProfile }) {
         tab === "meetings" ||
         tab === "tasks" ||
         tab === "documents") && (
-        tab === "properties" ? <PropertyRecommendations items={profile.recommendations}/> : <div className="grid gap-3">
+        tab === "properties" ? <section aria-labelledby="top-matching-properties"><h2 id="top-matching-properties" className="mb-4 text-xl font-semibold">Top Matching Properties</h2><PropertyRecommendations items={profile.recommendations}/><div className="mt-5 grid gap-3 sm:grid-cols-3">{[["Recently Improved Matches","Waiting for match history"],["New Listings","Waiting for listing activity"],["Expired Matches","No expired match evidence"]].map(([label,value])=><div key={label} className="rounded-xl border border-vds-border bg-vds-surface p-4"><p className="text-xs font-semibold">{label}</p><p className="mt-2 text-xs text-vds-muted">{value}</p></div>)}</div></section> : <div className="grid gap-3">
           {related.length ? (
             related.map((x) => (
               <article
