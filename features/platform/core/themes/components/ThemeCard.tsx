@@ -55,6 +55,8 @@ export function ThemeCard({ theme }: { theme: Theme }) {
           </div>
           <Button variant="control"
             type="button"
+            disabled
+            title={theme.isDefault?"This theme is already applied":"Theme changes are unavailable here"}
             className="inline-flex h-9 items-center gap-2 rounded-xl border border-vds-border/[0.08] px-3 text-xs font-medium text-vds-muted transition hover:bg-vds-surface/[0.05] hover:text-vds-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vds-focus"
           >
             {theme.isDefault ? (

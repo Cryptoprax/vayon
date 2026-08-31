@@ -232,19 +232,19 @@ export function BrandStudio({
           </div>
           {brand && (
             <div className="mt-4 flex flex-wrap gap-2">
-              <Button variant="control" size="sm">
+              <Button variant="control" size="sm" disabled title="Brand persistence is not connected">
                 <Star className="size-4" />
                 Set default
               </Button>
-              <Button variant="control" size="sm">
+              <Button variant="control" size="sm" disabled title="Brand duplication is not available">
                 <Copy className="size-4" />
                 Duplicate
               </Button>
-              <Button variant="control" size="sm">
+              <Button variant="control" size="sm" disabled title="Brand archiving is not available">
                 <Archive className="size-4" />
                 Archive
               </Button>
-              <Button variant="control" size="sm">
+              <Button variant="control" size="sm" disabled title="Brand restoration is not available">
                 <RotateCcw className="size-4" />
                 Restore
               </Button>

@@ -136,7 +136,7 @@ export function ImageStudio({
             </p>
           </div>
           <div className="flex gap-2">
-            <Button variant="control">
+            <Button variant="control" disabled title="Image upload is not connected">
               <Upload className="size-4" />
               Upload
             </Button>
@@ -229,11 +229,11 @@ export function ImageStudio({
             </p>
           </div>
           <div className="flex gap-2">
-            <Button variant="control">
+            <Button variant="control" disabled title="Folder creation is not available">
               <Folder className="size-4" />
               New folder
             </Button>
-            <Button variant="control">
+            <Button variant="control" disabled title="Collection creation is not available">
               <Plus className="size-4" />
               Collection
             </Button>
@@ -637,7 +637,7 @@ function Editor({
           </h2>
           <div className="mt-3 grid gap-1">
             {snapshot.editTools.map((item) => (
-              <Button variant="control" className="justify-start" key={item}>
+              <Button variant="control" disabled title="Select an implemented editor tool" className="justify-start" key={item}>
                 {item}
               </Button>
             ))}

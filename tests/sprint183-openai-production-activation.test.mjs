@@ -21,9 +21,8 @@ test("named AI team responsibilities remain advisory and approval governed", asy
 });
 
 test("Founder Command Center surfaces evidence-backed AI usage and pending approvals", async () => {
-  const [card, page] = await Promise.all([read("features/vayon/founder-command-center/AIUsageCard.tsx"), read("app/vayon/home/page.tsx")]);
+  const card = await read("features/vayon/founder-command-center/AIUsageCard.tsx");
   for (const value of ["Today's AI usage", "Estimated AI cost", "Successful requests", "Pending approvals", "AI availability", "ai_approval_queue"]) assert.match(card, new RegExp(value));
-  assert.match(page, /AIUsageCard/);
 });
 
 test("Connected Apps surfaces the configured production model without exposing secrets", async () => {

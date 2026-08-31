@@ -4,6 +4,10 @@ import { join, relative, sep } from "node:path";
 const roots = ["app", "features"];
 const sourceExtensions = new Set([".ts", ".tsx"]);
 const ignoredPrefixes = ["http://", "https://", "mailto:", "tel:", "#"];
+const legacyHomeAllowlist = new Set([
+  "app/vayon/home/page.tsx",
+  "features/authentication/security/oauth.ts",
+]);
 
 function walk(directory) {
   if (!existsSync(directory)) return [];
@@ -29,7 +33,8 @@ const routes = routeFiles.map(routeFor);
 const patterns = routes.map(routePattern);
 
 const references = [];
-const attributePattern = /(?:href|actionHref|destination|redirectTo|returnUrl|successUrl|cancelUrl)\s*(?:=|:)\s*["'`]([^"'`]+)["'`]/g;
+const forbiddenLegacyReferences = [];
+const attributePattern = /(?:href|actionHref|destination|redirectTo|returnUrl|successUrl|cancelUrl)\s*(?:=|:)\s*\{?\s*["'`]([^"'`]+)["'`]/g;
 const callPattern = /(?:redirect|permanentRedirect|router\.(?:push|replace)|NextResponse\.redirect)\(\s*(?:new URL\()?\s*["'`]([^"'`]+)["'`]/g;
 
 for (const root of roots) {
@@ -37,24 +42,27 @@ for (const root of roots) {
     const extension = file.slice(file.lastIndexOf("."));
     if (!sourceExtensions.has(extension)) continue;
     const source = readFileSync(file, "utf8");
+    const normalizedFile = file.split(sep).join("/");
+    if (source.includes("/vayon/home") && !legacyHomeAllowlist.has(normalizedFile)) forbiddenLegacyReferences.push(normalizedFile);
     for (const pattern of [attributePattern, callPattern]) {
       pattern.lastIndex = 0;
       for (const match of source.matchAll(pattern)) {
         const href = match[1];
-        if (!href || ignoredPrefixes.some((prefix) => href.startsWith(prefix)) || href.includes("${")) continue;
+        if (!href || ignoredPrefixes.some((prefix) => href.startsWith(prefix)) || (href.includes("${") && !href.includes("}"))) continue;
         if (!href.startsWith("/")) continue;
-        references.push({ file: file.split(sep).join("/"), href: href.split(/[?#]/)[0] || "/" });
+        references.push({ file: normalizedFile, href: (href.split(/[?#]/)[0] || "/").replace(/\$\{[^}]+\}/g, "__dynamic__") });
       }
     }
   }
 }
 
-const missing = references.filter(({ href }) => !patterns.some((pattern) => pattern.test(href)));
+const missing = references.filter(({ file, href }) => (href === "/vayon/home" && !legacyHomeAllowlist.has(file)) || !patterns.some((pattern) => pattern.test(href)));
 const uniqueMissing = [...new Map(missing.map((item) => [`${item.file}:${item.href}`, item])).values()];
 
-if (uniqueMissing.length) {
-  console.error(`Route integrity audit failed: ${uniqueMissing.length} unresolved internal destination(s).`);
+if (uniqueMissing.length || forbiddenLegacyReferences.length) {
+  console.error(`Route integrity audit failed: ${uniqueMissing.length} unresolved destination(s), ${forbiddenLegacyReferences.length} forbidden legacy home reference(s).`);
   for (const item of uniqueMissing) console.error(`- ${item.href} referenced by ${item.file}`);
+  for (const file of forbiddenLegacyReferences) console.error(`- /vayon/home referenced by ${file}`);
   process.exitCode = 1;
 } else {
   console.log(`Route integrity audit passed: ${routes.length} application routes cover ${references.length} static internal destinations.`);

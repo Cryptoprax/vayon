@@ -137,7 +137,7 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
       { label: "Feature Flags", href: "/platform/feature-flags", icon: ShieldCheck },
       { label: "Enterprise Management", href: "/platform/organizations", icon: Building2 },
       { label: "Platform Settings", href: "/platform/settings", icon: Settings },
-      { label: "Founder Home", href: "/vayon/home", icon: Home },
+      { label: "Dashboard", href: "/vayon/dashboard", icon: Home },
       { label: "Founder Approval Center", href: "/vayon/founder/approvals", icon: ShieldCheck, description: "Approval Center · Executive Decisions" },
       { label: "AI Company Orchestration", href: "/vayon/ai/collaboration", icon: Network },
       { label: "Creative Operating System", href: "/vayon/creative", icon: Palette },

@@ -14,7 +14,7 @@ export function FeatureAvailabilityState({
       <p className="mt-6 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[.2em] text-vds-primary"><Clock3 className="size-4" aria-hidden="true" />Coming Soon</p>
       <h1 id="feature-availability-title" className="mt-3 text-3xl font-semibold">{title}</h1>
       <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-vds-muted">{description}</p>
-      <div className="mt-7 flex flex-wrap justify-center gap-3"><ButtonLink href="/contact?intent=early-access">Join Early Access</ButtonLink><ButtonLink href="/vayon/home" variant="secondary">Return to workspace</ButtonLink></div>
+      <div className="mt-7 flex flex-wrap justify-center gap-3"><ButtonLink href="/contact?intent=early-access">Join Early Access</ButtonLink><ButtonLink href="/vayon/dashboard" variant="secondary">Return to workspace</ButtonLink></div>
     </section>
   </main>;
 }

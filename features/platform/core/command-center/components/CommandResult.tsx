@@ -5,7 +5,7 @@ import type { Command } from "../types/command";
 
 export function CommandResult({ command }: { command: Command }) {
   return (
-    <Button variant="control"
+    <Button variant="control" disabled title="Command execution is not configured"
       type="button"
       className="group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition hover:bg-vds-surface/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vds-focus"
     >

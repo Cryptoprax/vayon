@@ -36,7 +36,7 @@ export const onboardingSetupTargets: Readonly<Record<string, number>> = {
 };
 
 export const productTour = [
-  ["Dashboard", "/vayon/home"],
+  ["Dashboard", "/vayon/dashboard"],
   ["CRM", "/vayon/crm"],
   ["Sales AI", "/vayon/ai/employees/sales-ai"],
   ["CRM AI", "/vayon/ai/employees/crm-ai"],

@@ -5,7 +5,7 @@ import type { SettingsOption } from "../types/settings";
 
 export function SettingsCard({ option }: { option: SettingsOption }) {
   return (
-    <Button variant="control"
+    <Button variant="control" disabled title="This setting is read-only"
       type="button"
       className="group flex w-full items-center gap-3 rounded-xl border border-vds-border/[0.06] bg-vds-surface/[0.018] p-3 text-left transition hover:border-vds-border/[0.11] hover:bg-vds-surface/[0.035] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vds-focus"
     >

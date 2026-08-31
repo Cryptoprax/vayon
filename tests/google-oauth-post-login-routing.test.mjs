@@ -20,9 +20,9 @@ test("Google signup and login use the shared authenticated callback", async () =
 
 test("obsolete Founder home OAuth destination resolves through the canonical entry route", async () => {
   const security = await read("features/authentication/security/oauth.ts");
-  assert.match(security, /obsoletePostLoginPaths/);
-  assert.match(security, /"\/vayon\/home"/);
-  assert.match(security, /return defaultAuthenticatedPath/);
+  assert.match(security, /legacyAuthenticatedPaths/);
+  assert.match(security, /\["\/vayon\/home", "\/vayon\/dashboard"\]/);
+  assert.match(security, /`\$\{pathname\}\$\{parsed\.search\}\$\{parsed\.hash\}`/);
 });
 
 test("new Google users enter onboarding before workspace creation", async () => {
@@ -46,7 +46,8 @@ for (const role of ["Founder", "Admin", "Agent"]) {
     ]);
     assert.doesNotMatch(entry, /redirect\([^\n]*\/vayon\/home/);
     assert.match(entry, /\/vayon\/dashboard/);
-    assert.match(policy, /founder-home.*\/vayon\/home/);
+    assert.doesNotMatch(policy, /\/vayon\/home/);
+    assert.match(policy, /real-estate-workspace.*\/vayon/);
   });
 }
 

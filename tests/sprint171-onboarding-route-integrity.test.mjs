@@ -36,8 +36,8 @@ test("first workspace keeps atomic defaults and exposes guided progress", () => 
   assert.match(bootstrap, /OnboardingService\(\)\.provision/);
   assert.match(bootstrap, /EnterpriseOnboardingService\(\)\.save/);
   assert.match(bootstrap, /businessType: "Real Estate"/);
-  assert.match(home, /WorkspaceSetupCenter/);
-  assert.match(home, /!onboarding\?\.completed_at/);
+  assert.match(home, /redirect\(destination\)/);
+  assert.match(home, /\/vayon\/dashboard/);
   for (const provisioner of ["provision_ai_workforce_after_workspace", "provision_billing_after_workspace", "provision_integrations_after_workspace"])
     assert.match(migration, new RegExp(provisioner));
 });

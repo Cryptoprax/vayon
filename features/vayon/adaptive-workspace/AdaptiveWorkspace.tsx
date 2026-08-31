@@ -38,7 +38,7 @@ const experiences: Record<string, Experience> = {
       {
         id: "workspace",
         label: "Workspace ready",
-        href: "/vayon/home",
+        href: "/vayon/dashboard",
         action: "Open workspace",
         milestone: "workspace_created",
       },
@@ -86,7 +86,7 @@ const experiences: Record<string, Experience> = {
       {
         id: "workspace",
         label: "Workspace ready",
-        href: "/vayon/home",
+        href: "/vayon/dashboard",
         action: "Open workspace",
         milestone: "workspace_created",
       },
@@ -128,7 +128,7 @@ const experiences: Record<string, Experience> = {
       {
         id: "workspace",
         label: "Workspace ready",
-        href: "/vayon/home",
+        href: "/vayon/dashboard",
         action: "Open workspace",
         milestone: "workspace_created",
       },
@@ -176,7 +176,7 @@ const experiences: Record<string, Experience> = {
       {
         id: "workspace",
         label: "Workspace ready",
-        href: "/vayon/home",
+        href: "/vayon/dashboard",
         action: "Open workspace",
         milestone: "workspace_created",
       },
@@ -222,7 +222,7 @@ const experiences: Record<string, Experience> = {
       {
         id: "workspace",
         label: "Workspace ready",
-        href: "/vayon/home",
+        href: "/vayon/dashboard",
         action: "Open workspace",
         milestone: "workspace_created",
       },
@@ -267,7 +267,7 @@ const fallback: Experience = {
     {
       id: "workspace",
       label: "Workspace ready",
-      href: "/vayon/home",
+      href: "/vayon/dashboard",
       action: "Open workspace",
       milestone: "workspace_created",
     },

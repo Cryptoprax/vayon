@@ -559,7 +559,7 @@ function historyResult(item: UniversalHistoryItem): UniversalBarResult {
     id: item.id,
     label: item.label,
     description: item.kind.replaceAll("-", " "),
-    href: item.href ?? "/vayon/home",
+    href: item.href ?? "/vayon/dashboard",
     scope: "settings",
     kind: "navigation",
     keywords: [],

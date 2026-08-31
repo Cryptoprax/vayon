@@ -52,6 +52,8 @@ export function NotificationCard({
           </div>
           <Button variant="control"
             type="button"
+            disabled
+            title="No notification destination is configured"
             className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-vds-primary transition hover:text-vds-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vds-focus"
           >
             {notification.action}

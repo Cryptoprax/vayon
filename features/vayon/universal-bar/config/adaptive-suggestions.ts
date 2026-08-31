@@ -16,7 +16,7 @@ export const defaultAdaptiveSuggestions: readonly AdaptiveSuggestion[] = [
     id: "executive-home",
     label: "Open Executive Home",
     hint: "Review executive context",
-    href: "/vayon/home",
+    href: "/vayon/dashboard",
   },
   {
     id: "find-documents",

@@ -1,16 +1,21 @@
-import type{Metadata}from"next";
-import{AuthenticationService}from"@/features/authentication/services/authentication.service";
-import{OrganizationService}from"@/features/onboarding/services/organization.service";
-import{EnterpriseOnboardingService}from"@/features/onboarding/services/enterprise-onboarding.service";
-import{WorkspaceSetupCenter}from"@/features/onboarding/components/WorkspaceSetupCenter";
-import{AdaptiveWorkspace}from"@/features/vayon/adaptive-workspace/AdaptiveWorkspace";
-import{ExecutiveDashboardService}from"@/features/vayon/dashboard/services/executive-dashboard.service";
-import{WorkforceService}from"@/features/vayon/operational-workforce/services/workforce.service";
-import{AICollaborationService}from"@/features/platform/ai-collaboration";
-import{FounderCommandCenter}from"@/features/vayon/founder-command-center/FounderCommandCenter";
-import{SystemHealthCard}from"@/features/vayon/founder-command-center/SystemHealthCard";
-import{GmailExecutiveSnapshot}from"@/features/platform/messaging/executive/GmailExecutiveSnapshot";
-import{CalendarExecutiveSnapshot}from"@/features/platform/calendar/components/CalendarExecutiveSnapshot";
-import{AIUsageCard}from"@/features/vayon/founder-command-center/AIUsageCard";
-export const metadata:Metadata={title:"Founder Command Center | Vayon OS",description:"A premium daily CEO briefing prepared from verified workspace evidence."};
-export default async function FounderCommandCenterPage(){const workforceService=await WorkforceService.production(),collaborationService=await AICollaborationService.production();const[user,organization,onboarding,dashboard,workforce,collaboration]=await Promise.all([new AuthenticationService().user(),new OrganizationService().current(),new EnterpriseOnboardingService().session().catch(()=>null),new ExecutiveDashboardService().load(),workforceService.snapshot(),collaborationService.dashboard()]),userName=String(user?.user_metadata?.full_name??user?.user_metadata?.name??user?.email?.split("@")[0]??"Founder").split(" ")[0],businessType=String(onboarding?.configuration?.businessType??"");return <><AdaptiveWorkspace businessType={businessType}/>{organization&&!onboarding?.completed_at&&<div className="mx-auto max-w-[100rem] px-4 pt-8 sm:px-6"><WorkspaceSetupCenter session={onboarding} provisioned userName={userName}/></div>}<FounderCommandCenter userName={userName} workspaceName={organization?.name??dashboard.workspaceName} businessType={businessType} dashboard={dashboard} workforce={workforce} collaboration={collaboration}/><div className="mx-auto grid max-w-[100rem] gap-5 px-4 pb-8 sm:px-6 xl:grid-cols-3"><AIUsageCard/><SystemHealthCard/><GmailExecutiveSnapshot/><CalendarExecutiveSnapshot/></div></>}
+import { redirect } from "next/navigation";
+
+type LegacyHomePageProps = {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+export default async function LegacyHomeCompatibilityPage({ searchParams }: LegacyHomePageProps) {
+  const query = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(await searchParams)) {
+    if (Array.isArray(value)) {
+      for (const item of value) query.append(key, item);
+    } else if (value !== undefined) {
+      query.set(key, value);
+    }
+  }
+
+  const suffix = query.size ? `?${query.toString()}` : "";
+  const destination = suffix ? `/vayon/dashboard${suffix}` : "/vayon/dashboard";
+  redirect(destination);
+}

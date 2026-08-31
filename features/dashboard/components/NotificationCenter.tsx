@@ -60,6 +60,7 @@ export function NotificationCenter({
   onClose,
 }: NotificationCenterProps) {
   const [activeTab, setActiveTab] = useState<NotificationTab>("Platform");
+  const [read, setRead] = useState(false);
   const detail = tabDetails[activeTab];
   const Icon = detail.icon;
 
@@ -120,10 +121,7 @@ export function NotificationCenter({
         </div>
 
         <div className="flex-1 overflow-y-auto p-3" role="tabpanel">
-          <Button variant="control"
-            type="button"
-            className="flex w-full gap-3 rounded-2xl border border-vds-border/[0.07] bg-vds-surface/[0.025] p-4 text-left transition hover:border-vds-border/[0.12] hover:bg-vds-surface/[0.045] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vds-focus"
-          >
+          <article className="flex w-full gap-3 rounded-2xl border border-vds-border/[0.07] bg-vds-surface/[0.025] p-4 text-left">
             <span
               className={`flex size-10 shrink-0 items-center justify-center rounded-xl ${detail.tone}`}
             >
@@ -134,7 +132,7 @@ export function NotificationCenter({
                 <span className="text-sm font-medium text-vds-secondary">
                   {detail.title}
                 </span>
-                <span className="size-1.5 shrink-0 rounded-full bg-vds-primary" />
+                {!read&&<span className="size-1.5 shrink-0 rounded-full bg-vds-primary" />}
               </span>
               <span className="mt-1.5 block text-xs leading-5 text-vds-muted">
                 {detail.description}
@@ -143,15 +141,17 @@ export function NotificationCenter({
                 A moment ago
               </span>
             </span>
-          </Button>
+          </article>
         </div>
 
         <div className="border-t border-vds-border/[0.07] p-3">
           <Button variant="control"
             type="button"
+            onClick={()=>setRead(true)}
+            disabled={read}
             className="h-10 w-full rounded-xl text-xs font-medium text-vds-muted transition hover:bg-vds-surface/[0.05] hover:text-vds-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vds-focus"
           >
-            Mark all as read
+            {read?"All notifications read":"Mark all as read"}
           </Button>
         </div>
       </section>

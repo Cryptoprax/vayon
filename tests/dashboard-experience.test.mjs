@@ -25,10 +25,10 @@ test("dashboard data remains tenant scoped without fallback metrics", () => {
   assert.doesNotMatch(service, /4\.25|1\.8 Cr/);
 });
 
-test("dashboard preserves the product shell while founder home remains a protected platform route", () => {
+test("dashboard preserves the product shell and is the canonical authenticated landing route", () => {
   const navigation = read("features/vayon/product-shell/navigation.ts");
-  assert.match(navigation, /\/vayon\/dashboard/);
-  assert.match(navigation, /label: "Founder Home", href: "\/vayon\/home"/);
+  assert.match(navigation, /label: "Dashboard", href: "\/vayon\/dashboard"/);
+  assert.doesNotMatch(navigation, /href: "\/vayon\/home"/);
   assert.match(read("app/vayon/layout.tsx"), /VayonShell/);
 });
 

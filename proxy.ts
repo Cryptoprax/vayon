@@ -7,6 +7,12 @@ const WEBHOOK_PATH_PREFIX = "/api/webhooks/";
 
 export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  if (path === "/vayon/home") {
+    const destination = request.nextUrl.clone();
+    destination.pathname = "/vayon/dashboard";
+    return NextResponse.redirect(destination, 307);
+  }
+
   if (path === "/api/webhooks" || path.startsWith(WEBHOOK_PATH_PREFIX)) {
     return NextResponse.next();
   }

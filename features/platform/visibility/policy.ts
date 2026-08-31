@@ -24,7 +24,6 @@ export const platformVisibilityRules: readonly VisibilityRule[] = [
   { id: "launch-readiness", pathPrefix: "/vayon/platform/launch-readiness", industries: allIndustries, roles: founderRoles },
   { id: "product-intelligence", pathPrefix: "/vayon/settings/product-intelligence", industries: allIndustries, roles: founderRoles },
   { id: "founder-approvals", pathPrefix: "/vayon/founder", industries: allIndustries, roles: founderRoles },
-  { id: "founder-home", pathPrefix: "/vayon/home", industries: allIndustries, roles: founderRoles },
   { id: "ai-company-orchestration", pathPrefix: "/vayon/ai/collaboration", industries: allIndustries, roles: founderRoles },
   { id: "ai-playground", pathPrefix: "/vayon/ai/playground", industries: allIndustries, roles: founderRoles },
   { id: "platform-ai-team", pathPrefix: "/vayon/ai", industries: allIndustries, roles: founderRoles },

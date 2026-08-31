@@ -10,7 +10,7 @@ test("dashboard adapts to the selected business type", () => {
     assert.match(adaptive, new RegExp(business, "i"));
   for (const moduleName of ["Properties", "Buyers", "Campaigns", "Clients", "Projects", "Contracts", "Patients", "Products", "Orders"])
     assert.match(adaptive, new RegExp(moduleName));
-  assert.match(read("app/vayon/home/page.tsx"), /configuration\?\.businessType/);
+  assert.match(read("app/vayon/home/page.tsx"), /\/vayon\/dashboard/);
 });
 
 test("adaptive home leads with one recommended objective and remembers layout locally", () => {

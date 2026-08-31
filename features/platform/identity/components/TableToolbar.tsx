@@ -11,6 +11,9 @@ export interface TableToolbarProps {
   primaryAction: string;
   exportLabel?: string;
   bulkActionLabel?: string;
+  onPrimaryAction?: () => void;
+  onExport?: () => void;
+  onBulkAction?: () => void;
 }
 
 export function TableToolbar({
@@ -20,6 +23,7 @@ export function TableToolbar({
   primaryAction,
   exportLabel = "Export",
   bulkActionLabel = "Bulk actions",
+  onPrimaryAction,onExport,onBulkAction,
 }: TableToolbarProps) {
   return (
     <div className="flex flex-col gap-3 border-b border-vds-border/[0.07] p-3 sm:p-4 xl:flex-row xl:items-center xl:justify-between">
@@ -34,6 +38,7 @@ export function TableToolbar({
       <div className="flex items-center gap-2">
         <Button variant="control"
           type="button"
+          onClick={onBulkAction} disabled={!onBulkAction} title={onBulkAction?undefined:"No bulk action is available"}
           className="inline-flex h-9 items-center gap-2 rounded-xl border border-vds-border/[0.07] px-3 text-xs font-medium text-vds-muted transition hover:bg-vds-surface/[0.05] hover:text-vds-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vds-focus"
         >
           <Layers3 className="size-3.5" aria-hidden="true" />
@@ -41,6 +46,7 @@ export function TableToolbar({
         </Button>
         <Button variant="control"
           type="button"
+          onClick={onExport} disabled={!onExport} title={onExport?undefined:"Export is not available"}
           className="inline-flex h-9 items-center gap-2 rounded-xl border border-vds-border/[0.07] px-3 text-xs font-medium text-vds-muted transition hover:bg-vds-surface/[0.05] hover:text-vds-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vds-focus"
         >
           <Download className="size-3.5" aria-hidden="true" />
@@ -48,6 +54,7 @@ export function TableToolbar({
         </Button>
         <Button variant="primary"
           type="button"
+          onClick={onPrimaryAction} disabled={!onPrimaryAction} title={onPrimaryAction?undefined:"This action is not configured"}
           className="inline-flex h-9 items-center gap-2 rounded-xl px-3 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2"
         >
           <Plus className="size-3.5" aria-hidden="true" />
