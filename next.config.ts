@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { canonicalRouteRedirects } from "./config/canonical-routes";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 const contentSecurityPolicy = [
@@ -36,6 +37,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      ...canonicalRouteRedirects,
       { source: "/leadestate", destination: "/vayon", permanent: true },
       { source: "/leadestate/:path*", destination: "/vayon/:path*", permanent: true },
     ];

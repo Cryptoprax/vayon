@@ -14,7 +14,7 @@ test("customer navigation uses real estate terminology and founder tools use pro
 
 test("growth catalog covers the real estate acquisition and intelligence surfaces", () => {
   const catalog = read("features/vayon/growth-intelligence/catalog.ts");
-  for (const value of ["Meta Ads", "Cost Per Lead", "Properties Without Enquiries", "Budget Distribution", "Valuation Requests", "Luxury Brochure", "Published Listings", "Property Pages", "Mortgage Brokers", "Neighborhood Heatmaps", "Agent Performance"])
+  for (const value of ["Meta Ads", "Cost Per Lead", "Properties Without Enquiries", "Budget Distribution", "Valuation Requests", "Revenue Attribution", "Return On Ad Spend", "Property Pages", "Mortgage Brokers", "Neighborhood Heatmaps", "Agent Performance"])
     assert.match(catalog, new RegExp(value));
   assert.match(catalog, /founderGrowthSections/);
   assert.match(catalog, /allGrowthSections/);

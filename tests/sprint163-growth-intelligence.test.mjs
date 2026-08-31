@@ -7,8 +7,8 @@ const read = (file) => readFileSync(new URL(file, root), "utf8");
 
 test("Real Estate Growth Center is a first-class sidebar module", () => {
   const navigation = read("features/vayon/product-shell/navigation.ts");
-  assert.match(navigation, /label: "Growth"/);
-  for (const route of ["lead-generation", "listing-performance", "buyer-intelligence", "seller-intelligence", "marketing", "advertising", "social-media", "property-seo", "referral-network", "market-intelligence", "reports"]) assert.match(navigation, new RegExp(`/vayon/growth/${route}`));
+  assert.match(navigation, /label: "Growth Center"/);
+  for (const route of ["lead-generation", "listing-performance", "buyer-intelligence", "seller-intelligence", "marketing-analytics", "advertising-performance", "social-performance", "property-seo", "referral-network", "market-intelligence", "reports"]) assert.match(navigation, new RegExp(`/vayon/growth/${route}`));
   assert.ok(existsSync(new URL("app/vayon/growth/[section]/page.tsx", root)));
 });
 
@@ -31,6 +31,6 @@ test("AI CMO prepares recommendations and preserves human approval", () => {
 
 test("real estate growth catalogs are complete and founder catalogs remain available", () => {
   const catalog = read("features/vayon/growth-intelligence/catalog.ts");
-  for (const value of ["Meta Ads", "Properties Without Enquiries", "Budget Distribution", "Valuation Requests", "Luxury Brochure", "Published Listings", "Neighborhood Heatmaps", "Referral Revenue"]) assert.match(catalog, new RegExp(value));
+  for (const value of ["Meta Ads", "Properties Without Enquiries", "Budget Distribution", "Valuation Requests", "Revenue Attribution", "Return On Ad Spend", "Neighborhood Heatmaps", "Referral Revenue"]) assert.match(catalog, new RegExp(value));
   for (const founderValue of ["Brand Assets", "Podcast Outreach", "Discord", "Due diligence checklist"]) assert.match(catalog, new RegExp(founderValue));
 });

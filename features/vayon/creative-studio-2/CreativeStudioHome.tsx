@@ -129,7 +129,7 @@ export function CreativeStudioHome({
   return (
     <main className="mx-auto grid w-full max-w-[120rem] gap-5 px-4 py-5 lg:grid-cols-[13rem_minmax(0,1fr)] lg:px-6">
       <aside
-        className={`${card} hidden h-fit p-3 lg:block`}
+        className="hidden"
         aria-label="Creative Studio navigation"
       >
         <p className="px-3 py-3 text-[10px] font-semibold uppercase tracking-[.2em] text-vds-primary">

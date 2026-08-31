@@ -12,6 +12,9 @@ import { WhatsAppConversations } from "./WhatsAppConversations";
 import { ExecutiveCommandCenter } from "./ExecutiveCommandCenter";
 import { RealEstateKpiGrid } from "./RealEstateKpiGrid";
 import { RealEstateIntelligence } from "./RealEstateIntelligence";
+import { ContextualAIActions } from "@/features/vayon/cross-module-intelligence/ContextualAIActions";
+import { AIWorkQueue } from "@/features/vayon/autonomous-workforce/AutonomousWorkforceViews";
+import { DailyBriefing } from "@/features/vayon/enterprise-collaboration/CollaborationSurfaces";
 
 export function DashboardShell({
   data,
@@ -27,10 +30,13 @@ export function DashboardShell({
   return (
     <div className="mx-auto max-w-[100rem] space-y-6 px-4 py-7 sm:px-6 sm:py-9">
       <ExecutiveCommandCenter data={data} userName={userName} />
+      <DailyBriefing data={data} userName={userName} />
       <AICommandBar onBlockedAction={onBlockedAction} prompts={aiPrompts} />
       {data.isEmpty && <EmptyDashboard />}
       <RealEstateKpiGrid data={data} />
       <RealEstateIntelligence data={data} />
+      <ContextualAIActions kind="dashboard" recordLabel={data.organizationName} />
+      <AIWorkQueue compact />
       <PipelineBoard items={data.pipeline} currency={data.currency} />
       <RevenueChartLoader data={data.charts} currency={data.currency} />
       <AIWorkforceGrid members={data.aiWorkforce} />

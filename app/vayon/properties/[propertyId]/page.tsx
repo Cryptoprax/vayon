@@ -9,6 +9,8 @@ import {
 } from "@/features/vayon/workspace-engine/services/workspace-adapter.service";
 import { WorkspaceRegistryService } from "@/features/vayon/workspace-engine/services/workspace-registry.service";
 import { ContextualRealEstateRecommendations, RealEstateSignalGrid } from "@/features/vayon/real-estate-experience/RealEstateSurfaces";
+import { ContextualAIActions } from "@/features/vayon/cross-module-intelligence/ContextualAIActions";
+import { EntityCollaboration } from "@/features/vayon/enterprise-collaboration/CollaborationSurfaces";
 
 export default async function Page({
   params,
@@ -39,6 +41,8 @@ export default async function Page({
       <WorkspaceRenderer model={propertyWorkspaceModel(property)} activeTab={active} editHref={`/vayon/properties/${id}/edit`} />
       <RealEstateSignalGrid kind="property" values={{ "AI Listing Score": property.aiScore == null ? undefined : `${property.aiScore}/100`, "Marketing Status": property.published ? "Published" : "Not published", "Suggested Improvements": property.description ? "Review listing performance" : "Add a complete property description" }} />
       <ContextualRealEstateRecommendations kind="property" />
+      <ContextualAIActions kind="property" recordId={id} recordLabel={property.title} />
+      <div className="mx-auto mb-8 max-w-[96rem] px-4 sm:px-6"><EntityCollaboration entityType="property" entityId={id} entityLabel={property.title} /></div>
     </>
   );
 }

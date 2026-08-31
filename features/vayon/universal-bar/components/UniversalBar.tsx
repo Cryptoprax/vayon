@@ -33,6 +33,7 @@ import { AuroraCrmSearchProvider } from "@/features/vayon/demo-workspace/crm-net
 import { AuroraPropertySearchProvider } from "@/features/vayon/demo-workspace/property-portfolio/search.provider";
 import { AuroraSalesOperationsSearchProvider } from "@/features/vayon/demo-workspace/sales-operations/search.provider";
 import { AuroraBusinessActivitySearchProvider } from "@/features/vayon/demo-workspace/business-activity/search.provider";
+import { resolveOperatingSystemCommand } from "@/features/vayon/cross-module-intelligence/command-router";
 
 const scopes: readonly UniversalSearchScope[] = [
   "projects",
@@ -216,9 +217,11 @@ export function UniversalBar({
     }
   }
   function openCopilot(prompt: string) {
+    const command = resolveOperatingSystemCommand(prompt);
     window.dispatchEvent(
-      new CustomEvent("vayon:copilot:open", { detail: { prompt } }),
+      new CustomEvent("vayon:copilot:open", { detail: { prompt, command } }),
     );
+    router.push(command.route);
     close();
   }
   function toggle(kind: "pinned" | "favorites", result: UniversalBarResult) {
@@ -280,6 +283,7 @@ export function UniversalBar({
                   onKeyDown={keyDown}
                   role="combobox"
                   aria-label="Search, create, or navigate Vayon"
+                  enterKeyHint="go"
                   aria-expanded="true"
                   aria-controls="universal-bar-results"
                   aria-activedescendant={

@@ -59,6 +59,8 @@
     "test": "node --test tests/*.test.mjs",
     "start": "next start",
     "lint": "eslint"
+    ,"test:e2e": "playwright test"
+    ,"test:e2e:list": "playwright test --list"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.7.1",
@@ -75,6 +77,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
