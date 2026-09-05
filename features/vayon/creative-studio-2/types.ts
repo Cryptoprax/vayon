@@ -2,6 +2,7 @@ import type {
   CreativeAsset,
   CreativeBrandKit,
   CreativeCampaign,
+  CreativeSnapshot,
 } from "@/features/vayon/creative-studio/domain";
 
 export type CreativeModuleId =
@@ -41,6 +42,7 @@ export interface CreativeProject {
   readonly categories: readonly string[];
 }
 export interface CreativeStudio2Snapshot {
+  readonly templates: CreativeSnapshot["templates"];
   readonly projects: readonly CreativeProject[];
   readonly assets: readonly CreativeAsset[];
   readonly brandKits: readonly CreativeBrandKit[];

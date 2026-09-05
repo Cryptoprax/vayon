@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
+import { useEffect, useMemo, useState, useSyncExternalStore, type ComponentProps } from "react";
 import {
   Bot,
   CircleAlert,
@@ -42,7 +43,9 @@ export function VayonIntelligence({
   subscriptionPlan,
   permissions = [],
   diagnostic,
+  docked = false,
 }: {
+  docked?: boolean;
   route: string;
   organization: string;
   workspace: string;
@@ -76,8 +79,8 @@ export function VayonIntelligence({
         return { conversations: [], ui: {} };
       }
     }),
-    [open, setOpen] = useState(Boolean(storedState.ui.open)),
-    [full, setFull] = useState(Boolean(storedState.ui.full)),
+    [open, setOpen] = useState(docked ? false : Boolean(storedState.ui.open)),
+    [full, setFull] = useState(docked ? false : Boolean(storedState.ui.full)),
     [tab, setTab] = useState<IntelligenceTab>("assistant"),
     [items, setItems] = useState<IntelligenceConversation[]>(
       storedState.conversations,
@@ -236,7 +239,7 @@ export function VayonIntelligence({
     URL.revokeObjectURL(url);
   }
   return (
-    <FloatingSurface
+    <IntelligenceSurface docked={docked}
       id="vayon-intelligence"
       kind="assistant"
       priority={10}
@@ -245,7 +248,7 @@ export function VayonIntelligence({
     >
       {!open ? (
         <div className="flex items-center gap-2">
-          {proactive && (
+          {proactive && !docked && (
             <Button
               variant="ghost"
               className="vds-focus hidden max-w-64 rounded-2xl border border-vds-border bg-vds-surface/95 px-4 py-3 text-left text-sm shadow-xl backdrop-blur-xl sm:block"
@@ -260,18 +263,18 @@ export function VayonIntelligence({
           <Button
             aria-label="Open Real Estate Assistant"
             title={proactive?.title}
-            className="size-14 rounded-full shadow-2xl"
+            className={docked ? "min-h-11 w-full gap-2 rounded-xl" : "size-14 rounded-full shadow-2xl"}
             onClick={() => setOpen(true)}
           >
-            <Bot />
+            <Bot aria-hidden="true" />{docked && "Open Real Estate Assistant"}
           </Button>
         </div>
       ) : (
         <aside
-          role="dialog"
+          role={docked ? "region" : "dialog"}
           aria-label="Real Estate Assistant"
-          aria-modal={full || undefined}
-          className={`overflow-hidden border border-vds-border bg-vds-surface/95 shadow-2xl backdrop-blur-xl transition-all motion-reduce:transition-none ${full ? "h-full w-full rounded-3xl" : "h-[min(42rem,calc(100dvh-2rem))] w-[min(29rem,calc(100vw-2rem))] rounded-3xl max-md:h-[min(85dvh,44rem)] max-md:w-screen max-md:rounded-b-none max-md:rounded-t-3xl"}`}
+          aria-modal={!docked && full || undefined}
+          className={`overflow-hidden border border-vds-border bg-vds-surface/95 shadow-2xl backdrop-blur-xl transition-all motion-reduce:transition-none ${docked ? "h-[38rem] w-full rounded-2xl" : full ? "h-full w-full rounded-3xl" : "h-[min(42rem,calc(100dvh-2rem))] w-[min(29rem,calc(100vw-2rem))] rounded-3xl max-md:h-[min(85dvh,44rem)] max-md:w-screen max-md:rounded-b-none max-md:rounded-t-3xl"}`}
         >
           <header className="flex items-center gap-2 border-b border-vds-border p-3">
             <Bot className="text-vds-primary" />
@@ -283,6 +286,7 @@ export function VayonIntelligence({
             </div>
             <Button
               variant="ghost"
+              hidden={docked}
               aria-label={full ? "Exit full screen" : "Enter full screen"}
               onClick={() => setFull((x) => !x)}
             >
@@ -313,7 +317,7 @@ export function VayonIntelligence({
               ),
             )}
           </nav>
-          <div className="grid h-[calc(100%-7.5rem)] grid-cols-[8rem_1fr] sm:grid-cols-[11rem_1fr]">
+          <div className={docked ? "grid h-[calc(100%-7.5rem)] grid-cols-1 overflow-y-auto" : "grid h-[calc(100%-7.5rem)] grid-cols-[8rem_1fr] sm:grid-cols-[11rem_1fr]"}>
             <section className="border-r border-vds-border p-2">
               <Button variant="ghost" className="w-full" onClick={() => add()}>
                 <Plus />
@@ -331,7 +335,7 @@ export function VayonIntelligence({
                   className="min-w-0 bg-transparent p-2 text-xs outline-none"
                 />
               </div>
-              <div className="mt-2 max-h-[24rem] overflow-y-auto">
+              <div className={docked ? "mt-2 max-h-32 overflow-y-auto" : "mt-2 max-h-[24rem] overflow-y-auto"}>
                 {visible.map((item) => (
                   <Button
                     variant="ghost"
@@ -415,7 +419,7 @@ export function VayonIntelligence({
                       </Button>
                     </div>
                   )}
-                  {proactive && (
+                  {proactive && !docked && (
                     <article className="mt-4 rounded-2xl border border-vds-accent-border bg-vds-primary-soft p-4">
                       <div className="flex items-center gap-2 font-semibold">
                         <Sparkles className="size-4 text-vds-primary" />
@@ -567,7 +571,7 @@ export function VayonIntelligence({
           </div>
         </aside>
       )}
-    </FloatingSurface>
+    </IntelligenceSurface>
   );
 }
 function Empty({ title, text }: { title: string; text: string }) {
@@ -579,3 +583,17 @@ function Empty({ title, text }: { title: string; text: string }) {
   );
 }
 export { intelligenceModuleRegistry };
+
+// Reuse the assistant in the Creative Center dock without registering a floating action.
+function subscribeDock(callback: () => void) {
+  const observer = new MutationObserver(callback);
+  observer.observe(document.body, { childList: true, subtree: true });
+  return () => observer.disconnect();
+}
+function dockSnapshot() { return document.getElementById("creative-intelligence-dock"); }
+function IntelligenceSurface({ docked, children, ...props }: ComponentProps<typeof FloatingSurface> & { docked: boolean }) {
+  const target = useSyncExternalStore(subscribeDock, dockSnapshot, () => null);
+  if (docked && target) return createPortal(children, target);
+  if (docked) return null;
+  return <FloatingSurface {...props}>{children}</FloatingSurface>;
+}

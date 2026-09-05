@@ -75,6 +75,7 @@ export class CreativeStudio2Service {
     const source = await this.studio.snapshot();
     return {
       modules,
+      templates: source.templates,
       projects: source.campaigns.map((campaign) => ({
         id: campaign.id,
         name: campaign.name,
