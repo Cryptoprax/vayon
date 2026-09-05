@@ -15,6 +15,7 @@ import { RealEstateIntelligence } from "./RealEstateIntelligence";
 import { ContextualAIActions } from "@/features/vayon/cross-module-intelligence/ContextualAIActions";
 import { AIWorkQueue } from "@/features/vayon/autonomous-workforce/AutonomousWorkforceViews";
 import { DailyBriefing } from "@/features/vayon/enterprise-collaboration/CollaborationSurfaces";
+import { GettingStartedChecklist } from "./GettingStartedChecklist";
 
 export function DashboardShell({
   data,
@@ -31,6 +32,7 @@ export function DashboardShell({
     <div className="mx-auto max-w-[100rem] space-y-6 px-4 py-7 sm:px-6 sm:py-9">
       <ExecutiveCommandCenter data={data} userName={userName} />
       <DailyBriefing data={data} userName={userName} />
+      <GettingStartedChecklist data={data} />
       <AICommandBar onBlockedAction={onBlockedAction} prompts={aiPrompts} />
       {data.isEmpty && <EmptyDashboard />}
       <RealEstateKpiGrid data={data} />

@@ -17,7 +17,6 @@ const setupItems = [
   ["Connect Google Calendar", "calendar", 6, "/onboarding/calendar", "30 seconds"],
   ["Connect WhatsApp", "whatsapp", 7, "/onboarding/whatsapp", "1 minute"],
   ["Configure AI Workforce", "ai", 8, "/onboarding/ai-workforce", "45 seconds"],
-  ["Import CRM", "crm", 9, "/onboarding/crm", "2 minutes"],
   ["Import Properties", "properties", 10, "/onboarding/properties", "2 minutes"],
   ["Choose Subscription", "subscription", 14, "/onboarding/subscription", "1 minute"],
   ["Configure Notifications", "notifications", 12, "/onboarding/notifications", "30 seconds"],
@@ -26,7 +25,6 @@ const setupItems = [
 ] as const;
 const healthCategories = [
   ["Brand", [2, 3]],
-  ["CRM", [9]],
   ["Email", [5, 13]],
   ["Calendar", [6]],
   ["Marketing", [11]],

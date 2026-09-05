@@ -59,7 +59,7 @@ export function ExecutiveCommandCenter({
   const recommendations = useMemo<readonly Recommendation[]>(() => {
     const items: Recommendation[] = [];
     if (!leads)
-      items.push({ id: "crm", title: "Import CRM", detail: "Build your first customer pipeline.", href: "/onboarding/crm" });
+      items.push({ id: "crm", title: "Import CRM", detail: "Build your first customer pipeline.", href: "/vayon/settings/integrations/data-import" });
     if (!data.activities.some((item) => /campaign/i.test(item.eventType)))
       items.push({ id: "campaign", title: "Create your first campaign", detail: "Turn a business goal into a governed campaign.", href: "/vayon/creative/campaigns" });
     if (!data.aiWorkforce.length)

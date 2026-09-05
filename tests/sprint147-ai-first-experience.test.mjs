@@ -31,7 +31,6 @@ test("AI concierge and workspace health are personalized and evidence based", ()
     "Welcome {userName}",
     "I've already prepared your workspace",
     "Brand",
-    "CRM",
     "Email",
     "Calendar",
     "Marketing",

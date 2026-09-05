@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
-import Link from "next/link";
 import { BarChart3, Bot, Building2, Check, ChevronLeft, ChevronRight, CircleCheck, Construction, GraduationCap, HeartPulse, LoaderCircle, Megaphone, MessageCircle, ShoppingBag, Sparkles, Users, Workflow } from "lucide-react";
 import { Button } from "@/features/platform/design-system";
 import { completeOnboardingAction } from "../actions/onboarding.actions";
@@ -11,9 +10,10 @@ type Session = { current_step: number; completed_steps: number[]; configuration:
 const businesses = [["Real Estate", Building2], ["Marketing Agency", Megaphone], ["Consulting", Users], ["Construction", Construction], ["Healthcare", HeartPulse], ["Education", GraduationCap], ["Retail", ShoppingBag], ["Other", Sparkles]] as const;
 const goals = [["Generate Leads", Sparkles], ["Manage Customers", Users], ["AI Employees", Bot], ["Marketing", Megaphone], ["Automation", Workflow], ["Operations", Construction], ["Analytics", BarChart3]] as const;
 const connections = ["Google", "Microsoft", "WhatsApp"] as const;
-const setupItems = ["CRM", "AI", "Analytics", "Automation", "Knowledge"];
+const setupItems = ["AI", "Analytics", "Automation", "Knowledge"];
 
 export function EnterpriseOnboardingWizard({ session, provisioned, initialStep }: { session: Session; provisioned: boolean; initialStep?: number }) {
+  void initialStep;
   const saved = session?.configuration ?? {};
   const [step, setStep] = useState(1);
   const [business, setBusiness] = useState(String(saved.businessType ?? "Real Estate"));
@@ -44,8 +44,6 @@ export function EnterpriseOnboardingWizard({ session, provisioned, initialStep }
     setSelectedConnections((current) => current.includes(connection) ? current.filter((item) => item !== connection) : [...current, connection]);
   }
 
-  if (initialStep === 9) return <CrmImportRecovery />;
-
   return <section className="w-full max-w-5xl overflow-hidden rounded-[2rem] border border-vds-border bg-vds-surface shadow-vds-lg">
     <header className="border-b border-vds-border px-6 py-5 sm:px-10"><div className="flex items-center justify-between gap-4"><div><p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">Meet your AI Team</p><p className="mt-1 text-sm text-vds-muted">Choose your business. Your AI team is prepared automatically.</p></div><p className="text-sm text-vds-muted">{step} of 4</p></div><div className="mt-4 h-1.5 overflow-hidden rounded-full bg-vds-elevated" aria-label={`Setup ${step} of 4`}><div className="h-full rounded-full bg-vds-primary transition-[width] motion-reduce:transition-none" style={{ width: `${step * 25}%` }} /></div></header>
     <div className="min-h-[34rem] p-6 sm:p-10">
@@ -57,8 +55,6 @@ export function EnterpriseOnboardingWizard({ session, provisioned, initialStep }
     <footer className="flex items-center justify-between border-t border-vds-border px-6 py-5 sm:px-10"><Button variant="ghost" disabled={step === 1 || pending} onClick={() => move(step - 1)}><ChevronLeft className="size-4" />Back</Button>{step < 4 && <Button disabled={pending} onClick={() => move(step + 1)}>{pending && <LoaderCircle className="size-4 animate-spin" />}{step === 3 ? "Continue" : "Next"}<ChevronRight className="size-4" /></Button>}</footer>
   </section>;
 }
-
-function CrmImportRecovery() { const providers = ["HubSpot", "Salesforce", "Zoho", "Pipedrive", "CSV Import"]; return <section className="w-full max-w-5xl rounded-[2rem] border border-vds-border bg-vds-surface p-6 shadow-vds-lg sm:p-10" aria-labelledby="crm-import-title"><p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">CRM Import</p><h1 id="crm-import-title" className="mt-2 text-3xl font-semibold">No CRM connected yet.</h1><p className="mt-3 text-sm text-vds-muted">Connect an existing CRM or import a CSV when you are ready. You can safely skip this step.</p><div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{providers.map((provider) => <article className="rounded-2xl border border-vds-border bg-vds-elevated p-5" key={provider}><h2 className="font-semibold">{provider}</h2><p className="mt-2 text-xs text-vds-muted">{provider === "CSV Import" ? "Import contacts from a structured file." : `Connect ${provider} from Business Connections.`}</p></article>)}</div><div className="mt-8 flex flex-wrap gap-3"><Link className="vds-focus rounded-xl bg-vds-primary px-4 py-3 text-sm font-semibold text-vds-on-accent" href="/vayon/settings/integrations">Connect CRM</Link><Link className="vds-focus rounded-xl border border-vds-border px-4 py-3 text-sm" href="/onboarding">Skip</Link></div></section>; }
 
 function ProvisionForm({ business, locale }: { business: string; locale: { country: string; currency: string; timezone: string; language: string } }) {
   return <form action={completeOnboardingAction}><input type="hidden" name="organizationName" value="My Organization" /><input type="hidden" name="workspaceName" value="Main Workspace" /><input type="hidden" name="businessType" value={business} /><input type="hidden" name="industry" value={business} /><input type="hidden" name="phone" value="0000000" /><input type="hidden" name="website" value="" /><input type="hidden" name="country" value={locale.country} /><input type="hidden" name="currency" value={locale.currency} /><input type="hidden" name="timezone" value={locale.timezone} /><input type="hidden" name="language" value={locale.language} /><input type="hidden" name="companySize" value="1-10" /><Button size="lg" type="submit">Create recommended workspace</Button></form>;

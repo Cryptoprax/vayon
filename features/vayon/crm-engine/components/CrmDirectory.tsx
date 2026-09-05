@@ -49,7 +49,7 @@ export function CustomerDirectory({ items }: { items: readonly CrmLeadRow[] }) {
           title="Let's build your customer pipeline."
           description="Bring in your existing contacts or create the first relationship in your workspace."
           primaryLabel="Import CSV"
-          primaryHref="/onboarding?setup=crm"
+          primaryHref="/vayon/settings/integrations/data-import"
           secondaryActions={[
             { label: "Create Contact", href: "/vayon/leads/new" },
             { label: "Ask AI", href: "/vayon/ai" },

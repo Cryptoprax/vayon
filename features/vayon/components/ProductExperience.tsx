@@ -2,7 +2,6 @@
 import { usePathname, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { useState, useSyncExternalStore, type ReactNode } from "react";
-import { Check, X } from "lucide-react";
 import { Breadcrumbs } from "../product-shell/Breadcrumbs";
 import { QuickCreate } from "../product-shell/QuickCreate";
 import { ShellHeader } from "../product-shell/ShellHeader";
@@ -13,6 +12,7 @@ import { FloatingLayoutManager, FloatingSurface } from "../floating-layout/Float
 import { TTFVObserver } from "../ttfv/TTFVObserver";
 import type { PlatformVisibilityContext } from "@/features/platform/visibility/domain";
 import { AppShell, ContentContainer } from "../product-shell/AppShell";
+import { ShellFeedbackToast } from "./ShellFeedbackToast";
 const storageKey = "vayon.shell.sidebar.collapsed.v1";
 const storageEvent = "vayon-shell-collapse";
 const VayonIntelligence = dynamic(
@@ -125,17 +125,7 @@ export function ProductExperience({
       )}
       {feedback && (
         <FloatingSurface id="shell-feedback" kind="toast" priority={30}>
-        <div
-          role={params.get("error") ? "alert" : "status"}
-          className={`flex max-w-sm items-start gap-3 rounded-2xl border p-4 shadow-xl shadow-vds-shadow backdrop-blur ${params.get("error") ? "border-vds-danger bg-vds-danger-soft text-vds-danger" : "border-vds-success bg-vds-success-soft text-vds-success"}`}
-        >
-          {params.get("error") ? (
-            <X className="mt-0.5" size={18} />
-          ) : (
-            <Check className="mt-0.5" size={18} />
-          )}
-          <p className="text-sm">{feedback}</p>
-        </div>
+        <ShellFeedbackToast message={feedback} tone={params.get("error") ? "danger" : "success"}/>
         </FloatingSurface>
       )}
     </div>

@@ -15,7 +15,7 @@ const cards = [
     value: "0",
     copy: "Build your customer pipeline.",
     action: "Import contacts",
-    href: "/onboarding/crm",
+    href: "/vayon/settings/integrations/data-import",
     icon: Users,
   },
   {

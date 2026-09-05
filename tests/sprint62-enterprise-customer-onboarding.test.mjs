@@ -6,7 +6,7 @@ const read = (path) => readFileSync(path, "utf8");
 
 test("enterprise onboarding preserves resumable infrastructure behind the four-screen experience", () => {
   const domain = read("features/onboarding/domain/enterprise-onboarding.ts");
-  for (const step of ["Welcome","Create Organization","Configure Branding","Invite Team Members","Connect Gmail","Connect Google Calendar","Connect WhatsApp","Configure AI Workforce","Import CRM Data","Import Properties","Select Workflow Templates","Configure Notifications","Configure Email Provider","Choose Subscription","Launch Workspace"])
+  for (const step of ["Welcome","Create Organization","Configure Branding","Invite Team Members","Connect Gmail","Connect Google Calendar","Connect WhatsApp","Configure AI Workforce","Import Properties","Select Workflow Templates","Configure Notifications","Configure Email Provider","Choose Subscription","Launch Workspace"])
     assert.match(domain, new RegExp(step));
   const wizard = read("features/onboarding/components/EnterpriseOnboardingWizard.tsx");
   assert.match(wizard, /saveOnboardingProgressAction/);
@@ -14,6 +14,7 @@ test("enterprise onboarding preserves resumable infrastructure behind the four-s
   assert.match(wizard, /What should VAYON do first/);
   assert.match(wizard, /Meet your AI Team/);
   assert.match(wizard, /prepared automatically/);
+  assert.doesNotMatch(wizard, /CRM Import|Import CRM Data/);
 });
 
 test("onboarding composes existing platform routes and governance", () => {

@@ -109,7 +109,6 @@ test("onboarding retains persistent progress and launch checklist", async () => 
     "saveOnboardingProgressAction",
     "Setup",
     "Connect",
-    "CRM",
     "AI",
     "Create recommended workspace",
   ])

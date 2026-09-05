@@ -2,6 +2,7 @@ import { IntegrationCenter } from "@/features/platform/integrations/center";
 import { IntegrationCenterService } from "@/features/platform/integrations/center/service";
 import type { ConnectedAppsTab } from "@/features/platform/integrations/center/IntegrationCenter";
 import { enforcePagePermission } from "@/features/platform/permissions/runtime/http";
+import { ButtonLink } from "@/features/platform/design-system";
 export default async function Page({
   searchParams,
 }: {
@@ -21,6 +22,7 @@ export default async function Page({
   ]);
   return (
     <>
+      <div className="mx-auto flex max-w-[100rem] justify-end px-4 pt-5 sm:px-6"><ButtonLink href="/vayon/settings/integrations/data-import" variant="outline">Data Import</ButtonLink></div>
       {q.error && (
         <p
           role="alert"

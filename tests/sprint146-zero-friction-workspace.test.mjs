@@ -39,7 +39,6 @@ test("dashboard setup center is dynamic, clickable, and non-blocking", () => {
     "Connect Google Calendar",
     "Connect WhatsApp",
     "Configure AI Workforce",
-    "Import CRM",
     "Import Properties",
     "Choose Subscription",
     "Configure Notifications",
@@ -72,7 +71,6 @@ test("existing onboarding is targetable without numbered UX", () => {
     "calendar",
     "whatsapp",
     "ai-workforce",
-    "crm",
     "properties",
     "subscription",
   ])
