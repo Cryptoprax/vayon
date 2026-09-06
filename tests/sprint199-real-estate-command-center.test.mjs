@@ -6,10 +6,19 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
 test("executive KPI bar exposes every required real estate signal without fabrication", async () => {
   const source = await read("features/vayon/dashboard/components/RealEstateKpiGrid.tsx");
-  for (const label of ["Revenue Pipeline", "Active Listings", "Active Buyers", "Active Sellers", "Pending Deals", "Closed Deals", "Today's Site Visits", "Tasks Due Today", "Commission Pipeline", "Average Response Time", "Conversion Rate", "Average Days to Close", "Lead Response SLA", "Listings Pending Approval", "Marketing Qualified Leads", "Hot Opportunities"])
+  for (const label of ["Revenue Pipeline", "Active Listings", "Pending Deals", "Closed Deals", "Tasks Due Today", "Pending Approvals", "Hot Opportunities", "Website Visits Today"])
     assert.match(source, new RegExp(label));
-  assert.match(source, /Unavailable/);
-  assert.match(source, /Not enough authoritative data/);
+  assert.equal((source.match(/\{ label: /g) ?? []).length, 8);
+  assert.doesNotMatch(source, /Unavailable|Not enough authoritative data|Active Buyers|Active Sellers|Conversion Rate|Commission Pipeline/);
+  assert.match(source, /sm:grid-cols-2 lg:grid-cols-4/);
+  assert.doesNotMatch(source, /2xl:grid-cols-8|truncate|fetch\(/);
+  assert.match(source, /Executive Overview/);
+  assert.match(source, /Building Insights/);
+  assert.match(source, /sm:col-span-2/);
+  assert.match(source, /hasHistory && item.trend/);
+  assert.doesNotMatch(source, /Partial visibility|Trend appears with comparable history/);
+  assert.match(source, /recent notifications/);
+  assert.match(source, /View Complete Business Analytics/);
 });
 
 test("sales pipeline covers the complete operational lifecycle", async () => {

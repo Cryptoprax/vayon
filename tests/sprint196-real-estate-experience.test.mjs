@@ -7,8 +7,9 @@ test("executive dashboard exposes every real estate KPI without fallback values"
   const catalog = read("features/vayon/real-estate-experience/catalog.ts");
   const grid = read("features/vayon/dashboard/components/RealEstateKpiGrid.tsx");
   for (const value of ["New Leads", "Active Buyers", "Active Sellers", "Active Listings", "Properties Sold", "Properties Rented", "Pending Offers", "Today's Site Visits", "Today's Meetings", "Expected Revenue", "Commission Earned", "Monthly Closings", "Lead Conversion", "Agent Productivity", "Average Closing Time", "Customer Satisfaction"]) assert.match(catalog, new RegExp(value));
-  assert.match(grid, /Unavailable/);
-  assert.match(grid, /Awaiting verified workspace data/);
+  assert.doesNotMatch(grid, /Unavailable|Awaiting verified workspace data/);
+  assert.match(grid, /Add your first property/);
+  assert.match(grid, /Create your first opportunity/);
 });
 
 test("assistant is real estate specific and remains approval first", () => {
