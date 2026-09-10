@@ -5,8 +5,8 @@ import { readFile } from "node:fs/promises";
 const read = (path) => readFile(path, "utf8");
 
 test("CRM exposes the enterprise operating-system navigation", async () => {
-  const source = await read("features/vayon/crm-engine/components/CrmShell.tsx");
-  for (const section of ["Organizations", "Leads", "Customers", "Companies", "Contacts", "Opportunities", "Activities", "Tasks", "Meetings", "Files", "Reports"]) {
+  const source = await read("features/vayon/product-shell/navigation.ts");
+  for (const section of ["Workspace", "Leads", "Clients", "Companies", "Deals", "Timeline", "Tasks", "Calendar", "Reports"]) {
     assert.match(source, new RegExp(section));
   }
 });

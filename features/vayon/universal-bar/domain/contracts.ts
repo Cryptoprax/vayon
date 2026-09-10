@@ -70,6 +70,7 @@ export interface UniversalBarResult {
   readonly preview?: UniversalPreviewModel;
 }
 export interface UniversalHistoryItem {
+  readonly visits?: number;
   readonly id: string;
   readonly label: string;
   readonly href?: string;

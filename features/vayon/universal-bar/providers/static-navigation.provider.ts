@@ -50,12 +50,12 @@ export class StaticNavigationSearchProvider implements UniversalSearchProvider {
         href: item.href!,
         scope: scopeFor(item.href!),
         kind: "navigation" as const,
-        keywords: [item.label.toLocaleLowerCase(), item.href!],
+        keywords: [item.label.toLocaleLowerCase(), item.href!, ...(item.href === "/vayon/crm/companies" ? ["update company", "edit company"] : []), ...(item.href === "/vayon/properties" ? ["upload photos", "property pictures"] : [])],
       }))
       .filter((item) => matches(item, term));
     return [
       ...quickCreateActions.filter(
-        (item) => request.scopes.includes(item.scope) && matches(item, term),
+        (item) => request.scopes.includes(item.scope) && this.navigation.some(page => page.visible && page.href && (item.href === page.href || item.href.startsWith(page.href + "/"))) && matches(item, term),
       ),
       ...navigation.filter((item) => request.scopes.includes(item.scope)),
     ].toSorted((left, right) => priority(left.scope) - priority(right.scope));
@@ -69,11 +69,13 @@ function matches(
   item: Pick<UniversalBarResult, "label" | "description" | "keywords">,
   term: string,
 ) {
-  return [item.label, item.description, ...item.keywords].some((value) =>
-    value.toLocaleLowerCase().includes(term),
-  );
+  const words = term.trim().split(/\s+/);
+  const content = [item.label, item.description, ...item.keywords].join(" ").toLocaleLowerCase();
+  return words.every(word => content.includes(word));
 }
 function scopeFor(href: string): UniversalSearchScope {
+  if (href.includes("crm/contacts")) return "contacts";
+  if (href.includes("crm/companies")) return "companies";
   if (href.includes("properties/projects")) return "projects";
   if (href.includes("properties/inventory") || href.includes("availability"))
     return "inventory";

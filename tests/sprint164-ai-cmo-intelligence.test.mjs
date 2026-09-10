@@ -8,8 +8,8 @@ const overview = read("features/vayon/growth-intelligence/GrowthOverview.tsx");
 
 test("real estate growth brief is personalized and evidence safe", () => {
   assert.match(overview, /Good morning, \{userName\}/);
-  assert.match(overview, /No verified workspace data is available/);
-  assert.match(overview, /Metrics appear only when workspace-scoped evidence is available/);
+  assert.match(overview, /Use the action below to record or review/);
+  assert.match(overview, /Figures appear when your business records support each measure/);
   assert.doesNotMatch(overview, /\d+%|followers|impressions:\s*\d/i);
 });
 

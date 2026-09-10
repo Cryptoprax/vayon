@@ -1,0 +1,173 @@
+{
+  "qaAuthConfigured": false,
+  "results": [
+    {
+      "width": 320,
+      "route": "/",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Run your real estate day from one workspace.",
+      "focus": "BODY"
+    },
+    {
+      "width": 320,
+      "route": "/signup",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Create your account",
+      "focus": "A"
+    },
+    {
+      "width": 320,
+      "route": "/login",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Welcome back",
+      "focus": "A"
+    },
+    {
+      "width": 320,
+      "route": "/forgot-password",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Reset your password",
+      "focus": "A"
+    },
+    {
+      "width": 320,
+      "fixture": "record next steps",
+      "overflow": false,
+      "disclosureOpen": true
+    },
+    {
+      "width": 375,
+      "route": "/",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Run your real estate day from one workspace.",
+      "focus": "A"
+    },
+    {
+      "width": 375,
+      "route": "/signup",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Create your account",
+      "focus": "A"
+    },
+    {
+      "width": 375,
+      "route": "/login",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Welcome back",
+      "focus": "A"
+    },
+    {
+      "width": 375,
+      "route": "/forgot-password",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Reset your password",
+      "focus": "A"
+    },
+    {
+      "width": 375,
+      "fixture": "record next steps",
+      "overflow": false,
+      "disclosureOpen": true
+    },
+    {
+      "width": 768,
+      "route": "/",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Run your real estate day from one workspace.",
+      "focus": "A"
+    },
+    {
+      "width": 768,
+      "route": "/signup",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Create your account",
+      "focus": "A"
+    },
+    {
+      "width": 768,
+      "route": "/login",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Welcome back",
+      "focus": "A"
+    },
+    {
+      "width": 768,
+      "route": "/forgot-password",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Reset your password",
+      "focus": "A"
+    },
+    {
+      "width": 768,
+      "fixture": "record next steps",
+      "overflow": false,
+      "disclosureOpen": true
+    },
+    {
+      "width": 1440,
+      "route": "/",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Run your real estate day from one workspace.",
+      "focus": "A"
+    },
+    {
+      "width": 1440,
+      "route": "/signup",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Create your account",
+      "focus": "A"
+    },
+    {
+      "width": 1440,
+      "route": "/login",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Welcome back",
+      "focus": "A"
+    },
+    {
+      "width": 1440,
+      "route": "/forgot-password",
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Reset your password",
+      "focus": "A"
+    },
+    {
+      "width": 1440,
+      "fixture": "record next steps",
+      "overflow": false,
+      "disclosureOpen": true
+    }
+  ]
+}

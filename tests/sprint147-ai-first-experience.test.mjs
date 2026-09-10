@@ -82,7 +82,7 @@ test("empty product modules offer direct, honest next actions", () => {
     "Sales Agent",
     "Marketing Agent",
     "Support Agent",
-    "Create your first AI campaign",
+    "Plan your first campaign",
     "Generate your first proposal",
     "Create your first campaign image",
     "Create your first marketing video",

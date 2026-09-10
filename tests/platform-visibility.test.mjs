@@ -32,7 +32,7 @@ test("founder platform routes and customer real estate navigation are filtered c
 });
 
 test("navigation, universal search, menus, and quick create share the visibility policy", async () => {
-  assert.match(await read("features/vayon/product-shell/ShellHeader.tsx"), /filterVisibleItems\(visibility,vayonNavigation\)/);
+  assert.match(await read("features/vayon/product-shell/ShellHeader.tsx"), /filterNavigationForRole\(shellNavigation,identity.workspaceRole/);
   assert.match(await read("features/vayon/product-shell/QuickCreate.tsx"), /filterVisibleItems\(visibility,actions\)/);
   assert.match(await read("features/vayon/product-shell/ShellMenus.tsx"), /canViewPath\(visibility,href\)/);
 });

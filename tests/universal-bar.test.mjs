@@ -26,7 +26,7 @@ test("intent routing is deterministic and covers every approved intent", () => {
 
 test("quick create only navigates to existing workflows", () => {
   const source = read("features/vayon/universal-bar/config/quick-create.ts");
-  for (const action of ["New Lead", "New Deal", "New Property", "New Campaign", "New Meeting", "New Task", "New Contact", "New Company", "New Document"]) assert.match(source, new RegExp(action));
+  for (const action of ["Create Lead", "Create Deal", "Create Property", "Create Campaign", "Create Meeting", "Create Task", "Clients", "Create Company", "Create Document"]) assert.match(source, new RegExp(action));
   assert.doesNotMatch(source, /action:|onSubmit|create[A-Z].*\(|\.rpc\(|fetch\(/);
 });
 
@@ -45,7 +45,7 @@ test("preview contracts cover supported objects using supplied view models", () 
 
 test("adaptive suggestions are configurable and contain every approved example", () => {
   const source = read("features/vayon/universal-bar/config/adaptive-suggestions.ts");
-  for (const suggestion of ["Search properties", "Create a lead", "Open Executive Home", "Find documents", "Schedule meeting", "Open Timeline", "Open Growth Hub"]) assert.match(source, new RegExp(suggestion));
+  for (const suggestion of ["Search properties", "Create a lead", "Plan today's work", "Find documents", "Schedule meeting", "Open Timeline", "Review Marketing Performance"]) assert.match(source, new RegExp(suggestion));
   assert.match(read("features/vayon/universal-bar/components/UniversalBar.tsx"), /suggestions = defaultAdaptiveSuggestions/);
 });
 

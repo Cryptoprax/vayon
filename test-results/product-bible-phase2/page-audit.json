@@ -1,0 +1,3116 @@
+[
+  {
+    "file": "app/verify-email/page.tsx",
+    "route": "/verify-email",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/demo/page.tsx",
+    "route": "/demo",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/onboarding/[setup]/page.tsx",
+    "route": "/onboarding/[setup]",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": true
+  },
+  {
+    "file": "app/onboarding/page.tsx",
+    "route": "/onboarding",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": true
+  },
+  {
+    "file": "app/onboarding/business-launch/page.tsx",
+    "route": "/onboarding/business-launch",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/accept-invitation/page.tsx",
+    "route": "/accept-invitation",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/follow-ups/page.tsx",
+    "route": "/vayon/follow-ups",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/forgot-password/page.tsx",
+    "route": "/forgot-password",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/executions/page.tsx",
+    "route": "/vayon/executions",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/login/page.tsx",
+    "route": "/login",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/compare/[slug]/page.tsx",
+    "route": "/compare/[slug]",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/compare/page.tsx",
+    "route": "/compare",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/events/page.tsx",
+    "route": "/vayon/events",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/workflows/page.tsx",
+    "route": "/workflows",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/communications/page.tsx",
+    "route": "/communications",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/careers/page.tsx",
+    "route": "/careers",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/events/history/page.tsx",
+    "route": "/vayon/events/history",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/calendar/page.tsx",
+    "route": "/calendar",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/brand-assets/page.tsx",
+    "route": "/brand-assets",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/events/catalog/page.tsx",
+    "route": "/vayon/events/catalog",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/blog/[slug]/page.tsx",
+    "route": "/blog/[slug]",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/blog/page.tsx",
+    "route": "/blog",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/api/page.tsx",
+    "route": "/api",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/ai-workforce/page.tsx",
+    "route": "/ai-workforce",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/ai-usage-policy/page.tsx",
+    "route": "/ai-usage-policy",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/acceptable-use-policy/page.tsx",
+    "route": "/acceptable-use-policy",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/email/[messageId]/page.tsx",
+    "route": "/vayon/email/[messageId]",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/about/page.tsx",
+    "route": "/about",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/email/trash/page.tsx",
+    "route": "/vayon/email/trash",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/partners/page.tsx",
+    "route": "/partners",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/email/spam/page.tsx",
+    "route": "/vayon/email/spam",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/media-kit/page.tsx",
+    "route": "/media-kit",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/email/sent/page.tsx",
+    "route": "/vayon/email/sent",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/email/page.tsx",
+    "route": "/vayon/email",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/investors/page.tsx",
+    "route": "/investors",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/email/inbox/page.tsx",
+    "route": "/vayon/email/inbox",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/integrations/page.tsx",
+    "route": "/integrations",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/email/drafts/page.tsx",
+    "route": "/vayon/email/drafts",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/cognitive/page.tsx",
+    "route": "/vayon/cognitive",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/email/archive/page.tsx",
+    "route": "/vayon/email/archive",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/industries/[slug]/page.tsx",
+    "route": "/industries/[slug]",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/industries/page.tsx",
+    "route": "/industries",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/help/page.tsx",
+    "route": "/help",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/crm/page.tsx",
+    "route": "/vayon/crm",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/documents/onedrive/page.tsx",
+    "route": "/vayon/documents/onedrive",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 2,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/features/[slug]/page.tsx",
+    "route": "/features/[slug]",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/features/page.tsx",
+    "route": "/features",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/documents/drive/page.tsx",
+    "route": "/vayon/documents/drive",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/enterprise/page.tsx",
+    "route": "/enterprise",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/developers/page.tsx",
+    "route": "/vayon/developers",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/calendar/week/page.tsx",
+    "route": "/vayon/calendar/week",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/docs/[slug]/page.tsx",
+    "route": "/docs/[slug]",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/docs/page.tsx",
+    "route": "/docs",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/calendar/tasks/page.tsx",
+    "route": "/vayon/calendar/tasks",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/deals/[dealId]/page.tsx",
+    "route": "/vayon/deals/[dealId]",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/calendar/site-visits/page.tsx",
+    "route": "/vayon/calendar/site-visits",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/deals/[dealId]/edit/page.tsx",
+    "route": "/vayon/deals/[dealId]/edit",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/developers/page.tsx",
+    "route": "/developers",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/deals/page.tsx",
+    "route": "/deals",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/deals/contracts/page.tsx",
+    "route": "/vayon/deals/contracts",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/deals/pipeline/page.tsx",
+    "route": "/vayon/deals/pipeline",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/deals/page.tsx",
+    "route": "/vayon/deals",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/crm/leads/[leadId]/page.tsx",
+    "route": "/vayon/crm/leads/[leadId]",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/crm/leads/page.tsx",
+    "route": "/vayon/crm/leads",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 2,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/data-processing-addendum/page.tsx",
+    "route": "/data-processing-addendum",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/deals/offers/page.tsx",
+    "route": "/vayon/deals/offers",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/deals/checklists/page.tsx",
+    "route": "/vayon/deals/checklists",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/deals/new/page.tsx",
+    "route": "/vayon/deals/new",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/data-ownership/page.tsx",
+    "route": "/data-ownership",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/platform/launch-readiness/page.tsx",
+    "route": "/vayon/platform/launch-readiness",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/page.tsx",
+    "route": "/vayon",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/deals/analytics/page.tsx",
+    "route": "/vayon/deals/analytics",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/crm/customers/page.tsx",
+    "route": "/vayon/crm/customers",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/operations/page.tsx",
+    "route": "/vayon/operations",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/objects/page.tsx",
+    "route": "/vayon/objects",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/dashboard/page.tsx",
+    "route": "/vayon/dashboard",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/customers/[slug]/page.tsx",
+    "route": "/customers/[slug]",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/customers/page.tsx",
+    "route": "/customers",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/notifications/preferences/page.tsx",
+    "route": "/vayon/notifications/preferences",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/notifications/page.tsx",
+    "route": "/vayon/notifications",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/crm/contacts/[contactId]/page.tsx",
+    "route": "/vayon/crm/contacts/[contactId]",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/crm/contacts/page.tsx",
+    "route": "/vayon/crm/contacts",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/notifications/inbox/page.tsx",
+    "route": "/vayon/notifications/inbox",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/crm/page.tsx",
+    "route": "/crm",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/calendar/reminders/page.tsx",
+    "route": "/vayon/calendar/reminders",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/notifications/history/page.tsx",
+    "route": "/vayon/notifications/history",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/copyright-policy/page.tsx",
+    "route": "/copyright-policy",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/calendar/page.tsx",
+    "route": "/vayon/calendar",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/context/page.tsx",
+    "route": "/vayon/context",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/crm/companies/[companyId]/page.tsx",
+    "route": "/vayon/crm/companies/[companyId]",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/cookie-policy/page.tsx",
+    "route": "/cookie-policy",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/messages/page.tsx",
+    "route": "/vayon/messages",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/calendar/outlook/page.tsx",
+    "route": "/vayon/calendar/outlook",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/crm/companies/[companyId]/edit/page.tsx",
+    "route": "/vayon/crm/companies/[companyId]/edit",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/contact/page.tsx",
+    "route": "/contact",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/contacts/microsoft/page.tsx",
+    "route": "/vayon/contacts/microsoft",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/meetings/page.tsx",
+    "route": "/vayon/meetings",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/roi-calculator/page.tsx",
+    "route": "/roi-calculator",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/calendar/month/page.tsx",
+    "route": "/vayon/calendar/month",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/contacts/google/page.tsx",
+    "route": "/vayon/contacts/google",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/crm/companies/page.tsx",
+    "route": "/vayon/crm/companies",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/resources/page.tsx",
+    "route": "/resources",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/crm/companies/new/page.tsx",
+    "route": "/vayon/crm/companies/new",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/leads/[leadId]/page.tsx",
+    "route": "/vayon/leads/[leadId]",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/release-notes/page.tsx",
+    "route": "/release-notes",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/leads/[leadId]/edit/page.tsx",
+    "route": "/vayon/leads/[leadId]/edit",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/crm/activities/page.tsx",
+    "route": "/vayon/crm/activities",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/leads/page.tsx",
+    "route": "/vayon/leads",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/refund-policy/page.tsx",
+    "route": "/refund-policy",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/calendar/meetings/page.tsx",
+    "route": "/vayon/calendar/meetings",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/properties/page.tsx",
+    "route": "/properties",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/trust-center/page.tsx",
+    "route": "/trust-center",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/leads/new/page.tsx",
+    "route": "/vayon/leads/new",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/trademark-policy/page.tsx",
+    "route": "/trademark-policy",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/knowledge/page.tsx",
+    "route": "/vayon/knowledge",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/communications/templates/page.tsx",
+    "route": "/vayon/communications/templates",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative-studio/wizard/page.tsx",
+    "route": "/vayon/creative-studio/wizard",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/knowledge/help/page.tsx",
+    "route": "/vayon/knowledge/help",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/product/page.tsx",
+    "route": "/product",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/communications/teams/page.tsx",
+    "route": "/vayon/communications/teams",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/creative-studio/templates/page.tsx",
+    "route": "/vayon/creative-studio/templates",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative-studio/page.tsx",
+    "route": "/vayon/creative-studio",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/intelligence/page.tsx",
+    "route": "/vayon/intelligence",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/privacy/page.tsx",
+    "route": "/privacy",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/terms/page.tsx",
+    "route": "/terms",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/home/page.tsx",
+    "route": "/vayon/home",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/pricing/page.tsx",
+    "route": "/pricing",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/support-policy/page.tsx",
+    "route": "/support-policy",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/calendar/google/settings/page.tsx",
+    "route": "/vayon/calendar/google/settings",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/calendar/google/page.tsx",
+    "route": "/vayon/calendar/google",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/press-kit/page.tsx",
+    "route": "/press-kit",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/subprocessors/page.tsx",
+    "route": "/subprocessors",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/calendar/google/free-busy/page.tsx",
+    "route": "/vayon/calendar/google/free-busy",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/growth/[section]/page.tsx",
+    "route": "/vayon/growth/[section]",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/growth/page.tsx",
+    "route": "/vayon/growth",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/security/page.tsx",
+    "route": "/security",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/status/page.tsx",
+    "route": "/status",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/calendar/google/events/page.tsx",
+    "route": "/vayon/calendar/google/events",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/search/page.tsx",
+    "route": "/search",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/calendar/google/calendars/page.tsx",
+    "route": "/vayon/calendar/google/calendars",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/workforce/page.tsx",
+    "route": "/vayon/workforce",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/founder/approvals/page.tsx",
+    "route": "/vayon/founder/approvals",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/solutions/[slug]/page.tsx",
+    "route": "/solutions/[slug]",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/solutions/page.tsx",
+    "route": "/solutions",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/calendar/day/page.tsx",
+    "route": "/vayon/calendar/day",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/storage/page.tsx",
+    "route": "/vayon/storage",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/calendar/agenda/page.tsx",
+    "route": "/vayon/calendar/agenda",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/workflows/[workflowId]/page.tsx",
+    "route": "/vayon/workflows/[workflowId]",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/brain/page.tsx",
+    "route": "/vayon/brain",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/site-visits/[visitId]/page.tsx",
+    "route": "/vayon/site-visits/[visitId]",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/workflows/runtime/page.tsx",
+    "route": "/vayon/workflows/runtime",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/workflows/page.tsx",
+    "route": "/vayon/workflows",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/communications/reports/page.tsx",
+    "route": "/vayon/communications/reports",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/communications/page.tsx",
+    "route": "/vayon/communications",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/site-visits/reports/page.tsx",
+    "route": "/vayon/site-visits/reports",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/site-visits/page.tsx",
+    "route": "/vayon/site-visits",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/approvals/[approvalId]/page.tsx",
+    "route": "/vayon/approvals/[approvalId]",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/approvals/page.tsx",
+    "route": "/vayon/approvals",
+    "workflow": "Negotiation",
+    "primary": "Move the selected deal or decision forward",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative-studio/packs/page.tsx",
+    "route": "/vayon/creative-studio/packs",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/site-visits/calendar/page.tsx",
+    "route": "/vayon/site-visits/calendar",
+    "workflow": "Client meetings",
+    "primary": "Prepare the next client conversation",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/creative-studio/growth/page.tsx",
+    "route": "/vayon/creative-studio/growth",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/(marketing)/sales-assets/[slug]/page.tsx",
+    "route": "/sales-assets/[slug]",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/(marketing)/sales-assets/page.tsx",
+    "route": "/sales-assets",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/analytics/workforce/page.tsx",
+    "route": "/vayon/analytics/workforce",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/whatsapp/templates/page.tsx",
+    "route": "/vayon/whatsapp/templates",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/analytics/sales/page.tsx",
+    "route": "/vayon/analytics/sales",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative-studio/editor/[assetId]/page.tsx",
+    "route": "/vayon/creative-studio/editor/[assetId]",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/workspace/page.tsx",
+    "route": "/vayon/settings/workspace",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/creative-studio/calendar/page.tsx",
+    "route": "/vayon/creative-studio/calendar",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/whatsapp/settings/page.tsx",
+    "route": "/vayon/whatsapp/settings",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/settings/users/page.tsx",
+    "route": "/vayon/settings/users",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/whatsapp/page.tsx",
+    "route": "/vayon/whatsapp",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/settings/usage/page.tsx",
+    "route": "/vayon/settings/usage",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/settings/teams/page.tsx",
+    "route": "/vayon/settings/teams",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/whatsapp/inbox/page.tsx",
+    "route": "/vayon/whatsapp/inbox",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/settings/subscription/page.tsx",
+    "route": "/vayon/settings/subscription",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/communications/outlook/page.tsx",
+    "route": "/vayon/communications/outlook",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 2,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/security/page.tsx",
+    "route": "/vayon/settings/security",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/analytics/properties/page.tsx",
+    "route": "/vayon/analytics/properties",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/analytics/page.tsx",
+    "route": "/vayon/analytics",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/whatsapp/conversations/page.tsx",
+    "route": "/vayon/whatsapp/conversations",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/communications/notifications/page.tsx",
+    "route": "/vayon/communications/notifications",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/analytics/executive/page.tsx",
+    "route": "/vayon/analytics/executive",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/roles/page.tsx",
+    "route": "/vayon/settings/roles",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/timeline/page.tsx",
+    "route": "/vayon/timeline",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/communications/inbox/page.tsx",
+    "route": "/vayon/communications/inbox",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/analytics/deals/page.tsx",
+    "route": "/vayon/analytics/deals",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/profile/page.tsx",
+    "route": "/vayon/settings/profile",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/analytics/crm/page.tsx",
+    "route": "/vayon/analytics/crm",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/team/page.tsx",
+    "route": "/vayon/team",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/settings/product-intelligence/page.tsx",
+    "route": "/vayon/settings/product-intelligence",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/communications/conversations/[conversationId]/page.tsx",
+    "route": "/vayon/communications/conversations/[conversationId]",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/communications/conversations/page.tsx",
+    "route": "/vayon/communications/conversations",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative-studio/brand-kits/page.tsx",
+    "route": "/vayon/creative-studio/brand-kits",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/plans/page.tsx",
+    "route": "/vayon/settings/plans",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative-studio/assistant/page.tsx",
+    "route": "/vayon/creative-studio/assistant",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/permissions/page.tsx",
+    "route": "/vayon/settings/permissions",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/communications/connectors/page.tsx",
+    "route": "/vayon/communications/connectors",
+    "workflow": "Lead follow-up",
+    "primary": "Open the lead or conversation requiring follow-up",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative-studio/assets/page.tsx",
+    "route": "/vayon/creative-studio/assets",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/payment-methods/page.tsx",
+    "route": "/vayon/settings/payment-methods",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/page.tsx",
+    "route": "/vayon/settings",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative-studio/analytics/page.tsx",
+    "route": "/vayon/creative-studio/analytics",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/organization/page.tsx",
+    "route": "/vayon/settings/organization",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/communications/campaigns/page.tsx",
+    "route": "/vayon/communications/campaigns",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/tasks/page.tsx",
+    "route": "/vayon/tasks",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/creative/[studio]/page.tsx",
+    "route": "/vayon/creative/[studio]",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/creative/videos/page.tsx",
+    "route": "/vayon/creative/videos",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/system/page.tsx",
+    "route": "/vayon/system",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative/templates/page.tsx",
+    "route": "/vayon/creative/templates",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/analytics/conversion/page.tsx",
+    "route": "/vayon/analytics/conversion",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/settings/notifications/page.tsx",
+    "route": "/vayon/settings/notifications",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/analytics/communications/page.tsx",
+    "route": "/vayon/analytics/communications",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/members/page.tsx",
+    "route": "/vayon/settings/members",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/invoices/[invoiceId]/page.tsx",
+    "route": "/vayon/settings/invoices/[invoiceId]",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/invoices/page.tsx",
+    "route": "/vayon/settings/invoices",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/integrations/page.tsx",
+    "route": "/vayon/settings/integrations",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/billing/provider-health/page.tsx",
+    "route": "/vayon/settings/billing/provider-health",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/billing/page.tsx",
+    "route": "/vayon/settings/billing",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/ai/workforce/[employeeId]/page.tsx",
+    "route": "/vayon/ai/workforce/[employeeId]",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/ai/workforce/page.tsx",
+    "route": "/vayon/ai/workforce",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/appearance/page.tsx",
+    "route": "/vayon/settings/appearance",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/success-center/page.tsx",
+    "route": "/vayon/success-center",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/ai/work-queue/page.tsx",
+    "route": "/vayon/ai/work-queue",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/ai/tasks/page.tsx",
+    "route": "/vayon/ai/tasks",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/integrations/microsoft/page.tsx",
+    "route": "/vayon/settings/integrations/microsoft",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/creative/runtime/page.tsx",
+    "route": "/vayon/creative/runtime",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/ai/openai/page.tsx",
+    "route": "/vayon/settings/ai/openai",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/ai/playground/page.tsx",
+    "route": "/vayon/ai/playground",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/ai/page.tsx",
+    "route": "/vayon/ai",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/integrations/google/page.tsx",
+    "route": "/vayon/settings/integrations/google",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative/runtime/execution/page.tsx",
+    "route": "/vayon/creative/runtime/execution",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/activity/page.tsx",
+    "route": "/vayon/settings/activity",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/ai/knowledge/page.tsx",
+    "route": "/vayon/ai/knowledge",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/settings/integrations/data-import/page.tsx",
+    "route": "/vayon/settings/integrations/data-import",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative/pipelines/page.tsx",
+    "route": "/vayon/creative/pipelines",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative/page.tsx",
+    "route": "/vayon/creative",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/runtime/page.tsx",
+    "route": "/vayon/runtime",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/ai/history/page.tsx",
+    "route": "/vayon/ai/history",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/google/page.tsx",
+    "route": "/vayon/settings/google",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/creative/images/page.tsx",
+    "route": "/vayon/creative/images",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/ai/goals/page.tsx",
+    "route": "/vayon/ai/goals",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/providers/[provider]/page.tsx",
+    "route": "/vayon/providers/[provider]",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/providers/page.tsx",
+    "route": "/vayon/providers",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/email/templates/page.tsx",
+    "route": "/vayon/settings/email/templates",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/ai/employees/[employeeId]/page.tsx",
+    "route": "/vayon/ai/employees/[employeeId]",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/email/queue/page.tsx",
+    "route": "/vayon/settings/email/queue",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/settings/email/page.tsx",
+    "route": "/vayon/settings/email",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/property-matching/reports/page.tsx",
+    "route": "/vayon/property-matching/reports",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/property-matching/page.tsx",
+    "route": "/vayon/property-matching",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/settings/email/history/page.tsx",
+    "route": "/vayon/settings/email/history",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/property-matching/compare/page.tsx",
+    "route": "/vayon/property-matching/compare",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/settings/departments/page.tsx",
+    "route": "/vayon/settings/departments",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/settings/configuration/page.tsx",
+    "route": "/vayon/settings/configuration",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative/documents/page.tsx",
+    "route": "/vayon/creative/documents",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/ai/employees/page.tsx",
+    "route": "/vayon/ai/employees",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative/cloud/page.tsx",
+    "route": "/vayon/creative/cloud",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/[propertyId]/page.tsx",
+    "route": "/vayon/properties/[propertyId]",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative/campaigns/page.tsx",
+    "route": "/vayon/creative/campaigns",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/ai/collaboration/page.tsx",
+    "route": "/vayon/ai/collaboration",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/creative/calendar/page.tsx",
+    "route": "/vayon/creative/calendar",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/properties/[propertyId]/edit/page.tsx",
+    "route": "/vayon/properties/[propertyId]/edit",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/ai/automations/page.tsx",
+    "route": "/vayon/ai/automations",
+    "workflow": "Morning",
+    "primary": "Choose and start the next task",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/admin/workspaces/page.tsx",
+    "route": "/vayon/admin/workspaces",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/admin/users/page.tsx",
+    "route": "/vayon/admin/users",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/admin/teams/page.tsx",
+    "route": "/vayon/admin/teams",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/admin/roles/page.tsx",
+    "route": "/vayon/admin/roles",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/admin/permissions/page.tsx",
+    "route": "/vayon/admin/permissions",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/admin/page.tsx",
+    "route": "/vayon/admin",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/projects/[projectId]/page.tsx",
+    "route": "/vayon/properties/projects/[projectId]",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/projects/page.tsx",
+    "route": "/vayon/properties/projects",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/price-lists/page.tsx",
+    "route": "/vayon/properties/price-lists",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/page.tsx",
+    "route": "/vayon/properties",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/admin/organizations/page.tsx",
+    "route": "/vayon/admin/organizations",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/admin/departments/page.tsx",
+    "route": "/vayon/admin/departments",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/admin/audit/page.tsx",
+    "route": "/vayon/admin/audit",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/signup/page.tsx",
+    "route": "/signup",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/reset-password/page.tsx",
+    "route": "/reset-password",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/page.tsx",
+    "route": "/page.tsx",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/grid/page.tsx",
+    "route": "/vayon/properties/grid",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/media/page.tsx",
+    "route": "/vayon/properties/media",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/inventory/page.tsx",
+    "route": "/vayon/properties/inventory",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/documents/page.tsx",
+    "route": "/vayon/properties/documents",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/operations/page.tsx",
+    "route": "/platform/operations",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/workspaces/page.tsx",
+    "route": "/platform/workspaces",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/availability/page.tsx",
+    "route": "/vayon/properties/availability",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/users/page.tsx",
+    "route": "/platform/users",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/founder/workflows/page.tsx",
+    "route": "/platform/founder/workflows",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/themes/page.tsx",
+    "route": "/platform/themes",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/founder/tenants/page.tsx",
+    "route": "/platform/founder/tenants",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/notifications/page.tsx",
+    "route": "/platform/notifications",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/analytics/page.tsx",
+    "route": "/vayon/properties/analytics",
+    "workflow": "Reporting",
+    "primary": "Understand performance",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/system-analytics/page.tsx",
+    "route": "/platform/system-analytics",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/founder/sales/page.tsx",
+    "route": "/platform/founder/sales",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/founder/page.tsx",
+    "route": "/platform/founder",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/founder/access/page.tsx",
+    "route": "/platform/founder/access",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/founder/operations/page.tsx",
+    "route": "/platform/founder/operations",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/support/page.tsx",
+    "route": "/platform/support",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/launch-readiness/page.tsx",
+    "route": "/platform/launch-readiness",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": false
+  },
+  {
+    "file": "app/platform/settings/page.tsx",
+    "route": "/platform/settings",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/founder/observability/page.tsx",
+    "route": "/platform/founder/observability",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/feature-flags/page.tsx",
+    "route": "/platform/feature-flags",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/new/page.tsx",
+    "route": "/vayon/properties/new",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/creative/brand/page.tsx",
+    "route": "/vayon/creative/brand",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/integrations/webhooks/page.tsx",
+    "route": "/platform/integrations/webhooks",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/deployment/page.tsx",
+    "route": "/platform/deployment",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/integrations/secrets/page.tsx",
+    "route": "/platform/integrations/secrets",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/creative/assets/page.tsx",
+    "route": "/vayon/creative/assets",
+    "workflow": "Marketing",
+    "primary": "Prepare marketing for a property",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/integrations/providers/page.tsx",
+    "route": "/platform/integrations/providers",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/integrations/page.tsx",
+    "route": "/platform/integrations",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/customers/[organizationId]/page.tsx",
+    "route": "/platform/customers/[organizationId]",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/customers/page.tsx",
+    "route": "/platform/customers",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/security-review/page.tsx",
+    "route": "/platform/security-review",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/search/page.tsx",
+    "route": "/platform/search",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/customer-success/page.tsx",
+    "route": "/platform/customer-success",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/roles/page.tsx",
+    "route": "/platform/roles",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/releases/page.tsx",
+    "route": "/platform/releases",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 1,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/permissions/page.tsx",
+    "route": "/platform/permissions",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/audit/page.tsx",
+    "route": "/platform/audit",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/region-management/page.tsx",
+    "route": "/platform/region-management",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/country-management/page.tsx",
+    "route": "/platform/country-management",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/platform-health/page.tsx",
+    "route": "/platform/platform-health",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/applications/page.tsx",
+    "route": "/platform/applications",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/command-center/page.tsx",
+    "route": "/platform/command-center",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/activity/page.tsx",
+    "route": "/platform/activity",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/founder/integrations/page.tsx",
+    "route": "/platform/founder/integrations",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/founder/memory/page.tsx",
+    "route": "/platform/founder/memory",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/vayon/properties/map/page.tsx",
+    "route": "/vayon/properties/map",
+    "workflow": "Property work",
+    "primary": "Select a property to update or sell",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/founder/command-center/page.tsx",
+    "route": "/platform/founder/command-center",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/founder/customer-success/page.tsx",
+    "route": "/platform/founder/customer-success",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/builder/settings/page.tsx",
+    "route": "/platform/builder/settings",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/builder/page.tsx",
+    "route": "/platform/builder",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/organizations/page.tsx",
+    "route": "/platform/organizations",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/page.tsx",
+    "route": "/platform",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/founder/marketing/page.tsx",
+    "route": "/platform/founder/marketing",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/builder/features/page.tsx",
+    "route": "/platform/builder/features",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/founder/ai/page.tsx",
+    "route": "/platform/founder/ai",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/builder/navigation/page.tsx",
+    "route": "/platform/builder/navigation",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/builder/applications/page.tsx",
+    "route": "/platform/builder/applications",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/founder/intelligence/page.tsx",
+    "route": "/platform/founder/intelligence",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/identity/page.tsx",
+    "route": "/platform/identity",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": true
+  },
+  {
+    "file": "app/platform/builder/branding/page.tsx",
+    "route": "/platform/builder/branding",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/integrations/logs/page.tsx",
+    "route": "/platform/integrations/logs",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/vayon/customer-success/page.tsx",
+    "route": "/vayon/customer-success",
+    "workflow": "Reconsider / public entry",
+    "primary": "Confirm a broker task or retain as a public / specialist entry",
+    "directPrimaryDeclarations": 0,
+    "redirect": true,
+    "composed": true
+  },
+  {
+    "file": "app/platform/integrations/health/page.tsx",
+    "route": "/platform/integrations/health",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/performance/page.tsx",
+    "route": "/platform/performance",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  },
+  {
+    "file": "app/platform/builder/modules/page.tsx",
+    "route": "/platform/builder/modules",
+    "workflow": "Occasional setup / administration",
+    "primary": "Configure the selected workspace setting",
+    "directPrimaryDeclarations": 0,
+    "redirect": false,
+    "composed": false
+  }
+]

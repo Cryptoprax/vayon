@@ -158,22 +158,21 @@ export function CampaignStudio({
               Creative Studio 2.0
             </Link>
             <h1 className="mt-3 text-3xl font-semibold tracking-[-.04em] sm:text-5xl">
-              Creative Campaign Studio
+              Market this property
             </h1>
             <p className="mt-3 max-w-3xl text-sm leading-6 text-vds-muted">
-              Plan complete campaigns through one Creative Director—not
-              disconnected assets.
+              Choose a property and plan the material you need to reach buyers.
             </p>
           </div>
-          <Button
+          {snapshot.campaigns.length > 0 && <Button
             onClick={() => {
               setStep(0);
               setWizard(true);
             }}
           >
             <Plus className="size-4" />
-            New campaign
-          </Button>
+            Create Campaign
+          </Button>}
         </div>
       </header>
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -194,7 +193,7 @@ export function CampaignStudio({
             <div>
               <h2 className="font-semibold">Recent campaigns</h2>
               <p className="mt-1 text-xs text-vds-muted">
-                Existing governed Marketing Studio campaigns
+                Pick up your recent marketing work
               </p>
             </div>
             <Heart className="size-5 text-vds-muted" />
@@ -221,10 +220,10 @@ export function CampaignStudio({
             {!snapshot.campaigns.length && (
               <SmartEmptyState
                 className="col-span-full"
-                title="Create your first AI campaign."
-                description="Turn a business goal into a governed campaign blueprint with Creative Director AI."
-                primaryLabel="Generate with AI"
-                onPrimary={() => setWizard(true)}
+                title="Plan your first campaign"
+                description="Choose your goal and prepare a marketing plan for a property."
+                primaryLabel="Create Campaign"
+                onPrimary={() => { setStep(0); setWizard(true); }}
               />
             )}
           </div>
@@ -235,8 +234,7 @@ export function CampaignStudio({
             <h2 className="font-semibold">Creative Director AI</h2>
           </div>
           <p className="mt-3 text-sm leading-6 text-vds-muted">
-            Coordinates specialized creative departments through plans and
-            approval gates. No provider or generation engine is connected.
+            Helps organize your campaign plan for review. Automatic asset generation is not connected yet.
           </p>
           <div className="mt-5 grid gap-2">
             {snapshot.departments.map((item) => (
@@ -252,7 +250,7 @@ export function CampaignStudio({
         </aside>
       </div>
       <section className={`${card} p-5`}>
-        <h2 className="font-semibold">Campaign templates & recommendations</h2>
+        <details><summary className="focus-ring cursor-pointer rounded-lg py-3 font-semibold">Choose a campaign template</summary>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {snapshot.templates.map((item) => (
             <Button
@@ -275,14 +273,14 @@ export function CampaignStudio({
             </li>
           ))}
         </ul>
-      </section>
+      </details></section>
       <section
         className={`${card} flex flex-wrap items-center justify-between gap-4 p-5`}
       >
         <div>
-          <h2 className="font-semibold">Campaign export contracts</h2>
+          <h2 className="font-semibold">Campaign export options</h2>
           <p className="mt-1 text-xs text-vds-muted">
-            Prepared packaging only; no assets are generated.
+            Export options describe the planned package. Marketing assets have not been generated.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">

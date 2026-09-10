@@ -6,7 +6,7 @@ const registry = read("features/platform/integrations/center/registry.ts");
 const navigation = read("features/vayon/product-shell/navigation.ts");
 const failures = [];
 const requireText = (source, pattern, message) => { if (!pattern.test(source)) failures.push(message); };
-requireText(navigation, /label: "Connected Apps"/, "Product navigation must use Connected Apps.");
+requireText(navigation, /label: "Integrations"/, "Product navigation must expose Integrations.");
 requireText(ui, /Manage every connected service, AI permission and synchronization from one place/, "Connected Apps header is incomplete.");
 for (const tab of ["Overview", "Connected Apps", "Permissions", "Activity", "Marketplace", "Advanced"]) requireText(ui, new RegExp(tab), `Missing tab: ${tab}`);
 for (const card of ["Connected Apps", "Needs Attention", "Available Apps", "AI Services", "Last Successful Sync", "Overall System Health"]) requireText(ui, new RegExp(card), `Missing summary card: ${card}`);

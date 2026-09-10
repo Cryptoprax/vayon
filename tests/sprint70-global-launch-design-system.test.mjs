@@ -90,7 +90,7 @@ test("authentication receives premium split presentation without changing action
   const auth = read("features/authentication/components/AuthForm.tsx");
   assert.match(auth, /lg:grid-cols-2/);
   assert.match(auth, /Enterprise security by design/);
-  assert.match(auth, /Workspace and tenant isolation/);
+  assert.match(auth, /Your business data stays private/);
   const actions = read("features/authentication/actions/auth.actions.ts");
   assert.match(actions, /googleLoginAction/);
   assert.match(actions, /loginAction/);

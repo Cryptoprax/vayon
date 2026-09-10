@@ -5,9 +5,9 @@ import { existsSync, readFileSync } from "node:fs";
 const root = new URL("../", import.meta.url);
 const read = (file) => readFileSync(new URL(file, root), "utf8");
 
-test("Real Estate Growth Center is a first-class sidebar module", () => {
+test("Real Estate Growth Center lives under Marketing and Reports", () => {
   const navigation = read("features/vayon/product-shell/navigation.ts");
-  assert.match(navigation, /label: "Growth Center"/);
+  assert.match(navigation, /label: "Market properties"/);
   for (const route of ["lead-generation", "listing-performance", "buyer-intelligence", "seller-intelligence", "marketing-analytics", "advertising-performance", "social-performance", "property-seo", "referral-network", "market-intelligence", "reports"]) assert.match(navigation, new RegExp(`/vayon/growth/${route}`));
   assert.ok(existsSync(new URL("app/vayon/growth/[section]/page.tsx", root)));
 });
@@ -15,7 +15,7 @@ test("Real Estate Growth Center is a first-class sidebar module", () => {
 test("real estate overview is evidence-safe and every surface offers a next action", () => {
   const overview = read("features/vayon/growth-intelligence/GrowthOverview.tsx");
   for (const surface of ["New Leads", "Active Buyers", "New Sellers", "Properties Listed", "Properties Sold", "Properties Rented", "Conversion Rate", "Revenue", "Commission", "Today's Viewings", "Upcoming Appointments", "Pending Offers", "Hot Leads", "Cold Leads", "Agent Performance"]) assert.match(overview, new RegExp(surface));
-  assert.match(overview, /No verified workspace data is available/);
+  assert.match(overview, /Use the action below to record or review/);
   assert.match(overview, /ButtonLink/);
   assert.doesNotMatch(overview, /\$\d|\d+%|followers|impressions:\s*\d/i);
 });

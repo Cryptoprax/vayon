@@ -41,6 +41,7 @@ export function RealEstateKpiGrid({ data }: { readonly data: ExecutiveDashboardD
     approvals > 0 ? `${approvals} recent approval alerts` : null,
   ].filter((item): item is string => item !== null).slice(0, 2);
 
+  const linkedDestinations = new Set(["/vayon/analytics", "/vayon/deals", "/vayon/deals?stage=completed", "/vayon/properties/new", "/vayon/leads/new", "/vayon/tasks", "/vayon/properties"]);
   return (
     <section aria-labelledby="executive-kpi-heading" className="min-w-0 text-vds-foreground">
       <div className="mb-4">
@@ -59,6 +60,8 @@ export function RealEstateKpiGrid({ data }: { readonly data: ExecutiveDashboardD
       <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item, index) => {
           const hero = index === 0;
+          const showAction = !linkedDestinations.has(item.href);
+          linkedDestinations.add(item.href);
           const GroupIcon = item.group === "Operations" ? Building2 : item.group === "Marketing" ? Globe : item.group === "Business" ? ClipboardCheck : BriefcaseBusiness;
           // Existing weekly series is the only evidence of activity for a comparison.
           const history = hero ? pipeline?.sparkline : item.label === "Pending Deals" ? deals?.sparkline : undefined;
@@ -67,7 +70,7 @@ export function RealEstateKpiGrid({ data }: { readonly data: ExecutiveDashboardD
           const TrendIcon = trend === 0 ? Minus : trend !== undefined && trend > 0 ? TrendingUp : TrendingDown;
           const trendState = trend === 0 ? "Neutral" : trend !== undefined && trend > 0 ? "Positive" : "Needs Attention";
           return (
-            <Link key={item.label} href={item.href} prefetch={false}
+            <article key={item.label}
               className={`focus-ring group flex min-w-0 flex-col rounded-2xl border p-5 transition duration-200 hover:-translate-y-0.5 hover:border-vds-accent-border hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none ${hero ? "sm:col-span-2 border-vds-accent-border bg-gradient-to-br from-vds-primary-soft via-vds-surface to-vds-accent-soft sm:p-7" : "border-vds-border bg-vds-surface"}`}>
               <div className="mb-4 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-vds-muted">
                 <GroupIcon aria-hidden="true" className="size-4 shrink-0" />{item.group ?? "Revenue"}
@@ -91,20 +94,20 @@ export function RealEstateKpiGrid({ data }: { readonly data: ExecutiveDashboardD
                   <polyline points={history.map((value, point) => `${point / (history.length - 1) * 236 + 2},${38 - value / Math.max(...history, 1) * 34}`).join(" ")} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               ) : <div aria-hidden="true" className="mt-4 h-10 rounded-lg border-b border-dashed border-vds-accent-border bg-vds-primary-soft" />)}
-              <span className="mt-auto flex items-center justify-between gap-3 border-t border-vds-border pt-4 text-sm font-semibold"><span className="pt-3">{item.action}</span><ArrowRight aria-hidden="true" className="mt-3 size-4 shrink-0" /></span>
-            </Link>
+              {showAction && <Link href={item.href} prefetch={false} className="focus-ring mt-auto flex min-h-11 items-center justify-between gap-3 border-t border-vds-border pt-4 text-sm font-semibold">{item.action}<ArrowRight aria-hidden="true" className="size-4 shrink-0" /></Link>}
+            </article>
           );
         })}
         <div className="flex min-w-0 flex-col rounded-2xl border border-dashed border-vds-accent-border bg-vds-primary-soft p-5 sm:col-span-2 lg:col-span-3">
           <div className="flex items-center gap-2 text-sm font-semibold"><Sparkles aria-hidden="true" className="size-4 shrink-0" /><h3>Business Intelligence</h3></div>
           <p className="mt-5 text-xl font-semibold">Building Insights</p>
-          <p className="mt-2 text-sm leading-6 text-vds-muted">Complete your setup to unlock advanced executive intelligence.</p>
+          <p className="mt-2 text-sm leading-6 text-vds-muted">Record your properties, leads, and follow-ups to build a clearer view of your business.</p>
           {setupEvidence.length > 0 && <ul aria-label="Completed setup steps" className="my-4 space-y-2 text-xs text-vds-muted">{setupEvidence.map((step) => <li className="flex items-start gap-2" key={step}><CheckCircle2 aria-hidden="true" className="size-3 shrink-0" />{step}</li>)}</ul>}
-          <Link href="#getting-started-title" className="focus-ring mt-auto inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-semibold">Continue setup <ArrowRight aria-hidden="true" className="size-4" /></Link>
+          <p className="mt-3 text-sm text-vds-muted">Use Getting Started above to continue your setup.</p>
         </div>
       </div>
       <div className="mt-5 border-t border-vds-border pt-4">
-        <Link href="/vayon/analytics" prefetch={false} className="focus-ring flex min-h-12 items-center justify-between gap-3 rounded-xl border border-vds-border bg-vds-surface px-5 py-3 text-sm font-semibold transition hover:border-vds-accent-border hover:bg-vds-elevated motion-reduce:transition-none">View Complete Business Analytics <ArrowRight aria-hidden="true" className="size-4 shrink-0" /></Link>
+        <Link href="/vayon/analytics" prefetch={false} className="focus-ring flex min-h-12 items-center justify-between gap-3 rounded-xl border border-vds-border bg-vds-surface px-5 py-3 text-sm font-semibold transition hover:border-vds-accent-border hover:bg-vds-elevated motion-reduce:transition-none">Understand performance <ArrowRight aria-hidden="true" className="size-4 shrink-0" /></Link>
       </div>
     </section>
   );

@@ -1,26 +1,16 @@
-import { ButtonLink } from "@/features/platform/design-system";
-import { BarChart3, Bot } from "lucide-react";
 import type { ExecutiveDashboardData } from "../types";
 import { ActivityTimeline } from "./ActivityTimeline";
-import { AICommandBar } from "./AICommandBar";
 import { AIWorkforceGrid } from "./AIWorkforceGrid";
 import { CalendarWidget } from "./CalendarWidget";
 import { PipelineBoard } from "./PipelineBoard";
-import { QuickActions } from "./QuickActions";
 import { RevenueChartLoader } from "./RevenueChartLoader";
 import { WhatsAppConversations } from "./WhatsAppConversations";
 import { ExecutiveCommandCenter } from "./ExecutiveCommandCenter";
 import { RealEstateKpiGrid } from "./RealEstateKpiGrid";
-import { RealEstateIntelligence } from "./RealEstateIntelligence";
-import { ContextualAIActions } from "@/features/vayon/cross-module-intelligence/ContextualAIActions";
-import { AIWorkQueue } from "@/features/vayon/autonomous-workforce/AutonomousWorkforceViews";
-import { DailyBriefing } from "@/features/vayon/enterprise-collaboration/CollaborationSurfaces";
 import { GettingStartedChecklist } from "./GettingStartedChecklist";
 
 export function DashboardShell({
   data,
-  onBlockedAction,
-  aiPrompts,
   userName = "Executive",
 }: {
   readonly data: ExecutiveDashboardData;
@@ -31,47 +21,16 @@ export function DashboardShell({
   return (
     <div className="mx-auto max-w-[100rem] space-y-6 px-4 py-7 sm:px-6 sm:py-9">
       <ExecutiveCommandCenter data={data} userName={userName} />
-      <DailyBriefing data={data} userName={userName} />
       <GettingStartedChecklist data={data} />
-      <AICommandBar onBlockedAction={onBlockedAction} prompts={aiPrompts} />
-      {data.isEmpty && <EmptyDashboard />}
       <RealEstateKpiGrid data={data} />
-      <RealEstateIntelligence data={data} />
-      <ContextualAIActions kind="dashboard" recordLabel={data.organizationName} />
-      <AIWorkQueue compact />
       <PipelineBoard items={data.pipeline} currency={data.currency} />
       <RevenueChartLoader data={data.charts} currency={data.currency} />
-      <AIWorkforceGrid members={data.aiWorkforce} />
+      <details className="rounded-2xl border border-vds-border bg-vds-surface p-5"><summary className="focus-ring cursor-pointer rounded-lg py-2 font-semibold">Review today&apos;s AI tasks</summary><div className="mt-4"><AIWorkforceGrid members={data.aiWorkforce} /></div></details>
       <div className="grid gap-5 xl:grid-cols-2">
         <CalendarWidget items={data.calendar} />
-        <ActivityTimeline items={data.activities} />
+        <ActivityTimeline items={data.activities} linkedDestinations={["/vayon/analytics", "/vayon/deals", "/vayon/deals/new", "/vayon/properties", "/vayon/properties/new", "/vayon/leads/new", "/vayon/tasks", "/vayon/settings/members", "/vayon/settings/organization", "/vayon/whatsapp/settings", "/vayon/settings/integrations/data-import", "/vayon/approvals", "/vayon/calendar", "/vayon/communications", "/vayon/ai/work-queue", ...data.pipeline.map(item => item.href), ...data.aiWorkforce.map(member => `/vayon/ai/workforce/${member.id}`)]} />
         <WhatsAppConversations conversations={data.whatsappConversations} />
       </div>
-      <QuickActions />
     </div>
-  );
-}
-
-function EmptyDashboard() {
-  return (
-    <section className="rounded-3xl border border-dashed border-vds-border bg-vds-surface p-6 sm:p-8">
-      <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex gap-4">
-          <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-vds-primary-soft text-vds-primary">
-            <BarChart3 className="size-5" />
-          </span>
-          <div>
-            <h2 className="font-semibold">Your executive workspace is ready</h2>
-            <p className="mt-2 max-w-xl text-sm text-vds-muted">
-              Add your first lead, property, or transaction. Dashboard metrics will
-              populate from verified workspace records.
-            </p>
-          </div>
-        </div>
-        <ButtonLink href="/vayon/leads/new" className="shrink-0">
-          <Bot className="size-4" /> Create first lead
-        </ButtonLink>
-      </div>
-    </section>
   );
 }

@@ -1,5 +1,5 @@
 import { Button } from "@/features/platform/design-system";
-import Link from"next/link";import{AuthFields,AuthShell,FormNotice}from"@/features/authentication/components/AuthForm";import{googleLoginAction,loginAction}from"@/features/authentication/actions/auth.actions";export default async function Page({searchParams}:{searchParams:Promise<{error?:string;success?:string}>}){const q=await searchParams;return <AuthShell title="Welcome back" description="Sign in to your Vayon OS workspace."><FormNotice {...q}/><form action={googleLoginAction}><Button
+import Link from"next/link";import{AuthFields,AuthShell,FormNotice}from"@/features/authentication/components/AuthForm";import{googleLoginAction,loginAction}from"@/features/authentication/actions/auth.actions";export default async function Page({searchParams}:{searchParams:Promise<{error?:string;success?:string}>}){const q=await searchParams;return <AuthShell title="Welcome back" description="Sign in to manage your properties, leads, and daily work."><FormNotice {...q}/><form action={googleLoginAction}><Button
     type="submit"
     variant="control"
     className="mb-4 w-full rounded-xl border border-vds-border-strong bg-vds-surface px-4 py-3 text-sm font-semibold text-vds-foreground"

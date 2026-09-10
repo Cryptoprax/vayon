@@ -3,25 +3,25 @@ export const defaultAdaptiveSuggestions: readonly AdaptiveSuggestion[] = [
   {
     id: "search-properties",
     label: "Search properties",
-    hint: "Find governed property records",
+    hint: "Find a property to update or sell",
     query: "search properties",
   },
   {
     id: "create-lead",
     label: "Create a lead",
-    hint: "Open lead capture",
+    hint: "Record a buyer or seller",
     href: "/vayon/leads/new",
   },
   {
     id: "executive-home",
-    label: "Open Executive Home",
-    hint: "Review executive context",
+    label: "Plan today's work",
+    hint: "Choose your next follow-up",
     href: "/vayon/dashboard",
   },
   {
     id: "find-documents",
     label: "Find documents",
-    hint: "Search document context",
+    hint: "Find the document you need",
     query: "find documents",
   },
   {
@@ -33,25 +33,25 @@ export const defaultAdaptiveSuggestions: readonly AdaptiveSuggestion[] = [
   {
     id: "open-timeline",
     label: "Open Timeline",
-    hint: "Review canonical activity",
+    hint: "Review recent conversations and updates",
     href: "/vayon/timeline",
   },
   {
     id: "open-growth",
-    label: "Open Growth Hub",
-    hint: "Review growth workspace",
+    label: "Review Marketing Performance",
+    hint: "See where your marketing needs attention",
     href: "/vayon/growth",
   },
   {
     id: "morning-brief",
     label: "Generate Morning Brief",
-    hint: "Ask Copilot for an evidence-safe executive brief",
+    hint: "Review priorities for today",
     query: "Morning Brief",
   },
   {
     id: "open-founder-dashboard",
     label: "Open Founder Dashboard",
-    hint: "Review cross-workspace executive evidence",
+    hint: "Review business performance",
     href: "/platform/founder",
   },
 ];

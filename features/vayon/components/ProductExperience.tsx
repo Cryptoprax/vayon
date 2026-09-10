@@ -110,7 +110,7 @@ export function ProductExperience({
         </main>
       </AppShell>
       <aside hidden aria-hidden="true" data-future-utility-rail="disabled" />
-      {path !== "/vayon/creative" && <QuickCreate visibility={visibility} />}
+      {path !== "/vayon/creative" && <QuickCreate role={identity.workspaceRole} visibility={visibility} />}
       {intelligenceEnabled && (
         <VayonIntelligence
           docked={path === "/vayon/creative"}

@@ -7,7 +7,7 @@ import { getAuroraNavigationContext } from "../demo-workspace";
 import { WorkspacePermissionService } from "@/features/platform/permissions/runtime/permission.service";
 import { WorkspaceBootstrapService } from "@/features/onboarding/services/workspace-bootstrap.service";
 import { PlatformVisibilityService } from "@/features/platform/visibility/service";
-// Search/navigation compatibility remains sourced from builder/config/vayon-navigation through ShellHeader.
+// Header and sidebar share the product-shell navigation catalog.
 
 export async function VayonShell({
   children,
@@ -41,9 +41,10 @@ export async function VayonShell({
         )
       : [],
     identity = organization?.name
-      ? { userName, workspaceName: organization.name, organizationDescription: `${organization.name} AI business workspace`, workspaceRole: authorization?.role ?? "guest" as const }
+      ? { userName, historyScope: `${authorization?.actorId ?? user?.id}:${authorization?.workspaceId ?? organization.id}`, workspaceName: organization.name, organizationDescription: `${organization.name} AI business workspace`, workspaceRole: authorization?.role ?? "guest" as const }
       : {
           userName,
+          historyScope: `demo:${user?.id ?? "anonymous"}`,
           workspaceName: demo.workspaceName,
           workspaceLogo: demo.logoPlaceholder,
           organizationDescription: demo.organizationDescription,

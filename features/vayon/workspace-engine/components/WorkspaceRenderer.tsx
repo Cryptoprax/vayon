@@ -4,11 +4,9 @@ import { WorkspaceRegistryService } from "../services/workspace-registry.service
 import {
   WorkspaceActivity,
   WorkspaceAI,
-  WorkspaceCommandBar,
   WorkspaceEmptyState,
   WorkspaceFiles,
   WorkspaceHeader,
-  WorkspaceHero,
   WorkspaceInsights,
   WorkspaceLayout,
   WorkspaceNotes,
@@ -49,9 +47,9 @@ export function WorkspaceRenderer({
     calls: <WorkspaceEmptyState title="Calls" description="Customer call history and outcomes connected to this record appear here." />,
     "follow-ups": <WorkspaceEmptyState title="Follow-ups" description="Open and completed communication commitments appear here." />,
     knowledge: <WorkspaceEmptyState title="Knowledge" description="Trusted organizational knowledge sources assigned to this AI employee appear here." />,
-    recommendations: <WorkspaceEmptyState title="Recommendations" description="Governed recommendations appear here after a provider is configured. Inference is inactive." />,
+    recommendations: <WorkspaceEmptyState title="Recommendations" description="Suggestions are not connected here yet. Continue updating this record using the actions above." />,
     history: <WorkspaceEmptyState title="History" description="Future executions, decisions, and human review history appear here." />,
-    capabilities: <WorkspaceEmptyState title="Capabilities" description="Registered capability contracts and allowed tools appear here. Execution is inactive." />,
+    capabilities: <WorkspaceEmptyState title="Capabilities" description="Review what this assistant can help with. Automatic actions are not active here." />,
     meetings: <WorkspaceEmptyState title="Meetings" description="Meetings connected to this workspace object appear here." />,
     "site-visits": <WorkspaceEmptyState title="Site visits" description="Scheduled and completed property visits appear here." />,
     relations: <WorkspaceRelations relations={model.relations} />,
@@ -60,7 +58,7 @@ export function WorkspaceRenderer({
     settings: (
       <WorkspaceEmptyState
         title="Workspace settings"
-        description="Settings are governed by AtlasOS configuration and permissions."
+        description="Your workspace settings depend on your role. Contact your workspace administrator if you need access."
       />
     ),
     ...panels,
@@ -68,7 +66,6 @@ export function WorkspaceRenderer({
   return (
     <WorkspaceLayout
       header={<WorkspaceHeader model={model} actions={actions} />}
-      hero={<WorkspaceHero><WorkspaceCommandBar actions={actions} /></WorkspaceHero>}
       tabs={<WorkspaceTabs tabs={tabs} active={activeTab} baseHref={editHref.replace("/edit", "")} />}
       rightPanel={<WorkspaceRightPanel sections={model.sidebar} />}
       timeline={activeTab !== "timeline" ? <WorkspaceTimeline events={model.events.slice(0, 3)} /> : undefined}

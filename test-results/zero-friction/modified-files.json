@@ -1,0 +1,13 @@
+[
+  "app/vayon/deals/[dealId]/page.tsx",
+  "app/vayon/leads/[leadId]/page.tsx",
+  "app/vayon/properties/[propertyId]/page.tsx",
+  "app/vayon/crm/contacts/[contactId]/page.tsx",
+  "features/vayon/cross-module-intelligence/ContextualAIActions.tsx",
+  "features/vayon/dashboard/components/AIWorkforceGrid.tsx",
+  "features/vayon/dashboard/components/ExecutiveCommandCenter.tsx",
+  "features/vayon/universal-bar/actions/search.actions.ts",
+  "tests/product-bible-phase3.test.mjs",
+  "tests/sprint148-executive-command-center.test.mjs",
+  "tests/sprint219-ai-everywhere.test.mjs"
+]

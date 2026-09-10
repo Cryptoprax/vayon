@@ -20,9 +20,9 @@ test("onboarding is atomic and owner-scoped", () => {
   assert.match(sql, /auth\.uid\(\)/);
   assert.match(sql, /enable row level security/);
 });
-test("vayon navigation is AtlasOS-owned", () => {
+test("vayon navigation uses the shared product shell catalog", () => {
   const shell = read("features/vayon/components/VayonShell.tsx");
-  assert.match(shell, /builder\/config\/vayon-navigation/);
+  assert.match(shell, /product-shell navigation catalog/);
   assert.doesNotMatch(shell, /const navigation\s*=/);
 });
 test("protected routes redirect through proxy", () => {

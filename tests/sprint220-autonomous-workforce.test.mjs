@@ -24,7 +24,8 @@ test("autonomous outcomes remain approval gated and progress is not fabricated",
   assert.doesNotMatch(views, /setInterval|setTimeout|Math\.random/);
 });
 
-test("dashboard reuses the shared work queue", () => {
+test("dashboard keeps the work queue in its dedicated AI workspace", () => {
   const dashboard = read("features/vayon/dashboard/components/DashboardShell.tsx");
-  assert.match(dashboard, /<AIWorkQueue compact \/>/);
+  assert.doesNotMatch(dashboard, /<AIWorkQueue compact \/>/);
+  assert.match(read("features/vayon/product-shell/navigation.ts"), /\/vayon\/ai\/work-queue/);
 });

@@ -1,0 +1,9 @@
+# Search intelligence review
+
+Existing providers, command router, debouncing, permission checks, history ranking, and data loading are retained. Property matches now explain that opening the property leads to details, marketing, and viewings. Saved creative campaign matches disclose draft or recorded workflow state. Campaign records from CreativeStudioService now open the matching creative overview instead of the unrelated CampaignStudio list. Saved asset descriptions distinguish draft instructions from rendered output.
+
+Create actions still rank before recent records, frequent records, matching records, pages, and settings, as specified in earlier phases. Existing command routing sends brochure preparation to creative documents, viewing scheduling to site visits, and campaign creation to campaigns. No command executes a mutation merely by searching.
+
+The literal Villa example can return matching property records. It does not fabricate a matching Villa or a prepared marketing package. The Campaign example retains Create Campaign plus genuine matching saved records. There is no published status in CreativeStatus and publishing is disabled in this service, so Published Campaigns and an unsupported Continue Campaign editor were not invented. Saved campaigns are described as reviewable in the overview, not editable in place.
+
+Limitations: no new per-result action menu, query, publication filter, or repository was introduced. Entity context carried in URLs does not certify destination prefill. Existing editor links require an editor document; absent editor documents can still produce not-found states and need authenticated data QA. Role-filtered search and empty-permission behavior remain regression-tested. Source audits cannot establish authenticated result correctness across tenants.

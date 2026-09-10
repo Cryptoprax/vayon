@@ -12,9 +12,14 @@ export interface OperatingSystemCommand {
 }
 
 const workflows: readonly { pattern: RegExp; intent: string; module: OperatingSystemModule; route: string; permission: string; approval: boolean }[] = [
-  { pattern: /brochure|flyer|presentation|landing page|facebook|instagram|linkedin|google ads|reel|video|shorts|tiktok|description|seo blog|qr code|open house|creative/i, intent: "create-marketing-asset", module: "creative", route: "/vayon/creative", permission: "creative.create", approval: true },
-  { pattern: /find buyers|property match|interested.+(?:villa|property|apartment)/i, intent: "match-buyers", module: "crm", route: "/vayon/property-matching", permission: "crm.read", approval: false },
-  { pattern: /email.+(?:buyer|lead)|whatsapp.+(?:buyer|lead)|call.+lead|follow.?up|proposal/i, intent: "engage-lead", module: "workforce", route: "/vayon/ai/workforce/sales-ai", permission: "crm.update", approval: true },
+  { pattern: /brochure|flyer|presentation|proposal|agreement/i, intent: "create-marketing-asset", module: "creative", route: "/vayon/creative/documents", permission: "creative.create", approval: true },
+  { pattern: /schedule.+viewing|book.+viewing/i, intent: "coordinate-operations", module: "operations", route: "/vayon/site-visits", permission: "operations.create", approval: true },
+  { pattern: /follow.?up|reminder|task/i, intent: "coordinate-operations", module: "operations", route: "/vayon/tasks", permission: "operations.create", approval: true },
+  { pattern: /whatsapp|call.+(?:lead|buyer)|email.+(?:lead|buyer)/i, intent: "engage-lead", module: "operations", route: "/vayon/communications", permission: "crm.update", approval: true },
+  { pattern: /campaign/i, intent: "create-marketing-asset", module: "creative", route: "/vayon/creative/campaigns", permission: "creative.create", approval: true },
+  { pattern: /brochure|flyer|presentation|landing page|facebook|instagram|linkedin|google ads|reel|video|shorts|tiktok|description|seo blog|qr code|open house|creative|campaign|logo/i, intent: "create-marketing-asset", module: "creative", route: "/vayon/creative", permission: "creative.create", approval: true },
+  { pattern: /find buyers|recommend properties|property match|interested.+(?:villa|property|apartment)/i, intent: "match-buyers", module: "crm", route: "/vayon/property-matching", permission: "crm.read", approval: false },
+  { pattern: /email.+(?:buyer|lead)|whatsapp.+(?:buyer|lead)|call.+(?:lead|buyer)|follow.?up|proposal/i, intent: "engage-lead", module: "workforce", route: "/vayon/ai/workforce/sales-ai", permission: "crm.update", approval: true },
   { pattern: /schedule|book.+viewing|calendar|reminder|task/i, intent: "coordinate-operations", module: "operations", route: "/vayon/calendar", permission: "operations.create", approval: true },
   { pattern: /monthly report|report|analytics|performance|roi|forecast/i, intent: "review-intelligence", module: "analytics", route: "/vayon/analytics", permission: "analytics.read", approval: false },
   { pattern: /approve|approval|review draft/i, intent: "review-approval", module: "approvals", route: "/vayon/approvals", permission: "approvals.review", approval: false },
@@ -22,7 +27,7 @@ const workflows: readonly { pattern: RegExp; intent: string; module: OperatingSy
 
 export function resolveOperatingSystemCommand(prompt: string): OperatingSystemCommand {
   const normalized = prompt.trim();
-  const workflow = workflows.find((candidate) => candidate.pattern.test(normalized)) ?? { intent: "ask-workforce", module: "workforce" as const, route: "/vayon/ai", permission: "ai.use", approval: false };
+  const workflow = workflows.find((candidate) => candidate.pattern.test(normalized)) ?? { intent: "ask-workforce", module: "workforce" as const, route: "/vayon/intelligence", permission: "ai.use", approval: false };
   const context = extractContext(normalized);
   const query = new URLSearchParams({ intent: workflow.intent, prompt: normalized, ...context });
   return { intent: workflow.intent, module: workflow.module, route: `${workflow.route}?${query}`, permission: workflow.permission, workspaceRequired: true, approvalRequired: workflow.approval, voiceReady: true, context };

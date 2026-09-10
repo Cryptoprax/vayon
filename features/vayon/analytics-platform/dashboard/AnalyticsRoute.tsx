@@ -21,16 +21,16 @@ export async function AnalyticsRoute({
       <AnalyticsHeader
         title={
           overview
-            ? "Enterprise Analytics & Intelligence"
+            ? "Understand performance"
             : domainTitles[domain]
         }
-        description="Evidence-based organizational analytics. Missing production projections remain explicitly unavailable and every deterministic insight cites its evidence."
+        description="Review revenue, sales, and follow-up results to decide where your business needs attention. Figures appear when the required records are available."
       />
       <MetricGrid data={dataset(snapshot, domain)} />
       {(overview || domain === "executive") && (
         <Insights items={service.insights(snapshot)} />
       )}{" "}
-      {overview && <PlatformHealth s={snapshot} />}
+      {overview && <details className="mt-6"><summary className="focus-ring cursor-pointer rounded-lg py-3 font-semibold">Review data connections</summary><PlatformHealth s={snapshot} /></details>}
     </main>
   );
 }

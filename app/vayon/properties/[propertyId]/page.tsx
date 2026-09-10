@@ -37,11 +37,12 @@ export default async function Page({
           {query.success}
         </p>
       )}
+      {query.success && <ContextualAIActions kind="property" evidence={{ description: property.description, published: property.published }} recordId={id} recordLabel={property.title} />}
       <PropertyCrmSummary model={crm} />
       <WorkspaceRenderer model={propertyWorkspaceModel(property)} activeTab={active} editHref={`/vayon/properties/${id}/edit`} />
       <RealEstateSignalGrid kind="property" values={{ "AI Listing Score": property.aiScore == null ? undefined : `${property.aiScore}/100`, "Marketing Status": property.published ? "Published" : "Not published", "Suggested Improvements": property.description ? "Review listing performance" : "Add a complete property description" }} />
       <ContextualRealEstateRecommendations kind="property" />
-      <ContextualAIActions kind="property" recordId={id} recordLabel={property.title} />
+      {!query.success && <ContextualAIActions kind="property" evidence={{ description: property.description, published: property.published }} recordId={id} recordLabel={property.title} />}
       <div className="mx-auto mb-8 max-w-[96rem] px-4 sm:px-6"><EntityCollaboration entityType="property" entityId={id} entityLabel={property.title} /></div>
     </>
   );

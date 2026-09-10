@@ -1,0 +1,1545 @@
+[
+  {
+    "file": "app/global-error.tsx",
+    "snippets": [
+      {
+        "line": 8,
+        "text": "Your data remains safe. Retry the request, or return later if the provider is temporarily unavailable."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/executions/page.tsx",
+    "snippets": [
+      {
+        "line": 12,
+        "text": "Governed action proposals and their lifecycle. No adapter in this release can perform an external action."
+      }
+    ]
+  },
+  {
+    "file": "app/(marketing)/api/page.tsx",
+    "snippets": [
+      {
+        "line": 18,
+        "text": "VAYON's internal API contracts remain governed and production APIs are not advertised as publicly available until access, documentation and support are certified."
+      }
+    ]
+  },
+  {
+    "file": "app/(marketing)/media-kit/page.tsx",
+    "snippets": [
+      {
+        "line": 8,
+        "text": "Company context, downloadable brand assets, product imagery, founder-information status, and a governed press contact."
+      },
+      {
+        "line": 8,
+        "text": "VAYON is a governed AI workforce and connected operating platform for customer-centric organizations."
+      }
+    ]
+  },
+  {
+    "file": "app/(marketing)/investors/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "A presentation-ready overview that distinguishes released capability, roadmap direction, and unavailable external market evidence."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/crm/page.tsx",
+    "snippets": [
+      {
+        "line": 15,
+        "text": "A tenant-safe view of leads, customers, companies, and relationship activity."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/documents/onedrive/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Live provider files and folders with reference-only CRM integration."
+      },
+      {
+        "line": 1,
+        "text": "OneDrive data is temporarily unavailable."
+      },
+      {
+        "line": 1,
+        "text": "Vayon stores CRM references only. Preview uses the provider URL."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/deals/pipeline/page.tsx",
+    "snippets": [
+      {
+        "line": 7,
+        "text": "Move deals through workspace stages, inspect weighted value, and keep forecast changes tenant-scoped and audit-ready."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/demo-experience/components/DemoExperience.tsx",
+    "snippets": [
+      {
+        "line": 511,
+        "text": "Deterministic, cross-linked, recommendation-only sample data."
+      },
+      {
+        "line": 653,
+        "text": "deterministic demo records · Read only"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/crm/leads/[leadId]/page.tsx",
+    "snippets": [
+      {
+        "line": 15,
+        "text": "Unified lead qualification, relationship history, related work, and deterministic intelligence."
+      }
+    ]
+  },
+  {
+    "file": "app/(marketing)/data-ownership/page.tsx",
+    "snippets": [
+      {
+        "line": 11,
+        "text": "VAYON is designed so organizations retain ownership of the business information they provide. Access remains governed by workspace permissions and authenticated product boundaries."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/objects/page.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "One canonical layer for people, companies, addresses, documents, activity, knowledge, tags, and relationships. Local architecture preview—no production CRM records are rewritten."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/notifications/page.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "One tenant-scoped inbox for AI work, approvals, assignments, mentions, CRM replies, tasks, meetings and operational events. Every item opens its existing source workflow."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/workflow-orchestrator/components/WorkflowOrchestrator.tsx",
+    "snippets": [
+      {
+        "line": 99,
+        "text": "AI Workflow Orchestrator"
+      },
+      {
+        "line": 109,
+        "text": "Reusable governed starting points"
+      },
+      {
+        "line": 111,
+        "text": "governed steps"
+      },
+      {
+        "line": 171,
+        "text": "Executed, cancelled, failed, and successful workflows appear only when governed evidence exists. Local preview decisions are listed below."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/calendar/outlook/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Outlook Calendar data is temporarily unavailable."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/components/RouteStates.tsx",
+    "snippets": [
+      {
+        "line": 11,
+        "text": "The requested information is temporarily unavailable. Your data is safe and existing records have not been changed."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/contacts/microsoft/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Personal and directory contacts with deterministic CRM suggestions and no automatic merges."
+      },
+      {
+        "line": 1,
+        "text": "Microsoft People data is temporarily unavailable."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/workflow-approval/components/GovernanceViews.tsx",
+    "snippets": [
+      {
+        "line": 40,
+        "text": "Governed automation · no autonomous execution"
+      },
+      {
+        "line": 69,
+        "text": "governed steps · v"
+      },
+      {
+        "line": 165,
+        "text": "Deterministic adapter can prepare approved requests but cannot execute them."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/video-studio/VideoStudio.tsx",
+    "snippets": [
+      {
+        "line": 82,
+        "text": "Create governed scripts, storyboards, private video drafts, and approval-ready assets."
+      },
+      {
+        "line": 137,
+        "text": "Start with a creative brief and build a governed storyboard, voiceover, and production plan."
+      },
+      {
+        "line": 186,
+        "text": "Create a governed video"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/communications/templates/page.tsx",
+    "snippets": [
+      {
+        "line": 10,
+        "text": "Read-only governed templates for consistent customer communication."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/knowledge/error.tsx",
+    "snippets": [
+      {
+        "line": 8,
+        "text": "Knowledge temporarily unavailable."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/communications/teams/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Teams data unavailable."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/creative-studio/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Build governed real estate campaign drafts from authoritative project, inventory, pricing and organization brand data."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/intelligence/page.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "Knowledge, events, audit, recommendations, predictions, analytics, memory, and provider contracts—without production AI calls or direct CRM coupling."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/communications-workspace/components/InboxList.tsx",
+    "snippets": [
+      {
+        "line": 18,
+        "text": "Bulk actions remain disabled until governed mutations are approved."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/communications-workspace/components/CommunicationViews.tsx",
+    "snippets": [
+      {
+        "line": 45,
+        "text": "Governed outbound lifecycle"
+      },
+      {
+        "line": 151,
+        "text": "AI Workforce"
+      },
+      {
+        "line": 152,
+        "text": "Deterministic assistance"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/communications-workspace/components/CommunicationsShell.tsx",
+    "snippets": [
+      {
+        "line": 25,
+        "text": "Unified communications · governed"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/deal-room/components/DealRoomViews.tsx",
+    "snippets": [
+      {
+        "line": 204,
+        "text": "Deterministic AI guidance"
+      }
+    ]
+  },
+  {
+    "file": "app/(marketing)/support-policy/page.tsx",
+    "snippets": [
+      {
+        "line": 4,
+        "text": "Vayon provides a governed path for product questions, account assistance, and production incident reports."
+      }
+    ]
+  },
+  {
+    "file": "app/(marketing)/status/page.tsx",
+    "snippets": [
+      {
+        "line": 32,
+        "text": "VAYON distinguishes live evidence from unavailable data. Historical incident reporting is prepared and will appear after verified events exist."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/communications/reports/page.tsx",
+    "snippets": [
+      {
+        "line": 5,
+        "text": "Measured workspace communication activity. Unavailable provider metrics remain explicitly labeled."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/communications/page.tsx",
+    "snippets": [
+      {
+        "line": 15,
+        "text": "Every tenant-scoped customer conversation, relationship, governed AI recommendation, and follow-up in one workspace."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/workflows/loading.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "Loading AI Workflow Orchestrator"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/approvals/[approvalId]/page.tsx",
+    "snippets": [
+      {
+        "line": 19,
+        "text": "Immutable decision context and audit evidence for a governed execution request."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/creative-studio/loading.tsx",
+    "snippets": [
+      {
+        "line": 18,
+        "text": "Loading campaign data and provider status."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/creative-studio/growth/page.tsx",
+    "snippets": [
+      {
+        "line": 17,
+        "text": "Plan complete multilingual real estate campaign packs from authoritative project data. Every output remains a governed draft."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/creative-studio/error.tsx",
+    "snippets": [
+      {
+        "line": 11,
+        "text": "Marketing Studio unavailable"
+      },
+      {
+        "line": 15,
+        "text": "Campaign data could not be loaded. No publishing or provider action was attempted."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/universal-bar/components/UniversalPreviewCard.tsx",
+    "snippets": [
+      {
+        "line": 22,
+        "text": "Select a result supplied by an authorized local provider to preview existing view-model fields."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/users/page.tsx",
+    "snippets": [
+      {
+        "line": 4,
+        "text": "Search, filter, and review roles, departments, teams, status, activity, permissions, and workforce assignments."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/deal/components/DealWorkspaceContent.tsx",
+    "snippets": [
+      {
+        "line": 21,
+        "text": "Registration and mortgage dates unavailable"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/calendar-platform/dashboard/CalendarRoute.tsx",
+    "snippets": [
+      {
+        "line": 23,
+        "text": "A tenant-scoped operational schedule across meetings, visits, tasks, reminders, CRM context, communications, workflows, and AI Workforce advice."
+      },
+      {
+        "line": 40,
+        "text": "Deterministic scheduling reminders. External delivery remains disabled."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/real-estate-experience/RealEstateSurfaces.tsx",
+    "snippets": [
+      {
+        "line": 23,
+        "text": "Unavailable"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/teams/page.tsx",
+    "snippets": [
+      {
+        "line": 4,
+        "text": "Create, staff, manage capacity, and archive teams inside tenant-scoped departments."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/calendar-platform/components/CalendarViews.tsx",
+    "snippets": [
+      {
+        "line": 248,
+        "text": "Deterministic scheduling assistance"
+      },
+      {
+        "line": 251,
+        "text": "Advisory only. No provider calls or autonomous scheduling."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/communications/outlook/page.tsx",
+    "snippets": [
+      {
+        "line": 90,
+        "text": "Outlook data is temporarily unavailable."
+      },
+      {
+        "line": 141,
+        "text": "Reply, reply all, and forward are supported by the provider service and remain user-initiated operations."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/communications/notifications/page.tsx",
+    "snippets": [
+      {
+        "line": 10,
+        "text": "Workflow, approval, meeting, task, provider, conversation, and AI notices with governed links."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/analytics/executive/page.tsx",
+    "snippets": [
+      {
+        "line": 9,
+        "text": "Measured business intelligence and clearly labeled AI recommendations, sourced only from this tenant's authoritative repositories."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/communications/inbox/page.tsx",
+    "snippets": [
+      {
+        "line": 18,
+        "text": "Search, filter, sort, and review every tenant-scoped customer interaction without connecting external providers."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/brand-studio/BrandStudio.tsx",
+    "snippets": [
+      {
+        "line": 262,
+        "text": "Deterministic readiness score · no automatic corrections"
+      },
+      {
+        "line": 314,
+        "text": "Prepared formats only. No export provider is connected."
+      },
+      {
+        "line": 474,
+        "text": "AI recommendation is prepared only; no provider is connected."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/communications/conversations/[conversationId]/page.tsx",
+    "snippets": [
+      {
+        "line": 17,
+        "text": "Chronological communication, CRM context, deterministic assistance, and governed next actions."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/communications/conversations/page.tsx",
+    "snippets": [
+      {
+        "line": 10,
+        "text": "Customer, lead, assignment, channel, deal, property, workflow, and task relationships in one provider-neutral directory."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/plans/page.tsx",
+    "snippets": [
+      {
+        "line": 4,
+        "text": "Choose a production Stripe subscription plan with tenant-scoped entitlements."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/creative-studio/assistant/page.tsx",
+    "snippets": [
+      {
+        "line": 37,
+        "text": "AI generation is temporarily unavailable"
+      },
+      {
+        "line": 38,
+        "text": "Existing drafts remain editable. Continue with templates, Brand Kit, Asset Library, and the editor while the provider recovers."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/permissions/page.tsx",
+    "snippets": [
+      {
+        "line": 4,
+        "text": "Effective module and action access across the canonical enterprise RBAC roles."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/communications/connectors/page.tsx",
+    "snippets": [
+      {
+        "line": 5,
+        "text": "Provider-neutral channel adapters. Live authentication and delivery remain disabled until Sprint 82."
+      },
+      {
+        "line": 5,
+        "text": "Live delivery: disabled · Provider health: not connected"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/dashboard/components/RealEstateIntelligence.tsx",
+    "snippets": [
+      {
+        "line": 15,
+        "text": "Unavailable"
+      },
+      {
+        "line": 31,
+        "text": "Market data unavailable. No authoritative market-data provider is connected."
+      },
+      {
+        "line": 59,
+        "text": "Unavailable"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/dashboard/components/AIWorkforceGrid.tsx",
+    "snippets": [
+      {
+        "line": 77,
+        "text": "Your approved workforce appears here when configured."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/dashboard/components/AIWidget.tsx",
+    "snippets": [
+      {
+        "line": 5,
+        "text": "AI Workforce"
+      },
+      {
+        "line": 5,
+        "text": "Open workforce →"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/page.tsx",
+    "snippets": [
+      {
+        "line": 5,
+        "text": "Organization → Departments → Users → AI Workforce → CRM → Finish"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/creative-studio/analytics/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Measured draft activity and AI campaign quality. Publishing performance remains unavailable until providers are connected."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/property-platform/inventory/InventoryViews.tsx",
+    "snippets": [
+      {
+        "line": 14,
+        "text": "Coordinates are stored provider-neutrally. Google Maps API is not connected."
+      },
+      {
+        "line": 17,
+        "text": "Tenant-scoped RBAC"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/communication-hub/components/CommunicationHubArchitecture.tsx",
+    "snippets": [
+      {
+        "line": 5,
+        "text": "Provider-neutral communication workspace"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/property-platform/dashboard/PropertyRoute.tsx",
+    "snippets": [
+      {
+        "line": 39,
+        "text": "A provider-neutral location workspace. No external map or MLS connection is active."
+      },
+      {
+        "line": 68,
+        "text": "Evidence-safe analytics derived only from authoritative repository relationships. Unavailable metrics are never fabricated."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/creative-studio-2/CreativeStudioHome.tsx",
+    "snippets": [
+      {
+        "line": 264,
+        "text": "Creative Director → Pipeline → Runtime → Execution Engine → Provider Adapter"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/notifications/page.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "Provider delivery remains governed by workspace notification capabilities."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/creative-studio/components/StudioViews.tsx",
+    "snippets": [
+      {
+        "line": 10,
+        "text": "· Tenant scoped · External rendering disabled"
+      },
+      {
+        "line": 11,
+        "text": "Generate governed draft"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/campaign-studio/CampaignStudio.tsx",
+    "snippets": [
+      {
+        "line": 503,
+        "text": "Planning only · provider unavailable · no assets will be generated"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/creative-runtime/CreativeRuntimeDashboard.tsx",
+    "snippets": [
+      {
+        "line": 64,
+        "text": "Provider-independent routing, capabilities, job health, and fail-closed generation infrastructure."
+      },
+      {
+        "line": 70,
+        "text": "Unavailable"
+      },
+      {
+        "line": 90,
+        "text": "Provider registry"
+      },
+      {
+        "line": 91,
+        "text": "Descriptors only. Provider names are never exposed to customer generation flows."
+      },
+      {
+        "line": 191,
+        "text": "Primary Provider"
+      },
+      {
+        "line": 197,
+        "text": "Unavailable"
+      },
+      {
+        "line": 199,
+        "text": "Routes by required capability, resolution, brand requirements, style, priority, and fallback availability. With no provider available, every request fails closed before job creation."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/analytics-platform/components/ExecutiveBI.tsx",
+    "snippets": [
+      {
+        "line": 21,
+        "text": "Compare recorded salespeople and teams. Personal rankings reflect tenant-scoped pipeline and closed outcomes only."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/creative-execution/ExecutionDashboard.tsx",
+    "snippets": [
+      {
+        "line": 46,
+        "text": "Provider-independent planning, queueing, execution, events, and approval handoff. Live adapters are composed outside the engine."
+      },
+      {
+        "line": 86,
+        "text": "Capability & provider readiness"
+      },
+      {
+        "line": 96,
+        "text": "Provider readiness"
+      },
+      {
+        "line": 103,
+        "text": "Live document provider"
+      },
+      {
+        "line": 103,
+        "text": "Unavailable"
+      },
+      {
+        "line": 129,
+        "text": "Tenant-safe document repository contract"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/crm-engine/components/CrmLeadProfile.tsx",
+    "snippets": [
+      {
+        "line": 176,
+        "text": "Deterministic intelligence"
+      },
+      {
+        "line": 203,
+        "text": "Prepare client communication, property recommendations, viewing plans, and transaction documents using the existing governed AI runtime. No message, proposal, meeting, or CRM change is executed automatically."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/property-platform/components/PropertyViews.tsx",
+    "snippets": [
+      {
+        "line": 108,
+        "text": "Provider-neutral map surface"
+      },
+      {
+        "line": 109,
+        "text": "Coordinates and map tiles remain unavailable until an approved maps provider is connected."
+      },
+      {
+        "line": 254,
+        "text": "Deterministic property assistance"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/creative-cloud/CreativeCloudDashboard.tsx",
+    "snippets": [
+      {
+        "line": 120,
+        "text": "Single orchestration authority"
+      },
+      {
+        "line": 138,
+        "text": "specialists · orchestrated only"
+      },
+      {
+        "line": 292,
+        "text": "Future provider strategy"
+      },
+      {
+        "line": 306,
+        "text": "Cost attribution prepares estimated cost, provider cost, token cost, generation cost, export cost, and budget allocation. Billing is not integrated."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/creative-pipeline/CreativePipelineDashboard.tsx",
+    "snippets": [
+      {
+        "line": 205,
+        "text": "Provider boundary"
+      },
+      {
+        "line": 206,
+        "text": "Creative Director orchestrates every stage. Nodes communicate only through the Creative Runtime. Runtime is unavailable, so execution is disabled."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/property-matching/MatchingViews.tsx",
+    "snippets": [
+      {
+        "line": 4,
+        "text": "Rental potential: placeholder · Future appreciation: unavailable"
+      },
+      {
+        "line": 7,
+        "text": "Governed recommendation engine"
+      },
+      {
+        "line": 7,
+        "text": "Scores use tenant-scoped CRM, inventory, pricing, and visit evidence. AI may explain and draft, but never decides, reserves, contacts customers, or fabricates relationships."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/crm-automation/PropertyCrmSummary.tsx",
+    "snippets": [
+      {
+        "line": 27,
+        "text": "Unavailable · classification evidence missing"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/billing/provider-health/page.tsx",
+    "snippets": [
+      {
+        "line": 9,
+        "text": "Live tenant-scoped health evidence for commercial, AI, communication, productivity, storage, and database providers."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/billing/page.tsx",
+    "snippets": [
+      {
+        "line": 16,
+        "text": "Choose and manage your VAYON plan. Billing remains available even while provider setup is incomplete."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/billing/error.tsx",
+    "snippets": [
+      {
+        "line": 4,
+        "text": "Your account and workspace remain safe. Billing information is temporarily unavailable, and no payment action has been taken."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/enterprise-collaboration/CollaborationSurfaces.tsx",
+    "snippets": [
+      {
+        "line": 12,
+        "text": "Priorities derived from the current workspace dashboard, calendar, activity and AI work projections."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/ai/work-queue/page.tsx",
+    "snippets": [
+      {
+        "line": 3,
+        "text": "AI Work Queue"
+      },
+      {
+        "line": 3,
+        "text": "Live, approval-gated work prepared by the AI workforce across the workspace."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/ai/tasks/page.tsx",
+    "snippets": [
+      {
+        "line": 7,
+        "text": "Workforce Task Queue"
+      },
+      {
+        "line": 8,
+        "text": "Pending, running, completed, failed, and cancelled work across the tenant-scoped operational workforce."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/ai/openai/loading.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Loading OpenAI provider diagnostics…"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/ai/playground/page.tsx",
+    "snippets": [
+      {
+        "line": 5,
+        "text": "Versioned role and system prompt templates, tested only through governed workspace-attributed AI employee workflows."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/integrations/data-import/page.tsx",
+    "snippets": [
+      {
+        "line": 6,
+        "text": "Bring existing CRM records into VAYON after workspace activation. Imports remain tenant-scoped and user initiated."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/creative/pipelines/page.tsx",
+    "snippets": [
+      {
+        "line": 6,
+        "text": "Creative Production Orchestration"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/creative/page.tsx",
+    "snippets": [
+      {
+        "line": 7,
+        "text": "This workspace does not have Creative access yet. Join Early Access and we will notify you when governed creative production is available for your workspace."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/ai/history/page.tsx",
+    "snippets": [
+      {
+        "line": 7,
+        "text": "Workforce History"
+      },
+      {
+        "line": 8,
+        "text": "A read-only timeline of governed workforce outcomes derived from existing workspace tasks and conversations."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/settings/google/page.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "Provider version"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/document-studio/DocumentStudio.tsx",
+    "snippets": [
+      {
+        "line": 138,
+        "text": "Create brand-governed, editable business documents through the Creative Runtime and approval pipeline."
+      },
+      {
+        "line": 257,
+        "text": "Start with a natural-language brief and move through the governed Creative Runtime."
+      },
+      {
+        "line": 316,
+        "text": "Comments, version history and approval precede every governed export."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/providers/loading.tsx",
+    "snippets": [
+      {
+        "line": 5,
+        "text": "Loading provider readiness"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/providers/error.tsx",
+    "snippets": [
+      {
+        "line": 6,
+        "text": "Provider readiness unavailable"
+      },
+      {
+        "line": 7,
+        "text": "The local provider model could not be assembled."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/property-matching/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Match explicit buyer requirements with live tenant inventory, recent pricing, CRM activity, and site-visit outcomes—without autonomous decisions."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/demo-workspace/sales-operations/SalesOperationsPanel.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "Deterministic workforce examples"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/founder-command-center/SystemHealthCard.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "System health evidence is temporarily unavailable."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/founder-command-center/ExecutiveAIInbox.tsx",
+    "snippets": [
+      {
+        "line": 32,
+        "text": "Completed · not represented by the current collaboration approval projection"
+      },
+      {
+        "line": 32,
+        "text": "Archived · not represented by the current collaboration approval projection"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/founder-approval-center/FounderApprovalCenter.tsx",
+    "snippets": [
+      {
+        "line": 5,
+        "text": "Record a session draft before handing off to the governed approval history."
+      },
+      {
+        "line": 8,
+        "text": "Open AI Company Orchestration Center"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/property-intelligence/components/PropertyDashboard.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "Property mix appears after ingestion."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/property-intelligence/components/MapPreview.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Clustering activates when an approved maps provider is connected."
+      },
+      {
+        "line": 1,
+        "text": "Provider placeholder"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/property-intelligence/components/ImportWizard.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "https://approved-provider.example/listing"
+      },
+      {
+        "line": 1,
+        "text": "Vayon does not fetch or scrape this URL. An official provider must be connected."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/property-intelligence/components/ImportCenter.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Ingestion studio"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/demo-workspace/executive-intelligence/ExecutiveIntelligencePanels.tsx",
+    "snippets": [
+      {
+        "line": 3,
+        "text": "Connected deterministic advisors"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/ai-workforce/components/AIWorkforceUI.tsx",
+    "snippets": [
+      {
+        "line": 10,
+        "text": "Live AI Workforce"
+      },
+      {
+        "line": 16,
+        "text": "Provider health"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/operational-workforce/components/WorkforceViews.tsx",
+    "snippets": [
+      {
+        "line": 25,
+        "text": "AI workforce impact"
+      },
+      {
+        "line": 39,
+        "text": "Governed customer workflow"
+      },
+      {
+        "line": 41,
+        "text": "Agents exchange tenant-scoped recommendations only. Approval remains mandatory before sensitive execution."
+      },
+      {
+        "line": 46,
+        "text": "Task orchestration"
+      },
+      {
+        "line": 52,
+        "text": "Workforce overview"
+      },
+      {
+        "line": 56,
+        "text": "View workforce"
+      },
+      {
+        "line": 84,
+        "text": "Architecture placeholders · no provider calls"
+      },
+      {
+        "line": 251,
+        "text": "Deterministic memory"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/operational-workforce/components/WorkforceDirectory.tsx",
+    "snippets": [
+      {
+        "line": 23,
+        "text": "Memory is isolated to this workspace. Empty values remain explicit and are never inferred from another tenant."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/operational-workforce/components/OliviaCustomerSuccessManagerDashboard.tsx",
+    "snippets": [
+      {
+        "line": 27,
+        "text": "Unavailable"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/operational-workforce/components/DavidFinanceManagerDashboard.tsx",
+    "snippets": [
+      {
+        "line": 24,
+        "text": "Unavailable"
+      },
+      {
+        "line": 24,
+        "text": "Evidence: no commission ledger projection. Confidence: unknown. Dependencies: transaction-linked commission records and release status."
+      },
+      {
+        "line": 25,
+        "text": "Projection explanation:"
+      },
+      {
+        "line": 26,
+        "text": "Unavailable — periodized revenue evidence missing"
+      },
+      {
+        "line": 27,
+        "text": "recorded finance-relevant workforce tasks provide additional review context."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/operational-workforce/components/AlexOperationsManagerDashboard.tsx",
+    "snippets": [
+      {
+        "line": 28,
+        "text": "Unavailable"
+      },
+      {
+        "line": 29,
+        "text": "Pending confirmations: Unavailable"
+      },
+      {
+        "line": 29,
+        "text": "Missed: Unavailable"
+      },
+      {
+        "line": 29,
+        "text": "Required documents: Unavailable"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/creative/campaigns/page.tsx",
+    "snippets": [
+      {
+        "line": 6,
+        "text": "You can keep working on your properties and leads while campaign creation is unavailable in this workspace."
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/ai/collaboration/page.tsx",
+    "snippets": [
+      {
+        "line": 13,
+        "text": "AI Company Orchestration Center"
+      },
+      {
+        "line": 14,
+        "text": "The executive boardroom for coordinated, evidence-backed recommendations and governed Founder decisions."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/property/components/PropertyCard.tsx",
+    "snippets": [
+      {
+        "line": 31,
+        "text": "Unavailable"
+      },
+      {
+        "line": 32,
+        "text": "Unavailable"
+      },
+      {
+        "line": 33,
+        "text": "Unavailable"
+      },
+      {
+        "line": 34,
+        "text": "Unavailable"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/ai-runtime/components/PromptLibrary.tsx",
+    "snippets": [
+      {
+        "line": 7,
+        "text": "Test through governed employee chat"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/ai-runtime/components/AIRuntimeHeader.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Provider-independent runtime · human approval required"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/ai-runtime/components/AIRecommendationPanel.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "Generate a governed recommendation"
+      }
+    ]
+  },
+  {
+    "file": "app/vayon/properties/projects/page.tsx",
+    "snippets": [
+      {
+        "line": 3,
+        "text": "Manage developments, towers, construction progress, teams, documents, and unit availability from one tenant-scoped workspace."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/intelligence-core/components/VayonIntelligence.tsx",
+    "snippets": [
+      {
+        "line": 379,
+        "text": "I understand the current page and tenant-safe workspace context. I never infer a client, property, transaction, document, or agent that is not present in the route."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/image-studio/ImageStudio.tsx",
+    "snippets": [
+      {
+        "line": 261,
+        "text": "Format infrastructure prepared; rendering is unavailable until a provider is configured."
+      },
+      {
+        "line": 654,
+        "text": "Every edit creates a governed image version through Creative Runtime."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/growth-intelligence/GrowthShell.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "Real Estate Growth Center"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/growth-intelligence/GrowthSectionPage.tsx",
+    "snippets": [
+      {
+        "line": 10,
+        "text": "Real Estate Growth Center"
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/executive-home/components/ExecutiveHome.tsx",
+    "snippets": [
+      {
+        "line": 10,
+        "text": "Awaiting governed business connections"
+      },
+      {
+        "line": 10,
+        "text": "Layout personalization, role-based arrangements, and saved executive views are architected but intentionally unavailable until governed persistence is introduced."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/operations/components/OperationsUI.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "Your work queue is clear."
+      }
+    ]
+  },
+  {
+    "file": "features/vayon/admin-platform/components/AdminViews.tsx",
+    "snippets": [
+      {
+        "line": 46,
+        "text": "Read-only governance visibility. Role, permission, execution, provider, and organization mutations are disabled."
+      },
+      {
+        "line": 89,
+        "text": "Unavailable"
+      },
+      {
+        "line": 210,
+        "text": "provider records · approval required"
+      }
+    ]
+  },
+  {
+    "file": "app/platform/notifications/page.tsx",
+    "snippets": [
+      {
+        "line": 8,
+        "text": "A unified, tenant-aware presentation layer for platform, application, organization, security, billing, AI, marketing, and support attention."
+      }
+    ]
+  },
+  {
+    "file": "app/platform/integrations/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "One governed control plane for providers, health, webhooks, retries, synchronization, and credential metadata."
+      }
+    ]
+  },
+  {
+    "file": "app/platform/customers/error.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "Mission Control data unavailable"
+      }
+    ]
+  },
+  {
+    "file": "app/platform/customer-success/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Renewals, health, churn risk, expansion opportunities, open issues, NPS readiness, and governed AI recommendations."
+      }
+    ]
+  },
+  {
+    "file": "app/platform/roles/page.tsx",
+    "snippets": [
+      {
+        "line": 10,
+        "text": "Compose reusable responsibility profiles from governed permissions and explicit platform, organization, or workspace scopes."
+      }
+    ]
+  },
+  {
+    "file": "app/platform/permissions/page.tsx",
+    "snippets": [
+      {
+        "line": 10,
+        "text": "A capability-based permission catalog designed for default-deny authorization, explicit scope, and future multi-tenant enforcement."
+      }
+    ]
+  },
+  {
+    "file": "app/platform/audit/page.tsx",
+    "snippets": [
+      {
+        "line": 8,
+        "text": "Enterprise-grade visibility into significant actions, identities, tenant context, applications, devices, targets, and outcomes."
+      }
+    ]
+  },
+  {
+    "file": "app/platform/builder/settings/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Schema-driven settings sections ready for validation, permission, localization, and future persistence adapters."
+      }
+    ]
+  },
+  {
+    "file": "app/platform/organizations/page.tsx",
+    "snippets": [
+      {
+        "line": 10,
+        "text": "Govern tenant lifecycle, regional footprint, workspaces, applications, and membership from one operational directory."
+      }
+    ]
+  },
+  {
+    "file": "app/platform/integrations/error.tsx",
+    "snippets": [
+      {
+        "line": 2,
+        "text": "Integration control plane unavailable"
+      },
+      {
+        "line": 2,
+        "text": "No provider action was performed."
+      }
+    ]
+  },
+  {
+    "file": "app/platform/identity/page.tsx",
+    "snippets": [
+      {
+        "line": 10,
+        "text": "The shared, tenant-aware identity foundation for every AtlasOS application, organization, workspace, user, role, and permission."
+      }
+    ]
+  },
+  {
+    "file": "app/platform/integrations/logs/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Provider Logs"
+      }
+    ]
+  },
+  {
+    "file": "app/platform/integrations/health/page.tsx",
+    "snippets": [
+      {
+        "line": 1,
+        "text": "Provider availability, latency, failures, retries, successful calls, and synchronization history."
+      }
+    ]
+  }
+]

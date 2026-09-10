@@ -27,17 +27,17 @@ test("sales copilot presents the approved commercial action set", async () => {
 
 test("global search groups real estate results and preserves keyboard access", async () => {
   const source = await read("features/vayon/universal-bar/components/UniversalBar.tsx");
-  for (const group of ["Properties", "Clients", "Leads", "Agents", "Builders & Developers", "Transactions", "Documents"]) assert.match(source, new RegExp(group));
+  for (const group of ["Properties", "Clients", "Leads", "AI Team", "Companies", "Deals", "Documents"]) assert.match(source, new RegExp(group));
   assert.match(source, /Control\+K Meta\+K/);
   assert.match(source, /recently-searched/);
 });
 
-test("premium empty and loading states include AI guidance and reduced motion", async () => {
+test("empty states show AI guidance only when supplied and respect reduced motion", async () => {
   const [empty, loading] = await Promise.all([
     read("features/vayon/components/SmartEmptyState.tsx"),
     read("features/vayon/components/RouteStates.tsx"),
   ]);
-  assert.match(empty, /AI suggestion:/);
+  assert.match(empty, /aiSuggestion &&/);
   assert.match(loading, /motion-reduce:animate-none/);
   assert.match(loading, /loading progressively/);
 });

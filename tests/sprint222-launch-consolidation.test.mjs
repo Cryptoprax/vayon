@@ -12,7 +12,7 @@ test("canonical compatibility registry consolidates true duplicate routes", () =
 
 test("primary navigation uses canonical workforce and hides runtime architecture", () => {
   const navigation = read("features/vayon/product-shell/navigation.ts");
-  assert.match(navigation, /label: "Workforce", href: "\/vayon\/ai\/workforce"/);
+  assert.match(navigation, /label: "My AI Team", href: "\/vayon\/ai\/workforce"/);
   for (const hidden of ["/vayon/runtime", "/vayon/cognitive", "/vayon/brain", "/vayon/executions"]) assert.doesNotMatch(navigation, new RegExp(hidden.replaceAll("/", "\\/")));
 });
 

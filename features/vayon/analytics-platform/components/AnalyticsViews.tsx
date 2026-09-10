@@ -22,8 +22,8 @@ export function AnalyticsShell({ children }: { children: ReactNode }) {
   return (
     <div>
       <nav
-        aria-label="Analytics platform"
-        className="mx-auto flex max-w-[110rem] gap-2 overflow-x-auto px-5 pt-6"
+        aria-label="Performance reports"
+        className="mx-auto flex max-w-[110rem] flex-wrap gap-2 px-5 pt-6"
       >
         {nav.map(([l, h]) => (
           <Link
@@ -49,7 +49,7 @@ export function AnalyticsHeader({
   return (
     <header>
       <p className="text-xs uppercase tracking-[.2em] text-vds-primary">
-        Evidence-based intelligence
+        Business performance
       </p>
       <h1 className="mt-2 text-3xl font-semibold">{title}</h1>
       <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>
@@ -65,16 +65,16 @@ export function MetricGrid({ data }: { data: AnalyticsDataset }) {
             <p className="text-xs text-vds-muted">{x.label}</p>
             <span
               className={`size-2 rounded-full ${x.available ? "bg-vds-success" : "bg-vds-warning"}`}
-              aria-label={x.available ? "Available" : "Unavailable"}
+              aria-label={x.available ? "Available" : "No figures yet"}
             />
           </div>
           <p className="mt-3 text-xl font-semibold">
-            {x.available ? x.value : "Unavailable"}
+            {x.available ? x.value : "No figures yet"}
           </p>
-          <p className="mt-2 text-xs text-vds-muted">{x.explanation}</p>
+          <p className="mt-2 text-xs text-vds-muted">{x.available ? x.explanation : "Record your business activity, then return to review this measure."}</p><details className="mt-2"><summary className="focus-ring cursor-pointer py-2 text-xs text-vds-muted">How this is measured</summary><p className="text-xs text-vds-muted">{x.explanation}</p>
           <p className="mt-2 text-[10px] uppercase tracking-wide text-vds-subtle">
             Source: {x.source}
-          </p>
+          </p></details>
         </article>
       ))}
     </section>
@@ -83,9 +83,9 @@ export function MetricGrid({ data }: { data: AnalyticsDataset }) {
 export function Insights({ items }: { items: readonly AnalyticsInsight[] }) {
   return (
     <section className={`${card} mt-6`}>
-      <h2 className="font-semibold">Deterministic executive insights</h2>
+      <h2 className="font-semibold">What the figures show</h2>
       <p className="mt-1 text-sm text-vds-muted">
-        No external AI provider. Every statement cites metric IDs.
+        These observations use the business records behind the figures.
       </p>
       <div className="mt-4 grid gap-3 md:grid-cols-2">
         {items.map((x) => (
@@ -95,7 +95,7 @@ export function Insights({ items }: { items: readonly AnalyticsInsight[] }) {
             </p>
             <p className="mt-2 font-medium">{x.statement}</p>
             <p className="mt-2 text-xs text-vds-muted">
-              Evidence: {x.evidenceIds.join(", ") || "No connected evidence"}
+              Based on: {x.evidenceIds.join(", ") || "No records yet"}
             </p>
           </article>
         ))}
@@ -117,7 +117,7 @@ export function PlatformHealth({ s }: { s: AnalyticsSnapshot }) {
               {x.metrics.map((m) => (
                 <div className="flex justify-between gap-3 text-sm" key={m.id}>
                   <span className="text-vds-muted">{m.label}</span>
-                  <span>{m.available ? m.value : "Unavailable"}</span>
+                  <span>{m.available ? m.value : "No figures yet"}</span>
                 </div>
               ))}
             </div>

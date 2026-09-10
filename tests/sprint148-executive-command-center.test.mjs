@@ -10,11 +10,11 @@ test("dashboard opens with a personalized evidence-based command center", () => 
   for (const value of [
     "Good morning",
     "Today’s priorities",
-    "AI insights",
+    "Morning Brief",
     "Business health",
-    "Tasks",
+    "Open tasks",
     "Next meeting",
-    "Pending approvals",
+    "Approval notifications",
     "Recent customer activity",
   ]) assert.match(center, new RegExp(value));
   assert.match(page, /AuthenticationService/);
@@ -23,17 +23,19 @@ test("dashboard opens with a personalized evidence-based command center", () => 
 
 test("AI insights derive only from dashboard evidence and disclose empty state", () => {
   const center = read("features/vayon/dashboard/components/ExecutiveCommandCenter.tsx");
-  assert.match(center, /revenue\.trend/);
-  assert.match(center, /data\.ai\.recommendations/);
-  assert.match(center, /No metrics have been inferred/);
+  assert.match(center, /item.kind === "task"/);
+  assert.match(center, /item.kind === "meeting"/);
+  assert.match(center, /Complete your setup to unlock/);
   assert.doesNotMatch(center, /Revenue is up 18|12 leads|ABC Ltd/);
   assert.doesNotMatch(center, /fetch\(|supabase|provider/i);
 });
 
-test("recommendations are contextual non-blocking and dismissible", () => {
+test("daily work starts directly without duplicate setup recommendations", () => {
   const center = read("features/vayon/dashboard/components/ExecutiveCommandCenter.tsx");
-  for (const value of ["Import CRM", "Create your first campaign", "Generate a proposal", "Dismiss"]) assert.match(center, new RegExp(value));
-  assert.match(center, /setDismissed/);
+  assert.match(center, /Start today&apos;s work/);
+  assert.match(center, /#getting-started-title/);
+  assert.match(center, /#calendar-heading/);
+  assert.doesNotMatch(center, /Import CRM|Create an AI employee|Generate a proposal/);
   assert.doesNotMatch(center, /role="dialog"|fixed inset-0/);
 });
 

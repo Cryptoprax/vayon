@@ -7,11 +7,11 @@ const read = (path) => readFileSync(path, "utf8");
 test("hero uses the approved real estate positioning and conversion hierarchy", () => {
   const home = read("features/marketing/components/Homepage.tsx");
   for (const copy of [
-    "Hire Your Entire AI Real Estate Team in Under 5 Minutes",
-    "Powered by the World&apos;s Most Advanced AI Operating System for Real Estate",
-    "Meet your complete AI workforce",
-    "close more deals",
-    "built exclusively for real estate professionals",
+    "Run your real estate day from one workspace",
+    "Keep your next conversation, viewing, and deal in focus",
+    "Organize properties, keep track of buyers",
+    "follow up on deals",
+    "review important actions before they run",
     "Start Free Trial",
     "Watch 2-Minute Demo",
     "Book Live Demo",

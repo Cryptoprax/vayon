@@ -16,5 +16,5 @@ requireText(files.dashboard, ["Current task", "Completed", "Recommendation", "Op
 requireText(files.team, ["Overview", "Today&apos;s Work", "Assigned Customers", "Assigned Properties", "Recommendations", "Activity Feed", "Performance", "Upcoming Tasks", "Recent Achievements", "Working Style", "Strengths", "Communication Style", "Experience", "Mission"], "Employee profiles");
 requireText(files.profile, ["Conversation", "What should I follow up today?", "Which buyers are hottest?", "Which deals are at risk?", "prepares actions only"], "Employee conversation");
 requireText(files.homepage, ["Meet Your AI Team", "Sarah · Sales Manager", "Open Headquarters"], "Homepage");
-requireText(files.metadata, ["Meet Your AI Team | VAYON", "Hire an entire AI Real Estate Team in under five minutes"], "SEO");
+requireText(files.metadata, ["Meet Your AI Team | VAYON", "Organize properties, clients, viewings, and follow-ups"], "SEO");
 console.log("AI Team experience audit passed.");

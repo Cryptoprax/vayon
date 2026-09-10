@@ -1,0 +1,75 @@
+{
+  "scope": "SSR fixtures with production CSS; not authenticated application coverage",
+  "results": [
+    {
+      "width": 320,
+      "fixture": "test-results/product-bible-phase2/dashboard-fixture.html",
+      "overflow": false,
+      "unnamedLinks": 0,
+      "keyboardDisclosure": null
+    },
+    {
+      "width": 320,
+      "fixture": "test-results/product-bible-phase3/next-steps-fixture.html",
+      "overflow": false,
+      "unnamedLinks": 0,
+      "keyboardDisclosure": true
+    },
+    {
+      "width": 375,
+      "fixture": "test-results/product-bible-phase2/dashboard-fixture.html",
+      "overflow": false,
+      "unnamedLinks": 0,
+      "keyboardDisclosure": null
+    },
+    {
+      "width": 375,
+      "fixture": "test-results/product-bible-phase3/next-steps-fixture.html",
+      "overflow": false,
+      "unnamedLinks": 0,
+      "keyboardDisclosure": true
+    },
+    {
+      "width": 768,
+      "fixture": "test-results/product-bible-phase2/dashboard-fixture.html",
+      "overflow": false,
+      "unnamedLinks": 0,
+      "keyboardDisclosure": null
+    },
+    {
+      "width": 768,
+      "fixture": "test-results/product-bible-phase3/next-steps-fixture.html",
+      "overflow": false,
+      "unnamedLinks": 0,
+      "keyboardDisclosure": true
+    },
+    {
+      "width": 1440,
+      "fixture": "test-results/product-bible-phase2/dashboard-fixture.html",
+      "overflow": false,
+      "unnamedLinks": 0,
+      "keyboardDisclosure": null
+    },
+    {
+      "width": 1440,
+      "fixture": "test-results/product-bible-phase3/next-steps-fixture.html",
+      "overflow": false,
+      "unnamedLinks": 0,
+      "keyboardDisclosure": true
+    },
+    {
+      "width": 2560,
+      "fixture": "test-results/product-bible-phase2/dashboard-fixture.html",
+      "overflow": false,
+      "unnamedLinks": 0,
+      "keyboardDisclosure": null
+    },
+    {
+      "width": 2560,
+      "fixture": "test-results/product-bible-phase3/next-steps-fixture.html",
+      "overflow": false,
+      "unnamedLinks": 0,
+      "keyboardDisclosure": true
+    }
+  ]
+}

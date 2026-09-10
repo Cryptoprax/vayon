@@ -32,8 +32,7 @@ export function WhatsAppConversations({
         <ol className="mt-5 divide-y divide-vds-divider">
           {conversations.map((conversation) => (
             <li key={conversation.id}>
-              <Link
-                href="/vayon/communications"
+              <div
                 className="focus-ring flex items-center gap-3 rounded-xl py-3 hover:bg-vds-hover sm:px-2"
               >
                 <span className="grid size-10 shrink-0 place-items-center rounded-full bg-vds-success-soft text-vds-success">
@@ -61,7 +60,7 @@ export function WhatsAppConversations({
                     minute: "2-digit",
                   }).format(new Date(conversation.occurredAt))}
                 </time>
-              </Link>
+              </div>
             </li>
           ))}
         </ol>

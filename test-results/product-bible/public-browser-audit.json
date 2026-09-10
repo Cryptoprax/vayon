@@ -1,0 +1,230 @@
+[
+  {
+    "width": 1440,
+    "route": "/",
+    "status": 200,
+    "errors": [],
+    "title": "Meet Your AI Team | VAYON",
+    "headings": [
+      "Hire Your Entire AI Real Estate Team in Under 5 Minutes.",
+      "Choose the plan that fits your business."
+    ],
+    "overflow": false,
+    "focus": "A",
+    "buttons": [
+      "Privacy preferences",
+      "Allow anonymous analytics",
+      "Necessary only / opt out",
+      "Decide later",
+      "Property Pipeline",
+      "AI Employees",
+      "Property Listings",
+      "Lead Qualification",
+      "Appointments",
+      "Executive Dashboard",
+      "01Real Estate CRM",
+      "02Property Marketing",
+      "03Property Sales",
+      "04Founder Dashboard",
+      "05Creative Studio",
+      "06Property Knowledge",
+      "07AI Real Estate Team",
+      "Annual · save 20%",
+      "Monthly",
+      "How is company data secured?",
+      "How does Vayon use AI?",
+      "How does pricing work?",
+      "Which integrations are supported?",
+      "How is data privacy maintained?",
+      "How quickly can a team get set up?",
+      "Can existing CRM data be migrated?",
+      "What support is available?",
+      "Subscribe",
+      "Search"
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/signup",
+    "status": 200,
+    "errors": [],
+    "title": "Meet Your AI Team | VAYON",
+    "headings": [
+      "Create your account"
+    ],
+    "overflow": false,
+    "focus": "A",
+    "buttons": [
+      "Continue with Google",
+      "Create account"
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/login",
+    "status": 200,
+    "errors": [],
+    "title": "Meet Your AI Team | VAYON",
+    "headings": [
+      "Welcome back"
+    ],
+    "overflow": false,
+    "focus": "A",
+    "buttons": [
+      "Continue with Google",
+      "Sign in"
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/",
+    "status": 200,
+    "errors": [],
+    "title": "Meet Your AI Team | VAYON",
+    "headings": [
+      "Hire Your Entire AI Real Estate Team in Under 5 Minutes.",
+      "Choose the plan that fits your business."
+    ],
+    "overflow": false,
+    "focus": "A",
+    "buttons": [
+      "Privacy preferences",
+      "Allow anonymous analytics",
+      "Necessary only / opt out",
+      "Decide later",
+      "Property Pipeline",
+      "AI Employees",
+      "Property Listings",
+      "Lead Qualification",
+      "Appointments",
+      "Executive Dashboard",
+      "01Real Estate CRM",
+      "02Property Marketing",
+      "03Property Sales",
+      "04Founder Dashboard",
+      "05Creative Studio",
+      "06Property Knowledge",
+      "07AI Real Estate Team",
+      "Annual · save 20%",
+      "Monthly",
+      "How is company data secured?",
+      "How does Vayon use AI?",
+      "How does pricing work?",
+      "Which integrations are supported?",
+      "How is data privacy maintained?",
+      "How quickly can a team get set up?",
+      "Can existing CRM data be migrated?",
+      "What support is available?",
+      "Subscribe",
+      "Search"
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/signup",
+    "status": 200,
+    "errors": [],
+    "title": "Meet Your AI Team | VAYON",
+    "headings": [
+      "Create your account"
+    ],
+    "overflow": false,
+    "focus": "A",
+    "buttons": [
+      "Continue with Google",
+      "Create account"
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/login",
+    "status": 200,
+    "errors": [],
+    "title": "Meet Your AI Team | VAYON",
+    "headings": [
+      "Welcome back"
+    ],
+    "overflow": false,
+    "focus": "A",
+    "buttons": [
+      "Continue with Google",
+      "Sign in"
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/",
+    "status": 200,
+    "errors": [],
+    "title": "Meet Your AI Team | VAYON",
+    "headings": [
+      "Hire Your Entire AI Real Estate Team in Under 5 Minutes.",
+      "Choose the plan that fits your business."
+    ],
+    "overflow": true,
+    "focus": "A",
+    "buttons": [
+      "Privacy preferences",
+      "Allow anonymous analytics",
+      "Necessary only / opt out",
+      "Decide later",
+      "Property Pipeline",
+      "AI Employees",
+      "Property Listings",
+      "Lead Qualification",
+      "Appointments",
+      "Executive Dashboard",
+      "01Real Estate CRM",
+      "02Property Marketing",
+      "03Property Sales",
+      "04Founder Dashboard",
+      "05Creative Studio",
+      "06Property Knowledge",
+      "07AI Real Estate Team",
+      "Annual · save 20%",
+      "Monthly",
+      "How is company data secured?",
+      "How does Vayon use AI?",
+      "How does pricing work?",
+      "Which integrations are supported?",
+      "How is data privacy maintained?",
+      "How quickly can a team get set up?",
+      "Can existing CRM data be migrated?",
+      "What support is available?",
+      "Subscribe",
+      "Search"
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/signup",
+    "status": 200,
+    "errors": [],
+    "title": "Meet Your AI Team | VAYON",
+    "headings": [
+      "Create your account"
+    ],
+    "overflow": false,
+    "focus": "A",
+    "buttons": [
+      "Continue with Google",
+      "Create account"
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/login",
+    "status": 200,
+    "errors": [],
+    "title": "Meet Your AI Team | VAYON",
+    "headings": [
+      "Welcome back"
+    ],
+    "overflow": false,
+    "focus": "A",
+    "buttons": [
+      "Continue with Google",
+      "Sign in"
+    ]
+  }
+]

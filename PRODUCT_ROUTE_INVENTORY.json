@@ -1,0 +1,3452 @@
+[
+  {
+    "file": "app/verify-email/page.tsx",
+    "route": "/verify-email",
+    "refs": 1,
+    "components": [
+      "AuthShell",
+      "ButtonLink"
+    ],
+    "action": "Continue to sign in"
+  },
+  {
+    "file": "app/vayon/workforce/page.tsx",
+    "route": "/vayon/workforce",
+    "refs": 5,
+    "components": [
+      "WorkforceShell",
+      "AuroraAdvisorPanel"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/workflows/[workflowId]/page.tsx",
+    "route": "/vayon/workflows/[workflowId]",
+    "refs": 0,
+    "components": [
+      "GovernanceHeader",
+      "GovernanceNav",
+      "WorkflowDetail"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/workflows/runtime/page.tsx",
+    "route": "/vayon/workflows/runtime",
+    "refs": 5,
+    "components": [
+      "WorkflowMonitoringDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/workflows/page.tsx",
+    "route": "/vayon/workflows",
+    "refs": 17,
+    "components": [
+      "WorkflowOrchestrator",
+      "Link",
+      "Link",
+      "WorkflowAutomationDashboard",
+      "WorkflowDesigner"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/whatsapp/templates/page.tsx",
+    "route": "/vayon/whatsapp/templates",
+    "refs": 1,
+    "components": [
+      "WhatsAppTemplates"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/whatsapp/settings/page.tsx",
+    "route": "/vayon/whatsapp/settings",
+    "refs": 6,
+    "components": [
+      "WhatsAppSettings"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/whatsapp/page.tsx",
+    "route": "/vayon/whatsapp",
+    "refs": 3,
+    "components": [
+      "WhatsAppInbox"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/whatsapp/inbox/page.tsx",
+    "route": "/vayon/whatsapp/inbox",
+    "refs": 2,
+    "components": [
+      "Query",
+      "WhatsAppInbox"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/whatsapp/conversations/page.tsx",
+    "route": "/vayon/whatsapp/conversations",
+    "refs": 1,
+    "components": [
+      "WhatsAppConversation",
+      "WhatsAppInbox"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/timeline/page.tsx",
+    "route": "/vayon/timeline",
+    "refs": 4,
+    "components": [
+      "TimelineExperience",
+      "TimelineDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/team/page.tsx",
+    "route": "/vayon/team",
+    "redirect": "/vayon/settings/members",
+    "refs": 5,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/tasks/page.tsx",
+    "route": "/vayon/tasks",
+    "refs": 19,
+    "components": [
+      "OperationsHeader",
+      "TaskForm",
+      "TaskList"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/system/page.tsx",
+    "route": "/vayon/system",
+    "refs": 2,
+    "components": [
+      "SystemDiagnosticsView"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/success-center/page.tsx",
+    "route": "/vayon/success-center",
+    "refs": 3,
+    "components": [
+      "Link",
+      "Link"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/storage/page.tsx",
+    "route": "/vayon/storage",
+    "refs": 4,
+    "components": [
+      "StorageManager",
+      "ImageUploader",
+      "ImageUploader",
+      "DocumentUploader",
+      "DocumentUploader",
+      "DocumentUploader"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/forgot-password/page.tsx",
+    "route": "/forgot-password",
+    "refs": 3,
+    "components": [
+      "AuthShell",
+      "FormNotice",
+      "AuthFields"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/week/page.tsx",
+    "route": "/vayon/calendar/week",
+    "refs": 1,
+    "components": [
+      "CalendarViewRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/demo/page.tsx",
+    "route": "/demo",
+    "refs": 14,
+    "components": [
+      "MarketingCurrencyProvider",
+      "MarketingAnalytics",
+      "ConsentManager",
+      "DemoExperience"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/tasks/page.tsx",
+    "route": "/vayon/calendar/tasks",
+    "refs": 1,
+    "components": [
+      "CalendarEntityRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/site-visits/page.tsx",
+    "route": "/vayon/calendar/site-visits",
+    "refs": 2,
+    "components": [
+      "CalendarEntityRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/reminders/page.tsx",
+    "route": "/vayon/calendar/reminders",
+    "refs": 1,
+    "components": [
+      "CalendarEntityRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/page.tsx",
+    "route": "/vayon/calendar",
+    "refs": 19,
+    "components": [
+      "OperationsHeader",
+      "CalendarProductionControls",
+      "CalendarBoard",
+      "GoogleCalendarWorkspace"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/outlook/page.tsx",
+    "route": "/vayon/calendar/outlook",
+    "refs": 5,
+    "components": [
+      "ReturnType",
+      "ReturnType",
+      "MicrosoftCapabilityShell",
+      "Button"
+    ],
+    "action": "})"
+  },
+  {
+    "file": "app/vayon/calendar/month/page.tsx",
+    "route": "/vayon/calendar/month",
+    "refs": 1,
+    "components": [
+      "CalendarViewRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/meetings/page.tsx",
+    "route": "/vayon/calendar/meetings",
+    "refs": 3,
+    "components": [
+      "CalendarEntityRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/site-visits/[visitId]/page.tsx",
+    "route": "/vayon/site-visits/[visitId]",
+    "refs": 0,
+    "components": [
+      "VisitHeader",
+      "VisitDetail"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/site-visits/reports/page.tsx",
+    "route": "/vayon/site-visits/reports",
+    "refs": 1,
+    "components": [
+      "VisitHeader",
+      "VisitReports"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/site-visits/page.tsx",
+    "route": "/vayon/site-visits",
+    "refs": 7,
+    "components": [
+      "VisitHeader",
+      "VisitDashboard",
+      "VisitForm",
+      "AgentBoard",
+      "VisitList"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/site-visits/calendar/page.tsx",
+    "route": "/vayon/site-visits/calendar",
+    "refs": 0,
+    "components": [
+      "VisitHeader",
+      "VisitCalendar"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/google/settings/page.tsx",
+    "route": "/vayon/calendar/google/settings",
+    "refs": 2,
+    "components": [
+      "GoogleCalendarWorkspace"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/google/page.tsx",
+    "route": "/vayon/calendar/google",
+    "refs": 0,
+    "components": [
+      "GoogleCalendarWorkspace"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/google/free-busy/page.tsx",
+    "route": "/vayon/calendar/google/free-busy",
+    "refs": 0,
+    "components": [
+      "GoogleCalendarWorkspace"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/google/events/page.tsx",
+    "route": "/vayon/calendar/google/events",
+    "refs": 1,
+    "components": [
+      "GoogleCalendarEventDetail",
+      "GoogleCalendarWorkspace"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/accept-invitation/page.tsx",
+    "route": "/accept-invitation",
+    "refs": 0,
+    "components": [
+      "Button"
+    ],
+    "action": "Accept invitation"
+  },
+  {
+    "file": "app/vayon/calendar/google/calendars/page.tsx",
+    "route": "/vayon/calendar/google/calendars",
+    "refs": 0,
+    "components": [
+      "GoogleCalendarWorkspace"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/day/page.tsx",
+    "route": "/vayon/calendar/day",
+    "refs": 1,
+    "components": [
+      "CalendarViewRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/workspace/page.tsx",
+    "route": "/vayon/settings/workspace",
+    "refs": 1,
+    "components": [
+      "SettingsShell",
+      "TenantSettingsPanel"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/calendar/agenda/page.tsx",
+    "route": "/vayon/calendar/agenda",
+    "refs": 1,
+    "components": [
+      "CalendarViewRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/users/page.tsx",
+    "route": "/vayon/settings/users",
+    "refs": 2,
+    "components": [
+      "OrganizationHeader",
+      "EnterpriseUserDirectory"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/usage/page.tsx",
+    "route": "/vayon/settings/usage",
+    "refs": 1,
+    "components": [
+      "BillingHeader",
+      "UsageCharts"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/workflows/page.tsx",
+    "route": "/workflows",
+    "refs": 3,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/teams/page.tsx",
+    "route": "/vayon/settings/teams",
+    "refs": 3,
+    "components": [
+      "OrganizationHeader",
+      "TeamsManagement"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/trust-center/page.tsx",
+    "route": "/trust-center",
+    "refs": 4,
+    "components": [
+      "PublicContentPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/subscription/page.tsx",
+    "route": "/vayon/settings/subscription",
+    "refs": 6,
+    "components": [
+      "BillingHeader",
+      "SubscriptionStatus",
+      "SubscriptionLifecycle",
+      "PaddlePlanGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/security/page.tsx",
+    "route": "/vayon/settings/security",
+    "refs": 2,
+    "components": [
+      "SettingsShell",
+      "IdentitySecurityDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/trademark-policy/page.tsx",
+    "route": "/trademark-policy",
+    "refs": 1,
+    "components": [
+      "LegalPolicyPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/roles/page.tsx",
+    "route": "/vayon/settings/roles",
+    "refs": 1,
+    "components": [
+      "OrganizationHeader",
+      "RolesView"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/terms/page.tsx",
+    "route": "/terms",
+    "refs": 4,
+    "components": [
+      "LegalPolicyPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/support-policy/page.tsx",
+    "route": "/support-policy",
+    "refs": 4,
+    "components": [
+      "LegalPolicyPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/subprocessors/page.tsx",
+    "route": "/subprocessors",
+    "refs": 1,
+    "components": [
+      "LegalPolicyPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/status/page.tsx",
+    "route": "/status",
+    "refs": 4,
+    "components": [
+      "LaunchInformationPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/solutions/[slug]/page.tsx",
+    "route": "/solutions/[slug]",
+    "refs": 0,
+    "components": [
+      "Metadata",
+      "CommercialCatalogDetail"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/solutions/page.tsx",
+    "route": "/solutions",
+    "refs": 4,
+    "components": [
+      "CommercialCatalogIndex"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/security/page.tsx",
+    "route": "/security",
+    "refs": 5,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/search/page.tsx",
+    "route": "/search",
+    "refs": 3,
+    "components": [
+      "Button",
+      "Link"
+    ],
+    "action": ";\n})"
+  },
+  {
+    "file": "app/(marketing)/sales-assets/[slug]/page.tsx",
+    "route": "/sales-assets/[slug]",
+    "refs": 0,
+    "components": [
+      "Metadata",
+      "SalesAssetPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/sales-assets/page.tsx",
+    "route": "/sales-assets",
+    "refs": 1,
+    "components": [
+      "CatalogGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/roi-calculator/page.tsx",
+    "route": "/roi-calculator",
+    "refs": 5,
+    "components": [
+      "RoiCalculator"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/resources/page.tsx",
+    "route": "/resources",
+    "refs": 5,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/release-notes/page.tsx",
+    "route": "/release-notes",
+    "refs": 3,
+    "components": [
+      "LaunchInformationPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/refund-policy/page.tsx",
+    "route": "/refund-policy",
+    "refs": 3,
+    "components": [
+      "LegalPolicyPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/profile/page.tsx",
+    "route": "/vayon/settings/profile",
+    "refs": 2,
+    "components": [
+      "SettingsShell",
+      "ProfileSettings"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/properties/page.tsx",
+    "route": "/properties",
+    "refs": 2,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/product/page.tsx",
+    "route": "/product",
+    "refs": 3,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/privacy/page.tsx",
+    "route": "/privacy",
+    "refs": 4,
+    "components": [
+      "LegalPolicyPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/pricing/page.tsx",
+    "route": "/pricing",
+    "refs": 6,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/product-intelligence/page.tsx",
+    "route": "/vayon/settings/product-intelligence",
+    "refs": 8,
+    "components": [
+      "ProductIntelligenceDashboard",
+      "ContinuousLearningDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/press-kit/page.tsx",
+    "route": "/press-kit",
+    "refs": 1,
+    "components": [
+      "LaunchInformationPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/plans/page.tsx",
+    "route": "/vayon/settings/plans",
+    "refs": 1,
+    "components": [
+      "BillingHeader",
+      "StripePlanGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/permissions/page.tsx",
+    "route": "/vayon/settings/permissions",
+    "refs": 2,
+    "components": [
+      "OrganizationHeader",
+      "PermissionMatrix"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/payment-methods/page.tsx",
+    "route": "/vayon/settings/payment-methods",
+    "refs": 1,
+    "components": [
+      "BillingHeader",
+      "PaymentMethodList"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/page.tsx",
+    "route": "/vayon/settings",
+    "refs": 2,
+    "components": [
+      "SettingsShell",
+      "Link",
+      "Link"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/organization/page.tsx",
+    "route": "/vayon/settings/organization",
+    "refs": 10,
+    "components": [
+      "OrganizationHeader",
+      "OrganizationSettingsForm"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/notifications/page.tsx",
+    "route": "/vayon/settings/notifications",
+    "refs": 2,
+    "components": [
+      "SettingsShell",
+      "ButtonLink"
+    ],
+    "action": "Edit notification preferences"
+  },
+  {
+    "file": "app/vayon/settings/members/page.tsx",
+    "route": "/vayon/settings/members",
+    "refs": 9,
+    "components": [
+      "OrganizationHeader",
+      "MembersManagement"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/invoices/[invoiceId]/page.tsx",
+    "route": "/vayon/settings/invoices/[invoiceId]",
+    "refs": 0,
+    "components": [
+      "BillingHeader"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/invoices/page.tsx",
+    "route": "/vayon/settings/invoices",
+    "refs": 5,
+    "components": [
+      "BillingHeader",
+      "InvoiceTable"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/partners/page.tsx",
+    "route": "/partners",
+    "refs": 3,
+    "components": [
+      "LaunchInformationPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/media-kit/page.tsx",
+    "route": "/media-kit",
+    "refs": 3,
+    "components": [
+      "AssetGrid",
+      "AssetGrid",
+      "Link",
+      "Image"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/investors/page.tsx",
+    "route": "/investors",
+    "refs": 3,
+    "components": [
+      "CatalogGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/integrations/page.tsx",
+    "route": "/vayon/settings/integrations",
+    "refs": 16,
+    "components": [
+      "ButtonLink",
+      "IntegrationCenter"
+    ],
+    "action": ";\n})"
+  },
+  {
+    "file": "app/(marketing)/integrations/page.tsx",
+    "route": "/integrations",
+    "refs": 4,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/integrations/microsoft/page.tsx",
+    "route": "/vayon/settings/integrations/microsoft",
+    "refs": 4,
+    "components": [
+      "MicrosoftIdentityDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/integrations/google/page.tsx",
+    "route": "/vayon/settings/integrations/google",
+    "refs": 5,
+    "components": [
+      "GoogleIdentityDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/integrations/data-import/page.tsx",
+    "route": "/vayon/settings/integrations/data-import",
+    "refs": 6,
+    "components": [
+      "DataImportWorkspace"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/google/page.tsx",
+    "route": "/vayon/settings/google",
+    "refs": 3,
+    "components": [
+      "SettingsShell",
+      "GoogleSettings"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/industries/[slug]/page.tsx",
+    "route": "/industries/[slug]",
+    "refs": 0,
+    "components": [
+      "Metadata",
+      "CommercialCatalogDetail"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/industries/page.tsx",
+    "route": "/industries",
+    "refs": 1,
+    "components": [
+      "CommercialCatalogIndex"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/brain/page.tsx",
+    "route": "/vayon/brain",
+    "refs": 3,
+    "components": [
+      "BrainDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/email/templates/page.tsx",
+    "route": "/vayon/settings/email/templates",
+    "refs": 2,
+    "components": [
+      "EmailCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/email/queue/page.tsx",
+    "route": "/vayon/settings/email/queue",
+    "refs": 2,
+    "components": [
+      "EmailCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/email/page.tsx",
+    "route": "/vayon/settings/email",
+    "refs": 4,
+    "components": [
+      "EmailCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/approvals/[approvalId]/page.tsx",
+    "route": "/vayon/approvals/[approvalId]",
+    "refs": 0,
+    "components": [
+      "GovernanceHeader",
+      "GovernanceNav",
+      "ApprovalDetail"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/approvals/page.tsx",
+    "route": "/vayon/approvals",
+    "refs": 18,
+    "components": [
+      "GovernanceHeader",
+      "ApprovalList"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/email/history/page.tsx",
+    "route": "/vayon/settings/email/history",
+    "refs": 2,
+    "components": [
+      "EmailCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/departments/page.tsx",
+    "route": "/vayon/settings/departments",
+    "refs": 3,
+    "components": [
+      "OrganizationHeader",
+      "DepartmentsManagement"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/configuration/page.tsx",
+    "route": "/vayon/settings/configuration",
+    "refs": 3,
+    "components": [
+      "SimpleConfigurationIntro",
+      "ConfigurationEngine"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/billing/provider-health/page.tsx",
+    "route": "/vayon/settings/billing/provider-health",
+    "refs": 4,
+    "components": [
+      "BillingHeader",
+      "ProviderHealthGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/billing/page.tsx",
+    "route": "/vayon/settings/billing",
+    "refs": 12,
+    "components": [
+      "BillingHeader",
+      "BillingRecoveryState",
+      "SubscriptionStatus",
+      "CommercialPlans",
+      "Link",
+      "Link",
+      "PaddlePortalButton",
+      "Link",
+      "Link",
+      "Link",
+      "BillingContactForm",
+      "Details"
+    ],
+    "action": "import(\"@/features/vayon/billing/components/BillingRecoveryDetails\"));\n// PaddleCatalogService.list() is isolated inside BillingStabilityService so provider failure cannot reject this page.\nexport default async function Page()"
+  },
+  {
+    "file": "app/vayon/settings/appearance/page.tsx",
+    "route": "/vayon/settings/appearance",
+    "refs": 3,
+    "components": [
+      "Palette",
+      "AppearanceSettings"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/analytics/workforce/page.tsx",
+    "route": "/vayon/analytics/workforce",
+    "refs": 1,
+    "components": [
+      "AnalyticsRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/analytics/sales/page.tsx",
+    "route": "/vayon/analytics/sales",
+    "refs": 6,
+    "components": [
+      "AnalyticsRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/analytics/properties/page.tsx",
+    "route": "/vayon/analytics/properties",
+    "refs": 1,
+    "components": [
+      "AnalyticsRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/analytics/page.tsx",
+    "route": "/vayon/analytics",
+    "refs": 9,
+    "components": [
+      "AnalyticsRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/analytics/executive/page.tsx",
+    "route": "/vayon/analytics/executive",
+    "refs": 3,
+    "components": [
+      "AnalyticsHeader",
+      "ExecutiveBI"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/analytics/deals/page.tsx",
+    "route": "/vayon/analytics/deals",
+    "refs": 1,
+    "components": [
+      "AnalyticsRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/analytics/crm/page.tsx",
+    "route": "/vayon/analytics/crm",
+    "refs": 1,
+    "components": [
+      "AnalyticsRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/analytics/conversion/page.tsx",
+    "route": "/vayon/analytics/conversion",
+    "refs": 2,
+    "components": [
+      "EnterpriseAnalyticsDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/reset-password/page.tsx",
+    "route": "/reset-password",
+    "refs": 2,
+    "components": [
+      "AuthShell",
+      "FormNotice",
+      "AuthFields"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/analytics/communications/page.tsx",
+    "route": "/vayon/analytics/communications",
+    "refs": 1,
+    "components": [
+      "AnalyticsRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/ai/openai/page.tsx",
+    "route": "/vayon/settings/ai/openai",
+    "refs": 3,
+    "components": [
+      "OpenAISettings"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/settings/activity/page.tsx",
+    "route": "/vayon/settings/activity",
+    "refs": 1,
+    "components": [
+      "OrganizationHeader",
+      "ActivityLog"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/runtime/page.tsx",
+    "route": "/vayon/runtime",
+    "refs": 4,
+    "components": [
+      "RuntimeDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/providers/[provider]/page.tsx",
+    "route": "/vayon/providers/[provider]",
+    "refs": 0,
+    "components": [
+      "ProviderDetail"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/providers/page.tsx",
+    "route": "/vayon/providers",
+    "refs": 2,
+    "components": [
+      "ProviderInventory"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/property-matching/reports/page.tsx",
+    "route": "/vayon/property-matching/reports",
+    "refs": 1,
+    "components": [
+      "MatchingHeader",
+      "MatchingMetrics",
+      "MatchingReports"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/property-matching/page.tsx",
+    "route": "/vayon/property-matching",
+    "refs": 4,
+    "components": [
+      "MatchingHeader",
+      "MatchingMetrics",
+      "GovernanceNote",
+      "MatchCards"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/workforce/[employeeId]/page.tsx",
+    "route": "/vayon/ai/workforce/[employeeId]",
+    "refs": 0,
+    "components": [
+      "WorkforceShell",
+      "SalesAIDashboard",
+      "DavidFinanceManagerDashboard",
+      "CRMAIDashboard",
+      "WhatsAppAIDashboard",
+      "EmmaMarketingManagerDashboard",
+      "MarketingAIDashboard",
+      "ExecutiveAIDashboard",
+      "ExecutiveCollaborationDashboard",
+      "AlexOperationsManagerDashboard",
+      "OliviaCustomerSuccessManagerDashboard",
+      "EmployeeDailyWorkspace",
+      "EmployeeIdentityPanel",
+      "EmployeeProfile",
+      "EmployeeHeadquartersSecondary",
+      "EmployeeMemoryPanel",
+      "EmployeeCollaborationPanel",
+      "WorkforceChatPanel"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/workforce/page.tsx",
+    "route": "/vayon/ai/workforce",
+    "refs": 10,
+    "components": [
+      "WorkforceShell",
+      "WorkforceDirectory",
+      "ContextualSetupState"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/property-matching/compare/page.tsx",
+    "route": "/vayon/property-matching/compare",
+    "refs": 1,
+    "components": [
+      "MatchingHeader",
+      "Comparison",
+      "GovernanceNote"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/work-queue/page.tsx",
+    "route": "/vayon/ai/work-queue",
+    "refs": 3,
+    "components": [
+      "WorkforceShell",
+      "AIWorkQueue",
+      "EmployeeActivity"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/tasks/page.tsx",
+    "route": "/vayon/ai/tasks",
+    "refs": 6,
+    "components": [
+      "WorkforceShell",
+      "TaskList"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/playground/page.tsx",
+    "route": "/vayon/ai/playground",
+    "refs": 3,
+    "components": [
+      "AIRuntimeHeader",
+      "PromptLibrary"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/page.tsx",
+    "route": "/vayon/ai",
+    "refs": 15,
+    "components": [
+      "WorkforceShell",
+      "CommandCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/knowledge/page.tsx",
+    "route": "/vayon/ai/knowledge",
+    "redirect": "/vayon/knowledge",
+    "refs": 1,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/history/page.tsx",
+    "route": "/vayon/ai/history",
+    "refs": 3,
+    "components": [
+      "WorkforceShell",
+      "ActivityList"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/[propertyId]/page.tsx",
+    "route": "/vayon/properties/[propertyId]",
+    "refs": 0,
+    "components": [
+      "PropertyCrmSummary",
+      "WorkspaceRenderer",
+      "RealEstateSignalGrid",
+      "ContextualRealEstateRecommendations",
+      "ContextualAIActions",
+      "EntityCollaboration"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/goals/page.tsx",
+    "route": "/vayon/ai/goals",
+    "refs": 1,
+    "components": [
+      "WorkforceShell",
+      "GoalsAndStrategy"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/[propertyId]/edit/page.tsx",
+    "route": "/vayon/properties/[propertyId]/edit",
+    "refs": 0,
+    "components": [
+      "PropertyWizard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/employees/[employeeId]/page.tsx",
+    "route": "/vayon/ai/employees/[employeeId]",
+    "refs": 0,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/employees/page.tsx",
+    "route": "/vayon/ai/employees",
+    "refs": 5,
+    "components": [
+      "AIHeader",
+      "ProviderHealth",
+      "WorkforceDirectory"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/projects/[projectId]/page.tsx",
+    "route": "/vayon/properties/projects/[projectId]",
+    "refs": 0,
+    "components": [
+      "InventoryHeader",
+      "ProjectDetail"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/projects/page.tsx",
+    "route": "/vayon/properties/projects",
+    "refs": 5,
+    "components": [
+      "InventoryHeader",
+      "InventoryDashboard",
+      "ProjectGrid",
+      "InventoryUtilities"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/collaboration/page.tsx",
+    "route": "/vayon/ai/collaboration",
+    "refs": 6,
+    "components": [
+      "WorkforceShell",
+      "ExecutiveCollaborationBoard",
+      "AICompanyOrchestrationCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/price-lists/page.tsx",
+    "route": "/vayon/properties/price-lists",
+    "refs": 1,
+    "components": [
+      "InventoryHeader",
+      "PriceHistory"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/page.tsx",
+    "route": "/vayon/properties",
+    "refs": 22,
+    "components": [
+      "Record",
+      "Download",
+      "ButtonLink",
+      "Plus",
+      "PropertyDashboard",
+      "Link",
+      "Link",
+      "PropertyToolbar",
+      "Sparkles",
+      "PropertyCard",
+      "Button",
+      "PropertyTable",
+      "Link",
+      "Link",
+      "ImportCenter"
+    ],
+    "action": ">})"
+  },
+  {
+    "file": "app/vayon/properties/new/page.tsx",
+    "route": "/vayon/properties/new",
+    "redirect": "/vayon/properties?error=You%20do%20not%20have%20permission.",
+    "refs": 14,
+    "components": [
+      "PropertyForm"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/workspaces/page.tsx",
+    "route": "/platform/workspaces",
+    "refs": 1,
+    "components": [
+      "PageContainer",
+      "PageHeader",
+      "WorkspaceGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/media/page.tsx",
+    "route": "/vayon/properties/media",
+    "refs": 1,
+    "components": [
+      "InventoryHeader",
+      "MediaLibrary"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/ai/automations/page.tsx",
+    "route": "/vayon/ai/automations",
+    "refs": 1,
+    "components": [
+      "WorkforceShell",
+      "AutomationRules"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/map/page.tsx",
+    "route": "/vayon/properties/map",
+    "refs": 2,
+    "components": [
+      "PropertyPlatformRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/inventory/page.tsx",
+    "route": "/vayon/properties/inventory",
+    "refs": 5,
+    "components": [
+      "Record",
+      "InventoryHeader",
+      "InventoryFiltersForm",
+      "UnitTable",
+      "InventoryUtilities"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/users/page.tsx",
+    "route": "/platform/users",
+    "refs": 2,
+    "components": [
+      "PageContainer",
+      "PageHeader",
+      "UserTable"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/grid/page.tsx",
+    "route": "/vayon/properties/grid",
+    "refs": 1,
+    "components": [
+      "PropertyPlatformRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/documents/page.tsx",
+    "route": "/vayon/properties/documents",
+    "refs": 1,
+    "components": [
+      "PropertyPlatformRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/availability/page.tsx",
+    "route": "/vayon/properties/availability",
+    "refs": 1,
+    "components": [
+      "PropertyPlatformRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/admin/workspaces/page.tsx",
+    "route": "/vayon/admin/workspaces",
+    "refs": 1,
+    "components": [
+      "AdminRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/properties/analytics/page.tsx",
+    "route": "/vayon/properties/analytics",
+    "refs": 2,
+    "components": [
+      "PropertyPlatformRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/admin/users/page.tsx",
+    "route": "/vayon/admin/users",
+    "refs": 1,
+    "components": [
+      "AdminRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/admin/teams/page.tsx",
+    "route": "/vayon/admin/teams",
+    "refs": 1,
+    "components": [
+      "AdminRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/platform/launch-readiness/page.tsx",
+    "route": "/vayon/platform/launch-readiness",
+    "refs": 2,
+    "components": [
+      "LaunchReadinessDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/page.tsx",
+    "route": "/vayon",
+    "redirect": "/login",
+    "refs": 11,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/themes/page.tsx",
+    "route": "/platform/themes",
+    "refs": 1,
+    "components": [
+      "PageLayout",
+      "ThemeManager"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/admin/roles/page.tsx",
+    "route": "/vayon/admin/roles",
+    "refs": 1,
+    "components": [
+      "AdminRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/operations/page.tsx",
+    "route": "/vayon/operations",
+    "refs": 3,
+    "components": [
+      "OperationsHeader",
+      "OperationsDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/system-analytics/page.tsx",
+    "route": "/platform/system-analytics",
+    "refs": 2,
+    "components": [
+      "PlatformHeader",
+      "AnalyticsWidget"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/admin/permissions/page.tsx",
+    "route": "/vayon/admin/permissions",
+    "refs": 1,
+    "components": [
+      "AdminRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/admin/page.tsx",
+    "route": "/vayon/admin",
+    "refs": 4,
+    "components": [
+      "AdminRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/objects/page.tsx",
+    "route": "/vayon/objects",
+    "refs": 2,
+    "components": [
+      "UniversalObjectsWorkbench"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/support/page.tsx",
+    "route": "/platform/support",
+    "refs": 3,
+    "components": [
+      "SupportSessionBanner",
+      "PlatformHeader",
+      "Button",
+      "SupportList",
+      "SupportActions"
+    ],
+    "action": "x.status===\"active\"&&x.expiresAt&&x.expiresAt>new Date().toISOString());return"
+  },
+  {
+    "file": "app/vayon/admin/organizations/page.tsx",
+    "route": "/vayon/admin/organizations",
+    "refs": 1,
+    "components": [
+      "AdminRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/settings/page.tsx",
+    "route": "/platform/settings",
+    "refs": 2,
+    "components": [
+      "PageLayout",
+      "SettingsPlatform"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/admin/departments/page.tsx",
+    "route": "/vayon/admin/departments",
+    "refs": 1,
+    "components": [
+      "AdminRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/admin/audit/page.tsx",
+    "route": "/vayon/admin/audit",
+    "refs": 1,
+    "components": [
+      "AdminRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/security-review/page.tsx",
+    "route": "/platform/security-review",
+    "refs": 0,
+    "components": [
+      "SecurityReviewDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/help/page.tsx",
+    "route": "/help",
+    "refs": 5,
+    "components": [
+      "LaunchInformationPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/signup/page.tsx",
+    "route": "/signup",
+    "refs": 10,
+    "components": [
+      "AuthShell",
+      "FormNotice",
+      "Button",
+      "AuthFields",
+      "Link"
+    ],
+    "action": "})"
+  },
+  {
+    "file": "app/platform/search/page.tsx",
+    "route": "/platform/search",
+    "refs": 1,
+    "components": [
+      "PageLayout",
+      "UniversalSearch"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/notifications/preferences/page.tsx",
+    "route": "/vayon/notifications/preferences",
+    "refs": 2,
+    "components": [
+      "NotificationPreferences"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/notifications/page.tsx",
+    "route": "/vayon/notifications",
+    "refs": 6,
+    "components": [
+      "Record",
+      "NotificationCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/executions/page.tsx",
+    "route": "/vayon/executions",
+    "refs": 1,
+    "components": [
+      "GovernanceHeader",
+      "GovernanceNav",
+      "ExecutionList"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/roles/page.tsx",
+    "route": "/platform/roles",
+    "refs": 1,
+    "components": [
+      "PageContainer",
+      "PageHeader",
+      "RoleTable"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/notifications/inbox/page.tsx",
+    "route": "/vayon/notifications/inbox",
+    "redirect": "/vayon/notifications?view=all",
+    "refs": 3,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/features/[slug]/page.tsx",
+    "route": "/features/[slug]",
+    "refs": 0,
+    "components": [
+      "Metadata",
+      "CommercialCatalogDetail"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/features/page.tsx",
+    "route": "/features",
+    "refs": 4,
+    "components": [
+      "ProductCatalog"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/feature-flags/page.tsx",
+    "route": "/platform/feature-flags",
+    "refs": 3,
+    "components": [
+      "PlatformHeader",
+      "Button",
+      "FeatureFlagCard"
+    ],
+    "action": "Create flag"
+  },
+  {
+    "file": "app/vayon/events/page.tsx",
+    "route": "/vayon/events",
+    "refs": 1,
+    "components": [
+      "EventRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/releases/page.tsx",
+    "route": "/platform/releases",
+    "refs": 2,
+    "components": [
+      "PlatformHeader",
+      "Button",
+      "ReleaseCard"
+    ],
+    "action": "Publish release record"
+  },
+  {
+    "file": "app/vayon/notifications/history/page.tsx",
+    "route": "/vayon/notifications/history",
+    "redirect": "/vayon/notifications?view=archived",
+    "refs": 2,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/enterprise/page.tsx",
+    "route": "/enterprise",
+    "refs": 2,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/deployment/page.tsx",
+    "route": "/platform/deployment",
+    "refs": 0,
+    "components": [
+      "DeploymentDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/events/history/page.tsx",
+    "route": "/vayon/events/history",
+    "refs": 1,
+    "components": [
+      "EventRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/region-management/page.tsx",
+    "route": "/platform/region-management",
+    "refs": 0,
+    "components": [
+      "PlatformHeader",
+      "RegionCard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/messages/page.tsx",
+    "route": "/vayon/messages",
+    "refs": 1,
+    "components": [
+      "CommunicationHeader",
+      "CommunicationFilters",
+      "ConversationList",
+      "ConversationTimeline",
+      "CallForm",
+      "CallList",
+      "NoteForm"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/events/catalog/page.tsx",
+    "route": "/vayon/events/catalog",
+    "refs": 1,
+    "components": [
+      "EventRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/platform-health/page.tsx",
+    "route": "/platform/platform-health",
+    "refs": 2,
+    "components": [
+      "PlatformHeader",
+      "AnalyticsWidget"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/meetings/page.tsx",
+    "route": "/vayon/meetings",
+    "refs": 7,
+    "components": [
+      "OperationsHeader",
+      "MeetingForm",
+      "MeetingList"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/customers/[organizationId]/page.tsx",
+    "route": "/platform/customers/[organizationId]",
+    "refs": 0,
+    "components": [
+      "PlatformHeader",
+      "CustomerProfile",
+      "CustomerTimeline"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/customers/page.tsx",
+    "route": "/platform/customers",
+    "refs": 3,
+    "components": [
+      "PlatformHeader",
+      "CustomerDirectory"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/docs/[slug]/page.tsx",
+    "route": "/docs/[slug]",
+    "refs": 0,
+    "components": [
+      "Metadata",
+      "DocumentationArticleView"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/docs/page.tsx",
+    "route": "/docs",
+    "refs": 17,
+    "components": [
+      "DocumentationHome"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/permissions/page.tsx",
+    "route": "/platform/permissions",
+    "refs": 1,
+    "components": [
+      "PageContainer",
+      "PageHeader",
+      "PermissionGroups"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/customer-success/page.tsx",
+    "route": "/platform/customer-success",
+    "refs": 3,
+    "components": [
+      "PlatformHeader",
+      "HealthCard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/developers/page.tsx",
+    "route": "/developers",
+    "refs": 6,
+    "components": [
+      "DeveloperPortal"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/performance/page.tsx",
+    "route": "/platform/performance",
+    "refs": 1,
+    "components": [
+      "PerformanceDashboard",
+      "Suspense",
+      "Loading",
+      "Report"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/page.tsx",
+    "route": "/platform",
+    "refs": 4,
+    "components": [
+      "Breadcrumbs"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/leads/[leadId]/page.tsx",
+    "route": "/vayon/leads/[leadId]",
+    "refs": 0,
+    "components": [
+      "WorkspaceRenderer",
+      "RealEstateSignalGrid",
+      "ContextualRealEstateRecommendations",
+      "ContextualAIActions",
+      "EntityCollaboration"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/country-management/page.tsx",
+    "route": "/platform/country-management",
+    "refs": 0,
+    "components": [
+      "PlatformHeader",
+      "CountryCard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/email/[messageId]/page.tsx",
+    "route": "/vayon/email/[messageId]",
+    "refs": 0,
+    "components": [
+      "ButtonLink",
+      "Button",
+      "ButtonLink",
+      "EmailComposer"
+    ],
+    "action": "})"
+  },
+  {
+    "file": "app/(marketing)/deals/page.tsx",
+    "route": "/deals",
+    "refs": 2,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/organizations/page.tsx",
+    "route": "/platform/organizations",
+    "refs": 5,
+    "components": [
+      "PageContainer",
+      "PageHeader",
+      "OrganizationTable"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/leads/[leadId]/edit/page.tsx",
+    "route": "/vayon/leads/[leadId]/edit",
+    "refs": 0,
+    "components": [
+      "LeadWizard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/leads/page.tsx",
+    "route": "/vayon/leads",
+    "refs": 15,
+    "components": [
+      "Record",
+      "LeadToolbar",
+      "ButtonLink",
+      "ButtonLink",
+      "LeadCard",
+      "Button",
+      "LeadTable"
+    ],
+    "action": ">})"
+  },
+  {
+    "file": "app/platform/command-center/page.tsx",
+    "route": "/platform/command-center",
+    "refs": 0,
+    "components": [
+      "PageLayout",
+      "CommandCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/email/trash/page.tsx",
+    "route": "/vayon/email/trash",
+    "refs": 0,
+    "components": [
+      "GmailMailboxPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/data-processing-addendum/page.tsx",
+    "route": "/data-processing-addendum",
+    "refs": 3,
+    "components": [
+      "LegalPolicyPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/operations/page.tsx",
+    "route": "/platform/operations",
+    "refs": 1,
+    "components": [
+      "OperationsDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/leads/new/page.tsx",
+    "route": "/vayon/leads/new",
+    "redirect": "/vayon/leads?error=Insufficient%20permission",
+    "refs": 16,
+    "components": [
+      "LeadWizard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/data-ownership/page.tsx",
+    "route": "/data-ownership",
+    "refs": 0,
+    "components": [
+      "LaunchInformationPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/notifications/page.tsx",
+    "route": "/platform/notifications",
+    "refs": 1,
+    "components": [
+      "PageLayout",
+      "NotificationPlatform"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/email/spam/page.tsx",
+    "route": "/vayon/email/spam",
+    "refs": 0,
+    "components": [
+      "GmailMailboxPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/launch-readiness/page.tsx",
+    "route": "/platform/launch-readiness",
+    "redirect": "/vayon/platform/launch-readiness",
+    "refs": 2,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/knowledge/page.tsx",
+    "route": "/vayon/knowledge",
+    "refs": 13,
+    "components": [
+      "KnowledgeRecovery",
+      "KnowledgeCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/customers/[slug]/page.tsx",
+    "route": "/customers/[slug]",
+    "refs": 0,
+    "components": [
+      "Metadata",
+      "CustomerStoryPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/customers/page.tsx",
+    "route": "/customers",
+    "refs": 4,
+    "components": [
+      "CatalogGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/customer-success/page.tsx",
+    "route": "/vayon/customer-success",
+    "redirect": "/login?next=/vayon/customer-success",
+    "refs": 5,
+    "components": [
+      "CustomerSuccessWorkspace"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/integrations/webhooks/page.tsx",
+    "route": "/platform/integrations/webhooks",
+    "refs": 3,
+    "components": [
+      "ProviderHeader",
+      "WebhookTable"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/email/sent/page.tsx",
+    "route": "/vayon/email/sent",
+    "refs": 0,
+    "components": [
+      "GmailMailboxPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/email/page.tsx",
+    "route": "/vayon/email",
+    "refs": 6,
+    "components": [
+      "GmailMailboxPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/builder/settings/page.tsx",
+    "route": "/platform/builder/settings",
+    "refs": 2,
+    "components": [
+      "BuilderPage",
+      "SettingsGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/builder/page.tsx",
+    "route": "/platform/builder",
+    "refs": 1,
+    "components": [
+      "BuilderPage",
+      "MetricCard",
+      "MetricCard",
+      "MetricCard",
+      "MetricCard",
+      "MetricCard",
+      "MetricCard",
+      "MetricCard",
+      "MetricCard",
+      "MetricCard",
+      "MetricCard",
+      "MetricCard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/knowledge/help/page.tsx",
+    "route": "/vayon/knowledge/help",
+    "refs": 9,
+    "components": [
+      "Link",
+      "Button",
+      "Link",
+      "Link",
+      "Link",
+      "Link",
+      "Button",
+      "Link",
+      "Link"
+    ],
+    "action": ";\n})"
+  },
+  {
+    "file": "app/(marketing)/crm/page.tsx",
+    "route": "/crm",
+    "refs": 2,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/integrations/secrets/page.tsx",
+    "route": "/platform/integrations/secrets",
+    "refs": 1,
+    "components": [
+      "ProviderHeader",
+      "SecretsTable"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/intelligence/page.tsx",
+    "route": "/vayon/intelligence",
+    "refs": 9,
+    "components": [
+      "IntelligenceDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/builder/navigation/page.tsx",
+    "route": "/platform/builder/navigation",
+    "refs": 2,
+    "components": [
+      "BuilderPage",
+      "NavigationCanvas"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/copyright-policy/page.tsx",
+    "route": "/copyright-policy",
+    "refs": 1,
+    "components": [
+      "LegalPolicyPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/email/inbox/page.tsx",
+    "route": "/vayon/email/inbox",
+    "refs": 1,
+    "components": [
+      "GmailMailboxPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/crm/page.tsx",
+    "route": "/vayon/crm",
+    "refs": 9,
+    "components": [
+      "CrmShell",
+      "ButtonLink",
+      "SalesAutomationSummary",
+      "SalesCommandCenter",
+      "CrmDashboard"
+    ],
+    "action": "Add lead"
+  },
+  {
+    "file": "app/platform/integrations/providers/page.tsx",
+    "route": "/platform/integrations/providers",
+    "refs": 1,
+    "components": [
+      "ProviderHeader",
+      "OpenAIMetrics",
+      "ProviderGrid",
+      "ProviderConfiguration"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/integrations/page.tsx",
+    "route": "/platform/integrations",
+    "refs": 2,
+    "components": [
+      "ProviderHeader",
+      "IntegrationDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/home/page.tsx",
+    "route": "/vayon/home",
+    "refs": 3,
+    "components": [
+      "Record"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/cookie-policy/page.tsx",
+    "route": "/cookie-policy",
+    "refs": 3,
+    "components": [
+      "LegalPolicyPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/builder/modules/page.tsx",
+    "route": "/platform/builder/modules",
+    "refs": 2,
+    "components": [
+      "BuilderPage",
+      "ModuleGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/email/drafts/page.tsx",
+    "route": "/vayon/email/drafts",
+    "refs": 0,
+    "components": [
+      "GmailMailboxPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/integrations/logs/page.tsx",
+    "route": "/platform/integrations/logs",
+    "refs": 2,
+    "components": [
+      "ProviderHeader",
+      "ProviderLogs"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/builder/features/page.tsx",
+    "route": "/platform/builder/features",
+    "refs": 2,
+    "components": [
+      "BuilderPage",
+      "FeatureGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/contact/page.tsx",
+    "route": "/contact",
+    "refs": 19,
+    "components": [
+      "LeadCapture"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/crm/leads/[leadId]/page.tsx",
+    "route": "/vayon/crm/leads/[leadId]",
+    "refs": 0,
+    "components": [
+      "CrmShell",
+      "CrmLeadProfileView"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/crm/leads/page.tsx",
+    "route": "/vayon/crm/leads",
+    "refs": 2,
+    "components": [
+      "Record",
+      "CrmShell",
+      "ButtonLink",
+      "Button",
+      "CrmLeadTable"
+    ],
+    "action": ">;\n})"
+  },
+  {
+    "file": "app/platform/integrations/health/page.tsx",
+    "route": "/platform/integrations/health",
+    "refs": 4,
+    "components": [
+      "ProviderHeader",
+      "HealthCard",
+      "RetryQueue",
+      "SyncTimeline"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/growth/[section]/page.tsx",
+    "route": "/vayon/growth/[section]",
+    "refs": 0,
+    "components": [
+      "GrowthSectionPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/growth/page.tsx",
+    "route": "/vayon/growth",
+    "refs": 9,
+    "components": [
+      "GrowthOverview"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/builder/branding/page.tsx",
+    "route": "/platform/builder/branding",
+    "refs": 2,
+    "components": [
+      "BuilderPage",
+      "BrandPreview"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/email/archive/page.tsx",
+    "route": "/vayon/email/archive",
+    "refs": 0,
+    "components": [
+      "GmailMailboxPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/crm/customers/page.tsx",
+    "route": "/vayon/crm/customers",
+    "refs": 1,
+    "components": [
+      "Record",
+      "CrmShell",
+      "CustomerDirectory"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/identity/page.tsx",
+    "route": "/platform/identity",
+    "refs": 1,
+    "components": [
+      "PageContainer",
+      "PageHeader",
+      "IdentityDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/builder/applications/page.tsx",
+    "route": "/platform/builder/applications",
+    "refs": 2,
+    "components": [
+      "BuilderPage",
+      "MetricCard",
+      "MetricCard",
+      "MetricCard",
+      "MetricCard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/compare/[slug]/page.tsx",
+    "route": "/compare/[slug]",
+    "refs": 0,
+    "components": [
+      "Metadata",
+      "ComparisonLanding"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/compare/page.tsx",
+    "route": "/compare",
+    "refs": 1,
+    "components": [
+      "CatalogGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/founder/approvals/page.tsx",
+    "route": "/vayon/founder/approvals",
+    "refs": 2,
+    "components": [
+      "FounderApprovalCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/audit/page.tsx",
+    "route": "/platform/audit",
+    "refs": 2,
+    "components": [
+      "PageLayout",
+      "AuditTable"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/communications/page.tsx",
+    "route": "/communications",
+    "refs": 2,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/documents/onedrive/page.tsx",
+    "route": "/vayon/documents/onedrive",
+    "refs": 5,
+    "components": [
+      "ReturnType",
+      "MicrosoftCapabilityShell",
+      "Button",
+      "Button"
+    ],
+    "action": "})"
+  },
+  {
+    "file": "app/vayon/crm/contacts/[contactId]/page.tsx",
+    "route": "/vayon/crm/contacts/[contactId]",
+    "refs": 0,
+    "components": [
+      "CrmShell",
+      "CrmLeadProfileView",
+      "ContextualAIActions"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/crm/contacts/page.tsx",
+    "route": "/vayon/crm/contacts",
+    "refs": 6,
+    "components": [
+      "Record",
+      "CrmShell",
+      "ContactDirectory"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/follow-ups/page.tsx",
+    "route": "/vayon/follow-ups",
+    "refs": 1,
+    "components": [
+      "CommunicationHeader",
+      "FollowUpForm",
+      "FollowUpList"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/applications/page.tsx",
+    "route": "/platform/applications",
+    "refs": 1,
+    "components": [
+      "ApplicationSidebar",
+      "ApplicationHeader",
+      "ApplicationGrid"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/careers/page.tsx",
+    "route": "/careers",
+    "refs": 3,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/documents/drive/page.tsx",
+    "route": "/vayon/documents/drive",
+    "refs": 4,
+    "components": [
+      "GoogleDriveWorkspace"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/activity/page.tsx",
+    "route": "/platform/activity",
+    "refs": 1,
+    "components": [
+      "PageLayout",
+      "Timeline"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/calendar/page.tsx",
+    "route": "/calendar",
+    "refs": 2,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/workflows/page.tsx",
+    "route": "/platform/founder/workflows",
+    "refs": 2,
+    "components": [
+      "WorkflowOrchestrationDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/crm/companies/[companyId]/page.tsx",
+    "route": "/vayon/crm/companies/[companyId]",
+    "refs": 0,
+    "components": [
+      "CrmShell",
+      "CompanyMetrics",
+      "CompanyProfile",
+      "ContextualAIActions"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/developers/page.tsx",
+    "route": "/vayon/developers",
+    "refs": 1,
+    "components": [
+      "DeveloperPortal"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/brand-assets/page.tsx",
+    "route": "/brand-assets",
+    "refs": 2,
+    "components": [
+      "LaunchInformationPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/tenants/page.tsx",
+    "route": "/platform/founder/tenants",
+    "refs": 1,
+    "components": [
+      "TenantManagementCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/crm/companies/[companyId]/edit/page.tsx",
+    "route": "/vayon/crm/companies/[companyId]/edit",
+    "refs": 0,
+    "components": [
+      "CrmShell",
+      "CompanyForm"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/crm/companies/page.tsx",
+    "route": "/vayon/crm/companies",
+    "refs": 6,
+    "components": [
+      "Record",
+      "CrmShell",
+      "ButtonLink",
+      "CompanyDirectory",
+      "Link",
+      "Link"
+    ],
+    "action": ">;\n})"
+  },
+  {
+    "file": "app/platform/founder/sales/page.tsx",
+    "route": "/platform/founder/sales",
+    "refs": 3,
+    "components": [
+      "SalesDirectorDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/page.tsx",
+    "route": "/platform/founder",
+    "refs": 8,
+    "components": [
+      "FounderDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/crm/companies/new/page.tsx",
+    "route": "/vayon/crm/companies/new",
+    "refs": 3,
+    "components": [
+      "CrmShell",
+      "CompanyForm"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/blog/[slug]/page.tsx",
+    "route": "/blog/[slug]",
+    "refs": 0,
+    "components": [
+      "Metadata",
+      "BlogArticlePage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/blog/page.tsx",
+    "route": "/blog",
+    "refs": 3,
+    "components": [
+      "BlogIndex"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/onboarding/[setup]/page.tsx",
+    "route": "/onboarding/[setup]",
+    "refs": 0,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/onboarding/page.tsx",
+    "route": "/onboarding",
+    "redirect": "/login",
+    "refs": 6,
+    "components": [
+      "EnterpriseOnboardingWizard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/operations/page.tsx",
+    "route": "/platform/founder/operations",
+    "refs": 1,
+    "components": [
+      "AutonomousOperationsDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/crm/activities/page.tsx",
+    "route": "/vayon/crm/activities",
+    "refs": 1,
+    "components": [
+      "CrmShell",
+      "ActivityDirectory"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/api/page.tsx",
+    "route": "/api",
+    "refs": 2,
+    "components": [
+      "LaunchInformationPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/observability/page.tsx",
+    "route": "/platform/founder/observability",
+    "refs": 1,
+    "components": [
+      "ObservabilityDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/deals/[dealId]/page.tsx",
+    "route": "/vayon/deals/[dealId]",
+    "refs": 0,
+    "components": [
+      "DealPanel",
+      "WorkspaceRenderer",
+      "DealOverview",
+      "ContextualAIActions"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/onboarding/business-launch/page.tsx",
+    "route": "/onboarding/business-launch",
+    "refs": 3,
+    "components": [
+      "BusinessLaunchWizard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/ai-workforce/page.tsx",
+    "route": "/ai-workforce",
+    "refs": 4,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/memory/page.tsx",
+    "route": "/platform/founder/memory",
+    "refs": 2,
+    "components": [
+      "UnifiedAIContextDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/deals/[dealId]/edit/page.tsx",
+    "route": "/vayon/deals/[dealId]/edit",
+    "refs": 0,
+    "components": [
+      "DealForm"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/login/page.tsx",
+    "route": "/login",
+    "refs": 7,
+    "components": [
+      "AuthShell",
+      "FormNotice",
+      "Button",
+      "AuthFields",
+      "Link",
+      "Link"
+    ],
+    "action": "})"
+  },
+  {
+    "file": "app/(marketing)/ai-usage-policy/page.tsx",
+    "route": "/ai-usage-policy",
+    "refs": 3,
+    "components": [
+      "LegalPolicyPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/marketing/page.tsx",
+    "route": "/platform/founder/marketing",
+    "refs": 4,
+    "components": [
+      "MarketingDirectorDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/deals/pipeline/page.tsx",
+    "route": "/vayon/deals/pipeline",
+    "refs": 3,
+    "components": [
+      "ButtonLink",
+      "ButtonLink",
+      "PipelineStatistics",
+      "DealBoard"
+    ],
+    "action": "Pipeline reports"
+  },
+  {
+    "file": "app/vayon/deals/page.tsx",
+    "route": "/vayon/deals",
+    "refs": 16,
+    "components": [
+      "ButtonLink",
+      "PipelineStatistics",
+      "ButtonLink",
+      "ButtonLink",
+      "DealBoard",
+      "ContextualRealEstateRecommendations"
+    ],
+    "action": "New transaction"
+  },
+  {
+    "file": "app/vayon/creative-studio/wizard/page.tsx",
+    "route": "/vayon/creative-studio/wizard",
+    "refs": 6,
+    "components": [
+      "StudioShell",
+      "CampaignWizard",
+      "CapabilityCatalog"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/customer-success/page.tsx",
+    "route": "/platform/founder/customer-success",
+    "refs": 4,
+    "components": [
+      "CustomerGrowthDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/acceptable-use-policy/page.tsx",
+    "route": "/acceptable-use-policy",
+    "refs": 3,
+    "components": [
+      "LegalPolicyPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/intelligence/page.tsx",
+    "route": "/platform/founder/intelligence",
+    "refs": 1,
+    "components": [
+      "Query",
+      "IntelligenceHubDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/deals/offers/page.tsx",
+    "route": "/vayon/deals/offers",
+    "refs": 3,
+    "components": [
+      "DealRoomRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative-studio/templates/page.tsx",
+    "route": "/vayon/creative-studio/templates",
+    "refs": 6,
+    "components": [
+      "StudioShell"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative-studio/page.tsx",
+    "route": "/vayon/creative-studio",
+    "refs": 12,
+    "components": [
+      "StudioShell",
+      "StudioDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/command-center/page.tsx",
+    "route": "/platform/founder/command-center",
+    "refs": 1,
+    "components": [
+      "AICommandCenter"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/(marketing)/about/page.tsx",
+    "route": "/about",
+    "refs": 4,
+    "components": [
+      "MarketingPage"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/integrations/page.tsx",
+    "route": "/platform/founder/integrations",
+    "refs": 2,
+    "components": [
+      "EnterpriseIntegrationDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/deals/new/page.tsx",
+    "route": "/vayon/deals/new",
+    "refs": 8,
+    "components": [
+      "DealForm"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative-studio/packs/page.tsx",
+    "route": "/vayon/creative-studio/packs",
+    "refs": 4,
+    "components": [
+      "StudioShell",
+      "CampaignPacks"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/ai/page.tsx",
+    "route": "/platform/founder/ai",
+    "refs": 3,
+    "components": [
+      "FounderAIHome"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative-studio/assets/page.tsx",
+    "route": "/vayon/creative-studio/assets",
+    "refs": 8,
+    "components": [
+      "Record",
+      "StudioShell",
+      "AssetLibrary"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/deals/contracts/page.tsx",
+    "route": "/vayon/deals/contracts",
+    "refs": 2,
+    "components": [
+      "DealRoomRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative-studio/growth/page.tsx",
+    "route": "/vayon/creative-studio/growth",
+    "refs": 3,
+    "components": [
+      "StudioShell",
+      "GrowthCampaignChat",
+      "GrowthOverview"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/platform/founder/access/page.tsx",
+    "route": "/platform/founder/access",
+    "refs": 2,
+    "components": [
+      "FounderBootstrapPanel"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/deals/checklists/page.tsx",
+    "route": "/vayon/deals/checklists",
+    "refs": 1,
+    "components": [
+      "DealRoomRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative-studio/analytics/page.tsx",
+    "route": "/vayon/creative-studio/analytics",
+    "refs": 1,
+    "components": [
+      "StudioShell"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/context/page.tsx",
+    "route": "/vayon/context",
+    "refs": 2,
+    "components": [
+      "UnifiedContextPanel",
+      "ContextEngineDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/contacts/microsoft/page.tsx",
+    "route": "/vayon/contacts/microsoft",
+    "refs": 4,
+    "components": [
+      "ReturnType",
+      "MicrosoftCapabilityShell",
+      "Button"
+    ],
+    "action": "})"
+  },
+  {
+    "file": "app/vayon/deals/analytics/page.tsx",
+    "route": "/vayon/deals/analytics",
+    "refs": 2,
+    "components": [
+      "DealRoomRoute"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative-studio/editor/[assetId]/page.tsx",
+    "route": "/vayon/creative-studio/editor/[assetId]",
+    "refs": 0,
+    "components": [
+      "StudioShell",
+      "CreativeEditor"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative-studio/brand-kits/page.tsx",
+    "route": "/vayon/creative-studio/brand-kits",
+    "refs": 2,
+    "components": [
+      "StudioShell",
+      "BrandKits"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/contacts/google/page.tsx",
+    "route": "/vayon/contacts/google",
+    "refs": 2,
+    "components": [
+      "GoogleContactsWorkspace"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/dashboard/page.tsx",
+    "route": "/vayon/dashboard",
+    "refs": 25,
+    "components": [
+      "DashboardShell"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative-studio/calendar/page.tsx",
+    "route": "/vayon/creative-studio/calendar",
+    "refs": 3,
+    "components": [
+      "StudioShell",
+      "CampaignCalendar"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative-studio/assistant/page.tsx",
+    "route": "/vayon/creative-studio/assistant",
+    "refs": 3,
+    "components": [
+      "Record",
+      "StudioShell",
+      "CreativeAssistant",
+      "Link",
+      "Link"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/images/page.tsx",
+    "route": "/vayon/creative/images",
+    "refs": 8,
+    "components": [
+      "ImageStudio"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/[studio]/page.tsx",
+    "route": "/vayon/creative/[studio]",
+    "refs": 0,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/documents/page.tsx",
+    "route": "/vayon/creative/documents",
+    "refs": 10,
+    "components": [
+      "DocumentStudio"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/videos/page.tsx",
+    "route": "/vayon/creative/videos",
+    "refs": 8,
+    "components": [
+      "VideoStudio"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/communications/templates/page.tsx",
+    "route": "/vayon/communications/templates",
+    "refs": 1,
+    "components": [
+      "CommunicationsShell",
+      "TemplateLibrary"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/cloud/page.tsx",
+    "route": "/vayon/creative/cloud",
+    "refs": 2,
+    "components": [
+      "FeatureAvailabilityState",
+      "CreativeCloudDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/templates/page.tsx",
+    "route": "/vayon/creative/templates",
+    "refs": 2,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/communications/teams/page.tsx",
+    "route": "/vayon/communications/teams",
+    "refs": 3,
+    "components": [
+      "ReturnType",
+      "ReturnType",
+      "ReturnType",
+      "ReturnType",
+      "MicrosoftCapabilityShell",
+      "Button"
+    ],
+    "action": "})"
+  },
+  {
+    "file": "app/vayon/creative/campaigns/page.tsx",
+    "route": "/vayon/creative/campaigns",
+    "refs": 14,
+    "components": [
+      "CampaignStudio"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/runtime/page.tsx",
+    "route": "/vayon/creative/runtime",
+    "refs": 3,
+    "components": [
+      "CreativeRuntimeDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/communications/reports/page.tsx",
+    "route": "/vayon/communications/reports",
+    "refs": 1,
+    "components": [
+      "CommunicationsShell"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/communications/page.tsx",
+    "route": "/vayon/communications",
+    "refs": 11,
+    "components": [
+      "CommunicationActivityPanel",
+      "CommunicationsShell",
+      "HubDashboard",
+      "CommunicationActivityPanel"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/calendar/page.tsx",
+    "route": "/vayon/creative/calendar",
+    "refs": 2,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/runtime/execution/page.tsx",
+    "route": "/vayon/creative/runtime/execution",
+    "refs": 1,
+    "components": [
+      "ExecutionDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/communications/outlook/page.tsx",
+    "route": "/vayon/communications/outlook",
+    "refs": 4,
+    "components": [
+      "MicrosoftCapabilityShell",
+      "Link",
+      "Button",
+      "Link",
+      "Button",
+      "Button"
+    ],
+    "action": ";\r\n})"
+  },
+  {
+    "file": "app/vayon/creative/brand/page.tsx",
+    "route": "/vayon/creative/brand",
+    "refs": 6,
+    "components": [
+      "BrandStudio"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/pipelines/page.tsx",
+    "route": "/vayon/creative/pipelines",
+    "refs": 2,
+    "components": [
+      "FeatureAvailabilityState",
+      "CreativePipelineDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/page.tsx",
+    "route": "/vayon/creative",
+    "refs": 20,
+    "components": [
+      "FeatureAvailabilityState",
+      "CreativeStudioHome"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/communications/notifications/page.tsx",
+    "route": "/vayon/communications/notifications",
+    "refs": 1,
+    "components": [
+      "CommunicationsShell",
+      "NotificationList"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/creative/assets/page.tsx",
+    "route": "/vayon/creative/assets",
+    "refs": 2,
+    "components": [],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/communications/inbox/page.tsx",
+    "route": "/vayon/communications/inbox",
+    "refs": 3,
+    "components": [
+      "Record",
+      "CommunicationsShell",
+      "Button",
+      "InboxList"
+    ],
+    "action": ">;\n})"
+  },
+  {
+    "file": "app/vayon/communications/conversations/[conversationId]/page.tsx",
+    "route": "/vayon/communications/conversations/[conversationId]",
+    "refs": 0,
+    "components": [
+      "CommunicationsShell",
+      "ConversationView"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/communications/conversations/page.tsx",
+    "route": "/vayon/communications/conversations",
+    "refs": 1,
+    "components": [
+      "CommunicationsShell",
+      "ConversationLinks"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/communications/connectors/page.tsx",
+    "route": "/vayon/communications/connectors",
+    "refs": 1,
+    "components": [
+      "CommunicationsShell"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/communications/campaigns/page.tsx",
+    "route": "/vayon/communications/campaigns",
+    "refs": 3,
+    "components": [
+      "CommunicationsShell",
+      "CampaignList"
+    ],
+    "action": "Composed component: runtime review required"
+  },
+  {
+    "file": "app/vayon/cognitive/page.tsx",
+    "route": "/vayon/cognitive",
+    "refs": 3,
+    "components": [
+      "CognitiveDashboard"
+    ],
+    "action": "Composed component: runtime review required"
+  }
+]

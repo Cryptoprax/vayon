@@ -18,7 +18,7 @@ test("executive KPI bar exposes every required real estate signal without fabric
   assert.match(source, /hasHistory && item.trend/);
   assert.doesNotMatch(source, /Partial visibility|Trend appears with comparable history/);
   assert.match(source, /recent notifications/);
-  assert.match(source, /View Complete Business Analytics/);
+  assert.match(source, /Understand performance/);
 });
 
 test("sales pipeline covers the complete operational lifecycle", async () => {
@@ -28,7 +28,8 @@ test("sales pipeline covers the complete operational lifecycle", async () => {
   ]);
   for (const stage of ["New Leads", "Qualified", "Viewing Scheduled", "Negotiation", "Booking", "Registration", "Completed", "Lost"])
     assert.match(service, new RegExp(stage));
-  for (const value of ["item.count", "item.value", "item.trend", "Owner · Unavailable"])
+  assert.doesNotMatch(board, /Owner.*Unavailable/);
+  for (const value of ["item.count", "item.value", "item.trend"])
     assert.match(board, new RegExp(value.replace(".", "\\.")));
 });
 
@@ -48,7 +49,8 @@ test("dashboard keeps one parallel server load and responsive agenda and timelin
     read("features/vayon/dashboard/components/CalendarWidget.tsx"),
   ]);
   assert.match(page, /Promise\.all/);
-  assert.match(shell, /RealEstateIntelligence/);
+  assert.match(shell, /RealEstateKpiGrid/);
+  assert.doesNotMatch(shell, /RealEstateIntelligence/);
   assert.match(shell, /ActivityTimeline/);
   assert.match(agenda, /Today&apos;s Agenda/);
   assert.match(agenda, /Appointments · Viewings · Follow-ups · Calls · Meetings · Registrations · Deadlines/);

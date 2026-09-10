@@ -46,7 +46,7 @@ test("autosave preserves repeated structured values for mobile wizard drafts", a
   const wizard = await read("features/vayon/property/components/PropertyWizard.tsx");
   assert.match(wizard, /string \| string\[\]/);
   assert.match(wizard, /localStorage\.setItem/);
-  assert.match(wizard, /overflow-x-auto/);
+  assert.match(wizard, /lg:grid-cols-5/);
   assert.match(wizard, /sm:grid-cols-2/);
 });
 
@@ -66,7 +66,7 @@ test("create edit duplicate draft and publish routes retain governed property co
     read("features/vayon/property/services/property.service.ts"),
   ]);
   assert.match(wizard, /editing \? "Save changes" : "Create property"/);
-  assert.match(wizard, /Draft saved locally/);
+  assert.match(wizard, /Browser draft updated at/);
   assert.match(repository, /create_property/);
   assert.match(repository, /update_property/);
   assert.match(service, /create/);

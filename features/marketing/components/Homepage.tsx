@@ -260,16 +260,16 @@ export function Homepage() {
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-vds-accent-border bg-vds-primary-soft px-3 py-1.5 text-xs font-semibold text-vds-primary">
               <Sparkles className="size-3.5" aria-hidden="true" />
-              Your complete AI real estate team, ready in minutes
+              Properties, clients, and follow-ups in one place
             </span>
             <h1 className="mt-7 text-balance text-5xl font-semibold leading-[.96] tracking-[-.06em] sm:text-7xl">
-              Hire Your Entire AI Real Estate Team in Under 5 Minutes.
+              Run your real estate day from one workspace.
             </h1>
             <h2 className="mt-7 max-w-2xl text-xl font-medium leading-8 text-vds-secondary">
-              Powered by the World&apos;s Most Advanced AI Operating System for Real Estate.
+              Keep your next conversation, viewing, and deal in focus.
             </h2>
             <p className="mt-5 max-w-2xl text-pretty leading-7 text-vds-muted">
-              Meet your complete AI workforce that helps you generate leads, qualify buyers, market properties, schedule appointments, manage operations, follow up automatically, and close more deals — all from one intelligent platform built exclusively for real estate professionals.
+              Organize properties, keep track of buyers, plan viewings, and follow up on deals. Use the existing AI Assistant where you need help, and review important actions before they run.
             </p>
             {FOUNDING_MEMBER_ENABLED && (
               <div className="mt-7 max-w-2xl rounded-2xl border border-vds-accent-border bg-vds-primary-soft p-4 shadow-lg shadow-vds-shadow/10">

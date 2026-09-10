@@ -28,7 +28,7 @@ export function SmartEmptyState({
   onPrimary,
   secondaryActions = [],
   className = "",
-  aiSuggestion = "Ask the Real Estate Assistant to recommend the best next step.",
+  aiSuggestion,
 }: SmartEmptyStateProps) {
   return (
     <section
@@ -41,9 +41,9 @@ export function SmartEmptyState({
       <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-vds-muted">
         {description}
       </p>
-      <p className="mx-auto mt-3 max-w-lg text-xs font-medium text-vds-primary">
-        AI suggestion: {aiSuggestion}
-      </p>
+      {aiSuggestion && <p className="mx-auto mt-3 max-w-lg text-xs font-medium text-vds-primary">
+        Suggested next step: {aiSuggestion}
+      </p>}
       <div className="mt-6 flex flex-wrap justify-center gap-2">
         {primaryHref ? (
           <ButtonLink href={primaryHref}>{primaryLabel}</ButtonLink>

@@ -47,7 +47,7 @@ test("recommendations and empty-state help remain dismissible and nonblocking", 
 
 test("command palette supports smart scopes, recent commands, pins, suggestions, and keyboard navigation", () => {
   const bar = read("features/vayon/universal-bar/components/UniversalBar.tsx");
-  for (const value of ["projects", "contacts", "companies", "deals", "campaigns", "employees", "documents", "creative-assets", "settings", "recent", "pinned", "ArrowDown", "ArrowUp", "Ask Copilot"]) assert.match(bar, new RegExp(value));
+  for (const value of ["projects", "contacts", "companies", "deals", "campaigns", "employees", "documents", "creative-assets", "settings", "recent", "pinned", "ArrowDown", "ArrowUp", "AI Assistant"]) assert.match(bar, new RegExp(value));
 });
 
 test("executive brief options disclose missing evidence", () => {

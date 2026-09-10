@@ -17,11 +17,10 @@ export function UniversalPreviewCard({
       {!preview || preview.state === "awaiting-data" ? (
         <div className="mt-5 rounded-2xl border border-dashed border-vds-border p-6 text-center">
           <p className="text-sm text-vds-muted">
-            Awaiting connected business data.
+            Choose a record to see its details.
           </p>
           <p className="mt-2 text-xs leading-5 text-vds-subtle">
-            Select a result supplied by an authorized local provider to preview
-            existing view-model fields.
+            Use the arrow keys to select a result. Press Enter to open it; some details are only available on the record page.
           </p>
         </div>
       ) : (

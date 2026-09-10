@@ -6,13 +6,16 @@ import type {
 const key = "vayon.universal-bar.history.v1",
   maxItems = 30;
 export class LocalUniversalBarHistory implements UniversalHistoryStore {
+  constructor(private readonly scope?: string) {}
+  private get storageKey() { return this.scope ? `${key}:${encodeURIComponent(this.scope)}` : key; }
   list(kind?: UniversalHistoryKind) {
     const values = this.read();
     return kind ? values.filter((item) => item.kind === kind) : values;
   }
   record(item: UniversalHistoryItem) {
+    const prior = this.read().find(value => value.id === item.id && value.kind === item.kind);
     const values = [
-      item,
+      { ...item, visits: item.kind === "recently-opened" ? (prior?.visits ?? 0) + 1 : item.visits },
       ...this.read().filter(
         (value) => !(value.id === item.id && value.kind === item.kind),
       ),
@@ -45,7 +48,7 @@ export class LocalUniversalBarHistory implements UniversalHistoryStore {
     if (typeof window === "undefined") return [];
     try {
       const parsed: unknown = JSON.parse(
-        window.localStorage.getItem(key) ?? "[]",
+        window.localStorage.getItem(this.storageKey) ?? "[]",
       );
       return Array.isArray(parsed) ? parsed.filter(isHistoryItem) : [];
     } catch {
@@ -55,7 +58,7 @@ export class LocalUniversalBarHistory implements UniversalHistoryStore {
   private write(items: readonly UniversalHistoryItem[]) {
     if (typeof window === "undefined") return;
     try {
-      window.localStorage.setItem(key, JSON.stringify(items));
+      window.localStorage.setItem(this.storageKey, JSON.stringify(items));
     } catch {
       /* Storage can be unavailable or full. */
     }

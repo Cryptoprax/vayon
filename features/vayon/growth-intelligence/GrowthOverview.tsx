@@ -8,8 +8,8 @@ const overviewCards = [
   { title: "Properties Listed", href: "/vayon/properties", action: "Review listings", icon: Building2 },
   { title: "Properties Sold", href: "/vayon/deals", action: "Review transactions", icon: Handshake },
   { title: "Properties Rented", href: "/vayon/deals", action: "Review transactions", icon: Handshake },
-  { title: "Conversion Rate", href: "/vayon/analytics/conversion", action: "Connect conversion evidence", icon: TrendingUp },
-  { title: "Revenue", href: "/vayon/analytics/sales", action: "Review sales evidence", icon: CircleDollarSign },
+  { title: "Conversion Rate", href: "/vayon/analytics/conversion", action: "Review conversion performance", icon: TrendingUp },
+  { title: "Revenue", href: "/vayon/analytics/sales", action: "Review sales results", icon: CircleDollarSign },
   { title: "Commission", href: "/vayon/deals", action: "Review transaction values", icon: CircleDollarSign },
   { title: "Today's Viewings", href: "/vayon/calendar/site-visits", action: "Schedule a viewing", icon: CalendarDays },
   { title: "Upcoming Appointments", href: "/vayon/calendar", action: "Open calendar", icon: CalendarDays },
@@ -22,20 +22,20 @@ const overviewCards = [
 export function GrowthOverview({ userName }: { readonly userName: string }) {
   return <div className="space-y-6">
     <section className="rounded-3xl border border-vds-accent-border bg-gradient-to-br from-vds-primary-soft via-vds-surface to-vds-accent-soft p-6 sm:p-8" aria-labelledby="growth-overview-title">
-      <p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Real Estate Growth Center</p>
+      <p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Marketing Performance</p>
       <h2 id="growth-overview-title" className="mt-3 text-2xl font-semibold sm:text-4xl">Good morning, {userName}. Turn property activity into your next transaction.</h2>
-      <p className="mt-3 max-w-3xl text-sm leading-6 text-vds-muted">Prioritize listings, buyers, sellers, campaigns, viewings, and offers from one evidence-backed workspace.</p>
+      <p className="mt-3 max-w-3xl text-sm leading-6 text-vds-muted">Review what brings buyer enquiries, then choose where to focus your next campaign.</p>
       <ButtonLink href="/vayon/growth/lead-generation" className="mt-5">Plan lead generation<ArrowRight className="size-4" aria-hidden="true" /></ButtonLink>
     </section>
     <section aria-labelledby="real-estate-growth-signals">
       <h2 id="real-estate-growth-signals" className="text-xl font-semibold">Real estate growth signals</h2>
-      <p className="mt-1 text-sm text-vds-muted">Metrics appear only when workspace-scoped evidence is available.</p>
+      <p className="mt-1 text-sm text-vds-muted">Figures appear when your business records support each measure.</p>
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {overviewCards.map(({ title, href, action, icon: Icon }) => <article key={title} className="rounded-2xl border border-vds-border bg-vds-surface p-5">
           <Icon className="size-5 text-vds-primary" aria-hidden="true" />
           <h3 className="mt-4 font-semibold">{title}</h3>
-          <p className="mt-2 text-2xl font-semibold text-vds-muted">Unavailable</p>
-          <p className="mt-1 text-xs leading-5 text-vds-subtle">No verified workspace data is available for this signal.</p>
+          <p className="mt-2 text-2xl font-semibold text-vds-muted">No figures yet</p>
+          <p className="mt-1 text-xs leading-5 text-vds-subtle">Use the action below to record or review the activity behind this measure.</p>
           <ButtonLink href={href} variant="ghost" size="sm" className="mt-3 px-0">{action}<ArrowRight className="size-3" aria-hidden="true" /></ButtonLink>
         </article>)}
       </div>

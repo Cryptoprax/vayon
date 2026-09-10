@@ -3,4 +3,4 @@ import type { WorkspaceRoleCode } from "@/features/platform/organization/config/
 
 export interface ShellNavigationItem { readonly label: string; readonly href?: string; readonly icon: LucideIcon; readonly disabled?: boolean; readonly description?: string }
 export interface ShellNavigationGroup { readonly id: string; readonly label: string; readonly icon: LucideIcon; readonly items: readonly ShellNavigationItem[]; readonly developer?: boolean }
-export interface ShellIdentity { readonly userName: string; readonly workspaceName: string; readonly workspaceLogo?: string; readonly organizationDescription?: string; readonly demoWorkspace?: "aurora"; readonly workspaceRole?: WorkspaceRoleCode }
+export interface ShellIdentity { readonly historyScope?: string; readonly userName: string; readonly workspaceName: string; readonly workspaceLogo?: string; readonly organizationDescription?: string; readonly demoWorkspace?: "aurora"; readonly workspaceRole?: WorkspaceRoleCode }

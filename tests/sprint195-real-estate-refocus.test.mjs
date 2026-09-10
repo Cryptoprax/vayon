@@ -6,9 +6,9 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf
 
 test("customer navigation uses real estate terminology and founder tools use protected routes", () => {
   const navigation = read("features/vayon/product-shell/navigation.ts");
-  for (const label of ["Dashboard", "Properties", "Leads", "Clients", "Agencies / Builders", "Transactions", "Real Estate Approval Center", "Lead Generation", "Listing Performance", "Buyer Intelligence", "Seller Intelligence", "Property SEO", "Referral Network", "Market Intelligence", "AI Assistant"])
+  for (const label of ["Dashboard", "Properties", "Leads", "Clients", "Companies", "Deals", "Approvals", "Lead Generation", "Listing Performance", "Buyer Intelligence", "Seller Intelligence", "Property SEO", "Referral Network", "Market Intelligence", "AI Assistant"])
     assert.match(navigation, new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-  for (const label of ["Workflow Designer", "Platform Analytics", "Investor Relations", "Platform Marketing", "Cross Industry Templates", "Product Intelligence", "AI Playground", "Feature Flags", "Enterprise Management", "Platform Settings"])
+  for (const label of ["Workflow Designer", "Platform Analytics", "Investor Relations", "Platform Marketing", "Workflow templates", "Product Intelligence", "AI Playground", "Feature Flags", "Enterprise Management", "Platform Settings"])
     assert.match(navigation, new RegExp(label));
 });
 
@@ -24,7 +24,7 @@ test("real estate overview is actionable without fabricated metrics", () => {
   const overview = read("features/vayon/growth-intelligence/GrowthOverview.tsx");
   for (const metric of ["New Leads", "Active Buyers", "New Sellers", "Properties Listed", "Properties Sold", "Properties Rented", "Conversion Rate", "Revenue", "Commission", "Today's Viewings", "Upcoming Appointments", "Pending Offers", "Hot Leads", "Cold Leads", "Agent Performance"])
     assert.match(overview, new RegExp(metric));
-  assert.match(overview, />Unavailable</);
+  assert.match(overview, />No figures yet</);
   assert.doesNotMatch(overview, /value:\s*["'`]?[0-9]/);
 });
 

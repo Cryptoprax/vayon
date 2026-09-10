@@ -2,7 +2,7 @@
 import { Button } from "@/features/platform/design-system";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Clock3,
   Command,
@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import type { NavigationItem } from "@/features/platform/builder/types";
 import { defaultAdaptiveSuggestions } from "../config/adaptive-suggestions";
-import { quickCreateActions } from "../config/quick-create";
+import { searchWorkspaceRecords } from "../actions/search.actions";
 import type {
   AdaptiveSuggestion,
   UniversalBarMode,
@@ -26,7 +26,7 @@ import type {
 } from "../domain/contracts";
 import { StaticNavigationSearchProvider } from "../providers/static-navigation.provider";
 import { DeterministicIntentRouter } from "../services/deterministic-intent-router";
-import { ProviderNeutralUniversalSearch } from "../services/universal-search.service";
+import { ProviderNeutralUniversalSearch, rankUniversalResults } from "../services/universal-search.service";
 import { LocalUniversalBarHistory } from "../storage/local-history.store";
 import { UniversalPreviewCard } from "./UniversalPreviewCard";
 import { AuroraCrmSearchProvider } from "@/features/vayon/demo-workspace/crm-network/search.provider";
@@ -64,23 +64,28 @@ const scopes: readonly UniversalSearchScope[] = [
 
 export function UniversalBar({
   navigation,
+  historyScope,
   suggestions = defaultAdaptiveSuggestions,
   includeAuroraCrm = false,
 }: {
+  readonly historyScope?: string;
   readonly navigation: readonly NavigationItem[];
   readonly suggestions?: readonly AdaptiveSuggestion[];
   readonly includeAuroraCrm?: boolean;
 }) {
+  const path = usePathname();
+  const aiContext = path.startsWith("/vayon/ai") || path.startsWith("/vayon/intelligence");
   const router = useRouter(),
     trigger = useRef<HTMLButtonElement>(null),
     input = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false),
-    [mode, setMode] = useState<UniversalBarMode>("search"),
+    [requestedMode, setMode] = useState<UniversalBarMode>("search"),
     [query, setQuery] = useState(""),
     [active, setActive] = useState(0),
     [suggestionIndex, setSuggestionIndex] = useState(0),
     [historyVersion, setHistoryVersion] = useState(0);
-  const history = useMemo(() => new LocalUniversalBarHistory(), []),
+  const mode = requestedMode === "ask" && !aiContext ? "search" : requestedMode;
+  const history = useMemo(() => new LocalUniversalBarHistory(historyScope), [historyScope]),
     intentRouter = useMemo(() => new DeterministicIntentRouter(), []),
     search = useMemo(
       () =>
@@ -97,10 +102,24 @@ export function UniversalBar({
         ),
       [includeAuroraCrm, navigation],
     );
+  const [commandNotice, setCommandNotice] = useState("");
+  const [live, setLive] = useState<{ query: string; results: UniversalBarResult[]; partial: boolean }>({ query: "", results: [], partial: false });
+  const permitted = (href: string) => navigation.some(item => item.visible && item.href && (href.split("?")[0] === item.href || href.startsWith(item.href + "/")));
+  const contextualSuggestions = suggestions.filter(item => item.href ? permitted(item.href) && (!item.href.includes("/growth") || path.includes("/growth")) && (!item.href.includes("/platform") || path.includes("/platform")) : item.id !== "morning-brief" || aiContext);
   const intent = useMemo(
     () => intentRouter.resolve(query),
     [intentRouter, query],
   );
+  useEffect(() => {
+    if (!open || includeAuroraCrm || mode !== "search" || intent.type !== "search" || intent.query.length < 2) return;
+    let cancelled = false;
+    const timer = window.setTimeout(() => {
+      searchWorkspaceRecords(intent.query).then(response => {
+        if (!cancelled) setLive({ query: intent.query, ...response });
+      }).catch(() => { if (!cancelled) setLive({ query: intent.query, results: [], partial: true }); });
+    }, 350);
+    return () => { cancelled = true; window.clearTimeout(timer); };
+  }, [open, includeAuroraCrm, mode, intent.query, intent.type]);
   const results = useMemo(() => {
     void historyVersion;
     if (mode === "ask") return [];
@@ -109,12 +128,16 @@ export function UniversalBar({
         .list(intent.type === "recent" ? "recently-opened" : "favorites")
         .filter((item) => item.href)
         .map(historyResult);
-    if (mode === "actions" && !intent.query) return quickCreateActions;
-    const found = search.search({ query: intent.query, scopes, limit: 18 });
+    if (mode === "actions" && !intent.query) return search.search({ query: "create", scopes, limit: 30 }).filter(item => item.kind === "quick-create");
+    const local = search.search({ query: intent.query, scopes, limit: 18 });
+    const records = open && mode === "search" && intent.type === "search" && live.query === intent.query ? live.results : [];
+    const command = intent.query ? resolveOperatingSystemCommand(query) : undefined;
+    const workflow: UniversalBarResult[] = command && command.intent !== "ask-workforce" ? [{ id: "workflow-command", label: "Prepare: " + query, description: "Open the workflow to review your request", href: command.route, scope: "workflows", kind: "quick-create", keywords: [] }] : [];
+    const found = rankUniversalResults([...records, ...local, ...workflow], query, history.list());
     return intent.type === "create" || mode === "actions"
       ? found.filter((item) => item.kind === "quick-create")
       : found;
-  }, [history, historyVersion, intent, mode, search]);
+  }, [history, historyVersion, intent, mode, search, live, query, open]).filter(result => permitted(result.href));
   const selected = results[active];
 
   useEffect(() => {
@@ -135,13 +158,13 @@ export function UniversalBar({
     if (open) requestAnimationFrame(() => input.current?.focus());
   }, [open]);
   useEffect(() => {
-    if (!open || query || suggestions.length < 2) return;
+    if (!open || query || contextualSuggestions.length < 2) return;
     const timer = window.setInterval(
-      () => setSuggestionIndex((index) => (index + 1) % suggestions.length),
+      () => setSuggestionIndex((index) => (index + 1) % contextualSuggestions.length),
       4000,
     );
     return () => window.clearInterval(timer);
-  }, [open, query, suggestions.length]);
+  }, [open, query, contextualSuggestions.length]);
 
   function close() {
     setOpen(false);
@@ -218,6 +241,8 @@ export function UniversalBar({
   }
   function openCopilot(prompt: string) {
     const command = resolveOperatingSystemCommand(prompt);
+    if (!permitted(command.route)) { setCommandNotice("This workflow is not available in your workspace. Open a CRM record to review your next steps."); return; }
+    setCommandNotice("");
     window.dispatchEvent(
       new CustomEvent("vayon:copilot:open", { detail: { prompt, command } }),
     );
@@ -262,11 +287,13 @@ export function UniversalBar({
           }}
         >
           <section
+            onKeyDown={(event) => { if (event.key !== "Tab") return; const nodes = event.currentTarget.querySelectorAll<HTMLElement>('button:not([disabled]), input, a[href], [tabindex="0"]'); const first = nodes[0], last = nodes[nodes.length - 1]; if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); } else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); } }}
             role="dialog"
             aria-modal="true"
             aria-label="Vayon Universal Bar"
             className="mx-auto max-h-[82vh] w-full max-w-5xl overflow-hidden rounded-[1.75rem] border border-vds-border bg-vds-surface/95 shadow-[0_35px_100px_var(--vds-overlay)] ring-1 ring-vds-focus/[.04]"
           >
+            {commandNotice && <p role="status" className="px-5 py-3 text-sm text-vds-muted">{commandNotice}</p>}
             <header className="border-b border-vds-border/[.07]">
               <div className="flex items-center gap-3 px-4 sm:px-5">
                 <Command
@@ -311,7 +338,7 @@ export function UniversalBar({
                 role="tablist"
                 aria-label="Universal Bar modes"
               >
-                {(["search", "actions", "ask"] as const).map((item) => (
+                {(aiContext ? ["search", "actions", "ask"] as const : ["search", "actions"] as const).map((item) => (
                   <Button
                     variant="control"
                     key={item}
@@ -324,7 +351,7 @@ export function UniversalBar({
                     }}
                     className={`rounded-lg px-3 py-1.5 text-xs capitalize transition ${mode === item ? "bg-vds-primary-soft text-vds-primary" : "text-vds-subtle hover:bg-vds-surface/[.04] hover:text-vds-secondary"} disabled:cursor-not-allowed disabled:opacity-50`}
                   >
-                    {item === "ask" ? "Ask Copilot" : item}
+                    {item === "ask" ? "AI Assistant" : item}
                   </Button>
                 ))}
                 <span className="ml-auto hidden text-[10px] text-vds-subtle sm:block">
@@ -338,9 +365,9 @@ export function UniversalBar({
                   <span className="mx-auto grid size-12 place-items-center rounded-2xl bg-vds-accent/[.08] text-vds-accent">
                     <Sparkles aria-hidden="true" />
                   </span>
-                  <h2 className="mt-4 font-semibold">Ask VAYON Copilot</h2>
+                  <h2 className="mt-4 font-semibold">Ask AI Assistant</h2>
                   <p className="mt-2 text-sm text-vds-muted">
-                    Press Enter to send this request to the context-aware Copilot. Actions remain user initiated.
+                    Press Enter to send this request to the AI Assistant. Actions remain user initiated.
                   </p>
                   <div className="mt-5 flex flex-wrap justify-center gap-2">
                     {["Summarize today's activity", "Create a proposal", "Open CRM"].map((prompt) => (
@@ -359,13 +386,13 @@ export function UniversalBar({
                 >
                   {query && (
                     <p className="px-2 pb-3 text-[10px] uppercase tracking-[.16em] text-vds-subtle">
-                      Deterministic intent: {intent.type}
+                      Search your workspace
                     </p>
                   )}
                   {!query && mode === "search" && (
                     <EmptyExperience
-                      history={history.list()}
-                      suggestion={suggestions[suggestionIndex]}
+                      history={history.list().filter(item => !item.href || permitted(item.href))}
+                      suggestion={contextualSuggestions[suggestionIndex % contextualSuggestions.length]}
                       onSuggestion={chooseSuggestion}
                       onHistory={(item) => choose(historyResult(item))}
                     />
@@ -432,13 +459,14 @@ export function UniversalBar({
                       </div>
                       </div>
                     ))}
+                  {live.query === intent.query && live.partial && <p role="status" className="px-3 py-2 text-xs text-vds-muted">Some records could not be searched. You can still open their workspace.</p>}
                   {query && !results.length && (
                     <div className="p-10 text-center">
                       <p className="text-sm text-vds-muted">
-                        No local provider results.
+                        No matches yet. Try a name, property title, or action.
                       </p>
                       <p className="mt-2 text-xs text-vds-subtle">
-                        No database or indexing engine is connected.
+                        Try a client name, property address, or an action such as Create Property.
                       </p>
                     </div>
                   )}
@@ -453,7 +481,7 @@ export function UniversalBar({
   );
 }
 function searchGroup(scope: UniversalSearchScope) {
-  const labels: Partial<Record<UniversalSearchScope, string>> = { properties: "Properties", contacts: "Clients", leads: "Leads", employees: "Agents", companies: "Builders & Developers", deals: "Transactions", documents: "Documents", projects: "Communities", inventory: "Properties" };
+  const labels: Partial<Record<UniversalSearchScope, string>> = { properties: "Properties", contacts: "Clients", leads: "Leads", employees: "AI Team", companies: "Companies", deals: "Deals", documents: "Documents", projects: "Communities", inventory: "Properties" };
   return labels[scope] ?? "VAYON";
 }
 
@@ -505,6 +533,7 @@ function EmptyExperience({
         items={recent}
         onSelect={onHistory}
       />
+      <HistoryGroup title="Frequently used" icon={<Star className="size-4" />} items={history.filter(item => item.kind === "recently-opened" && (item.visits ?? 0) > 1).toSorted((a,b) => (b.visits ?? 0) - (a.visits ?? 0)).slice(0,4)} onSelect={onHistory} />
       <HistoryGroup
         title="Pinned & favorites"
         icon={<Star className="size-4" />}
@@ -513,7 +542,7 @@ function EmptyExperience({
       />
       {!recent.length && !saved.length && (
         <p className="rounded-2xl border border-dashed border-vds-border/[.08] p-6 text-center text-xs text-vds-subtle">
-          Your local Universal Bar history will appear here.
+          Your recent pages and saved items will appear here.
         </p>
       )}
     </div>

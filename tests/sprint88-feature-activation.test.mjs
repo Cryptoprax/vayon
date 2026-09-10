@@ -7,7 +7,7 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf
 test("production-ready capabilities are placed in customer or founder navigation", () => {
   const navigation = read("features/vayon/product-shell/navigation.ts");
   for (const value of [
-    "Growth",
+    "Marketing Performance",
     "Lead Generation",
     "AI Assistant",
     "Knowledge Engine",

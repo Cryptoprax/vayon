@@ -48,7 +48,7 @@ test("global navigation exposes certified cross-module transitions", () => {
     "/vayon/analytics",
     "/vayon/workflows",
     "/vayon/approvals",
-    "/vayon/ai/workforce/sales-ai",
+    "/vayon/ai/workforce",
     "/vayon/admin",
     "/vayon/system",
   ])

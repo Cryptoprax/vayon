@@ -14,9 +14,9 @@ test("all static internal navigation destinations resolve to application routes"
 test("creative navigation resolves or renders a branded availability state", () => {
   const navigation = read("features/vayon/product-shell/navigation.ts");
   const routes = [
-    ["Creative operating system", "app/vayon/creative/page.tsx"],
-    ["Creative operating model", "app/vayon/creative/cloud/page.tsx"],
-    ["Production orchestration", "app/vayon/creative/pipelines/page.tsx"],
+    ["Create marketing assets", "app/vayon/creative/page.tsx"],
+    ["Creative Cloud", "app/vayon/creative/cloud/page.tsx"],
+    ["Creative Pipelines", "app/vayon/creative/pipelines/page.tsx"],
   ];
   for (const [label, path] of routes) {
     assert.match(navigation, new RegExp(label, "i"));
@@ -26,7 +26,7 @@ test("creative navigation resolves or renders a branded availability state", () 
   }
   const state = read("features/vayon/empty-states/FeatureAvailabilityState.tsx");
   assert.match(state, /Coming Soon/);
-  assert.match(state, /Join Early Access/);
+  assert.match(state, /Ask about availability/);
 });
 
 test("first workspace keeps atomic defaults and exposes guided progress", () => {

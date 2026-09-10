@@ -13,7 +13,7 @@ test("enterprise dashboard route uses the tenant scoped server service", () => {
 
 test("dashboard composes every requested business surface", () => {
   const shell = read("features/vayon/dashboard/components/DashboardShell.tsx");
-  for (const component of ["AICommandBar", "RealEstateKpiGrid", "RevenueChartLoader", "PipelineBoard", "AIWorkforceGrid", "CalendarWidget", "ActivityTimeline", "WhatsAppConversations", "QuickActions"]) assert.match(shell, new RegExp(component));
+  for (const component of ["RealEstateKpiGrid", "RevenueChartLoader", "PipelineBoard", "AIWorkforceGrid", "CalendarWidget", "ActivityTimeline", "WhatsAppConversations"]) assert.match(shell, new RegExp(component));
 });
 
 test("dashboard data remains tenant scoped without fallback metrics", () => {

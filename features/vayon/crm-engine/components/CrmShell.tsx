@@ -1,19 +1,4 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
-const tabs = [
-  ["Overview", "/vayon/crm"],
-  ["Organizations", "/vayon/settings/organization"],
-  ["Leads", "/vayon/crm/leads"],
-  ["Customers", "/vayon/crm/customers"],
-  ["Companies", "/vayon/crm/companies"],
-  ["Contacts", "/vayon/crm/contacts"],
-  ["Opportunities", "/vayon/deals/pipeline"],
-  ["Activities", "/vayon/crm/activities"],
-  ["Tasks", "/vayon/tasks"],
-  ["Meetings", "/vayon/meetings"],
-  ["Files", "/vayon/storage"],
-  ["Reports", "/vayon/analytics/sales"],
-] as const;
 export function CrmShell({
   title,
   description,
@@ -39,20 +24,6 @@ export function CrmShell({
         </div>
         {actions}
       </header>
-      <nav
-        aria-label="CRM sections"
-        className="flex gap-1 overflow-x-auto border-b border-vds-border py-3"
-      >
-        {tabs.map(([label, href]) => (
-          <Link
-            key={href}
-            href={href}
-            className="vds-focus shrink-0 rounded-lg px-3 py-2 text-sm text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"
-          >
-            {label}
-          </Link>
-        ))}
-      </nav>
       <div className="py-6">{children}</div>
     </main>
   );

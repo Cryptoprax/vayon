@@ -16,7 +16,7 @@ test("shared errors explain recovery and onboarding diagnostics remain developme
   const state = read("features/vayon/components/RouteStates.tsx");
   const root = read("app/error.tsx");
   const onboarding = read("app/onboarding/error.tsx");
-  for (const value of ["temporarily unavailable", "records have not been changed", "Try again", "Dashboard", "Support"]) assert.match(state, new RegExp(value));
+  for (const value of ["We could not load this view", "check the record before trying again", "Try again", "Dashboard", "Support"]) assert.match(state, new RegExp(value));
   assert.match(root, /RouteError/);
   assert.doesNotMatch(state + root, /error\.message|error\.stack|digest|JSON\.stringify/);
   assert.match(onboarding, /NODE_ENV === "development"/);

@@ -10,7 +10,7 @@ test("dashboard welcome and workspace completion are workspace scoped and eviden
   assert.match(welcome, /workspaceName/);
   assert.match(welcome, /localStorage\.setItem/);
   assert.match(welcome, /Skip/);
-  for (const value of ["Workspace completion", "percentage", "properties", "leads", "whatsappConversations", "activities"])
+  for (const value of ["Suggested next step", "Your first steps", "properties", "leads", "whatsappConversations", "activities"])
     assert.match(completion, new RegExp(value));
 });
 
@@ -25,7 +25,7 @@ test("major customer modules use shared skeleton loading boundaries", () => {
 
 test("recoverable errors are friendly and never expose technical details", () => {
   const states = read("features/vayon/components/RouteStates.tsx");
-  for (const value of ["Retry", "Go Back", "Contact Support", "Your data is safe"])
+  for (const value of ["Retry", "Go Back", "Contact Support", "check the record before trying again"])
     assert.match(states, new RegExp(value));
   assert.doesNotMatch(states, /error\.message|error\.stack|NEXT_REDIRECT|supabase|database error/i);
 });
