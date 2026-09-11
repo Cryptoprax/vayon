@@ -1,0 +1,2258 @@
+{
+  "generatedAt": "2026-09-11T20:28:48.171Z",
+  "state": "Needs Verification",
+  "inventory": [
+    {
+      "group": "Today's work",
+      "label": "Dashboard",
+      "href": "/vayon/dashboard",
+      "surface": "sidebar",
+      "canonical": "/vayon/dashboard",
+      "page": "app/vayon/dashboard/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Sell & follow up",
+      "label": "Properties",
+      "href": "/vayon/properties",
+      "surface": "sidebar",
+      "canonical": "/vayon/properties",
+      "page": "app/vayon/properties/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Sell & follow up",
+      "label": "Leads",
+      "href": "/vayon/leads",
+      "surface": "sidebar",
+      "canonical": "/vayon/leads",
+      "page": "app/vayon/leads/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Sell & follow up",
+      "label": "Clients",
+      "href": "/vayon/crm/contacts",
+      "surface": "sidebar",
+      "canonical": "/vayon/crm/contacts",
+      "page": "app/vayon/crm/contacts/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Sell & follow up",
+      "label": "Companies",
+      "href": "/vayon/crm/companies",
+      "surface": "sidebar",
+      "canonical": "/vayon/crm/companies",
+      "page": "app/vayon/crm/companies/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Sell & follow up",
+      "label": "Deals",
+      "href": "/vayon/deals",
+      "surface": "sidebar",
+      "canonical": "/vayon/deals",
+      "page": "app/vayon/deals/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Sell & follow up",
+      "label": "Inbox",
+      "href": "/vayon/notifications",
+      "surface": "sidebar",
+      "canonical": "/vayon/notifications",
+      "page": "app/vayon/notifications/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Sell & follow up",
+      "label": "Schedule Viewing",
+      "href": "/vayon/site-visits",
+      "surface": "sidebar",
+      "canonical": "/vayon/site-visits",
+      "page": "app/vayon/site-visits/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Sell & follow up",
+      "label": "Calendar",
+      "href": "/vayon/calendar",
+      "surface": "sidebar",
+      "canonical": "/vayon/calendar",
+      "page": "app/vayon/calendar/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Sell & follow up",
+      "label": "Tasks",
+      "href": "/vayon/tasks",
+      "surface": "sidebar",
+      "canonical": "/vayon/tasks",
+      "page": "app/vayon/tasks/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Sell & follow up",
+      "label": "Timeline",
+      "href": "/vayon/timeline",
+      "surface": "sidebar",
+      "canonical": "/vayon/timeline",
+      "page": "app/vayon/timeline/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Sell & follow up",
+      "label": "Communications",
+      "href": "/vayon/communications",
+      "surface": "sidebar",
+      "canonical": "/vayon/communications",
+      "page": "app/vayon/communications/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Campaigns",
+      "href": "/vayon/creative/campaigns",
+      "surface": "sidebar",
+      "canonical": "/vayon/creative/campaigns",
+      "page": "app/vayon/creative/campaigns/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Create marketing assets",
+      "href": "/vayon/creative",
+      "surface": "sidebar",
+      "canonical": "/vayon/creative",
+      "page": "app/vayon/creative/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Brand assets",
+      "href": "/vayon/creative/brand",
+      "surface": "sidebar",
+      "canonical": "/vayon/creative/brand",
+      "page": "app/vayon/creative/brand/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Image",
+      "href": "/vayon/creative/images",
+      "surface": "sidebar",
+      "canonical": "/vayon/creative/images",
+      "page": "app/vayon/creative/images/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Video",
+      "href": "/vayon/creative/videos",
+      "surface": "sidebar",
+      "canonical": "/vayon/creative/videos",
+      "page": "app/vayon/creative/videos/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Document",
+      "href": "/vayon/creative/documents",
+      "surface": "sidebar",
+      "canonical": "/vayon/creative/documents",
+      "page": "app/vayon/creative/documents/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Marketing assets",
+      "href": "/vayon/creative/assets",
+      "surface": "sidebar",
+      "canonical": "/vayon/creative/assets",
+      "page": "app/vayon/creative/assets/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Templates",
+      "href": "/vayon/creative/templates",
+      "surface": "sidebar",
+      "canonical": "/vayon/creative/templates",
+      "page": "app/vayon/creative/templates/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Publishing calendar",
+      "href": "/vayon/creative/calendar",
+      "surface": "sidebar",
+      "canonical": "/vayon/creative/calendar",
+      "page": "app/vayon/creative/calendar/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Marketing Performance",
+      "href": "/vayon/growth",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth",
+      "page": "app/vayon/growth/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Lead Generation",
+      "href": "/vayon/growth/lead-generation",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/lead-generation",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Buyer Intelligence",
+      "href": "/vayon/growth/buyer-intelligence",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/buyer-intelligence",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Seller Intelligence",
+      "href": "/vayon/growth/seller-intelligence",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/seller-intelligence",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Property SEO",
+      "href": "/vayon/growth/property-seo",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/property-seo",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Referral Network",
+      "href": "/vayon/growth/referral-network",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/referral-network",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Market properties",
+      "label": "Market Intelligence",
+      "href": "/vayon/growth/market-intelligence",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/market-intelligence",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "AI Assistant",
+      "label": "AI Assistant",
+      "href": "/vayon/intelligence",
+      "surface": "sidebar",
+      "canonical": "/vayon/intelligence",
+      "page": "app/vayon/intelligence/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "AI Assistant",
+      "label": "My AI Team",
+      "href": "/vayon/ai/workforce",
+      "surface": "sidebar",
+      "canonical": "/vayon/ai/workforce",
+      "page": "app/vayon/ai/workforce/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "AI Assistant",
+      "label": "Today's AI Tasks",
+      "href": "/vayon/ai/work-queue",
+      "surface": "sidebar",
+      "canonical": "/vayon/ai/work-queue",
+      "page": "app/vayon/ai/work-queue/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "AI Assistant",
+      "label": "Suggestions",
+      "href": "/vayon/ai/collaboration",
+      "surface": "sidebar",
+      "canonical": "/vayon/ai/collaboration",
+      "page": "app/vayon/ai/collaboration/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "AI Assistant",
+      "label": "Automations",
+      "href": "/vayon/ai/automations",
+      "surface": "sidebar",
+      "canonical": "/vayon/ai/automations",
+      "page": "app/vayon/ai/automations/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "AI Assistant",
+      "label": "Approvals",
+      "href": "/vayon/approvals",
+      "surface": "sidebar",
+      "canonical": "/vayon/approvals",
+      "page": "app/vayon/approvals/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "AI Assistant",
+      "label": "AI Goals",
+      "href": "/vayon/ai/goals",
+      "surface": "sidebar",
+      "canonical": "/vayon/ai/goals",
+      "page": "app/vayon/ai/goals/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "AI Assistant",
+      "label": "History",
+      "href": "/vayon/ai/history",
+      "surface": "sidebar",
+      "canonical": "/vayon/ai/history",
+      "page": "app/vayon/ai/history/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "AI Assistant",
+      "label": "Workflow templates",
+      "href": "/vayon/workflows",
+      "surface": "sidebar",
+      "canonical": "/vayon/workflows",
+      "page": "app/vayon/workflows/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Understand performance",
+      "label": "Analytics",
+      "href": "/vayon/analytics",
+      "surface": "sidebar",
+      "canonical": "/vayon/analytics",
+      "page": "app/vayon/analytics/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Understand performance",
+      "label": "Performance",
+      "href": "/vayon/analytics/sales",
+      "surface": "sidebar",
+      "canonical": "/vayon/analytics/sales",
+      "page": "app/vayon/analytics/sales/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Understand performance",
+      "label": "Revenue & Forecasting",
+      "href": "/vayon/analytics/executive",
+      "surface": "sidebar",
+      "canonical": "/vayon/analytics/executive",
+      "page": "app/vayon/analytics/executive/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Understand performance",
+      "label": "Listing Performance",
+      "href": "/vayon/growth/listing-performance",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/listing-performance",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Understand performance",
+      "label": "Marketing Analytics",
+      "href": "/vayon/growth/marketing-analytics",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/marketing-analytics",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Understand performance",
+      "label": "Advertising Performance",
+      "href": "/vayon/growth/advertising-performance",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/advertising-performance",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Understand performance",
+      "label": "Social Performance",
+      "href": "/vayon/growth/social-performance",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/social-performance",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Understand performance",
+      "label": "Reports",
+      "href": "/vayon/growth/reports",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/reports",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Workspace",
+      "href": "/vayon/settings/organization",
+      "surface": "sidebar",
+      "canonical": "/vayon/settings/organization",
+      "page": "app/vayon/settings/organization/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Team Members",
+      "href": "/vayon/settings/members",
+      "surface": "sidebar",
+      "canonical": "/vayon/settings/members",
+      "page": "app/vayon/settings/members/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Integrations",
+      "href": "/vayon/settings/integrations",
+      "surface": "sidebar",
+      "canonical": "/vayon/settings/integrations",
+      "page": "app/vayon/settings/integrations/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Billing",
+      "href": "/vayon/settings/billing",
+      "surface": "sidebar",
+      "canonical": "/vayon/settings/billing",
+      "page": "app/vayon/settings/billing/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Preferences",
+      "href": "/vayon/settings/appearance",
+      "surface": "sidebar",
+      "canonical": "/vayon/settings/appearance",
+      "page": "app/vayon/settings/appearance/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Workflow Designer",
+      "href": "/platform/founder/workflows",
+      "surface": "sidebar",
+      "canonical": "/platform/founder/workflows",
+      "page": "app/platform/founder/workflows/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Platform Analytics",
+      "href": "/platform/system-analytics",
+      "surface": "sidebar",
+      "canonical": "/platform/system-analytics",
+      "page": "app/platform/system-analytics/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Investor Relations",
+      "href": "/vayon/growth/investor-relations",
+      "surface": "sidebar",
+      "canonical": "/vayon/growth/investor-relations",
+      "page": "app/vayon/growth/[section]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Platform Marketing",
+      "href": "/platform/founder/marketing",
+      "surface": "sidebar",
+      "canonical": "/platform/founder/marketing",
+      "page": "app/platform/founder/marketing/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Product Intelligence",
+      "href": "/vayon/settings/product-intelligence",
+      "surface": "sidebar",
+      "canonical": "/vayon/settings/product-intelligence",
+      "page": "app/vayon/settings/product-intelligence/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "AI Playground",
+      "href": "/vayon/ai/playground",
+      "surface": "sidebar",
+      "canonical": "/vayon/ai/playground",
+      "page": "app/vayon/ai/playground/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Feature Flags",
+      "href": "/platform/feature-flags",
+      "surface": "sidebar",
+      "canonical": "/platform/feature-flags",
+      "page": "app/platform/feature-flags/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Enterprise Management",
+      "href": "/platform/organizations",
+      "surface": "sidebar",
+      "canonical": "/platform/organizations",
+      "page": "app/platform/organizations/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Platform Settings",
+      "href": "/platform/settings",
+      "surface": "sidebar",
+      "canonical": "/platform/settings",
+      "page": "app/platform/settings/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Founder Approval Center",
+      "href": "/vayon/founder/approvals",
+      "surface": "sidebar",
+      "canonical": "/vayon/founder/approvals",
+      "page": "app/vayon/founder/approvals/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Customer Success",
+      "href": "/vayon/customer-success",
+      "surface": "sidebar",
+      "canonical": "/vayon/customer-success",
+      "page": "app/vayon/customer-success/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Knowledge Engine",
+      "href": "/vayon/knowledge",
+      "surface": "sidebar",
+      "canonical": "/vayon/knowledge",
+      "page": "app/vayon/knowledge/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "Administration",
+      "href": "/vayon/admin",
+      "surface": "sidebar",
+      "canonical": "/vayon/admin",
+      "page": "app/vayon/admin/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "group": "Configure workspace",
+      "label": "System Diagnostics",
+      "href": "/vayon/system",
+      "surface": "sidebar",
+      "canonical": "/vayon/system",
+      "page": "app/vayon/system/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Export Report",
+      "href": "/vayon/analytics/executive",
+      "surface": "quick action",
+      "canonical": "/vayon/analytics/executive",
+      "page": "app/vayon/analytics/executive/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Generate Brochure",
+      "href": "/vayon/creative/documents",
+      "surface": "quick action",
+      "canonical": "/vayon/creative/documents",
+      "page": "app/vayon/creative/documents/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Invite Team Members",
+      "href": "/vayon/settings/members",
+      "surface": "quick action",
+      "canonical": "/vayon/settings/members",
+      "page": "app/vayon/settings/members/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Schedule Viewing",
+      "href": "/vayon/site-visits",
+      "surface": "quick action",
+      "canonical": "/vayon/site-visits",
+      "page": "app/vayon/site-visits/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Send WhatsApp",
+      "href": "/vayon/communications",
+      "surface": "quick action",
+      "canonical": "/vayon/communications",
+      "page": "app/vayon/communications/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Create Lead",
+      "href": "/vayon/leads/new",
+      "surface": "quick action",
+      "canonical": "/vayon/leads/new",
+      "page": "app/vayon/leads/new/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Create Deal",
+      "href": "/vayon/deals/new",
+      "surface": "quick action",
+      "canonical": "/vayon/deals/new",
+      "page": "app/vayon/deals/new/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Create Property",
+      "href": "/vayon/properties/new",
+      "surface": "quick action",
+      "canonical": "/vayon/properties/new",
+      "page": "app/vayon/properties/new/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Create Campaign",
+      "href": "/vayon/creative/campaigns",
+      "surface": "quick action",
+      "canonical": "/vayon/creative/campaigns",
+      "page": "app/vayon/creative/campaigns/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Create Meeting",
+      "href": "/vayon/meetings",
+      "surface": "quick action",
+      "canonical": "/vayon/meetings",
+      "page": "app/vayon/meetings/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Create Task",
+      "href": "/vayon/tasks",
+      "surface": "quick action",
+      "canonical": "/vayon/tasks",
+      "page": "app/vayon/tasks/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Clients",
+      "href": "/vayon/crm/contacts",
+      "surface": "quick action",
+      "canonical": "/vayon/crm/contacts",
+      "page": "app/vayon/crm/contacts/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Create Company",
+      "href": "/vayon/crm/companies/new",
+      "surface": "quick action",
+      "canonical": "/vayon/crm/companies/new",
+      "page": "app/vayon/crm/companies/new/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Create Document",
+      "href": "/vayon/creative/documents",
+      "surface": "quick action",
+      "canonical": "/vayon/creative/documents",
+      "page": "app/vayon/creative/documents/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Generate Image",
+      "href": "/vayon/creative/images",
+      "surface": "quick action",
+      "canonical": "/vayon/creative/images",
+      "page": "app/vayon/creative/images/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Generate Video",
+      "href": "/vayon/creative/videos",
+      "surface": "quick action",
+      "canonical": "/vayon/creative/videos",
+      "page": "app/vayon/creative/videos/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Create AI Employee",
+      "href": "/onboarding/ai-workforce",
+      "surface": "quick action",
+      "canonical": "/onboarding/ai-workforce",
+      "page": "app/onboarding/[setup]/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Dynamic page: runtime parameters require verification",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Create Workflow",
+      "href": "/vayon/workflows",
+      "surface": "quick action",
+      "canonical": "/vayon/workflows",
+      "page": "app/vayon/workflows/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Run Workflow",
+      "href": "/vayon/workflows",
+      "surface": "quick action",
+      "canonical": "/vayon/workflows",
+      "page": "app/vayon/workflows/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Duplicate Workflow",
+      "href": "/vayon/workflows",
+      "surface": "quick action",
+      "canonical": "/vayon/workflows",
+      "page": "app/vayon/workflows/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Search Workflow",
+      "href": "/vayon/workflows",
+      "surface": "quick action",
+      "canonical": "/vayon/workflows",
+      "page": "app/vayon/workflows/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Dashboard",
+      "href": "/vayon/dashboard",
+      "surface": "builder navigation",
+      "canonical": "/vayon/dashboard",
+      "page": "app/vayon/dashboard/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Properties",
+      "href": "/vayon/properties",
+      "surface": "builder navigation",
+      "canonical": "/vayon/properties",
+      "page": "app/vayon/properties/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Leads",
+      "href": "/vayon/leads",
+      "surface": "builder navigation",
+      "canonical": "/vayon/leads",
+      "page": "app/vayon/leads/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Transactions",
+      "href": "/vayon/deals",
+      "surface": "builder navigation",
+      "canonical": "/vayon/deals",
+      "page": "app/vayon/deals/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Clients",
+      "href": "/vayon/crm/contacts",
+      "surface": "builder navigation",
+      "canonical": "/vayon/crm/contacts",
+      "page": "app/vayon/crm/contacts/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Agencies / Builders",
+      "href": "/vayon/crm/companies",
+      "surface": "builder navigation",
+      "canonical": "/vayon/crm/companies",
+      "page": "app/vayon/crm/companies/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Developers",
+      "href": "/vayon/crm/companies",
+      "surface": "builder navigation",
+      "canonical": "/vayon/crm/companies",
+      "page": "app/vayon/crm/companies/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Communities",
+      "href": "/vayon/properties/map",
+      "surface": "builder navigation",
+      "canonical": "/vayon/properties/map",
+      "page": "app/vayon/properties/map/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Locations",
+      "href": "/vayon/properties/map",
+      "surface": "builder navigation",
+      "canonical": "/vayon/properties/map",
+      "page": "app/vayon/properties/map/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Agents",
+      "href": "/vayon/analytics/sales",
+      "surface": "builder navigation",
+      "canonical": "/vayon/analytics/sales",
+      "page": "app/vayon/analytics/sales/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Documents",
+      "href": "/vayon/storage",
+      "surface": "builder navigation",
+      "canonical": "/vayon/storage",
+      "page": "app/vayon/storage/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Operations",
+      "href": "/vayon/operations",
+      "surface": "builder navigation",
+      "canonical": "/vayon/operations",
+      "page": "app/vayon/operations/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Calendar",
+      "href": "/vayon/calendar",
+      "surface": "builder navigation",
+      "canonical": "/vayon/calendar",
+      "page": "app/vayon/calendar/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Tasks",
+      "href": "/vayon/tasks",
+      "surface": "builder navigation",
+      "canonical": "/vayon/tasks",
+      "page": "app/vayon/tasks/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Communications",
+      "href": "/vayon/communications",
+      "surface": "builder navigation",
+      "canonical": "/vayon/communications",
+      "page": "app/vayon/communications/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "AI Workforce",
+      "href": "/vayon/ai",
+      "surface": "builder navigation",
+      "canonical": "/vayon/ai",
+      "page": "app/vayon/ai/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Universal Objects",
+      "href": "/vayon/objects",
+      "surface": "builder navigation",
+      "canonical": "/vayon/objects",
+      "page": "app/vayon/objects/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "AI Assistant",
+      "href": "/vayon/intelligence",
+      "surface": "builder navigation",
+      "canonical": "/vayon/intelligence",
+      "page": "app/vayon/intelligence/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Brain",
+      "href": "/vayon/brain",
+      "surface": "builder navigation",
+      "canonical": "/vayon/brain",
+      "page": "app/vayon/brain/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Cognitive",
+      "href": "/vayon/cognitive",
+      "surface": "builder navigation",
+      "canonical": "/vayon/cognitive",
+      "page": "app/vayon/cognitive/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Workforce",
+      "href": "/vayon/ai/workforce",
+      "surface": "builder navigation",
+      "canonical": "/vayon/ai/workforce",
+      "page": "app/vayon/ai/workforce/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Runtime",
+      "href": "/vayon/runtime",
+      "surface": "builder navigation",
+      "canonical": "/vayon/runtime",
+      "page": "app/vayon/runtime/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Growth",
+      "href": "/vayon/growth",
+      "surface": "builder navigation",
+      "canonical": "/vayon/growth",
+      "page": "app/vayon/growth/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Marketing",
+      "href": "/vayon/creative",
+      "surface": "builder navigation",
+      "canonical": "/vayon/creative",
+      "page": "app/vayon/creative/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Business Timeline",
+      "href": "/vayon/timeline",
+      "surface": "builder navigation",
+      "canonical": "/vayon/timeline",
+      "page": "app/vayon/timeline/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Unified Context",
+      "href": "/vayon/context",
+      "surface": "builder navigation",
+      "canonical": "/vayon/context",
+      "page": "app/vayon/context/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Configuration",
+      "href": "/vayon/settings/configuration",
+      "surface": "builder navigation",
+      "canonical": "/vayon/settings/configuration",
+      "page": "app/vayon/settings/configuration/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Appearance",
+      "href": "/vayon/settings/appearance",
+      "surface": "builder navigation",
+      "canonical": "/vayon/settings/appearance",
+      "page": "app/vayon/settings/appearance/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Billing",
+      "href": "/vayon/settings/billing",
+      "surface": "builder navigation",
+      "canonical": "/vayon/settings/billing",
+      "page": "app/vayon/settings/billing/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Organization",
+      "href": "/vayon/settings/organization",
+      "surface": "builder navigation",
+      "canonical": "/vayon/settings/organization",
+      "page": "app/vayon/settings/organization/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Members",
+      "href": "/vayon/settings/members",
+      "surface": "builder navigation",
+      "canonical": "/vayon/settings/members",
+      "page": "app/vayon/settings/members/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    },
+    {
+      "label": "Team",
+      "href": "/vayon/team",
+      "surface": "builder navigation",
+      "canonical": "/vayon/team",
+      "page": "app/vayon/team/page.tsx",
+      "exposed": true,
+      "sourceResolution": "Page exists",
+      "runtime": "Needs Verification"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/vayon/workforce",
+      "destination": "/vayon/ai/workforce",
+      "permanent": true
+    },
+    {
+      "source": "/vayon/ai/employees",
+      "destination": "/vayon/ai/workforce",
+      "permanent": true
+    },
+    {
+      "source": "/vayon/crm/leads",
+      "destination": "/vayon/leads",
+      "permanent": true
+    },
+    {
+      "source": "/vayon/notifications/inbox",
+      "destination": "/vayon/notifications",
+      "permanent": true
+    },
+    {
+      "source": "/vayon/creative-studio",
+      "destination": "/vayon/creative",
+      "permanent": true
+    },
+    {
+      "source": "/vayon/creative-studio/assets",
+      "destination": "/vayon/creative/assets",
+      "permanent": true
+    },
+    {
+      "source": "/vayon/creative-studio/templates",
+      "destination": "/vayon/creative/templates",
+      "permanent": true
+    },
+    {
+      "source": "/vayon/creative-studio/calendar",
+      "destination": "/vayon/creative/calendar",
+      "permanent": true
+    },
+    {
+      "source": "/vayon/creative-studio/wizard",
+      "destination": "/vayon/creative/campaigns",
+      "permanent": true
+    },
+    {
+      "source": "/vayon/creative-studio/packs",
+      "destination": "/vayon/creative/campaigns",
+      "permanent": true
+    }
+  ],
+  "creativeAliases": [
+    {
+      "source": "/vayon/creative/assets",
+      "destination": "/vayon/creative/assets"
+    },
+    {
+      "source": "/vayon/creative/templates",
+      "destination": "/vayon/creative/templates"
+    },
+    {
+      "source": "/vayon/creative/calendar",
+      "destination": "/vayon/creative/calendar"
+    },
+    {
+      "source": "/vayon/creative/presentations",
+      "destination": "/vayon/creative/documents"
+    },
+    {
+      "source": "/vayon/creative/landing-pages",
+      "destination": "/vayon/creative/campaigns"
+    },
+    {
+      "source": "/vayon/creative/social",
+      "destination": "/vayon/creative/campaigns"
+    },
+    {
+      "source": "/vayon/creative/email",
+      "destination": "/vayon/creative/campaigns"
+    },
+    {
+      "source": "/vayon/creative/copy",
+      "destination": "/vayon/creative/documents"
+    },
+    {
+      "source": "/vayon/creative/projects",
+      "destination": "/vayon/creative/campaigns"
+    },
+    {
+      "source": "/vayon/creative/publishing",
+      "destination": "/vayon/creative/calendar"
+    }
+  ],
+  "hiddenRoutes": [
+    "/vayon/creative/cloud",
+    "/vayon/creative/pipelines",
+    "/vayon/creative/runtime",
+    "/vayon/creative/landing-pages"
+  ],
+  "pageRedirects": [
+    {
+      "file": "app/onboarding/page.tsx",
+      "destination": "/login",
+      "canonical": "/login",
+      "page": "app/login/page.tsx"
+    },
+    {
+      "file": "app/vayon/page.tsx",
+      "destination": "/login",
+      "canonical": "/login",
+      "page": "app/login/page.tsx"
+    },
+    {
+      "file": "app/vayon/page.tsx",
+      "destination": "/onboarding",
+      "canonical": "/onboarding",
+      "page": "app/onboarding/page.tsx"
+    },
+    {
+      "file": "app/platform/launch-readiness/page.tsx",
+      "destination": "/vayon/platform/launch-readiness",
+      "canonical": "/vayon/platform/launch-readiness",
+      "page": "app/vayon/platform/launch-readiness/page.tsx"
+    },
+    {
+      "file": "app/vayon/customer-success/page.tsx",
+      "destination": "/login?next=/vayon/customer-success",
+      "canonical": "/login?next=/vayon/customer-success",
+      "page": "app/login/page.tsx"
+    },
+    {
+      "file": "app/vayon/team/page.tsx",
+      "destination": "/vayon/settings/members",
+      "canonical": "/vayon/settings/members",
+      "page": "app/vayon/settings/members/page.tsx"
+    },
+    {
+      "file": "app/vayon/admin/teams/page.tsx",
+      "destination": "/vayon/settings/teams",
+      "canonical": "/vayon/settings/teams",
+      "page": "app/vayon/settings/teams/page.tsx"
+    },
+    {
+      "file": "app/vayon/admin/users/page.tsx",
+      "destination": "/vayon/settings/members",
+      "canonical": "/vayon/settings/members",
+      "page": "app/vayon/settings/members/page.tsx"
+    },
+    {
+      "file": "app/vayon/ai/knowledge/page.tsx",
+      "destination": "/vayon/knowledge",
+      "canonical": "/vayon/knowledge",
+      "page": "app/vayon/knowledge/page.tsx"
+    },
+    {
+      "file": "app/vayon/leads/new/page.tsx",
+      "destination": "/vayon/leads?error=Insufficient%20permission",
+      "canonical": "/vayon/leads?error=Insufficient%20permission",
+      "page": "app/vayon/leads/page.tsx"
+    },
+    {
+      "file": "app/vayon/notifications/history/page.tsx",
+      "destination": "/vayon/notifications?view=archived",
+      "canonical": "/vayon/notifications?view=archived",
+      "page": "app/vayon/notifications/page.tsx"
+    },
+    {
+      "file": "app/vayon/notifications/inbox/page.tsx",
+      "destination": "/vayon/notifications?view=all",
+      "canonical": "/vayon/notifications?view=all",
+      "page": "app/vayon/notifications/page.tsx"
+    },
+    {
+      "file": "app/vayon/properties/new/page.tsx",
+      "destination": "/vayon/properties?error=You%20do%20not%20have%20permission.",
+      "canonical": "/vayon/properties?error=You%20do%20not%20have%20permission.",
+      "page": "app/vayon/properties/page.tsx"
+    },
+    {
+      "file": "features/demo/actions.ts",
+      "destination": "/vayon?demo=ready",
+      "canonical": "/vayon?demo=ready",
+      "page": "app/vayon/page.tsx"
+    },
+    {
+      "file": "features/authentication/actions/auth.actions.ts",
+      "destination": "/verify-email",
+      "canonical": "/verify-email",
+      "page": "app/verify-email/page.tsx"
+    },
+    {
+      "file": "features/authentication/actions/auth.actions.ts",
+      "destination": "/forgot-password?success=If%20the%20account%20exists%2C%20a%20reset%20link%20has%20been%20sent.",
+      "canonical": "/forgot-password?success=If%20the%20account%20exists%2C%20a%20reset%20link%20has%20been%20sent.",
+      "page": "app/forgot-password/page.tsx"
+    },
+    {
+      "file": "features/authentication/actions/auth.actions.ts",
+      "destination": "/login?success=Password%20updated.",
+      "canonical": "/login?success=Password%20updated.",
+      "page": "app/login/page.tsx"
+    },
+    {
+      "file": "features/authentication/actions/auth.actions.ts",
+      "destination": "/login",
+      "canonical": "/login",
+      "page": "app/login/page.tsx"
+    },
+    {
+      "file": "features/identity-workspace/actions/settings.actions.ts",
+      "destination": "/vayon/settings/profile?success=Profile%20updated",
+      "canonical": "/vayon/settings/profile?success=Profile%20updated",
+      "page": "app/vayon/settings/profile/page.tsx"
+    },
+    {
+      "file": "features/marketing/actions/lead.actions.ts",
+      "destination": "/contact?error=invalid",
+      "canonical": "/contact?error=invalid",
+      "page": "app/(marketing)/contact/page.tsx"
+    },
+    {
+      "file": "features/marketing/actions/lead.actions.ts",
+      "destination": "/contact?submitted=true",
+      "canonical": "/contact?submitted=true",
+      "page": "app/(marketing)/contact/page.tsx"
+    },
+    {
+      "file": "features/onboarding/actions/enterprise-onboarding.actions.ts",
+      "destination": "/vayon/dashboard?welcome=1&tour=1",
+      "canonical": "/vayon/dashboard?welcome=1&tour=1",
+      "page": "app/vayon/dashboard/page.tsx"
+    },
+    {
+      "file": "features/onboarding/actions/onboarding.actions.ts",
+      "destination": "/vayon/dashboard?welcome=1",
+      "canonical": "/vayon/dashboard?welcome=1",
+      "page": "app/vayon/dashboard/page.tsx"
+    },
+    {
+      "file": "features/platform/founder-bootstrap/actions.ts",
+      "destination": "/platform/founder/access?success=Founder%20access%20granted",
+      "canonical": "/platform/founder/access?success=Founder%20access%20granted",
+      "page": "app/platform/founder/access/page.tsx"
+    },
+    {
+      "file": "features/platform/founder-bootstrap/actions.ts",
+      "destination": "/platform/founder/access?success=Founder%20access%20revoked",
+      "canonical": "/platform/founder/access?success=Founder%20access%20revoked",
+      "page": "app/platform/founder/access/page.tsx"
+    },
+    {
+      "file": "features/vayon/crm-company/actions.ts",
+      "destination": "/vayon/crm/companies?success=Company%20archived",
+      "canonical": "/vayon/crm/companies?success=Company%20archived",
+      "page": "app/vayon/crm/companies/page.tsx"
+    },
+    {
+      "file": "features/platform/gmail/providers/gmail.provider.ts",
+      "destination": "/vayon/settings/google",
+      "canonical": "/vayon/settings/google",
+      "page": "app/vayon/settings/google/page.tsx"
+    },
+    {
+      "file": "features/platform/google-calendar/providers/google-calendar.provider.ts",
+      "destination": "/vayon/calendar/google/settings",
+      "canonical": "/vayon/calendar/google/settings",
+      "page": "app/vayon/calendar/google/settings/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/settings/integrations/google?error=Google%20Identity%20is%20disabled%20for%20this%20workspace.",
+      "canonical": "/vayon/settings/integrations/google?error=Google%20Identity%20is%20disabled%20for%20this%20workspace.",
+      "page": "app/vayon/settings/integrations/google/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/email?error=Gmail%20is%20disabled%20for%20this%20workspace.",
+      "canonical": "/vayon/email?error=Gmail%20is%20disabled%20for%20this%20workspace.",
+      "page": "app/vayon/email/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/calendar?error=Google%20Calendar%20is%20disabled%20for%20this%20workspace.",
+      "canonical": "/vayon/calendar?error=Google%20Calendar%20is%20disabled%20for%20this%20workspace.",
+      "page": "app/vayon/calendar/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/documents/drive?error=Google%20Drive%20is%20disabled%20for%20this%20workspace.",
+      "canonical": "/vayon/documents/drive?error=Google%20Drive%20is%20disabled%20for%20this%20workspace.",
+      "page": "app/vayon/documents/drive/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/contacts/google?error=Google%20Contacts%20is%20disabled%20for%20this%20workspace.",
+      "canonical": "/vayon/contacts/google?error=Google%20Contacts%20is%20disabled%20for%20this%20workspace.",
+      "page": "app/vayon/contacts/google/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/settings/integrations/google?success=Google%20Workspace%20disconnected",
+      "canonical": "/vayon/settings/integrations/google?success=Google%20Workspace%20disconnected",
+      "page": "app/vayon/settings/integrations/google/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/email?error=Invalid%20message",
+      "canonical": "/vayon/email?error=Invalid%20message",
+      "page": "app/vayon/email/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/email?success=Message%20updated",
+      "canonical": "/vayon/email?success=Message%20updated",
+      "page": "app/vayon/email/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/email?error=Draft%20Replies%20permission%20is%20disabled",
+      "canonical": "/vayon/email?error=Draft%20Replies%20permission%20is%20disabled",
+      "page": "app/vayon/email/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/email?success=Draft%20created",
+      "canonical": "/vayon/email?success=Draft%20created",
+      "page": "app/vayon/email/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/email?error=Send%20Email%20permission%20is%20disabled",
+      "canonical": "/vayon/email?error=Send%20Email%20permission%20is%20disabled",
+      "page": "app/vayon/email/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/email?success=Email%20sent",
+      "canonical": "/vayon/email?success=Email%20sent",
+      "page": "app/vayon/email/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/calendar?error=Create%20Events%20permission%20is%20disabled",
+      "canonical": "/vayon/calendar?error=Create%20Events%20permission%20is%20disabled",
+      "page": "app/vayon/calendar/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/calendar?success=Meeting%20created",
+      "canonical": "/vayon/calendar?success=Meeting%20created",
+      "page": "app/vayon/calendar/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/calendar?error=Invalid%20event",
+      "canonical": "/vayon/calendar?error=Invalid%20event",
+      "page": "app/vayon/calendar/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/calendar?error=Update%20Events%20permission%20is%20disabled",
+      "canonical": "/vayon/calendar?error=Update%20Events%20permission%20is%20disabled",
+      "page": "app/vayon/calendar/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/google/actions.ts",
+      "destination": "/vayon/calendar?success=Meeting%20deleted",
+      "canonical": "/vayon/calendar?success=Meeting%20deleted",
+      "page": "app/vayon/calendar/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/microsoft/actions.ts",
+      "destination": "/vayon/settings/integrations/microsoft?error=Microsoft%20365%20is%20disabled%20for%20this%20workspace.",
+      "canonical": "/vayon/settings/integrations/microsoft?error=Microsoft%20365%20is%20disabled%20for%20this%20workspace.",
+      "page": "app/vayon/settings/integrations/microsoft/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/microsoft/actions.ts",
+      "destination": "/vayon/settings/integrations/microsoft?success=Microsoft%20365%20disconnected",
+      "canonical": "/vayon/settings/integrations/microsoft?success=Microsoft%20365%20disconnected",
+      "page": "app/vayon/settings/integrations/microsoft/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/microsoft/actions.ts",
+      "destination": "/vayon/settings/integrations/microsoft?error=Unknown%20Microsoft%20capability",
+      "canonical": "/vayon/settings/integrations/microsoft?error=Unknown%20Microsoft%20capability",
+      "page": "app/vayon/settings/integrations/microsoft/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/microsoft/business-actions.ts",
+      "destination": "/vayon/communications/outlook?error=Recipient%20and%20subject%20are%20required",
+      "canonical": "/vayon/communications/outlook?error=Recipient%20and%20subject%20are%20required",
+      "page": "app/vayon/communications/outlook/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/microsoft/business-actions.ts",
+      "destination": "/vayon/communications/outlook?success=Outlook%20request%20completed",
+      "canonical": "/vayon/communications/outlook?success=Outlook%20request%20completed",
+      "page": "app/vayon/communications/outlook/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/microsoft/business-actions.ts",
+      "destination": "/vayon/calendar/outlook?error=Title%20and%20times%20are%20required",
+      "canonical": "/vayon/calendar/outlook?error=Title%20and%20times%20are%20required",
+      "page": "app/vayon/calendar/outlook/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/microsoft/business-actions.ts",
+      "destination": "/vayon/calendar/outlook?success=Outlook%20meeting%20created",
+      "canonical": "/vayon/calendar/outlook?success=Outlook%20meeting%20created",
+      "page": "app/vayon/calendar/outlook/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/microsoft/business-actions.ts",
+      "destination": "/vayon/documents/onedrive?error=Choose%20a%20file",
+      "canonical": "/vayon/documents/onedrive?error=Choose%20a%20file",
+      "page": "app/vayon/documents/onedrive/page.tsx"
+    },
+    {
+      "file": "features/platform/integrations/microsoft/business-actions.ts",
+      "destination": "/vayon/documents/onedrive?success=OneDrive%20upload%20completed",
+      "canonical": "/vayon/documents/onedrive?success=OneDrive%20upload%20completed",
+      "page": "app/vayon/documents/onedrive/page.tsx"
+    },
+    {
+      "file": "features/platform/openai/providers/openai.provider.ts",
+      "destination": "/vayon/settings/ai/openai",
+      "canonical": "/vayon/settings/ai/openai",
+      "page": "app/vayon/settings/ai/openai/page.tsx"
+    },
+    {
+      "file": "features/platform/organization/actions/organization.actions.ts",
+      "destination": "/vayon/settings/organization?success=Organization%20updated",
+      "canonical": "/vayon/settings/organization?success=Organization%20updated",
+      "page": "app/vayon/settings/organization/page.tsx"
+    },
+    {
+      "file": "features/platform/organization/actions/organization.actions.ts",
+      "destination": "/vayon/settings/members?success=Invitation%20queued",
+      "canonical": "/vayon/settings/members?success=Invitation%20queued",
+      "page": "app/vayon/settings/members/page.tsx"
+    },
+    {
+      "file": "features/platform/organization/actions/organization.actions.ts",
+      "destination": "/vayon/settings/members?success=Member%20updated",
+      "canonical": "/vayon/settings/members?success=Member%20updated",
+      "page": "app/vayon/settings/members/page.tsx"
+    },
+    {
+      "file": "features/platform/organization/actions/organization.actions.ts",
+      "destination": "/vayon/settings/members?success=Ownership%20transferred",
+      "canonical": "/vayon/settings/members?success=Ownership%20transferred",
+      "page": "app/vayon/settings/members/page.tsx"
+    },
+    {
+      "file": "features/platform/organization/actions/organization.actions.ts",
+      "destination": "/vayon?invitation=accepted",
+      "canonical": "/vayon?invitation=accepted",
+      "page": "app/vayon/page.tsx"
+    },
+    {
+      "file": "features/platform/organization/actions/organization.actions.ts",
+      "destination": "/vayon/settings/departments?error=Invalid%20department",
+      "canonical": "/vayon/settings/departments?error=Invalid%20department",
+      "page": "app/vayon/settings/departments/page.tsx"
+    },
+    {
+      "file": "features/platform/organization/actions/organization.actions.ts",
+      "destination": "/vayon/settings/departments?success=Department%20updated",
+      "canonical": "/vayon/settings/departments?success=Department%20updated",
+      "page": "app/vayon/settings/departments/page.tsx"
+    },
+    {
+      "file": "features/platform/organization/actions/organization.actions.ts",
+      "destination": "/vayon/settings/teams?error=Invalid%20team",
+      "canonical": "/vayon/settings/teams?error=Invalid%20team",
+      "page": "app/vayon/settings/teams/page.tsx"
+    },
+    {
+      "file": "features/platform/organization/actions/organization.actions.ts",
+      "destination": "/vayon/settings/teams?success=Team%20updated",
+      "canonical": "/vayon/settings/teams?success=Team%20updated",
+      "page": "app/vayon/settings/teams/page.tsx"
+    },
+    {
+      "file": "features/platform/whatsapp/providers/whatsapp-cloud.provider.ts",
+      "destination": "/vayon/whatsapp/settings",
+      "canonical": "/vayon/whatsapp/settings",
+      "page": "app/vayon/whatsapp/settings/page.tsx"
+    },
+    {
+      "file": "features/vayon/ai-runtime/actions/recommendation.actions.ts",
+      "destination": "/vayon/ai?error=Invalid%20AI%20capability",
+      "canonical": "/vayon/ai?error=Invalid%20AI%20capability",
+      "page": "app/vayon/ai/page.tsx"
+    },
+    {
+      "file": "features/vayon/ai-runtime/actions/recommendation.actions.ts",
+      "destination": "/vayon/ai?success=Recommendation%20generated%20for%20human%20approval",
+      "canonical": "/vayon/ai?success=Recommendation%20generated%20for%20human%20approval",
+      "page": "app/vayon/ai/page.tsx"
+    },
+    {
+      "file": "features/vayon/deal/actions/deal.actions.ts",
+      "destination": "/vayon/deals?success=Deal%20stage%20updated",
+      "canonical": "/vayon/deals?success=Deal%20stage%20updated",
+      "page": "app/vayon/deals/page.tsx"
+    },
+    {
+      "file": "features/vayon/deal/actions/deal.actions.ts",
+      "destination": "/vayon/deals",
+      "canonical": "/vayon/deals",
+      "page": "app/vayon/deals/page.tsx"
+    },
+    {
+      "file": "features/vayon/lead/actions/lead.actions.ts",
+      "destination": "/vayon/leads?success=Leads%20updated",
+      "canonical": "/vayon/leads?success=Leads%20updated",
+      "page": "app/vayon/leads/page.tsx"
+    },
+    {
+      "file": "features/vayon/property/actions/property.actions.ts",
+      "destination": "/vayon/properties?error=Select%20at%20least%20one%20property.",
+      "canonical": "/vayon/properties?error=Select%20at%20least%20one%20property.",
+      "page": "app/vayon/properties/page.tsx"
+    },
+    {
+      "file": "features/vayon/property/actions/property.actions.ts",
+      "destination": "/vayon/properties?success=Properties%20archived",
+      "canonical": "/vayon/properties?success=Properties%20archived",
+      "page": "app/vayon/properties/page.tsx"
+    }
+  ],
+  "legacyReferences": [
+    {
+      "file": "app/vayon/creative/page.tsx",
+      "line": 1,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative/page.tsx",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/page.tsx",
+      "line": 1,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative/assets/page.tsx",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative/calendar/page.tsx",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative/templates/page.tsx",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/analytics/page.tsx",
+      "line": 1,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/assets/page.tsx",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/assets/page.tsx",
+      "line": 3,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/assistant/page.tsx",
+      "line": 3,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/assistant/page.tsx",
+      "line": 4,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/assistant/page.tsx",
+      "line": 5,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/assistant/page.tsx",
+      "line": 6,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/assistant/page.tsx",
+      "line": 55,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "app/vayon/creative-studio/brand-kits/page.tsx",
+      "line": 1,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/calendar/page.tsx",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/calendar/page.tsx",
+      "line": 3,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/calendar/page.tsx",
+      "line": 4,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/calendar/page.tsx",
+      "line": 5,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/growth/page.tsx",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/growth/page.tsx",
+      "line": 3,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/growth/page.tsx",
+      "line": 4,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/growth/page.tsx",
+      "line": 5,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/growth/page.tsx",
+      "line": 6,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/growth/page.tsx",
+      "line": 18,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "app/vayon/creative-studio/growth/page.tsx",
+      "line": 23,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "app/vayon/creative-studio/packs/page.tsx",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/packs/page.tsx",
+      "line": 3,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/packs/page.tsx",
+      "line": 4,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/packs/page.tsx",
+      "line": 5,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/packs/page.tsx",
+      "line": 11,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "app/vayon/creative-studio/packs/page.tsx",
+      "line": 14,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "app/vayon/creative-studio/templates/page.tsx",
+      "line": 1,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/wizard/page.tsx",
+      "line": 1,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/editor/[assetId]/page.tsx",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/editor/[assetId]/page.tsx",
+      "line": 3,
+      "category": "Implementation import"
+    },
+    {
+      "file": "app/vayon/creative-studio/editor/[assetId]/page.tsx",
+      "line": 4,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/marketing/components/PublicGrowthPlatform.tsx",
+      "line": 85,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/marketing/content/commercial-catalog.ts",
+      "line": 143,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/marketing/content/commercial-catalog.ts",
+      "line": 148,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/marketing/content/commercial-catalog.ts",
+      "line": 162,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/marketing/content/commercial-catalog.ts",
+      "line": 250,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/onboarding/business-launch/service.ts",
+      "line": 6,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/brand-studio/service.ts",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/brand-studio/types.ts",
+      "line": 1,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/campaign-studio/service.ts",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/creative-cloud/service.ts",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/creative-pipeline/service.ts",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/creative-providers/openai-image.adapter.ts",
+      "line": 3,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/creative-studio/actions.ts",
+      "line": 20,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/creative-studio/actions.ts",
+      "line": 25,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/creative-studio/actions.ts",
+      "line": 31,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/creative-studio/actions.ts",
+      "line": 47,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/creative-studio/actions.ts",
+      "line": 52,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/creative-studio/actions.ts",
+      "line": 53,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/creative-studio/growth.service.ts",
+      "line": 118,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/creative-studio/growth.service.ts",
+      "line": 144,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/creative-studio-2/CreativeStudioHome.tsx",
+      "line": 104,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/creative-studio-2/CreativeStudioHome.tsx",
+      "line": 125,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/creative-studio-2/service.ts",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/creative-studio-2/types.ts",
+      "line": 6,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/document-studio/service.ts",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/growth-intelligence/catalog.ts",
+      "line": 24,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/image-studio/actions.ts",
+      "line": 3,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/image-studio/service.ts",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/image-studio/types.ts",
+      "line": 1,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/intelligence-core/success-engine.ts",
+      "line": 22,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/product-shell/navigation.ts",
+      "line": 92,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/ttfv/TTFVObserver.tsx",
+      "line": 10,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/video-studio/actions.ts",
+      "line": 3,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/video-studio/service.ts",
+      "line": 2,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/platform/conversion-analytics/components/ProductAnalytics.tsx",
+      "line": 15,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/platform/customer-success-workspace/services/customer-success-workspace.service.ts",
+      "line": 27,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/platform/intelligence-hub/repositories/intelligence-hub.repository.ts",
+      "line": 6,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/platform/intelligence-hub/services/intelligence-hub.service.ts",
+      "line": 8,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/platform/launch-readiness/services/launch-readiness.service.ts",
+      "line": 328,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/platform/permissions/runtime/navigation.ts",
+      "line": 8,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/creative-studio/components/GrowthViews.tsx",
+      "line": 10,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/creative-studio/components/GrowthViews.tsx",
+      "line": 14,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/creative-studio/components/GrowthViews.tsx",
+      "line": 21,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/creative-studio/components/GrowthViews.tsx",
+      "line": 76,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/creative-studio/components/GrowthViews.tsx",
+      "line": 78,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/creative-studio/components/GrowthViews.tsx",
+      "line": 82,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/creative-studio/components/GrowthViews.tsx",
+      "line": 108,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/creative-studio/components/GrowthViews.tsx",
+      "line": 109,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/creative-studio/components/StudioViews.tsx",
+      "line": 8,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/universal-bar/actions/search.actions.ts",
+      "line": 12,
+      "category": "Implementation import"
+    },
+    {
+      "file": "features/vayon/universal-bar/actions/search.actions.ts",
+      "line": 43,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "features/vayon/universal-bar/providers/static-navigation.provider.ts",
+      "line": 83,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "features/vayon/universal-bar/providers/static-navigation.provider.ts",
+      "line": 85,
+      "category": "Non-navigation reference"
+    },
+    {
+      "file": "config/canonical-routes.ts",
+      "line": 6,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "config/canonical-routes.ts",
+      "line": 7,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "config/canonical-routes.ts",
+      "line": 8,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "config/canonical-routes.ts",
+      "line": 9,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "config/canonical-routes.ts",
+      "line": 10,
+      "category": "Route reference (aliases and editor retained)"
+    },
+    {
+      "file": "config/canonical-routes.ts",
+      "line": 11,
+      "category": "Route reference (aliases and editor retained)"
+    }
+  ],
+  "issues": [],
+  "limitation": "Source existence is not evidence of rendering, tenant availability, valid dynamic records, or RBAC. Browser certification must pass separately for each supported role."
+}

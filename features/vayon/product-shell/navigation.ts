@@ -27,8 +27,6 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
     { label: "Video", href: "/vayon/creative/videos", icon: Palette },
     { label: "Document", href: "/vayon/creative/documents", icon: FileSearch },
     { label: "Marketing assets", href: "/vayon/creative/assets", icon: Building2 },
-    { label: "Website", href: "/vayon/creative/landing-pages", icon: Palette },
-    { label: "Projects", href: "/vayon/creative-studio/packs", icon: Palette },
     { label: "Templates", href: "/vayon/creative/templates", icon: FileSearch },
     { label: "Publishing calendar", href: "/vayon/creative/calendar", icon: CalendarDays },
     { label: "Marketing Performance", href: "/vayon/growth", icon: Gauge },
@@ -38,8 +36,6 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
     { label: "Property SEO", href: "/vayon/growth/property-seo", icon: FileSearch },
     { label: "Referral Network", href: "/vayon/growth/referral-network", icon: Handshake },
     { label: "Market Intelligence", href: "/vayon/growth/market-intelligence", icon: LineChart },
-    { label: "Creative Cloud", href: "/vayon/creative/cloud", icon: Sparkles },
-    { label: "Creative Pipelines", href: "/vayon/creative/pipelines", icon: Workflow },
   ] },
   { id: "ai", label: "AI Assistant", icon: Sparkles, items: [
     { label: "AI Assistant", href: "/vayon/intelligence", icon: Sparkles },

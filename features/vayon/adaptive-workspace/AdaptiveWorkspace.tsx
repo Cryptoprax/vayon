@@ -112,7 +112,7 @@ const experiences: Record<string, Experience> = {
       { label: "Ads", href: "/vayon/growth", action: "Plan ads" },
       {
         label: "Creative Studio",
-        href: "/vayon/creative-studio",
+        href: "/vayon/creative",
         action: "Create content",
       },
       {

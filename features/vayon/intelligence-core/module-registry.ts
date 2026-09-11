@@ -81,7 +81,7 @@ const modules: readonly IntelligenceModule[] = [
     id: "marketing",
     name: "Property Marketing",
     description: "Property campaigns, listing creative, brochures and approvals.",
-    routePrefixes: ["/vayon/creative-studio", "/vayon/creative", "/vayon/growth"],
+    routePrefixes: ["/vayon/creative", "/vayon/creative", "/vayon/growth"],
     capabilities: ["campaign guidance", "draft recommendations"],
     helpResources: [
       { label: "Marketing guides", href: "/vayon/knowledge/help?q=Marketing" },
@@ -92,11 +92,11 @@ const modules: readonly IntelligenceModule[] = [
       "Generate brochure",
     ],
     actions: [
-      action("navigate", "Create Campaign", "/vayon/creative-studio/wizard"),
+      action("navigate", "Create Campaign", "/vayon/creative/campaigns"),
       action(
         "create_draft",
         "Recommend campaign draft",
-        "/vayon/creative-studio/wizard",
+        "/vayon/creative/campaigns",
       ),
     ],
     futureTools: ["creative advisor"],

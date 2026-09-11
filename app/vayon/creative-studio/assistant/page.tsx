@@ -42,7 +42,7 @@ export default async function Page() {
       <section className="mt-6">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Generation jobs</h2>
-          <Link href="/vayon/creative-studio/assets" className="text-sm text-vds-primary">Asset library</Link>
+          <Link href="/vayon/creative/assets" className="text-sm text-vds-primary">Asset library</Link>
         </div>
         <div className="mt-3 space-y-3">
           {jobs.map((job) => (

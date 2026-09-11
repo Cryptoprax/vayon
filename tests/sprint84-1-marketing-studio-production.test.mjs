@@ -17,7 +17,7 @@ test("Marketing Studio no longer depends on the Creative Studio beta flag", () =
 test("Marketing is available in authenticated primary navigation", () => {
   const navigation = read("features/platform/builder/config/vayon-navigation.ts");
   assert.match(navigation, /label: "Marketing"/);
-  assert.match(navigation, /href: "\/vayon\/creative-studio"/);
+  assert.match(navigation, /href: "\/vayon\/creative"/);
   assert.match(navigation, /featureId: "marketing_studio"/);
 });
 

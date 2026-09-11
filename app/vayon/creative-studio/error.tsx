@@ -18,7 +18,7 @@ export default function ErrorState({
       </p>
       <div className="mt-6 flex justify-center gap-3">
         <Button onClick={reset}>Retry</Button>
-        <ButtonLink href="/vayon/creative-studio/assets" variant="outline">
+        <ButtonLink href="/vayon/creative/assets" variant="outline">
           Open asset library
         </ButtonLink>
       </div>

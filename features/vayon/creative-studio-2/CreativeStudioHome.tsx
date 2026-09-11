@@ -14,7 +14,7 @@ const icons = { brand: Palette, images: ImageIcon, marketing: Megaphone, present
 const routes: Record<CreativeModuleId, string> = {
   brand: "/vayon/creative/brand", images: "/vayon/creative/images", marketing: "/vayon/creative/campaigns",
   presentations: "/vayon/creative/documents", documents: "/vayon/creative/documents", videos: "/vayon/creative/videos",
-  websites: "/vayon/creative/campaigns", assets: "/vayon/creative-studio/assets", templates: "/vayon/creative-studio/templates", projects: "/vayon/creative/campaigns",
+  websites: "/vayon/creative/campaigns", assets: "/vayon/creative/assets", templates: "/vayon/creative/templates", projects: "/vayon/creative/campaigns",
 };
 const groups = ["All studios", "Brand", "Marketing", "Content", "Publishing", "Management"] as const;
 const studioGroup: Record<CreativeModuleId, string> = { brand: "Brand", marketing: "Marketing", images: "Content", presentations: "Content", documents: "Content", videos: "Content", websites: "Publishing", assets: "Management", templates: "Management", projects: "Management" };
@@ -86,7 +86,7 @@ export function CreativeStudioHome({ snapshot }: { readonly snapshot: CreativeSt
               {groups.map(value => <Button key={value} variant={group === value ? "primary" : "outline"} aria-pressed={group === value} onClick={() => setGroup(value)} className="min-h-11 rounded-full">{value}</Button>)}
             </div>
             <div className={styles.studioGrid}>
-              {snapshot.modules.filter(module => group === "All studios" || studioGroup[module.id] === group).map(module => {
+              {snapshot.modules.filter(module => module.availability === "available" && module.id !== "websites" && module.id !== "projects").filter(module => group === "All studios" || studioGroup[module.id] === group).map(module => {
                 const Icon = icons[module.id];
                 return <article key={module.id} className={`${card} ${styles.studioCard} vds-card-motion`}>
                   <div className="flex flex-wrap items-center justify-between gap-3"><span className="grid size-14 place-items-center rounded-2xl bg-vds-primary-soft text-vds-primary"><Icon className="size-7" aria-hidden="true" /></span><span className="rounded-full border border-vds-border px-3 py-1 text-xs capitalize text-vds-muted">{module.availability}</span></div>

@@ -39,10 +39,10 @@ export async function searchWorkspaceRecords(query: string): Promise<{ results: 
     if (!service) return [];
     const data = await service.snapshot();
     return [
-      ...data.campaigns.filter(item => matches(item.name)).slice(0, 5).map(item => ({ ...record(item.id, item.name, "/vayon/creative-studio", "campaigns"), description: item.status === "draft" ? "Review saved campaign draft in the creative overview" : `Review saved campaign in the creative overview: ${item.status.replaceAll("-", " ")}` })),
+      ...data.campaigns.filter(item => matches(item.name)).slice(0, 5).map(item => ({ ...record(item.id, item.name, "/vayon/creative", "campaigns"), description: item.status === "draft" ? "Review saved campaign draft in the creative overview" : `Review saved campaign in the creative overview: ${item.status.replaceAll("-", " ")}` })),
       ...data.assets.filter(item => matches(item.name)).slice(0, 5).map(item => ({ ...record(item.id, item.name, `/vayon/creative-studio/editor/${item.id}`, "creative-assets"), description: item.status === "draft" ? "Review saved draft instructions; rendering is separate" : `Review saved asset: ${item.status.replaceAll("-", " ")}` })),
       ...data.brandKits.filter(item => matches(item.name)).slice(0, 5).map(item => record(item.id, item.name, "/vayon/creative/brand", "creative-assets")),
-      ...data.templates.filter(item => matches(item.name)).slice(0, 5).map(item => ({ ...record(item.id, item.name, "/vayon/creative-studio/templates", "creative-assets"), kind: "navigation" as const, description: "Campaign template" })),
+      ...data.templates.filter(item => matches(item.name)).slice(0, 5).map(item => ({ ...record(item.id, item.name, "/vayon/creative/templates", "creative-assets"), kind: "navigation" as const, description: "Campaign template" })),
     ];
   }));
   if (allowed("ai_employees", "/vayon/ai/workforce")) jobs.push(operationsContext().then(async c => {

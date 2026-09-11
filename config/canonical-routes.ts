@@ -8,7 +8,27 @@ export const canonicalRouteRedirects = [
   { source: "/vayon/creative-studio/templates", destination: "/vayon/creative/templates", permanent: true },
   { source: "/vayon/creative-studio/calendar", destination: "/vayon/creative/calendar", permanent: true },
   { source: "/vayon/creative-studio/wizard", destination: "/vayon/creative/campaigns", permanent: true },
+  { source: "/vayon/creative-studio/packs", destination: "/vayon/creative/campaigns", permanent: true },
 ] as const;
+
+// These destinations expose early-access screens or an unrelated campaign form.
+// Keep direct diagnostic routes intact, but never advertise them as customer tools.
+export const hiddenCustomerRoutes = [
+  "/vayon/creative/cloud", "/vayon/creative/pipelines", "/vayon/creative/runtime",
+  "/vayon/creative/landing-pages",
+] as const;
+
+export function canonicalCustomerHref(href: string): string {
+  if (!href.startsWith("/") || href.startsWith("//")) return href;
+  const [pathname] = href.split(/[?#]/);
+  const target = canonicalRouteRedirects.find(item => item.source === pathname)?.destination;
+  return target ? target + href.slice(pathname.length) : href;
+}
+
+export function isCustomerRouteExposed(href: string): boolean {
+  const path = href.split(/[?#]/)[0];
+  return !hiddenCustomerRoutes.some(route => path === route || path.startsWith(route + "/"));
+}
 
 export const canonicalProductRoutes = {
   dashboard: "/vayon/dashboard",

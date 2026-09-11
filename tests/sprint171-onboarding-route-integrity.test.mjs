@@ -11,12 +11,10 @@ test("all static internal navigation destinations resolve to application routes"
   assert.match(result.stdout, /Route integrity audit passed/);
 });
 
-test("creative navigation resolves or renders a branded availability state", () => {
+test("unfinished creative destinations are absent from customer navigation", () => {
   const navigation = read("features/vayon/product-shell/navigation.ts");
   const routes = [
     ["Create marketing assets", "app/vayon/creative/page.tsx"],
-    ["Creative Cloud", "app/vayon/creative/cloud/page.tsx"],
-    ["Creative Pipelines", "app/vayon/creative/pipelines/page.tsx"],
   ];
   for (const [label, path] of routes) {
     assert.match(navigation, new RegExp(label, "i"));
@@ -24,9 +22,7 @@ test("creative navigation resolves or renders a branded availability state", () 
     assert.match(source, /FeatureAvailabilityState/);
     assert.doesNotMatch(source, /notFound\(\)/);
   }
-  const state = read("features/vayon/empty-states/FeatureAvailabilityState.tsx");
-  assert.match(state, /Coming Soon/);
-  assert.match(state, /Ask about availability/);
+  assert.doesNotMatch(navigation, /Creative Cloud|Creative Pipelines|creative-studio\/packs/);
 });
 
 test("first workspace keeps atomic defaults and exposes guided progress", () => {

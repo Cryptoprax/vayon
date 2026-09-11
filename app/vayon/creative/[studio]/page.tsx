@@ -1,16 +1,16 @@
 import { notFound, redirect } from "next/navigation";
 
 const studioRoutes: Record<string, string> = {
-  assets: "/vayon/creative-studio/assets",
-  templates: "/vayon/creative-studio/templates",
-  calendar: "/vayon/creative-studio/calendar",
+  assets: "/vayon/creative/assets",
+  templates: "/vayon/creative/templates",
+  calendar: "/vayon/creative/calendar",
   presentations: "/vayon/creative/documents",
-  "landing-pages": "/vayon/creative-studio/wizard",
+  "landing-pages": "/vayon/creative/campaigns",
   social: "/vayon/creative/campaigns",
   email: "/vayon/creative/campaigns",
   copy: "/vayon/creative/documents",
-  projects: "/vayon/creative-studio/packs",
-  publishing: "/vayon/creative-studio/calendar",
+  projects: "/vayon/creative/campaigns",
+  publishing: "/vayon/creative/calendar",
 };
 
 export function generateStaticParams() {

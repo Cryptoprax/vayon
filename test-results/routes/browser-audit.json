@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-09-11T20:21:17.577Z",
+  "baseURL": "https://vayon.online",
+  "state": "Needs Verification",
+  "publicChecks": [
+    {
+      "path": "/",
+      "status": 200,
+      "finalPath": "/",
+      "title": "Meet Your AI Team | VAYON",
+      "authenticated": false
+    },
+    {
+      "path": "/login",
+      "status": 200,
+      "finalPath": "/login",
+      "title": "Meet Your AI Team | VAYON",
+      "authenticated": false
+    },
+    {
+      "path": "/vayon/dashboard",
+      "status": 200,
+      "finalPath": "/login",
+      "title": "Meet Your AI Team | VAYON",
+      "authenticated": false
+    },
+    {
+      "path": "/vayon/creative-studio/packs",
+      "status": 200,
+      "finalPath": "/login",
+      "title": "Meet Your AI Team | VAYON",
+      "authenticated": false
+    }
+  ],
+  "clicks": [],
+  "failures": [],
+  "coverage": [],
+  "limitations": [
+    "No existing authenticated QA storage-state file supplied. Public HTTP responses and login redirects cannot certify workspace routes."
+  ]
+}

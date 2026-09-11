@@ -1,4 +1,5 @@
 "use client";
+import { canonicalCustomerHref, isCustomerRouteExposed } from "@/config/canonical-routes";
 import { Button } from "@/features/platform/design-system";
 
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -104,7 +105,7 @@ export function UniversalBar({
     );
   const [commandNotice, setCommandNotice] = useState("");
   const [live, setLive] = useState<{ query: string; results: UniversalBarResult[]; partial: boolean }>({ query: "", results: [], partial: false });
-  const permitted = (href: string) => navigation.some(item => item.visible && item.href && (href.split("?")[0] === item.href || href.startsWith(item.href + "/")));
+  const permitted = (href: string) => isCustomerRouteExposed(href) && navigation.some(item => item.visible && item.href && (href.split("?")[0] === item.href || href.startsWith(item.href + "/")));
   const contextualSuggestions = suggestions.filter(item => item.href ? permitted(item.href) && sameSearchWorkspace(item.href, path) : item.id === "search-properties" ? path.startsWith("/vayon/properties") : item.id === "find-documents" ? path.startsWith("/vayon/creative") : item.id === "morning-brief" && aiContext && path === "/vayon/dashboard");
   if (!contextualSuggestions.length) contextualSuggestions.push(...navigation.filter(item => item.visible && item.href && sameSearchWorkspace(item.href, path)).slice(0, 3).map(item => ({ id: item.id, label: item.label, hint: "Continue in this workspace", href: item.href })));
 
@@ -139,7 +140,7 @@ export function UniversalBar({
     return intent.type === "create" || mode === "actions"
       ? found.filter((item) => item.kind === "quick-create")
       : found;
-  }, [history, historyVersion, intent, mode, search, live, query, open, path]).filter(result => permitted(result.href));
+  }, [history, historyVersion, intent, mode, search, live, query, open, path]).map(result => ({ ...result, href: canonicalCustomerHref(result.href) })).filter(result => permitted(result.href));
   const selected = results[active];
 
   useEffect(() => {
@@ -196,7 +197,7 @@ export function UniversalBar({
         kind: "recently-searched",
         recordedAt: now,
       });
-    router.push(result.href);
+    router.push(canonicalCustomerHref(result.href));
     close();
   }
   function chooseSuggestion(suggestion: AdaptiveSuggestion) {
@@ -414,6 +415,7 @@ export function UniversalBar({
                           variant="control"
                           type="button"
                           onClick={() => choose(result)}
+                          data-route-href={result.href}
                           className="flex min-w-0 flex-1 items-center gap-3 rounded-xl p-3 text-left focus-visible:outline-2 focus-visible:outline-vds-focus"
                         >
                           <span

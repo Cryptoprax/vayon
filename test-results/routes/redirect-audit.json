@@ -1,0 +1,87 @@
+{
+  "generatedAt": "2026-09-11T20:28:30.430Z",
+  "baseURL": "http://127.0.0.1:3227",
+  "scope": "HTTP redirects only; destination rendering is not certified",
+  "redirects": [
+    {
+      "source": "/vayon/workforce",
+      "expected": "/vayon/ai/workforce",
+      "status": 308,
+      "destination": "/vayon/ai/workforce",
+      "queryPreserved": true,
+      "state": "Certified"
+    },
+    {
+      "source": "/vayon/ai/employees",
+      "expected": "/vayon/ai/workforce",
+      "status": 308,
+      "destination": "/vayon/ai/workforce",
+      "queryPreserved": true,
+      "state": "Certified"
+    },
+    {
+      "source": "/vayon/crm/leads",
+      "expected": "/vayon/leads",
+      "status": 308,
+      "destination": "/vayon/leads",
+      "queryPreserved": true,
+      "state": "Certified"
+    },
+    {
+      "source": "/vayon/notifications/inbox",
+      "expected": "/vayon/notifications",
+      "status": 308,
+      "destination": "/vayon/notifications",
+      "queryPreserved": true,
+      "state": "Certified"
+    },
+    {
+      "source": "/vayon/creative-studio",
+      "expected": "/vayon/creative",
+      "status": 308,
+      "destination": "/vayon/creative",
+      "queryPreserved": true,
+      "state": "Certified"
+    },
+    {
+      "source": "/vayon/creative-studio/assets",
+      "expected": "/vayon/creative/assets",
+      "status": 308,
+      "destination": "/vayon/creative/assets",
+      "queryPreserved": true,
+      "state": "Certified"
+    },
+    {
+      "source": "/vayon/creative-studio/templates",
+      "expected": "/vayon/creative/templates",
+      "status": 308,
+      "destination": "/vayon/creative/templates",
+      "queryPreserved": true,
+      "state": "Certified"
+    },
+    {
+      "source": "/vayon/creative-studio/calendar",
+      "expected": "/vayon/creative/calendar",
+      "status": 308,
+      "destination": "/vayon/creative/calendar",
+      "queryPreserved": true,
+      "state": "Certified"
+    },
+    {
+      "source": "/vayon/creative-studio/wizard",
+      "expected": "/vayon/creative/campaigns",
+      "status": 308,
+      "destination": "/vayon/creative/campaigns",
+      "queryPreserved": true,
+      "state": "Certified"
+    },
+    {
+      "source": "/vayon/creative-studio/packs",
+      "expected": "/vayon/creative/campaigns",
+      "status": 308,
+      "destination": "/vayon/creative/campaigns",
+      "queryPreserved": true,
+      "state": "Certified"
+    }
+  ]
+}

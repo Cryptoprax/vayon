@@ -1,3 +1,4 @@
+import { canonicalCustomerHref, isCustomerRouteExposed } from "@/config/canonical-routes";
 import type { NavigationItem } from "@/features/platform/builder/types";
 import type {
   UniversalSearchProvider,
@@ -42,12 +43,12 @@ export class StaticNavigationSearchProvider implements UniversalSearchProvider {
   search(request: UniversalSearchRequest): readonly UniversalBarResult[] {
     const term = request.query.toLocaleLowerCase();
     const navigation = this.navigation
-      .filter((item) => item.visible && item.href)
+      .filter((item) => item.visible && item.href && isCustomerRouteExposed(item.href))
       .map((item) => ({
         id: `navigate-${item.id}`,
         label: item.label,
         description: `Open ${item.label}.`,
-        href: item.href!,
+        href: canonicalCustomerHref(item.href!),
         scope: scopeFor(item.href!),
         kind: "navigation" as const,
         keywords: [item.label.toLocaleLowerCase(), item.href!, ...(item.href === "/vayon/crm/companies" ? ["update company", "edit company"] : []), ...(item.href === "/vayon/properties" ? ["upload photos", "property pictures"] : [])],
@@ -55,7 +56,7 @@ export class StaticNavigationSearchProvider implements UniversalSearchProvider {
       .filter((item) => matches(item, term));
     return [
       ...quickCreateActions.filter(
-        (item) => request.scopes.includes(item.scope) && (item.id !== "invite-team" || this.navigation.some(page => page.visible && page.href === item.href)) && this.navigation.some(page => page.visible && page.href && (item.href === page.href || item.href.startsWith(page.href + "/"))) && matches(item, term),
+        (item) => isCustomerRouteExposed(item.href) && request.scopes.includes(item.scope) && (item.id !== "invite-team" || this.navigation.some(page => page.visible && page.href === item.href)) && this.navigation.some(page => page.visible && page.href && (item.href === page.href || item.href.startsWith(page.href + "/"))) && matches(item, term),
       ),
       ...navigation.filter((item) => request.scopes.includes(item.scope)),
     ].toSorted((left, right) => priority(left.scope) - priority(right.scope));
@@ -79,9 +80,9 @@ function scopeFor(href: string): UniversalSearchScope {
   if (href.includes("properties/projects")) return "projects";
   if (href.includes("properties/inventory") || href.includes("availability"))
     return "inventory";
-  if (href.includes("creative-studio/assets")) return "creative-assets";
+  if (href.includes("creative/assets") || href.includes("creative-studio/assets")) return "creative-assets";
   if (href.includes("reports")) return "reports";
-  if (href.includes("creative-studio") || href.includes("campaigns"))
+  if (href.includes("creative/") || href.includes("creative-studio") || href.includes("campaigns"))
     return "campaigns";
   if (href.includes("properties")) return "properties";
   if (href.includes("leads")) return "leads";
