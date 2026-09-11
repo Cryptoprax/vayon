@@ -27,8 +27,6 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
     { label: "Video", href: "/vayon/creative/videos", icon: Palette },
     { label: "Document", href: "/vayon/creative/documents", icon: FileSearch },
     { label: "Marketing assets", href: "/vayon/creative/assets", icon: Building2 },
-    { label: "Templates", href: "/vayon/creative/templates", icon: FileSearch },
-    { label: "Publishing calendar", href: "/vayon/creative/calendar", icon: CalendarDays },
     { label: "Marketing Performance", href: "/vayon/growth", icon: Gauge },
     { label: "Lead Generation", href: "/vayon/growth/lead-generation", icon: Megaphone },
     { label: "Buyer Intelligence", href: "/vayon/growth/buyer-intelligence", icon: Users },

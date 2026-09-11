@@ -31,7 +31,7 @@ export function auditUnification() {
   for (const item of items) if (!routeExists(item.href)) issues.push(`Missing destination: ${item.href}`);
   const navigation = items.map((item, order) => ({...item, id:item.href, visible:true, order, surface:"sidebar"}));
   const search = new StaticNavigationSearchProvider(navigation);
-  for (const query of ["property", "lead", "company", "campaign", "templates", "analytics", "billing"]) {
+  for (const query of ["property", "lead", "company", "campaign", "analytics", "billing"]) {
     if (!search.search({query,scopes:search.scopes}).length) issues.push(`Search has no match for ${query}`);
   }
   const forbidden = new StaticNavigationSearchProvider([]).search({query:"create",scopes:search.scopes});

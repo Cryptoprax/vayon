@@ -194,10 +194,6 @@ export function DocumentStudio({
                     <Undo2 className="size-4" />
                     Undo
                   </Button>
-                  <Button variant="secondary" disabled>
-                    <Redo2 className="size-4" />
-                    Redo
-                  </Button>
                 </div>
               </div>
               {document.sections.map((section) => (

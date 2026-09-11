@@ -1,4 +1,5 @@
 export const canonicalRouteRedirects = [
+  { source: "/vayon/marketing", destination: "/vayon/growth", permanent: true },
   { source: "/vayon/workforce", destination: "/vayon/ai/workforce", permanent: true },
   { source: "/vayon/ai/employees", destination: "/vayon/ai/workforce", permanent: true },
   { source: "/vayon/crm/leads", destination: "/vayon/leads", permanent: true },
@@ -9,6 +10,7 @@ export const canonicalRouteRedirects = [
   { source: "/vayon/creative-studio/calendar", destination: "/vayon/creative/calendar", permanent: true },
   { source: "/vayon/creative-studio/wizard", destination: "/vayon/creative/campaigns", permanent: true },
   { source: "/vayon/creative-studio/packs", destination: "/vayon/creative/campaigns", permanent: true },
+  { source: "/vayon/creative-studio/brand-kits", destination: "/vayon/creative/brand", permanent: true },
 ] as const;
 
 // These destinations expose early-access screens or an unrelated campaign form.
@@ -16,6 +18,8 @@ export const canonicalRouteRedirects = [
 export const hiddenCustomerRoutes = [
   "/vayon/creative/cloud", "/vayon/creative/pipelines", "/vayon/creative/runtime",
   "/vayon/creative/landing-pages",
+  "/vayon/creative/templates",
+  "/vayon/creative/calendar",
 ] as const;
 
 export function canonicalCustomerHref(href: string): string {
@@ -26,7 +30,7 @@ export function canonicalCustomerHref(href: string): string {
 }
 
 export function isCustomerRouteExposed(href: string): boolean {
-  const path = href.split(/[?#]/)[0];
+  const path = canonicalCustomerHref(href).split(/[?#]/)[0];
   return !hiddenCustomerRoutes.some(route => path === route || path.startsWith(route + "/"));
 }
 

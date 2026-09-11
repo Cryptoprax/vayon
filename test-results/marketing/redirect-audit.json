@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-09-11T21:02:23.675Z",
+  "baseURL": "http://127.0.0.1:3228",
+  "scope": "Local HTTP redirects only; destination rendering not certified",
+  "results": [
+    {
+      "source": "/vayon/marketing",
+      "expected": "/vayon/growth",
+      "status": 308,
+      "actual": "/vayon/growth",
+      "queryPreserved": true,
+      "passed": true
+    },
+    {
+      "source": "/vayon/creative-studio",
+      "expected": "/vayon/creative",
+      "status": 308,
+      "actual": "/vayon/creative",
+      "queryPreserved": true,
+      "passed": true
+    },
+    {
+      "source": "/vayon/creative-studio/assets",
+      "expected": "/vayon/creative/assets",
+      "status": 308,
+      "actual": "/vayon/creative/assets",
+      "queryPreserved": true,
+      "passed": true
+    },
+    {
+      "source": "/vayon/creative-studio/templates",
+      "expected": "/vayon/creative/templates",
+      "status": 308,
+      "actual": "/vayon/creative/templates",
+      "queryPreserved": true,
+      "passed": true
+    },
+    {
+      "source": "/vayon/creative-studio/calendar",
+      "expected": "/vayon/creative/calendar",
+      "status": 308,
+      "actual": "/vayon/creative/calendar",
+      "queryPreserved": true,
+      "passed": true
+    },
+    {
+      "source": "/vayon/creative-studio/wizard",
+      "expected": "/vayon/creative/campaigns",
+      "status": 308,
+      "actual": "/vayon/creative/campaigns",
+      "queryPreserved": true,
+      "passed": true
+    },
+    {
+      "source": "/vayon/creative-studio/packs",
+      "expected": "/vayon/creative/campaigns",
+      "status": 308,
+      "actual": "/vayon/creative/campaigns",
+      "queryPreserved": true,
+      "passed": true
+    },
+    {
+      "source": "/vayon/creative-studio/brand-kits",
+      "expected": "/vayon/creative/brand",
+      "status": 308,
+      "actual": "/vayon/creative/brand",
+      "queryPreserved": true,
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-09-11T20:48:18.790Z",
+  "baseURL": "https://vayon.online",
+  "state": "Needs Verification",
+  "pages": [
+    {
+      "source": "/vayon/growth",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/creative",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/creative/campaigns",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/lead-generation",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/listing-performance",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/buyer-intelligence",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/seller-intelligence",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/marketing-analytics",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/advertising-performance",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/social-performance",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/property-seo",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/referral-network",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/market-intelligence",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/analytics",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    },
+    {
+      "source": "/vayon/growth/reports",
+      "status": 200,
+      "finalPath": "/login",
+      "state": "Needs Verification"
+    }
+  ],
+  "clicks": [],
+  "forms": [],
+  "controls": [],
+  "failures": [],
+  "limitations": [
+    "No authenticated QA storage-state file supplied. Login responses are not workflow certification; no workspace CTA or mutation was exercised."
+  ]
+}

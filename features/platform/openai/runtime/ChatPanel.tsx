@@ -363,4 +363,4 @@ export function WorkforceChatPanel({
 function ResponseField({label,value}:{label:string;value:string}) { return <div className="rounded-lg bg-vds-surface/60 p-2"><dt className="text-vds-subtle">{label}</dt><dd className="mt-1 text-vds-muted">{value}</dd></div>; }
 function related(context:EmployeeConversationContext|undefined,type:string) { return context?.relatedRecords.find(record=>record.type===type)?.label ?? "No verified record"; }
 function approvalHref(context:EmployeeConversationContext|undefined,decision:string) { const id=context?.recommendationIds[0]; return `/vayon/approvals?${id?`recommendation=${encodeURIComponent(id)}&`:""}decision=${decision}`; }
-function relatedHref(employee:AIEmployeeCode) { return employee==="crm-ai"?"/vayon/properties":employee==="marketing-ai"?"/vayon/marketing":employee==="operations-ai"?"/vayon/calendar":employee==="whatsapp-ai"?"/vayon/communications":"/vayon/crm"; }
+function relatedHref(employee:AIEmployeeCode) { return employee==="crm-ai"?"/vayon/properties":employee==="marketing-ai"?"/vayon/growth":employee==="operations-ai"?"/vayon/calendar":employee==="whatsapp-ai"?"/vayon/communications":"/vayon/crm"; }

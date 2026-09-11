@@ -23,7 +23,6 @@ const quickActions = [
   { title: "Campaign", icon: Megaphone, route: routes.marketing },
   { title: "Social Media", icon: Share2, prompt: "Create social media campaign." },
   { title: "Presentation", icon: Presentation, prompt: "Create pitch deck." },
-  { title: "Landing Page", icon: Globe2, prompt: "Create a landing page." },
   { title: "Video", icon: Video, route: routes.videos },
   { title: "Image", icon: ImageIcon, route: routes.images },
   { title: "Email", icon: Mail, prompt: "Create an email campaign." },
@@ -60,11 +59,10 @@ export function CreativeStudioHome({ snapshot }: { readonly snapshot: CreativeSt
         <p className="mt-4 max-w-2xl text-base leading-7 text-vds-muted">Create every marketing asset your business needs using AI.</p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Button onClick={() => setDialog(true)} className="min-h-12 gap-2 rounded-xl px-5"><Sparkles aria-hidden="true" className="size-5" />Create with AI</Button>
-          <Link href="#featured-templates" className={`${action} border border-vds-border bg-vds-surface`}>Browse Templates<ChevronRight aria-hidden="true" className="size-4" /></Link>
         </div>
       </header>
       <nav aria-label="Creative Center sections" className="flex flex-wrap items-center gap-2 border-b border-vds-border py-3">
-        {[["Quick actions", "quick-actions"], ["Studios", "studios"], ["Recent projects", "recent-projects"], ["Templates", "featured-templates"], ["Brand assets", "brand-assets"], ["Activity", "activity"]].map(([label,id]) => <a className={action} href={`#${id}`} key={id}>{label}</a>)}
+        {[["Quick actions", "quick-actions"], ["Studios", "studios"], ["Recent projects", "recent-projects"], ["Brand assets", "brand-assets"], ["Activity", "activity"]].map(([label,id]) => <a className={action} href={`#${id}`} key={id}>{label}</a>)}
         <Button variant="outline" className="min-h-11 gap-2 xl:ml-auto" aria-expanded={assistant} aria-controls="creative-assistant-dock" onClick={() => setAssistant(value => !value)}><PanelRight aria-hidden="true" className="size-4" />Assistant</Button>
       </nav>
       <div className={styles.workspace} data-docked={assistant} style={{ "--creative-dock-width": `${dockWidth}px` } as CSSProperties}>
@@ -86,7 +84,7 @@ export function CreativeStudioHome({ snapshot }: { readonly snapshot: CreativeSt
               {groups.map(value => <Button key={value} variant={group === value ? "primary" : "outline"} aria-pressed={group === value} onClick={() => setGroup(value)} className="min-h-11 rounded-full">{value}</Button>)}
             </div>
             <div className={styles.studioGrid}>
-              {snapshot.modules.filter(module => module.availability === "available" && module.id !== "websites" && module.id !== "projects").filter(module => group === "All studios" || studioGroup[module.id] === group).map(module => {
+              {snapshot.modules.filter(module => module.availability === "available" && !["websites", "projects", "templates"].includes(module.id)).filter(module => group === "All studios" || studioGroup[module.id] === group).map(module => {
                 const Icon = icons[module.id];
                 return <article key={module.id} className={`${card} ${styles.studioCard} vds-card-motion`}>
                   <div className="flex flex-wrap items-center justify-between gap-3"><span className="grid size-14 place-items-center rounded-2xl bg-vds-primary-soft text-vds-primary"><Icon className="size-7" aria-hidden="true" /></span><span className="rounded-full border border-vds-border px-3 py-1 text-xs capitalize text-vds-muted">{module.availability}</span></div>
@@ -101,15 +99,10 @@ export function CreativeStudioHome({ snapshot }: { readonly snapshot: CreativeSt
             <div className="flex flex-wrap items-center justify-between gap-4"><div><h2 id="recent-title" className="text-xl font-semibold">Recent Projects</h2><p className="mt-2 text-sm text-vds-muted">Pick up where your team left off.</p></div><label className="flex min-w-0 max-w-full items-center gap-2 rounded-xl border border-vds-border px-3 focus-within:ring-2 focus-within:ring-vds-focus"><Search className="size-4 shrink-0" aria-hidden="true" /><span className="sr-only">Search recent projects</span><input value={query} onChange={event => setQuery(event.target.value)} placeholder="Search recent work" className="h-11 w-full min-w-0 bg-transparent text-sm outline-none" /></label></div>
             <div role="group" aria-label="Recent project type" className="my-5 flex flex-wrap gap-2">{["Generations", "Campaigns", "Assets", "Exports"].map(value => <Button key={value} variant={recent === value ? "primary" : "outline"} aria-pressed={recent === value} onClick={() => setRecent(value)}>{value}</Button>)}</div>
             <div className={styles.recentGrid} aria-live="polite">
-              {recent === "Campaigns" ? projects.slice(0,6).map(project => <Link href={routes.projects} key={project.id} className={`${styles.recentCard} focus-ring vds-card-motion`}><FolderKanban className="size-6 text-vds-primary" aria-hidden="true" /><h3 className="mt-4 font-semibold">{project.name}</h3><p className="mt-2 text-sm text-vds-muted">{project.assetCount} assets · {date(project.updatedAt)}</p><p className="mt-3 text-xs capitalize text-vds-muted">{project.status.replaceAll("-", " ")}</p></Link>) : recentAssets.slice(0,6).map(asset => <Link href={`/vayon/creative-studio/editor/${encodeURIComponent(asset.id)}`} key={asset.id} className={`${styles.recentCard} focus-ring vds-card-motion`}><ImageIcon className="size-6 text-vds-primary" aria-hidden="true" /><h3 className="mt-4 font-semibold">{asset.name}</h3><p className="mt-2 text-sm text-vds-muted">{recent === "Exports" ? asset.exports.join(" · ") : `${asset.format} · v${asset.version}`}</p><p className="mt-3 text-xs text-vds-muted">{date(asset.generatedAt)} · {asset.status.replaceAll("-", " ")}</p></Link>)}
+              {recent === "Campaigns" ? projects.slice(0,6).map(project => <article key={project.id} className={`${styles.recentCard} vds-card-motion`}><FolderKanban className="size-6 text-vds-primary" aria-hidden="true" /><h3 className="mt-4 font-semibold">{project.name}</h3><p className="mt-2 text-sm text-vds-muted">{project.assetCount} assets · {date(project.updatedAt)}</p><p className="mt-3 text-xs capitalize text-vds-muted">{project.status.replaceAll("-", " ")}</p></article>) : recentAssets.slice(0,6).map(asset => <Link href={`/vayon/creative-studio/editor/${encodeURIComponent(asset.id)}`} key={asset.id} className={`${styles.recentCard} focus-ring vds-card-motion`}><ImageIcon className="size-6 text-vds-primary" aria-hidden="true" /><h3 className="mt-4 font-semibold">{asset.name}</h3><p className="mt-2 text-sm text-vds-muted">{recent === "Exports" ? asset.exports.join(" · ") : `${asset.format} · v${asset.version}`}</p><p className="mt-3 text-xs text-vds-muted">{date(asset.generatedAt)} · {asset.status.replaceAll("-", " ")}</p></Link>)}
             </div>
             {!(recent === "Campaigns" ? projects.length : recentAssets.length) && <div className="rounded-2xl border border-dashed border-vds-border p-8 text-center"><p className="text-sm text-vds-muted">{query ? "No matching work. Try a different search." : `Your recent ${recent.toLowerCase()} will appear here.`}</p>{!query && <Button variant="outline" onClick={() => setDialog(true)} className="mt-4">Create with AI</Button>}</div>}
             <div className="mt-5 flex flex-wrap gap-2">{snapshot.projectCapabilities.map(item => <span className="rounded-full bg-vds-elevated px-3 py-1 text-xs capitalize text-vds-muted" key={item}>{item}</span>)}</div>
-          </section>
-          <section id="featured-templates" aria-labelledby="templates-title">
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-3"><div><h2 id="templates-title" className="text-xl font-semibold">Featured Templates</h2><p className="mt-2 text-sm text-vds-muted">A head start for your next campaign.</p></div><Link className={action} href={routes.templates}>Browse all templates<ChevronRight className="size-4" aria-hidden="true" /></Link></div>
-            <div className={styles.recentGrid}>{snapshot.templates.slice(0,3).map(template => <Link href={routes.templates} key={template.id} className={`${card} overflow-hidden focus-ring vds-card-motion`}><div className={styles.templatePreview} aria-hidden="true"><LayoutTemplate className="size-12" /><span className="text-sm font-medium">{template.category}</span></div><div className="p-5"><h3 className="font-semibold">{template.name}</h3><p className="mt-2 text-sm text-vds-muted">Editable · Brand Kit aware</p></div></Link>)}</div>
-            {!snapshot.templates.length && <p className="text-sm text-vds-muted">No templates available yet.</p>}
           </section>
           <section id="brand-assets" aria-labelledby="brand-title" className={`${card} p-5 sm:p-7`}>
             <div className="flex flex-wrap items-center justify-between gap-3"><div><h2 id="brand-title" className="text-xl font-semibold">Brand Assets</h2><p className="mt-2 text-sm text-vds-muted">{brand?.name ?? "Build a consistent identity for everything you create."}</p></div><Link href={routes.brand} className={action}>Open Brand Studio<ChevronRight className="size-4" aria-hidden="true" /></Link></div>
@@ -270,7 +263,7 @@ export function CreativeStudioHome({ snapshot }: { readonly snapshot: CreativeSt
                 onClick={plan ? execute : prepare}
                 className="rounded-xl bg-vds-primary px-4 py-2 text-sm font-semibold text-vds-on-primary disabled:opacity-40"
               >
-                {plan ? "Begin execution" : "Prepare execution plan"}
+                {plan ? "Continue in studio" : "Prepare creative brief"}
               </Button>
             </div>
           </section>

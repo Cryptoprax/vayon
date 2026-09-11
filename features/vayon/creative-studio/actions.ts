@@ -1,5 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { CreativeStudioService } from "./service";
 import { audiences, campaignTypes, creativePlatforms, type CampaignBrief } from "./domain";
 import { CreativeGenerationService } from "./generation.service";
@@ -9,15 +10,24 @@ import { GrowthStudioService } from "./growth.service";
 const accessError = "Marketing Studio subscription access is required.";
 
 export async function createCreativeDraftAction(formData: FormData) {
-  const service = await CreativeStudioService.production();
-  if (!service) throw new Error(accessError);
-  const campaignType = String(formData.get("campaignType"));
-  const selectedAudiences = formData.getAll("audience").map(String);
-  const platforms = formData.getAll("platform").map(String);
-  if (!campaignTypes.includes(campaignType as never) || selectedAudiences.some((x) => !audiences.includes(x as never)) || platforms.some((x) => !creativePlatforms.includes(x as never))) throw new Error("Invalid campaign selection.");
-  const brief: CampaignBrief = { projectId: String(formData.get("projectId")), campaignType: campaignType as CampaignBrief["campaignType"], audiences: selectedAudiences as CampaignBrief["audiences"], platforms: platforms as CampaignBrief["platforms"], language: String(formData.get("language") ?? "English").slice(0, 40), objective: String(formData.get("objective") ?? "").slice(0, 1000) };
-  await service.saveDraft(brief, String(formData.get("name") ?? "Untitled campaign").slice(0, 160));
-  revalidatePath("/vayon/creative-studio");
+  let saved = false;
+  try {
+    const service = await CreativeStudioService.production();
+    if (!service) throw new Error(accessError);
+    const campaignType = String(formData.get("campaignType"));
+    const selectedAudiences = formData.getAll("audience").map(String);
+    const platforms = formData.getAll("platform").map(String);
+    if (!campaignTypes.includes(campaignType as never) || selectedAudiences.some((x) => !audiences.includes(x as never)) || platforms.some((x) => !creativePlatforms.includes(x as never))) throw new Error("Invalid campaign selection.");
+    const brief: CampaignBrief = { projectId: String(formData.get("projectId")), campaignType: campaignType as CampaignBrief["campaignType"], audiences: selectedAudiences as CampaignBrief["audiences"], platforms: platforms as CampaignBrief["platforms"], language: String(formData.get("language") ?? "English").slice(0, 40), objective: String(formData.get("objective") ?? "").slice(0, 1000) };
+    await service.saveDraft(brief, String(formData.get("name") ?? "Untitled campaign").slice(0, 160));
+    saved = true;
+  } catch {
+    console.error("[marketing-studio] Campaign draft could not be saved.");
+  }
+  if (!saved) redirect("/vayon/creative/campaigns?error=Campaign%20draft%20could%20not%20be%20saved.%20Please%20try%20again.");
+  revalidatePath("/vayon/creative/campaigns");
+  revalidatePath("/vayon/creative");
+  redirect("/vayon/creative?success=Campaign%20draft%20saved");
 }
 
 export async function generateCreativeAssetAction(formData: FormData) {
