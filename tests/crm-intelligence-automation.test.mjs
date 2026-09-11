@@ -33,11 +33,11 @@ test("duplicate protection is tenant scoped and presents actionable messages", a
   assert.match(await read("features/vayon/crm-company/actions.ts"), /Open the existing company/);
 });
 
-test("lead, contact, company, property, and command-center views expose live CRM projections", async () => {
+test("CRM views retain live projections while property prioritizes recorded details", async () => {
   assert.match(await read("features/vayon/crm-engine/components/CrmLeadProfile.tsx"), /PropertyRecommendations/);
   assert.match(await read("app/vayon/crm/contacts/[contactId]/page.tsx"), /CrmLeadProfileView/);
   assert.match(await read("app/vayon/crm/companies/[companyId]/page.tsx"), /CompanyMetrics/);
-  assert.match(await read("app/vayon/properties/[propertyId]/page.tsx"), /PropertyCrmSummary/);
+  assert.match(await read("app/vayon/properties/[propertyId]/page.tsx"), /PropertyService\(\)\.detail\(id\)/);
   assert.match(await read("app/vayon/crm/page.tsx"), /SalesAutomationSummary/);
 });
 

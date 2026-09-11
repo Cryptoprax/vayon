@@ -248,7 +248,7 @@ export function VayonIntelligence({
     >
       {!open ? (
         <div className="flex items-center gap-2">
-          {proactive && !docked && (
+          {proactive && !docked && !route.startsWith("/vayon/properties") && (
             <Button
               variant="ghost"
               className="vds-focus hidden max-w-64 rounded-2xl border border-vds-border bg-vds-surface/95 px-4 py-3 text-left text-sm shadow-xl backdrop-blur-xl sm:block"

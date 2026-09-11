@@ -6,9 +6,9 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
 test("property cards expose commercial real estate decision signals without fabricated values", async () => {
   const source = await read("features/vayon/property/components/PropertyCard.tsx");
-  for (const label of ["Bedrooms", "Bathrooms", "Area", "AI listing score", "Demand score", "Interested buyers", "Viewing requests", "Days on market"]) assert.match(source, new RegExp(label, "i"));
-  assert.match(source, /Unavailable/);
-  assert.match(source, /Open property command center/);
+  for (const label of ["Bedrooms", "Bathrooms", "Area", "Next: add a property description", "Next: assign a responsible agent"]) assert.match(source, new RegExp(label, "i"));
+  assert.doesNotMatch(source, /Unavailable|Demand score|Interested buyers|Viewing requests|Days on market/);
+  assert.match(source, /Open property/);
 });
 
 test("client and transaction command centers use real estate language", async () => {

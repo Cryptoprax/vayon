@@ -9,9 +9,10 @@ import { AddressAutocomplete, CitySelect, CountrySelect, CurrencySelect, StateSe
 import { locationData } from "@/features/location/services/location-data.service";
 import { MediaManager } from "@/features/vayon/property-intelligence/components/MediaManager";
 import { amenityGroups, listingTypes, propertyDocuments, propertyStatuses, propertyTypes, viewingInstructionGroups } from "../config/catalogs";
+import { propertyFormInput, propertyMutationSchema } from "../validation/property";
 import type { PropertyRecord } from "../types";
 
-const sections = ["Basic", "Location", "Pricing", "Property Features", "Media", "Amenities", "Ownership", "Documents", "Search Details", "Save Property"];
+const sections = ["Basic", "Location", "Pricing", "Property Features", "Media", "Amenities", "Ownership", "Documents", "Search Details", "Review & Save"];
 
 function Submit({ editing }: { editing: boolean }) {
   const { pending } = useFormStatus();
@@ -20,6 +21,8 @@ function Submit({ editing }: { editing: boolean }) {
 
 export function PropertyWizard({ action, property, error }: { action: (form: FormData) => void | Promise<void>; property?: PropertyRecord; error?: string }) {
   const [step, setStep] = useState(1);
+  const [furthestStep, setFurthestStep] = useState(1);
+  const [validationError, setValidationError] = useState<string>();
   const [country, setCountry] = useState(property?.address.countryCode ?? "US");
   const [region, setRegion] = useState(property?.address.region ?? "");
   const [city, setCity] = useState(property?.address.city ?? "");
@@ -45,13 +48,61 @@ export function PropertyWizard({ action, property, error }: { action: (form: For
     }, 600);
   }
 
-  return <form ref={formRef} action={action} onInput={saveLocalDraft} className="rounded-3xl border border-vds-border/[0.08] bg-[var(--vds-color-surface)] p-5 shadow-2xl shadow-vds-shadow sm:p-8">
+  function sectionFor(control: Element) {
+    return [...(formRef.current?.querySelectorAll(":scope > section") ?? [])].findIndex(section => section.contains(control)) + 1;
+  }
+
+  function showInvalid(control: HTMLElement, message: string) {
+    const targetStep = sectionFor(control);
+    if (targetStep > 0) setStep(targetStep);
+    setValidationError(message);
+    requestAnimationFrame(() => {
+      const focusTarget = control instanceof HTMLInputElement && control.type === "hidden"
+        ? control.parentElement?.querySelector<HTMLElement>('button, [role="combobox"], input:not([type="hidden"])')
+        : control;
+      focusTarget?.focus();
+    });
+  }
+
+  function validate(sectionNumber?: number) {
+    const form = formRef.current;
+    if (!form) return false;
+    const controls = [...form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>("input, select, textarea")];
+    const relevant = (control: HTMLElement) => sectionNumber === undefined || sectionFor(control) === sectionNumber;
+    const invalid = controls.find(control => relevant(control) && !control.validity.valid);
+    if (invalid) { showInvalid(invalid, invalid.validationMessage); return false; }
+    const parsed = propertyMutationSchema.safeParse(propertyFormInput(new FormData(form)));
+    if (!parsed.success) {
+      for (const issue of parsed.error.issues) {
+        const control = controls.find(item => item.name === String(issue.path[0]));
+        if (control && relevant(control)) { showInvalid(control, issue.message); return false; }
+      }
+      if (sectionNumber === undefined) { setValidationError("Review the property details before saving."); return false; }
+    }
+    setValidationError(undefined);
+    return true;
+  }
+
+  function continueStep() {
+    if (!validate(step)) return;
+    setFurthestStep(current => Math.max(current, Math.min(sections.length, step + 1)));
+    setStep((current) => Math.min(sections.length, current + 1));
+  }
+
+  return <form ref={formRef} action={action} onSubmit={event => {
+    if (step !== sections.length || !validate()) event.preventDefault();
+  }} onInvalidCapture={event => {
+    event.preventDefault();
+    const control = event.target as HTMLInputElement;
+    const scope = step === sections.length ? formRef.current : formRef.current?.querySelectorAll(":scope > section")[step - 1];
+    if (control === scope?.querySelector("input:invalid, select:invalid, textarea:invalid")) showInvalid(control, control.validationMessage);
+  }} onInput={saveLocalDraft} className="rounded-3xl border border-vds-border/[0.08] bg-[var(--vds-color-surface)] p-5 shadow-2xl shadow-vds-shadow sm:p-8">
     {property && <input type="hidden" name="version" value={property.version} />}
     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div><p className="text-xs uppercase tracking-widest text-vds-primary">Section {step} of {sections.length}</p><h2 className="mt-1 text-xl font-semibold">{sections[step - 1]}</h2></div>
       <p aria-live="polite" className="flex items-center gap-2 text-xs text-vds-muted"><Cloud className="size-4 text-vds-success" />{savedAt ? `Browser draft updated at ${savedAt}` : "Changes stay in this browser until you save"}</p>
     </div>
-    <p className="mt-3 text-sm text-vds-muted">Complete the first four sections, then review and save. Photos and other optional details can be reviewed separately.</p>
+    <p className="mt-3 text-sm text-vds-muted">Continue through all nine sections, then review and save your property.</p>
     <nav className="mt-5 pb-2" aria-label="Property form sections">
       <ol className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-5">
         {sections.map((section, index) => {
@@ -64,7 +115,8 @@ export function PropertyWizard({ action, property, error }: { action: (form: For
                 type="button"
                 aria-label={`Step ${number} of ${sections.length}, ${section}`}
                 aria-current={active ? "step" : undefined}
-                onClick={() => setStep(number)}
+                disabled={number > furthestStep}
+                onClick={() => { if (number <= step || validate(step)) setStep(number); }}
                 className={`focus-ring flex min-h-12 w-full min-w-0 items-center justify-start gap-2.5 whitespace-normal rounded-xl border px-5 py-3 text-sm transition-colors ${active ? "border-vds-success bg-vds-success font-bold text-vds-on-accent" : "border-vds-border bg-vds-elevated text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"}`}
               >
                 <span aria-hidden="true" className="font-semibold">{number}</span>
@@ -75,12 +127,12 @@ export function PropertyWizard({ action, property, error }: { action: (form: For
         })}
       </ol>
     </nav>
-    {error && <p role="alert" className="mt-4 rounded-xl bg-vds-danger-soft p-3 text-sm text-vds-danger">{/permission|not allowed/i.test(error) ? "You do not have access to save this property. Ask your workspace administrator for help." : "We could not save this property. Review the required details and try again. If you already submitted it, check the property list first."}</p>}
+    {(validationError || error) && <p role="alert" className="mt-4 rounded-xl bg-vds-danger-soft p-3 text-sm text-vds-danger">{validationError ?? (/permission|not allowed/i.test(error ?? "") ? "You do not have access to save this property. Ask your workspace administrator for help." : "We could not save this property. Review the required details and try again. If you already submitted it, check the property list first.")}</p>}
 
     <Section show={step === 1}><Input id="title" name="title" label="Property name" defaultValue={property?.title} required /><Input id="reference" name="reference" label="Property code" defaultValue={property?.reference} required /><Select name="propertyType" label="Property type" items={propertyTypes} value={property?.propertyType} /><Select name="listingType" label="Listing type" items={listingTypes} value={property?.listingType} /><Select name="status" label="Status" items={propertyStatuses} value={property?.status ?? "available"} /><TextArea name="description" label="Description" value={property?.description} wide /></Section>
     <Section show={step === 2}><CountrySelect name="countryCode" value={country} onChange={(value) => { setCountry(value); setRegion(""); setCity(""); setCurrency(locationData.country(value)?.currency ?? currency); }} required /><StateSelect countryCode={country} value={region} onChange={(value) => { setRegion(value); setCity(""); }} /><CitySelect countryCode={country} state={region} value={city} onChange={setCity} required /><Input id="locality" name="locality" label="Area / Locality" defaultValue={property?.address.locality} /><div className="sm:col-span-2"><AddressAutocomplete id="address" name="address" label="Address" defaultValue={property?.address.lines[0]} required /></div><Placeholder text="Enter the address above so your team can identify this property." /></Section>
-    <Section show={step === 3}><Input id="salePrice" name="salePrice" type="number" label="Sale price" defaultValue={property?.salePrice?.amount} /><Input id="rentalPrice" name="rentalPrice" type="number" label="Rental price" defaultValue={property?.rentalPrice?.amount} /><CurrencySelect countryCode={country} value={currency} onChange={setCurrency} required /><Input id="commission" name="commission" type="number" label="Commission %" defaultValue={property?.commission} /></Section>
-    <Section show={step === 4}>{[["bedrooms", "Bedrooms"], ["bathrooms", "Bathrooms"], ["area", "Area"], ["parking", "Parking"], ["floor", "Floor"]].map(([id, label]) => <Input key={id} id={id} name={id} type="number" label={label} defaultValue={id === "floor" ? property?.floor : property?.specification[id as keyof typeof property.specification] as number | undefined} />)}<Input id="areaUnit" name="areaUnit" label="Area unit" defaultValue={property?.specification.areaUnit ?? "sqft"} required /></Section>
+    <Section show={step === 3}><Input id="salePrice" name="salePrice" type="number" step="any" label="Sale price" defaultValue={property?.salePrice?.amount} /><Input id="rentalPrice" name="rentalPrice" type="number" step="any" label="Rental price" defaultValue={property?.rentalPrice?.amount} /><CurrencySelect countryCode={country} value={currency} onChange={setCurrency} required /><Input id="commission" name="commission" type="number" step="any" label="Commission %" defaultValue={property?.commission} /></Section>
+    <Section show={step === 4}>{[["bedrooms", "Bedrooms"], ["bathrooms", "Bathrooms"], ["area", "Area"], ["parking", "Parking"], ["floor", "Floor"]].map(([id, label]) => <Input key={id} id={id} name={id} type="number" step={["bathrooms", "area"].includes(id) ? "any" : 1} label={label} defaultValue={id === "floor" ? property?.floor : property?.specification[id as keyof typeof property.specification] as number | undefined} />)}<Input id="areaUnit" name="areaUnit" label="Area unit" defaultValue={property?.specification.areaUnit ?? "sqft"} required /></Section>
     <section hidden={step !== 5} className="mt-7"><MediaManager /></section>
     <section hidden={step !== 6} className="mt-7"><EnterpriseMultiSelect label="Amenities" name="amenities" groups={amenityGroups} selected={amenities} onChange={setAmenities} />{amenities.includes("other") && <div className="mt-4 max-w-xl"><Input id="customAmenity" name="customAmenity" label="Custom Amenity" required /></div>}</section>
     <Section show={step === 7}><Input id="ownerName" name="ownerName" label="Owner name" hint="Saved in this browser only" /><Input id="ownerContact" name="ownerContact" label="Owner contact" hint="Saved in this browser only" /><Input id="availabilityDate" name="availabilityDate" type="date" label="Available from" hint="Saved in this browser only" /><div className="sm:col-span-2"><EnterpriseMultiSelect label="Viewing Instructions" name="viewingInstructions" groups={viewingInstructionGroups} selected={viewingInstructions} onChange={setViewingInstructions} />{viewingInstructions.includes("other") && <div className="mt-4"><Input id="customViewingInstruction" name="customViewingInstruction" label="Custom Viewing Instruction" required /></div>}</div></Section>
@@ -88,7 +140,7 @@ export function PropertyWizard({ action, property, error }: { action: (form: For
     <Section show={step === 9}><Input id="seoTitle" name="seoTitle" label="Search result title" hint="Saved in this browser only" /><Input id="seoKeywords" name="seoKeywords" label="Search terms" hint="Saved in this browser only" /><Placeholder text="Use clear words that buyers would search for." /></Section>
     <section hidden={step !== 10} className="mt-7"><TextArea name="internalNotes" label="Internal notes" wide /><div className="mt-4 flex items-start gap-3 rounded-2xl border border-vds-success bg-vds-success/[0.04] p-4 text-sm text-vds-muted"><ShieldCheck className="mt-0.5 size-5 shrink-0 text-vds-success" />Save the property details to your workspace. Fields marked Saved in this browser only are kept on this device and are not added to the saved property.</div></section>
 
-    <div className="mt-8 flex justify-between border-t border-vds-border/[0.07] pt-5"><Button type="button" variant="ghost" disabled={step === 1} onClick={() => setStep((current) => current === 10 ? 4 : Math.max(1, current - 1))}>Back</Button>{step < sections.length ? <Button type="button" onClick={() => setStep((current) => current === 4 ? sections.length : Math.min(sections.length, current + 1))}>{step === 4 ? "Review and save" : "Continue"}</Button> : <Submit editing={Boolean(property)} />}</div>
+    <div className="mt-8 flex justify-between border-t border-vds-border/[0.07] pt-5"><Button type="button" variant="ghost" disabled={step === 1} onClick={() => setStep((current) => Math.max(1, current - 1))}>Back</Button>{step < sections.length ? <Button type="button" onClick={continueStep}>Continue</Button> : <Submit editing={Boolean(property)} />}</div>
   </form>;
 }
 

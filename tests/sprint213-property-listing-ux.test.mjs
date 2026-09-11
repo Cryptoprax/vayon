@@ -5,18 +5,20 @@ import test from "node:test";
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
 test("amenities use grouped searchable keyboard-accessible structured selection", async () => {
-  const [wizard, catalogs, action] = await Promise.all([
+  const [wizard, catalogs, action, validation] = await Promise.all([
     read("features/vayon/property/components/PropertyWizard.tsx"),
     read("features/vayon/property/config/catalogs.ts"),
     read("features/vayon/property/actions/property.actions.ts"),
+    read("features/vayon/property/validation/property.ts"),
   ]);
   assert.match(wizard, /EnterpriseMultiSelect/);
   assert.match(wizard, /type="search"/);
   assert.match(wizard, /event\.key === "ArrowDown"/);
   assert.match(wizard, /name="customAmenity"/);
   assert.match(catalogs, /Residential|Commercial|Building & Security|Utilities/);
-  assert.match(action, /getAll\("amenities"\)/);
-  assert.match(action, /custom:/);
+  assert.match(action, /propertyFormInput\(form\)/);
+  assert.match(validation, /getAll\("amenities"\)/);
+  assert.match(validation, /custom:/);
 });
 
 test("viewing instructions include every prescribed option and custom Other", async () => {

@@ -1,0 +1,32 @@
+{
+  "scope": "Real PropertyWizard, native browser validation, actual location selectors and VDS Button; action is a test callback, not a database mutation",
+  "visited": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "backPath": [
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "earlyReviewPrevented": true,
+  "missingPriceStoppedAtStep3": true,
+  "invalidHiddenFieldRevealed": true,
+  "actionCalls": 1,
+  "errors": []
+}

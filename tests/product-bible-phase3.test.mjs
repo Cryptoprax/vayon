@@ -33,8 +33,8 @@ test('photo previews and form failures no longer promise persistence or echo arb
 });
 
 
-test('essential create flows skip only optional sections and preserve required sections',()=>{
-  for(const [file,expected,last] of [['features/vayon/property/components/PropertyWizard.tsx',[1,2,3,4,10],10],['features/vayon/lead/components/LeadWizard.tsx',[1,3,6],6]]) {
+test('property visits every section and lead retains its existing flow',()=>{
+  for(const [file,expected,last] of [['features/vayon/property/components/PropertyWizard.tsx',[1,2,3,4,5,6,7,8,9,10],10],['features/vayon/lead/components/LeadWizard.tsx',[1,3,6],6]]) {
     const source=fs.readFileSync(file,'utf8');const ast=ts.createSourceFile(file,source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TSX);let next;
     const walk=node=>{if(ts.isCallExpression(node)&&node.expression.getText(ast)==='setStep'&&node.arguments[0]?.getText(ast).includes('Math.min'))next=new Function('sections','return ('+node.arguments[0].getText(ast)+')')({length:10});ts.forEachChild(node,walk);};walk(ast);
     assert.ok(next);const path=[1];while(path.at(-1)!==last&&path.length<12)path.push(next(path.at(-1)));assert.deepEqual(path,expected);

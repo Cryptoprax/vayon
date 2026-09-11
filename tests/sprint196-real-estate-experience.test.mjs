@@ -25,7 +25,7 @@ test("property and lead profiles expose evidence-safe intelligence surfaces", ()
   const property = read("app/vayon/properties/[propertyId]/page.tsx");
   const lead = read("app/vayon/leads/[leadId]/page.tsx");
   for (const field of ["AI Listing Score", "Demand Score", "Pricing Competitiveness", "Buyer Match Count", "Nearby Market Trends", "Recommended Price", "Buyer/Seller type", "Preferred communities", "Mortgage required", "AI Buying Intent", "Interaction Timeline"]) assert.match(catalog, new RegExp(field.replace("/", "\\/")));
-  assert.match(property, /RealEstateSignalGrid kind="property"/);
+  assert.match(property, /active === "insights" && hasInsights/);
   assert.match(lead, /RealEstateSignalGrid kind="lead"/);
 });
 

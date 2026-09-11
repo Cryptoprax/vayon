@@ -67,6 +67,9 @@ export function ProductExperience({
       () => false,
     ),
     feedback = params.get("success") || params.get("error");
+  const propertyRoute = path === "/vayon/properties" || path.startsWith("/vayon/properties/");
+  const propertyHeader = path === "/vayon/properties" || /^\/vayon\/properties\/[0-9a-f-]{36}$/i.test(path);
+  const showWelcome = path === "/vayon/dashboard" && params.get("welcome") === "1" && !feedback;
   function toggleCollapse() {
     const next = !collapsed;
     try {
@@ -79,7 +82,7 @@ export function ProductExperience({
   return (
     <FloatingLayoutManager sidebarCollapsed={collapsed}>
     <div className="vayon-premium-canvas vayon-product min-h-dvh text-vds-foreground">
-      <PremiumWelcomeExperience userName={identity.userName} workspaceName={identity.workspaceName} />
+      {showWelcome && <PremiumWelcomeExperience userName={identity.userName} workspaceName={identity.workspaceName} />}
       <TTFVObserver workspaceReady={Boolean(identity.workspaceName)} />
       <a href="#main-content" className="skip-link">
         Skip to content
@@ -98,19 +101,19 @@ export function ProductExperience({
         onCollapse={toggleCollapse}
         onMobileClose={() => setMobile(false)}
       />}>
-        <div className="sticky top-16 z-20 border-b border-vds-border bg-vds-background/90 backdrop-blur-lg">
+        {!propertyHeader && <div className="sticky top-16 z-20 border-b border-vds-border bg-vds-background/90 backdrop-blur-lg">
           <ContentContainer><Breadcrumbs path={path} /></ContentContainer>
-        </div>
+        </div>}
         <main
           id="main-content"
           tabIndex={-1}
           className="min-w-0 animate-[vds-fade-rise_180ms_cubic-bezier(.16,1,.3,1)]"
         >
-          <ContentContainer>{children}</ContentContainer>
+          {propertyRoute ? <div className="vayon-content-container" style={{ maxWidth: "none" }}>{children}</div> : <ContentContainer>{children}</ContentContainer>}
         </main>
       </AppShell>
       <aside hidden aria-hidden="true" data-future-utility-rail="disabled" />
-      {path !== "/vayon/creative" && <QuickCreate role={identity.workspaceRole} visibility={visibility} />}
+      {path !== "/vayon/creative" && (!propertyRoute || !intelligenceEnabled) && <QuickCreate role={identity.workspaceRole} visibility={visibility} />}
       {intelligenceEnabled && (
         <VayonIntelligence
           docked={path === "/vayon/creative"}
@@ -126,7 +129,7 @@ export function ProductExperience({
       )}
       {feedback && (
         <FloatingSurface id="shell-feedback" kind="toast" priority={30}>
-        <ShellFeedbackToast message={feedback} tone={params.get("error") ? "danger" : "success"}/>
+        <ShellFeedbackToast key={`${path}:${feedback}`} message={feedback} tone={params.get("error") ? "danger" : "success"}/>
         </FloatingSurface>
       )}
     </div>

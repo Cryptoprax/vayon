@@ -3,13 +3,13 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
 const source = await readFile(new URL("../features/vayon/property/components/PropertyWizard.tsx", import.meta.url), "utf8");
-const stepper = source.slice(source.indexOf('<nav className="mt-5'), source.indexOf("{error &&"));
+const stepper = source.slice(source.indexOf('<nav className="mt-5'), source.indexOf("{(validationError || error) &&"));
 
 test("property wizard uses ten real navigation buttons with visible number and title", () => {
   assert.match(stepper, /<Button/);
   assert.match(stepper, /<span aria-hidden="true" className="font-semibold">\{number\}<\/span>/);
   assert.match(stepper, /<span>\{section\}<\/span>/);
-  for (const label of ["Basic", "Location", "Pricing", "Property Features", "Media", "Amenities", "Ownership", "Documents", "Search Details", "Save Property"]) {
+  for (const label of ["Basic", "Location", "Pricing", "Property Features", "Media", "Amenities", "Ownership", "Documents", "Search Details", "Review & Save"]) {
     assert.match(source, new RegExp(label));
   }
 });
@@ -36,6 +36,7 @@ test("current step and keyboard-native navigation remain accessible", () => {
   assert.match(stepper, /aria-current=\{active \? "step" : undefined\}/);
   assert.match(stepper, /Step \$\{number\} of \$\{sections\.length\}, \$\{section\}/);
   assert.match(stepper, /type="button"/);
-  assert.match(stepper, /onClick=\{\(\) => setStep\(number\)\}/);
+  assert.match(stepper, /number <= step \|\| validate\(step\)/);
+  assert.match(stepper, /disabled=\{number > furthestStep\}/);
   assert.match(stepper, /focus-ring/);
 });

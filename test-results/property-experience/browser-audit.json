@@ -1,0 +1,65 @@
+{
+  "scope": "Actual server page markup with fixture properties, actual VDS buttons and production CSS; Next links are native anchors; no authenticated shell or backend. Long description added to test scrolling.",
+  "results": [
+    {
+      "width": 390,
+      "noHorizontalOverflow": true,
+      "oneBreadcrumb": true,
+      "keyboardLinkFocus": true,
+      "actionsVisible": true,
+      "stickyHeaderTop": 64
+    },
+    {
+      "width": 768,
+      "noHorizontalOverflow": true,
+      "oneBreadcrumb": true,
+      "keyboardLinkFocus": true,
+      "actionsVisible": true,
+      "stickyHeaderTop": 64
+    },
+    {
+      "width": 1440,
+      "noHorizontalOverflow": true,
+      "oneBreadcrumb": true,
+      "keyboardLinkFocus": true,
+      "actionsVisible": true,
+      "stickyHeaderTop": 64
+    },
+    {
+      "width": 1920,
+      "noHorizontalOverflow": true,
+      "oneBreadcrumb": true,
+      "keyboardLinkFocus": true,
+      "actionsVisible": true,
+      "stickyHeaderTop": 64
+    },
+    {
+      "view": "inventory",
+      "width": 390,
+      "noHorizontalOverflow": true,
+      "attentionVisible": true,
+      "noUnavailableCards": true
+    },
+    {
+      "view": "inventory",
+      "width": 768,
+      "noHorizontalOverflow": true,
+      "attentionVisible": true,
+      "noUnavailableCards": true
+    },
+    {
+      "view": "inventory",
+      "width": 1440,
+      "noHorizontalOverflow": true,
+      "attentionVisible": true,
+      "noUnavailableCards": true
+    },
+    {
+      "view": "inventory",
+      "width": 1920,
+      "noHorizontalOverflow": true,
+      "attentionVisible": true,
+      "noUnavailableCards": true
+    }
+  ]
+}
