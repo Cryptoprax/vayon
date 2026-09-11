@@ -1,0 +1,41 @@
+{
+  "scope": "Actual invitation component/catalog/VDS buttons and production CSS; all server actions are test callbacks. No email is sent and no database is accessed.",
+  "results": [
+    {
+      "width": 390,
+      "noOverflow": true,
+      "roleSelected": "sales_manager",
+      "summaryUpdated": true,
+      "searchEnterDoesNotSubmit": true,
+      "callbackCount": 1,
+      "unauthorizedDisabled": true
+    },
+    {
+      "width": 768,
+      "noOverflow": true,
+      "roleSelected": "sales_manager",
+      "summaryUpdated": true,
+      "searchEnterDoesNotSubmit": true,
+      "callbackCount": 1,
+      "unauthorizedDisabled": true
+    },
+    {
+      "width": 1440,
+      "noOverflow": true,
+      "roleSelected": "sales_manager",
+      "summaryUpdated": true,
+      "searchEnterDoesNotSubmit": true,
+      "callbackCount": 1,
+      "unauthorizedDisabled": true
+    },
+    {
+      "width": 1920,
+      "noOverflow": true,
+      "roleSelected": "sales_manager",
+      "summaryUpdated": true,
+      "searchEnterDoesNotSubmit": true,
+      "callbackCount": 1,
+      "unauthorizedDisabled": true
+    }
+  ]
+}

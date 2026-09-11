@@ -49,8 +49,8 @@ test("contacts and companies render accessible actionable empty states without r
     read("features/vayon/crm-engine/components/CrmDirectory.tsx"),
   ]);
   assert.match(contacts, /title="No clients yet"/);
-  assert.match(contacts, /primaryLabel="Import Clients"/);
-  assert.match(contacts, /label: "Create Lead"/);
+  assert.match(contacts, /primaryLabel="Go to Leads"/);
+  assert.doesNotMatch(contacts, /Import Clients|label: "Create Lead"/);
   assert.match(directories, /title="No Companies Yet"/);
   assert.match(directories, /primaryLabel="Create Company"/);
   assert.doesNotMatch(`${contacts}${directories}`, /This workspace view could not load/);

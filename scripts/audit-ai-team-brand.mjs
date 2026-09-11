@@ -14,7 +14,8 @@ requireText(metadata, /Meet Your AI Team \| VAYON/, "Homepage SEO title is incor
 requireText(metadata, /Organize properties, clients, viewings, and follow-ups/, "Homepage SEO description is incorrect.");
 requireText(dashboard, /Meet Your AI Team.*Your AI Team is already working.*Today.*Recommended actions/s, "Dashboard AI Team summary is incomplete.");
 requireText(onboarding, /Meet your AI Team.*Choose your business.*prepared automatically/s, "Onboarding AI Team journey is incomplete.");
-requireText(empty, /Your AI Team is waiting to start working.*Create your first property.*import your first lead.*launch your first campaign/is, "AI Team empty-state guidance is incomplete.");
+requireText(empty, /{description}/, "Empty states must use their workspace description.");
+if (/Your AI Team is waiting|Create your first property, import/.test(empty)) failures.push("Empty states mix unrelated workflows.");
 for (const field of ["Profile", "Current Work", "Performance", "Recommendations", "Activity Feed", "Today&apos;s Work"]) requireText(employees, new RegExp(field), `Employee profile field missing: ${field}`);
 if (failures.length) { console.error(failures.map((failure) => `FAIL: ${failure}`).join("\n")); process.exit(1); }
 console.log("AI Team brand audit passed: homepage, SEO, dashboard, onboarding, empty states, and employee profiles are aligned.");

@@ -68,6 +68,7 @@ export function ProductExperience({
     ),
     feedback = params.get("success") || params.get("error");
   const propertyRoute = path === "/vayon/properties" || path.startsWith("/vayon/properties/");
+  const wideWorkspace = propertyRoute || ["/vayon/leads", "/vayon/crm/contacts", "/vayon/crm/companies", "/vayon/deals", "/vayon/tasks", "/vayon/calendar", "/vayon/growth", "/vayon/approvals"].includes(path) || path.startsWith("/vayon/settings");
   const propertyHeader = path === "/vayon/properties" || /^\/vayon\/properties\/[0-9a-f-]{36}$/i.test(path);
   const showWelcome = path === "/vayon/dashboard" && params.get("welcome") === "1" && !feedback;
   function toggleCollapse() {
@@ -109,7 +110,7 @@ export function ProductExperience({
           tabIndex={-1}
           className="min-w-0 animate-[vds-fade-rise_180ms_cubic-bezier(.16,1,.3,1)]"
         >
-          {propertyRoute ? <div className="vayon-content-container" style={{ maxWidth: "none" }}>{children}</div> : <ContentContainer>{children}</ContentContainer>}
+          {wideWorkspace ? <div className="vayon-content-container" style={{ maxWidth: "none" }}>{children}</div> : <ContentContainer>{children}</ContentContainer>}
         </main>
       </AppShell>
       <aside hidden aria-hidden="true" data-future-utility-rail="disabled" />

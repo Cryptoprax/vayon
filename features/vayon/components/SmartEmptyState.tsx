@@ -47,9 +47,9 @@ export function SmartEmptyState({
       <div className="mt-6 flex flex-wrap justify-center gap-2">
         {primaryHref ? (
           <ButtonLink href={primaryHref}>{primaryLabel}</ButtonLink>
-        ) : (
+        ) : onPrimary ? (
           <Button onClick={onPrimary}>{primaryLabel}</Button>
-        )}
+        ) : null}
         {secondaryActions.map((action) => (
           <ButtonLink key={action.label} href={action.href} variant="secondary">
             {action.label}

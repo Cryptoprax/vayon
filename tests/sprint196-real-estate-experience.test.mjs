@@ -40,7 +40,7 @@ test("transactions calendar marketing reports and search use real estate languag
   assert.match(search, /realEstatePriority/);
 });
 
-test("priority empty states provide primary and secondary actions", () => {
+test("priority empty states guide the current task without unrelated secondary actions", () => {
   const leads = read("app/vayon/leads/page.tsx");
   const properties = read("features/vayon/property-platform/components/PropertyViews.tsx");
   const transactions = read("app/vayon/deals/page.tsx");
@@ -49,5 +49,8 @@ test("priority empty states provide primary and secondary actions", () => {
   assert.match(properties, /No Properties Yet/);
   assert.match(properties, /begin receiving buyer enquiries/);
   assert.match(transactions, /No deals yet/);
-  for (const source of [leads, properties, transactions]) assert.ok((source.match(/ButtonLink/g) ?? []).length >= 2);
+  assert.match(read("features/vayon/lead/components/LeadToolbar.tsx"), /href="\/vayon\/leads\/new"/);
+  assert.doesNotMatch(leads, /Review lead connections/);
+  assert.match(transactions, /href="\/vayon\/deals\/new"/);
+  assert.doesNotMatch(transactions, /Review qualified leads|Review properties/);
 });

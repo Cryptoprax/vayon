@@ -22,9 +22,9 @@ test("growth catalog covers the real estate acquisition and intelligence surface
 
 test("real estate overview is actionable without fabricated metrics", () => {
   const overview = read("features/vayon/growth-intelligence/GrowthOverview.tsx");
-  for (const metric of ["New Leads", "Active Buyers", "New Sellers", "Properties Listed", "Properties Sold", "Properties Rented", "Conversion Rate", "Revenue", "Commission", "Today's Viewings", "Upcoming Appointments", "Pending Offers", "Hot Leads", "Cold Leads", "Agent Performance"])
+  for (const metric of ["Marketing Performance", "Plan lead generation", "Prepare a campaign", "Create marketing materials"])
     assert.match(overview, new RegExp(metric));
-  assert.match(overview, />No figures yet</);
+  assert.doesNotMatch(overview, /No figures yet|overviewCards/);
   assert.doesNotMatch(overview, /value:\s*["'`]?[0-9]/);
 });
 

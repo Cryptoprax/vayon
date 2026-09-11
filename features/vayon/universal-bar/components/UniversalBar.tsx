@@ -15,7 +15,7 @@ import {
   X,
 } from "lucide-react";
 import type { NavigationItem } from "@/features/platform/builder/types";
-import { defaultAdaptiveSuggestions } from "../config/adaptive-suggestions";
+import { defaultAdaptiveSuggestions, sameSearchWorkspace, prioritizeWorkspaceResults } from "../config/adaptive-suggestions";
 import { searchWorkspaceRecords } from "../actions/search.actions";
 import type {
   AdaptiveSuggestion,
@@ -105,7 +105,9 @@ export function UniversalBar({
   const [commandNotice, setCommandNotice] = useState("");
   const [live, setLive] = useState<{ query: string; results: UniversalBarResult[]; partial: boolean }>({ query: "", results: [], partial: false });
   const permitted = (href: string) => navigation.some(item => item.visible && item.href && (href.split("?")[0] === item.href || href.startsWith(item.href + "/")));
-  const contextualSuggestions = suggestions.filter(item => item.href ? permitted(item.href) && (!item.href.includes("/growth") || path.includes("/growth")) && (!item.href.includes("/platform") || path.includes("/platform")) : item.id !== "morning-brief" || aiContext);
+  const contextualSuggestions = suggestions.filter(item => item.href ? permitted(item.href) && sameSearchWorkspace(item.href, path) : item.id === "search-properties" ? path.startsWith("/vayon/properties") : item.id === "find-documents" ? path.startsWith("/vayon/creative") : item.id === "morning-brief" && aiContext && path === "/vayon/dashboard");
+  if (!contextualSuggestions.length) contextualSuggestions.push(...navigation.filter(item => item.visible && item.href && sameSearchWorkspace(item.href, path)).slice(0, 3).map(item => ({ id: item.id, label: item.label, hint: "Continue in this workspace", href: item.href })));
+
   const intent = useMemo(
     () => intentRouter.resolve(query),
     [intentRouter, query],
@@ -124,20 +126,20 @@ export function UniversalBar({
     void historyVersion;
     if (mode === "ask") return [];
     if (intent.type === "recent" || intent.type === "favorites")
-      return history
+      return prioritizeWorkspaceResults(history
         .list(intent.type === "recent" ? "recently-opened" : "favorites")
         .filter((item) => item.href)
-        .map(historyResult);
-    if (mode === "actions" && !intent.query) return search.search({ query: "create", scopes, limit: 30 }).filter(item => item.kind === "quick-create");
+        .map(historyResult), path, history.list());
+    if (mode === "actions" && !intent.query) return prioritizeWorkspaceResults(search.search({ query: "create", scopes, limit: 30 }).filter(item => item.kind === "quick-create"), path, history.list());
     const local = search.search({ query: intent.query, scopes, limit: 18 });
     const records = open && mode === "search" && intent.type === "search" && live.query === intent.query ? live.results : [];
     const command = intent.query ? resolveOperatingSystemCommand(query) : undefined;
     const workflow: UniversalBarResult[] = command && command.intent !== "ask-workforce" ? [{ id: "workflow-command", label: "Prepare: " + query, description: "Open the workflow to review your request", href: command.route, scope: "workflows", kind: "quick-create", keywords: [] }] : [];
-    const found = rankUniversalResults([...records, ...local, ...workflow], query, history.list());
+    const found = prioritizeWorkspaceResults(rankUniversalResults([...records, ...local, ...workflow], query, history.list()), path, history.list());
     return intent.type === "create" || mode === "actions"
       ? found.filter((item) => item.kind === "quick-create")
       : found;
-  }, [history, historyVersion, intent, mode, search, live, query, open]).filter(result => permitted(result.href));
+  }, [history, historyVersion, intent, mode, search, live, query, open, path]).filter(result => permitted(result.href));
   const selected = results[active];
 
   useEffect(() => {

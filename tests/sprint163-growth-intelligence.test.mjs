@@ -14,8 +14,8 @@ test("Real Estate Growth Center lives under Marketing and Reports", () => {
 
 test("real estate overview is evidence-safe and every surface offers a next action", () => {
   const overview = read("features/vayon/growth-intelligence/GrowthOverview.tsx");
-  for (const surface of ["New Leads", "Active Buyers", "New Sellers", "Properties Listed", "Properties Sold", "Properties Rented", "Conversion Rate", "Revenue", "Commission", "Today's Viewings", "Upcoming Appointments", "Pending Offers", "Hot Leads", "Cold Leads", "Agent Performance"]) assert.match(overview, new RegExp(surface));
-  assert.match(overview, /Use the action below to record or review/);
+  for (const surface of ["Marketing Performance", "Plan lead generation", "Prepare a campaign", "Create marketing materials"]) assert.match(overview, new RegExp(surface));
+  assert.match(overview, /Continue your marketing work/);
   assert.match(overview, /ButtonLink/);
   assert.doesNotMatch(overview, /\$\d|\d+%|followers|impressions:\s*\d/i);
 });

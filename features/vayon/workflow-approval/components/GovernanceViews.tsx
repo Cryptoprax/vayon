@@ -38,7 +38,7 @@ export function GovernanceHeader({
   return (
     <header className="mb-5">
       <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">
-        Governed automation · no autonomous execution
+        Review and approve work before it is carried out
       </p>
       <h1 className="mt-2 text-3xl font-semibold">{title}</h1>
       <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>

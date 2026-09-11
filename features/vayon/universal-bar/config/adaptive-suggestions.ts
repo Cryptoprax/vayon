@@ -1,4 +1,4 @@
-import type { AdaptiveSuggestion } from "../domain/contracts";
+import type { AdaptiveSuggestion, UniversalBarResult, UniversalHistoryItem } from "../domain/contracts";
 export const defaultAdaptiveSuggestions: readonly AdaptiveSuggestion[] = [
   {
     id: "search-properties",
@@ -55,3 +55,17 @@ export const defaultAdaptiveSuggestions: readonly AdaptiveSuggestion[] = [
     href: "/platform/founder",
   },
 ];
+
+/** Match the current business workspace without changing destinations or permissions. */
+export function sameSearchWorkspace(href: string, path: string) {
+  const parts = path.split("?")[0].split("/").filter(Boolean);
+  const base = "/" + parts.slice(0, parts[1] === "crm" ? 3 : 2).join("/");
+  const target = href.split("?")[0];
+  return target === base || target.startsWith(base + "/");
+}
+
+export function prioritizeWorkspaceResults(results: readonly UniversalBarResult[], path: string, history: readonly UniversalHistoryItem[], now=Date.now()) {
+  const usage=new Map(history.filter(item=>item.kind==="recently-opened").map(item=>[item.id,item]));
+  const recent=(id:string)=>{const time=Date.parse(usage.get(id)?.recordedAt??"");return Number.isFinite(time)&&now-time>=0&&now-time<=7*86400000?time:0;};
+  return [...results].sort((a,b)=>Number(sameSearchWorkspace(b.href,path))-Number(sameSearchWorkspace(a.href,path)) || recent(b.id)-recent(a.id) || (usage.get(b.id)?.visits??0)-(usage.get(a.id)?.visits??0));
+}

@@ -11,7 +11,7 @@ export function CrmShell({
   children: ReactNode;
 }) {
   return (
-    <main className="mx-auto max-w-[96rem] px-4 py-6 sm:px-6 lg:px-8">
+    <main className="w-full min-w-0 py-6">
       <header className="flex flex-col gap-5 border-b border-vds-border pb-5 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">

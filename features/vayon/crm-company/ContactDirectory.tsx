@@ -2,7 +2,7 @@
 import type { ContactRecord } from "./domain";
 import { SmartEmptyState } from "@/features/vayon/components/SmartEmptyState";
 
-export function ContactDirectory({ items }: { items: readonly ContactRecord[] }) {
+export function ContactDirectory({ items, search }: { items: readonly ContactRecord[]; search?: string }) {
   return <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
     {items.length ? items.map(item => <Link key={item.id} href={`/vayon/crm/contacts/${item.id}`} className="vds-focus vds-card-motion rounded-2xl border border-vds-border bg-vds-surface p-5 shadow-sm hover:border-vds-accent-border motion-reduce:transition-none">
       <div className="flex items-center gap-3">
@@ -16,6 +16,6 @@ export function ContactDirectory({ items }: { items: readonly ContactRecord[] })
         {item.phone && <div><dt className="text-xs text-vds-muted">Phone</dt><dd className="mt-1">{item.phone}</dd></div>}
       </dl>
       <p className="mt-4 border-t border-vds-divider pt-3 text-sm font-medium">Open client profile →</p>
-    </Link>) : <SmartEmptyState className="col-span-full" title="No clients yet" description="Import your existing clients, or capture a new enquiry as a lead." primaryLabel="Import Clients" primaryHref="/vayon/settings/integrations/data-import" secondaryActions={[{ label: "Create Lead", href: "/vayon/leads/new" }]} aiSuggestion="Start with your active buyer and seller enquiries." />}
+    </Link>) : search?.trim() ? <SmartEmptyState className="col-span-full" title="No clients match this search" description="Try another client name, email address or phone number." primaryLabel="Clear client search" primaryHref="/vayon/crm/contacts" /> : <SmartEmptyState className="col-span-full" title="No clients yet" description="Client profiles are created from people recorded in Leads. Go to Leads to add or update a client’s details." primaryLabel="Go to Leads" primaryHref="/vayon/leads" />}
   </div>;
 }

@@ -6,7 +6,7 @@ import { GovernanceService } from "@/features/vayon/workflow-approval/services/g
 export default function Page() {
   const data = new GovernanceService().dashboard();
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+    <main className="w-full min-w-0 py-6">
       <GovernanceHeader
         title="Real Estate Approval Center"
         description="Review property, listing, pricing, commission, offer, assignment, campaign, publication, contract, description, and media decisions with evidence and audit history."
