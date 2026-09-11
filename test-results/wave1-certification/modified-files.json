@@ -1,0 +1,14 @@
+[
+  "IDENTITY_CERTIFICATION.md",
+  "WORKSPACE_CERTIFICATION.md",
+  "TEAM_CERTIFICATION.md",
+  "RBAC_CERTIFICATION.md",
+  "SESSION_CERTIFICATION.md",
+  "FINAL_WAVE1_CERTIFICATION.md",
+  "scripts/audit-wave1-certification.mjs",
+  "test-results/wave1-certification/source-audit.json",
+  "test-results/wave1-certification/workflows.json",
+  "test-results/wave1-certification/authentication-browser-audit.json",
+  "test-results/wave1-certification/validation.json",
+  "test-results/wave1-certification/modified-files.json"
+]

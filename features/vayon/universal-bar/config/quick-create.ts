@@ -2,7 +2,7 @@ import type { UniversalBarResult } from "../domain/contracts";
 export const quickCreateActions: readonly UniversalBarResult[] = [
   { id: "export-report", label: "Export Report", description: "Open the performance report, then choose Export CSV.", href: "/vayon/analytics/executive", scope: "analytics", kind: "quick-create", keywords: ["export", "report", "download", "csv"] },
   { id: "generate-brochure", label: "Generate Brochure", description: "Open the document tool to prepare a property brochure.", href: "/vayon/creative/documents", scope: "documents", kind: "quick-create", keywords: ["generate", "brochure", "marketing", "file"] },
-  { id: "invite-team", label: "Invite Team", description: "Open your team and invite a colleague.", href: "/vayon/settings/members", scope: "settings", kind: "quick-create", keywords: ["invite", "team", "colleague", "member"] },
+  { id: "invite-team", label: "Invite Team Members", description: "Open your team and invite a colleague.", href: "/vayon/settings/members", scope: "settings", kind: "quick-create", keywords: ["invite", "team", "colleague", "member", "members", "user", "employee", "staff"] },
   { id: "schedule-viewing", label: "Schedule Viewing", description: "Choose a property and arrange a viewing.", href: "/vayon/site-visits", scope: "meetings", kind: "quick-create", keywords: ["schedule", "book", "viewing", "visit"] },
   { id: "send-whatsapp", label: "Send WhatsApp", description: "Open conversations to review and send your message.", href: "/vayon/communications", scope: "communications", kind: "quick-create", keywords: ["send", "whatsapp", "message"] },
   {

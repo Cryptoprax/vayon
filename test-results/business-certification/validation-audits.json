@@ -1,0 +1,37 @@
+[
+  {
+    "audit": "navigation",
+    "exitCode": 0,
+    "output": "{\n  \"requestedAudit\": \"navigation\",\n  \"primaryGroups\": [\n    \"Today's work\",\n    \"Sell & follow up\",\n    \"Market properties\",\n    \"AI Assistant\",\n    \"Understand performance\",\n    \"Configure workspace\"\n  ],\n  \"destinations\": 68,\n  \"pageFiles\": 346,\n  \"issues\": [],\n  \"browserVerified\": false\n}\n"
+  },
+  {
+    "audit": "search",
+    "exitCode": 0,
+    "output": "{\n  \"requestedAudit\": \"search\",\n  \"primaryGroups\": [\n    \"Today's work\",\n    \"Sell & follow up\",\n    \"Market properties\",\n    \"AI Assistant\",\n    \"Understand performance\",\n    \"Configure workspace\"\n  ],\n  \"destinations\": 68,\n  \"pageFiles\": 346,\n  \"issues\": [],\n  \"browserVerified\": false\n}\n"
+  },
+  {
+    "audit": "journey",
+    "exitCode": 0,
+    "output": "{\n  \"requestedAudit\": \"journey\",\n  \"primaryGroups\": [\n    \"Today's work\",\n    \"Sell & follow up\",\n    \"Market properties\",\n    \"AI Assistant\",\n    \"Understand performance\",\n    \"Configure workspace\"\n  ],\n  \"destinations\": 68,\n  \"pageFiles\": 346,\n  \"issues\": [],\n  \"browserVerified\": false\n}\n"
+  },
+  {
+    "audit": "interactions",
+    "exitCode": 0,
+    "output": "Interaction reliability audit passed: explicit buttons and button-role elements have handlers, delegated triggers, or intentional disabled states.\n"
+  },
+  {
+    "audit": "accessibility",
+    "exitCode": 0,
+    "output": "UX accessibility audit passed.\n"
+  },
+  {
+    "audit": "responsive",
+    "exitCode": 0,
+    "output": "UX responsive audit passed.\n"
+  },
+  {
+    "audit": "ux",
+    "exitCode": 0,
+    "output": "Commercial readiness audit passed: Vayon UI uses approved icon sizes and semantic appearance tokens.\n"
+  }
+]

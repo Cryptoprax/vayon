@@ -64,7 +64,7 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
   ] },
   { id: "platform", label: "Configure workspace", icon: Settings, items: [
     { label: "Workspace", href: "/vayon/settings/organization", icon: Building2 },
-    { label: "Users", href: "/vayon/settings/members", icon: Users },
+    { label: "Team Members", href: "/vayon/settings/members", icon: Users },
     { label: "Integrations", href: "/vayon/settings/integrations", icon: Network },
     { label: "Billing", href: "/vayon/settings/billing", icon: Landmark },
     { label: "Preferences", href: "/vayon/settings/appearance", icon: Settings },

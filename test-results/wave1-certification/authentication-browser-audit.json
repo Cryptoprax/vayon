@@ -1,0 +1,157 @@
+{
+  "status": "Needs Verification",
+  "scope": "Fresh local production-build read-only checks; no authentication, forms submitted, tokens or emails",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "errors": [],
+      "fields": [
+        {
+          "name": "$ACTION_ID_40856f012312f3bc0f3d9bd44440a81cd5dee8f46a",
+          "type": "hidden"
+        },
+        {
+          "name": "kind",
+          "type": "hidden"
+        },
+        {
+          "name": "email",
+          "type": "email"
+        },
+        {
+          "name": "q",
+          "type": "text"
+        }
+      ],
+      "next": []
+    },
+    {
+      "path": "/signup",
+      "status": 200,
+      "errors": [],
+      "fields": [
+        {
+          "name": "$ACTION_ID_40a608002b9daab647c91e32b727050d010c23152f",
+          "type": "hidden"
+        },
+        {
+          "name": "$ACTION_ID_4062d5ca1dbd86ff712d358d6a70018bef406e757f",
+          "type": "hidden"
+        },
+        {
+          "name": "name",
+          "type": "text"
+        },
+        {
+          "name": "email",
+          "type": "email"
+        },
+        {
+          "name": "password",
+          "type": "password"
+        }
+      ],
+      "next": []
+    },
+    {
+      "path": "/login?next=/accept-invitation",
+      "status": 200,
+      "errors": [],
+      "fields": [
+        {
+          "name": "$ACTION_ID_40a608002b9daab647c91e32b727050d010c23152f",
+          "type": "hidden"
+        },
+        {
+          "name": "next",
+          "type": "hidden"
+        },
+        {
+          "name": "$ACTION_ID_408b1d660914dd9d31f5db95872be6f144acb697c9",
+          "type": "hidden"
+        },
+        {
+          "name": "next",
+          "type": "hidden"
+        },
+        {
+          "name": "email",
+          "type": "email"
+        },
+        {
+          "name": "password",
+          "type": "password"
+        }
+      ],
+      "next": [
+        "/accept-invitation",
+        "/accept-invitation"
+      ]
+    },
+    {
+      "path": "/forgot-password",
+      "status": 200,
+      "errors": [],
+      "fields": [
+        {
+          "name": "$ACTION_ID_40a8296becd197aba3eca302c628eadf386a5edcd6",
+          "type": "hidden"
+        },
+        {
+          "name": "email",
+          "type": "email"
+        }
+      ],
+      "next": []
+    },
+    {
+      "path": "/reset-password",
+      "status": 200,
+      "errors": [],
+      "fields": [
+        {
+          "name": "$ACTION_ID_40516779875138156e572185c653d9e3dbabd03901",
+          "type": "hidden"
+        },
+        {
+          "name": "password",
+          "type": "password"
+        },
+        {
+          "name": "confirmPassword",
+          "type": "password"
+        }
+      ],
+      "next": []
+    },
+    {
+      "path": "/vayon/dashboard",
+      "status": 307,
+      "redirectPath": "/login",
+      "next": "/vayon/dashboard",
+      "errorGuidancePresent": false
+    },
+    {
+      "path": "/accept-invitation",
+      "status": 307,
+      "redirectPath": "/login",
+      "next": "/accept-invitation",
+      "errorGuidancePresent": false
+    },
+    {
+      "path": "/auth/callback",
+      "status": 307,
+      "redirectPath": "/login",
+      "next": null,
+      "errorGuidancePresent": true
+    },
+    {
+      "path": "/auth/callback?error=access_denied",
+      "status": 307,
+      "redirectPath": "/login",
+      "next": null,
+      "errorGuidancePresent": true
+    }
+  ]
+}

@@ -1,0 +1,1826 @@
+{
+  "generatedAt": "2026-09-11T18:00:09.872Z",
+  "status": "Blocked",
+  "scope": "Wave 1 Identity, Workspace, Team, RBAC and Recovery source audit; not live lifecycle certification",
+  "productionVerified": false,
+  "firstTimeCustomerObserved": false,
+  "roles": [
+    {
+      "role": "organization_owner",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/timeline",
+        "/vayon/communications",
+        "/vayon/creative-studio/packs",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/intelligence",
+        "/vayon/approvals",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/billing",
+        "/vayon/settings/appearance"
+      ],
+      "hiddenPages": [
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "leads",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "contacts",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "companies",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "deals",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "calendar",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "marketing",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "campaigns",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "creative_studio",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "knowledge",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "customer_success",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "billing",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "invoices",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "reports",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "analytics",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "ai_employees",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "workflow_automation",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "integrations",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "team_management",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "organization_settings",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        }
+      ],
+      "searches": [
+        {
+          "query": "Invite Team",
+          "first": {
+            "label": "Invite Team Members",
+            "href": "/vayon/settings/members",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.498,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Workspace",
+          "first": {
+            "label": "Workspace",
+            "href": "/vayon/settings/organization",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.159,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Workspace"
+        },
+        {
+          "query": "Members",
+          "first": {
+            "label": "Invite Team Members",
+            "href": "/vayon/settings/members",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.182,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Members"
+        },
+        {
+          "query": "Roles",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.081,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Roles"
+        },
+        {
+          "query": "Settings",
+          "first": {
+            "label": "Workspace",
+            "href": "/vayon/settings/organization",
+            "kind": "navigation"
+          },
+          "count": 5,
+          "localDurationMs": 0.094,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Users",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.073,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Users"
+        },
+        {
+          "query": "Owner",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.076,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Owner"
+        },
+        {
+          "query": "Admin",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.086,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Admin"
+        }
+      ]
+    },
+    {
+      "role": "organization_admin",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/timeline",
+        "/vayon/communications",
+        "/vayon/creative-studio/packs",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/intelligence",
+        "/vayon/approvals",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/appearance"
+      ],
+      "hiddenPages": [
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/vayon/settings/billing",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "leads",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "contacts",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "companies",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "deals",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "calendar",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "marketing",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "campaigns",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "creative_studio",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "knowledge",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "customer_success",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "billing",
+          "actions": []
+        },
+        {
+          "module": "invoices",
+          "actions": []
+        },
+        {
+          "module": "reports",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "analytics",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "ai_employees",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "workflow_automation",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "integrations",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "team_management",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "organization_settings",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        }
+      ],
+      "searches": [
+        {
+          "query": "Invite Team",
+          "first": {
+            "label": "Invite Team Members",
+            "href": "/vayon/settings/members",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.085,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Workspace",
+          "first": {
+            "label": "Workspace",
+            "href": "/vayon/settings/organization",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.09,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Workspace"
+        },
+        {
+          "query": "Members",
+          "first": {
+            "label": "Invite Team Members",
+            "href": "/vayon/settings/members",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.084,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Members"
+        },
+        {
+          "query": "Roles",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.09,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Roles"
+        },
+        {
+          "query": "Settings",
+          "first": {
+            "label": "Workspace",
+            "href": "/vayon/settings/organization",
+            "kind": "navigation"
+          },
+          "count": 4,
+          "localDurationMs": 0.075,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Users",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.06,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Users"
+        },
+        {
+          "query": "Owner",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.071,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Owner"
+        },
+        {
+          "query": "Admin",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.082,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Admin"
+        }
+      ]
+    },
+    {
+      "role": "manager",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/timeline",
+        "/vayon/communications",
+        "/vayon/creative-studio/packs",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/approvals",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports",
+        "/vayon/settings/appearance"
+      ],
+      "hiddenPages": [
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/intelligence",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/billing",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "leads",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "contacts",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "companies",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "deals",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "calendar",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "marketing",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "campaigns",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "creative_studio",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "knowledge",
+          "actions": []
+        },
+        {
+          "module": "customer_success",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "billing",
+          "actions": []
+        },
+        {
+          "module": "invoices",
+          "actions": []
+        },
+        {
+          "module": "reports",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "analytics",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "ai_employees",
+          "actions": []
+        },
+        {
+          "module": "workflow_automation",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "integrations",
+          "actions": []
+        },
+        {
+          "module": "team_management",
+          "actions": []
+        },
+        {
+          "module": "organization_settings",
+          "actions": []
+        }
+      ],
+      "searches": [
+        {
+          "query": "Invite Team",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.066,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Workspace",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.051,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Workspace"
+        },
+        {
+          "query": "Members",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.064,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Members"
+        },
+        {
+          "query": "Roles",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.057,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Roles"
+        },
+        {
+          "query": "Settings",
+          "first": {
+            "label": "Preferences",
+            "href": "/vayon/settings/appearance",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.047,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Users",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.044,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Users"
+        },
+        {
+          "query": "Owner",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.061,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Owner"
+        },
+        {
+          "query": "Admin",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.046,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Admin"
+        }
+      ]
+    },
+    {
+      "role": "sales_representative",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/timeline",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/intelligence",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports"
+      ],
+      "hiddenPages": [
+        "/vayon/communications",
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative-studio/packs",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/approvals",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/billing",
+        "/vayon/settings/appearance",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "leads",
+          "actions": [
+            "view",
+            "create",
+            "update"
+          ]
+        },
+        {
+          "module": "contacts",
+          "actions": [
+            "view",
+            "create",
+            "update"
+          ]
+        },
+        {
+          "module": "companies",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "deals",
+          "actions": [
+            "view",
+            "create",
+            "update"
+          ]
+        },
+        {
+          "module": "calendar",
+          "actions": [
+            "view",
+            "create",
+            "update"
+          ]
+        },
+        {
+          "module": "marketing",
+          "actions": []
+        },
+        {
+          "module": "campaigns",
+          "actions": []
+        },
+        {
+          "module": "creative_studio",
+          "actions": []
+        },
+        {
+          "module": "knowledge",
+          "actions": []
+        },
+        {
+          "module": "customer_success",
+          "actions": []
+        },
+        {
+          "module": "billing",
+          "actions": []
+        },
+        {
+          "module": "invoices",
+          "actions": []
+        },
+        {
+          "module": "reports",
+          "actions": []
+        },
+        {
+          "module": "analytics",
+          "actions": []
+        },
+        {
+          "module": "ai_employees",
+          "actions": [
+            "view",
+            "create",
+            "update"
+          ]
+        },
+        {
+          "module": "workflow_automation",
+          "actions": []
+        },
+        {
+          "module": "integrations",
+          "actions": []
+        },
+        {
+          "module": "team_management",
+          "actions": []
+        },
+        {
+          "module": "organization_settings",
+          "actions": []
+        }
+      ],
+      "searches": [
+        {
+          "query": "Invite Team",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.063,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Workspace",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.037,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Workspace"
+        },
+        {
+          "query": "Members",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.036,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Members"
+        },
+        {
+          "query": "Roles",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.04,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Roles"
+        },
+        {
+          "query": "Settings",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.036,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Users",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.043,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Users"
+        },
+        {
+          "query": "Owner",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.034,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Owner"
+        },
+        {
+          "query": "Admin",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.042,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Admin"
+        }
+      ]
+    },
+    {
+      "role": "agent",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/timeline",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports"
+      ],
+      "hiddenPages": [
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/communications",
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative-studio/packs",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/intelligence",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/approvals",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/billing",
+        "/vayon/settings/appearance",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": []
+        },
+        {
+          "module": "leads",
+          "actions": []
+        },
+        {
+          "module": "contacts",
+          "actions": []
+        },
+        {
+          "module": "companies",
+          "actions": []
+        },
+        {
+          "module": "deals",
+          "actions": []
+        },
+        {
+          "module": "calendar",
+          "actions": []
+        },
+        {
+          "module": "marketing",
+          "actions": []
+        },
+        {
+          "module": "campaigns",
+          "actions": []
+        },
+        {
+          "module": "creative_studio",
+          "actions": []
+        },
+        {
+          "module": "knowledge",
+          "actions": []
+        },
+        {
+          "module": "customer_success",
+          "actions": []
+        },
+        {
+          "module": "billing",
+          "actions": []
+        },
+        {
+          "module": "invoices",
+          "actions": []
+        },
+        {
+          "module": "reports",
+          "actions": []
+        },
+        {
+          "module": "analytics",
+          "actions": []
+        },
+        {
+          "module": "ai_employees",
+          "actions": []
+        },
+        {
+          "module": "workflow_automation",
+          "actions": []
+        },
+        {
+          "module": "integrations",
+          "actions": []
+        },
+        {
+          "module": "team_management",
+          "actions": []
+        },
+        {
+          "module": "organization_settings",
+          "actions": []
+        }
+      ],
+      "searches": [
+        {
+          "query": "Invite Team",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.026,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Workspace",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.029,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Workspace"
+        },
+        {
+          "query": "Members",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.027,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Members"
+        },
+        {
+          "query": "Roles",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.025,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Roles"
+        },
+        {
+          "query": "Settings",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.022,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Users",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.024,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Users"
+        },
+        {
+          "query": "Owner",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.026,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Owner"
+        },
+        {
+          "query": "Admin",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.03,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Admin"
+        }
+      ]
+    },
+    {
+      "role": "read_only",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/timeline",
+        "/vayon/creative-studio/packs",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/intelligence",
+        "/vayon/approvals",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports"
+      ],
+      "hiddenPages": [
+        "/vayon/communications",
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/billing",
+        "/vayon/settings/appearance",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "leads",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "contacts",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "companies",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "deals",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "calendar",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "marketing",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "campaigns",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "creative_studio",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "knowledge",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "customer_success",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "billing",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "invoices",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "reports",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "analytics",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "ai_employees",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "workflow_automation",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "integrations",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "team_management",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "organization_settings",
+          "actions": [
+            "view"
+          ]
+        }
+      ],
+      "searches": [
+        {
+          "query": "Invite Team",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.047,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Workspace",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.038,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Workspace"
+        },
+        {
+          "query": "Members",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.035,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Members"
+        },
+        {
+          "query": "Roles",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.044,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Roles"
+        },
+        {
+          "query": "Settings",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.045,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Users",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.036,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Users"
+        },
+        {
+          "query": "Owner",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.064,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Owner"
+        },
+        {
+          "query": "Admin",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.064,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Admin"
+        }
+      ]
+    }
+  ],
+  "workspace": {
+    "status": "Blocked",
+    "ownershipSource": "supabase/migrations/20260814000000_sprint43_google_identity_workspace.sql",
+    "creationUsesExistingOnboardingRpc": true,
+    "selectedWorkspaceReturnedBeforeActiveMembershipCheck": true,
+    "switcherCreateDisabled": true,
+    "acceptanceSelectsNewestPendingByEmail": true,
+    "acceptanceActionIgnoresReturnedWorkspace": true
+  },
+  "routeFiles": 346
+}

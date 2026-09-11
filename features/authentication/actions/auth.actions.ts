@@ -18,7 +18,7 @@ function value(form: FormData, key: string) {
   return String(form.get(key) ?? "");
 }
 function fail(path: string, message: string): never {
-  redirect(`${path}?error=${encodeURIComponent(message)}`);
+  redirect(`${path}${path.includes("?") ? "&" : "?"}error=${encodeURIComponent(message)}`);
 }
 async function origin() {
   const h = await headers(),
@@ -46,12 +46,14 @@ export async function signUpAction(form: FormData) {
   redirect("/verify-email");
 }
 export async function loginAction(form: FormData) {
+  const next = safeAuthenticatedPath(value(form, "next") || "/vayon");
+  const loginPath = `/login?next=${encodeURIComponent(next)}`;
   const parsed = loginSchema.safeParse({
     email: value(form, "email"),
     password: value(form, "password"),
   });
   if (!parsed.success)
-    fail("/login", parsed.error.issues[0]?.message ?? "Invalid credentials.");
+    fail(loginPath, parsed.error.issues[0]?.message ?? "Invalid credentials.");
   const requestHeaders = await headers();
   const { error } = await new AuthenticationService().login(
     parsed.data.email,
@@ -65,7 +67,7 @@ export async function loginAction(form: FormData) {
   );
   if (error)
     fail(
-      "/login",
+      loginPath,
       error.message.includes("locked")
         ? "Account temporarily locked. Try again later."
         : "Unable to sign in. Check your credentials.",
@@ -75,7 +77,7 @@ export async function loginAction(form: FormData) {
     p_event_type: "login",
     p_metadata: { provider: "email" },
   });
-  redirect("/vayon");
+  redirect(next);
 }
 export async function googleLoginAction(form?: FormData) {
   const next = safeAuthenticatedPath(form ? value(form, "next") : null),

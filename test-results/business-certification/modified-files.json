@@ -1,0 +1,16 @@
+[
+  "BUSINESS_WORKFLOW_MATRIX.md",
+  "OWNER_CERTIFICATION.md",
+  "TEAM_CERTIFICATION.md",
+  "RBAC_CERTIFICATION.md",
+  "RECOVERY_CERTIFICATION.md",
+  "SEARCH_CERTIFICATION.md",
+  "FINAL_BETA_CERTIFICATION.md",
+  "PRODUCT_BIBLE_V1_COMPLETION_GATE.md",
+  "scripts/audit-business-workflow-certification.mjs",
+  "test-results/business-certification/source-audit.json",
+  "test-results/business-certification/workflow-inventory.json",
+  "test-results/business-certification/validation-audits.json",
+  "test-results/business-certification/browser-audit.json",
+  "test-results/business-certification/modified-files.json"
+]

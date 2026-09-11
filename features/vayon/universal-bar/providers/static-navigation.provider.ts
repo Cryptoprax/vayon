@@ -55,7 +55,7 @@ export class StaticNavigationSearchProvider implements UniversalSearchProvider {
       .filter((item) => matches(item, term));
     return [
       ...quickCreateActions.filter(
-        (item) => request.scopes.includes(item.scope) && this.navigation.some(page => page.visible && page.href && (item.href === page.href || item.href.startsWith(page.href + "/"))) && matches(item, term),
+        (item) => request.scopes.includes(item.scope) && (item.id !== "invite-team" || this.navigation.some(page => page.visible && page.href === item.href)) && this.navigation.some(page => page.visible && page.href && (item.href === page.href || item.href.startsWith(page.href + "/"))) && matches(item, term),
       ),
       ...navigation.filter((item) => request.scopes.includes(item.scope)),
     ].toSorted((left, right) => priority(left.scope) - priority(right.scope));

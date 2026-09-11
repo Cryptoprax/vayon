@@ -1,0 +1,166 @@
+{
+  "status": "Needs Verification",
+  "scope": "Read-only public pages in local production build; no form submission, no authenticated session, no production or first-time-customer observation",
+  "checks": [
+    {
+      "route": "/",
+      "width": 320,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Run your real estate day from one workspace.",
+      "returnTargets": []
+    },
+    {
+      "route": "/signup",
+      "width": 320,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Create your account",
+      "returnTargets": []
+    },
+    {
+      "route": "/login?next=/accept-invitation",
+      "width": 320,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Welcome back",
+      "returnTargets": [
+        "/accept-invitation",
+        "/accept-invitation"
+      ]
+    },
+    {
+      "route": "/forgot-password",
+      "width": 320,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Reset your password",
+      "returnTargets": []
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Run your real estate day from one workspace.",
+      "returnTargets": []
+    },
+    {
+      "route": "/signup",
+      "width": 768,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Create your account",
+      "returnTargets": []
+    },
+    {
+      "route": "/login?next=/accept-invitation",
+      "width": 768,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Welcome back",
+      "returnTargets": [
+        "/accept-invitation",
+        "/accept-invitation"
+      ]
+    },
+    {
+      "route": "/forgot-password",
+      "width": 768,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Reset your password",
+      "returnTargets": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Run your real estate day from one workspace.",
+      "returnTargets": []
+    },
+    {
+      "route": "/signup",
+      "width": 1440,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Create your account",
+      "returnTargets": []
+    },
+    {
+      "route": "/login?next=/accept-invitation",
+      "width": 1440,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Welcome back",
+      "returnTargets": [
+        "/accept-invitation",
+        "/accept-invitation"
+      ]
+    },
+    {
+      "route": "/forgot-password",
+      "width": 1440,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Reset your password",
+      "returnTargets": []
+    },
+    {
+      "route": "/",
+      "width": 2560,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Run your real estate day from one workspace.",
+      "returnTargets": []
+    },
+    {
+      "route": "/signup",
+      "width": 2560,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Create your account",
+      "returnTargets": []
+    },
+    {
+      "route": "/login?next=/accept-invitation",
+      "width": 2560,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Welcome back",
+      "returnTargets": [
+        "/accept-invitation",
+        "/accept-invitation"
+      ]
+    },
+    {
+      "route": "/forgot-password",
+      "width": 2560,
+      "status": 200,
+      "errors": [],
+      "overflow": false,
+      "heading": "Reset your password",
+      "returnTargets": []
+    }
+  ],
+  "acceptanceEntry": {
+    "pathname": "/login",
+    "next": "/accept-invitation"
+  }
+}

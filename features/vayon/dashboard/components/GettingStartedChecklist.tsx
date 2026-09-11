@@ -8,7 +8,7 @@ export function GettingStartedChecklist({ data }: { readonly data: ExecutiveDash
   const items = [
     ["Create First Property", "/vayon/properties/new", count("properties") > 0],
     ["Create First Lead", "/vayon/leads/new", count("leads") > 0],
-    ["Invite Team", "/vayon/settings/members", observed(/(?:member|team)[._]invited/)],
+    ...(data.workspaceMemberCount === 1 ? [["Invite Your Team", "/vayon/settings/members", false] as const] : []),
     ["Create First Task", "/vayon/tasks", count("tasks") > 0 || observed(/task[._](?:created|completed)/)],
     ["Promote a Property", "/vayon/properties", observed(/campaign[._]created/)],
   ] as const;

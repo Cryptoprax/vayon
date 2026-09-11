@@ -1,0 +1,2262 @@
+{
+  "generatedAt": "2026-09-11T14:05:17.625Z",
+  "status": "Blocked",
+  "scope": "Source contracts and local pure-function execution; not production/customer certification",
+  "productionVerified": false,
+  "firstTimeCustomerObserved": false,
+  "roles": [
+    {
+      "role": "organization_owner",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/timeline",
+        "/vayon/communications",
+        "/vayon/creative-studio/packs",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/intelligence",
+        "/vayon/approvals",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/billing",
+        "/vayon/settings/appearance"
+      ],
+      "hiddenPages": [
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "leads",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "contacts",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "companies",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "deals",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "calendar",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "marketing",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "campaigns",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "creative_studio",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "knowledge",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "customer_success",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "billing",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "invoices",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "reports",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "analytics",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "ai_employees",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "workflow_automation",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "integrations",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "team_management",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "organization_settings",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        }
+      ],
+      "searches": [
+        {
+          "query": "Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 6,
+          "localDurationMs": 0.546,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Property"
+        },
+        {
+          "query": "Lead",
+          "first": {
+            "label": "Create Lead",
+            "href": "/vayon/leads/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.149,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Lead"
+        },
+        {
+          "query": "Client",
+          "first": {
+            "label": "Clients",
+            "href": "/vayon/crm/contacts",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.091,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Client"
+        },
+        {
+          "query": "Deal",
+          "first": {
+            "label": "Create Company",
+            "href": "/vayon/crm/companies/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.077,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Deal"
+        },
+        {
+          "query": "Task",
+          "first": {
+            "label": "Create Task",
+            "href": "/vayon/tasks",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.084,
+          "command": "/vayon/tasks?intent=coordinate-operations&prompt=Task"
+        },
+        {
+          "query": "Campaign",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.071,
+          "command": "/vayon/creative/campaigns?intent=create-marketing-asset&prompt=Campaign"
+        },
+        {
+          "query": "Invite Team",
+          "first": {
+            "label": "Invite Team Members",
+            "href": "/vayon/settings/members",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.079,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Reports",
+          "first": {
+            "label": "Reports",
+            "href": "/vayon/growth/reports",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.097,
+          "command": "/vayon/analytics?intent=review-intelligence&prompt=Reports"
+        },
+        {
+          "query": "Settings",
+          "first": {
+            "label": "Workspace",
+            "href": "/vayon/settings/organization",
+            "kind": "navigation"
+          },
+          "count": 5,
+          "localDurationMs": 0.083,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Create Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.088,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Property"
+        },
+        {
+          "query": "Create Lead",
+          "first": {
+            "label": "Create Lead",
+            "href": "/vayon/leads/new",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.07,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Lead"
+        },
+        {
+          "query": "Generate Brochure",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.079,
+          "command": "/vayon/creative/documents?intent=create-marketing-asset&prompt=Generate+Brochure"
+        },
+        {
+          "query": "Schedule Viewing",
+          "first": {
+            "label": "Schedule Viewing",
+            "href": "/vayon/site-visits",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.077,
+          "command": "/vayon/site-visits?intent=coordinate-operations&prompt=Schedule+Viewing"
+        },
+        {
+          "query": "Call Buyer",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.062,
+          "command": "/vayon/communications?intent=engage-lead&prompt=Call+Buyer"
+        }
+      ]
+    },
+    {
+      "role": "organization_admin",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/timeline",
+        "/vayon/communications",
+        "/vayon/creative-studio/packs",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/intelligence",
+        "/vayon/approvals",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/appearance"
+      ],
+      "hiddenPages": [
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/vayon/settings/billing",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "leads",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "contacts",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "companies",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "deals",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "calendar",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "marketing",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "campaigns",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "creative_studio",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "knowledge",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "customer_success",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "billing",
+          "actions": []
+        },
+        {
+          "module": "invoices",
+          "actions": []
+        },
+        {
+          "module": "reports",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "analytics",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "ai_employees",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "workflow_automation",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "integrations",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "team_management",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage",
+            "admin"
+          ]
+        },
+        {
+          "module": "organization_settings",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        }
+      ],
+      "searches": [
+        {
+          "query": "Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 6,
+          "localDurationMs": 0.084,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Property"
+        },
+        {
+          "query": "Lead",
+          "first": {
+            "label": "Create Lead",
+            "href": "/vayon/leads/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.078,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Lead"
+        },
+        {
+          "query": "Client",
+          "first": {
+            "label": "Clients",
+            "href": "/vayon/crm/contacts",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.066,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Client"
+        },
+        {
+          "query": "Deal",
+          "first": {
+            "label": "Create Company",
+            "href": "/vayon/crm/companies/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.061,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Deal"
+        },
+        {
+          "query": "Task",
+          "first": {
+            "label": "Create Task",
+            "href": "/vayon/tasks",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.063,
+          "command": "/vayon/tasks?intent=coordinate-operations&prompt=Task"
+        },
+        {
+          "query": "Campaign",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.061,
+          "command": "/vayon/creative/campaigns?intent=create-marketing-asset&prompt=Campaign"
+        },
+        {
+          "query": "Invite Team",
+          "first": {
+            "label": "Invite Team Members",
+            "href": "/vayon/settings/members",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.073,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Reports",
+          "first": {
+            "label": "Reports",
+            "href": "/vayon/growth/reports",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.071,
+          "command": "/vayon/analytics?intent=review-intelligence&prompt=Reports"
+        },
+        {
+          "query": "Settings",
+          "first": {
+            "label": "Workspace",
+            "href": "/vayon/settings/organization",
+            "kind": "navigation"
+          },
+          "count": 4,
+          "localDurationMs": 0.067,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Create Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.057,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Property"
+        },
+        {
+          "query": "Create Lead",
+          "first": {
+            "label": "Create Lead",
+            "href": "/vayon/leads/new",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.064,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Lead"
+        },
+        {
+          "query": "Generate Brochure",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.052,
+          "command": "/vayon/creative/documents?intent=create-marketing-asset&prompt=Generate+Brochure"
+        },
+        {
+          "query": "Schedule Viewing",
+          "first": {
+            "label": "Schedule Viewing",
+            "href": "/vayon/site-visits",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.059,
+          "command": "/vayon/site-visits?intent=coordinate-operations&prompt=Schedule+Viewing"
+        },
+        {
+          "query": "Call Buyer",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.052,
+          "command": "/vayon/communications?intent=engage-lead&prompt=Call+Buyer"
+        }
+      ]
+    },
+    {
+      "role": "manager",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/timeline",
+        "/vayon/communications",
+        "/vayon/creative-studio/packs",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/approvals",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports",
+        "/vayon/settings/appearance"
+      ],
+      "hiddenPages": [
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/intelligence",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/billing",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "leads",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "contacts",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "companies",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "deals",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "calendar",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "marketing",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "campaigns",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "creative_studio",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "knowledge",
+          "actions": []
+        },
+        {
+          "module": "customer_success",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "billing",
+          "actions": []
+        },
+        {
+          "module": "invoices",
+          "actions": []
+        },
+        {
+          "module": "reports",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "analytics",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "ai_employees",
+          "actions": []
+        },
+        {
+          "module": "workflow_automation",
+          "actions": [
+            "view",
+            "create",
+            "update",
+            "delete",
+            "approve",
+            "export",
+            "manage"
+          ]
+        },
+        {
+          "module": "integrations",
+          "actions": []
+        },
+        {
+          "module": "team_management",
+          "actions": []
+        },
+        {
+          "module": "organization_settings",
+          "actions": []
+        }
+      ],
+      "searches": [
+        {
+          "query": "Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 6,
+          "localDurationMs": 0.053,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Property"
+        },
+        {
+          "query": "Lead",
+          "first": {
+            "label": "Create Lead",
+            "href": "/vayon/leads/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.041,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Lead"
+        },
+        {
+          "query": "Client",
+          "first": {
+            "label": "Clients",
+            "href": "/vayon/crm/contacts",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.043,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Client"
+        },
+        {
+          "query": "Deal",
+          "first": {
+            "label": "Create Company",
+            "href": "/vayon/crm/companies/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.05,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Deal"
+        },
+        {
+          "query": "Task",
+          "first": {
+            "label": "Create Task",
+            "href": "/vayon/tasks",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.039,
+          "command": "/vayon/tasks?intent=coordinate-operations&prompt=Task"
+        },
+        {
+          "query": "Campaign",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.037,
+          "command": "/vayon/creative/campaigns?intent=create-marketing-asset&prompt=Campaign"
+        },
+        {
+          "query": "Invite Team",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.049,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Reports",
+          "first": {
+            "label": "Reports",
+            "href": "/vayon/growth/reports",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.04,
+          "command": "/vayon/analytics?intent=review-intelligence&prompt=Reports"
+        },
+        {
+          "query": "Settings",
+          "first": {
+            "label": "Preferences",
+            "href": "/vayon/settings/appearance",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.038,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Create Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.05,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Property"
+        },
+        {
+          "query": "Create Lead",
+          "first": {
+            "label": "Create Lead",
+            "href": "/vayon/leads/new",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.038,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Lead"
+        },
+        {
+          "query": "Generate Brochure",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.038,
+          "command": "/vayon/creative/documents?intent=create-marketing-asset&prompt=Generate+Brochure"
+        },
+        {
+          "query": "Schedule Viewing",
+          "first": {
+            "label": "Schedule Viewing",
+            "href": "/vayon/site-visits",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.051,
+          "command": "/vayon/site-visits?intent=coordinate-operations&prompt=Schedule+Viewing"
+        },
+        {
+          "query": "Call Buyer",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.05,
+          "command": "/vayon/communications?intent=engage-lead&prompt=Call+Buyer"
+        }
+      ]
+    },
+    {
+      "role": "sales_representative",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/timeline",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/intelligence",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports"
+      ],
+      "hiddenPages": [
+        "/vayon/communications",
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative-studio/packs",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/approvals",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/billing",
+        "/vayon/settings/appearance",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "leads",
+          "actions": [
+            "view",
+            "create",
+            "update"
+          ]
+        },
+        {
+          "module": "contacts",
+          "actions": [
+            "view",
+            "create",
+            "update"
+          ]
+        },
+        {
+          "module": "companies",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "deals",
+          "actions": [
+            "view",
+            "create",
+            "update"
+          ]
+        },
+        {
+          "module": "calendar",
+          "actions": [
+            "view",
+            "create",
+            "update"
+          ]
+        },
+        {
+          "module": "marketing",
+          "actions": []
+        },
+        {
+          "module": "campaigns",
+          "actions": []
+        },
+        {
+          "module": "creative_studio",
+          "actions": []
+        },
+        {
+          "module": "knowledge",
+          "actions": []
+        },
+        {
+          "module": "customer_success",
+          "actions": []
+        },
+        {
+          "module": "billing",
+          "actions": []
+        },
+        {
+          "module": "invoices",
+          "actions": []
+        },
+        {
+          "module": "reports",
+          "actions": []
+        },
+        {
+          "module": "analytics",
+          "actions": []
+        },
+        {
+          "module": "ai_employees",
+          "actions": [
+            "view",
+            "create",
+            "update"
+          ]
+        },
+        {
+          "module": "workflow_automation",
+          "actions": []
+        },
+        {
+          "module": "integrations",
+          "actions": []
+        },
+        {
+          "module": "team_management",
+          "actions": []
+        },
+        {
+          "module": "organization_settings",
+          "actions": []
+        }
+      ],
+      "searches": [
+        {
+          "query": "Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 6,
+          "localDurationMs": 0.05,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Property"
+        },
+        {
+          "query": "Lead",
+          "first": {
+            "label": "Create Lead",
+            "href": "/vayon/leads/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.035,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Lead"
+        },
+        {
+          "query": "Client",
+          "first": {
+            "label": "Clients",
+            "href": "/vayon/crm/contacts",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.032,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Client"
+        },
+        {
+          "query": "Deal",
+          "first": {
+            "label": "Create Company",
+            "href": "/vayon/crm/companies/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.039,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Deal"
+        },
+        {
+          "query": "Task",
+          "first": {
+            "label": "Create Task",
+            "href": "/vayon/tasks",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.033,
+          "command": "/vayon/tasks?intent=coordinate-operations&prompt=Task"
+        },
+        {
+          "query": "Campaign",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.032,
+          "command": "/vayon/creative/campaigns?intent=create-marketing-asset&prompt=Campaign"
+        },
+        {
+          "query": "Invite Team",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.033,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Reports",
+          "first": {
+            "label": "Reports",
+            "href": "/vayon/growth/reports",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.042,
+          "command": "/vayon/analytics?intent=review-intelligence&prompt=Reports"
+        },
+        {
+          "query": "Settings",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.043,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Create Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.077,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Property"
+        },
+        {
+          "query": "Create Lead",
+          "first": {
+            "label": "Create Lead",
+            "href": "/vayon/leads/new",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.047,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Lead"
+        },
+        {
+          "query": "Generate Brochure",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.053,
+          "command": "/vayon/creative/documents?intent=create-marketing-asset&prompt=Generate+Brochure"
+        },
+        {
+          "query": "Schedule Viewing",
+          "first": {
+            "label": "Schedule Viewing",
+            "href": "/vayon/site-visits",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.046,
+          "command": "/vayon/site-visits?intent=coordinate-operations&prompt=Schedule+Viewing"
+        },
+        {
+          "query": "Call Buyer",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.046,
+          "command": "/vayon/communications?intent=engage-lead&prompt=Call+Buyer"
+        }
+      ]
+    },
+    {
+      "role": "agent",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/timeline",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports"
+      ],
+      "hiddenPages": [
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/communications",
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative-studio/packs",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/intelligence",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/approvals",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/billing",
+        "/vayon/settings/appearance",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": []
+        },
+        {
+          "module": "leads",
+          "actions": []
+        },
+        {
+          "module": "contacts",
+          "actions": []
+        },
+        {
+          "module": "companies",
+          "actions": []
+        },
+        {
+          "module": "deals",
+          "actions": []
+        },
+        {
+          "module": "calendar",
+          "actions": []
+        },
+        {
+          "module": "marketing",
+          "actions": []
+        },
+        {
+          "module": "campaigns",
+          "actions": []
+        },
+        {
+          "module": "creative_studio",
+          "actions": []
+        },
+        {
+          "module": "knowledge",
+          "actions": []
+        },
+        {
+          "module": "customer_success",
+          "actions": []
+        },
+        {
+          "module": "billing",
+          "actions": []
+        },
+        {
+          "module": "invoices",
+          "actions": []
+        },
+        {
+          "module": "reports",
+          "actions": []
+        },
+        {
+          "module": "analytics",
+          "actions": []
+        },
+        {
+          "module": "ai_employees",
+          "actions": []
+        },
+        {
+          "module": "workflow_automation",
+          "actions": []
+        },
+        {
+          "module": "integrations",
+          "actions": []
+        },
+        {
+          "module": "team_management",
+          "actions": []
+        },
+        {
+          "module": "organization_settings",
+          "actions": []
+        }
+      ],
+      "searches": [
+        {
+          "query": "Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 4,
+          "localDurationMs": 0.043,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Property"
+        },
+        {
+          "query": "Lead",
+          "first": {
+            "label": "Lead Generation",
+            "href": "/vayon/growth/lead-generation",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.029,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Lead"
+        },
+        {
+          "query": "Client",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.03,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Client"
+        },
+        {
+          "query": "Deal",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.034,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Deal"
+        },
+        {
+          "query": "Task",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.035,
+          "command": "/vayon/tasks?intent=coordinate-operations&prompt=Task"
+        },
+        {
+          "query": "Campaign",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.034,
+          "command": "/vayon/creative/campaigns?intent=create-marketing-asset&prompt=Campaign"
+        },
+        {
+          "query": "Invite Team",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.029,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Reports",
+          "first": {
+            "label": "Reports",
+            "href": "/vayon/growth/reports",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.032,
+          "command": "/vayon/analytics?intent=review-intelligence&prompt=Reports"
+        },
+        {
+          "query": "Settings",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.035,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Create Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.028,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Property"
+        },
+        {
+          "query": "Create Lead",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.032,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Lead"
+        },
+        {
+          "query": "Generate Brochure",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.036,
+          "command": "/vayon/creative/documents?intent=create-marketing-asset&prompt=Generate+Brochure"
+        },
+        {
+          "query": "Schedule Viewing",
+          "first": {
+            "label": "Schedule Viewing",
+            "href": "/vayon/site-visits",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.029,
+          "command": "/vayon/site-visits?intent=coordinate-operations&prompt=Schedule+Viewing"
+        },
+        {
+          "query": "Call Buyer",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.03,
+          "command": "/vayon/communications?intent=engage-lead&prompt=Call+Buyer"
+        }
+      ]
+    },
+    {
+      "role": "read_only",
+      "visiblePages": [
+        "/vayon/dashboard",
+        "/vayon/properties",
+        "/vayon/leads",
+        "/vayon/crm/contacts",
+        "/vayon/crm/companies",
+        "/vayon/deals",
+        "/vayon/notifications",
+        "/vayon/site-visits",
+        "/vayon/calendar",
+        "/vayon/tasks",
+        "/vayon/timeline",
+        "/vayon/creative-studio/packs",
+        "/vayon/growth",
+        "/vayon/growth/lead-generation",
+        "/vayon/growth/buyer-intelligence",
+        "/vayon/growth/seller-intelligence",
+        "/vayon/growth/property-seo",
+        "/vayon/growth/referral-network",
+        "/vayon/growth/market-intelligence",
+        "/vayon/intelligence",
+        "/vayon/approvals",
+        "/vayon/analytics",
+        "/vayon/analytics/sales",
+        "/vayon/analytics/executive",
+        "/vayon/growth/listing-performance",
+        "/vayon/growth/marketing-analytics",
+        "/vayon/growth/advertising-performance",
+        "/vayon/growth/social-performance",
+        "/vayon/growth/reports"
+      ],
+      "hiddenPages": [
+        "/vayon/communications",
+        "/vayon/creative/campaigns",
+        "/vayon/creative",
+        "/vayon/creative/brand",
+        "/vayon/creative/images",
+        "/vayon/creative/videos",
+        "/vayon/creative/documents",
+        "/vayon/creative/assets",
+        "/vayon/creative/landing-pages",
+        "/vayon/creative/templates",
+        "/vayon/creative/calendar",
+        "/vayon/creative/cloud",
+        "/vayon/creative/pipelines",
+        "/vayon/ai/workforce",
+        "/vayon/ai/work-queue",
+        "/vayon/ai/collaboration",
+        "/vayon/ai/automations",
+        "/vayon/ai/goals",
+        "/vayon/ai/history",
+        "/vayon/workflows",
+        "/vayon/settings/organization",
+        "/vayon/settings/members",
+        "/vayon/settings/integrations",
+        "/vayon/settings/billing",
+        "/vayon/settings/appearance",
+        "/platform/founder/workflows",
+        "/platform/system-analytics",
+        "/vayon/growth/investor-relations",
+        "/platform/founder/marketing",
+        "/vayon/settings/product-intelligence",
+        "/vayon/ai/playground",
+        "/platform/feature-flags",
+        "/platform/organizations",
+        "/platform/settings",
+        "/vayon/founder/approvals",
+        "/vayon/customer-success",
+        "/vayon/knowledge",
+        "/vayon/admin",
+        "/vayon/system"
+      ],
+      "grants": [
+        {
+          "module": "crm",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "leads",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "contacts",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "companies",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "deals",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "calendar",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "marketing",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "campaigns",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "creative_studio",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "knowledge",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "customer_success",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "billing",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "invoices",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "reports",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "analytics",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "ai_employees",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "workflow_automation",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "integrations",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "team_management",
+          "actions": [
+            "view"
+          ]
+        },
+        {
+          "module": "organization_settings",
+          "actions": [
+            "view"
+          ]
+        }
+      ],
+      "searches": [
+        {
+          "query": "Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 6,
+          "localDurationMs": 0.064,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Property"
+        },
+        {
+          "query": "Lead",
+          "first": {
+            "label": "Create Lead",
+            "href": "/vayon/leads/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.055,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Lead"
+        },
+        {
+          "query": "Client",
+          "first": {
+            "label": "Clients",
+            "href": "/vayon/crm/contacts",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.053,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Client"
+        },
+        {
+          "query": "Deal",
+          "first": {
+            "label": "Create Company",
+            "href": "/vayon/crm/companies/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.064,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Deal"
+        },
+        {
+          "query": "Task",
+          "first": {
+            "label": "Create Task",
+            "href": "/vayon/tasks",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.052,
+          "command": "/vayon/tasks?intent=coordinate-operations&prompt=Task"
+        },
+        {
+          "query": "Campaign",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.051,
+          "command": "/vayon/creative/campaigns?intent=create-marketing-asset&prompt=Campaign"
+        },
+        {
+          "query": "Invite Team",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 1.219,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Invite+Team"
+        },
+        {
+          "query": "Reports",
+          "first": {
+            "label": "Reports",
+            "href": "/vayon/growth/reports",
+            "kind": "navigation"
+          },
+          "count": 1,
+          "localDurationMs": 0.063,
+          "command": "/vayon/analytics?intent=review-intelligence&prompt=Reports"
+        },
+        {
+          "query": "Settings",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.051,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Settings"
+        },
+        {
+          "query": "Create Property",
+          "first": {
+            "label": "Create Property",
+            "href": "/vayon/properties/new",
+            "kind": "quick-create"
+          },
+          "count": 3,
+          "localDurationMs": 0.055,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Property"
+        },
+        {
+          "query": "Create Lead",
+          "first": {
+            "label": "Create Lead",
+            "href": "/vayon/leads/new",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.049,
+          "command": "/vayon/intelligence?intent=ask-workforce&prompt=Create+Lead"
+        },
+        {
+          "query": "Generate Brochure",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.048,
+          "command": "/vayon/creative/documents?intent=create-marketing-asset&prompt=Generate+Brochure"
+        },
+        {
+          "query": "Schedule Viewing",
+          "first": {
+            "label": "Schedule Viewing",
+            "href": "/vayon/site-visits",
+            "kind": "quick-create"
+          },
+          "count": 1,
+          "localDurationMs": 0.05,
+          "command": "/vayon/site-visits?intent=coordinate-operations&prompt=Schedule+Viewing"
+        },
+        {
+          "query": "Call Buyer",
+          "first": null,
+          "count": 0,
+          "localDurationMs": 0.049,
+          "command": "/vayon/communications?intent=engage-lead&prompt=Call+Buyer"
+        }
+      ]
+    }
+  ],
+  "workspace": {
+    "status": "Blocked",
+    "ownershipSource": "supabase/migrations/20260814000000_sprint43_google_identity_workspace.sql",
+    "ownershipOnboardingDependent": true,
+    "selectedWorkspaceReturnedBeforeActiveMembershipCheck": true,
+    "switcherCreateDisabled": true,
+    "acceptanceSelectsNewestPendingByEmail": true,
+    "acceptanceActionIgnoresReturnedWorkspace": true
+  },
+  "routeFiles": 346
+}

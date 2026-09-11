@@ -32,6 +32,7 @@ export function rankUniversalResults(results: readonly UniversalBarResult[], que
   const opened = new Map(history.filter(item => item.kind === "recently-opened").map(item => [item.id, item]));
   const recentWindow = 7 * 24 * 60 * 60 * 1000;
   const score = (item: UniversalBarResult) => {
+    if (item.id === "invite-team" && /^(invite|team|members?|users?|employees?|staff)$/.test(term)) return -1;
     if (item.kind === "quick-create") return 0;
     if (item.kind === "record") {
       const usage = opened.get(item.id);

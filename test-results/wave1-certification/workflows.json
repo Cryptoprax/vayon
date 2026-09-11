@@ -1,0 +1,122 @@
+[
+  {
+    "workflow": "Landing Page",
+    "status": "Needs Verification",
+    "evidence": "Local public entry can render; no production first-user journey observed."
+  },
+  {
+    "workflow": "Sign Up",
+    "status": "Needs Verification",
+    "evidence": "Existing signup/provider call and profile trigger inspected; no fresh identity created."
+  },
+  {
+    "workflow": "Google OAuth",
+    "status": "Needs Verification",
+    "evidence": "Code exchange and safe return logic exist; no real Google round-trip."
+  },
+  {
+    "workflow": "Email Signup",
+    "status": "Needs Verification",
+    "evidence": "Existing email verification path; delivery and confirmation unverified."
+  },
+  {
+    "workflow": "Workspace Creation",
+    "status": "Needs Verification",
+    "evidence": "Existing RPC inserts organization/workspace and owner memberships atomically; no live transaction observed."
+  },
+  {
+    "workflow": "Automatic Owner Assignment",
+    "status": "Needs Verification",
+    "evidence": "organization_owner is inserted in both memberships during creation; live role and immediate invite access unverified."
+  },
+  {
+    "workflow": "Workspace Selected",
+    "status": "Blocked",
+    "evidence": "Creation/acceptance does not establish explicit selected context; acceptance ignores returned workspace ID."
+  },
+  {
+    "workflow": "Dashboard Identity Entry",
+    "status": "Needs Verification",
+    "evidence": "Unauthenticated boundary checked; no first authenticated dashboard with Owner permissions observed."
+  },
+  {
+    "workflow": "Invite Team",
+    "status": "Blocked",
+    "evidence": "Owner/Admin allowed in source, Manager denied; HR-manager runtime/SQL disagreement."
+  },
+  {
+    "workflow": "Invitation Email",
+    "status": "Needs Verification",
+    "evidence": "Existing queue/provider path inspected; no production delivery or controlled inbox receipt."
+  },
+  {
+    "workflow": "Invitation Acceptance",
+    "status": "Blocked",
+    "evidence": "SQL chooses newest pending invite by email without exact invitation identity; real link/session unverified."
+  },
+  {
+    "workflow": "Workspace Join",
+    "status": "Blocked",
+    "evidence": "Membership writes exist but joined-workspace selection is not completed."
+  },
+  {
+    "workflow": "Correct Role Assignment",
+    "status": "Blocked",
+    "evidence": "Stored role assignment exists; legacy agent/runtime and Manager/HR permission inconsistencies remain."
+  },
+  {
+    "workflow": "Login",
+    "status": "Needs Verification",
+    "evidence": "Existing password service and mocked safe return tests; real session not established."
+  },
+  {
+    "workflow": "Logout",
+    "status": "Needs Verification",
+    "evidence": "Existing signOut/redirect inspected; no authenticated logout or old-session rejection observed."
+  },
+  {
+    "workflow": "Login Again",
+    "status": "Needs Verification",
+    "evidence": "No real logout/login cycle or workspace persistence observation."
+  },
+  {
+    "workflow": "Password Reset",
+    "status": "Blocked",
+    "evidence": "Forgot-password action ignores sendReset error before reporting a sent link."
+  },
+  {
+    "workflow": "Expired Session Recovery",
+    "status": "Needs Verification",
+    "evidence": "No-session boundary and next routing inspected; actual expiration/refresh not exercised."
+  },
+  {
+    "workflow": "Workspace Recovery",
+    "status": "Blocked",
+    "evidence": "Workspace menu cannot switch; selected-context resolver lacks explicit active-membership revalidation before returning context."
+  },
+  {
+    "workflow": "Remembered Login",
+    "status": "Needs Verification",
+    "evidence": "Cookie/session persistence is not verified across browser restart or token expiry."
+  },
+  {
+    "workflow": "Invalid Token Recovery",
+    "status": "Needs Verification",
+    "evidence": "Missing-code/provider-error local callback paths checked; real invalid/expired token exchange unverified."
+  },
+  {
+    "workflow": "Expired Invitation Recovery",
+    "status": "Needs Verification",
+    "evidence": "SQL expiry gate and request-resend guidance exist; no live resend/reacceptance."
+  },
+  {
+    "workflow": "RBAC",
+    "status": "Blocked",
+    "evidence": "Runtime/visibility/SQL and role-alias mismatches prevent role certification."
+  },
+  {
+    "workflow": "Identity Search",
+    "status": "Blocked",
+    "evidence": "Roles, Users, Owner and Admin have no Owner-visible static result in current audit."
+  }
+]

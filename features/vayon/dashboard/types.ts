@@ -90,6 +90,7 @@ export interface UsageNotice {
   href: string;
 }
 export interface ExecutiveDashboardData {
+  workspaceMemberCount?: number;
   organizationName: string;
   workspaceName: string;
   currency: string;

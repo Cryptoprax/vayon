@@ -1,0 +1,38 @@
+{
+  "status": "Blocked",
+  "scope": "Wave 1 certification; local checks do not certify live lifecycle",
+  "typescript": {
+    "exitCode": 0
+  },
+  "eslint": {
+    "exitCode": 0
+  },
+  "regression": {
+    "passed": 1632,
+    "failed": 0
+  },
+  "productionBuild": {
+    "exitCode": 0,
+    "environment": "local"
+  },
+  "navigation": {
+    "exitCode": 0,
+    "output": "﻿\r\n> vayon@2.0.0 audit:navigation\r\n> node scripts/audit-product-unification.mjs navigation\r\n\r\n{\r\n  \"requestedAudit\": \"navigation\",\r\n  \"primaryGroups\": [\r\n    \"Today's work\",\r\n    \"Sell & follow up\",\r\n    \"Market properties\",\r\n    \"AI Assistant\",\r\n    \"Understand performance\",\r\n    \"Configure workspace\"\r\n  ],\r\n  \"destinations\": 68,\r\n  \"pageFiles\": 346,\r\n  \"issues\": [],\r\n  \"browserVerified\": false\r\n}\r\n"
+  },
+  "authentication": {
+    "focusedTests": 43,
+    "failed": 0,
+    "browserCases": 9,
+    "status": "Needs Verification"
+  },
+  "rbac": {
+    "roleVariants": 6,
+    "searchCases": 48,
+    "status": "Blocked"
+  },
+  "workspace": {
+    "status": "Blocked"
+  },
+  "liveEmailVerified": false,
+  "authenticatedLifecycleObserved": false
+}

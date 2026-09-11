@@ -4,7 +4,7 @@ const {shellNavigation}=loadPureModule('features/vayon/product-shell/navigation.
 const {StaticNavigationSearchProvider}=loadPureModule('features/vayon/universal-bar/providers/static-navigation.provider.ts');
 const {rankUniversalResults}=loadPureModule('features/vayon/universal-bar/services/universal-search.service.ts');
 const {resolveOperatingSystemCommand}=loadPureModule('features/vayon/cross-module-intelligence/command-router.ts');
-const tasks=[['Export Report','/vayon/analytics/executive'],['Create Property','/vayon/properties/new'],['Create Lead','/vayon/leads/new'],['Invite Team','/vayon/settings/members'],['Create Campaign','/vayon/creative/campaigns'],['Generate Brochure','/vayon/creative/documents'],['Schedule Viewing','/vayon/site-visits'],['Send WhatsApp','/vayon/communications'],['Create Task','/vayon/tasks']];
+const tasks=[['Export Report','/vayon/analytics/executive'],['Create Property','/vayon/properties/new'],['Create Lead','/vayon/leads/new'],['Invite Team Members','/vayon/settings/members'],['Create Campaign','/vayon/creative/campaigns'],['Generate Brochure','/vayon/creative/documents'],['Schedule Viewing','/vayon/site-visits'],['Send WhatsApp','/vayon/communications'],['Create Task','/vayon/tasks']];
 test('common broker tasks return the existing task destination first',()=>{
  const provider=new StaticNavigationSearchProvider(shellNavigation.flatMap(g=>g.items).map(x=>({...x,id:x.href,visible:true})));
  for(const [query,href] of tasks){const results=rankUniversalResults(provider.search({query,scopes:provider.scopes}),query);assert.equal(results[0]?.href,href,query);assert.equal(results[0]?.label,query,query);}

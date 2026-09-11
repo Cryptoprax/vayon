@@ -82,3 +82,12 @@ test('populated dashboard preserves repeated activity text without duplicate des
   assert.match(html,/Lead created/);assert.match(html,/Lead updated/);assert.match(html,/Call buyer/);
   assert.equal((html.match(/data-variant="primary"/g)||[]).length,1);
 });
+
+
+test('team checklist depends on membership count, never invitation activity',()=>{
+ const {GettingStartedChecklist}=loadView('features/vayon/dashboard/components/GettingStartedChecklist.tsx');
+ for(const count of [undefined,0,1,2,8]) {
+  const html=renderToStaticMarkup(React.createElement(GettingStartedChecklist,{data:{...empty,workspaceMemberCount:count,activities:[{eventType:'team.invited'}]}}));
+  assert.equal(html.includes('Invite Your Team'),count===1);
+ }
+});

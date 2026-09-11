@@ -84,6 +84,7 @@ export class ExecutiveDashboardService {
         .eq("organization_id", o)
         .eq("workspace_id", w);
     const results = await Promise.all([
+      client.from("workspace_members").select("id", { count: "exact", head: true }).eq("organization_id", o).eq("workspace_id", w).neq("status", "removed"),
       scoped("leads")
         .gte("created_at", yearStart.toISOString())
         .is("deleted_at", null),
@@ -143,6 +144,7 @@ export class ExecutiveDashboardService {
     ]);
     for (const result of results) if (result.error) throw result.error;
     const [
+      memberCountResult,
       leadResult,
       dealResult,
       propertyResult,
@@ -496,6 +498,7 @@ export class ExecutiveDashboardService {
         href: "/vayon/settings/subscription",
       });
     return {
+      workspaceMemberCount: memberCountResult.count ?? undefined,
       organizationName: organization?.name ?? "Organization",
       workspaceName: workspace?.name ?? "Workspace",
       currency,

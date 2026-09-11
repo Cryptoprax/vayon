@@ -1,4 +1,2 @@
-import { AdminRoute } from "@/features/vayon/admin-platform/dashboard/AdminRoute";
-export default function Page() {
-  return <AdminRoute view="users" />;
-}
+import { redirect } from "next/navigation";
+export default function Page() { redirect("/vayon/settings/members"); }

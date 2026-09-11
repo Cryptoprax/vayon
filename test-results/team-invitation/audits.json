@@ -1,0 +1,48 @@
+{
+  "scope": "Local source and regression audit; no live database, invite delivery or acceptance mutation",
+  "rbac": {
+    "owner": true,
+    "admin": true,
+    "manager": false,
+    "agent": false,
+    "sales_representative": false,
+    "acceptance": "BLOCKED: requested Manager grant is absent; SQL enterprise_org_context permits Owner/Admin only. hr_manager runtime grant also conflicts with SQL."
+  },
+  "workspace": {
+    "ownership": "Persisted by complete_sprint43_onboarding in organization_members and workspace_members; organization_owner has administrative capabilities.",
+    "atSignup": "Signup creates authentication identity/profile; ownership follows onboarding.",
+    "acceptance": "Existing RPC assigns stored invitation role to both membership tables using authenticated email, pending status and expiry.",
+    "limitations": [
+      "No live persistence verification",
+      "Newest pending invitation is selected by email, not explicit invitation identity",
+      "Accepted workspace is returned but not selected in user_organization_context"
+    ]
+  },
+  "navigation": {
+    "canonical": "/vayon/settings/members",
+    "legacyTeam": "/vayon/team -> /vayon/settings/members",
+    "legacyAdminUsers": "/vayon/admin/users -> /vayon/settings/members",
+    "legacyAdminTeams": "/vayon/admin/teams -> /vayon/settings/teams",
+    "searchTerms": [
+      "Invite",
+      "Team",
+      "Members",
+      "User",
+      "Employee",
+      "Staff"
+    ],
+    "result": "Invite Team Members"
+  },
+  "validation": {
+    "typescript": "passed",
+    "eslint": "passed, zero warnings",
+    "tests": {
+      "passed": 1632,
+      "failed": 0
+    },
+    "productionBuild": "passed",
+    "navigation": "passed",
+    "rbac": "blocked against Manager acceptance criterion",
+    "workspace": "source audit complete; live certification unverified"
+  }
+}
