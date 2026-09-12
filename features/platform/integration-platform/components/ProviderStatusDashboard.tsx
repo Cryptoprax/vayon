@@ -8,7 +8,7 @@ export function ProviderStatusDashboard({
 }) {
   const summary = integrationPlatformSummary(model);
   return (
-    <section className="mx-auto max-w-[96rem] px-5 pb-10">
+    <section className="pb-10">
       <header className="border-t border-vds-border pt-8">
         <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">
           Sprint 28 deterministic control plane

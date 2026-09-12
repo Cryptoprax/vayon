@@ -1,3 +1,4 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import { CalendarPlatformService } from "../services/calendar-platform.service";
 import {
   AssistancePanel,
@@ -18,7 +19,7 @@ export async function CalendarViewRoute({ view }: { view: CalendarView }) {
   const service = await CalendarPlatformService.production();
   const snapshot = await service.snapshot();
   return (
-    <main>
+    <WorkspaceContent>
       <CalendarHeader
         title={`${view[0]!.toUpperCase()}${view.slice(1)} calendar`}
         description="A tenant-scoped operational schedule across meetings, visits, tasks, reminders, CRM context, communications, workflows, and AI Workforce advice."
@@ -26,7 +27,7 @@ export async function CalendarViewRoute({ view }: { view: CalendarView }) {
       <CalendarAnalytics snapshot={snapshot} />
       <ScheduleList model={toCalendarView(snapshot, view)} />
       <Observability snapshot={snapshot} />
-    </main>
+    </WorkspaceContent>
   );
 }
 
@@ -35,14 +36,14 @@ export async function CalendarEntityRoute({ kind }: { kind: EntityKind }) {
   const snapshot = await service.snapshot();
   if (kind === "reminders")
     return (
-      <main>
+      <WorkspaceContent>
         <CalendarHeader
           title="Reminders"
           description="Deterministic scheduling reminders. External delivery remains disabled."
         />
         <ReminderList snapshot={snapshot} />
         <Observability snapshot={snapshot} />
-      </main>
+      </WorkspaceContent>
     );
   const types =
       kind === "meetings"
@@ -53,7 +54,7 @@ export async function CalendarEntityRoute({ kind }: { kind: EntityKind }) {
     events = snapshot.events.filter((event) => types.includes(event.type)),
     first = events[0];
   return (
-    <main>
+    <WorkspaceContent>
       <CalendarHeader
         title={
           kind === "site-visits"
@@ -67,6 +68,6 @@ export async function CalendarEntityRoute({ kind }: { kind: EntityKind }) {
       {kind === "site-visits" && <SiteVisitWorkspace event={first} />}{" "}
       {first && <AssistancePanel suggestions={service.assistance(first)} />}
       <Observability snapshot={snapshot} />
-    </main>
+    </WorkspaceContent>
   );
 }

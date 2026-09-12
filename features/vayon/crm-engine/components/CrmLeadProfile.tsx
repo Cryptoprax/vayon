@@ -92,7 +92,7 @@ export function CrmLeadProfileView({ profile }: { profile: CrmLeadProfile }) {
           ["Assigned Agent", profile.owner],
         ].map(([label, value]) => <article key={label} className="rounded-2xl border border-vds-border bg-vds-surface p-4"><p className="text-xs text-vds-muted">{label}</p><p className="mt-2 text-sm font-semibold">{value}</p></article>)}
       </section>
-      <div className="flex gap-1 overflow-x-auto border-b border-vds-border">
+      <div className="flex flex-wrap gap-1 min-w-0 border-b border-vds-border">
         {tabs.map((x) => (
           <Button
             key={x}

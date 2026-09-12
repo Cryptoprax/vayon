@@ -1,3 +1,5 @@
+import { subscriptionFailure, subscriptionMessage, subscriptionCenterHref } from "@/features/vayon/billing/services/subscription-write-contract";
+import { guardSubscriptionApi } from "@/features/vayon/billing/services/subscription-write-guard";
 import { z } from "zod";
 import { AICollaborationService } from "@/features/platform/ai-collaboration";
 import { enforceApiPermission } from "@/features/platform/permissions/runtime/http";
@@ -26,6 +28,8 @@ const employee = z.enum([
 export async function POST(request: Request) {
   const authorization=await enforceApiPermission("ai_employees","create");
   if(authorization.response)return authorization.response;
+const subscriptionResponse = await guardSubscriptionApi(); if (subscriptionResponse) return subscriptionResponse;
+
   const parsed = schema.safeParse(await request.json().catch(() => null));
   if (!parsed.success)
     return Response.json(
@@ -39,7 +43,9 @@ export async function POST(request: Request) {
       ).collaborate(parsed.data),
       { status: 202, headers: { "Cache-Control": "no-store" } },
     );
-  } catch {
+  } catch (error) {
+    const decision = subscriptionFailure(error);
+    if (decision) return Response.json({ ...decision, message: subscriptionMessage(decision), subscriptionCenter: subscriptionCenterHref(decision) }, { status: 402, headers: { "Cache-Control": "private, no-store" } });
     return Response.json(
       {
         error: "Collaboration runtime could not complete the governed request.",

@@ -1,3 +1,5 @@
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 /* eslint-disable react-hooks/error-boundaries -- provider failures become explicit unavailable states */
 import Link from "next/link";
 import { Button } from "@/features/platform/design-system";
@@ -32,7 +34,7 @@ export async function GoogleContactsWorkspace({
   if (status !== "connected")
     return (
       <section className="rounded-3xl border border-vds-border bg-vds-surface/[.035] p-8">
-        <h1 className="text-3xl font-semibold">Google Contacts</h1>
+        <WorkspaceHeader><h1 className="text-3xl font-semibold">Google Contacts</h1></WorkspaceHeader>
         <h2 className="mt-6 text-xl font-semibold">
           Google Contacts is not connected.
         </h2>
@@ -50,8 +52,8 @@ export async function GoogleContactsWorkspace({
     const page = await service.list({ view, query, sort, group }),
       duplicates = new ContactMatcher().duplicates(page.contacts);
     return (
-      <main>
-        <div className="flex flex-wrap items-end justify-between gap-4">
+      <WorkspaceContent>
+        <WorkspaceHeader >
           <div>
             <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">
               External identities
@@ -67,7 +69,7 @@ export async function GoogleContactsWorkspace({
           <form action={connectGoogleContactsAction}>
             <Button variant="outline">Reconnect Contacts</Button>
           </form>
-        </div>
+        </WorkspaceHeader>
         <nav aria-label="Contact views" className="mt-6 flex flex-wrap gap-2">
           {views.map((item) => (
             <Link
@@ -222,16 +224,16 @@ export async function GoogleContactsWorkspace({
             </p>
           )}
         </section>
-      </main>
+      </WorkspaceContent>
     );
   } catch {
     return (
-      <section className="rounded-2xl border border-vds-border p-6">
+      <WorkspaceHeader >
         <h1 className="text-2xl font-semibold">Google Contacts</h1>
         <p className="mt-2 text-sm text-vds-muted">
           Contact data is temporarily unavailable.
         </p>
-      </section>
+      </WorkspaceHeader>
     );
   }
 }

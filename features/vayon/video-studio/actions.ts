@@ -1,4 +1,5 @@
 "use server";
+import { guardSubscriptionAction } from "@/features/vayon/billing/services/subscription-write-guard";
 import { requireWorkspacePermission } from "@/features/platform/permissions/runtime/permission.service";
 import { creativeStudioAccess } from "@/features/vayon/creative-studio/access.service";
 import { createLiveCreativeExecutionService } from "@/features/vayon/creative-providers/execution.factory";
@@ -12,6 +13,8 @@ import type {
 export async function generateVideo(
   input: VideoWizardInput,
 ): Promise<VideoSubmission> {
+await guardSubscriptionAction();
+
   return execute(input, null, null);
 }
 export async function editVideo(
@@ -19,6 +22,8 @@ export async function editVideo(
   targetAssetId: string,
   operation: VideoEditOperation,
 ): Promise<VideoSubmission> {
+await guardSubscriptionAction();
+
   return execute(
     { ...input, prompt: `${operation}. ${input.prompt}` },
     targetAssetId,

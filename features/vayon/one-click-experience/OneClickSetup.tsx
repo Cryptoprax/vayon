@@ -1,3 +1,4 @@
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import { Bot, CalendarDays, Check, Mail, MessageCircle, Sparkles } from "lucide-react";
 import { Badge, ButtonLink } from "@/features/platform/design-system";
 
@@ -23,10 +24,10 @@ const connections = [
 ] as const;
 
 export function OneClickConnections() {
-  return <main className="mx-auto max-w-[96rem] px-5 py-8"><header><p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">One-click setup</p><h1 className="mt-2 text-3xl font-semibold">Connect the tools your team already uses</h1><p className="mt-2 max-w-2xl text-sm text-vds-muted">Choose a service and follow the secure sign-in. There are no keys, endpoints, or technical values to copy.</p></header>
+  return <WorkspaceContent><WorkspaceHeader><p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">One-click setup</p><h1 className="mt-2 text-3xl font-semibold">Connect the tools your team already uses</h1><p className="mt-2 max-w-2xl text-sm text-vds-muted">Choose a service and follow the secure sign-in. There are no keys, endpoints, or technical values to copy.</p></WorkspaceHeader>
     <section className="mt-7 grid gap-4 lg:grid-cols-2" aria-label="Quick connections">{connections.map(({ group, icon: Icon, items }) => <article className={card} key={group}><Icon className="size-5 text-vds-primary" aria-hidden="true" /><h2 className="mt-3 font-semibold">{group}</h2><div className="mt-4 flex flex-wrap gap-3">{items.map(([label, href]) => <ButtonLink key={label} href={href}>{label}</ButtonLink>)}</div>{group === "Email" && <p className="mt-4 text-sm text-vds-subtle">Additional providers coming soon.</p>}{group === "Calendar" && <p className="mt-4 text-sm text-vds-subtle">Apple Calendar · Coming Soon</p>}</article>)}</section>
     <section className="mt-4"><article className={card}><MessageCircle className="size-5 text-vds-primary" aria-hidden="true" /><div className="mt-3 flex flex-wrap items-center justify-between gap-3"><div><h2 className="font-semibold">WhatsApp Business</h2><p className="mt-1 text-sm text-vds-muted">Not Connected</p></div><ButtonLink href="/vayon/whatsapp/settings">Connect WhatsApp Business</ButtonLink></div></article></section>
-  </main>;
+  </WorkspaceContent>;
 }
 
 export function SimpleConfigurationIntro() {

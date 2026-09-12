@@ -1,4 +1,8 @@
 "use client";
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
+
+import { WorkspaceTable } from "@/features/platform/design-system/layout/WorkspaceTable";
+
 
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
@@ -93,7 +97,7 @@ export function WorkflowOrchestrator() {
 
   return (
     <section className="space-y-6" aria-labelledby="workflow-orchestrator-title">
-      <header className="relative overflow-hidden rounded-[2rem] border border-vds-border bg-gradient-to-br from-vds-primary-soft via-vds-surface to-vds-accent-soft p-6 shadow-xl shadow-vds-shadow/10 sm:p-8">
+      <WorkspaceHeader className="relative overflow-hidden rounded-[2rem] border border-vds-border bg-gradient-to-br from-vds-primary-soft via-vds-surface to-vds-accent-soft p-6 shadow-xl shadow-vds-shadow/10 sm:p-8">
         <div className="relative flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
           <div>
             <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[.2em] text-vds-primary"><GitBranch className="size-4" aria-hidden="true" />AI Workflow Orchestrator</p>
@@ -102,7 +106,7 @@ export function WorkflowOrchestrator() {
           </div>
           <div className="rounded-2xl border border-vds-success bg-vds-success-soft px-4 py-3 text-sm text-vds-success"><ShieldCheck className="mr-2 inline size-4" aria-hidden="true" />No autonomous execution</div>
         </div>
-      </header>
+      </WorkspaceHeader>
 
       <div className="grid gap-6 xl:grid-cols-[20rem_1fr]">
         <aside className="rounded-3xl border border-vds-border bg-vds-surface p-4" aria-label="Workflow templates">
@@ -168,5 +172,5 @@ function Status({ status }: { readonly status: OrchestratorStepStatus }) {
   return <span className={`rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-[.08em] ${styles[status]}`}>{status.replaceAll("-", " ")}</span>;
 }
 function HistoryTable({ history }: { readonly history: readonly LocalWorkflowHistory[] }) {
-  return <section className="overflow-hidden rounded-3xl border border-vds-border bg-vds-surface" aria-labelledby="orchestration-history-title"><div className="p-5"><h2 id="orchestration-history-title" className="font-semibold">Execution history</h2><p className="mt-1 text-xs text-vds-muted">Executed, cancelled, failed, and successful workflows appear only when governed evidence exists. Local preview decisions are listed below.</p></div><div className="overflow-x-auto"><table className="w-full min-w-[42rem] text-left text-sm"><thead><tr className="border-t border-vds-border text-xs uppercase tracking-[.1em] text-vds-subtle"><th className="p-4">Workflow</th><th>Status</th><th>Timestamp</th><th>Duration</th></tr></thead><tbody>{history.map((item) => <tr className="border-t border-vds-border" key={item.id}><td className="p-4 font-medium">{item.template}</td><td>{item.status}</td><td>{new Date(item.timestamp).toLocaleString()}</td><td>{item.duration}</td></tr>)}{!history.length && <tr><td className="p-8 text-center text-vds-muted" colSpan={4}>No executed workflows or local preview decisions yet.</td></tr>}</tbody></table></div></section>;
+  return <section className="overflow-hidden rounded-3xl border border-vds-border bg-vds-surface" aria-labelledby="orchestration-history-title"><div className="p-5"><h2 id="orchestration-history-title" className="font-semibold">Execution history</h2><p className="mt-1 text-xs text-vds-muted">Executed, cancelled, failed, and successful workflows appear only when governed evidence exists. Local preview decisions are listed below.</p></div><div className="min-w-0"><WorkspaceTable className="w-full text-left text-sm"><thead><tr className="border-t border-vds-border text-xs uppercase tracking-[.1em] text-vds-subtle"><th className="p-4">Workflow</th><th>Status</th><th>Timestamp</th><th>Duration</th></tr></thead><tbody>{history.map((item) => <tr className="border-t border-vds-border" key={item.id}><td className="p-4 font-medium">{item.template}</td><td>{item.status}</td><td>{new Date(item.timestamp).toLocaleString()}</td><td>{item.duration}</td></tr>)}{!history.length && <tr><td className="p-8 text-center text-vds-muted" colSpan={4}>No executed workflows or local preview decisions yet.</td></tr>}</tbody></WorkspaceTable></div></section>;
 }

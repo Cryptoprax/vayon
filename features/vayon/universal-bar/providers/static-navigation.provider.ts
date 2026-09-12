@@ -51,7 +51,7 @@ export class StaticNavigationSearchProvider implements UniversalSearchProvider {
         href: canonicalCustomerHref(item.href!),
         scope: scopeFor(item.href!),
         kind: "navigation" as const,
-        keywords: [item.label.toLocaleLowerCase(), item.href!, ...(item.href === "/vayon/crm/companies" ? ["update company", "edit company"] : []), ...(item.href === "/vayon/properties" ? ["upload photos", "property pictures"] : [])],
+        keywords: [item.label.toLocaleLowerCase(), item.href!, ...(item.href === "/vayon/settings/billing" ? ["billing", "upgrade", "subscription", "plan", "pricing", "trial", "payment"] : []), ...(item.href === "/vayon/crm/companies" ? ["update company", "edit company"] : []), ...(item.href === "/vayon/properties" ? ["upload photos", "property pictures"] : [])],
       }))
       .filter((item) => matches(item, term));
     return [

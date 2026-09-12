@@ -1,3 +1,5 @@
+import { WorkspaceTable } from "@/features/platform/design-system/layout/WorkspaceTable";
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import {
   Activity,
@@ -37,12 +39,12 @@ export function CustomerGrowthDashboard({
   question: string;
 }) {
   return (
-    <main className="relative mx-auto max-w-[120rem] space-y-8 overflow-hidden px-4 py-6 sm:px-6 lg:px-8">
+    <WorkspaceContent >
       <div
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem] bg-[radial-gradient(circle_at_18%_8%,var(--vds-color-primary-soft),transparent_35%),radial-gradient(circle_at_82%_14%,var(--vds-color-success-soft),transparent_28%)]"
         aria-hidden="true"
       />
-      <header className="flex flex-wrap items-end justify-between gap-5">
+      <WorkspaceHeader >
         <div>
           <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[.22em] text-vds-primary">
             <TrendingUp className="size-4" aria-hidden="true" />
@@ -62,7 +64,7 @@ export function CustomerGrowthDashboard({
             ← Founder Operating System
           </Link>
         </div>
-      </header>
+      </WorkspaceHeader>
       <section>
         <h2 className="sr-only">Executive growth KPIs</h2>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7">
@@ -93,8 +95,8 @@ export function CustomerGrowthDashboard({
       </section>
       <section>
         <Heading icon={RefreshCw} title="Renewal center" />
-        <div className={`${card} mt-4 overflow-x-auto`}>
-          <table className="w-full min-w-[58rem] text-left text-sm">
+        <div className={`${card} mt-4 min-w-0`}>
+          <WorkspaceTable className="w-full text-left text-sm">
             <caption className="sr-only">
               Upcoming, failed, and successful customer renewals
             </caption>
@@ -149,7 +151,7 @@ export function CustomerGrowthDashboard({
                 </tr>
               )}
             </tbody>
-          </table>
+          </WorkspaceTable>
         </div>
       </section>
       <section>
@@ -287,7 +289,7 @@ export function CustomerGrowthDashboard({
           />
         </div>
       </section>
-    </main>
+    </WorkspaceContent>
   );
 }
 function HealthCard({ item }: { item: OrganizationHealth }) {

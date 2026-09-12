@@ -20,7 +20,7 @@ export function NotificationPlatform() {
   return (
     <section className="overflow-hidden rounded-3xl border border-vds-border/[0.08] bg-vds-surface/[0.02]">
       <div
-        className="flex gap-1 overflow-x-auto border-b border-vds-border/[0.07] p-2 [scrollbar-width:none]"
+        className="flex flex-wrap gap-1 min-w-0 border-b border-vds-border/[0.07] p-2 [scrollbar-width:none]"
         role="tablist"
         aria-label="Notification categories"
       >

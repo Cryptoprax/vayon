@@ -4,7 +4,7 @@ import type { CrmLeadRow, CrmTimelineItem } from "../domain/contracts";
 import type { CompanyRecord } from "@/features/vayon/crm-company/domain";
 export function CustomerDirectory({ items }: { items: readonly CrmLeadRow[] }) {
   return (
-    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {items.length ? (
         items.map((item) => (
           <Link
@@ -61,7 +61,7 @@ export function CustomerDirectory({ items }: { items: readonly CrmLeadRow[] }) {
 }
 export function CompanyDirectory({ items }: { items: readonly CompanyRecord[] }) {
   return (
-    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {items.length ? (
         items.map((item) => (
           <Link href={`/vayon/crm/companies/${item.id}`}

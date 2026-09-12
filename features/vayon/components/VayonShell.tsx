@@ -1,3 +1,6 @@
+import { getWorkspaceTrial } from "@/features/vayon/billing/services/workspace-trial";
+import { WorkspaceTrialBanner } from "@/features/vayon/billing/components/WorkspaceTrialBanner";
+import { evaluateWorkspacePermission } from "@/features/platform/permissions/runtime/policy";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { AuthenticationService } from "@/features/authentication/services/authentication.service";
@@ -51,9 +54,11 @@ export async function VayonShell({
           demoWorkspace: "aurora" as const,
           workspaceRole: authorization?.role ?? "guest" as const,
         };
+  const trial = await getWorkspaceTrial().catch(() => null);
   return (
     <Suspense>
       <ProductExperience
+        commercialNotice={<WorkspaceTrialBanner snapshot={trial} canOpenBilling={Boolean(authorization && evaluateWorkspacePermission(authorization.role, { module: "billing", action: "view" }).allowed)}/>}
         identity={identity}
         visibility={visibility}
         intelligenceEnabled={process.env.FEATURE_VAYON_INTELLIGENCE !== "false"}

@@ -1,4 +1,5 @@
 "use server";
+import { guardSubscriptionAction, redirectSubscriptionFailure } from "@/features/vayon/billing/services/subscription-write-guard";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { CreativeStudioService } from "./service";
@@ -10,6 +11,8 @@ import { GrowthStudioService } from "./growth.service";
 const accessError = "Marketing Studio subscription access is required.";
 
 export async function createCreativeDraftAction(formData: FormData) {
+await guardSubscriptionAction();
+
   let saved = false;
   try {
     const service = await CreativeStudioService.production();
@@ -21,7 +24,7 @@ export async function createCreativeDraftAction(formData: FormData) {
     const brief: CampaignBrief = { projectId: String(formData.get("projectId")), campaignType: campaignType as CampaignBrief["campaignType"], audiences: selectedAudiences as CampaignBrief["audiences"], platforms: platforms as CampaignBrief["platforms"], language: String(formData.get("language") ?? "English").slice(0, 40), objective: String(formData.get("objective") ?? "").slice(0, 1000) };
     await service.saveDraft(brief, String(formData.get("name") ?? "Untitled campaign").slice(0, 160));
     saved = true;
-  } catch {
+  } catch (subscriptionError) {redirectSubscriptionFailure(subscriptionError);
     console.error("[marketing-studio] Campaign draft could not be saved.");
   }
   if (!saved) redirect("/vayon/creative/campaigns?error=Campaign%20draft%20could%20not%20be%20saved.%20Please%20try%20again.");
@@ -31,22 +34,28 @@ export async function createCreativeDraftAction(formData: FormData) {
 }
 
 export async function generateCreativeAssetAction(formData: FormData) {
+await guardSubscriptionAction();
+
   await new CreativeGenerationService().assistant(String(formData.get("prompt") ?? ""), String(formData.get("projectId") ?? "") || undefined);
   revalidatePath("/vayon/creative-studio/assistant");
 }
 
 export async function creativeAssistantChatAction(_previous: { message: string; jobId: string | null }, formData: FormData) {
+await guardSubscriptionAction();
+
   try {
     const result = await new CreativeGenerationService().assistant(String(formData.get("prompt") ?? ""), String(formData.get("projectId") ?? "") || undefined);
     revalidatePath("/vayon/creative-studio/assistant");
     return { message: `${result.intent.intentSummary}. ${result.message}`, jobId: result.jobId };
-  } catch {
+  } catch (subscriptionError) {redirectSubscriptionFailure(subscriptionError);
     console.error("[marketing-studio] Creative generation request unavailable.");
     return { message: "AI generation is temporarily unavailable. Your existing drafts are safe, and you can continue with templates, Brand Kit, Asset Library, and the editor.", jobId: null };
   }
 }
 
 export async function autosaveCreativeEditorAction(formData: FormData) {
+await guardSubscriptionAction();
+
   const access = await creativeStudioAccess();
   if (!access) throw new Error(accessError);
   const raw = String(formData.get("elements") ?? "[]");
@@ -58,6 +67,8 @@ export async function autosaveCreativeEditorAction(formData: FormData) {
 }
 
 export async function growthCampaignChatAction(_previous: { message: string; campaignId: string | null }, formData: FormData) {
+await guardSubscriptionAction();
+
   const result = await new GrowthStudioService().assistant(String(formData.get("prompt") ?? ""), String(formData.get("projectId") ?? "") || undefined, String(formData.get("language") ?? "English"));
   revalidatePath("/vayon/creative-studio/growth");
   revalidatePath("/vayon/creative-studio/packs");

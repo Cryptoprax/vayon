@@ -2,6 +2,7 @@ import "server-only";
 import { log } from "@/lib/observability/logger";
 import { PaddleBillingProvider } from "../providers/paddle/paddle.provider";
 import type { PaddleBillingPeriod } from "../providers/paddle/paddle-catalog";
+import { SubscriptionRepository } from "../repositories/subscription.repository";
 import { billingContext } from "./billing-context";
 import { PaddleCatalogService } from "./paddle-catalog.service";
 import { PaddleCustomerService } from "./paddle-customer.service";
@@ -20,6 +21,8 @@ export class PaddleCheckoutService {
     origin: string,
   ) {
     const context = await billingContext("manage");
+    const current = await new SubscriptionRepository(context.client, context.organizationId, context.workspaceId).current();
+    if (current?.providerSubscriptionId && current.status !== "cancelled") throw new Error("Manage your existing subscription from the Subscription Center.");
     const resolved = this.catalog.resolve(plan, period);
     if (!Number.isSafeInteger(seats) || seats < 1 || seats > 10_000)
       throw new Error("Seat quantity must be between 1 and 10,000.");

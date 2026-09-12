@@ -1,3 +1,5 @@
+import { WorkspaceTable } from "@/features/platform/design-system/layout/WorkspaceTable";
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import {
   Activity,
@@ -42,12 +44,12 @@ export function AICommandCenter({
       : data.activity,
     mission = data.operations;
   return (
-    <main className="relative mx-auto max-w-[120rem] space-y-8 overflow-hidden px-4 py-6 sm:px-6 lg:px-8">
+    <WorkspaceContent >
       <div
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[38rem] bg-[radial-gradient(circle_at_12%_8%,var(--vds-color-primary-soft),transparent_36%),radial-gradient(circle_at_86%_12%,var(--vds-color-info-soft),transparent_30%)]"
         aria-hidden="true"
       />
-      <header className="flex flex-wrap items-end justify-between gap-5">
+      <WorkspaceHeader >
         <div>
           <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[.22em] text-vds-primary">
             <BrainCircuit className="size-4" aria-hidden="true" />
@@ -63,7 +65,7 @@ export function AICommandCenter({
           </p>
         </div>
         <FounderRealtime />
-      </header>
+      </WorkspaceHeader>
 
       <section aria-labelledby="unified-agents">
         <Heading
@@ -115,8 +117,8 @@ export function AICommandCenter({
           id="agent-directory"
           title="AI agent directory"
         />
-        <div className={`${card} mt-4 overflow-x-auto`}>
-          <table className="w-full min-w-[75rem] text-left text-sm">
+        <div className={`${card} mt-4 min-w-0`}>
+          <WorkspaceTable className="w-full text-left text-sm">
             <caption className="sr-only">
               Every governed VAYON AI capability
             </caption>
@@ -171,7 +173,7 @@ export function AICommandCenter({
                 </tr>
               ))}
             </tbody>
-          </table>
+          </WorkspaceTable>
         </div>
       </section>
 
@@ -376,7 +378,7 @@ export function AICommandCenter({
           />
         </div>
       </section>
-    </main>
+    </WorkspaceContent>
   );
 }
 

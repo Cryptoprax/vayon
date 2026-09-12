@@ -1,4 +1,6 @@
 "use client";
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
+
 import Link from "next/link";
 import { Button } from "@/features/platform/design-system";
 import {
@@ -148,8 +150,8 @@ export function BrandStudio({
       }));
   const missing = useMemo(() => result?.missingAssets ?? [], [result]);
   return (
-    <main className="mx-auto w-full max-w-[110rem] space-y-6 px-4 py-6 sm:px-6 lg:px-8">
-      <header className={`${card} relative overflow-hidden p-6 sm:p-8`}>
+    <WorkspaceContent >
+      <WorkspaceHeader >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,var(--vds-color-primary-soft),transparent_38%)]" />
         <div className="relative flex flex-wrap items-end justify-between gap-5">
           <div>
@@ -181,7 +183,7 @@ export function BrandStudio({
             Create brand
           </Button>
         </div>
-      </header>
+      </WorkspaceHeader>
       <section className="grid gap-4 lg:grid-cols-[1.35fr_.65fr]">
         <div className={`${card} p-5`}>
           <div className="flex flex-wrap items-center justify-between gap-3">
@@ -527,7 +529,7 @@ export function BrandStudio({
           </section>
         </div>
       )}
-    </main>
+    </WorkspaceContent>
   );
 }
 function Metric({ label, value }: { label: string; value: number }) {

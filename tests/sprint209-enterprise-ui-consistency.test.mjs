@@ -28,7 +28,7 @@ test("page headers tables and empty states share accessible visual hierarchy", a
     read("features/platform/design-system/components/data/Data.tsx"),
     read("features/platform/design-system/components/feedback/Feedback.tsx"),
   ])).join("\n");
-  assert.match(source, /vds-page-header/);
+  assert.match(source, /WorkspaceHeader/);
   assert.match(source, /role="status"/);
   assert.match(source, /justify-center gap-2/);
 });

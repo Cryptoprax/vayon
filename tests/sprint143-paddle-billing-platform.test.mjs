@@ -118,7 +118,7 @@ test("upgrade downgrade seats cancellation resume and portal are Paddle-backed",
     assert.match(subscription + portal + provider, new RegExp(value));
 });
 
-test("billing UI and observability identify Paddle as authoritative", () => {
+test("customer billing uses the subscription center while provider observability remains authoritative", () => {
   const pages =
     read("app/vayon/settings/billing/page.tsx") +
     read("app/vayon/settings/subscription/page.tsx");
@@ -127,8 +127,8 @@ test("billing UI and observability identify Paddle as authoritative", () => {
     read("features/vayon/billing/services/paddle-webhook.service.ts") +
     read("features/vayon/billing/services/paddle-subscription-sync.service.ts");
   for (const value of [
-    "Paddle Checkout",
-    "PaddlePortalButton",
+    "SubscriptionCenter",
+    "safeSnapshot",
     "paddle.checkout.started",
     "paddle.checkout.completed",
     "paddle.webhook.received",

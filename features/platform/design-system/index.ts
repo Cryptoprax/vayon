@@ -16,4 +16,5 @@ export * from "./components/feedback/Feedback";
 export * from "./components/metrics/Metrics";
 export * from "./components/data/Data";
 export * from "./layout/Layouts";
+export * from "./layout/WorkspaceLayouts";
 export * from "./storybook/catalog";

@@ -1,4 +1,5 @@
 "use server";
+import { guardSubscriptionAction } from "@/features/vayon/billing/services/subscription-write-guard";
 import { createLiveCreativeExecutionService } from "@/features/vayon/creative-providers/execution.factory";
 import { BrandStudioService } from "@/features/vayon/brand-studio/service";
 import { requireWorkspacePermission } from "@/features/platform/permissions/runtime/permission.service";
@@ -9,6 +10,8 @@ import { reviewDocument } from "./quality-review";
 export async function generateDocument(
   input: DocumentWizardInput,
 ): Promise<DocumentSubmission> {
+await guardSubscriptionAction();
+
   const context = await requireWorkspacePermission("creative_studio", "create"),
     now = new Date().toISOString(),
     id = crypto.randomUUID();
@@ -96,6 +99,8 @@ export async function editDocumentBlock(
   content: string,
   instruction: string,
 ) {
+await guardSubscriptionAction();
+
   if (!content.trim()) throw new Error("Editable block content is required.");
   return generateDocument({
     ...input,

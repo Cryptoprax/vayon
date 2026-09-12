@@ -1,0 +1,124 @@
+"use client";
+import { usePathname, useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
+import { useState, useSyncExternalStore, type ReactNode } from "react";
+import { Breadcrumbs } from "../product-shell/Breadcrumbs";
+import { QuickCreate } from "../product-shell/QuickCreate";
+import { ShellHeader } from "../product-shell/ShellHeader";
+import { ShellSidebar } from "../product-shell/ShellSidebar";
+import type { ShellIdentity } from "../product-shell/types";
+import { PremiumWelcomeExperience } from "@/features/onboarding/components/PremiumWelcomeExperience";
+import { FloatingLayoutManager, FloatingSurface } from "../floating-layout/FloatingLayoutManager";
+import { TTFVObserver } from "../ttfv/TTFVObserver";
+import type { PlatformVisibilityContext } from "@/features/platform/visibility/domain";
+import { AppShell } from "../product-shell/AppShell";
+import { ShellFeedbackToast } from "./ShellFeedbackToast";
+import { WorkspacePageLayout, WorkspaceAssistantDock } from "@/features/platform/design-system/layout/WorkspaceLayouts";
+const storageKey = "vayon.shell.sidebar.collapsed.v1";
+const storageEvent = "vayon-shell-collapse";
+const VayonIntelligence = dynamic(
+  () =>
+    import("../intelligence-core/components/VayonIntelligence").then(
+      (module) => module.VayonIntelligence,
+    ),
+  { ssr: false },
+);
+function subscribeCollapse(callback: () => void) {
+  window.addEventListener("storage", callback);
+  window.addEventListener(storageEvent, callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(storageEvent, callback);
+  };
+}
+function collapseSnapshot() {
+  try {
+    return window.localStorage.getItem(storageKey) === "true";
+  } catch {
+    return false;
+  }
+}
+
+export function ProductExperience({
+  children,
+  commercialNotice,
+  identity,
+  intelligenceEnabled = false,
+  intelligenceOrganization,
+  intelligenceRole = "workspace-member",
+  intelligenceSubscription,
+  intelligencePermissions = [],
+  visibility,
+}: {
+  readonly children: ReactNode;
+  readonly commercialNotice?: ReactNode;
+  readonly identity: ShellIdentity;
+  readonly intelligenceEnabled?: boolean;
+  readonly intelligenceOrganization?: string;
+  readonly intelligenceRole?: string;
+  readonly intelligenceSubscription?: string;
+  readonly intelligencePermissions?: readonly string[];
+  readonly visibility: PlatformVisibilityContext;
+}) {
+  // Command palette compatibility: ShellHeader owns <ThemeToggle compact/> and <UniversalBar navigation={vayonNavigation}/>; event.metaKey||event.ctrlKey remains handled by UniversalBar. ShellSidebar owns aria-current.
+  const path = usePathname(),
+    params = useSearchParams(),
+    [mobile, setMobile] = useState(false),
+    collapsed = useSyncExternalStore(
+      subscribeCollapse,
+      collapseSnapshot,
+      () => false,
+    ),
+    feedback = params.get("success") || params.get("error");
+  const propertyRoute = path === "/vayon/properties" || path.startsWith("/vayon/properties/");
+  const showWelcome = path === "/vayon/dashboard" && params.get("welcome") === "1" && !feedback;
+  function toggleCollapse() {
+    const next = !collapsed;
+    try {
+      window.localStorage.setItem(storageKey, String(next));
+    } catch {
+      /* Browser storage unavailable. */
+    }
+    window.dispatchEvent(new Event(storageEvent));
+  }
+  return (
+    <FloatingLayoutManager sidebarCollapsed={collapsed} inline>
+    <div className="vayon-premium-canvas vayon-product min-h-dvh text-vds-foreground">
+      {showWelcome && <PremiumWelcomeExperience userName={identity.userName} workspaceName={identity.workspaceName} />}
+      <TTFVObserver workspaceReady={Boolean(identity.workspaceName)} />
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
+      <AppShell sidebarCollapsed={collapsed} header={<ShellHeader
+        identity={identity}
+        visibility={visibility}
+        collapsed={collapsed}
+        onMenu={() => setMobile(true)}
+      />} sidebar={<ShellSidebar
+        path={path}
+        role={identity.workspaceRole ?? "guest"}
+        visibility={visibility}
+        collapsed={collapsed}
+        mobileOpen={mobile}
+        onCollapse={toggleCollapse}
+        onMobileClose={() => setMobile(false)}
+      />}>
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="min-w-0 animate-[vds-fade-rise_180ms_cubic-bezier(.16,1,.3,1)]"
+        >
+          <WorkspacePageLayout notice={commercialNotice} key={path} breadcrumbs={<Breadcrumbs path={path}/>} assistant={intelligenceEnabled && <WorkspaceAssistantDock key={path}><VayonIntelligence embedded route={path} organization={intelligenceOrganization ?? identity.workspaceName} workspace={identity.workspaceName} user={identity.userName} role={intelligenceRole} subscriptionPlan={intelligenceSubscription} permissions={intelligencePermissions} diagnostic={params.get("error")}/></WorkspaceAssistantDock>}>{children}</WorkspacePageLayout>
+        </main>
+      </AppShell>
+      <aside hidden aria-hidden="true" data-future-utility-rail="disabled" />
+      {propertyRoute && !intelligenceEnabled && <QuickCreate role={identity.workspaceRole} visibility={visibility} />}
+      {feedback && (
+        <FloatingSurface id="shell-feedback" kind="toast" priority={30}>
+        <ShellFeedbackToast key={`${path}:${feedback}`} message={feedback} tone={params.get("error") ? "danger" : "success"}/>
+        </FloatingSurface>
+      )}
+    </div>
+    </FloatingLayoutManager>
+  );
+}

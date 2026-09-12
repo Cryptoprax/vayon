@@ -1,7 +1,10 @@
 "use server";
+import { guardSubscriptionAction } from "@/features/vayon/billing/services/subscription-write-guard";
 import { revalidatePath } from "next/cache";
 import { EnterpriseKnowledgeService } from "../services/knowledge.service";
 export async function uploadKnowledgeDocumentAction(form: FormData) {
+await guardSubscriptionAction();
+
   const file = form.get("file");
   if (!(file instanceof File)) throw new Error("Document required.");
   await new EnterpriseKnowledgeService().upload(

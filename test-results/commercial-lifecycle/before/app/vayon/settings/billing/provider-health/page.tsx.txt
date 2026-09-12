@@ -1,0 +1,18 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
+import { BillingHeader } from "@/features/vayon/billing/components/BillingUI";
+import { ProviderHealthGrid } from "@/features/vayon/billing/components/CommercialPlatform";
+import { CommercialHealthService } from "@/features/vayon/billing/services/commercial-health.service";
+export default async function Page() {
+  const items = await new CommercialHealthService().snapshot();
+  return (
+    <WorkspaceContent >
+      <BillingHeader
+        title="Connector health"
+        description="Live tenant-scoped health evidence for commercial, AI, communication, productivity, storage, and database providers."
+      />
+      <div className="mt-7">
+        <ProviderHealthGrid items={items} />
+      </div>
+    </WorkspaceContent>
+  );
+}

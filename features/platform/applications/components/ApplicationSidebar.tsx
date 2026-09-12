@@ -34,7 +34,7 @@ export function ApplicationSidebar({
       </div>
 
       <nav
-        className="flex gap-1 overflow-x-auto px-3 pb-4 [scrollbar-width:none] lg:block lg:max-h-[calc(100dvh-15rem)] lg:space-y-5 lg:overflow-y-auto lg:px-3"
+        className="flex flex-wrap gap-1 min-w-0 px-3 pb-4 [scrollbar-width:none] lg:block lg:max-h-[calc(100dvh-15rem)] lg:space-y-5 lg:overflow-y-auto lg:px-3"
         aria-label="Application catalog"
       >
         {categories.map((category) => {

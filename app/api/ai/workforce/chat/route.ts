@@ -1,3 +1,5 @@
+import { subscriptionStreamFailure } from "@/features/vayon/billing/services/subscription-write-contract";
+import { guardSubscriptionApi } from "@/features/vayon/billing/services/subscription-write-guard";
 import { z } from "zod";
 import { WorkforceRuntimeService } from "@/features/platform/openai/runtime/service";
 import { EnterpriseRateLimitService, requestSubject } from "@/features/platform/security-review/services/rate-limit.service";
@@ -13,6 +15,8 @@ const schema = z.object({
 export async function POST(request: Request) {
   const authorization=await enforceApiPermission("ai_employees","create");
   if(authorization.response)return authorization.response;
+const subscriptionResponse = await guardSubscriptionApi(); if (subscriptionResponse) return subscriptionResponse;
+
   const limit = await new EnterpriseRateLimitService().enforce("ai-runtime", requestSubject(request));
   if (!limit.allowed) return Response.json({ error: "Rate limit exceeded." }, { status: 429, headers: { "Retry-After": String(limit.retryAfterSeconds) } });
   const parsed = schema.safeParse(await request.json().catch(() => null));
@@ -20,7 +24,7 @@ export async function POST(request: Request) {
   try {
     const runtime = await WorkforceRuntimeService.production();
     const encoder = new TextEncoder();
-    const stream = new ReadableStream({ async start(controller) { try { for await (const event of runtime.chat(parsed.data)) controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`)); } catch { controller.enqueue(encoder.encode(`${JSON.stringify({ type: "error", message: "The AI provider could not complete this request." })}\n`)); } finally { controller.close(); } } });
+    const stream = new ReadableStream({ async start(controller) { try { for await (const event of runtime.chat(parsed.data)) controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`)); } catch (error) { controller.enqueue(encoder.encode(`${JSON.stringify(subscriptionStreamFailure(error, "The AI provider could not complete this request."))}\n`)); } finally { controller.close(); } } });
     return new Response(stream, { headers: { "Content-Type": "application/x-ndjson; charset=utf-8", "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" } });
   } catch { return Response.json({ error: "AI runtime unavailable." }, { status: 503 }); }
 }

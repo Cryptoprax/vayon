@@ -1,3 +1,5 @@
+import { WorkspaceTable } from "@/features/platform/design-system/layout/WorkspaceTable";
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import {
   Activity,
@@ -43,12 +45,12 @@ const actions = [
 
 export function FounderDashboard({ data }: { data: FounderSnapshot }) {
   return (
-    <main className="relative mx-auto w-full max-w-[120rem] space-y-8 overflow-hidden px-4 py-6 sm:px-6 lg:px-8">
+    <WorkspaceContent >
       <div
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[32rem] bg-[radial-gradient(circle_at_20%_10%,var(--vds-color-primary-soft),transparent_36%),radial-gradient(circle_at_85%_15%,var(--vds-color-info-soft),transparent_28%)]"
         aria-hidden="true"
       />
-      <header className="flex flex-wrap items-end justify-between gap-5">
+      <WorkspaceHeader >
         <div>
           <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[.22em] text-vds-primary">
             <Sparkles className="size-4" aria-hidden="true" />
@@ -68,7 +70,7 @@ export function FounderDashboard({ data }: { data: FounderSnapshot }) {
             Updated {new Date(data.generatedAt).toLocaleTimeString()}
           </time>
         </div>
-      </header>
+      </WorkspaceHeader>
       <FounderPortfolioOverview data={data} />
       <section aria-labelledby="founder-kpis">
         <h2 className="sr-only" id="founder-kpis">
@@ -126,8 +128,8 @@ export function FounderDashboard({ data }: { data: FounderSnapshot }) {
           title="Marketing overview"
           detail="Provider-ready channel intelligence"
         />
-        <div className={`${card} overflow-x-auto`}>
-          <table className="w-full min-w-[70rem] text-left text-sm">
+        <div className={`${card} min-w-0`}>
+          <WorkspaceTable className="w-full text-left text-sm">
             <caption className="sr-only">Marketing channel performance</caption>
             <thead>
               <tr className="border-b border-vds-border text-xs uppercase tracking-[.1em] text-vds-subtle">
@@ -180,7 +182,7 @@ export function FounderDashboard({ data }: { data: FounderSnapshot }) {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </WorkspaceTable>
         </div>
       </section>
       <section>
@@ -307,7 +309,7 @@ export function FounderDashboard({ data }: { data: FounderSnapshot }) {
           ))}
         </div>
       </section>
-    </main>
+    </WorkspaceContent>
   );
 }
 

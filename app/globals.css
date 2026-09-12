@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../features/platform/design-system/tokens/vds.css";
+@import "../features/platform/design-system/layout/workspace.css";
 
 :root { color-scheme:dark; }
 

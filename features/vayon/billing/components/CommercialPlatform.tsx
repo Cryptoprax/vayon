@@ -1,191 +1,61 @@
 "use client";
-
-import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/features/platform/design-system";
+import { subscriptionEntitlementCatalog } from "../config/entitlements";
 import type { PaddleCatalogPrice } from "../providers/paddle/paddle-catalog.types";
-
-const card = "rounded-3xl border border-vds-border bg-vds-surface p-5";
-const planOrder = [
-  "starter",
-  "professional",
-  "business",
-  "business_plus",
-] as const;
-const planLabels = {
-  starter: "Starter",
-  professional: "Professional",
-  business: "Business",
-  business_plus: "Business Plus",
-} as const;
-
-type CheckoutResponse =
-  | {
-      success: true;
-      checkoutUrl: string;
-      transactionId?: string;
-      provider: "paddle";
-    }
-  | { success: false; error: string; code: string };
-
-function checkoutResponse(text: string): CheckoutResponse | null {
-  if (!text.trim()) return null;
-  try {
-    return JSON.parse(text) as CheckoutResponse;
-  } catch {
-    return null;
-  }
-}
-
-function displayPrice(amount: string, currency: string) {
-  const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency,
-  });
-  const decimals = formatter.resolvedOptions().maximumFractionDigits ?? 2;
-  return formatter.format(Number(amount) / 10 ** decimals);
-}
-
-export function CommercialPlans({
-  catalog,
-  organizationId,
-  workspaceId,
-}: {
-  catalog: PaddleCatalogPrice[];
-  organizationId: string;
-  workspaceId: string;
+import { openCheckoutOverlay } from "./checkout-overlay";
+import { refreshSubscriptionState } from "../actions/subscription-center.actions";
+const card = "min-w-0 rounded-2xl border border-vds-border bg-vds-surface p-5";
+export function CommercialPlans({ catalog, workspaceId, clientToken, environment = "live", subscribed = false, onCheckout, onMessage }: {
+  catalog: PaddleCatalogPrice[]; organizationId: string; workspaceId: string; clientToken?: string; environment?: "sandbox" | "live"; subscribed?: boolean; onCheckout?: () => void; onMessage?: (message: string) => void;
 }) {
-  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">(
-    "monthly",
-  );
-  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  async function checkout(plan: (typeof planOrder)[number]) {
-    setLoadingPlan(plan);
-    setError(null);
-    try {
-      const response = await fetch("/api/billing/paddle/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          organizationId,
-          workspaceId,
-          plan,
-          billingPeriod,
-          quantity: 1,
-          planCode: plan,
-          seatQuantity: 1,
-        }),
-      });
-      const result = checkoutResponse(await response.text());
-      if (!result)
-        throw new Error(
-          "Paddle Checkout returned an invalid response. Please try again.",
-        );
-      if (!response.ok || !result.success)
-        throw new Error(
-          result.success
-            ? "Paddle Checkout is unavailable."
-            : result.error,
-        );
-      if (!result.checkoutUrl)
-        throw new Error("Paddle did not return a checkout link. Please try again.");
-      window.location.assign(result.checkoutUrl);
-    } catch (cause) {
-      setError(
-        cause instanceof Error ? cause.message : "Paddle Checkout is unavailable.",
-      );
-      setLoadingPlan(null);
+  const router = useRouter();
+  const mounted = useRef(true);
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
+  const [period, setPeriod] = useState<"monthly" | "annual">("monthly");
+  const [busy, setBusy] = useState<string | null>(null);
+  const [message, setMessage] = useState("");
+  function notify(message: string) { setMessage(message); onMessage?.(message); }
+  async function confirmPayment() {
+    setBusy(null); notify("Payment received. Waiting for subscription confirmation…");
+    for (let attempt = 0; attempt < 10; attempt++) {
+      if (!mounted.current) return;
+      try {
+        const current = await refreshSubscriptionState(workspaceId);
+        if (!mounted.current) return;
+        if (current.status === "active") { notify("Your subscription is active. Continue working in VAYON."); router.refresh(); return; }
+      } catch { break; }
+      await new Promise(resolve => window.setTimeout(resolve, 2000));
     }
+    notify("Payment received. Confirmation is taking a little longer. Refresh your subscription shortly."); router.refresh();
   }
-
-  return (
-    <section className="mt-7">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h2 className="text-xl font-semibold">Commercial plans</h2>
-          <p className="mt-1 text-sm text-vds-muted">
-            Live product and price information from your Paddle catalog.
-          </p>
-        </div>
-        <div
-          aria-label="Billing period"
-          className="flex rounded-full border border-vds-border p-1"
-          role="group"
-        >
-          <Button
-            className={`rounded-full px-3 py-1.5 text-xs ${billingPeriod === "monthly" ? "bg-vds-elevated" : "text-vds-muted"}`}
-            onClick={() => setBillingPeriod("monthly")}
-            variant="control"
-          >
-            Monthly
-          </Button>
-          <Button
-            className={`rounded-full px-3 py-1.5 text-xs ${billingPeriod === "annual" ? "bg-vds-elevated" : "text-vds-muted"}`}
-            onClick={() => setBillingPeriod("annual")}
-            variant="control"
-          >
-            Annual
-          </Button>
-        </div>
-      </div>
-      <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-        {planOrder.map((plan) => {
-          const price = catalog.find(
-            (item) => item.plan === plan && item.period === billingPeriod,
-          );
-          if (!price) return null;
-          const busy = loadingPlan === plan;
-          return (
-            <Button
-              aria-label={`Choose ${planLabels[plan]} ${billingPeriod} plan`}
-              className={`${card} text-left transition hover:border-vds-accent-border hover:bg-vds-elevated disabled:cursor-wait disabled:opacity-70`}
-              disabled={loadingPlan !== null}
-              key={plan}
-              onClick={() => checkout(plan)}
-              variant="control"
-            >
-              <h3 className="font-semibold">{planLabels[plan]}</h3>
-              <p className="mt-3 text-2xl font-semibold">
-                {displayPrice(price.amount, price.currencyCode)}
-              </p>
-              <p className="mt-1 text-xs text-vds-muted">
-                per {billingPeriod === "monthly" ? "month" : "year"}
-              </p>
-              <p className="mt-4 text-sm text-vds-muted">
-                {price.description ?? `${price.name} subscription`}
-              </p>
-              <p className="mt-6 text-sm font-medium text-vds-primary">
-                {busy ? "Opening Paddle Checkout…" : `Choose ${planLabels[plan]}`}
-              </p>
-            </Button>
-          );
-        })}
-        <Link
-          className={`${card} block transition hover:border-vds-accent-border hover:bg-vds-elevated`}
-          href="/contact"
-        >
-          <h3 className="font-semibold">Enterprise</h3>
-          <p className="mt-3 text-2xl font-semibold">Custom</p>
-          <p className="mt-1 text-xs text-vds-muted">Contract terms</p>
-          <p className="mt-4 text-sm text-vds-muted">
-            Custom security, governance, compliance, and integrations.
-          </p>
-          <p className="mt-6 text-sm font-medium text-vds-primary">
-            Contact Sales
-          </p>
-        </Link>
-      </div>
-      {error && (
-        <p className="mt-4 text-sm text-vds-danger" role="alert">
-          {error}
-        </p>
-      )}
-    </section>
-  );
+  async function checkout(plan: string) {
+    if (!clientToken || busy) return;
+    setBusy(plan); setMessage("");
+    try {
+      const response = await fetch("/api/billing/paddle/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ planCode: plan, billingPeriod: period, seatQuantity: 1 }) });
+      const result = await response.json();
+      if (!response.ok || !result.success || !result.transactionId) throw new Error("Checkout is temporarily unavailable. Please try again.");
+      onCheckout?.();
+      await openCheckoutOverlay(result.transactionId, clientToken, environment, () => { void confirmPayment(); }, () => setBusy(null));
+    } catch { notify("Checkout could not open. Your workspace and data are safe. Please try again."); setBusy(null); }
+  }
+  return <section className="mt-5" aria-label="Compare subscription plans">
+    <p className="text-sm text-vds-muted">Choose the plan that fits your team. Manage your subscription here in VAYON.</p>
+    <div role="group" aria-label="Billing period" className="my-5 flex flex-wrap gap-3">{(["monthly", "annual"] as const).map(value => <Button key={value} variant={period === value ? "primary" : "control"} aria-pressed={period === value} onClick={() => setPeriod(value)}>{value === "monthly" ? "Monthly" : "Annual"}</Button>)}</div>
+    <div className="grid gap-4 lg:grid-cols-3">{(["starter", "professional", "enterprise"] as const).map(code => {
+      const plan = subscriptionEntitlementCatalog[code];
+      const price = catalog.find(item => item.plan === code && item.period === period);
+      const formatted = price ? new Intl.NumberFormat("en-US", { style: "currency", currency: price.currencyCode }).format(Number(price.amount) / 10 ** (new Intl.NumberFormat("en-US", { style: "currency", currency: price.currencyCode }).resolvedOptions().maximumFractionDigits ?? 2)) : null;
+      return <article key={code} className={card}><h3 className="text-lg font-semibold">{plan.name}</h3><p className="mt-2 text-sm text-vds-muted">{plan.audience}</p><p className="mt-4 text-2xl font-semibold">{formatted ?? (code === "enterprise" ? "Custom agreement" : "Pricing is being updated")}</p>{price && <p className="text-sm text-vds-muted">per {period === "monthly" ? "month" : "year"}</p>}
+        <dl className="my-5 grid gap-3 text-sm">{[["Seats", plan.quotas.users ?? "Unlimited"], ["Storage", plan.quotas.storage_gb === null ? "Unlimited" : plan.quotas.storage_gb + " GB"], ["AI requests", plan.quotas.ai_requests ?? "Unlimited"], ["Reports", plan.quotas.reports ?? "Unlimited"], ["Support", plan.features.includes("priority_support" as never) ? "Priority support" : "Standard support"]].map(([label, value]) => <div key={label} className="flex flex-wrap justify-between gap-2"><dt className="text-vds-muted">{label}</dt><dd>{value}</dd></div>)}</dl>
+        <details className="mb-5 text-sm"><summary className="cursor-pointer">Included capabilities</summary><ul className="mt-3 space-y-2">{plan.features.filter(feature => feature !== "founder_tools").map(feature => <li key={feature}>{feature.replaceAll("_", " ")}</li>)}</ul></details>
+        {price && clientToken && !subscribed ? <Button variant="primary" disabled={busy !== null} onClick={() => checkout(code)}>{busy === code ? "Opening checkout…" : "Upgrade to " + plan.name}</Button> : <p className="text-sm text-vds-muted">{subscribed ? "Manage your current subscription below." : code === "enterprise" ? "Enterprise upgrades require an agreed contract." : "Online checkout is temporarily unavailable."}</p>}
+      </article>;
+    })}</div><p className="mt-4 text-sm" role="status">{message}</p>
+  </section>;
 }
-
 export function ProviderHealthGrid({
   items,
 }: {

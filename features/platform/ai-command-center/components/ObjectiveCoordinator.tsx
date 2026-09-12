@@ -1,4 +1,5 @@
 "use client";
+import { handleSubscriptionResponse } from "@/features/vayon/billing/components/SubscriptionResponseHandler";
 
 import { FormEvent, useState } from "react";
 import { Button } from "@/features/platform/design-system";
@@ -26,6 +27,7 @@ export function ObjectiveCoordinator() {
           agents,
         }),
       });
+      if (await handleSubscriptionResponse(response)) { setStatus("idle"); return; }
       if (!response.ok) throw new Error("Collaboration unavailable");
       const result = (await response.json()) as { runId: string };
       setRunId(result.runId);

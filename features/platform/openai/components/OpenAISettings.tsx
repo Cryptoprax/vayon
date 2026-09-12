@@ -1,3 +1,4 @@
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import { ButtonLink, EmptyState } from "@/features/platform/design-system";
 import { OpenAIWorkforceService } from "../services/openai-workforce.service";
 import { OpenAIModelRegistry } from "../services/model-registry";
@@ -14,8 +15,8 @@ export async function OpenAISettings() {
   const example = new OpenAIModelRegistry().estimate(health.model, 1000, 1000);
   const model = toSettingsModel({ health, telemetry, assignments, estimatedExampleCost: example.totalUsd });
   const status = health.connected ? "Connected" : health.reason ?? "Unknown provider error";
-  return <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
-    <header className="flex flex-wrap items-end justify-between gap-4"><div><p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">AI setup</p><h1 className="mt-1 text-3xl font-semibold">Choose your AI experience</h1><p className="mt-2 max-w-2xl text-sm text-vds-muted">Pick the experience that suits your team. VAYON handles the technical setup.</p></div><ButtonLink href="/vayon/ai/workforce" variant="outline">AI Workforce</ButtonLink></header>
+  return <WorkspaceContent >
+    <WorkspaceHeader ><div><p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">AI setup</p><h1 className="mt-1 text-3xl font-semibold">Choose your AI experience</h1><p className="mt-2 max-w-2xl text-sm text-vds-muted">Pick the experience that suits your team. VAYON handles the technical setup.</p></div><ButtonLink href="/vayon/ai/workforce" variant="outline">AI Workforce</ButtonLink></WorkspaceHeader>
     <div className="mt-6"><AiChoiceCards /></div>
     {!health.connected && <section className="mt-6"><EmptyState title={status} description="This sanitized diagnostic was logged server-side. Advisory operations use deterministic fallback until validation succeeds." /></section>}
     <details className="mt-6 rounded-2xl border border-vds-border bg-vds-surface p-5"><summary className="cursor-pointer font-medium">Advanced Settings</summary><div className="mt-5">
@@ -27,5 +28,5 @@ export async function OpenAISettings() {
     ].map(([term, value]) => <div key={term}><dt className="text-xs text-vds-subtle">{term}</dt><dd className="mt-1 text-sm">{String(value)}</dd></div>)}</dl></section>
     <section className="mt-5 rounded-2xl border border-vds-border bg-vds-surface p-6"><h2 className="text-xl font-semibold">Employee provider assignments</h2><p className="mt-2 text-sm text-vds-muted">Each employee defaults to OpenAI and can be explicitly overridden through environment-managed provider abstraction.</p><div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{model.assignments.map((item) => <article key={item.employee} className="rounded-xl border border-vds-border p-4"><h3 className="font-medium capitalize">{item.employee.replaceAll("-", " ")}</h3><p className="mt-2 text-sm capitalize">{item.provider}</p><p className="mt-1 text-xs text-vds-subtle">{item.model ?? "Local rules"} · {item.source.replaceAll("-", " ")}</p></article>)}</div></section>
     <section className="mt-5 rounded-2xl border border-vds-border bg-vds-surface p-6"><h2 className="text-xl font-semibold">Safety and governance</h2><p className="mt-2 text-sm text-vds-muted">Prompts require workspace attribution, pass validation and moderation, and are not logged. Outputs remain recommendation-only and require Workflow Approval.</p></section></div></details>
-  </main>;
+  </WorkspaceContent>;
 }

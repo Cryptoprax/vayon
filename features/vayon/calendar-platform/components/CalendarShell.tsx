@@ -1,3 +1,4 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -15,10 +16,10 @@ const navigation = [
 
 export function CalendarShell({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto max-w-[96rem] px-4 py-6 sm:px-6 lg:px-8">
+    <WorkspaceContent>
       <nav
         aria-label="Calendar workspace"
-        className="mb-6 flex gap-2 overflow-x-auto pb-2"
+        className="mb-6 flex flex-wrap gap-3 pb-2"
       >
         {navigation.map(([label, href]) => (
           <Link
@@ -31,6 +32,6 @@ export function CalendarShell({ children }: { children: ReactNode }) {
         ))}
       </nav>
       {children}
-    </div>
+    </WorkspaceContent>
   );
 }

@@ -1,9 +1,10 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 export default function Loading() {
   return (
-    <main
+    <WorkspaceContent
       aria-busy="true"
       aria-label="Loading Marketing Studio"
-      className="mx-auto max-w-[96rem] animate-pulse space-y-5 px-4 py-7 sm:px-6"
+      className="animate-pulse space-y-5"
     >
       <div className="h-8 w-64 rounded-lg bg-vds-elevated" />
       <div className="h-4 max-w-xl rounded bg-vds-elevated" />
@@ -18,6 +19,6 @@ export default function Loading() {
       <span className="sr-only">
         Loading campaign data and provider status.
       </span>
-    </main>
+    </WorkspaceContent>
   );
 }

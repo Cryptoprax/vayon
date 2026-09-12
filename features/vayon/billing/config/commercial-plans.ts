@@ -2,7 +2,7 @@ export const commercialPlanCatalog = Object.freeze([
   {
     code: "starter",
     name: "Starter",
-    trialDays: 14,
+    trialDays: 3,
     seatLimit: 3,
     features: ["inventory", "communications", "reports"],
     limits: {
@@ -15,7 +15,7 @@ export const commercialPlanCatalog = Object.freeze([
   {
     code: "professional",
     name: "Professional",
-    trialDays: 14,
+    trialDays: 3,
     seatLimit: 15,
     features: [
       "inventory",
@@ -34,7 +34,7 @@ export const commercialPlanCatalog = Object.freeze([
   {
     code: "business",
     name: "Business",
-    trialDays: 14,
+    trialDays: 3,
     seatLimit: 50,
     features: [
       "inventory",

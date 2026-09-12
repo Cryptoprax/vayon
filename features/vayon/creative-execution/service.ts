@@ -1,4 +1,5 @@
 import "server-only";
+import { SubscriptionWriteService } from "@/features/vayon/billing/services/subscription-write.service";
 import { founderContext } from "@/features/platform/founder/services/founder-context";
 import { RuntimeAdapterRegistry } from "./adapter";
 import { CreativeExecutionPlanner } from "./planner";
@@ -12,6 +13,7 @@ export class CreativeExecutionService {
   ) {}
   async accept(job: ExecutionJob): Promise<ExecutionResult> {
     this.validate(job);
+    await new SubscriptionWriteService().requireTargetWorkspace(job.workspaceId);
     this.queue.enqueue(job);
     const plan = await this.planner.plan(job.id, job.capability, job.request);
     if (!plan.valid) {

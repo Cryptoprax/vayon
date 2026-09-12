@@ -1,0 +1,7 @@
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { ButtonLink } from "@/features/platform/design-system";
+import { gmailFolders, mailboxHref } from "../view-models/mailbox";
+import type { MailboxFolder } from "../domain/models";
+export function GmailShell({folder,children}:{readonly folder:MailboxFolder;readonly children:ReactNode}){return <WorkspaceContent ><WorkspaceHeader ><div><p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Communications · Gmail</p><h1 className="mt-1 text-3xl font-semibold">Email workspace</h1><p className="mt-2 text-sm text-vds-muted">Live messages from the connected Google account. Credentials never reach the browser.</p></div><ButtonLink href="/vayon/settings/google" variant="outline">Connection settings</ButtonLink></WorkspaceHeader><div className="mt-6 grid gap-5 lg:grid-cols-[13rem_minmax(0,1fr)]"><nav aria-label="Gmail folders" className="flex gap-2 overflow-x-auto rounded-2xl border border-vds-border bg-vds-surface p-2 lg:block lg:space-y-1">{gmailFolders.map(item=><Link key={item} href={mailboxHref(item)} aria-current={folder===item?"page":undefined} className={`block shrink-0 rounded-xl px-3 py-2 text-sm capitalize ${folder===item?"bg-vds-primary-soft text-vds-primary":"text-vds-muted hover:bg-vds-hover"}`}>{item}</Link>)}</nav>{children}</div></WorkspaceContent>}

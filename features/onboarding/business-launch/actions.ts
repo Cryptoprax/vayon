@@ -1,4 +1,5 @@
 "use server";
+import { guardSubscriptionAction } from "@/features/vayon/billing/services/subscription-write-guard";
 import { requireWorkspacePermission } from "@/features/platform/permissions/runtime/permission.service";
 import { EnterpriseOnboardingService } from "@/features/onboarding/services/enterprise-onboarding.service";
 import { BrandStudioService } from "@/features/vayon/brand-studio/service";
@@ -7,6 +8,8 @@ import type { BusinessLaunchInput, BusinessLaunchProject } from "./types";
 export async function prepareBusinessLaunch(
   input: BusinessLaunchInput,
 ): Promise<BusinessLaunchProject> {
+await guardSubscriptionAction();
+
   await requireWorkspacePermission("creative_studio", "create");
   if (
     input.businessName.trim().length < 2 ||

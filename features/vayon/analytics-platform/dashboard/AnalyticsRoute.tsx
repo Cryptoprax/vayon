@@ -1,3 +1,4 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import {
   AnalyticsHeader,
   Insights,
@@ -17,7 +18,7 @@ export async function AnalyticsRoute({
   const service = await AnalyticsService.production(),
     snapshot = await service.snapshot();
   return (
-    <main className="mx-auto max-w-[110rem] px-5 py-8">
+    <WorkspaceContent >
       <AnalyticsHeader
         title={
           overview
@@ -31,6 +32,6 @@ export async function AnalyticsRoute({
         <Insights items={service.insights(snapshot)} />
       )}{" "}
       {overview && <details className="mt-6"><summary className="focus-ring cursor-pointer rounded-lg py-3 font-semibold">Review data connections</summary><PlatformHealth s={snapshot} /></details>}
-    </main>
+    </WorkspaceContent>
   );
 }

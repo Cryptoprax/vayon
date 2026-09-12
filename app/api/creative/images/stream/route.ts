@@ -1,7 +1,11 @@
+import { subscriptionStreamFailure } from "@/features/vayon/billing/services/subscription-write-contract";
+import { guardSubscriptionApi } from "@/features/vayon/billing/services/subscription-write-guard";
 import { generateImage } from "@/features/vayon/image-studio/actions";
 import type { ImageGenerationRequest } from "@/features/vayon/image-studio/types";
 const stages = ["Planning", "Generating", "Reviewing"] as const;
 export async function POST(request: Request) {
+const subscriptionResponse = await guardSubscriptionApi(); if (subscriptionResponse) return subscriptionResponse;
+
   const input = (await request.json()) as ImageGenerationRequest,
     encoder = new TextEncoder();
   const stream = new ReadableStream({
@@ -17,10 +21,10 @@ export async function POST(request: Request) {
             `${JSON.stringify({ type: "result", stage: result.assetId ? "Completed" : result.status, result })}\n`,
           ),
         );
-      } catch {
+      } catch (error) {
         controller.enqueue(
           encoder.encode(
-            `${JSON.stringify({ type: "error", message: "Image generation could not be completed." })}\n`,
+            `${JSON.stringify(subscriptionStreamFailure(error, "Image generation could not be completed."))}\n`,
           ),
         );
       } finally {

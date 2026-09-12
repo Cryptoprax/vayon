@@ -1,3 +1,4 @@
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import type { OpenAIHealth } from "@/features/platform/openai/domain/models";
 import type { WorkforceEmployee } from "@/features/vayon/operational-workforce/domain/models";
@@ -6,10 +7,10 @@ import type { AIDashboardData, AITaskRecord, ApprovalRecord, KnowledgeRecord, Re
 const card = "rounded-3xl border border-vds-border bg-vds-surface p-5";
 
 export function AIHeader({ title, description, health }: { title: string; description: string; health?: OpenAIHealth }) {
-  return <header>
+  return <WorkspaceHeader>
     <div className="flex flex-wrap items-center gap-3"><p className="text-xs font-semibold uppercase tracking-[.22em] text-vds-primary">Live AI Workforce</p>{health && <RuntimeStatus value={health.connected ? "online" : "offline"} />}</div>
     <h1 className="mt-3 text-3xl font-semibold">{title}</h1><p className="mt-2 max-w-2xl text-sm text-vds-muted">{description}</p>
-  </header>;
+  </WorkspaceHeader>;
 }
 
 export function ProviderHealth({ health, observability }: { health: OpenAIHealth; observability?: { provider: string; queueLength: number; estimatedCost: string; lastResponse: string } }) {

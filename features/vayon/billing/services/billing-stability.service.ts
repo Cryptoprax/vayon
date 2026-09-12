@@ -14,7 +14,7 @@ import { billingContext } from "./billing-context";
 export type BillingRecoveryCategory = "BILLING_NOT_INITIALIZED"|"PADDLE_NOT_CONFIGURED"|"SUBSCRIPTION_NOT_FOUND"|"CUSTOMER_NOT_FOUND"|"PORTAL_UNAVAILABLE"|"RPC_FAILURE"|"SUPABASE_FAILURE"|"RLS_FAILURE"|"PROVIDER_UNAVAILABLE"|"UNKNOWN";
 export interface BillingFailure { category: BillingRecoveryCategory; source: string; recovery: string; }
 export interface BillingProviderState { environment: "sandbox"|"live"|"unconfigured"; paddle: "connected"|"unavailable"|"not_configured"; webhook: "healthy"|"missing"; portal: "available"|"not_configured"; missing: readonly string[]; }
-export interface StableBillingSnapshot { dashboard: BillingDashboard; catalog: PaddleCatalogPrice[]; organizationId: string; workspaceId: string; customerExists: boolean; provider: BillingProviderState; failures: BillingFailure[]; }
+export interface StableBillingSnapshot { dashboard: BillingDashboard; catalog: PaddleCatalogPrice[]; organizationId: string; workspaceId: string; canManage?: boolean; customerExists: boolean; provider: BillingProviderState; failures: BillingFailure[]; }
 
 const empty: BillingDashboard = { plans: [], subscription: null, usage: [], invoices: [], paymentMethods: [], events: [], contact: null };
 
@@ -51,7 +51,7 @@ export class BillingStabilityService {
     else failures.push({ category: "PADDLE_NOT_CONFIGURED", source: "Paddle environment", recovery: "configuration_required" });
     const resolvedProvider = catalog.length ? { ...provider, paddle: "connected" as const, portal: "available" as const } : provider;
     log("billing.snapshot.completed", { workspaceId: context.workspaceId, organizationId: context.organizationId, userId: user?.id ?? null, billingCustomerExists: Boolean(customer), subscriptionExists: Boolean(subscription), environment: resolvedProvider.environment, provider: "paddle", repository: "billing projections", service: "BillingStabilityService", rpcName: null, errorCode: failures[0]?.category ?? null, httpStatus: null, recoveryPathUsed: failures.map((item) => item.recovery) });
-    return { dashboard: { plans, subscription, usage: usageItems, invoices: invoiceItems, paymentMethods, events, contact }, catalog, organizationId: context.organizationId, workspaceId: context.workspaceId, customerExists: Boolean(customer), provider: resolvedProvider, failures };
+    return { canManage: ["organization_owner", "billing_admin", "organization_admin"].includes(context.billingRole), dashboard: { plans, subscription, usage: usageItems, invoices: invoiceItems, paymentMethods, events, contact }, catalog, organizationId: context.organizationId, workspaceId: context.workspaceId, customerExists: Boolean(customer), provider: resolvedProvider, failures };
   }
 }
 

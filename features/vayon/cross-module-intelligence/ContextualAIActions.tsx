@@ -40,7 +40,7 @@ export function ContextualAIActions({ kind, recordId, recordLabel, heading, evid
     if (recordId) query.searchParams.set(`${kind}Id`, recordId);
     return <Link key={label} href={`${query.pathname}${query.search}`} className="focus-ring inline-flex min-h-11 items-center rounded-xl border border-vds-border bg-vds-elevated px-3 text-sm hover:border-vds-accent-border hover:text-vds-primary">{label}{command.approvalRequired && <span className="sr-only"> Requires approval</span>}</Link>;
   };
-  return <aside className="mx-auto my-6 max-w-[96rem] rounded-3xl border border-vds-accent-border bg-vds-surface p-5 sm:p-6" aria-labelledby={`ai-actions-${kind}`}>
+  return <aside className="vds-workspace-support mx-auto my-6 max-w-[96rem] rounded-3xl border border-vds-accent-border bg-vds-surface p-5 sm:p-6" aria-labelledby={`ai-actions-${kind}`}>
     <h2 className="flex items-center gap-2 font-semibold" id={`ai-actions-${kind}`}><Sparkles className="size-5 text-vds-primary" aria-hidden="true" />{heading ?? "Next Best Action"}</h2>
     <p className="mt-2 text-sm text-vds-muted">{next ? `Suggested: ${next.reason}` : "Review this record before choosing a next step. No prepared work is confirmed by the information shown here."}</p>
     <div className="mt-4 flex flex-wrap gap-2">{next && <Link href={next.href} className="focus-ring inline-flex min-h-11 items-center rounded-xl border border-vds-border px-3 text-sm hover:text-vds-primary">{next.label}</Link>}</div>

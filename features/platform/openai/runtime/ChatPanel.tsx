@@ -1,4 +1,5 @@
 "use client";
+import { announceSubscriptionBlock, handleSubscriptionResponse } from "@/features/vayon/billing/components/SubscriptionResponseHandler";
 import { FormEvent, useMemo, useState } from "react";
 import Link from "next/link";
 import type { AIEmployeeCode, OpenAIHealth } from "../domain/models";
@@ -155,6 +156,7 @@ export function WorkforceChatPanel({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ employee, conversationId, message }),
       });
+      if (await handleSubscriptionResponse(response)) { setStatus("idle"); return; }
       if (!response.ok || !response.body)
         throw new Error("Runtime unavailable");
       const reader = response.body.getReader(),
@@ -180,6 +182,7 @@ export function WorkforceChatPanel({
             model?: string;
             latencyMs?: number;
           };
+          if (item.type === "error" && announceSubscriptionBlock(item)) { await reader.cancel(); setStatus("idle"); return; }
           if (item.type === "error") throw new Error(item.message);
           if (item.conversationId) setConversationId(item.conversationId);
           if (item.type === "delta") {

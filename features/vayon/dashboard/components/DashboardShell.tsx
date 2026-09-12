@@ -1,3 +1,4 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import type { ExecutiveDashboardData } from "../types";
 import { ActivityTimeline } from "./ActivityTimeline";
 import { AIWorkforceGrid } from "./AIWorkforceGrid";
@@ -19,7 +20,7 @@ export function DashboardShell({
   readonly userName?: string;
 }) {
   return (
-    <div className="mx-auto max-w-[100rem] space-y-6 px-4 py-7 sm:px-6 sm:py-9">
+    <WorkspaceContent >
       <ExecutiveCommandCenter data={data} userName={userName} />
       <GettingStartedChecklist data={data} />
       <RealEstateKpiGrid data={data} />
@@ -31,6 +32,6 @@ export function DashboardShell({
         <ActivityTimeline items={data.activities} linkedDestinations={["/vayon/analytics", "/vayon/deals", "/vayon/deals/new", "/vayon/properties", "/vayon/properties/new", "/vayon/leads/new", "/vayon/tasks", "/vayon/settings/members", "/vayon/settings/organization", "/vayon/whatsapp/settings", "/vayon/settings/integrations/data-import", "/vayon/approvals", "/vayon/calendar", "/vayon/communications", "/vayon/ai/work-queue", ...data.pipeline.map(item => item.href), ...data.aiWorkforce.map(member => `/vayon/ai/workforce/${member.id}`)]} />
         <WhatsAppConversations conversations={data.whatsappConversations} />
       </div>
-    </div>
+    </WorkspaceContent>
   );
 }

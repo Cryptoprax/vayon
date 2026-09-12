@@ -1,3 +1,4 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import {
   Analytics,
   Checklists,
@@ -16,7 +17,7 @@ export async function DealRoomRoute({
   const service = await DealRoomService.production(),
     s = await service.snapshot();
   return (
-    <main className="mx-auto max-w-[110rem] px-5 py-8">
+    <WorkspaceContent >
       <Header
         title={view[0]!.toUpperCase() + view.slice(1)}
         description="A governance-first property transaction workspace connecting clients, properties, communications, viewings, approvals, documents, tasks, and evidence-backed guidance."
@@ -29,6 +30,6 @@ export async function DealRoomRoute({
       {view === "analytics" && s.deals[0] && (
         <Guidance items={service.guidance(s, s.deals[0].id)} />
       )}
-    </main>
+    </WorkspaceContent>
   );
 }

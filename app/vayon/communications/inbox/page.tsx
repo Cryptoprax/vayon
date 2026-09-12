@@ -67,7 +67,7 @@ export default async function Page({
         </select>
         <Button type="submit">Apply</Button>
       </form>
-      <div className="mb-3 flex gap-3 overflow-x-auto text-xs text-vds-muted">
+      <div className="mb-3 flex flex-wrap gap-3 min-w-0 text-xs text-vds-muted">
         <a className="shrink-0" href="?">All Conversations</a>
         <a className="shrink-0" href="?channel=whatsapp">WhatsApp</a>
         <a className="shrink-0" href="?channel=email">Email</a>
@@ -76,7 +76,7 @@ export default async function Page({
         <a className="shrink-0" href="?channel=sms">SMS</a>
         <a className="shrink-0" href="?channel=system-notification">System Notifications</a>
       </div>
-      <div className="mb-3 flex gap-3 overflow-x-auto text-xs text-vds-muted">
+      <div className="mb-3 flex flex-wrap gap-3 min-w-0 text-xs text-vds-muted">
         <a href="?unread=true">Unread</a><a href="?assigned=true">Assigned</a><a href="?aiDraftPending=true">AI Draft Pending</a><a href="?highPriority=true">High Priority</a><a href="?closed=true">Closed</a><a href="?archived=true">Archived</a>
       </div>
       <InboxList items={data.items} />

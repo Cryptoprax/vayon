@@ -1,3 +1,4 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import {
   Catalog,
   EventHeader,
@@ -15,7 +16,7 @@ export async function EventRoute({
     bus = new InMemoryEventBus(registry),
     history = bus.snapshot();
   return (
-    <main className="mx-auto max-w-[100rem] px-5 py-8">
+    <WorkspaceContent >
       <EventNav />
       <EventHeader
         title={
@@ -47,6 +48,6 @@ export async function EventRoute({
           ))}
         </section>
       )}
-    </main>
+    </WorkspaceContent>
   );
 }

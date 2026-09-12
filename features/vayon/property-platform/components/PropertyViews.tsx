@@ -1,3 +1,4 @@
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@/features/platform/design-system";
@@ -23,13 +24,13 @@ export function PropertyPlatformHeader({
   description: string;
 }) {
   return (
-    <header>
+    <WorkspaceHeader>
       <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">
         Property intelligence
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight">{title}</h1>
       <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>
-    </header>
+    </WorkspaceHeader>
   );
 }
 export function PropertyGrid({

@@ -50,7 +50,7 @@ export class PaddleBillingProvider implements BillingProvider {
       input.planCode as Parameters<typeof paddleCatalogEntry>[0],
       period,
     );
-    const transaction = await paddleRequest<{ checkout: { url: string | null } }>(
+    const transaction = await paddleRequest<{ id: string; checkout: { url: string | null } }>(
       "/transactions",
       {
         method: "POST",
@@ -69,7 +69,7 @@ export class PaddleBillingProvider implements BillingProvider {
     );
     if (!transaction.checkout.url)
       throw new Error("Paddle did not return a checkout URL.");
-    return { url: transaction.checkout.url };
+    return { url: transaction.checkout.url, transactionId: transaction.id };
   }
 
   async createCustomerPortal(input: BillingProviderPortalInput) {
@@ -105,6 +105,11 @@ export class PaddleBillingProvider implements BillingProvider {
   }
 
   async reactivateSubscription(subscriptionId: string) {
+    const current = await paddleRequest<{ status: string }>(`/subscriptions/${encodeURIComponent(subscriptionId)}`);
+    if (current.status === "active") {
+      await paddleRequest(`/subscriptions/${encodeURIComponent(subscriptionId)}`, { method: "PATCH", body: JSON.stringify({ scheduled_change: null }) });
+      return;
+    }
     await paddleRequest(`/subscriptions/${encodeURIComponent(subscriptionId)}/resume`, {
       method: "POST",
       body: JSON.stringify({ effective_from: "immediately" }),

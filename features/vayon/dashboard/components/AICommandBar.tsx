@@ -66,7 +66,7 @@ export function AICommandBar({
           </Button>
         </form>
         <div
-          className="mt-3 flex gap-2 overflow-x-auto pb-1"
+          className="mt-3 flex flex-wrap gap-2 min-w-0 pb-1"
           aria-label="Example AI prompts"
         >
           {prompts.map((prompt) => (

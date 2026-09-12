@@ -1,0 +1,69 @@
+{
+  "environment": "Local Chromium, actual SubscriptionCenter and response handler, mocked billing transport and QA state. No deployed authentication or payment verification.",
+  "screens": [
+    {
+      "width": 320,
+      "overflow": false,
+      "focusContained": true,
+      "escapeDismisses": true
+    },
+    {
+      "width": 375,
+      "overflow": false,
+      "focusContained": true,
+      "escapeDismisses": true
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "focusContained": true,
+      "escapeDismisses": true
+    },
+    {
+      "width": 1024,
+      "overflow": false,
+      "focusContained": true,
+      "escapeDismisses": true
+    },
+    {
+      "width": 1280,
+      "overflow": false,
+      "focusContained": true,
+      "escapeDismisses": true
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "focusContained": true,
+      "escapeDismisses": true
+    },
+    {
+      "width": 1600,
+      "overflow": false,
+      "focusContained": true,
+      "escapeDismisses": true
+    },
+    {
+      "width": 1920,
+      "overflow": false,
+      "focusContained": true,
+      "escapeDismisses": true
+    },
+    {
+      "width": 2560,
+      "overflow": false,
+      "focusContained": true,
+      "escapeDismisses": true
+    }
+  ],
+  "interactions": [
+    {
+      "api402": "opens in-app center automatically",
+      "destination": "/vayon/settings/billing"
+    },
+    {
+      "unverified": "explains recovery, no unusable checkout"
+    }
+  ],
+  "errors": []
+}

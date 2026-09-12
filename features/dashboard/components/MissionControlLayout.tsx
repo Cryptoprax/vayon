@@ -8,6 +8,7 @@ import { NotificationCenter } from "./NotificationCenter";
 import { Sidebar } from "./Sidebar";
 import { StatusBar } from "./StatusBar";
 import { Topbar } from "./Topbar";
+import { WorkspacePageLayout } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 
 export interface MissionControlLayoutProps {
   children: ReactNode;
@@ -63,8 +64,8 @@ export function MissionControlLayout({
           onNotificationsOpen={() => setNotificationCenterOpen(true)}
           onMobileMenuOpen={() => setMobileNavigationOpen(true)}
         />
-        <main className="relative min-h-0 flex-1 overflow-y-auto [scrollbar-color:var(--vds-color-border)_transparent] [scrollbar-width:thin]">
-          {children}
+        <main key={pathname} id="main-content" className="relative min-h-0 flex-1 overflow-y-auto [scrollbar-color:var(--vds-color-border)_transparent] [scrollbar-width:thin]">
+          <WorkspacePageLayout className="vds-workspace-contained" breadcrumbs={<nav aria-label="Breadcrumb" className="text-xs text-vds-muted"><span>Platform</span><span aria-hidden="true"> / </span><span aria-current="page" className="capitalize">{pathname.split("/").filter(Boolean).at(-1)?.replaceAll("-", " ")}</span></nav>}>{children}</WorkspacePageLayout>
         </main>
         <StatusBar />
       </div>

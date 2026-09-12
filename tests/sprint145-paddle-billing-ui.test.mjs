@@ -1,62 +1,28 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-
-const read = (path) => readFileSync(path, "utf8");
-const billingPage = read("app/vayon/settings/billing/page.tsx");
-const billingUi = read(
-  "features/vayon/billing/components/CommercialPlatform.tsx",
-);
-const catalogService = read(
-  "features/vayon/billing/services/paddle-catalog.service.ts",
-);
-const legacyCatalog = read(
-  "features/vayon/billing/config/commercial-plans.ts",
-);
-
-test("billing prices are loaded from environment-backed Paddle catalog entries", () => {
-  assert.match(billingPage, /PaddleCatalogService/);
-  assert.match(billingPage, /\.list\(\)/);
-  assert.match(catalogService, /paddlePlanCodes/);
-  assert.match(catalogService, /paddleRequest<PaddlePrice>/);
-  assert.match(catalogService, /\/prices\//);
-  assert.match(catalogService, /include=product/);
-  assert.doesNotMatch(billingUi + legacyCatalog, /\b59\b|\b179\b|\b399\b/);
-  assert.doesNotMatch(legacyCatalog, /monthlyUsd|annualUsd/);
+const read = path => readFileSync(path, "utf8");
+const ui = read("features/vayon/billing/components/CommercialPlatform.tsx");
+test("billing prices still come from the existing verified provider catalog", () => {
+  const service = read("features/vayon/billing/services/paddle-catalog.service.ts");
+  assert.match(service, /paddleRequest<PaddlePrice>/);
+  assert.match(service, /include=product/);
+  assert.match(read("app/vayon/settings/billing/page.tsx"), /catalog=\{snapshot.catalog\}/);
+  assert.doesNotMatch(ui, /\b59\b|\b179\b|\b399\b/);
 });
-
-test("monthly and annual selections use their matching Paddle prices", () => {
-  assert.match(billingUi, /useState<"monthly" \| "annual">/);
-  assert.match(billingUi, /item\.period === billingPeriod/);
-  assert.match(billingUi, /setBillingPeriod\("monthly"\)/);
-  assert.match(billingUi, /setBillingPeriod\("annual"\)/);
-  assert.match(billingUi, /displayPrice\(price\.amount, price\.currencyCode\)/);
+test("comparison offers Starter Professional Enterprise and matching billing periods", () => {
+  for (const plan of ["starter", "professional", "enterprise"]) assert.match(ui, new RegExp(plan));
+  assert.match(ui, /item.period === period/);
+  assert.match(ui, /setPeriod\(value\)/);
+  assert.match(ui, /aria-pressed=\{period === value\}/);
 });
-
-test("all commercial cards post the existing checkout contract and redirect", () => {
-  for (const plan of [
-    "starter",
-    "professional",
-    "business",
-    "business_plus",
-  ])
-    assert.match(billingUi, new RegExp(`"${plan}"`));
-  for (const field of [
-    "organizationId",
-    "workspaceId",
-    "plan",
-    "billingPeriod",
-    "quantity",
-    "planCode",
-    "seatQuantity",
-  ])
-    assert.match(billingUi, new RegExp(field));
-  assert.match(billingUi, /fetch\("\/api\/billing\/paddle\/checkout"/);
-  assert.match(billingUi, /window\.location\.assign\(result\.checkoutUrl\)/);
-  assert.match(billingUi, /onClick=\{\(\) => checkout\(plan\)\}/);
+test("checkout starts the existing workspace-scoped transaction in an overlay", () => {
+  assert.match(ui, /fetch\("\/api\/billing\/paddle\/checkout"/);
+  assert.match(ui, /planCode: plan, billingPeriod: period, seatQuantity: 1/);
+  assert.match(ui, /openCheckoutOverlay\(result.transactionId/);
+  assert.doesNotMatch(ui, /window.location|href="\/(pricing|contact)"/);
 });
-
-test("Enterprise remains a Contact Sales flow", () => {
-  assert.match(billingUi, /href="\/contact"/);
-  assert.match(billingUi, /Contact Sales/);
+test("Enterprise does not invent checkout prices or leave the workspace", () => {
+  assert.match(ui, /Enterprise upgrades require an agreed contract/);
+  assert.doesNotMatch(ui, /href="\/contact"/);
 });

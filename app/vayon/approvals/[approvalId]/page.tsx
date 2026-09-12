@@ -1,3 +1,4 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import { notFound } from "next/navigation";
 import {
   ApprovalDetail,
@@ -14,13 +15,13 @@ export default async function Page({
   const result = new GovernanceService().approval(approvalId);
   if (!result.approval) notFound();
   return (
-    <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
+    <WorkspaceContent >
       <GovernanceHeader
         title="Approval Record"
         description="Immutable decision context and audit evidence for a governed execution request."
       />
       <GovernanceNav />
       <ApprovalDetail item={result.approval} audit={result.audit} />
-    </main>
+    </WorkspaceContent>
   );
 }

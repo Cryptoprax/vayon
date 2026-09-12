@@ -1,0 +1,3 @@
+import { InventoryHeader, MediaLibrary } from "@/features/vayon/property-platform/inventory/InventoryViews";
+import { InventoryService } from "@/features/vayon/property-platform/inventory/service";
+export default async function Page() { const service = await InventoryService.production(), snapshot = await service.snapshot(); return <main className="mx-auto max-w-[100rem] px-4 py-8 sm:px-5"><InventoryHeader title="Property media & documents" description="Manage floor plans, master plans, brochures, elevations, construction documents, images, and future-ready video surfaces through existing storage boundaries."/><MediaLibrary snapshot={snapshot}/></main>; }

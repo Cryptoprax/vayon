@@ -1,3 +1,4 @@
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type {
@@ -23,7 +24,7 @@ export function DealRoomShell({ children }: { children: ReactNode }) {
     <div>
       <nav
         aria-label="Deal room"
-        className="mx-auto flex max-w-[110rem] gap-2 overflow-x-auto px-5 pt-6"
+        className="flex flex-wrap gap-2 min-w-0 pt-6"
       >
         {nav.map(([l, h]) => (
           <Link
@@ -47,20 +48,20 @@ export function Header({
   description: string;
 }) {
   return (
-    <header>
+    <WorkspaceHeader>
       <p className="text-xs uppercase tracking-[.2em] text-vds-primary">
         Real Estate Transaction Center
       </p>
       <h1 className="mt-2 text-3xl font-semibold">{title}</h1>
       <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>
-    </header>
+    </WorkspaceHeader>
   );
 }
 export function Pipeline({ s }: { s: DealRoomSnapshot }) {
   return (
-    <section className="mt-6 flex gap-4 overflow-x-auto pb-4">
+    <section className="vds-workspace-pipeline mt-6">
       {pipelineStages.map((stage) => (
-        <article className={`${card} min-w-72`} key={stage}>
+        <article className={`${card} min-w-0`} key={stage}>
           <div className="flex justify-between">
             <h2 className="font-semibold capitalize">
               {stage.replaceAll("-", " ")}

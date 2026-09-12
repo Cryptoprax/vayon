@@ -1,4 +1,5 @@
 "use server";
+import { guardSubscriptionAction } from "@/features/vayon/billing/services/subscription-write-guard";
 import { requireWorkspacePermission } from "@/features/platform/permissions/runtime/permission.service";
 import { creativeStudioAccess } from "@/features/vayon/creative-studio/access.service";
 import { createLiveCreativeExecutionService } from "@/features/vayon/creative-providers/execution.factory";
@@ -12,6 +13,8 @@ import type {
 export async function generateImage(
   input: ImageGenerationRequest,
 ): Promise<ImageExecutionSubmission> {
+await guardSubscriptionAction();
+
   return execute(input, null);
 }
 export async function editImage(
@@ -19,6 +22,8 @@ export async function editImage(
   targetAssetId: string,
   operation: AiEditOperation,
 ): Promise<ImageExecutionSubmission> {
+await guardSubscriptionAction();
+
   return execute(
     { ...input, prompt: `${operation}. ${input.prompt}` },
     targetAssetId,

@@ -75,6 +75,7 @@ test("existing campaign action waits for persistence before success navigation a
   const events = [];
   let fail = false;
   const actions = load("features/vayon/creative-studio/actions.ts", {
+    "@/features/vayon/operations/services/context": { operationsContext: async () => ({ organizationId: "qa-org", workspaceId: "qa-workspace", client: { auth: { getUser: async () => ({ data: { user: { id: "qa" } }, error: null }) }, from: () => { const q = { select: () => q, eq: () => q, is: () => q, maybeSingle: async () => ({ data: { status: "active" }, error: null }) }; return q; } } }) },
     "next/cache": { revalidatePath: path => events.push(["revalidate", path]) },
     "next/navigation": { redirect: path => { events.push(["redirect", path]); throw new Error("REDIRECT"); } },
     "./service": { CreativeStudioService: { production: async () => ({ saveDraft: async (brief, name) => { events.push(["save", brief.projectId, name]); if (fail) throw new Error("QA failure"); return "draft-qa"; } }) } },

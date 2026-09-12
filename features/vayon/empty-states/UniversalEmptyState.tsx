@@ -1,7 +1,8 @@
 "use client";
 
+import { WorkspaceEmptyState } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import { Button, ButtonLink } from "@/features/platform/design-system";
-import { BookOpen, CirclePlay, Sparkles } from "lucide-react";
+import { BookOpen, CirclePlay } from "lucide-react";
 import { useSyncExternalStore } from "react";
 
 const dismissalEvent = "vayon-empty-state-dismissed";
@@ -48,19 +49,8 @@ export function UniversalEmptyState({
   );
   if (dismissed) return null;
   return (
-    <section
-      data-empty-state
-      aria-labelledby={`${module}-empty-title`}
-      className="grid min-h-56 place-items-center rounded-3xl border border-dashed border-vds-border bg-vds-surface/[0.02] p-8 text-center"
-    >
-      <div className="max-w-xl">
-        <span className="mx-auto grid size-12 place-items-center rounded-2xl bg-vds-primary-soft text-vds-primary" aria-hidden="true">
-          <Sparkles className="size-5" />
-        </span>
-        <h2 id={`${module}-empty-title`} className="mt-4 font-semibold">{title}</h2>
-        <p className="mt-2 text-sm text-vds-muted">{description}</p>
-        <div className="mt-5 flex flex-wrap justify-center gap-2">
-          {primary && <ButtonLink href={primary.href}>{primary.label}</ButtonLink>}
+    <WorkspaceEmptyState title={title} description={description} action={primary}>
+        <div className="mt-3 flex flex-wrap gap-3">
           {secondary && <ButtonLink variant="secondary" href={secondary.href}>{secondary.label}</ButtonLink>}
           {video && <ButtonLink variant="ghost" href={video}><CirclePlay className="size-4" />Watch tutorial</ButtonLink>}
           {documentation && <ButtonLink variant="ghost" href={documentation}><BookOpen className="size-4" />Documentation</ButtonLink>}
@@ -77,7 +67,6 @@ export function UniversalEmptyState({
             Dismiss for this workspace
           </Button>
         )}
-      </div>
-    </section>
+    </WorkspaceEmptyState>
   );
 }

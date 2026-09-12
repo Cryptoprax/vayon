@@ -1,3 +1,4 @@
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import type {
   ApprovalRequest,
@@ -10,7 +11,7 @@ export function GovernanceNav() {
   return (
     <nav
       aria-label="Workflow governance"
-      className="mb-6 flex gap-2 overflow-x-auto border-y border-vds-border py-3"
+      className="mb-6 flex flex-wrap gap-3 border-y border-vds-border py-3"
     >
       {[
         ["Designer", "/vayon/workflows"],
@@ -36,13 +37,7 @@ export function GovernanceHeader({
   description: string;
 }) {
   return (
-    <header className="mb-5">
-      <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">
-        Review and approve work before it is carried out
-      </p>
-      <h1 className="mt-2 text-3xl font-semibold">{title}</h1>
-      <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>
-    </header>
+    <WorkspaceHeader title={title} description={description} />
   );
 }
 export function WorkflowList({

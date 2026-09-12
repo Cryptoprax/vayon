@@ -1,4 +1,5 @@
 import "server-only";
+import { SubscriptionWriteService } from "@/features/vayon/billing/services/subscription-write.service";
 import { createHash } from "node:crypto";
 import { after } from "next/server";
 import { createSupabaseServiceClient } from "@/lib/supabase/service";
@@ -101,6 +102,7 @@ export class CreativeGenerationWorker {
         p_job_id: jobId,
       });
     if (error || !data) return;
+    await new SubscriptionWriteService().requireJobWorkspace(client, String((data as Row).workspace_id));
     const job = data as Row,
       started = Date.now();
     try {

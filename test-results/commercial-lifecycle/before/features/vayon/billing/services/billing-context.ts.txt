@@ -1,0 +1,4 @@
+import"server-only";import{operationsContext}from"@/features/vayon/operations/services/context";
+const readers=new Set(["organization_owner","billing_admin","finance","finance_manager","finance_analyst","read_only","organization_admin"]);
+const managers=new Set(["organization_owner","billing_admin","organization_admin"]);
+export async function billingContext(access:"read"|"manage"="read"){const c=await operationsContext();const{data,error}=await c.client.from("workspace_members").select("roles(code)").eq("workspace_id",c.workspaceId).eq("status","active").maybeSingle();if(error)throw error;const role=(data as unknown as{roles:{code:string}|null}|null)?.roles?.code??"";if(!(access==="manage"?managers:readers).has(role))throw new Error(access==="manage"?"Billing changes require Organization Owner or Billing Admin access.":"Billing access denied.");return{...c,billingRole:role}}

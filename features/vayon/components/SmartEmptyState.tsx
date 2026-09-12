@@ -1,8 +1,7 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
+import { WorkspaceEmptyState } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import {
-  Button,
   ButtonLink,
 } from "@/features/platform/design-system";
 
@@ -30,32 +29,5 @@ export function SmartEmptyState({
   className = "",
   aiSuggestion,
 }: SmartEmptyStateProps) {
-  return (
-    <section
-      className={`vds-card-motion rounded-3xl border border-dashed border-vds-accent-border bg-gradient-to-br from-vds-primary-soft via-vds-surface to-vds-accent-soft p-8 text-center motion-reduce:transition-none ${className}`}
-    >
-      <span className="mx-auto grid size-12 place-items-center rounded-2xl bg-vds-elevated text-vds-primary shadow-sm">
-        <Sparkles className="size-5" aria-hidden="true" />
-      </span>
-      <h3 className="mt-5 text-xl font-semibold tracking-[-.02em]">{title}</h3>
-      <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-vds-muted">
-        {description}
-      </p>
-      {aiSuggestion && <p className="mx-auto mt-3 max-w-lg text-xs font-medium text-vds-primary">
-        Suggested next step: {aiSuggestion}
-      </p>}
-      <div className="mt-6 flex flex-wrap justify-center gap-2">
-        {primaryHref ? (
-          <ButtonLink href={primaryHref}>{primaryLabel}</ButtonLink>
-        ) : onPrimary ? (
-          <Button onClick={onPrimary}>{primaryLabel}</Button>
-        ) : null}
-        {secondaryActions.map((action) => (
-          <ButtonLink key={action.label} href={action.href} variant="secondary">
-            {action.label}
-          </ButtonLink>
-        ))}
-      </div>
-    </section>
-  );
+  return <WorkspaceEmptyState title={title} description={description} nextStep={aiSuggestion} action={primaryHref ? { label: primaryLabel, href: primaryHref } : onPrimary ? { label: primaryLabel, onClick: onPrimary } : undefined} className={className}>{secondaryActions.length > 0 && <div className="mt-3 flex flex-wrap gap-3">{secondaryActions.map(action => <ButtonLink key={action.label} href={action.href} variant="secondary">{action.label}</ButtonLink>)}</div>}</WorkspaceEmptyState>;
 }

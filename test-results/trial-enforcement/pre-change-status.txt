@@ -1,0 +1,327 @@
+ M app/api/billing/paddle/checkout/route.ts
+ M app/globals.css
+ M app/platform/page.tsx
+ M app/vayon/ai/employees/page.tsx
+ M app/vayon/ai/playground/page.tsx
+ M app/vayon/analytics/executive/page.tsx
+ M app/vayon/approvals/[approvalId]/page.tsx
+ M app/vayon/approvals/page.tsx
+ M app/vayon/brain/page.tsx
+ M app/vayon/calendar/page.tsx
+ M app/vayon/cognitive/page.tsx
+ M app/vayon/communications/inbox/page.tsx
+ M app/vayon/contacts/google/page.tsx
+ M app/vayon/context/page.tsx
+ M app/vayon/creative-studio/loading.tsx
+ M app/vayon/creative/brand/loading.tsx
+ M app/vayon/creative/campaigns/loading.tsx
+ M app/vayon/creative/campaigns/page.tsx
+ M app/vayon/creative/cloud/loading.tsx
+ M app/vayon/creative/cloud/page.tsx
+ M app/vayon/creative/documents/loading.tsx
+ M app/vayon/creative/images/loading.tsx
+ M app/vayon/creative/loading.tsx
+ M app/vayon/creative/page.tsx
+ M app/vayon/creative/pipelines/loading.tsx
+ M app/vayon/creative/pipelines/page.tsx
+ M app/vayon/creative/runtime/execution/loading.tsx
+ M app/vayon/creative/runtime/loading.tsx
+ M app/vayon/creative/videos/loading.tsx
+ M app/vayon/crm/companies/page.tsx
+ M app/vayon/crm/contacts/page.tsx
+ M app/vayon/customer-success/loading.tsx
+ M app/vayon/dashboard/loading.tsx
+ M app/vayon/deals/[dealId]/edit/page.tsx
+ M app/vayon/deals/[dealId]/page.tsx
+ M app/vayon/deals/new/page.tsx
+ M app/vayon/deals/page.tsx
+ M app/vayon/deals/pipeline/page.tsx
+ M app/vayon/documents/drive/page.tsx
+ M app/vayon/email/[messageId]/page.tsx
+ M app/vayon/executions/page.tsx
+ M app/vayon/follow-ups/page.tsx
+ M app/vayon/intelligence/page.tsx
+ M app/vayon/knowledge/help/page.tsx
+ M app/vayon/leads/[leadId]/edit/page.tsx
+ M app/vayon/leads/[leadId]/page.tsx
+ M app/vayon/leads/new/page.tsx
+ M app/vayon/leads/page.tsx
+ M app/vayon/meetings/page.tsx
+ M app/vayon/messages/page.tsx
+ M app/vayon/notifications/page.tsx
+ M app/vayon/notifications/preferences/page.tsx
+ M app/vayon/objects/page.tsx
+ M app/vayon/operations/page.tsx
+ M app/vayon/properties/[propertyId]/edit/page.tsx
+ M app/vayon/properties/[propertyId]/page.tsx
+ M app/vayon/properties/inventory/page.tsx
+ M app/vayon/properties/media/page.tsx
+ M app/vayon/properties/new/page.tsx
+ M app/vayon/properties/page.tsx
+ M app/vayon/properties/price-lists/page.tsx
+ M app/vayon/properties/projects/[projectId]/page.tsx
+ M app/vayon/properties/projects/page.tsx
+ M app/vayon/property-matching/compare/page.tsx
+ M app/vayon/property-matching/page.tsx
+ M app/vayon/property-matching/reports/page.tsx
+ M app/vayon/runtime/page.tsx
+ M app/vayon/settings/activity/page.tsx
+ M app/vayon/settings/appearance/page.tsx
+ M app/vayon/settings/billing/page.tsx
+ M app/vayon/settings/billing/provider-health/page.tsx
+ M app/vayon/settings/configuration/page.tsx
+ M app/vayon/settings/departments/page.tsx
+ M app/vayon/settings/integrations/data-import/page.tsx
+ M app/vayon/settings/integrations/google/page.tsx
+ M app/vayon/settings/integrations/microsoft/page.tsx
+ M app/vayon/settings/integrations/page.tsx
+ M app/vayon/settings/invoices/[invoiceId]/page.tsx
+ M app/vayon/settings/invoices/page.tsx
+ M app/vayon/settings/members/page.tsx
+ M app/vayon/settings/organization/page.tsx
+ M app/vayon/settings/page.tsx
+ M app/vayon/settings/payment-methods/page.tsx
+ M app/vayon/settings/permissions/page.tsx
+ M app/vayon/settings/plans/page.tsx
+ M app/vayon/settings/roles/page.tsx
+ M app/vayon/settings/subscription/page.tsx
+ M app/vayon/settings/teams/page.tsx
+ M app/vayon/settings/usage/page.tsx
+ M app/vayon/settings/users/page.tsx
+ M app/vayon/site-visits/[visitId]/page.tsx
+ M app/vayon/site-visits/calendar/page.tsx
+ M app/vayon/site-visits/page.tsx
+ M app/vayon/site-visits/reports/page.tsx
+ M app/vayon/storage/page.tsx
+ M app/vayon/success-center/page.tsx
+ M app/vayon/tasks/page.tsx
+ M app/vayon/timeline/page.tsx
+ M app/vayon/workflows/[workflowId]/page.tsx
+ M app/vayon/workflows/page.tsx
+ M app/vayon/workforce/page.tsx
+ M features/dashboard/components/MissionControlLayout.tsx
+ M features/identity-workspace/components/SettingsShell.tsx
+ M features/notifications/components/NotificationCenter.tsx
+ M features/onboarding/components/DataImportWorkspace.tsx
+ M features/platform/ai-collaboration/components/AICompanyOrchestrationCenter.tsx
+ M features/platform/ai-collaboration/components/CollaborationDashboard.tsx
+ M features/platform/ai-collaboration/components/ExecutiveCollaborationBoard.tsx
+ M features/platform/ai-collaboration/components/TeamCollaborationCenter.tsx
+ M features/platform/ai-command-center/components/AICommandCenter.tsx
+ M features/platform/ai-runtime/dashboard/RuntimeDashboard.tsx
+ M features/platform/applications/components/ApplicationHeader.tsx
+ M features/platform/applications/components/ApplicationSidebar.tsx
+ M features/platform/autonomous-operations/components/AutonomousOperationsDashboard.tsx
+ M features/platform/builder/components/BuilderComponents.tsx
+ M features/platform/business-timeline/components/live/JourneyView.tsx
+ M features/platform/business-timeline/components/live/TimelineExperience.tsx
+ M features/platform/business-timeline/components/live/TimelineFilters.tsx
+ M features/platform/context-engine/components/ContextPanel.tsx
+ M features/platform/context-engine/dashboard/ContextEngineDashboard.tsx
+ M features/platform/continuous-learning/components/ContinuousLearningDashboard.tsx
+ M features/platform/conversion-analytics/components/EnterpriseAnalyticsDashboard.tsx
+ M features/platform/core/notifications/components/NotificationPlatform.tsx
+ M features/platform/customer-growth/components/CustomerGrowthDashboard.tsx
+ M features/platform/customer-success-workspace/components/CustomerSuccessWorkspace.tsx
+ M features/platform/customer-success/components/MissionControlUI.tsx
+ M features/platform/deployment/components/DeploymentDashboard.tsx
+ M features/platform/design-system/components/data/Data.tsx
+ M features/platform/design-system/components/feedback/Feedback.tsx
+ M features/platform/design-system/index.ts
+ M features/platform/design-system/layout/Layouts.tsx
+ M features/platform/email/components/EmailCenter.tsx
+ M features/platform/enterprise-integrations/components/BusinessConnectionsDirectory.tsx
+ M features/platform/enterprise-integrations/components/EnterpriseIntegrationDashboard.tsx
+ M features/platform/event-bus/components/EventViews.tsx
+ M features/platform/event-bus/dashboard/EventRoute.tsx
+ M features/platform/external-contacts/components/GoogleContactsWorkspace.tsx
+ M features/platform/external-storage/components/GoogleDriveWorkspace.tsx
+ M features/platform/founder-ai/components/FounderAIHome.tsx
+ M features/platform/founder-bootstrap/FounderBootstrapPanel.tsx
+ M features/platform/founder/components/FounderDashboard.tsx
+ M features/platform/gmail/components/GmailShell.tsx
+ M features/platform/google-calendar/components/GoogleCalendarShell.tsx
+ M features/platform/identity/components/DataTable.tsx
+ M features/platform/identity/components/FilterBar.tsx
+ M features/platform/integration-platform/components/ProviderStatusDashboard.tsx
+ M features/platform/integrations/center/IntegrationCenter.tsx
+ M features/platform/integrations/components/IntegrationUI.tsx
+ M features/platform/integrations/google/GoogleIdentityDashboard.tsx
+ M features/platform/integrations/microsoft/MicrosoftIdentityDashboard.tsx
+ M features/platform/integrations/microsoft/components/MicrosoftCapabilityShell.tsx
+ M features/platform/intelligence-hub/components/IntelligenceHubDashboard.tsx
+ M features/platform/intelligence/brain/dashboard/BrainDashboard.tsx
+ M features/platform/intelligence/cognitive/dashboard/CognitiveDashboard.tsx
+ M features/platform/intelligence/workforce-mvp/components/WorkforceShell.tsx
+ M features/platform/knowledge/components/DeveloperPortal.tsx
+ M features/platform/knowledge/components/DocumentationClient.tsx
+ M features/platform/knowledge/components/KnowledgeCenter.tsx
+ M features/platform/knowledge/components/KnowledgeRecovery.tsx
+ M features/platform/launch-readiness/components/LaunchReadinessDashboard.tsx
+ M features/platform/marketing-director/components/MarketingDirectorDashboard.tsx
+ M features/platform/notifications/components/NotificationViews.tsx
+ M features/platform/notifications/dashboard/NotificationRoute.tsx
+ M features/platform/observability-center/ObservabilityDashboard.tsx
+ M features/platform/openai/components/OpenAISettings.tsx
+ M features/platform/operations-center/OperationsDashboard.tsx
+ M features/platform/organization/components/OrganizationAdmin.tsx
+ M features/platform/organization/components/OrganizationUI.tsx
+ M features/platform/organization/components/RoleManagementUI.tsx
+ M features/platform/performance/components/PerformanceDashboard.tsx
+ M features/platform/product-intelligence/components/ProductIntelligenceDashboard.tsx
+ M features/platform/sales-director/components/SalesDirectorDashboard.tsx
+ M features/platform/security-review/components/SecurityReviewDashboard.tsx
+ M features/platform/tenant-management/components/TenantManagementCenter.tsx
+ M features/platform/unified-ai-context/components/UnifiedAIContextDashboard.tsx
+ M features/platform/universal-objects/components/SearchOverlay.tsx
+ M features/platform/universal-objects/components/UniversalObjectHeader.tsx
+ M features/platform/universal-objects/components/UniversalObjectsWorkbench.tsx
+ M features/platform/whatsapp/components/WhatsAppShell.tsx
+ M features/platform/workflow-orchestration/components/WorkflowOrchestrationDashboard.tsx
+ M features/platform/workflow-runtime/dashboard/WorkflowRuntimeDashboard.tsx
+ M features/platform/workflows/components/WorkflowAutomationDashboard.tsx
+ M features/platform/workflows/components/WorkflowDesigner.tsx
+ M features/vayon/adaptive-workspace/AdaptiveWorkspace.tsx
+ M features/vayon/admin-platform/components/AdminViews.tsx
+ M features/vayon/admin-platform/dashboard/AdminRoute.tsx
+ M features/vayon/ai-runtime/components/AIRuntimeHeader.tsx
+ M features/vayon/ai-workforce/components/AIWorkforceUI.tsx
+ M features/vayon/analytics-platform/components/AnalyticsViews.tsx
+ M features/vayon/analytics-platform/components/ExecutiveBI.tsx
+ M features/vayon/analytics-platform/dashboard/AnalyticsRoute.tsx
+ M features/vayon/autonomous-workforce/AutonomousWorkforceViews.tsx
+ M features/vayon/billing/components/BillingForms.tsx
+ M features/vayon/billing/components/BillingRecoveryState.tsx
+ M features/vayon/billing/components/BillingUI.tsx
+ M features/vayon/billing/components/CommercialBilling.tsx
+ M features/vayon/billing/components/CommercialPlatform.tsx
+ M features/vayon/billing/config/commercial-plans.ts
+ M features/vayon/billing/providers/paddle/paddle.provider.ts
+ M features/vayon/billing/services/billing-context.ts
+ M features/vayon/billing/services/billing-stability.service.ts
+ M features/vayon/billing/services/paddle-checkout.service.ts
+ M features/vayon/brand-studio/BrandStudio.tsx
+ M features/vayon/calendar-platform/components/CalendarShell.tsx
+ M features/vayon/calendar-platform/components/CalendarViews.tsx
+ M features/vayon/calendar-platform/dashboard/CalendarRoute.tsx
+ M features/vayon/campaign-studio/CampaignStudio.tsx
+ M features/vayon/communication/components/CommunicationUI.tsx
+ M features/vayon/communications-workspace/components/CommunicationsShell.tsx
+ M features/vayon/components/ProductExperience.tsx
+ M features/vayon/components/RouteStates.tsx
+ M features/vayon/components/SmartEmptyState.tsx
+ M features/vayon/components/VayonShell.tsx
+ M features/vayon/configuration/components/ConfigurationShell.tsx
+ M features/vayon/configuration/components/PermissionMatrix.tsx
+ M features/vayon/creative-cloud/CreativeCloudDashboard.tsx
+ M features/vayon/creative-execution/ExecutionDashboard.tsx
+ M features/vayon/creative-pipeline/CreativePipelineDashboard.tsx
+ M features/vayon/creative-runtime/CreativeRuntimeDashboard.tsx
+ M features/vayon/creative-studio-2/CreativeStudioHome.module.css
+ M features/vayon/creative-studio-2/CreativeStudioHome.tsx
+ M features/vayon/creative-studio/components/StudioViews.tsx
+ M features/vayon/crm-company/ContactDirectory.tsx
+ M features/vayon/crm-engine/components/CrmDirectory.tsx
+ M features/vayon/crm-engine/components/CrmLeadProfile.tsx
+ M features/vayon/crm-engine/components/CrmLeadTable.tsx
+ M features/vayon/crm-engine/components/CrmShell.tsx
+ M features/vayon/cross-module-intelligence/ContextualAIActions.tsx
+ M features/vayon/dashboard/components/AICommandBar.tsx
+ M features/vayon/dashboard/components/DashboardShell.tsx
+ M features/vayon/dashboard/components/ExecutiveCommandCenter.tsx
+ M features/vayon/dashboard/components/RevenueChart.tsx
+ M features/vayon/deal-room/components/DealRoomViews.tsx
+ M features/vayon/deal-room/dashboard/DealRoomRoute.tsx
+ M features/vayon/deal/components/DealBoard.tsx
+ M features/vayon/document-studio/DocumentStudio.tsx
+ M features/vayon/empty-states/FeatureAvailabilityState.tsx
+ M features/vayon/empty-states/UniversalEmptyState.tsx
+ M features/vayon/floating-layout/FloatingLayoutManager.tsx
+ M features/vayon/founder-approval-center/FounderApprovalCenter.tsx
+ M features/vayon/founder-command-center/FounderCommandCenter.tsx
+ M features/vayon/growth-intelligence/GrowthOverview.tsx
+ M features/vayon/growth-intelligence/GrowthSectionPage.tsx
+ M features/vayon/growth-intelligence/GrowthShell.tsx
+ M features/vayon/image-studio/ImageStudio.tsx
+ M features/vayon/intelligence-core/components/VayonIntelligence.tsx
+ M features/vayon/lead/components/LeadList.tsx
+ M features/vayon/lead/components/LeadToolbar.tsx
+ M features/vayon/one-click-experience/OneClickSetup.tsx
+ M features/vayon/operational-workforce/components/WorkforceDirectory.tsx
+ M features/vayon/operational-workforce/components/WorkforceShell.tsx
+ M features/vayon/operational-workforce/components/WorkforceViews.tsx
+ M features/vayon/operations/components/OperationsUI.tsx
+ M features/vayon/property-intelligence/components/ImportWizard.tsx
+ M features/vayon/property-matching/MatchingViews.tsx
+ M features/vayon/property-platform/components/PropertyShell.tsx
+ M features/vayon/property-platform/components/PropertyViews.tsx
+ M features/vayon/property-platform/inventory/InventoryViews.tsx
+ M features/vayon/property/components/PropertyTable.tsx
+ M features/vayon/property/components/PropertyToolbar.tsx
+ M features/vayon/real-estate-experience/RealEstateSurfaces.tsx
+ M features/vayon/site-visits/VisitViews.tsx
+ M features/vayon/universal-bar/providers/static-navigation.provider.ts
+ M features/vayon/universal-bar/services/universal-search.service.ts
+ M features/vayon/video-studio/VideoStudio.tsx
+ M features/vayon/workflow-approval/components/GovernanceViews.tsx
+ M features/vayon/workflow-orchestrator/components/WorkflowOrchestrator.tsx
+ M features/vayon/workspace-engine/components/WorkspaceEngine.tsx
+ M next.config.ts
+ M scripts/audit-floating-layout.mjs
+ M test-results/product-bible-phase2/dashboard-fixture.html
+ M test-results/product-bible-phase3/next-steps-fixture.html
+ M test-results/property-experience/detail.html
+ M test-results/property-experience/inventory.html
+ M test-results/workflow-consistency/clients.html
+ M tests/billing-stability-hotfix.test.mjs
+ M tests/property-experience.test.mjs
+ M tests/sprint11-workspace-engine.test.mjs
+ M tests/sprint113-enterprise-tenant-management.test.mjs
+ M tests/sprint120b-enterprise-role-management-ui.test.mjs
+ M tests/sprint125-creative-studio-2-foundation.test.mjs
+ M tests/sprint143-paddle-billing-platform.test.mjs
+ M tests/sprint145-paddle-billing-ui.test.mjs
+ M tests/sprint147-ai-first-experience.test.mjs
+ M tests/sprint153-paddle-checkout-json.test.mjs
+ M tests/sprint196-real-estate-experience.test.mjs
+ M tests/sprint197-commercial-polish.test.mjs
+ M tests/sprint198-floating-layout.test.mjs
+ M tests/sprint208-global-layout-foundation.test.mjs
+ M tests/sprint209-enterprise-ui-consistency.test.mjs
+ M tests/sprint221-enterprise-collaboration.test.mjs
+ M tests/sprint224-enterprise-ux-beta-readiness.test.mjs
+ M tests/sprint89-universal-layout.test.mjs
+ M tests/ux-excellence.test.mjs
+ M tests/vayon-commercial-readiness.test.mjs
+?? .workspace-types.log
+?? COMMERCIAL_LIFECYCLE_CERTIFICATION.md
+?? LAYOUT_SYSTEM_CERTIFICATION.md
+?? MEMBERS_UI_CERTIFICATION.md
+?? features/platform/design-system/layout/WorkspaceLayouts.tsx
+?? features/platform/design-system/layout/WorkspaceTable.tsx
+?? features/platform/design-system/layout/workspace.css
+?? features/platform/organization/components/MemberManagementRows.tsx
+?? features/platform/organization/components/MembersManagement.css
+?? features/vayon/billing/actions/subscription-center.actions.ts
+?? features/vayon/billing/components/SubscriptionCenter.tsx
+?? features/vayon/billing/components/SubscriptionManagement.tsx
+?? features/vayon/billing/components/WorkspaceTrialBanner.tsx
+?? features/vayon/billing/components/checkout-overlay.ts
+?? features/vayon/billing/components/dialog-keyboard.ts
+?? features/vayon/billing/config/trial.ts
+?? features/vayon/billing/services/workspace-trial.ts
+?? scripts/audit-commercial-lifecycle.mjs
+?? scripts/audit-layout-system.mjs
+?? scripts/audit-workspace-unification.mjs
+?? scripts/certify-commercial-lifecycle.mjs
+?? scripts/certify-layout-system.mjs
+?? scripts/certify-members-ui.mjs
+?? scripts/certify-workspace-layouts.mjs
+?? supabase/migrations/20261030000000_sprint233_workspace_trial.sql
+?? test-results/commercial-lifecycle/
+?? test-results/layout-system/
+?? test-results/members/
+?? test-results/workspaces/
+?? tests/fixtures/
+?? tests/sprint233-commercial-lifecycle.test.mjs
+?? tests/workspace-unification.test.mjs

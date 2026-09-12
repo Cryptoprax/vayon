@@ -1,3 +1,5 @@
+import { WorkspaceTable } from "@/features/platform/design-system/layout/WorkspaceTable";
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { AdminSnapshot } from "../domain/models";
@@ -20,7 +22,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
     <div>
       <nav
         aria-label="Administration platform"
-        className="mx-auto flex max-w-[110rem] gap-2 overflow-x-auto px-5 pt-6"
+        className="flex flex-wrap gap-2 min-w-0 pt-6"
       >
         {nav.map(([l, h]) => (
           <Link
@@ -38,7 +40,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
 }
 export function Header({ title }: { title: string }) {
   return (
-    <header>
+    <WorkspaceHeader>
       <p className="text-xs uppercase tracking-[.2em] text-vds-primary">
         Enterprise administration
       </p>
@@ -47,13 +49,13 @@ export function Header({ title }: { title: string }) {
         Read-only governance visibility. Role, permission, execution, provider,
         and organization mutations are disabled.
       </p>
-    </header>
+    </WorkspaceHeader>
   );
 }
 export function Users({ s }: { s: AdminSnapshot }) {
   return (
-    <section className={`${card} mt-6 overflow-x-auto`}>
-      <table className="w-full min-w-[60rem] text-left text-sm">
+    <section className={`${card} mt-6 min-w-0`}>
+      <WorkspaceTable className="w-full text-left text-sm">
         <thead className="text-xs text-vds-muted">
           <tr>
             {[
@@ -91,7 +93,7 @@ export function Users({ s }: { s: AdminSnapshot }) {
             </tr>
           ))}
         </tbody>
-      </table>
+      </WorkspaceTable>
       {!s.users.length && <Empty />}
     </section>
   );
@@ -122,8 +124,8 @@ export function Cards({
 }
 export function Permissions({ s }: { s: AdminSnapshot }) {
   return (
-    <section className={`${card} mt-6 overflow-x-auto`}>
-      <table className="w-full min-w-[60rem] text-left text-sm">
+    <section className={`${card} mt-6 min-w-0`}>
+      <WorkspaceTable className="w-full text-left text-sm">
         <thead>
           <tr>
             <th className="pb-3">Role</th>
@@ -155,7 +157,7 @@ export function Permissions({ s }: { s: AdminSnapshot }) {
             </tr>
           ))}
         </tbody>
-      </table>
+      </WorkspaceTable>
     </section>
   );
 }

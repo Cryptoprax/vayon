@@ -1,10 +1,13 @@
 "use server";
+import { guardSubscriptionAction } from "@/features/vayon/billing/services/subscription-write-guard";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { organizationMemoryKeys, userMemoryKeys } from "../contracts";
 import { ContinuousLearningService } from "../services/continuous-learning.service";
 
 export async function saveIntelligenceMemoryAction(form: FormData) {
+await guardSubscriptionAction();
+
   const scope = z.enum(["organization", "user"]).parse(form.get("scope"));
   const allowed =
     scope === "organization" ? organizationMemoryKeys : userMemoryKeys;
@@ -27,6 +30,8 @@ export async function saveIntelligenceMemoryAction(form: FormData) {
 }
 
 export async function generateExecutiveBriefingAction(form: FormData) {
+await guardSubscriptionAction();
+
   const period = z
     .enum([
       "weekly",

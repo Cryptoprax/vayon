@@ -1,3 +1,4 @@
+import { WorkspaceTable } from "@/features/platform/design-system/layout/WorkspaceTable";
 import type { CollaborationDashboard as Dashboard } from "../types";
 const card = "rounded-2xl border border-vds-border bg-vds-surface p-5";
 export function ExecutiveCollaborationDashboard({ data }: { data: Dashboard }) {
@@ -62,8 +63,8 @@ export function ExecutiveCollaborationDashboard({ data }: { data: Dashboard }) {
       </div>
       <article className={card}>
         <h3 className="font-semibold">Recommendation Pipeline</h3>
-        <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-left text-xs">
+        <div className="mt-4 min-w-0">
+          <WorkspaceTable className="w-full text-left text-xs">
             <thead className="text-vds-muted">
               <tr>
                 {[
@@ -102,7 +103,7 @@ export function ExecutiveCollaborationDashboard({ data }: { data: Dashboard }) {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </WorkspaceTable>
         </div>
       </article>
       <div className="grid gap-5 xl:grid-cols-2">

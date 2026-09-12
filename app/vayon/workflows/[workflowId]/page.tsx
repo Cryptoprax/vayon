@@ -1,3 +1,4 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import { notFound } from "next/navigation";
 import {
   GovernanceHeader,
@@ -14,13 +15,13 @@ export default async function Page({
   const result = new GovernanceService().workflow(workflowId);
   if (!result.workflow) notFound();
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+    <WorkspaceContent >
       <GovernanceHeader
         title={result.workflow.name}
         description={result.workflow.description}
       />
       <GovernanceNav />
       <WorkflowDetail item={result.workflow} audit={result.audit} />
-    </main>
+    </WorkspaceContent>
   );
 }

@@ -1,9 +1,10 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import { KpiCardSkeleton } from "@/features/vayon/dashboard/components/KpiCard";
 
 export default function DashboardLoading() {
   return (
-    <main
-      className="mx-auto max-w-[100rem] space-y-6 px-4 py-7 sm:px-6 sm:py-9"
+    <WorkspaceContent
+      className="space-y-6 sm:py-9"
       aria-label="Loading Executive Command Center"
       aria-busy="true"
     >
@@ -23,6 +24,6 @@ export default function DashboardLoading() {
         <div className="skeleton h-80 rounded-3xl" />
         <div className="skeleton h-80 rounded-3xl" />
       </div>
-    </main>
+    </WorkspaceContent>
   );
 }

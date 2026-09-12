@@ -1,4 +1,6 @@
 "use client";
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
+
 import Link from "next/link";
 import { Button } from "@/features/platform/design-system";
 import {
@@ -59,8 +61,8 @@ export function CreativePipelineDashboard({
     ["Creative Runtime", snapshot.runtimeStatus, RadioTower],
   ];
   return (
-    <main className="mx-auto w-full max-w-[120rem] space-y-6 px-4 py-6 sm:px-6 lg:px-8">
-      <header className={`${card} relative overflow-hidden p-6 sm:p-8`}>
+    <WorkspaceContent >
+      <WorkspaceHeader >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,var(--vds-color-primary-soft),transparent_38%)]" />
         <div className="relative flex flex-wrap items-end justify-between gap-5">
           <div>
@@ -83,7 +85,7 @@ export function CreativePipelineDashboard({
             New pipeline
           </Button>
         </div>
-      </header>
+      </WorkspaceHeader>
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-6">
         {metrics.map(([label, value, Icon]) => (
           <article className={`${card} p-4`} key={String(label)}>
@@ -107,8 +109,8 @@ export function CreativePipelineDashboard({
             <GitBranch className="size-5 text-vds-primary" />
           </div>
           {pipeline ? (
-            <div className="mt-6 overflow-x-auto pb-4">
-              <ol className="flex min-w-max items-center gap-2">
+            <div className="mt-6 min-w-0 pb-4">
+              <ol className="flex flex-wrap min-w-0 items-center gap-2">
                 {pipeline.nodes.map((node, index) => (
                   <li className="flex items-center gap-2" key={node.id}>
                     <article
@@ -340,6 +342,6 @@ export function CreativePipelineDashboard({
           </section>
         </div>
       )}
-    </main>
+    </WorkspaceContent>
   );
 }

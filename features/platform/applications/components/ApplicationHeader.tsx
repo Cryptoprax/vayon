@@ -1,3 +1,4 @@
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import { AppWindow, CheckCircle2, PackageOpen } from "lucide-react";
 
 import type { PlatformApplication } from "../types/application";
@@ -14,7 +15,7 @@ export function ApplicationHeader({
   ).length;
 
   return (
-    <header className="flex flex-col gap-6 border-b border-vds-border/[0.07] pb-7 sm:flex-row sm:items-end sm:justify-between">
+    <WorkspaceHeader className="flex flex-col gap-6 border-b border-vds-border/[0.07] pb-7 sm:flex-row sm:items-end sm:justify-between">
       <div>
         <div className="flex items-center gap-2">
           <AppWindow className="size-3.5 text-vds-primary" aria-hidden="true" />
@@ -51,6 +52,6 @@ export function ApplicationHeader({
           <p className="mt-1 text-[10px] text-vds-subtle">Platform catalog</p>
         </div>
       </div>
-    </header>
+    </WorkspaceHeader>
   );
 }

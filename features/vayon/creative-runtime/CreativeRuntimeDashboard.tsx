@@ -1,3 +1,5 @@
+import { WorkspaceTable } from "@/features/platform/design-system/layout/WorkspaceTable";
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import {
   Activity,
@@ -47,8 +49,8 @@ export function CreativeRuntimeDashboard({
       ],
     ];
   return (
-    <main className="mx-auto w-full max-w-[120rem] space-y-6 px-4 py-6 sm:px-6 lg:px-8">
-      <header className={`${card} relative overflow-hidden p-6 sm:p-8`}>
+    <WorkspaceContent >
+      <WorkspaceHeader >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,var(--vds-color-primary-soft),transparent_38%)]" />
         <div className="relative flex flex-wrap items-end justify-between gap-5">
           <div>
@@ -75,7 +77,7 @@ export function CreativeRuntimeDashboard({
             </p>
           </div>
         </div>
-      </header>
+      </WorkspaceHeader>
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
         {metrics.map(([label, value, Icon]) => (
           <article className={`${card} p-5`} key={String(label)}>
@@ -93,8 +95,8 @@ export function CreativeRuntimeDashboard({
             generation flows.
           </p>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[75rem] text-left text-sm">
+        <div className="min-w-0">
+          <WorkspaceTable className="w-full text-left text-sm">
             <thead className="border-y border-vds-border text-xs text-vds-muted">
               <tr>
                 {[
@@ -153,7 +155,7 @@ export function CreativeRuntimeDashboard({
                 </tr>
               ))}
             </tbody>
-          </table>
+          </WorkspaceTable>
         </div>
       </section>
       <div className="grid gap-5 xl:grid-cols-2">
@@ -241,6 +243,6 @@ export function CreativeRuntimeDashboard({
           Creative Director → Asset Library.
         </p>
       </section>
-    </main>
+    </WorkspaceContent>
   );
 }

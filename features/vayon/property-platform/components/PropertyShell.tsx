@@ -11,9 +11,10 @@ const navigation = [
 export function PropertyShell({ children }: { children: ReactNode }) {
   return (
     <div>
+      {children}
       <nav
         aria-label="Property platform"
-        className="mx-auto flex max-w-[100rem] gap-2 overflow-x-auto px-4 pt-6 sm:px-5"
+        className="vds-workspace-actions mt-6 border-t border-vds-border pt-4"
       >
         {navigation.map(([label, href]) => (
           <Link
@@ -25,7 +26,6 @@ export function PropertyShell({ children }: { children: ReactNode }) {
           </Link>
         ))}
       </nav>
-      {children}
     </div>
   );
 }

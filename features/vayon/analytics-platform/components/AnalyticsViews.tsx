@@ -1,3 +1,4 @@
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type {
@@ -23,7 +24,7 @@ export function AnalyticsShell({ children }: { children: ReactNode }) {
     <div>
       <nav
         aria-label="Performance reports"
-        className="mx-auto flex max-w-[110rem] flex-wrap gap-2 px-5 pt-6"
+        className="flex flex-wrap gap-3 pt-4"
       >
         {nav.map(([l, h]) => (
           <Link
@@ -47,13 +48,7 @@ export function AnalyticsHeader({
   description: string;
 }) {
   return (
-    <header>
-      <p className="text-xs uppercase tracking-[.2em] text-vds-primary">
-        Business performance
-      </p>
-      <h1 className="mt-2 text-3xl font-semibold">{title}</h1>
-      <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>
-    </header>
+    <WorkspaceHeader title={title} description={description} />
   );
 }
 export function MetricGrid({ data }: { data: AnalyticsDataset }) {

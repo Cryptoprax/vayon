@@ -1,0 +1,3 @@
+import { InventoryDashboard, InventoryHeader, InventoryUtilities, ProjectGrid } from "@/features/vayon/property-platform/inventory/InventoryViews";
+import { InventoryService } from "@/features/vayon/property-platform/inventory/service";
+export default async function Page() { const service = await InventoryService.production(), snapshot = await service.snapshot(); return <main className="mx-auto max-w-[100rem] px-4 py-8 sm:px-5"><InventoryHeader title="Projects" description="Manage developments, towers, construction progress, teams, documents, and unit availability from one tenant-scoped workspace."/><InventoryDashboard metrics={service.metrics(snapshot)}/><ProjectGrid projects={snapshot.projects} snapshot={snapshot}/><InventoryUtilities/></main>; }

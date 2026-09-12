@@ -1,0 +1,480 @@
+[
+  {
+    "file": "app/vayon/approvals/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/brain/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/calendar/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/cognitive/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/context/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/deals/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/executions/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/follow-ups/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/intelligence/page.tsx",
+    "components": [
+      "WorkspaceContent",
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "app/vayon/leads/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/meetings/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/messages/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/notifications/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/objects/page.tsx",
+    "components": [
+      "WorkspaceContent",
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "app/vayon/operations/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/property-matching/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/runtime/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/site-visits/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/storage/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/success-center/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/tasks/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/timeline/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/workflows/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/workforce/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/ai/employees/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/ai/playground/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/analytics/executive/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/approvals/[approvalId]/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/contacts/google/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/creative/campaigns/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/deals/new/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/deals/pipeline/page.tsx",
+    "components": [
+      "WorkspaceContent",
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "app/vayon/documents/drive/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/email/[messageId]/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/knowledge/help/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/leads/new/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/notifications/preferences/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/property-matching/compare/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/property-matching/reports/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/activity/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/appearance/page.tsx",
+    "components": [
+      "WorkspaceContent",
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/billing/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/configuration/page.tsx",
+    "components": [
+      "WorkspaceContent",
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/departments/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/invoices/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/members/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/organization/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/payment-methods/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/permissions/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/plans/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/roles/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/subscription/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/teams/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/usage/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/users/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/site-visits/calendar/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/site-visits/reports/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/site-visits/[visitId]/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/workflows/[workflowId]/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/deals/[dealId]/edit/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/leads/[leadId]/edit/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/billing/provider-health/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/integrations/data-import/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "app/vayon/settings/invoices/[invoiceId]/page.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "features/vayon/crm-engine/components/CrmShell.tsx",
+    "components": [
+      "WorkspaceContent",
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "features/vayon/communications-workspace/components/CommunicationsShell.tsx",
+    "components": [
+      "WorkspaceContent",
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "features/vayon/operations/components/OperationsUI.tsx",
+    "components": [
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "features/vayon/site-visits/VisitViews.tsx",
+    "components": [
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "features/platform/organization/components/OrganizationUI.tsx",
+    "components": [
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "features/vayon/workflow-approval/components/GovernanceViews.tsx",
+    "components": [
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "features/vayon/creative-studio/components/StudioViews.tsx",
+    "components": [
+      "WorkspaceContent",
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "features/vayon/analytics-platform/components/AnalyticsViews.tsx",
+    "components": [
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "features/vayon/analytics-platform/dashboard/AnalyticsRoute.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "features/platform/business-timeline/components/live/TimelineExperience.tsx",
+    "components": [
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "features/vayon/dashboard/components/DashboardShell.tsx",
+    "components": [
+      "WorkspaceContent"
+    ]
+  },
+  {
+    "file": "features/vayon/growth-intelligence/GrowthOverview.tsx",
+    "components": [
+      "WorkspaceContent",
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "features/vayon/growth-intelligence/GrowthSectionPage.tsx",
+    "components": [
+      "WorkspaceHeader"
+    ]
+  },
+  {
+    "file": "features/vayon/creative-studio-2/CreativeStudioHome.tsx",
+    "components": [
+      "WorkspaceContent",
+      "WorkspaceHeader"
+    ]
+  }
+]

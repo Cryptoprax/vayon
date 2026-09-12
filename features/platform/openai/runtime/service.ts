@@ -1,4 +1,5 @@
 import "server-only";
+import { SubscriptionWriteService } from "@/features/vayon/billing/services/subscription-write.service";
 import { operationsContext } from "@/features/vayon/operations/services/context";
 import type { AIEmployeeCode } from "../domain/models";
 import { OpenAIProvider } from "../providers/openai.provider";
@@ -26,6 +27,7 @@ export class WorkforceRuntimeService {
   }
 
   async *chat(input: RuntimeChatInput) {
+    await new SubscriptionWriteService().require();
     if (!employees.includes(input.employee)) throw new Error("Unsupported AI employee.");
     if (!input.message.trim() || input.message.length > 20_000) throw new Error("A message between 1 and 20,000 characters is required.");
     const refs = (input.contextRefs ?? []).filter((ref) => allowedSources.has(ref.type) && /^[a-zA-Z0-9_-]{1,100}$/.test(ref.id));

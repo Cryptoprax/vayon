@@ -1,4 +1,6 @@
 "use client";
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
+
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import {
@@ -121,8 +123,8 @@ export function DocumentStudio({
       );
     });
   return (
-    <main className="mx-auto w-full max-w-[120rem] space-y-6 px-4 py-6 sm:px-6 lg:px-8">
-      <header className={`${card} relative overflow-hidden p-6 sm:p-8`}>
+    <WorkspaceContent >
+      <WorkspaceHeader >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,var(--vds-color-primary-soft),transparent_40%)]" />
         <div className="relative flex flex-wrap items-end justify-between gap-5">
           <div>
@@ -145,7 +147,7 @@ export function DocumentStudio({
             Create document
           </Button>
         </div>
-      </header>
+      </WorkspaceHeader>
       {notice && (
         <div
           role="status"
@@ -458,7 +460,7 @@ export function DocumentStudio({
           </section>
         </div>
       )}
-    </main>
+    </WorkspaceContent>
   );
 }
 function Field({

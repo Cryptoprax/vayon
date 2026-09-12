@@ -7,7 +7,7 @@ const surfaces = read("features/vayon/enterprise-collaboration/CollaborationSurf
 
 test("enterprise inbox reuses the existing notification center", () => {
   const inbox = read("app/vayon/notifications/page.tsx");
-  assert.match(inbox, /Enterprise Inbox/);
+  assert.match(inbox, /WorkspaceHeader title="Inbox"/);
   assert.match(inbox, /<NotificationCenter/);
   assert.doesNotMatch(inbox, /new Messaging|duplicate inbox/i);
 });

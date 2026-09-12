@@ -1,0 +1,17 @@
+{
+  "runtime": "PGlite PostgreSQL WASM, isolated in-memory QA schema. Actual migration SQL, representative tables and existing membership function. Not production; not a multi-connection concurrency certification.",
+  "checks": [
+    "new workspace receives one three-day trial; repeated provisioning does not reset it",
+    "first property persists; second property is atomically rejected",
+    "two leads persist; third is rejected and a batch over quota rolls back entirely",
+    "one company persists; second company is rejected",
+    "pending invitation reserves one seat; acceptance consumes the reservation once",
+    "soft-delete recovery cannot bypass record caps",
+    "expiry blocks create update delete campaigns generation and invitations while SELECT still works",
+    "upgrade immediately restores paid writes despite an old trial deadline and trial quotas",
+    "unknown trial deadline fails closed without hiding data",
+    "preflight rejects nonmembers and private policy is not granted to authenticated users",
+    "trusted worker checks target workspace without borrowing the current workspace"
+  ],
+  "failures": []
+}

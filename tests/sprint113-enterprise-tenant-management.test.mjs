@@ -50,7 +50,7 @@ test("tenant UI provides search filtering audit provisioning and responsive load
   ]);
   for (const label of ["Founder tenant center", "Usage analytics", "Provisioning engine", "Audit center", "Founder operations", "SaaS observability"]) assert.match(component, new RegExp(label));
   assert.match(component, /role="search"/);
-  assert.match(component, /overflow-x-auto/);
+  assert.match(component, /WorkspaceTable/);
   assert.match(loading, /aria-busy="true"/);
 });
 

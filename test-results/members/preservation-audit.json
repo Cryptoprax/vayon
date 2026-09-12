@@ -1,0 +1,37 @@
+{
+  "unchangedFunctions": {
+    "InviteRolePicker": true,
+    "RoleOptions": true,
+    "RoleDetails": true,
+    "EnterpriseRolesView": true
+  },
+  "unchangedBusinessFiles": [
+    {
+      "path": "features/platform/organization/actions/organization.actions.ts",
+      "unchanged": true,
+      "sha256": "a2576ab7ee6370282d99777fdd73f4e50e081a871c0ee6c8e3744edc896f6255"
+    },
+    {
+      "path": "features/platform/organization/services/organization.service.ts",
+      "unchanged": true,
+      "sha256": "dde93fd4ed34f0fddf170a33c0aaf1532c99475298299d820a8b2308c6ab1ae9"
+    },
+    {
+      "path": "features/platform/organization/config/workspace-role-catalog.ts",
+      "unchanged": true,
+      "sha256": "55a316f1b69ec1a39b2dcd77ecd90e144e88bc37065ae1fc32504f5c2f5be897"
+    },
+    {
+      "path": "features/platform/permissions/runtime/policy.ts",
+      "unchanged": true,
+      "sha256": "75f733e8586f6db18afb7e548425aa8d7bc0630699f47e700e3450a890db02cb"
+    },
+    {
+      "path": "features/platform/organization/validation/index.ts",
+      "unchanged": true,
+      "sha256": "f8bceeecfcbbefb23f294fe85911ab60afdd80ba6f5eba4f502d2e340ec4621e"
+    }
+  ],
+  "tableRemoved": true,
+  "newQueries": 0
+}

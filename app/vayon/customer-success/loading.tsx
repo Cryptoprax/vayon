@@ -1,7 +1,8 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 export default function Loading() {
   return (
-    <main
-      className="mx-auto max-w-[120rem] space-y-6 px-4 py-6 sm:px-6 lg:px-8"
+    <WorkspaceContent
+      className="space-y-6"
       aria-busy="true"
       aria-label="Loading Customer Success Workspace"
     >
@@ -12,6 +13,6 @@ export default function Loading() {
         <div className="h-28 animate-pulse rounded-3xl bg-vds-elevated" />
       </div>
       <div className="h-96 animate-pulse rounded-3xl bg-vds-elevated" />
-    </main>
+    </WorkspaceContent>
   );
 }

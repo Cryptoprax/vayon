@@ -1,0 +1,7 @@
+{
+  "toggleAll": true,
+  "toggleRow": true,
+  "exportRows": true,
+  "resize": true,
+  "rowKeyDown": true
+}

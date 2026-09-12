@@ -1,3 +1,4 @@
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import {
   Activity,
@@ -25,8 +26,8 @@ export function CreativeCloudDashboard({
   readonly snapshot: CreativeCloudSnapshot;
 }) {
   return (
-    <main className="mx-auto w-full max-w-[120rem] space-y-7 px-4 py-6 sm:px-6 lg:px-8">
-      <header className={`${card} relative overflow-hidden p-6 sm:p-8`}>
+    <WorkspaceContent >
+      <WorkspaceHeader >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,var(--vds-color-primary-soft),transparent_38%)]" />
         <div className="relative">
           <p className="text-xs font-semibold uppercase tracking-[.22em] text-vds-primary">
@@ -62,7 +63,7 @@ export function CreativeCloudDashboard({
             ))}
           </div>
         </div>
-      </header>
+      </WorkspaceHeader>
       <section>
         <Heading
           icon={Cloud}
@@ -112,9 +113,9 @@ export function CreativeCloudDashboard({
           title="AI department operating model"
           detail="Creative Director coordinates every director and specialist"
         />
-        <div className={`${card} overflow-x-auto p-5`}>
-          <div className="flex min-w-max items-start gap-3">
-            <article className="w-48 rounded-2xl border border-vds-accent-border bg-vds-primary-soft p-4">
+        <div className={`${card} min-w-0 p-5`}>
+          <div className="flex flex-wrap min-w-0 items-start gap-3">
+            <article className="w-full max-w-full rounded-2xl border border-vds-accent-border bg-vds-primary-soft p-4">
               <Sparkles className="size-5 text-vds-primary" />
               <h3 className="mt-3 font-semibold">Creative Director</h3>
               <p className="mt-2 text-xs text-vds-muted">
@@ -122,12 +123,12 @@ export function CreativeCloudDashboard({
               </p>
             </article>
             <div className="mt-14 h-px w-8 bg-vds-border" />
-            <div className="grid grid-cols-3 gap-3 xl:grid-cols-5">
+            <div className="grid min-w-0 flex-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
               {snapshot.departments
                 .filter((item) => item.parentId)
                 .map((department) => (
                   <article
-                    className="w-48 rounded-2xl border border-vds-border bg-vds-elevated p-4"
+                    className="w-full max-w-full rounded-2xl border border-vds-border bg-vds-elevated p-4"
                     key={department.id}
                   >
                     <Users className="size-4 text-vds-primary" />
@@ -238,7 +239,7 @@ export function CreativeCloudDashboard({
             title="Approval lifecycle"
             detail="Reusable governance across all studios"
           />
-          <div className="flex min-w-max items-center gap-2 overflow-x-auto pb-2">
+          <div className="flex flex-wrap min-w-0 items-center gap-2 min-w-0 pb-2">
             {snapshot.approvalLifecycle.map((stage, index) => (
               <div className="flex items-center gap-2" key={stage}>
                 <span className="rounded-xl border border-vds-border bg-vds-elevated px-3 py-2 text-xs">
@@ -255,7 +256,7 @@ export function CreativeCloudDashboard({
             title="Execution lifecycle"
             detail="Departments never communicate directly"
           />
-          <div className="mt-3 flex min-w-max items-center gap-2 overflow-x-auto pb-2">
+          <div className="mt-3 flex flex-wrap min-w-0 items-center gap-2 min-w-0 pb-2">
             {snapshot.executionPath.map((stage, index) => (
               <div className="flex items-center gap-2" key={stage}>
                 <span className="rounded-xl bg-vds-primary-soft px-3 py-2 text-xs text-vds-primary">
@@ -329,7 +330,7 @@ export function CreativeCloudDashboard({
           ))}
         </div>
       </section>
-    </main>
+    </WorkspaceContent>
   );
 }
 function Heading({

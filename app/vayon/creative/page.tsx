@@ -4,6 +4,6 @@ import { FeatureAvailabilityState } from "@/features/vayon/empty-states/FeatureA
 
 export default async function Page() {
   const service = await CreativeStudio2Service.production();
-  if (!service) return <FeatureAvailabilityState title="Creative Operating System" description="This workspace does not have Creative access yet. Join Early Access and we will notify you when governed creative production is available for your workspace." />;
+  if (!service) return <FeatureAvailabilityState title="Creative Operating System" description="Creative access is not enabled for this workspace. Ask your workspace administrator about access." />;
   return <CreativeStudioHome snapshot={await service.snapshot()} />;
 }

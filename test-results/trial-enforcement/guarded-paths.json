@@ -1,0 +1,1895 @@
+{
+  "protectedActions": [
+    {
+      "path": "features/notifications/actions.ts",
+      "name": "scheduleReminderAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "NotificationService",
+        ".scheduleReminder",
+        "String",
+        "form.get",
+        "Date",
+        ".toISOString",
+        "refresh"
+      ]
+    },
+    {
+      "path": "features/onboarding/business-launch/actions.ts",
+      "name": "prepareBusinessLaunch",
+      "parameters": [
+        "input"
+      ],
+      "serverAction": true,
+      "calls": [
+        "requireWorkspacePermission",
+        "input.businessName.trim",
+        "input.industry.trim",
+        "input.country.trim",
+        "input.primaryLanguage.trim",
+        "Error",
+        "EnterpriseOnboardingService",
+        "Promise.all",
+        "onboarding.session",
+        "BrandStudioService.production",
+        ".snapshot",
+        "Date",
+        ".toISOString",
+        "planLaunch",
+        "Boolean",
+        "String",
+        "crypto.randomUUID",
+        "onboarding.save",
+        "...",
+        "Set"
+      ]
+    },
+    {
+      "path": "features/platform/continuous-learning/actions/index.ts",
+      "name": "saveIntelligenceMemoryAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "z.enum",
+        ".parse",
+        "form.get",
+        ".string",
+        ".trim",
+        ".min",
+        ".max",
+        ".transform",
+        ".split",
+        ".map",
+        "item.trim",
+        ".filter",
+        ".slice",
+        "ContinuousLearningService",
+        ".remember",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/continuous-learning/actions/index.ts",
+      "name": "generateExecutiveBriefingAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        ".enum",
+        ".parse",
+        "form.get",
+        "ContinuousLearningService",
+        ".generateBriefing",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/customer-success-workspace/actions/customer-success.actions.ts",
+      "name": "completeCustomerSuccessTaskAction",
+      "parameters": [
+        "step"
+      ],
+      "serverAction": true,
+      "calls": [
+        "EnterpriseOnboardingService",
+        "service.session",
+        "Error",
+        "Set",
+        "service.save",
+        "Math.max",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/customer-success-workspace/actions/customer-success.actions.ts",
+      "name": "configureCustomerAIAction",
+      "parameters": [
+        "employees"
+      ],
+      "serverAction": true,
+      "calls": [
+        "Set",
+        "employees.filter",
+        "allowed.has",
+        "Error",
+        "EnterpriseOnboardingService",
+        "service.session",
+        "service.save",
+        "Math.max",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/email/actions/index.ts",
+      "name": "retryEmailAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "EmailService",
+        ".retry",
+        "String",
+        "form.get",
+        "refresh"
+      ]
+    },
+    {
+      "path": "features/platform/email/actions/index.ts",
+      "name": "saveEmailTemplateAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "EmailService",
+        ".saveTemplate",
+        "String",
+        "form.get",
+        "refresh"
+      ]
+    },
+    {
+      "path": "features/platform/gmail/production-actions.ts",
+      "name": "synchronizeGmailAction",
+      "parameters": [],
+      "serverAction": true,
+      "calls": [
+        "GmailProductionSyncService",
+        ".synchronize",
+        "revalidatePath",
+        "back",
+        "catch"
+      ]
+    },
+    {
+      "path": "features/platform/gmail/production-actions.ts",
+      "name": "updateGmailPermissionsAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "form.get",
+        "GmailProductionSyncService",
+        ".permissions",
+        "checked",
+        "revalidatePath",
+        "back"
+      ]
+    },
+    {
+      "path": "features/platform/google-calendar/production-actions.ts",
+      "name": "synchronizeGoogleCalendarAction",
+      "parameters": [],
+      "serverAction": true,
+      "calls": [
+        "CalendarProductionSyncService",
+        ".synchronize",
+        "revalidatePath",
+        "back",
+        "catch"
+      ]
+    },
+    {
+      "path": "features/platform/google-calendar/production-actions.ts",
+      "name": "updateGoogleCalendarPermissionsAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "form.get",
+        "CalendarProductionSyncService",
+        ".permissions",
+        "on",
+        "revalidatePath",
+        "back"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/actions/integration.actions.ts",
+      "name": "enableProviderAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "toggle"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/actions/integration.actions.ts",
+      "name": "disableProviderAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "toggle"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/actions/integration.actions.ts",
+      "name": "rotateSecretMetadataAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "rotateMetadataSchema.safeParse",
+        "v",
+        "if",
+        "fail",
+        "SecretsService",
+        ".rotate",
+        "revalidatePath",
+        "catch"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/actions/integration.actions.ts",
+      "name": "replayWebhookAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "webhookReplaySchema.safeParse",
+        "v",
+        "if",
+        "fail",
+        "WebhookService",
+        ".replay",
+        "revalidatePath",
+        "catch"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/actions/integration.actions.ts",
+      "name": "retrySynchronizationAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "retrySchema.safeParse",
+        "v",
+        "if",
+        "fail",
+        "RetryQueueService",
+        ".retry",
+        "revalidatePath",
+        "catch"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/actions/integration.actions.ts",
+      "name": "archiveIntegrationLogAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "archiveLogSchema.safeParse",
+        "v",
+        "if",
+        "fail",
+        "HealthService",
+        ".archiveLog",
+        "revalidatePath",
+        "catch"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/google/actions.ts",
+      "name": "modifyGmailMessageAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "integrationContext",
+        "val",
+        "if",
+        "redirect",
+        ".filter",
+        "GmailService",
+        ".modify",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/google/actions.ts",
+      "name": "createDraftAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "emailDraftSchema.safeParse",
+        "val",
+        "if",
+        "redirect",
+        "encodeURIComponent",
+        "GmailProductionSyncService",
+        ".state",
+        "GmailService",
+        ".createDraft",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/google/actions.ts",
+      "name": "sendEmailAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "emailDraftSchema.safeParse",
+        "val",
+        "if",
+        "redirect",
+        "encodeURIComponent",
+        "GmailProductionSyncService",
+        ".state",
+        "GmailService",
+        ".send",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/google/actions.ts",
+      "name": "createGoogleMeetingAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "calendarEventSchema.safeParse",
+        "val",
+        "Date",
+        ".toISOString",
+        ".split",
+        ".map",
+        "x.trim",
+        ".filter",
+        "if",
+        "redirect",
+        "encodeURIComponent",
+        "CalendarProductionSyncService",
+        ".state",
+        "GoogleCalendarService",
+        ".create",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/google/actions.ts",
+      "name": "deleteGoogleMeetingAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "integrationContext",
+        "val",
+        "if",
+        "redirect",
+        "CalendarProductionSyncService",
+        ".state",
+        "GoogleCalendarService",
+        ".remove",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/microsoft/business-actions.ts",
+      "name": "composeOutlookAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "value",
+        ".split",
+        ".map",
+        "item.trim",
+        ".filter",
+        "if",
+        "redirect",
+        "OutlookMailService",
+        ".saveDraft",
+        ".send",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/microsoft/business-actions.ts",
+      "name": "createOutlookMeetingAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "value",
+        "if",
+        "redirect",
+        "OutlookCalendarService",
+        ".create",
+        "Date",
+        ".toISOString",
+        ".split",
+        ".map",
+        "item.trim",
+        ".filter",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/microsoft/business-actions.ts",
+      "name": "uploadOneDriveAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "form.get",
+        "if",
+        "redirect",
+        "OneDriveService",
+        ".upload",
+        "value",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/storage/actions.ts",
+      "name": "uploadAssetAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "String",
+        "form.get",
+        "if",
+        "kinds.has",
+        "Error",
+        "StorageService",
+        ".upload",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/integrations/whatsapp/actions.ts",
+      "name": "connectWhatsAppAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "String",
+        "form.get",
+        "if",
+        "Error",
+        "operationsContext",
+        "TokenCryptoService",
+        ".encrypt",
+        "c.client.rpc",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/knowledge/actions/index.ts",
+      "name": "uploadKnowledgeDocumentAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "form.get",
+        "Error",
+        "EnterpriseKnowledgeService",
+        ".upload",
+        "String",
+        ".split",
+        ".map",
+        "x.trim",
+        ".filter",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/platform/organization/actions/organization.actions.ts",
+      "name": "updateOrganizationAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "value",
+        "profileSchema.safeParse",
+        ".toUpperCase",
+        "Object.fromEntries",
+        ".map",
+        "if",
+        "redirect",
+        "encodeURIComponent",
+        "EnterpriseOrganizationService",
+        ".updateProfile",
+        "form.get",
+        ".uploadLogo",
+        "refresh"
+      ]
+    },
+    {
+      "path": "features/platform/organization/actions/organization.actions.ts",
+      "name": "inviteMemberAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "invitationSchema.safeParse",
+        "value",
+        "if",
+        "failure",
+        "EnterpriseOrganizationService",
+        ".invite",
+        "origin",
+        "refresh",
+        "catch",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/platform/organization/actions/organization.actions.ts",
+      "name": "invitationAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "idSchema.safeParse",
+        "value",
+        "if",
+        ".includes",
+        "failure",
+        "EnterpriseOrganizationService",
+        "service.resend",
+        "origin",
+        "service.cancelInvitation",
+        "refresh",
+        "catch",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/platform/organization/actions/organization.actions.ts",
+      "name": "memberAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "idSchema.safeParse",
+        "value",
+        "if",
+        "failure",
+        "EnterpriseOrganizationService",
+        "service.setMemberStatus",
+        "service.removeMember",
+        "roleSchema.parse",
+        "service.changeRole",
+        "Error",
+        "refresh",
+        "catch",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/platform/organization/actions/organization.actions.ts",
+      "name": "transferOwnershipAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "transferSchema.safeParse",
+        "value",
+        "if",
+        "failure",
+        "EnterpriseOrganizationService",
+        ".transferOwnership",
+        "refresh",
+        "catch",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/platform/organization/actions/organization.actions.ts",
+      "name": "departmentAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "value",
+        "departmentSchema.safeParse",
+        ".split",
+        ".map",
+        "item.trim",
+        ".filter",
+        "if",
+        ".includes",
+        "idSchema.safeParse",
+        "redirect",
+        "EnterpriseOrganizationService",
+        ".manageDepartment",
+        "refresh"
+      ]
+    },
+    {
+      "path": "features/platform/organization/actions/organization.actions.ts",
+      "name": "teamAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "value",
+        "teamSchema.safeParse",
+        "form.getAll",
+        ".map",
+        "if",
+        ".includes",
+        "idSchema.safeParse",
+        "redirect",
+        "EnterpriseOrganizationService",
+        ".manageTeam",
+        "refresh"
+      ]
+    },
+    {
+      "path": "features/platform/workflows/actions/index.ts",
+      "name": "saveWorkflowAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "JSON.parse",
+        "String",
+        "form.get",
+        "WorkflowAutomationService",
+        ".save",
+        "refresh"
+      ]
+    },
+    {
+      "path": "features/platform/workflows/actions/index.ts",
+      "name": "publishWorkflowAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "WorkflowAutomationService",
+        ".publish",
+        "String",
+        "form.get",
+        "Number",
+        "refresh"
+      ]
+    },
+    {
+      "path": "features/platform/workflows/actions/index.ts",
+      "name": "installWorkflowTemplateAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "WorkflowAutomationService",
+        ".installTemplate",
+        "String",
+        "form.get",
+        "refresh"
+      ]
+    },
+    {
+      "path": "features/vayon/ai-runtime/actions/recommendation.actions.ts",
+      "name": "generateAIRecommendationAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "String",
+        "form.get",
+        "if",
+        "redirect",
+        "AIService",
+        ".recommend",
+        ".slice",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/vayon/ai-workforce/actions/ai.actions.ts",
+      "name": "approveRecommendationAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "decide"
+      ]
+    },
+    {
+      "path": "features/vayon/ai-workforce/actions/ai.actions.ts",
+      "name": "rejectRecommendationAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "decide"
+      ]
+    },
+    {
+      "path": "features/vayon/ai-workforce/actions/ai.actions.ts",
+      "name": "createKnowledgeEntryAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "knowledgeSchema.safeParse",
+        "v",
+        "if",
+        "fail",
+        "KnowledgeService",
+        ".create",
+        "revalidatePath",
+        "catch"
+      ]
+    },
+    {
+      "path": "features/vayon/ai-workforce/actions/ai.actions.ts",
+      "name": "archiveRecommendationAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "archiveSchema.safeParse",
+        "v",
+        "if",
+        "fail",
+        "RecommendationService",
+        ".archive",
+        "revalidatePath",
+        "catch"
+      ]
+    },
+    {
+      "path": "features/vayon/communication/actions/communication.actions.ts",
+      "name": "createCallAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "v",
+        "Date",
+        ".toISOString",
+        "callSchema.safeParse",
+        "if",
+        "fail",
+        "CallService",
+        ".create",
+        "revalidatePath",
+        "catch"
+      ]
+    },
+    {
+      "path": "features/vayon/communication/actions/communication.actions.ts",
+      "name": "createFollowUpAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "followUpSchema.safeParse",
+        "v",
+        "Date",
+        ".toISOString",
+        "if",
+        "fail",
+        "FollowUpService",
+        ".create",
+        "revalidatePath",
+        "catch"
+      ]
+    },
+    {
+      "path": "features/vayon/communication/actions/communication.actions.ts",
+      "name": "completeFollowUpAction",
+      "parameters": [
+        "id",
+        "version"
+      ],
+      "serverAction": true,
+      "calls": [
+        "FollowUpService",
+        ".complete",
+        "revalidatePath",
+        "catch",
+        "fail"
+      ]
+    },
+    {
+      "path": "features/vayon/communication/actions/communication.actions.ts",
+      "name": "addCommunicationNoteAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "noteSchema.safeParse",
+        "v",
+        "if",
+        "fail",
+        "CommunicationService",
+        ".addNote",
+        "revalidatePath",
+        "catch"
+      ]
+    },
+    {
+      "path": "features/vayon/communication/actions/communication.actions.ts",
+      "name": "archiveConversationAction",
+      "parameters": [
+        "id",
+        "version"
+      ],
+      "serverAction": true,
+      "calls": [
+        "CommunicationService",
+        ".archive",
+        "revalidatePath",
+        "catch",
+        "fail"
+      ]
+    },
+    {
+      "path": "features/vayon/creative-studio/actions.ts",
+      "name": "createCreativeDraftAction",
+      "parameters": [
+        "formData"
+      ],
+      "serverAction": true,
+      "calls": [
+        "CreativeStudioService.production",
+        "Error",
+        "String",
+        "formData.get",
+        "formData.getAll",
+        ".map",
+        "campaignTypes.includes",
+        "selectedAudiences.some",
+        "audiences.includes",
+        "platforms.some",
+        "creativePlatforms.includes",
+        ".slice",
+        "service.saveDraft",
+        "console.error",
+        "redirect",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/vayon/creative-studio/actions.ts",
+      "name": "generateCreativeAssetAction",
+      "parameters": [
+        "formData"
+      ],
+      "serverAction": true,
+      "calls": [
+        "CreativeGenerationService",
+        ".assistant",
+        "String",
+        "formData.get",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/vayon/creative-studio/actions.ts",
+      "name": "creativeAssistantChatAction",
+      "parameters": [
+        "_previous",
+        "formData"
+      ],
+      "serverAction": true,
+      "calls": [
+        "CreativeGenerationService",
+        ".assistant",
+        "String",
+        "formData.get",
+        "revalidatePath",
+        "console.error"
+      ]
+    },
+    {
+      "path": "features/vayon/creative-studio/actions.ts",
+      "name": "autosaveCreativeEditorAction",
+      "parameters": [
+        "formData"
+      ],
+      "serverAction": true,
+      "calls": [
+        "creativeStudioAccess",
+        "Error",
+        "String",
+        "formData.get",
+        "JSON.parse",
+        "Array.isArray",
+        "access.client.rpc",
+        "Number",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/vayon/creative-studio/actions.ts",
+      "name": "growthCampaignChatAction",
+      "parameters": [
+        "_previous",
+        "formData"
+      ],
+      "serverAction": true,
+      "calls": [
+        "GrowthStudioService",
+        ".assistant",
+        "String",
+        "formData.get",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/vayon/crm-company/actions.ts",
+      "name": "createCompanyAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "parse",
+        "if",
+        "redirect",
+        "encodeURIComponent",
+        "await",
+        "CrmCompanyService.production",
+        ".create",
+        "revalidatePath",
+        "catch",
+        "friendly"
+      ]
+    },
+    {
+      "path": "features/vayon/crm-company/actions.ts",
+      "name": "updateCompanyAction",
+      "parameters": [
+        "id",
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "parse",
+        "if",
+        "redirect",
+        "encodeURIComponent",
+        "await",
+        "CrmCompanyService.production",
+        ".update",
+        "Number",
+        "str",
+        "revalidatePath",
+        "catch",
+        "friendly"
+      ]
+    },
+    {
+      "path": "features/vayon/crm-company/actions.ts",
+      "name": "archiveCompanyAction",
+      "parameters": [
+        "id",
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "await",
+        "CrmCompanyService.production",
+        ".archive",
+        "Number",
+        "str",
+        "revalidatePath",
+        "catch",
+        "redirect",
+        "encodeURIComponent",
+        "friendly"
+      ]
+    },
+    {
+      "path": "features/vayon/deal/actions/deal.actions.ts",
+      "name": "createDealAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "dealSchema.safeParse",
+        "input",
+        "if",
+        "fail",
+        "DealService",
+        ".create",
+        "revalidatePath",
+        "catch",
+        "message",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/vayon/deal/actions/deal.actions.ts",
+      "name": "updateDealAction",
+      "parameters": [
+        "id",
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "dealSchema.safeParse",
+        "input",
+        "if",
+        "fail",
+        "DealService",
+        ".update",
+        "Number",
+        "s",
+        "revalidatePath",
+        "catch",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/vayon/deal/actions/deal.actions.ts",
+      "name": "moveDealStageAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "PipelineService",
+        ".move",
+        "s",
+        "Number",
+        "revalidatePath",
+        "catch",
+        "message",
+        "if",
+        "fail",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/vayon/deal/actions/deal.actions.ts",
+      "name": "archiveDealAction",
+      "parameters": [
+        "id"
+      ],
+      "serverAction": true,
+      "calls": [
+        "DealService",
+        ".archive",
+        "revalidatePath",
+        "catch",
+        "fail",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/vayon/deal/actions/deal.actions.ts",
+      "name": "createOfferAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "offerSchema.safeParse",
+        "Object.fromEntries",
+        "if",
+        "fail",
+        "s",
+        "OfferService",
+        ".create",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/vayon/deal/actions/deal.actions.ts",
+      "name": "recordPaymentAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "paymentSchema.safeParse",
+        "Object.fromEntries",
+        "if",
+        "fail",
+        "s",
+        "PaymentService",
+        ".create",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/vayon/document-studio/actions.ts",
+      "name": "generateDocument",
+      "parameters": [
+        "input"
+      ],
+      "serverAction": true,
+      "calls": [
+        "requireWorkspacePermission",
+        "Date",
+        ".toISOString",
+        "crypto.randomUUID",
+        "BrandStudioService.production",
+        "brandService.snapshot",
+        ".brands.find",
+        "buildDocumentPrompt",
+        "Object.values",
+        "createLiveCreativeExecutionService",
+        ".accept",
+        "parseGeneratedDocument",
+        "reviewDocument"
+      ]
+    },
+    {
+      "path": "features/vayon/document-studio/actions.ts",
+      "name": "editDocumentBlock",
+      "parameters": [
+        "input",
+        "content",
+        "instruction"
+      ],
+      "serverAction": true,
+      "calls": [
+        "content.trim",
+        "Error",
+        "generateDocument"
+      ]
+    },
+    {
+      "path": "features/vayon/image-studio/actions.ts",
+      "name": "generateImage",
+      "parameters": [
+        "input"
+      ],
+      "serverAction": true,
+      "calls": [
+        "execute"
+      ]
+    },
+    {
+      "path": "features/vayon/image-studio/actions.ts",
+      "name": "editImage",
+      "parameters": [
+        "input",
+        "targetAssetId",
+        "operation"
+      ],
+      "serverAction": true,
+      "calls": [
+        "execute"
+      ]
+    },
+    {
+      "path": "features/vayon/lead/actions/lead.actions.ts",
+      "name": "createLeadAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "leadMutationSchema.safeParse",
+        "input",
+        "if",
+        "fail",
+        "LeadService",
+        ".create",
+        "revalidatePath",
+        "catch",
+        "friendly",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/vayon/lead/actions/lead.actions.ts",
+      "name": "updateLeadAction",
+      "parameters": [
+        "id",
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "leadMutationSchema.safeParse",
+        "input",
+        "if",
+        "fail",
+        "LeadService",
+        ".update",
+        "Number",
+        "s",
+        "revalidatePath",
+        "catch",
+        "friendly",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/vayon/lead/actions/lead.actions.ts",
+      "name": "bulkLeadAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "form.getAll",
+        ".map",
+        "s",
+        "if",
+        "fail",
+        "LeadAssignmentService",
+        "service.assign",
+        "service.changeStatus",
+        "LeadService",
+        ".archive",
+        "revalidatePath",
+        "catch",
+        "friendly",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/vayon/operations/actions/operations.actions.ts",
+      "name": "createTaskAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "taskSchema.safeParse",
+        "taskInput",
+        "if",
+        "redirect",
+        "target",
+        "TaskService",
+        ".create",
+        "revalidatePath",
+        "catch",
+        "message"
+      ]
+    },
+    {
+      "path": "features/vayon/operations/actions/operations.actions.ts",
+      "name": "updateTaskAction",
+      "parameters": [
+        "id",
+        "version",
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "taskSchema.safeParse",
+        "taskInput",
+        "if",
+        "redirect",
+        "target",
+        "TaskService",
+        ".update",
+        "revalidatePath",
+        "catch",
+        "message"
+      ]
+    },
+    {
+      "path": "features/vayon/operations/actions/operations.actions.ts",
+      "name": "completeTaskAction",
+      "parameters": [
+        "id",
+        "version"
+      ],
+      "serverAction": true,
+      "calls": [
+        "TaskService",
+        ".complete",
+        "revalidatePath",
+        "catch",
+        "message",
+        "if",
+        "redirect",
+        "target"
+      ]
+    },
+    {
+      "path": "features/vayon/operations/actions/operations.actions.ts",
+      "name": "archiveTaskAction",
+      "parameters": [
+        "id"
+      ],
+      "serverAction": true,
+      "calls": [
+        "TaskService",
+        ".archive",
+        "revalidatePath",
+        "catch",
+        "message",
+        "if",
+        "redirect",
+        "target"
+      ]
+    },
+    {
+      "path": "features/vayon/operations/actions/operations.actions.ts",
+      "name": "scheduleMeetingAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "meetingSchema.safeParse",
+        "value",
+        "iso",
+        "if",
+        "redirect",
+        "target",
+        "MeetingService",
+        ".schedule",
+        "revalidatePath",
+        "catch",
+        "message"
+      ]
+    },
+    {
+      "path": "features/vayon/operations/actions/operations.actions.ts",
+      "name": "scheduleVisitAction",
+      "parameters": [
+        "f"
+      ],
+      "serverAction": true,
+      "calls": [
+        "visitSchema.safeParse",
+        "value",
+        "iso",
+        "if",
+        "redirect",
+        "target",
+        "SiteVisitService",
+        ".schedule",
+        "revalidatePath",
+        "catch",
+        "message"
+      ]
+    },
+    {
+      "path": "features/vayon/property/actions/property.actions.ts",
+      "name": "createPropertyAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "propertyMutationSchema.safeParse",
+        "propertyFormInput",
+        "if",
+        "fail",
+        "PropertyService",
+        ".create",
+        "revalidatePath",
+        "catch",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/vayon/property/actions/property.actions.ts",
+      "name": "updatePropertyAction",
+      "parameters": [
+        "id",
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "propertyMutationSchema.safeParse",
+        "propertyFormInput",
+        "if",
+        "fail",
+        "PropertyService",
+        ".update",
+        "Number",
+        "s",
+        "revalidatePath",
+        "catch",
+        "redirect"
+      ]
+    },
+    {
+      "path": "features/vayon/property/actions/property.actions.ts",
+      "name": "archivePropertiesAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "form.getAll",
+        ".map",
+        ".filter",
+        "if",
+        "redirect",
+        "PropertyService",
+        ".archive",
+        "revalidatePath",
+        "catch",
+        "fail"
+      ]
+    },
+    {
+      "path": "features/vayon/property-matching/actions.ts",
+      "name": "saveShortlistAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "operationsContext",
+        "c.client.from",
+        ".select",
+        "roles",
+        ".eq",
+        ".limit",
+        ".maybeSingle",
+        "if",
+        "roles.has",
+        "Error",
+        "await",
+        "PropertyMatchingService.production",
+        ".saveShortlist",
+        "String",
+        "form.get",
+        "form.getAll",
+        ".map",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/vayon/property-platform/inventory/actions.ts",
+      "name": "transitionInventoryUnitAction",
+      "parameters": [
+        "formData"
+      ],
+      "serverAction": true,
+      "calls": [
+        "operationsContext",
+        "context.client.from",
+        ".select",
+        "roles",
+        ".eq",
+        ".limit",
+        ".maybeSingle",
+        "allowed.has",
+        "Error",
+        "String",
+        "formData.get",
+        "InventoryService.production",
+        ".transitionUnit",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/vayon/site-visits/actions.ts",
+      "name": "mutateVisitAction",
+      "parameters": [
+        "form"
+      ],
+      "serverAction": true,
+      "calls": [
+        "authorize",
+        "String",
+        "form.get",
+        "if",
+        ".includes",
+        "Error",
+        "Number",
+        "await",
+        "SiteVisitLifecycleService.production",
+        ".mutate",
+        "revalidatePath"
+      ]
+    },
+    {
+      "path": "features/vayon/video-studio/actions.ts",
+      "name": "generateVideo",
+      "parameters": [
+        "input"
+      ],
+      "serverAction": true,
+      "calls": [
+        "execute"
+      ]
+    },
+    {
+      "path": "features/vayon/video-studio/actions.ts",
+      "name": "editVideo",
+      "parameters": [
+        "input",
+        "targetAssetId",
+        "operation"
+      ],
+      "serverAction": true,
+      "calls": [
+        "execute"
+      ]
+    }
+  ],
+  "protectedApi": [
+    {
+      "path": "app/api/ai/workforce/chat/route.ts",
+      "name": "POST",
+      "parameters": [
+        "request"
+      ],
+      "serverAction": false,
+      "calls": [
+        "enforceApiPermission",
+        "if",
+        "EnterpriseRateLimitService",
+        ".enforce",
+        "requestSubject",
+        "Response.json",
+        "String",
+        "schema.safeParse",
+        "request.json",
+        ".catch",
+        "WorkforceRuntimeService.production",
+        "TextEncoder",
+        "ReadableStream",
+        "start",
+        "runtime.chat",
+        "controller.enqueue",
+        "encoder.encode",
+        "JSON.stringify",
+        "controller.close",
+        "Response"
+      ]
+    },
+    {
+      "path": "app/api/ai/workforce/collaborate/route.ts",
+      "name": "POST",
+      "parameters": [
+        "request"
+      ],
+      "serverAction": false,
+      "calls": [
+        "enforceApiPermission",
+        "if",
+        "schema.safeParse",
+        "request.json",
+        ".catch",
+        "Response.json",
+        "AICollaborationService.production",
+        ".collaborate"
+      ]
+    },
+    {
+      "path": "app/api/creative/documents/stream/route.ts",
+      "name": "POST",
+      "parameters": [
+        "request"
+      ],
+      "serverAction": false,
+      "calls": [
+        "request.json",
+        "TextEncoder",
+        "ReadableStream",
+        "start",
+        "controller.enqueue",
+        "encoder.encode",
+        "JSON.stringify",
+        "generateDocument",
+        "controller.close",
+        "Response"
+      ]
+    },
+    {
+      "path": "app/api/creative/images/stream/route.ts",
+      "name": "POST",
+      "parameters": [
+        "request"
+      ],
+      "serverAction": false,
+      "calls": [
+        "request.json",
+        "TextEncoder",
+        "ReadableStream",
+        "start",
+        "controller.enqueue",
+        "encoder.encode",
+        "JSON.stringify",
+        "generateImage",
+        "controller.close",
+        "Response"
+      ]
+    },
+    {
+      "path": "app/api/creative/videos/stream/route.ts",
+      "name": "POST",
+      "parameters": [
+        "request"
+      ],
+      "serverAction": false,
+      "calls": [
+        "request.json",
+        "TextEncoder",
+        "ReadableStream",
+        "start",
+        "controller.enqueue",
+        "encoder.encode",
+        "JSON.stringify",
+        "generateVideo",
+        "controller.close",
+        "Response"
+      ]
+    }
+  ],
+  "exempt": [
+    {
+      "path": "features/authentication/actions/auth.actions.ts",
+      "name": "signUpAction"
+    },
+    {
+      "path": "features/authentication/actions/auth.actions.ts",
+      "name": "loginAction"
+    },
+    {
+      "path": "features/authentication/actions/auth.actions.ts",
+      "name": "googleLoginAction"
+    },
+    {
+      "path": "features/authentication/actions/auth.actions.ts",
+      "name": "forgotPasswordAction"
+    },
+    {
+      "path": "features/authentication/actions/auth.actions.ts",
+      "name": "resetPasswordAction"
+    },
+    {
+      "path": "features/authentication/actions/auth.actions.ts",
+      "name": "logoutAction"
+    },
+    {
+      "path": "features/demo/actions.ts",
+      "name": "generateDemoOrganizationAction"
+    },
+    {
+      "path": "features/identity-workspace/actions/settings.actions.ts",
+      "name": "updateProfileAction"
+    },
+    {
+      "path": "features/identity-workspace/actions/settings.actions.ts",
+      "name": "inviteTeamMemberAction"
+    },
+    {
+      "path": "features/marketing/actions/lead.actions.ts",
+      "name": "captureLeadAction"
+    },
+    {
+      "path": "features/notifications/actions.ts",
+      "name": "mutateNotificationAction"
+    },
+    {
+      "path": "features/notifications/actions.ts",
+      "name": "dismissNotificationAction"
+    },
+    {
+      "path": "features/notifications/actions.ts",
+      "name": "saveNotificationPreferencesAction"
+    },
+    {
+      "path": "features/onboarding/actions/enterprise-onboarding.actions.ts",
+      "name": "saveOnboardingProgressAction"
+    },
+    {
+      "path": "features/onboarding/actions/enterprise-onboarding.actions.ts",
+      "name": "launchOnboardingAction"
+    },
+    {
+      "path": "features/onboarding/actions/onboarding.actions.ts",
+      "name": "completeOnboardingAction"
+    },
+    {
+      "path": "features/platform/customer-success/actions/platform.actions.ts",
+      "name": "startSupportSessionAction"
+    },
+    {
+      "path": "features/platform/customer-success/actions/platform.actions.ts",
+      "name": "approveSupportSessionAction"
+    },
+    {
+      "path": "features/platform/customer-success/actions/platform.actions.ts",
+      "name": "endSupportSessionAction"
+    },
+    {
+      "path": "features/platform/customer-success/actions/platform.actions.ts",
+      "name": "createFeatureFlagAction"
+    },
+    {
+      "path": "features/platform/customer-success/actions/platform.actions.ts",
+      "name": "assignFeatureFlagAction"
+    },
+    {
+      "path": "features/platform/customer-success/actions/platform.actions.ts",
+      "name": "publishReleaseAction"
+    },
+    {
+      "path": "features/platform/customer-success/actions/platform.actions.ts",
+      "name": "archiveReleaseAction"
+    },
+    {
+      "path": "features/platform/customer-success/actions/platform.actions.ts",
+      "name": "updateHealthNoteAction"
+    },
+    {
+      "path": "features/platform/founder-bootstrap/actions.ts",
+      "name": "grantFounderAction"
+    },
+    {
+      "path": "features/platform/founder-bootstrap/actions.ts",
+      "name": "revokeFounderAction"
+    },
+    {
+      "path": "features/platform/integrations/google/actions.ts",
+      "name": "connectGoogleAction"
+    },
+    {
+      "path": "features/platform/integrations/google/actions.ts",
+      "name": "connectGmailAction"
+    },
+    {
+      "path": "features/platform/integrations/google/actions.ts",
+      "name": "connectGoogleCalendarAction"
+    },
+    {
+      "path": "features/platform/integrations/google/actions.ts",
+      "name": "connectGoogleDriveAction"
+    },
+    {
+      "path": "features/platform/integrations/google/actions.ts",
+      "name": "connectGoogleContactsAction"
+    },
+    {
+      "path": "features/platform/integrations/google/actions.ts",
+      "name": "disconnectGoogleAction"
+    },
+    {
+      "path": "features/platform/integrations/microsoft/actions.ts",
+      "name": "connectMicrosoftAction"
+    },
+    {
+      "path": "features/platform/integrations/microsoft/actions.ts",
+      "name": "disconnectMicrosoftAction"
+    },
+    {
+      "path": "features/platform/integrations/microsoft/actions.ts",
+      "name": "connectMicrosoftCapabilityAction"
+    },
+    {
+      "path": "features/platform/integrations/whatsapp/actions.ts",
+      "name": "disconnectWhatsAppAction"
+    },
+    {
+      "path": "features/platform/knowledge/actions/index.ts",
+      "name": "recordKnowledgeFeedbackAction"
+    },
+    {
+      "path": "features/platform/knowledge/actions/index.ts",
+      "name": "recordKnowledgeQualityFeedbackAction"
+    },
+    {
+      "path": "features/platform/launch-readiness/actions/index.ts",
+      "name": "runLaunchReadinessAuditAction"
+    },
+    {
+      "path": "features/platform/organization/actions/organization.actions.ts",
+      "name": "acceptInvitationAction"
+    },
+    {
+      "path": "features/platform/product-intelligence/actions/index.ts",
+      "name": "submitProductFeedbackAction"
+    },
+    {
+      "path": "features/vayon/billing/actions/billing.actions.ts",
+      "name": "changePlanAction"
+    },
+    {
+      "path": "features/vayon/billing/actions/billing.actions.ts",
+      "name": "cancelSubscriptionAction"
+    },
+    {
+      "path": "features/vayon/billing/actions/billing.actions.ts",
+      "name": "reactivateSubscriptionAction"
+    },
+    {
+      "path": "features/vayon/billing/actions/billing.actions.ts",
+      "name": "updateBillingContactAction"
+    },
+    {
+      "path": "features/vayon/billing/actions/paddle.actions.ts",
+      "name": "createPaddleCheckoutAction"
+    },
+    {
+      "path": "features/vayon/billing/actions/paddle.actions.ts",
+      "name": "openPaddlePortalAction"
+    },
+    {
+      "path": "features/vayon/billing/actions/stripe.actions.ts",
+      "name": "createCheckoutSessionAction"
+    },
+    {
+      "path": "features/vayon/billing/actions/stripe.actions.ts",
+      "name": "openBillingPortalAction"
+    },
+    {
+      "path": "features/vayon/billing/actions/subscription-center.actions.ts",
+      "name": "manageSubscription"
+    },
+    {
+      "path": "features/vayon/billing/actions/subscription-center.actions.ts",
+      "name": "refreshSubscriptionState"
+    },
+    {
+      "path": "features/vayon/universal-bar/actions/search.actions.ts",
+      "name": "searchWorkspaceRecords"
+    }
+  ],
+  "note": "Acceptance is guarded against its target workspace in the database, not the accepting user’s current workspace. Existing invite alias delegates to the guarded action."
+}

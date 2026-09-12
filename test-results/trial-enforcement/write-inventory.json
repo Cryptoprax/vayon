@@ -1,0 +1,3098 @@
+[
+  {
+    "path": "features/authentication/actions/auth.actions.ts",
+    "name": "signUpAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "signUpSchema.safeParse",
+      "value",
+      "fail",
+      "AuthenticationService",
+      ".signUp",
+      "origin",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/authentication/actions/auth.actions.ts",
+    "name": "loginAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "safeAuthenticatedPath",
+      "value",
+      "encodeURIComponent",
+      "loginSchema.safeParse",
+      "fail",
+      "headers",
+      "AuthenticationService",
+      ".login",
+      "requestHeaders.get",
+      ".split",
+      ".trim",
+      "error.message.includes",
+      "createSupabaseServerClient",
+      "client.rpc",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/authentication/actions/auth.actions.ts",
+    "name": "googleLoginAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "safeAuthenticatedPath",
+      "value",
+      "AuthenticationService",
+      ".googleLogin",
+      "origin",
+      "fail",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/authentication/actions/auth.actions.ts",
+    "name": "forgotPasswordAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "forgotPasswordSchema.safeParse",
+      "value",
+      "fail",
+      "AuthenticationService",
+      ".sendReset",
+      "origin",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/authentication/actions/auth.actions.ts",
+    "name": "resetPasswordAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "resetPasswordSchema.safeParse",
+      "value",
+      "fail",
+      "AuthenticationService",
+      ".resetPassword",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/authentication/actions/auth.actions.ts",
+    "name": "logoutAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "createSupabaseServerClient",
+      "client.rpc",
+      "AuthenticationService",
+      ".logout",
+      "Error",
+      "revalidatePath",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/demo/actions.ts",
+    "name": "generateDemoOrganizationAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "DemoService",
+      ".generate",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/identity-workspace/actions/settings.actions.ts",
+    "name": "updateProfileAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "profileSettingsSchema.safeParse",
+      "value",
+      ".toUpperCase",
+      "if",
+      "redirect",
+      "encodeURIComponent",
+      "IdentityWorkspaceService",
+      ".context",
+      "repository.updateProfile",
+      "form.get",
+      "Number",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/identity-workspace/actions/settings.actions.ts",
+    "name": "inviteTeamMemberAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "inviteMemberAction"
+    ]
+  },
+  {
+    "path": "features/marketing/actions/lead.actions.ts",
+    "name": "captureLeadAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "schema.safeParse",
+      "Object.fromEntries",
+      "redirect",
+      "crypto.randomUUID",
+      "ContactPipelineService",
+      ".submit"
+    ]
+  },
+  {
+    "path": "features/notifications/actions.ts",
+    "name": "mutateNotificationAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "String",
+      "form.get",
+      "if",
+      ".includes",
+      "Error",
+      "NotificationService",
+      ".mutate",
+      "Date",
+      "Date.now",
+      "Number",
+      ".toISOString",
+      "refresh"
+    ]
+  },
+  {
+    "path": "features/notifications/actions.ts",
+    "name": "dismissNotificationAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "form.set",
+      "mutateNotificationAction"
+    ]
+  },
+  {
+    "path": "features/notifications/actions.ts",
+    "name": "saveNotificationPreferencesAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "Object.fromEntries",
+      "notificationCategories.map",
+      "form.get",
+      "String",
+      "NotificationService",
+      ".savePreferences",
+      "refresh"
+    ]
+  },
+  {
+    "path": "features/notifications/actions.ts",
+    "name": "scheduleReminderAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "NotificationService",
+      ".scheduleReminder",
+      "String",
+      "form.get",
+      "Date",
+      ".toISOString",
+      "refresh"
+    ]
+  },
+  {
+    "path": "features/onboarding/actions/enterprise-onboarding.actions.ts",
+    "name": "saveOnboardingProgressAction",
+    "parameters": [
+      "input"
+    ],
+    "serverAction": true,
+    "calls": [
+      "EnterpriseOnboardingService",
+      ".save"
+    ]
+  },
+  {
+    "path": "features/onboarding/actions/enterprise-onboarding.actions.ts",
+    "name": "launchOnboardingAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "OnboardingCompletionService",
+      ".complete",
+      "redirect",
+      "encodeURIComponent"
+    ]
+  },
+  {
+    "path": "features/onboarding/actions/onboarding.actions.ts",
+    "name": "completeOnboardingAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "onboardingSchema.safeParse",
+      "String",
+      "form.get",
+      "parseInvitations",
+      "redirect",
+      "encodeURIComponent",
+      "OnboardingService",
+      ".complete"
+    ]
+  },
+  {
+    "path": "features/onboarding/business-launch/actions.ts",
+    "name": "prepareBusinessLaunch",
+    "parameters": [
+      "input"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "requireWorkspacePermission",
+      "input.businessName.trim",
+      "input.industry.trim",
+      "input.country.trim",
+      "input.primaryLanguage.trim",
+      "Error",
+      "EnterpriseOnboardingService",
+      "Promise.all",
+      "onboarding.session",
+      "BrandStudioService.production",
+      ".snapshot",
+      "Date",
+      ".toISOString",
+      "planLaunch",
+      "Boolean",
+      "String",
+      "crypto.randomUUID",
+      "onboarding.save",
+      "...",
+      "Set"
+    ]
+  },
+  {
+    "path": "features/platform/continuous-learning/actions/index.ts",
+    "name": "saveIntelligenceMemoryAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "z.enum",
+      ".parse",
+      "form.get",
+      ".string",
+      ".trim",
+      ".min",
+      ".max",
+      ".transform",
+      ".split",
+      ".map",
+      "item.trim",
+      ".filter",
+      ".slice",
+      "ContinuousLearningService",
+      ".remember",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/continuous-learning/actions/index.ts",
+    "name": "generateExecutiveBriefingAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      ".enum",
+      ".parse",
+      "form.get",
+      "ContinuousLearningService",
+      ".generateBriefing",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/customer-success/actions/platform.actions.ts",
+    "name": "startSupportSessionAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "supportRequestSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "SupportService",
+      ".start",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/platform/customer-success/actions/platform.actions.ts",
+    "name": "approveSupportSessionAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "sessionActionSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "SupportService",
+      ".approve",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/platform/customer-success/actions/platform.actions.ts",
+    "name": "endSupportSessionAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "sessionActionSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "SupportService",
+      ".end",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/platform/customer-success/actions/platform.actions.ts",
+    "name": "createFeatureFlagAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "featureFlagSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "FeatureFlagService",
+      ".create",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/platform/customer-success/actions/platform.actions.ts",
+    "name": "assignFeatureFlagAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "flagAssignmentSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "FeatureFlagService",
+      ".assign",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/platform/customer-success/actions/platform.actions.ts",
+    "name": "publishReleaseAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "releaseSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "ReleaseService",
+      ".publish",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/platform/customer-success/actions/platform.actions.ts",
+    "name": "archiveReleaseAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "archiveReleaseSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "ReleaseService",
+      ".archive",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/platform/customer-success/actions/platform.actions.ts",
+    "name": "updateHealthNoteAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "healthNoteSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "HealthService",
+      ".addNote",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/platform/customer-success-workspace/actions/customer-success.actions.ts",
+    "name": "completeCustomerSuccessTaskAction",
+    "parameters": [
+      "step"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "EnterpriseOnboardingService",
+      "service.session",
+      "Error",
+      "Set",
+      "service.save",
+      "Math.max",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/customer-success-workspace/actions/customer-success.actions.ts",
+    "name": "configureCustomerAIAction",
+    "parameters": [
+      "employees"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "Set",
+      "employees.filter",
+      "allowed.has",
+      "Error",
+      "EnterpriseOnboardingService",
+      "service.session",
+      "service.save",
+      "Math.max",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/email/actions/index.ts",
+    "name": "retryEmailAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "EmailService",
+      ".retry",
+      "String",
+      "form.get",
+      "refresh"
+    ]
+  },
+  {
+    "path": "features/platform/email/actions/index.ts",
+    "name": "saveEmailTemplateAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "EmailService",
+      ".saveTemplate",
+      "String",
+      "form.get",
+      "refresh"
+    ]
+  },
+  {
+    "path": "features/platform/founder-bootstrap/actions.ts",
+    "name": "grantFounderAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "FounderBootstrapService",
+      ".grant",
+      "value",
+      "revalidatePath",
+      "fail",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/platform/founder-bootstrap/actions.ts",
+    "name": "revokeFounderAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "FounderBootstrapService",
+      ".revoke",
+      "value",
+      "revalidatePath",
+      "fail",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/platform/gmail/production-actions.ts",
+    "name": "synchronizeGmailAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "GmailProductionSyncService",
+      ".synchronize",
+      "revalidatePath",
+      "back",
+      "catch",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/platform/gmail/production-actions.ts",
+    "name": "updateGmailPermissionsAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "form.get",
+      "GmailProductionSyncService",
+      ".permissions",
+      "checked",
+      "revalidatePath",
+      "back",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/platform/google-calendar/production-actions.ts",
+    "name": "synchronizeGoogleCalendarAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "CalendarProductionSyncService",
+      ".synchronize",
+      "revalidatePath",
+      "back",
+      "catch",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/platform/google-calendar/production-actions.ts",
+    "name": "updateGoogleCalendarPermissionsAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "form.get",
+      "CalendarProductionSyncService",
+      ".permissions",
+      "on",
+      "revalidatePath",
+      "back",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/actions/integration.actions.ts",
+    "name": "enableProviderAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "toggle"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/actions/integration.actions.ts",
+    "name": "disableProviderAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "toggle"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/actions/integration.actions.ts",
+    "name": "rotateSecretMetadataAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "rotateMetadataSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "SecretsService",
+      ".rotate",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/actions/integration.actions.ts",
+    "name": "replayWebhookAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "webhookReplaySchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "WebhookService",
+      ".replay",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/actions/integration.actions.ts",
+    "name": "retrySynchronizationAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "retrySchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "RetryQueueService",
+      ".retry",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/actions/integration.actions.ts",
+    "name": "archiveIntegrationLogAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "archiveLogSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "HealthService",
+      ".archiveLog",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/google/actions.ts",
+    "name": "connectGoogleAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "integrationContext",
+      "EnvironmentFeatureFlagProvider",
+      ".evaluate",
+      "if",
+      "redirect",
+      "randomBytes",
+      ".toString",
+      "cookies",
+      "store.set",
+      "GoogleOAuthService",
+      ".authorizationUrl",
+      "GoogleOAuthService.codeChallenge"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/google/actions.ts",
+    "name": "connectGmailAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "integrationContext",
+      "EnvironmentFeatureFlagProvider",
+      ".evaluate",
+      "if",
+      "redirect",
+      "randomBytes",
+      ".toString",
+      "cookies",
+      "store.set",
+      "GoogleOAuthService",
+      ".authorizationUrl",
+      "GoogleOAuthService.codeChallenge"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/google/actions.ts",
+    "name": "connectGoogleCalendarAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "integrationContext",
+      "EnvironmentFeatureFlagProvider",
+      ".evaluate",
+      "if",
+      "redirect",
+      "randomBytes",
+      ".toString",
+      "cookies",
+      "store.set",
+      "GoogleOAuthService",
+      ".authorizationUrl",
+      "GoogleOAuthService.codeChallenge"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/google/actions.ts",
+    "name": "connectGoogleDriveAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "integrationContext",
+      "EnvironmentFeatureFlagProvider",
+      ".evaluate",
+      "if",
+      "redirect",
+      "randomBytes",
+      ".toString",
+      "cookies",
+      "store.set",
+      "GoogleOAuthService",
+      ".authorizationUrl",
+      "GoogleOAuthService.codeChallenge"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/google/actions.ts",
+    "name": "connectGoogleContactsAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "integrationContext",
+      "EnvironmentFeatureFlagProvider",
+      ".evaluate",
+      "if",
+      "redirect",
+      "randomBytes",
+      ".toString",
+      "cookies",
+      "store.set",
+      "GoogleOAuthService",
+      ".authorizationUrl",
+      "GoogleOAuthService.codeChallenge"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/google/actions.ts",
+    "name": "disconnectGoogleAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "GoogleOAuthService",
+      ".disconnect",
+      "revalidatePath",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/google/actions.ts",
+    "name": "modifyGmailMessageAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "integrationContext",
+      "val",
+      "if",
+      "redirect",
+      ".filter",
+      "GmailService",
+      ".modify",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/google/actions.ts",
+    "name": "createDraftAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "emailDraftSchema.safeParse",
+      "val",
+      "if",
+      "redirect",
+      "encodeURIComponent",
+      "GmailProductionSyncService",
+      ".state",
+      "GmailService",
+      ".createDraft",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/google/actions.ts",
+    "name": "sendEmailAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "emailDraftSchema.safeParse",
+      "val",
+      "if",
+      "redirect",
+      "encodeURIComponent",
+      "GmailProductionSyncService",
+      ".state",
+      "GmailService",
+      ".send",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/google/actions.ts",
+    "name": "createGoogleMeetingAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "calendarEventSchema.safeParse",
+      "val",
+      "Date",
+      ".toISOString",
+      ".split",
+      ".map",
+      "x.trim",
+      ".filter",
+      "if",
+      "redirect",
+      "encodeURIComponent",
+      "CalendarProductionSyncService",
+      ".state",
+      "GoogleCalendarService",
+      ".create",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/google/actions.ts",
+    "name": "deleteGoogleMeetingAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "integrationContext",
+      "val",
+      "if",
+      "redirect",
+      "CalendarProductionSyncService",
+      ".state",
+      "GoogleCalendarService",
+      ".remove",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/microsoft/actions.ts",
+    "name": "connectMicrosoftAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "integrationContext",
+      "EnvironmentFeatureFlagProvider",
+      ".evaluate",
+      "if",
+      "redirect",
+      "randomBytes",
+      ".toString",
+      "cookies",
+      "store.set",
+      "MicrosoftOAuthService",
+      ".authorizationUrl",
+      "MicrosoftOAuthService.codeChallenge"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/microsoft/actions.ts",
+    "name": "disconnectMicrosoftAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "MicrosoftOAuthService",
+      ".disconnect",
+      "revalidatePath",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/microsoft/actions.ts",
+    "name": "connectMicrosoftCapabilityAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "integrationContext",
+      "String",
+      "form.get",
+      "if",
+      "redirect",
+      "randomBytes",
+      ".toString",
+      "cookies",
+      "store.set",
+      "MicrosoftOAuthService",
+      ".authorizationUrl",
+      "MicrosoftOAuthService.codeChallenge"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/microsoft/business-actions.ts",
+    "name": "composeOutlookAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "value",
+      ".split",
+      ".map",
+      "item.trim",
+      ".filter",
+      "if",
+      "redirect",
+      "OutlookMailService",
+      ".saveDraft",
+      ".send",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/microsoft/business-actions.ts",
+    "name": "createOutlookMeetingAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "value",
+      "if",
+      "redirect",
+      "OutlookCalendarService",
+      ".create",
+      "Date",
+      ".toISOString",
+      ".split",
+      ".map",
+      "item.trim",
+      ".filter",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/microsoft/business-actions.ts",
+    "name": "uploadOneDriveAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "form.get",
+      "if",
+      "redirect",
+      "OneDriveService",
+      ".upload",
+      "value",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/storage/actions.ts",
+    "name": "uploadAssetAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "String",
+      "form.get",
+      "if",
+      "kinds.has",
+      "Error",
+      "StorageService",
+      ".upload",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/whatsapp/actions.ts",
+    "name": "connectWhatsAppAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "String",
+      "form.get",
+      "if",
+      "Error",
+      "operationsContext",
+      "TokenCryptoService",
+      ".encrypt",
+      "c.client.rpc",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/integrations/whatsapp/actions.ts",
+    "name": "disconnectWhatsAppAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "operationsContext",
+      "c.client.rpc",
+      "if",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/knowledge/actions/index.ts",
+    "name": "uploadKnowledgeDocumentAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "form.get",
+      "Error",
+      "EnterpriseKnowledgeService",
+      ".upload",
+      "String",
+      ".split",
+      ".map",
+      "x.trim",
+      ".filter",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/knowledge/actions/index.ts",
+    "name": "recordKnowledgeFeedbackAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "EnterpriseKnowledgeService",
+      ".feedback",
+      "String",
+      "form.get",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/knowledge/actions/index.ts",
+    "name": "recordKnowledgeQualityFeedbackAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "String",
+      "form.get",
+      ".includes",
+      "Error",
+      "EnterpriseKnowledgeService",
+      ".qualityFeedback",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/launch-readiness/actions/index.ts",
+    "name": "runLaunchReadinessAuditAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "LaunchReadinessService",
+      ".snapshot",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/organization/actions/organization.actions.ts",
+    "name": "updateOrganizationAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "value",
+      "profileSchema.safeParse",
+      ".toUpperCase",
+      "Object.fromEntries",
+      ".map",
+      "if",
+      "redirect",
+      "encodeURIComponent",
+      "EnterpriseOrganizationService",
+      ".updateProfile",
+      "form.get",
+      ".uploadLogo",
+      "refresh"
+    ]
+  },
+  {
+    "path": "features/platform/organization/actions/organization.actions.ts",
+    "name": "inviteMemberAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "String",
+      "form.get",
+      "invitationSchema.safeParse",
+      "value",
+      "if",
+      "failure",
+      "EnterpriseOrganizationService",
+      ".invite",
+      "origin",
+      "refresh",
+      "catch",
+      "redirectSubscriptionFailure",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/platform/organization/actions/organization.actions.ts",
+    "name": "invitationAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "idSchema.safeParse",
+      "value",
+      "if",
+      ".includes",
+      "failure",
+      "EnterpriseOrganizationService",
+      "service.resend",
+      "origin",
+      "service.cancelInvitation",
+      "refresh",
+      "catch",
+      "redirectSubscriptionFailure",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/platform/organization/actions/organization.actions.ts",
+    "name": "memberAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "idSchema.safeParse",
+      "value",
+      "if",
+      "failure",
+      "EnterpriseOrganizationService",
+      "service.setMemberStatus",
+      "service.removeMember",
+      "roleSchema.parse",
+      "service.changeRole",
+      "Error",
+      "refresh",
+      "catch",
+      "redirectSubscriptionFailure",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/platform/organization/actions/organization.actions.ts",
+    "name": "transferOwnershipAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "transferSchema.safeParse",
+      "value",
+      "if",
+      "failure",
+      "EnterpriseOrganizationService",
+      ".transferOwnership",
+      "refresh",
+      "catch",
+      "redirectSubscriptionFailure",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/platform/organization/actions/organization.actions.ts",
+    "name": "acceptInvitationAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "EnterpriseOrganizationService",
+      ".acceptInvitation",
+      "refresh",
+      "catch",
+      "redirectSubscriptionFailure",
+      "if",
+      "redirect",
+      "encodeURIComponent",
+      "String"
+    ]
+  },
+  {
+    "path": "features/platform/organization/actions/organization.actions.ts",
+    "name": "departmentAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "value",
+      "departmentSchema.safeParse",
+      ".split",
+      ".map",
+      "item.trim",
+      ".filter",
+      "if",
+      ".includes",
+      "idSchema.safeParse",
+      "redirect",
+      "EnterpriseOrganizationService",
+      ".manageDepartment",
+      "refresh"
+    ]
+  },
+  {
+    "path": "features/platform/organization/actions/organization.actions.ts",
+    "name": "teamAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "value",
+      "teamSchema.safeParse",
+      "form.getAll",
+      ".map",
+      "if",
+      ".includes",
+      "idSchema.safeParse",
+      "redirect",
+      "EnterpriseOrganizationService",
+      ".manageTeam",
+      "refresh"
+    ]
+  },
+  {
+    "path": "features/platform/product-intelligence/actions/index.ts",
+    "name": "submitProductFeedbackAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "schema.safeParse",
+      "form.get",
+      "Error",
+      "ProductIntelligenceService",
+      ".feedback",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/platform/workflows/actions/index.ts",
+    "name": "saveWorkflowAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "JSON.parse",
+      "String",
+      "form.get",
+      "WorkflowAutomationService",
+      ".save",
+      "refresh"
+    ]
+  },
+  {
+    "path": "features/platform/workflows/actions/index.ts",
+    "name": "publishWorkflowAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "WorkflowAutomationService",
+      ".publish",
+      "String",
+      "form.get",
+      "Number",
+      "refresh"
+    ]
+  },
+  {
+    "path": "features/platform/workflows/actions/index.ts",
+    "name": "installWorkflowTemplateAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "WorkflowAutomationService",
+      ".installTemplate",
+      "String",
+      "form.get",
+      "refresh"
+    ]
+  },
+  {
+    "path": "features/vayon/ai-runtime/actions/recommendation.actions.ts",
+    "name": "generateAIRecommendationAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "String",
+      "form.get",
+      "if",
+      "redirect",
+      "AIService",
+      ".recommend",
+      ".slice",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/vayon/ai-workforce/actions/ai.actions.ts",
+    "name": "approveRecommendationAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "decide"
+    ]
+  },
+  {
+    "path": "features/vayon/ai-workforce/actions/ai.actions.ts",
+    "name": "rejectRecommendationAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "decide"
+    ]
+  },
+  {
+    "path": "features/vayon/ai-workforce/actions/ai.actions.ts",
+    "name": "createKnowledgeEntryAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "knowledgeSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "KnowledgeService",
+      ".create",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/vayon/ai-workforce/actions/ai.actions.ts",
+    "name": "archiveRecommendationAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "archiveSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "RecommendationService",
+      ".archive",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/vayon/billing/actions/billing.actions.ts",
+    "name": "changePlanAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "changePlanSchema.safeParse",
+      "value",
+      "if",
+      "fail",
+      "SubscriptionService",
+      ".change",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/vayon/billing/actions/billing.actions.ts",
+    "name": "cancelSubscriptionAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "cancelSchema.safeParse",
+      "value",
+      "if",
+      "fail",
+      "SubscriptionService",
+      ".cancel",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/vayon/billing/actions/billing.actions.ts",
+    "name": "reactivateSubscriptionAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "cancelSchema.safeParse",
+      "value",
+      "if",
+      "fail",
+      "SubscriptionService",
+      ".reactivate",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/vayon/billing/actions/billing.actions.ts",
+    "name": "updateBillingContactAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "billingContactSchema.safeParse",
+      "value",
+      "if",
+      "fail",
+      "BillingService",
+      ".updateContact",
+      "revalidatePath",
+      "catch"
+    ]
+  },
+  {
+    "path": "features/vayon/billing/actions/paddle.actions.ts",
+    "name": "createPaddleCheckoutAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "String",
+      "form.get",
+      "Number",
+      "isPaddlePlanCode",
+      "Error",
+      "PaddleCheckoutService",
+      ".create",
+      "origin",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/billing/actions/paddle.actions.ts",
+    "name": "openPaddlePortalAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "origin",
+      "PaddleCustomerService",
+      ".portal",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/billing/actions/stripe.actions.ts",
+    "name": "createCheckoutSessionAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "String",
+      "form.get",
+      "Math.max",
+      "Number",
+      "StripeService",
+      ".checkout",
+      "origin",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/billing/actions/stripe.actions.ts",
+    "name": "openBillingPortalAction",
+    "parameters": [],
+    "serverAction": true,
+    "calls": [
+      "StripeService",
+      ".portal",
+      "origin",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/billing/actions/subscription-center.actions.ts",
+    "name": "manageSubscription",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "billingContext",
+      "SubscriptionRepository",
+      ".current",
+      "Number",
+      "form.get",
+      "Number.isSafeInteger",
+      "String",
+      "PaddleSubscriptionService",
+      "encodeURIComponent",
+      "isPaddlePlanCode",
+      "service.change",
+      "service.cancel",
+      "service.resume",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/vayon/billing/actions/subscription-center.actions.ts",
+    "name": "refreshSubscriptionState",
+    "parameters": [
+      "expectedWorkspaceId"
+    ],
+    "serverAction": true,
+    "calls": [
+      "billingContext",
+      "Error",
+      "SubscriptionRepository",
+      ".current"
+    ]
+  },
+  {
+    "path": "features/vayon/communication/actions/communication.actions.ts",
+    "name": "createCallAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "v",
+      "Date",
+      ".toISOString",
+      "callSchema.safeParse",
+      "if",
+      "fail",
+      "CallService",
+      ".create",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/vayon/communication/actions/communication.actions.ts",
+    "name": "createFollowUpAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "followUpSchema.safeParse",
+      "v",
+      "Date",
+      ".toISOString",
+      "if",
+      "fail",
+      "FollowUpService",
+      ".create",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/vayon/communication/actions/communication.actions.ts",
+    "name": "completeFollowUpAction",
+    "parameters": [
+      "id",
+      "version"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "FollowUpService",
+      ".complete",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "fail"
+    ]
+  },
+  {
+    "path": "features/vayon/communication/actions/communication.actions.ts",
+    "name": "addCommunicationNoteAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "noteSchema.safeParse",
+      "v",
+      "if",
+      "fail",
+      "CommunicationService",
+      ".addNote",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure"
+    ]
+  },
+  {
+    "path": "features/vayon/communication/actions/communication.actions.ts",
+    "name": "archiveConversationAction",
+    "parameters": [
+      "id",
+      "version"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "CommunicationService",
+      ".archive",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "fail"
+    ]
+  },
+  {
+    "path": "features/vayon/creative-studio/actions.ts",
+    "name": "createCreativeDraftAction",
+    "parameters": [
+      "formData"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "CreativeStudioService.production",
+      "Error",
+      "String",
+      "formData.get",
+      "formData.getAll",
+      ".map",
+      "campaignTypes.includes",
+      "selectedAudiences.some",
+      "audiences.includes",
+      "platforms.some",
+      "creativePlatforms.includes",
+      ".slice",
+      "service.saveDraft",
+      "redirectSubscriptionFailure",
+      "console.error",
+      "redirect",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/vayon/creative-studio/actions.ts",
+    "name": "generateCreativeAssetAction",
+    "parameters": [
+      "formData"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "CreativeGenerationService",
+      ".assistant",
+      "String",
+      "formData.get",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/vayon/creative-studio/actions.ts",
+    "name": "creativeAssistantChatAction",
+    "parameters": [
+      "_previous",
+      "formData"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "CreativeGenerationService",
+      ".assistant",
+      "String",
+      "formData.get",
+      "revalidatePath",
+      "redirectSubscriptionFailure",
+      "console.error"
+    ]
+  },
+  {
+    "path": "features/vayon/creative-studio/actions.ts",
+    "name": "autosaveCreativeEditorAction",
+    "parameters": [
+      "formData"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "creativeStudioAccess",
+      "Error",
+      "String",
+      "formData.get",
+      "JSON.parse",
+      "Array.isArray",
+      "access.client.rpc",
+      "Number",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/vayon/creative-studio/actions.ts",
+    "name": "growthCampaignChatAction",
+    "parameters": [
+      "_previous",
+      "formData"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "GrowthStudioService",
+      ".assistant",
+      "String",
+      "formData.get",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/vayon/crm-company/actions.ts",
+    "name": "createCompanyAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "parse",
+      "if",
+      "redirect",
+      "encodeURIComponent",
+      "await",
+      "CrmCompanyService.production",
+      ".create",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "friendly"
+    ]
+  },
+  {
+    "path": "features/vayon/crm-company/actions.ts",
+    "name": "updateCompanyAction",
+    "parameters": [
+      "id",
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "parse",
+      "if",
+      "redirect",
+      "encodeURIComponent",
+      "await",
+      "CrmCompanyService.production",
+      ".update",
+      "Number",
+      "str",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "friendly"
+    ]
+  },
+  {
+    "path": "features/vayon/crm-company/actions.ts",
+    "name": "archiveCompanyAction",
+    "parameters": [
+      "id",
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "await",
+      "CrmCompanyService.production",
+      ".archive",
+      "Number",
+      "str",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "redirect",
+      "encodeURIComponent",
+      "friendly"
+    ]
+  },
+  {
+    "path": "features/vayon/deal/actions/deal.actions.ts",
+    "name": "createDealAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "dealSchema.safeParse",
+      "input",
+      "if",
+      "fail",
+      "DealService",
+      ".create",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "message",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/deal/actions/deal.actions.ts",
+    "name": "updateDealAction",
+    "parameters": [
+      "id",
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "dealSchema.safeParse",
+      "input",
+      "if",
+      "fail",
+      "DealService",
+      ".update",
+      "Number",
+      "s",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/deal/actions/deal.actions.ts",
+    "name": "moveDealStageAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "PipelineService",
+      ".move",
+      "s",
+      "Number",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "message",
+      "if",
+      "fail",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/deal/actions/deal.actions.ts",
+    "name": "archiveDealAction",
+    "parameters": [
+      "id"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "DealService",
+      ".archive",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "fail",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/deal/actions/deal.actions.ts",
+    "name": "createOfferAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "offerSchema.safeParse",
+      "Object.fromEntries",
+      "if",
+      "fail",
+      "s",
+      "OfferService",
+      ".create",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/vayon/deal/actions/deal.actions.ts",
+    "name": "recordPaymentAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "paymentSchema.safeParse",
+      "Object.fromEntries",
+      "if",
+      "fail",
+      "s",
+      "PaymentService",
+      ".create",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/vayon/document-studio/actions.ts",
+    "name": "generateDocument",
+    "parameters": [
+      "input"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "requireWorkspacePermission",
+      "Date",
+      ".toISOString",
+      "crypto.randomUUID",
+      "BrandStudioService.production",
+      "brandService.snapshot",
+      ".brands.find",
+      "buildDocumentPrompt",
+      "Object.values",
+      "createLiveCreativeExecutionService",
+      ".accept",
+      "parseGeneratedDocument",
+      "reviewDocument"
+    ]
+  },
+  {
+    "path": "features/vayon/document-studio/actions.ts",
+    "name": "editDocumentBlock",
+    "parameters": [
+      "input",
+      "content",
+      "instruction"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "content.trim",
+      "Error",
+      "generateDocument"
+    ]
+  },
+  {
+    "path": "features/vayon/image-studio/actions.ts",
+    "name": "generateImage",
+    "parameters": [
+      "input"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "execute"
+    ]
+  },
+  {
+    "path": "features/vayon/image-studio/actions.ts",
+    "name": "editImage",
+    "parameters": [
+      "input",
+      "targetAssetId",
+      "operation"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "execute"
+    ]
+  },
+  {
+    "path": "features/vayon/lead/actions/lead.actions.ts",
+    "name": "createLeadAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "leadMutationSchema.safeParse",
+      "input",
+      "if",
+      "fail",
+      "LeadService",
+      ".create",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "friendly",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/lead/actions/lead.actions.ts",
+    "name": "updateLeadAction",
+    "parameters": [
+      "id",
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "leadMutationSchema.safeParse",
+      "input",
+      "if",
+      "fail",
+      "LeadService",
+      ".update",
+      "Number",
+      "s",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "friendly",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/lead/actions/lead.actions.ts",
+    "name": "bulkLeadAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "form.getAll",
+      ".map",
+      "s",
+      "if",
+      "fail",
+      "LeadAssignmentService",
+      "service.assign",
+      "service.changeStatus",
+      "LeadService",
+      ".archive",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "friendly",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/operations/actions/operations.actions.ts",
+    "name": "createTaskAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "taskSchema.safeParse",
+      "taskInput",
+      "if",
+      "redirect",
+      "target",
+      "TaskService",
+      ".create",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "message"
+    ]
+  },
+  {
+    "path": "features/vayon/operations/actions/operations.actions.ts",
+    "name": "updateTaskAction",
+    "parameters": [
+      "id",
+      "version",
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "taskSchema.safeParse",
+      "taskInput",
+      "if",
+      "redirect",
+      "target",
+      "TaskService",
+      ".update",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "message"
+    ]
+  },
+  {
+    "path": "features/vayon/operations/actions/operations.actions.ts",
+    "name": "completeTaskAction",
+    "parameters": [
+      "id",
+      "version"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "TaskService",
+      ".complete",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "message",
+      "if",
+      "redirect",
+      "target"
+    ]
+  },
+  {
+    "path": "features/vayon/operations/actions/operations.actions.ts",
+    "name": "archiveTaskAction",
+    "parameters": [
+      "id"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "TaskService",
+      ".archive",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "message",
+      "if",
+      "redirect",
+      "target"
+    ]
+  },
+  {
+    "path": "features/vayon/operations/actions/operations.actions.ts",
+    "name": "scheduleMeetingAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "meetingSchema.safeParse",
+      "value",
+      "iso",
+      "if",
+      "redirect",
+      "target",
+      "MeetingService",
+      ".schedule",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "message"
+    ]
+  },
+  {
+    "path": "features/vayon/operations/actions/operations.actions.ts",
+    "name": "scheduleVisitAction",
+    "parameters": [
+      "f"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "visitSchema.safeParse",
+      "value",
+      "iso",
+      "if",
+      "redirect",
+      "target",
+      "SiteVisitService",
+      ".schedule",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "message"
+    ]
+  },
+  {
+    "path": "features/vayon/property/actions/property.actions.ts",
+    "name": "createPropertyAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "propertyMutationSchema.safeParse",
+      "propertyFormInput",
+      "if",
+      "fail",
+      "PropertyService",
+      ".create",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/property/actions/property.actions.ts",
+    "name": "updatePropertyAction",
+    "parameters": [
+      "id",
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "propertyMutationSchema.safeParse",
+      "propertyFormInput",
+      "if",
+      "fail",
+      "PropertyService",
+      ".update",
+      "Number",
+      "s",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "redirect"
+    ]
+  },
+  {
+    "path": "features/vayon/property/actions/property.actions.ts",
+    "name": "archivePropertiesAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "form.getAll",
+      ".map",
+      ".filter",
+      "if",
+      "redirect",
+      "PropertyService",
+      ".archive",
+      "revalidatePath",
+      "catch",
+      "redirectSubscriptionFailure",
+      "fail"
+    ]
+  },
+  {
+    "path": "features/vayon/property-matching/actions.ts",
+    "name": "saveShortlistAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "operationsContext",
+      "c.client.from",
+      ".select",
+      "roles",
+      ".eq",
+      ".limit",
+      ".maybeSingle",
+      "if",
+      "roles.has",
+      "Error",
+      "await",
+      "PropertyMatchingService.production",
+      ".saveShortlist",
+      "String",
+      "form.get",
+      "form.getAll",
+      ".map",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/vayon/property-platform/inventory/actions.ts",
+    "name": "transitionInventoryUnitAction",
+    "parameters": [
+      "formData"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "operationsContext",
+      "context.client.from",
+      ".select",
+      "roles",
+      ".eq",
+      ".limit",
+      ".maybeSingle",
+      "allowed.has",
+      "Error",
+      "String",
+      "formData.get",
+      "InventoryService.production",
+      ".transitionUnit",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/vayon/site-visits/actions.ts",
+    "name": "mutateVisitAction",
+    "parameters": [
+      "form"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "authorize",
+      "String",
+      "form.get",
+      "if",
+      ".includes",
+      "Error",
+      "Number",
+      "await",
+      "SiteVisitLifecycleService.production",
+      ".mutate",
+      "revalidatePath"
+    ]
+  },
+  {
+    "path": "features/vayon/universal-bar/actions/search.actions.ts",
+    "name": "searchWorkspaceRecords",
+    "parameters": [
+      "query"
+    ],
+    "serverAction": true,
+    "calls": [
+      "query.trim",
+      ".replace",
+      ".trim",
+      "Promise.all",
+      "WorkspacePermissionService",
+      ".context",
+      "PlatformVisibilityService",
+      "canViewPath",
+      "evaluateWorkspacePermission",
+      "allowed",
+      "jobs.push",
+      "PropertyService",
+      ".list",
+      ".then",
+      "data.items.map",
+      "...record",
+      "LeadService",
+      "record",
+      "CrmCompanyService.production",
+      "service.list",
+      "service.contacts",
+      "data.slice",
+      ".map",
+      "label.toLocaleLowerCase",
+      ".includes",
+      "term.toLocaleLowerCase",
+      "DealService",
+      "data.filter",
+      "matches",
+      ".slice",
+      "CalendarService",
+      ".entries",
+      "CreativeStudioService.production",
+      "service.snapshot",
+      "...data.campaigns.filter",
+      "item.status.replaceAll",
+      "...data.assets.filter",
+      "...data.brandKits.filter",
+      "...data.templates.filter",
+      "operationsContext",
+      "SupabaseWorkforceRepository",
+      ".employees",
+      "employees.filter",
+      "Promise.allSettled",
+      "settled.flatMap",
+      "settled.some"
+    ]
+  },
+  {
+    "path": "features/vayon/video-studio/actions.ts",
+    "name": "generateVideo",
+    "parameters": [
+      "input"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "execute"
+    ]
+  },
+  {
+    "path": "features/vayon/video-studio/actions.ts",
+    "name": "editVideo",
+    "parameters": [
+      "input",
+      "targetAssetId",
+      "operation"
+    ],
+    "serverAction": true,
+    "calls": [
+      "guardSubscriptionAction",
+      "execute"
+    ]
+  },
+  {
+    "path": "app/api/ai/workforce/chat/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "enforceApiPermission",
+      "if",
+      "guardSubscriptionApi",
+      "EnterpriseRateLimitService",
+      ".enforce",
+      "requestSubject",
+      "Response.json",
+      "String",
+      "schema.safeParse",
+      "request.json",
+      ".catch",
+      "WorkforceRuntimeService.production",
+      "TextEncoder",
+      "ReadableStream",
+      "start",
+      "runtime.chat",
+      "controller.enqueue",
+      "encoder.encode",
+      "JSON.stringify",
+      "subscriptionStreamFailure",
+      "controller.close",
+      "Response"
+    ]
+  },
+  {
+    "path": "app/api/ai/workforce/collaborate/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "enforceApiPermission",
+      "if",
+      "guardSubscriptionApi",
+      "schema.safeParse",
+      "request.json",
+      ".catch",
+      "Response.json",
+      "AICollaborationService.production",
+      ".collaborate",
+      "subscriptionFailure",
+      "subscriptionMessage",
+      "subscriptionCenterHref"
+    ]
+  },
+  {
+    "path": "app/api/analytics/events/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "schema.safeParse",
+      "request.json",
+      ".catch",
+      "if",
+      "Response",
+      "await",
+      "ConversionAnalyticsService.production",
+      ".record"
+    ]
+  },
+  {
+    "path": "app/api/billing/paddle/checkout/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "request.json",
+      "isPaddlePlanCode",
+      "errorResponse",
+      "PaddleCheckoutService",
+      ".create",
+      "URL",
+      "NextResponse.json",
+      "checkoutFailure"
+    ]
+  },
+  {
+    "path": "app/api/billing/paddle/portal/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "URL",
+      "PaddleCustomerService",
+      ".portal",
+      "NextResponse.json"
+    ]
+  },
+  {
+    "path": "app/api/creative/documents/stream/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "guardSubscriptionApi",
+      "request.json",
+      "TextEncoder",
+      "ReadableStream",
+      "start",
+      "controller.enqueue",
+      "encoder.encode",
+      "JSON.stringify",
+      "generateDocument",
+      "subscriptionStreamFailure",
+      "controller.close",
+      "Response"
+    ]
+  },
+  {
+    "path": "app/api/creative/images/stream/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "guardSubscriptionApi",
+      "request.json",
+      "TextEncoder",
+      "ReadableStream",
+      "start",
+      "controller.enqueue",
+      "encoder.encode",
+      "JSON.stringify",
+      "generateImage",
+      "subscriptionStreamFailure",
+      "controller.close",
+      "Response"
+    ]
+  },
+  {
+    "path": "app/api/creative/videos/stream/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "guardSubscriptionApi",
+      "request.json",
+      "TextEncoder",
+      "ReadableStream",
+      "start",
+      "controller.enqueue",
+      "encoder.encode",
+      "JSON.stringify",
+      "generateVideo",
+      "subscriptionStreamFailure",
+      "controller.close",
+      "Response"
+    ]
+  },
+  {
+    "path": "app/api/documentation/events/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "schema.safeParse",
+      "request.json",
+      ".catch",
+      "if",
+      "Response",
+      "getSupabaseConfig",
+      "createClient",
+      "client.rpc"
+    ]
+  },
+  {
+    "path": "app/api/email/process/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "EnterpriseRateLimitService",
+      ".enforce",
+      "requestSubject",
+      "if",
+      "NextResponse.json",
+      "String",
+      "request.headers.get",
+      "EmailService",
+      ".processBatch"
+    ]
+  },
+  {
+    "path": "app/api/gmail/attachments/[messageId]/[attachmentId]/route.ts",
+    "name": "GET",
+    "parameters": [
+      "request",
+      "{params}"
+    ],
+    "serverAction": false,
+    "calls": [
+      "integrationContext",
+      "GmailService",
+      ".attachment",
+      "URL",
+      "url.searchParams.get",
+      ".replace",
+      "Response",
+      "Buffer.from"
+    ]
+  },
+  {
+    "path": "app/api/health/deployment/route.ts",
+    "name": "GET",
+    "parameters": [],
+    "serverAction": false,
+    "calls": [
+      "DeploymentService",
+      ".snapshot",
+      "snapshot.health.every",
+      "NextResponse.json"
+    ]
+  },
+  {
+    "path": "app/api/health/live/route.ts",
+    "name": "GET",
+    "parameters": [],
+    "serverAction": false,
+    "calls": [
+      "NextResponse.json",
+      "getBuildMetadata",
+      "Date",
+      ".toISOString"
+    ]
+  },
+  {
+    "path": "app/api/health/ready/route.ts",
+    "name": "GET",
+    "parameters": [],
+    "serverAction": false,
+    "calls": [
+      "performance.now",
+      "inspectEnvironment",
+      "createSupabaseServiceClient",
+      ".from",
+      ".select",
+      ".limit",
+      "NextResponse.json",
+      "getBuildMetadata",
+      "Math.round",
+      "Boolean"
+    ]
+  },
+  {
+    "path": "app/api/health/route.ts",
+    "name": "GET",
+    "parameters": [],
+    "serverAction": false,
+    "calls": [
+      "NextResponse.json",
+      "getBuildMetadata",
+      "Date",
+      ".toISOString"
+    ]
+  },
+  {
+    "path": "app/api/launch-readiness/report/route.ts",
+    "name": "GET",
+    "parameters": [],
+    "serverAction": false,
+    "calls": [
+      "Response",
+      "LaunchReadinessService",
+      ".export",
+      "Response.json"
+    ]
+  },
+  {
+    "path": "app/api/launch-readiness/run/route.ts",
+    "name": "POST",
+    "parameters": [],
+    "serverAction": false,
+    "calls": [
+      "LaunchReadinessService",
+      ".snapshot",
+      "Response.json"
+    ]
+  },
+  {
+    "path": "app/api/marketing/events/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "request.headers.get",
+      ".slice",
+      "crypto.randomUUID",
+      "schema.safeParse",
+      "request.json",
+      ".catch",
+      "Response",
+      "SupabaseMarketingProvider",
+      ".record",
+      "MarketingProviderError",
+      "log"
+    ]
+  },
+  {
+    "path": "app/api/microsoft/onedrive/[fileId]/route.ts",
+    "name": "GET",
+    "parameters": [
+      "_request",
+      "{params}"
+    ],
+    "serverAction": false,
+    "calls": [
+      "OneDriveService",
+      ".download",
+      "NextResponse",
+      "response.headers.get"
+    ]
+  },
+  {
+    "path": "app/api/product-intelligence/events/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "schema.safeParse",
+      "request.json",
+      ".catch",
+      "Response",
+      "ProductIntelligenceService",
+      ".recordBatch"
+    ]
+  },
+  {
+    "path": "app/api/security/report/route.ts",
+    "name": "GET",
+    "parameters": [],
+    "serverAction": false,
+    "calls": [
+      "Response",
+      "SecurityReviewService",
+      ".export",
+      "Response.json"
+    ]
+  },
+  {
+    "path": "app/api/security/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "schema.safeParse",
+      "request.json",
+      ".catch",
+      "Response.json",
+      "EnterpriseSecurityService.production",
+      "service.enrollMfa",
+      "service.verifyMfa",
+      "service.disableMfa",
+      "service.changePassword",
+      "service.changeEmail",
+      "URL",
+      "service.revokeOtherSessions",
+      "service.trustDevice",
+      "service.removeDevice",
+      "service.createToken",
+      "service.revokeToken",
+      "service.switchOrganization"
+    ]
+  },
+  {
+    "path": "app/api/version/route.ts",
+    "name": "GET",
+    "parameters": [],
+    "serverAction": false,
+    "calls": [
+      "NextResponse.json",
+      "getBuildMetadata"
+    ]
+  },
+  {
+    "path": "app/api/webhooks/paddle/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "request.headers.get",
+      "NextResponse.json",
+      "PaddleWebhookService",
+      ".process",
+      "request.text"
+    ]
+  },
+  {
+    "path": "app/api/webhooks/razorpay/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "request.headers.get",
+      "NextResponse.json",
+      "RazorpayService",
+      ".webhook",
+      "request.text"
+    ]
+  },
+  {
+    "path": "app/api/webhooks/stripe/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "request.headers.get",
+      "if",
+      "NextResponse.json",
+      "StripeService",
+      ".webhook",
+      "request.text",
+      "catch"
+    ]
+  },
+  {
+    "path": "app/api/webhooks/whatsapp/route.ts",
+    "name": "GET",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "URL",
+      "if",
+      "q.get",
+      "NextResponse"
+    ]
+  },
+  {
+    "path": "app/api/webhooks/whatsapp/route.ts",
+    "name": "POST",
+    "parameters": [
+      "request"
+    ],
+    "serverAction": false,
+    "calls": [
+      "request.text",
+      "request.headers.get",
+      "WhatsAppService",
+      "if",
+      "service.verifySignature",
+      "NextResponse.json",
+      "service.receive",
+      "JSON.parse"
+    ]
+  }
+]

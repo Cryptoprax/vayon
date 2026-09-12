@@ -21,7 +21,7 @@ test("VDS actions surfaces fields and tables use shared commercial contracts", (
   assert.match(surfaces, /sm:p-6/);
   assert.match(fields, /min-h-11/);
   assert.match(data, /sticky top-0/);
-  assert.match(data, /overflow-x-auto/);
+  assert.match(data, /WorkspaceTable/);
 });
 
 test("overlays and feedback are responsive accessible and motion aware", () => {

@@ -3,6 +3,6 @@ import { CreativePipelineService } from "@/features/vayon/creative-pipeline/serv
 import { FeatureAvailabilityState } from "@/features/vayon/empty-states/FeatureAvailabilityState";
 export default async function Page() {
   const service = await CreativePipelineService.production();
-  if (!service) return <FeatureAvailabilityState title="Creative Production Orchestration" description="Creative production pipelines are not enabled for this workspace yet. Join Early Access for a guided activation when the module becomes available." />;
+  if (!service) return <FeatureAvailabilityState title="Creative Production Orchestration" description="Creative production pipelines are not enabled for this workspace. Ask your workspace administrator about access." />;
   return <CreativePipelineDashboard snapshot={await service.snapshot()} />;
 }

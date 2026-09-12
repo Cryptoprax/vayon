@@ -1,0 +1,167 @@
+[
+  {
+    "file": "app/vayon/creative/brand/loading.tsx",
+    "line": 3,
+    "class": "mx-auto w-full max-w-[110rem] animate-pulse space-y-5 px-4 py-6"
+  },
+  {
+    "file": "app/vayon/creative/campaigns/loading.tsx",
+    "line": 3,
+    "class": "mx-auto w-full max-w-[120rem] animate-pulse space-y-5 px-4 py-6"
+  },
+  {
+    "file": "app/vayon/creative/cloud/loading.tsx",
+    "line": 3,
+    "class": "mx-auto w-full max-w-[120rem] animate-pulse space-y-5 px-4 py-6"
+  },
+  {
+    "file": "app/vayon/creative/documents/loading.tsx",
+    "line": 3,
+    "class": "mx-auto max-w-[120rem] animate-pulse space-y-5 p-6"
+  },
+  {
+    "file": "app/vayon/creative/images/loading.tsx",
+    "line": 3,
+    "class": "mx-auto w-full max-w-[120rem] animate-pulse space-y-5 px-4 py-6"
+  },
+  {
+    "file": "app/vayon/creative/loading.tsx",
+    "line": 1,
+    "class": "mx-auto w-full max-w-[120rem] animate-pulse space-y-5 px-4 py-5 lg:px-6"
+  },
+  {
+    "file": "app/vayon/creative/pipelines/loading.tsx",
+    "line": 3,
+    "class": "mx-auto w-full max-w-[120rem] animate-pulse space-y-5 px-4 py-6"
+  },
+  {
+    "file": "app/vayon/creative/runtime/execution/loading.tsx",
+    "line": 3,
+    "class": "mx-auto w-full max-w-[120rem] animate-pulse space-y-5 px-4 py-6"
+  },
+  {
+    "file": "app/vayon/creative/runtime/loading.tsx",
+    "line": 3,
+    "class": "mx-auto w-full max-w-[120rem] animate-pulse space-y-5 px-4 py-6"
+  },
+  {
+    "file": "app/vayon/creative/videos/loading.tsx",
+    "line": 3,
+    "class": "mx-auto max-w-[120rem] animate-pulse space-y-5 p-6"
+  },
+  {
+    "file": "app/vayon/creative-studio/loading.tsx",
+    "line": 5,
+    "class": "mx-auto max-w-[96rem] animate-pulse space-y-5 px-4 py-7 sm:px-6"
+  },
+  {
+    "file": "app/vayon/customer-success/loading.tsx",
+    "line": 3,
+    "class": "mx-auto max-w-[120rem] space-y-6 px-4 py-6 sm:px-6 lg:px-8"
+  },
+  {
+    "file": "app/vayon/dashboard/loading.tsx",
+    "line": 5,
+    "class": "mx-auto max-w-[100rem] space-y-6 px-4 py-7 sm:px-6 sm:py-9"
+  },
+  {
+    "file": "app/vayon/deals/[dealId]/page.tsx",
+    "line": 2,
+    "class": "mx-auto mt-5 max-w-[96rem] rounded-xl bg-vds-success-soft p-3 text-sm text-vds-success"
+  },
+  {
+    "file": "app/vayon/leads/[leadId]/page.tsx",
+    "line": 17,
+    "class": "mx-auto mt-5 max-w-[96rem] rounded-xl bg-vds-success-soft p-3 text-sm text-vds-success"
+  },
+  {
+    "file": "app/vayon/leads/[leadId]/page.tsx",
+    "line": 17,
+    "class": "mx-auto mb-8 max-w-[96rem] px-4 sm:px-6"
+  },
+  {
+    "file": "app/vayon/loading.tsx",
+    "line": 1,
+    "class": "mx-auto max-w-[100rem] px-4 py-8 sm:px-5"
+  },
+  {
+    "file": "app/vayon/settings/integrations/google/page.tsx",
+    "line": 6,
+    "class": "mx-auto mt-6 max-w-6xl px-5 text-vds-danger"
+  },
+  {
+    "file": "app/vayon/settings/integrations/google/page.tsx",
+    "line": 6,
+    "class": "mx-auto mt-6 max-w-6xl px-5 text-vds-success"
+  },
+  {
+    "file": "app/vayon/settings/integrations/microsoft/page.tsx",
+    "line": 5,
+    "class": "mx-auto mt-6 max-w-6xl px-5 text-vds-danger"
+  },
+  {
+    "file": "app/vayon/settings/integrations/microsoft/page.tsx",
+    "line": 5,
+    "class": "mx-auto mt-6 max-w-6xl px-5 text-vds-success"
+  },
+  {
+    "file": "app/vayon/settings/integrations/page.tsx",
+    "line": 25,
+    "class": "mx-auto flex max-w-[100rem] justify-end px-4 pt-5 sm:px-6"
+  },
+  {
+    "file": "app/vayon/settings/integrations/page.tsx",
+    "line": 28,
+    "class": "mx-auto mt-5 max-w-[96rem] px-5 text-vds-danger"
+  },
+  {
+    "file": "app/vayon/settings/integrations/page.tsx",
+    "line": 36,
+    "class": "mx-auto mt-5 max-w-[96rem] px-5 text-vds-success"
+  },
+  {
+    "file": "features/vayon/admin-platform/components/AdminViews.tsx",
+    "line": 23,
+    "class": "mx-auto flex max-w-[110rem] gap-2 overflow-x-auto px-5 pt-6"
+  },
+  {
+    "file": "features/vayon/components/RouteStates.tsx",
+    "line": 7,
+    "class": "mx-auto max-w-[96rem] px-5 py-8"
+  },
+  {
+    "file": "features/vayon/cross-module-intelligence/ContextualAIActions.tsx",
+    "line": 43,
+    "class": "mx-auto my-6 max-w-[96rem] rounded-3xl border border-vds-accent-border bg-vds-surface p-5 sm:p-6"
+  },
+  {
+    "file": "features/vayon/deal-room/components/DealRoomViews.tsx",
+    "line": 26,
+    "class": "mx-auto flex max-w-[110rem] gap-2 overflow-x-auto px-5 pt-6"
+  },
+  {
+    "file": "features/vayon/one-click-experience/OneClickSetup.tsx",
+    "line": 26,
+    "class": "mx-auto max-w-[96rem] px-5 py-8"
+  },
+  {
+    "file": "features/vayon/real-estate-experience/RealEstateSurfaces.tsx",
+    "line": 9,
+    "class": "mx-auto mt-6 max-w-[96rem] px-4 sm:px-6"
+  },
+  {
+    "file": "features/vayon/real-estate-experience/RealEstateSurfaces.tsx",
+    "line": 17,
+    "class": "mx-auto mt-6 max-w-[96rem] px-4 sm:px-6"
+  },
+  {
+    "file": "features/platform/continuous-learning/components/ContinuousLearningDashboard.tsx",
+    "line": 19,
+    "class": "mx-auto max-w-7xl px-5 pb-10"
+  },
+  {
+    "file": "features/platform/integration-platform/components/ProviderStatusDashboard.tsx",
+    "line": 11,
+    "class": "mx-auto max-w-[96rem] px-5 pb-10"
+  }
+]

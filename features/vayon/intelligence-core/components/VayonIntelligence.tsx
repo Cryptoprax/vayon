@@ -43,9 +43,11 @@ export function VayonIntelligence({
   subscriptionPlan,
   permissions = [],
   diagnostic,
-  docked = false,
+  docked: legacyDocked = false,
+  embedded = false,
 }: {
   docked?: boolean;
+  embedded?: boolean;
   route: string;
   organization: string;
   workspace: string;
@@ -55,6 +57,7 @@ export function VayonIntelligence({
   permissions?: readonly string[];
   diagnostic?: string | null;
 }) {
+  const docked = legacyDocked || embedded;
   const intelligenceModule = moduleForRoute(route),
     contextGraph = buildContextGraph(route, {
       organization,
@@ -79,7 +82,7 @@ export function VayonIntelligence({
         return { conversations: [], ui: {} };
       }
     }),
-    [open, setOpen] = useState(docked ? false : Boolean(storedState.ui.open)),
+    [open, setOpen] = useState(embedded ? true : docked ? false : Boolean(storedState.ui.open)),
     [full, setFull] = useState(docked ? false : Boolean(storedState.ui.full)),
     [tab, setTab] = useState<IntelligenceTab>("assistant"),
     [items, setItems] = useState<IntelligenceConversation[]>(
@@ -147,9 +150,9 @@ export function VayonIntelligence({
   useEffect(() => {
     try {
       localStorage.setItem(storageKey, JSON.stringify(items.slice(0, 30)));
-      localStorage.setItem(uiKey, JSON.stringify({ open, full }));
+      if (!embedded) localStorage.setItem(uiKey, JSON.stringify({ open, full }));
     } catch {}
-  }, [items, open, full]);
+  }, [items, open, full, embedded]);
   useEffect(() => {
     let timer = window.setTimeout(
       () => setSuccessState((current) => ({ ...current, inactiveMs: 300000 })),
@@ -239,7 +242,7 @@ export function VayonIntelligence({
     URL.revokeObjectURL(url);
   }
   return (
-    <IntelligenceSurface docked={docked}
+    <IntelligenceSurface docked={docked} embedded={embedded}
       id="vayon-intelligence"
       kind="assistant"
       priority={10}
@@ -295,6 +298,7 @@ export function VayonIntelligence({
             <Button
               variant="ghost"
               aria-label="Minimize VAYON Copilot"
+              hidden={embedded}
               onClick={() => setOpen(false)}
             >
               <X />
@@ -591,8 +595,9 @@ function subscribeDock(callback: () => void) {
   return () => observer.disconnect();
 }
 function dockSnapshot() { return document.getElementById("creative-intelligence-dock"); }
-function IntelligenceSurface({ docked, children, ...props }: ComponentProps<typeof FloatingSurface> & { docked: boolean }) {
+function IntelligenceSurface({ docked, embedded, children, ...props }: ComponentProps<typeof FloatingSurface> & { docked: boolean; embedded: boolean }) {
   const target = useSyncExternalStore(subscribeDock, dockSnapshot, () => null);
+  if (embedded) return <div data-workspace-assistant-engine>{children}</div>;
   if (docked && target) return createPortal(children, target);
   if (docked) return null;
   return <FloatingSurface {...props}>{children}</FloatingSurface>;

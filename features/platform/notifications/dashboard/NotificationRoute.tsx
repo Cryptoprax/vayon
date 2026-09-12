@@ -1,3 +1,4 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import {
   Inbox,
   NotificationHeader,
@@ -13,7 +14,7 @@ export async function NotificationRoute({
   const service = new NotificationService(),
     items = await service.inbox("current-user");
   return (
-    <main className="mx-auto max-w-[100rem] px-5 py-8">
+    <WorkspaceContent >
       <NotificationNav />
       <NotificationHeader
         title={view[0]!.toUpperCase() + view.slice(1)}
@@ -30,6 +31,6 @@ export async function NotificationRoute({
           }
         />
       )}
-    </main>
+    </WorkspaceContent>
   );
 }

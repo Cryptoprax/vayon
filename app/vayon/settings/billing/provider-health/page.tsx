@@ -1,17 +1,2 @@
-import { BillingHeader } from "@/features/vayon/billing/components/BillingUI";
-import { ProviderHealthGrid } from "@/features/vayon/billing/components/CommercialPlatform";
-import { CommercialHealthService } from "@/features/vayon/billing/services/commercial-health.service";
-export default async function Page() {
-  const items = await new CommercialHealthService().snapshot();
-  return (
-    <main className="mx-auto max-w-[96rem] px-5 py-8">
-      <BillingHeader
-        title="Connector health"
-        description="Live tenant-scoped health evidence for commercial, AI, communication, productivity, storage, and database providers."
-      />
-      <div className="mt-7">
-        <ProviderHealthGrid items={items} />
-      </div>
-    </main>
-  );
-}
+import { redirect } from "next/navigation";
+export default function Page() { redirect("/vayon/settings/billing"); }

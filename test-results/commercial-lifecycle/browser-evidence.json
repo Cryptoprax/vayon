@@ -1,0 +1,119 @@
+{
+  "environment": "Local Chromium; actual React components and CSS; explicit QA records, mocked checkout SDK, HTTP and server actions. No real payment, authentication or database certification.",
+  "screens": [
+    {
+      "width": 320,
+      "documentOverflow": false,
+      "dialogOverflow": false,
+      "escapeAndFocusRestoration": true
+    },
+    {
+      "width": 375,
+      "documentOverflow": false,
+      "dialogOverflow": false,
+      "escapeAndFocusRestoration": true
+    },
+    {
+      "width": 768,
+      "documentOverflow": false,
+      "dialogOverflow": false,
+      "escapeAndFocusRestoration": true
+    },
+    {
+      "width": 1024,
+      "documentOverflow": false,
+      "dialogOverflow": false,
+      "escapeAndFocusRestoration": true
+    },
+    {
+      "width": 1280,
+      "documentOverflow": false,
+      "dialogOverflow": false,
+      "escapeAndFocusRestoration": true
+    },
+    {
+      "width": 1440,
+      "documentOverflow": false,
+      "dialogOverflow": false,
+      "escapeAndFocusRestoration": true
+    },
+    {
+      "width": 1600,
+      "documentOverflow": false,
+      "dialogOverflow": false,
+      "escapeAndFocusRestoration": true
+    },
+    {
+      "width": 1920,
+      "documentOverflow": false,
+      "dialogOverflow": false,
+      "escapeAndFocusRestoration": true
+    },
+    {
+      "width": 2560,
+      "documentOverflow": false,
+      "dialogOverflow": false,
+      "escapeAndFocusRestoration": true
+    }
+  ],
+  "interactions": [
+    {
+      "checkout": "overlay transaction ID; annual plan retained; no navigation; confirmation refreshes server state",
+      "request": {
+        "url": "/api/billing/paddle/checkout",
+        "body": {
+          "planCode": "starter",
+          "billingPeriod": "annual",
+          "seatQuantity": 1
+        }
+      }
+    },
+    {
+      "cancelRequiresConfirmation": true,
+      "paymentMethodUsesOverlay": true
+    },
+    {
+      "keyboardFocusContained": true,
+      "inputsLabelled": true
+    },
+    {
+      "theme": "light",
+      "contrast": [
+        {
+          "text": "Subscription Center",
+          "color": "rgb(41, 39, 34)",
+          "background": "rgb(247, 243, 236)",
+          "ratio": 13.488515271281491
+        },
+        {
+          "text": "Choose the plan that fits your team. Manage your subscription here in VAYON.",
+          "color": "rgb(95, 90, 82)",
+          "background": "rgb(247, 243, 236)",
+          "ratio": 6.182679867032527
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "contrast": [
+        {
+          "text": "Subscription Center",
+          "color": "rgb(255, 255, 255)",
+          "background": "rgb(24, 26, 31)",
+          "ratio": 17.407427097607684
+        },
+        {
+          "text": "Choose the plan that fits your team. Manage your subscription here in VAYON.",
+          "color": "rgb(139, 147, 164)",
+          "background": "rgb(24, 26, 31)",
+          "ratio": 5.6427816840377645
+        }
+      ]
+    },
+    {
+      "shortViewport": "320x568",
+      "noticeRemainsVisibleWithoutCoveringContent": true
+    }
+  ],
+  "errors": []
+}

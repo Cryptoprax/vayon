@@ -1,0 +1,16 @@
+import React from 'react';
+import { SubscriptionResponseHandler, handleSubscriptionResponse } from '@/features/vayon/billing/components/SubscriptionResponseHandler';
+import { createRoot } from 'react-dom/client';
+import { SubscriptionCenter } from '@/features/vayon/billing/components/SubscriptionCenter';
+import { WorkspaceTrialBanner } from '@/features/vayon/billing/components/WorkspaceTrialBanner';
+import { WorkspacePageLayout, WorkspaceHeader } from '@/features/platform/design-system/layout/WorkspaceLayouts';
+const params = new URLSearchParams(location.search);
+const catalog = ['starter','professional'].flatMap(plan => ['monthly','annual'].map(period => ({ plan, period, productId: 'pro_qa', priceId: `pri_${plan}_${period}`, name: plan, description: 'QA price fixture', amount: period === 'monthly' ? '12345' : '123450', currencyCode: 'USD' })));
+const trial = { status:'trialing', endsAt:new Date(Date.now() + (params.has('expired') ? -1000 : 86400000*2)).toISOString(), usage:{properties:1,leads:2,companies:1,members:1} };
+window.billingCheckout = [];
+let callback;
+window.Paddle = { Environment:{set(){}}, Initialize(options){callback=options.eventCallback;}, Update(options){callback=options.eventCallback;}, Checkout:{open(options){window.billingCheckout.push(options);},close(){}}, complete(){callback({name:'checkout.completed'});}, cancel(){callback({name:'checkout.closed'});} };
+window.fetch = async (url, options) => { window.billingRequests ??= []; window.billingRequests.push({url,body:JSON.parse(options.body)}); return params.has('failure') ? {ok:false,json:async()=>({success:false})} : {ok:true,json:async()=>({success:true,transactionId:'txn_checkout_qa'})}; };
+const code = params.get('subscription');
+const blocked = code ? { allowed:false, code:code === 'expired' ? 'TRIAL_EXPIRED' : code === 'limit' ? 'TRIAL_LIMIT_REACHED' : 'SUBSCRIPTION_UNVERIFIED', resource:params.get('resource') ?? 'write' } : undefined;
+createRoot(document.getElementById('root')).render(<main id="main-content"><SubscriptionResponseHandler/><WorkspacePageLayout className="vds-workspace-contained" notice={<WorkspaceTrialBanner snapshot={trial}/>}><WorkspaceHeader title="Subscription Center" description="Manage your plan and continue working in VAYON."/><section className="mt-6"><button onClick={() => handleSubscriptionResponse(new Response(JSON.stringify({allowed:false,code:'TRIAL_LIMIT_REACHED',resource:'members'}),{status:402}))}>Test blocked invitation response</button></section><SubscriptionCenter blocked={blocked} catalog={params.has('unconfigured') ? [] : catalog} organizationId="qa-org" workspaceId="qa-workspace" clientToken={params.has('unconfigured') ? undefined : 'test_qa'} environment="sandbox"/></WorkspacePageLayout></main>);

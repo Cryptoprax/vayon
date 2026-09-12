@@ -1,3 +1,4 @@
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import {
   Activity,
@@ -32,8 +33,8 @@ export function ExecutionDashboard({
     ["Adapters", snapshot.adapters, Cpu],
   ];
   return (
-    <main className="mx-auto w-full max-w-[120rem] space-y-6 px-4 py-6 sm:px-6 lg:px-8">
-      <header className={`${card} p-6 sm:p-8`}>
+    <WorkspaceContent >
+      <WorkspaceHeader >
         <Link
           href="/vayon/creative/runtime"
           className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary"
@@ -47,7 +48,7 @@ export function ExecutionDashboard({
           Provider-independent planning, queueing, execution, events, and
           approval handoff. Live adapters are composed outside the engine.
         </p>
-      </header>
+      </WorkspaceHeader>
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-6">
         {metrics.map(([label, value, Icon]) => (
           <article className={`${card} p-4`} key={String(label)}>
@@ -152,6 +153,6 @@ export function ExecutionDashboard({
           Interface only. No persistence implementation or database changes.
         </p>
       </section>
-    </main>
+    </WorkspaceContent>
   );
 }

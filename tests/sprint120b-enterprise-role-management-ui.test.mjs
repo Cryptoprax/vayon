@@ -32,8 +32,10 @@ test("invite picker is searchable grouped and keyboard accessible", () => {
 });
 
 test("member management preserves lifecycle actions and exposes role context", () => {
-  for (const value of ["memberAction","suspend","reactivate","remove","Permission summary","Department","RoleOptions"]) assert.match(ui, new RegExp(value));
-  assert.match(ui, /defaultValue=\{member\.role\}/);
+  const rows = read("features/platform/organization/components/MemberManagementRows.tsx");
+  for (const value of ["memberAction","suspend","reactivate","remove","View Permissions","Department","RoleOptions"]) assert.match(ui + rows, new RegExp(value));
+  assert.doesNotMatch(ui, /min-w-\[1080px\]|<table/);
+  assert.match(rows, /defaultValue=\{member\.role\}/);
   assert.match(ui, /action=\{transferOwnershipAction\}/);
 });
 

@@ -1,0 +1,53 @@
+"use client";
+
+import Link from "next/link";
+import { createContext, useContext, useEffect, useId, useRef, useState, type HTMLAttributes, type ReactNode } from "react";
+import { Button, ButtonLink } from "../components/core/Actions";
+import { FolderOpen } from "lucide-react";
+
+const BreadcrumbContext = createContext<ReactNode>(null);
+type RegionProps = HTMLAttributes<HTMLDivElement>;
+
+/** Properties reference: fluid width, shared shell gutters, 24px sections, 20px cards. */
+export function WorkspacePageLayout({ children, breadcrumbs, assistant, className = "" }: { children: ReactNode; breadcrumbs?: ReactNode; assistant?: ReactNode; className?: string }) {
+  return <BreadcrumbContext.Provider value={breadcrumbs}><div className={`vds-workspace-page ${className}`} data-workspace-layout="commercial"><div className="vds-workspace-breadcrumb-fallback">{breadcrumbs}</div><div className="vds-workspace-body"><div className="vds-workspace-main" role="region" aria-label="Workspace content" tabIndex={assistant ? 0 : undefined}>{children}</div>{assistant}</div></div></BreadcrumbContext.Provider>;
+}
+
+export function WorkspaceHeader({ title, description, eyebrow, actions, children, breadcrumbs: breadcrumbOverride, className = "", ...props }: Omit<HTMLAttributes<HTMLElement>, "title"> & { title?: string; description?: ReactNode; eyebrow?: string; actions?: ReactNode; breadcrumbs?: ReactNode }) {
+  const inheritedBreadcrumbs = useContext(BreadcrumbContext);
+  const breadcrumbs = breadcrumbOverride ?? inheritedBreadcrumbs;
+  const header = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const node = header.current, main = node?.closest<HTMLElement>(".vds-workspace-main");
+    if (!node || !main) return;
+    const measure = () => main.style.setProperty("--workspace-header-height", `${node.offsetHeight}px`);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+  return <header {...props} ref={header} className={`vds-workspace-header ${className}`} data-workspace-header>{breadcrumbs && <div className="vds-workspace-breadcrumbs">{breadcrumbs}</div>}{children ?? <div className="vds-workspace-heading-row"><div className="min-w-0">{eyebrow && <p className="vds-workspace-eyebrow">{eyebrow}</p>}<h1>{title}</h1>{description && <p className="vds-workspace-description">{description}</p>}</div>{actions && <WorkspaceActionBar>{actions}</WorkspaceActionBar>}</div>}</header>;
+}
+export function WorkspaceActionBar({ className = "", children, ...props }: RegionProps) { return <div {...props} className={`vds-workspace-actions ${className}`}>{children}</div>; }
+export function WorkspaceAttentionPanel({ title = "Needs attention", children, className = "", ...props }: RegionProps & { title?: string }) {
+  const id = useId();
+  return <section {...props} aria-labelledby={id} className={`vds-workspace-attention ${className}`}><h2 id={id}>{title}</h2><div className="vds-workspace-attention-items">{children}</div></section>;
+}
+export function WorkspaceFilters({ children, className = "", ...props }: RegionProps) { return <div role="group" aria-label="Filter this workspace" {...props} className={`vds-workspace-filters ${className}`}>{children}</div>; }
+export function WorkspaceContent({ children, className = "", ...props }: RegionProps) { return <div {...props} className={`vds-workspace-content ${className}`} data-workspace-content>{children}</div>; }
+export function WorkspaceEmptyState({ title, description, nextStep, action, children, className = "" }: { title: string; description: string; nextStep?: string; action?: { label: string; href: string } | { label: string; onClick: () => void }; children?: ReactNode; className?: string }) {
+  const id = useId();
+  return <section aria-labelledby={id} data-empty-state className={`vds-workspace-empty ${className}`}><FolderOpen className="vds-workspace-empty-icon" aria-hidden="true"/><h2 id={id}>{title}</h2><p>{description}</p>{nextStep && <p>{nextStep}</p>}{action && ("href" in action ? <ButtonLink href={action.href}>{action.label}</ButtonLink> : <Button type="button" onClick={action.onClick}>{action.label}</Button>)}{children}</section>;
+}
+export function WorkspacePagination({ page, pageCount, total, previousHref, nextHref, children }: { page?: number; pageCount?: number; total?: number; previousHref?: string; nextHref?: string; children?: ReactNode }) {
+  return <nav aria-label="Pagination" className="vds-workspace-pagination">{children ?? <><span>Page {page} / {Math.max(1, pageCount ?? 1)}{total !== undefined && ` - ${total} results`}</span><div className="vds-workspace-actions">{previousHref ? <Link className="focus-ring" href={previousHref}>Previous</Link> : <span aria-disabled="true">Previous</span>}{nextHref ? <Link className="focus-ring" href={nextHref}>Next</Link> : <span aria-disabled="true">Next</span>}</div></>}</nav>;
+}
+export function WorkspaceAssistantDock({ children }: { children: ReactNode }) {
+  const [open, setOpen] = useState(false), id = useId(), trigger = useRef<HTMLButtonElement>(null), region = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const reveal = () => { setOpen(true); requestAnimationFrame(() => region.current?.scrollIntoView({ block: "nearest", behavior: "auto" })); };
+    window.addEventListener("vayon:copilot:open", reveal);
+    return () => window.removeEventListener("vayon:copilot:open", reveal);
+  }, []);
+  return <aside ref={region} className="vds-workspace-assistant" data-workspace-assistant data-open={open} aria-label="Workspace assistant" onKeyDown={event => { if (event.key === "Escape" && open) { setOpen(false); trigger.current?.focus(); } }}><Button ref={trigger} type="button" variant="secondary" aria-expanded={open} aria-controls={id} onClick={() => setOpen(value => !value)} className="vds-workspace-assistant-toggle">{open ? "Close assistant" : "Open assistant"}</Button><div id={id} hidden={!open} className="vds-workspace-assistant-content">{children}</div></aside>;
+}

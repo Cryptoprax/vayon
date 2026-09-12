@@ -22,11 +22,11 @@ export default async function Page({
   ]);
   return (
     <>
-      <div className="mx-auto flex max-w-[100rem] justify-end px-4 pt-5 sm:px-6"><ButtonLink href="/vayon/settings/integrations/data-import" variant="outline">Data Import</ButtonLink></div>
+      <div className="flex justify-end pt-5"><ButtonLink href="/vayon/settings/integrations/data-import" variant="outline">Data Import</ButtonLink></div>
       {q.error && (
         <p
           role="alert"
-          className="mx-auto mt-5 max-w-[96rem] px-5 text-vds-danger"
+          className="mt-5 text-vds-danger"
         >
           {q.error}
         </p>
@@ -34,7 +34,7 @@ export default async function Page({
       {q.success && (
         <p
           role="status"
-          className="mx-auto mt-5 max-w-[96rem] px-5 text-vds-success"
+          className="mt-5 text-vds-success"
         >
           {q.success}
         </p>

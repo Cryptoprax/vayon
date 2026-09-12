@@ -17,6 +17,7 @@ const css = read("app/globals.css");
 const experience = read("features/vayon/components/ProductExperience.tsx");
 const demo = read("features/vayon/demo-experience/components/DemoExperience.tsx");
 const empty = read("features/vayon/empty-states/UniversalEmptyState.tsx");
+const commercialEmpty = read("features/platform/design-system/layout/WorkspaceLayouts.tsx");
 const authenticatedPages = walk("app/vayon").filter((path) => path.endsWith("/page.tsx")).length;
 const checks = {
   centralizedRegistration: /register\(\{ id, kind, priority, expanded \}\)/.test(manager),
@@ -28,7 +29,7 @@ const checks = {
   reducedMotion: /prefers-reduced-motion:reduce/.test(css),
   applicationManaged: /FloatingLayoutManager/.test(experience),
   demoManaged: /FloatingLayoutManager/.test(demo),
-  accessibleEmptyState: /data-empty-state/.test(empty) && /aria-labelledby/.test(empty),
+  accessibleEmptyState: /WorkspaceEmptyState/.test(empty) && /data-empty-state/.test(commercialEmpty) && /aria-labelledby/.test(commercialEmpty),
   rememberedDismissal: /workspace.*user.*module/.test(empty) && /localStorage/.test(empty),
   documentation: ["docs/UNIVERSAL_LAYOUT_AUDIT.md", "docs/FLOATING_COMPONENT_GUIDELINES.md", "docs/EMPTY_STATE_GUIDELINES.md"].every((path) => { try { read(path); return true; } catch { return false; } }),
 };

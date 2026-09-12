@@ -83,6 +83,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       checkoutUrl: checkout.url,
+      transactionId: checkout.transactionId,
       url: checkout.url,
       correlationId: checkout.correlationId,
       provider: "paddle" as const,

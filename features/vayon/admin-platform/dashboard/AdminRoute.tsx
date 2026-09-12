@@ -1,3 +1,4 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import {
   Audit,
   Cards,
@@ -25,7 +26,7 @@ export async function AdminRoute({ view }: { view: AdminView }) {
         ? "Administration Control Center"
         : view[0]!.toUpperCase() + view.slice(1);
   return (
-    <main className="mx-auto max-w-[110rem] px-5 py-8">
+    <WorkspaceContent >
       <Header title={title} />
       {view === "overview" && <Overview s={s} />}{" "}
       {view === "users" && <Users s={s} />}{" "}
@@ -68,6 +69,6 @@ export async function AdminRoute({ view }: { view: AdminView }) {
         />
       )}{" "}
       {view === "audit" && <Audit s={s} />}
-    </main>
+    </WorkspaceContent>
   );
 }

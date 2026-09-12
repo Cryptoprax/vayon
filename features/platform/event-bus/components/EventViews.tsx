@@ -1,3 +1,4 @@
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import type { DomainEvent } from "../domain/event";
 import type { EventDefinition } from "../registry/event.registry";
@@ -11,13 +12,13 @@ export function EventHeader({
   description: string;
 }) {
   return (
-    <header>
+    <WorkspaceHeader>
       <p className="text-xs uppercase tracking-[.2em] text-vds-primary">
         Platform event bus
       </p>
       <h1 className="mt-2 text-3xl font-semibold">{title}</h1>
       <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>
-    </header>
+    </WorkspaceHeader>
   );
 }
 export function EventNav() {

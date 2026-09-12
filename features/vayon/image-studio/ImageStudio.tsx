@@ -1,4 +1,6 @@
 "use client";
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
+
 import Link from "next/link";
 import { Button } from "@/features/platform/design-system";
 import { SmartEmptyState } from "@/features/vayon/components/SmartEmptyState";
@@ -116,8 +118,8 @@ export function ImageStudio({
       [query, snapshot.images],
     );
   return (
-    <main className="mx-auto w-full max-w-[120rem] space-y-6 px-4 py-6 sm:px-6 lg:px-8">
-      <header className={`${card} relative overflow-hidden p-6 sm:p-8`}>
+    <WorkspaceContent >
+      <WorkspaceHeader >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,var(--vds-color-primary-soft),transparent_38%)]" />
         <div className="relative flex flex-wrap items-end justify-between gap-5">
           <div>
@@ -146,9 +148,9 @@ export function ImageStudio({
             </Button>
           </div>
         </div>
-      </header>
+      </WorkspaceHeader>
       <nav
-        className="flex gap-2 overflow-x-auto pb-1"
+        className="flex flex-wrap gap-2 min-w-0 pb-1"
         aria-label="Image Studio views"
       >
         {tabs.map((item) => (
@@ -346,7 +348,7 @@ export function ImageStudio({
           }
         />
       )}
-    </main>
+    </WorkspaceContent>
   );
 }
 function Inspector({

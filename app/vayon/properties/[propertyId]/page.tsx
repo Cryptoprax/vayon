@@ -1,3 +1,4 @@
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 ﻿import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ButtonLink } from "@/features/platform/design-system";
@@ -21,10 +22,10 @@ export default async function Page({ params, searchParams }: {
   const base = `/vayon/properties/${encodeURIComponent(id)}`;
   const price = property.salePrice ?? property.rentalPrice;
   return <div className="min-w-0 py-4">
-    <header className="sticky top-16 z-20 border-b border-vds-border bg-vds-background/95 py-3 backdrop-blur-lg">
+    <WorkspaceHeader breadcrumbs={false} className="sticky top-16 z-20 border-b border-vds-border bg-vds-background/95 py-3 backdrop-blur-lg">
       <nav aria-label="Breadcrumb" className="flex min-w-0 flex-wrap gap-2 text-xs text-vds-muted"><Link href="/vayon/dashboard" className="focus-ring">Dashboard</Link><span aria-hidden="true">/</span><Link href="/vayon/properties" className="focus-ring">Properties</Link><span aria-hidden="true">/</span><span aria-current="page" className="min-w-0 break-words">{property.title}</span></nav>
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3"><div className="min-w-0"><h1 className="break-words text-2xl font-semibold">{property.title}</h1><p className="mt-1 text-sm text-vds-muted">{property.reference} - {property.address.city} - {property.status.replaceAll("_", " ")}</p></div><ButtonLink href={`${base}/edit`}>{property.description?.trim() ? "Edit property" : "Complete property details"}</ButtonLink></div>
-    </header>
+    </WorkspaceHeader>
     <nav className="flex flex-wrap gap-2 py-4" aria-label="Property sections">{tabs.map(tab => <Link key={tab.id} href={`${base}?tab=${tab.id}`} aria-current={active === tab.id ? "page" : undefined} className={`focus-ring min-h-11 rounded-xl px-3 py-3 text-sm ${active === tab.id ? "bg-vds-primary-soft text-vds-primary" : "text-vds-muted"}`}>{tab.label}</Link>)}<Link className="focus-ring min-h-11 rounded-xl px-3 py-3 text-sm text-vds-muted" href="/vayon/properties/analytics">Analytics</Link></nav>
     {active === "overview" && <>
       <section className="rounded-2xl border border-vds-border p-5" aria-labelledby="property-next"><h2 id="property-next" className="text-lg font-semibold">What should I do next?</h2><p className="mt-2 text-sm text-vds-muted">{property.description?.trim() ? "Review this property's details, then prepare marketing or plan a buyer conversation." : "Start by adding a clear description. Then prepare marketing or plan a buyer conversation."}</p><div className="mt-4 grid gap-3 md:grid-cols-3">{[["Generate Brochure", "/vayon/creative/documents", "Open the document studio and supply this property's details."], ["Match Buyers", "/vayon/property-matching", "Review existing buyer requirements and property matches."], ["Schedule Viewing", "/vayon/site-visits", "Choose the property and buyer in the existing visit form."]].map(([label, href, description]) => <Link key={href} href={href} className="focus-ring rounded-xl border border-vds-border p-4 hover:bg-vds-elevated"><span className="font-medium">{label}</span><span className="mt-2 block text-sm text-vds-muted">{description}</span></Link>)}</div></section>

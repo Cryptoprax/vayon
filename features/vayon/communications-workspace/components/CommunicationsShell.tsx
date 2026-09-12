@@ -1,3 +1,4 @@
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import type { ReactNode } from "react";
 const links = [
@@ -20,17 +21,11 @@ export function CommunicationsShell({
   children: ReactNode;
 }) {
   return (
-    <main className="mx-auto max-w-[96rem] px-4 py-7 sm:px-6">
-      <header>
-        <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">
-          Unified communications · governed
-        </p>
-        <h1 className="mt-2 text-3xl font-semibold">{title}</h1>
-        <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>
-      </header>
+    <WorkspaceContent >
+      <WorkspaceHeader title={title} description={description} />
       <nav
         aria-label="Communications Hub"
-        className="my-5 flex gap-1 overflow-x-auto border-y border-vds-border py-3"
+        className="my-5 flex flex-wrap gap-3 border-y border-vds-border py-3"
       >
         {links.map(([label, href]) => (
           <Link
@@ -43,6 +38,6 @@ export function CommunicationsShell({
         ))}
       </nav>
       {children}
-    </main>
+    </WorkspaceContent>
   );
 }

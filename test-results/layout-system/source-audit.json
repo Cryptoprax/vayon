@@ -1,0 +1,4977 @@
+{
+  "evidence": "Static source inventory, not authenticated page-render certification.",
+  "pages": [
+    {
+      "path": "app/vayon/admin/audit/page.tsx",
+      "route": "/vayon/admin/audit",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/admin/audit/page.tsx",
+        "features/vayon/admin-platform/dashboard/AdminRoute.tsx",
+        "features/vayon/admin-platform/components/AdminViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/admin/departments/page.tsx",
+      "route": "/vayon/admin/departments",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/admin/departments/page.tsx",
+        "features/vayon/admin-platform/dashboard/AdminRoute.tsx",
+        "features/vayon/admin-platform/components/AdminViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/admin/organizations/page.tsx",
+      "route": "/vayon/admin/organizations",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/admin/organizations/page.tsx",
+        "features/vayon/admin-platform/dashboard/AdminRoute.tsx",
+        "features/vayon/admin-platform/components/AdminViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/admin/page.tsx",
+      "route": "/vayon/admin",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/admin/page.tsx",
+        "features/vayon/admin-platform/dashboard/AdminRoute.tsx",
+        "features/vayon/admin-platform/components/AdminViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/admin/permissions/page.tsx",
+      "route": "/vayon/admin/permissions",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/admin/permissions/page.tsx",
+        "features/vayon/admin-platform/dashboard/AdminRoute.tsx",
+        "features/vayon/admin-platform/components/AdminViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/admin/roles/page.tsx",
+      "route": "/vayon/admin/roles",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/admin/roles/page.tsx",
+        "features/vayon/admin-platform/dashboard/AdminRoute.tsx",
+        "features/vayon/admin-platform/components/AdminViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/admin/teams/page.tsx",
+      "route": "/vayon/admin/teams",
+      "redirect": true,
+      "sharedShell": true,
+      "sharedHeader": false,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/admin/teams/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/admin/users/page.tsx",
+      "route": "/vayon/admin/users",
+      "redirect": true,
+      "sharedShell": true,
+      "sharedHeader": false,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/admin/users/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/admin/workspaces/page.tsx",
+      "route": "/vayon/admin/workspaces",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/admin/workspaces/page.tsx",
+        "features/vayon/admin-platform/dashboard/AdminRoute.tsx",
+        "features/vayon/admin-platform/components/AdminViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/automations/page.tsx",
+      "route": "/vayon/ai/automations",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/ai/automations/page.tsx",
+        "features/vayon/autonomous-workforce/AutonomousWorkforceViews.tsx",
+        "features/vayon/operational-workforce/components/WorkforceShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/collaboration/page.tsx",
+      "route": "/vayon/ai/collaboration",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/ai/collaboration/page.tsx",
+        "features/platform/ai-collaboration/components/CollaborationDashboard.tsx",
+        "features/vayon/operational-workforce/components/WorkforceShell.tsx",
+        "features/platform/ai-collaboration/components/AICompanyOrchestrationCenter.tsx",
+        "features/platform/ai-collaboration/components/ExecutiveCollaborationBoard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/employees/page.tsx",
+      "route": "/vayon/ai/employees",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/ai/employees/page.tsx",
+        "features/vayon/ai-workforce/components/AIWorkforceUI.tsx",
+        "features/vayon/operational-workforce/components/WorkforceDirectory.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/employees/[employeeId]/page.tsx",
+      "route": "/vayon/ai/employees/[employeeId]",
+      "redirect": true,
+      "sharedShell": true,
+      "sharedHeader": false,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/ai/employees/[employeeId]/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/goals/page.tsx",
+      "route": "/vayon/ai/goals",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/ai/goals/page.tsx",
+        "features/vayon/autonomous-workforce/AutonomousWorkforceViews.tsx",
+        "features/vayon/operational-workforce/components/WorkforceShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/history/page.tsx",
+      "route": "/vayon/ai/history",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/ai/history/page.tsx",
+        "features/vayon/operational-workforce/components/WorkforceViews.tsx",
+        "features/vayon/operational-workforce/components/WorkforceDirectory.tsx",
+        "features/vayon/operational-workforce/components/WorkforceShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/knowledge/page.tsx",
+      "route": "/vayon/ai/knowledge",
+      "redirect": true,
+      "sharedShell": true,
+      "sharedHeader": false,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/ai/knowledge/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/page.tsx",
+      "route": "/vayon/ai",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/ai/page.tsx",
+        "features/vayon/operational-workforce/components/WorkforceViews.tsx",
+        "features/vayon/operational-workforce/components/WorkforceDirectory.tsx",
+        "features/vayon/operational-workforce/components/WorkforceShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/playground/page.tsx",
+      "route": "/vayon/ai/playground",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/ai/playground/page.tsx",
+        "features/vayon/ai-runtime/components/AIRuntimeHeader.tsx",
+        "features/vayon/ai-runtime/components/PromptLibrary.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/tasks/page.tsx",
+      "route": "/vayon/ai/tasks",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/ai/tasks/page.tsx",
+        "features/vayon/operational-workforce/components/WorkforceViews.tsx",
+        "features/vayon/operational-workforce/components/WorkforceDirectory.tsx",
+        "features/vayon/operational-workforce/components/WorkforceShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/work-queue/page.tsx",
+      "route": "/vayon/ai/work-queue",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/ai/work-queue/page.tsx",
+        "features/vayon/autonomous-workforce/AutonomousWorkforceViews.tsx",
+        "features/vayon/operational-workforce/components/WorkforceShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/workforce/page.tsx",
+      "route": "/vayon/ai/workforce",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/ai/workforce/page.tsx",
+        "features/vayon/operational-workforce/components/WorkforceDirectory.tsx",
+        "features/vayon/operational-workforce/components/WorkforceShell.tsx",
+        "features/onboarding/components/ContextualSetupState.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/ai/workforce/[employeeId]/page.tsx",
+      "route": "/vayon/ai/workforce/[employeeId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/ai/workforce/[employeeId]/page.tsx",
+        "features/vayon/operational-workforce/components/WorkforceViews.tsx",
+        "features/vayon/operational-workforce/components/WorkforceDirectory.tsx",
+        "features/vayon/operational-workforce/components/WorkforceShell.tsx",
+        "features/platform/openai/runtime/ChatPanel.tsx",
+        "features/platform/sales-ai/components/SalesAIDashboard.tsx",
+        "features/platform/sales-ai/components/SarahSalesManagerDashboard.tsx",
+        "features/platform/crm-ai/components/CRMAIDashboard.tsx",
+        "features/platform/crm-ai/components/CRMSearch.tsx",
+        "features/platform/whatsapp-ai/components/WhatsAppAIDashboard.tsx",
+        "features/platform/marketing-ai/components/MarketingAIDashboard.tsx",
+        "features/platform/marketing-ai/components/EmmaMarketingManagerDashboard.tsx",
+        "features/platform/executive-ai/components/ExecutiveAIDashboard.tsx",
+        "features/platform/ai-collaboration/components/CollaborationDashboard.tsx",
+        "features/vayon/operational-workforce/components/EmployeeIdentityPanel.tsx",
+        "features/vayon/operational-workforce/components/AlexOperationsManagerDashboard.tsx",
+        "features/vayon/operational-workforce/components/DavidFinanceManagerDashboard.tsx",
+        "features/vayon/operational-workforce/components/OliviaCustomerSuccessManagerDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/analytics/communications/page.tsx",
+      "route": "/vayon/analytics/communications",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/analytics/communications/page.tsx",
+        "features/vayon/analytics-platform/dashboard/AnalyticsRoute.tsx",
+        "features/vayon/analytics-platform/components/AnalyticsViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/analytics/conversion/page.tsx",
+      "route": "/vayon/analytics/conversion",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/analytics/conversion/page.tsx",
+        "features/platform/conversion-analytics/components/EnterpriseAnalyticsDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/analytics/crm/page.tsx",
+      "route": "/vayon/analytics/crm",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/analytics/crm/page.tsx",
+        "features/vayon/analytics-platform/dashboard/AnalyticsRoute.tsx",
+        "features/vayon/analytics-platform/components/AnalyticsViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/analytics/deals/page.tsx",
+      "route": "/vayon/analytics/deals",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/analytics/deals/page.tsx",
+        "features/vayon/analytics-platform/dashboard/AnalyticsRoute.tsx",
+        "features/vayon/analytics-platform/components/AnalyticsViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/analytics/executive/page.tsx",
+      "route": "/vayon/analytics/executive",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/analytics/executive/page.tsx",
+        "features/vayon/analytics-platform/components/AnalyticsViews.tsx",
+        "features/vayon/analytics-platform/components/ExecutiveBI.tsx",
+        "features/platform/executive-ai/components/ExecutiveAIDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/analytics/page.tsx",
+      "route": "/vayon/analytics",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/analytics/page.tsx",
+        "features/vayon/analytics-platform/dashboard/AnalyticsRoute.tsx",
+        "features/vayon/analytics-platform/components/AnalyticsViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/analytics/properties/page.tsx",
+      "route": "/vayon/analytics/properties",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/analytics/properties/page.tsx",
+        "features/vayon/analytics-platform/dashboard/AnalyticsRoute.tsx",
+        "features/vayon/analytics-platform/components/AnalyticsViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/analytics/sales/page.tsx",
+      "route": "/vayon/analytics/sales",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/analytics/sales/page.tsx",
+        "features/vayon/analytics-platform/dashboard/AnalyticsRoute.tsx",
+        "features/vayon/analytics-platform/components/AnalyticsViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/analytics/workforce/page.tsx",
+      "route": "/vayon/analytics/workforce",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/analytics/workforce/page.tsx",
+        "features/vayon/analytics-platform/dashboard/AnalyticsRoute.tsx",
+        "features/vayon/analytics-platform/components/AnalyticsViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/approvals/page.tsx",
+      "route": "/vayon/approvals",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/approvals/page.tsx",
+        "features/vayon/workflow-approval/components/GovernanceViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/approvals/[approvalId]/page.tsx",
+      "route": "/vayon/approvals/[approvalId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/approvals/[approvalId]/page.tsx",
+        "features/vayon/workflow-approval/components/GovernanceViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/brain/page.tsx",
+      "route": "/vayon/brain",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/brain/page.tsx",
+        "features/platform/intelligence/brain/dashboard/BrainDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/agenda/page.tsx",
+      "route": "/vayon/calendar/agenda",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/agenda/page.tsx",
+        "features/vayon/calendar-platform/dashboard/CalendarRoute.tsx",
+        "features/vayon/calendar-platform/components/CalendarViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/day/page.tsx",
+      "route": "/vayon/calendar/day",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/day/page.tsx",
+        "features/vayon/calendar-platform/dashboard/CalendarRoute.tsx",
+        "features/vayon/calendar-platform/components/CalendarViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/google/calendars/page.tsx",
+      "route": "/vayon/calendar/google/calendars",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/google/calendars/page.tsx",
+        "features/platform/google-calendar/components/GoogleCalendarShell.tsx",
+        "features/platform/google-calendar/components/GoogleCalendarWorkspace.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/google/events/page.tsx",
+      "route": "/vayon/calendar/google/events",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/google/events/page.tsx",
+        "features/platform/google-calendar/components/GoogleCalendarShell.tsx",
+        "features/platform/google-calendar/components/GoogleCalendarWorkspace.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/google/free-busy/page.tsx",
+      "route": "/vayon/calendar/google/free-busy",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/google/free-busy/page.tsx",
+        "features/platform/google-calendar/components/GoogleCalendarShell.tsx",
+        "features/platform/google-calendar/components/GoogleCalendarWorkspace.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/google/page.tsx",
+      "route": "/vayon/calendar/google",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/google/page.tsx",
+        "features/platform/google-calendar/components/GoogleCalendarShell.tsx",
+        "features/platform/google-calendar/components/GoogleCalendarWorkspace.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/google/settings/page.tsx",
+      "route": "/vayon/calendar/google/settings",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/google/settings/page.tsx",
+        "features/platform/google-calendar/components/GoogleCalendarShell.tsx",
+        "features/platform/google-calendar/components/GoogleCalendarWorkspace.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/meetings/page.tsx",
+      "route": "/vayon/calendar/meetings",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/meetings/page.tsx",
+        "features/vayon/calendar-platform/dashboard/CalendarRoute.tsx",
+        "features/vayon/calendar-platform/components/CalendarViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/month/page.tsx",
+      "route": "/vayon/calendar/month",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/month/page.tsx",
+        "features/vayon/calendar-platform/dashboard/CalendarRoute.tsx",
+        "features/vayon/calendar-platform/components/CalendarViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/outlook/page.tsx",
+      "route": "/vayon/calendar/outlook",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/outlook/page.tsx",
+        "features/platform/integrations/microsoft/components/MicrosoftCapabilityShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/page.tsx",
+      "route": "/vayon/calendar",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/page.tsx",
+        "features/vayon/operations/components/OperationsUI.tsx",
+        "features/platform/calendar/components/GoogleCalendarWorkspace.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/platform/google-calendar/components/CalendarProductionControls.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/reminders/page.tsx",
+      "route": "/vayon/calendar/reminders",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/reminders/page.tsx",
+        "features/vayon/calendar-platform/dashboard/CalendarRoute.tsx",
+        "features/vayon/calendar-platform/components/CalendarViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/site-visits/page.tsx",
+      "route": "/vayon/calendar/site-visits",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/site-visits/page.tsx",
+        "features/vayon/calendar-platform/dashboard/CalendarRoute.tsx",
+        "features/vayon/calendar-platform/components/CalendarViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/tasks/page.tsx",
+      "route": "/vayon/calendar/tasks",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/tasks/page.tsx",
+        "features/vayon/calendar-platform/dashboard/CalendarRoute.tsx",
+        "features/vayon/calendar-platform/components/CalendarViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/calendar/week/page.tsx",
+      "route": "/vayon/calendar/week",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/calendar/week/page.tsx",
+        "features/vayon/calendar-platform/dashboard/CalendarRoute.tsx",
+        "features/vayon/calendar-platform/components/CalendarViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/cognitive/page.tsx",
+      "route": "/vayon/cognitive",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/cognitive/page.tsx",
+        "features/platform/intelligence/cognitive/dashboard/CognitiveDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/communications/campaigns/page.tsx",
+      "route": "/vayon/communications/campaigns",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/communications/campaigns/page.tsx",
+        "features/vayon/communications-workspace/components/CommunicationsShell.tsx",
+        "features/vayon/communications-workspace/components/CommunicationViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/communications/connectors/page.tsx",
+      "route": "/vayon/communications/connectors",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/communications/connectors/page.tsx",
+        "features/vayon/communications-workspace/components/CommunicationsShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/communications/conversations/page.tsx",
+      "route": "/vayon/communications/conversations",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/communications/conversations/page.tsx",
+        "features/vayon/communications-workspace/components/CommunicationsShell.tsx",
+        "features/vayon/communications-workspace/components/CommunicationViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/communications/conversations/[conversationId]/page.tsx",
+      "route": "/vayon/communications/conversations/[conversationId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/communications/conversations/[conversationId]/page.tsx",
+        "features/vayon/communications-workspace/components/CommunicationsShell.tsx",
+        "features/vayon/communications-workspace/components/CommunicationViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/communications/inbox/page.tsx",
+      "route": "/vayon/communications/inbox",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/communications/inbox/page.tsx",
+        "features/vayon/communications-workspace/components/CommunicationsShell.tsx",
+        "features/vayon/communications-workspace/components/InboxList.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/communications/notifications/page.tsx",
+      "route": "/vayon/communications/notifications",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/communications/notifications/page.tsx",
+        "features/vayon/communications-workspace/components/CommunicationsShell.tsx",
+        "features/vayon/communications-workspace/components/CommunicationViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/communications/outlook/page.tsx",
+      "route": "/vayon/communications/outlook",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/communications/outlook/page.tsx",
+        "features/platform/integrations/microsoft/components/MicrosoftCapabilityShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/communications/page.tsx",
+      "route": "/vayon/communications",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/communications/page.tsx",
+        "features/vayon/communications-workspace/components/CommunicationsShell.tsx",
+        "features/vayon/communications-workspace/components/CommunicationViews.tsx",
+        "features/vayon/demo-workspace/business-activity/ActivityPanels.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/communications/reports/page.tsx",
+      "route": "/vayon/communications/reports",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/communications/reports/page.tsx",
+        "features/vayon/communications-workspace/components/CommunicationsShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/communications/teams/page.tsx",
+      "route": "/vayon/communications/teams",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/communications/teams/page.tsx",
+        "features/platform/integrations/microsoft/components/MicrosoftCapabilityShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/communications/templates/page.tsx",
+      "route": "/vayon/communications/templates",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/communications/templates/page.tsx",
+        "features/vayon/communications-workspace/components/CommunicationsShell.tsx",
+        "features/vayon/communications-workspace/components/CommunicationViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/contacts/google/page.tsx",
+      "route": "/vayon/contacts/google",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/contacts/google/page.tsx",
+        "features/platform/external-contacts/components/GoogleContactsWorkspace.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/contacts/microsoft/page.tsx",
+      "route": "/vayon/contacts/microsoft",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/contacts/microsoft/page.tsx",
+        "features/platform/integrations/microsoft/components/MicrosoftCapabilityShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/context/page.tsx",
+      "route": "/vayon/context",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/context/page.tsx",
+        "features/platform/context-engine/dashboard/ContextEngineDashboard.tsx",
+        "features/platform/context-engine/components/ContextSlideOver.tsx",
+        "features/platform/context-engine/components/ContextPanel.tsx",
+        "features/platform/context-engine/components/ContextSection.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/assets/page.tsx",
+      "route": "/vayon/creative/assets",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/assets/page.tsx",
+        "app/vayon/creative-studio/assets/page.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/brand/page.tsx",
+      "route": "/vayon/creative/brand",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/brand/page.tsx",
+        "features/vayon/brand-studio/BrandStudio.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/calendar/page.tsx",
+      "route": "/vayon/creative/calendar",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/calendar/page.tsx",
+        "app/vayon/creative-studio/calendar/page.tsx",
+        "features/vayon/creative-studio/components/GrowthViews.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/campaigns/page.tsx",
+      "route": "/vayon/creative/campaigns",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/campaigns/page.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/cloud/page.tsx",
+      "route": "/vayon/creative/cloud",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/cloud/page.tsx",
+        "features/vayon/creative-cloud/CreativeCloudDashboard.tsx",
+        "features/vayon/empty-states/FeatureAvailabilityState.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/documents/page.tsx",
+      "route": "/vayon/creative/documents",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/documents/page.tsx",
+        "features/vayon/document-studio/DocumentStudio.tsx",
+        "features/vayon/components/SmartEmptyState.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/images/page.tsx",
+      "route": "/vayon/creative/images",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/images/page.tsx",
+        "features/vayon/image-studio/ImageStudio.tsx",
+        "features/vayon/components/SmartEmptyState.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/page.tsx",
+      "route": "/vayon/creative",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/page.tsx",
+        "features/vayon/creative-studio-2/CreativeStudioHome.tsx",
+        "features/vayon/empty-states/FeatureAvailabilityState.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/pipelines/page.tsx",
+      "route": "/vayon/creative/pipelines",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/pipelines/page.tsx",
+        "features/vayon/creative-pipeline/CreativePipelineDashboard.tsx",
+        "features/vayon/empty-states/FeatureAvailabilityState.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/runtime/execution/page.tsx",
+      "route": "/vayon/creative/runtime/execution",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/runtime/execution/page.tsx",
+        "features/vayon/creative-execution/ExecutionDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/runtime/page.tsx",
+      "route": "/vayon/creative/runtime",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/creative/runtime/page.tsx",
+        "features/vayon/creative-runtime/CreativeRuntimeDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/templates/page.tsx",
+      "route": "/vayon/creative/templates",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/templates/page.tsx",
+        "app/vayon/creative-studio/templates/page.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/videos/page.tsx",
+      "route": "/vayon/creative/videos",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/videos/page.tsx",
+        "features/vayon/video-studio/VideoStudio.tsx",
+        "features/vayon/components/SmartEmptyState.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative/[studio]/page.tsx",
+      "route": "/vayon/creative/[studio]",
+      "redirect": true,
+      "sharedShell": true,
+      "sharedHeader": false,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative/[studio]/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative-studio/analytics/page.tsx",
+      "route": "/vayon/creative-studio/analytics",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative-studio/analytics/page.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative-studio/assets/page.tsx",
+      "route": "/vayon/creative-studio/assets",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative-studio/assets/page.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative-studio/assistant/page.tsx",
+      "route": "/vayon/creative-studio/assistant",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative-studio/assistant/page.tsx",
+        "features/vayon/creative-studio/components/CreativeAssistant.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative-studio/brand-kits/page.tsx",
+      "route": "/vayon/creative-studio/brand-kits",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative-studio/brand-kits/page.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative-studio/calendar/page.tsx",
+      "route": "/vayon/creative-studio/calendar",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative-studio/calendar/page.tsx",
+        "features/vayon/creative-studio/components/GrowthViews.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative-studio/editor/[assetId]/page.tsx",
+      "route": "/vayon/creative-studio/editor/[assetId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative-studio/editor/[assetId]/page.tsx",
+        "features/vayon/creative-studio/components/CreativeEditor.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative-studio/growth/page.tsx",
+      "route": "/vayon/creative-studio/growth",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative-studio/growth/page.tsx",
+        "features/vayon/creative-studio/components/GrowthCampaignChat.tsx",
+        "features/vayon/creative-studio/components/GrowthViews.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative-studio/packs/page.tsx",
+      "route": "/vayon/creative-studio/packs",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative-studio/packs/page.tsx",
+        "features/vayon/creative-studio/components/GrowthViews.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative-studio/page.tsx",
+      "route": "/vayon/creative-studio",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative-studio/page.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative-studio/templates/page.tsx",
+      "route": "/vayon/creative-studio/templates",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative-studio/templates/page.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/creative-studio/wizard/page.tsx",
+      "route": "/vayon/creative-studio/wizard",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/creative-studio/wizard/page.tsx",
+        "features/vayon/creative-studio/components/StudioViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/crm/activities/page.tsx",
+      "route": "/vayon/crm/activities",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/crm/activities/page.tsx",
+        "features/vayon/crm-engine/components/CrmDirectory.tsx",
+        "features/vayon/components/SmartEmptyState.tsx",
+        "features/vayon/crm-engine/components/CrmShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/crm/companies/new/page.tsx",
+      "route": "/vayon/crm/companies/new",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/crm/companies/new/page.tsx",
+        "features/vayon/crm-company/CompanyForm.tsx",
+        "components/ui/Input.tsx",
+        "features/vayon/crm-engine/components/CrmShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/crm/companies/page.tsx",
+      "route": "/vayon/crm/companies",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": true,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/crm/companies/page.tsx",
+        "features/vayon/crm-engine/components/CrmDirectory.tsx",
+        "features/vayon/components/SmartEmptyState.tsx",
+        "features/vayon/crm-engine/components/CrmShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/crm/companies/[companyId]/edit/page.tsx",
+      "route": "/vayon/crm/companies/[companyId]/edit",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/crm/companies/[companyId]/edit/page.tsx",
+        "features/vayon/crm-company/CompanyForm.tsx",
+        "components/ui/Input.tsx",
+        "features/vayon/crm-engine/components/CrmShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/crm/companies/[companyId]/page.tsx",
+      "route": "/vayon/crm/companies/[companyId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/crm/companies/[companyId]/page.tsx",
+        "features/vayon/crm-company/CompanyMetrics.tsx",
+        "features/vayon/crm-company/CompanyProfile.tsx",
+        "features/vayon/crm-engine/components/CrmShell.tsx",
+        "features/vayon/cross-module-intelligence/ContextualAIActions.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/crm/contacts/page.tsx",
+      "route": "/vayon/crm/contacts",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": true,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/crm/contacts/page.tsx",
+        "features/vayon/crm-company/ContactDirectory.tsx",
+        "features/vayon/components/SmartEmptyState.tsx",
+        "features/vayon/crm-engine/components/CrmShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/crm/contacts/[contactId]/page.tsx",
+      "route": "/vayon/crm/contacts/[contactId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/crm/contacts/[contactId]/page.tsx",
+        "features/vayon/crm-engine/components/CrmLeadProfile.tsx",
+        "features/vayon/crm-engine/components/CrmShell.tsx",
+        "features/vayon/cross-module-intelligence/ContextualAIActions.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/crm/customers/page.tsx",
+      "route": "/vayon/crm/customers",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/crm/customers/page.tsx",
+        "features/vayon/crm-engine/components/CrmDirectory.tsx",
+        "features/vayon/components/SmartEmptyState.tsx",
+        "features/vayon/crm-engine/components/CrmShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/crm/leads/page.tsx",
+      "route": "/vayon/crm/leads",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/crm/leads/page.tsx",
+        "features/vayon/crm-engine/components/CrmLeadTable.tsx",
+        "features/vayon/crm-engine/components/CrmShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/crm/leads/[leadId]/page.tsx",
+      "route": "/vayon/crm/leads/[leadId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/crm/leads/[leadId]/page.tsx",
+        "features/vayon/crm-engine/components/CrmLeadProfile.tsx",
+        "features/vayon/crm-engine/components/CrmShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/crm/page.tsx",
+      "route": "/vayon/crm",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/crm/page.tsx",
+        "features/vayon/crm-engine/components/CrmDashboard.tsx",
+        "features/vayon/crm-engine/components/CrmShell.tsx",
+        "features/vayon/crm-automation/SalesAutomationSummary.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/customer-success/page.tsx",
+      "route": "/vayon/customer-success",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/customer-success/page.tsx",
+        "features/platform/customer-success-workspace/components/CustomerSuccessWorkspace.tsx",
+        "features/platform/openai/runtime/ChatPanel.tsx",
+        "features/platform/customer-success-workspace/components/OnboardingControls.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/dashboard/page.tsx",
+      "route": "/vayon/dashboard",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/dashboard/page.tsx",
+        "features/vayon/dashboard/components/DashboardShell.tsx",
+        "features/vayon/dashboard/components/ActivityTimeline.tsx",
+        "features/vayon/dashboard/components/AIWorkforceGrid.tsx",
+        "features/vayon/dashboard/components/CalendarWidget.tsx",
+        "features/vayon/dashboard/components/PipelineBoard.tsx",
+        "features/vayon/dashboard/components/RevenueChartLoader.tsx",
+        "features/vayon/dashboard/components/WhatsAppConversations.tsx",
+        "features/vayon/dashboard/components/ExecutiveCommandCenter.tsx",
+        "features/vayon/dashboard/components/RealEstateKpiGrid.tsx",
+        "features/vayon/dashboard/components/GettingStartedChecklist.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/deals/analytics/page.tsx",
+      "route": "/vayon/deals/analytics",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/deals/analytics/page.tsx",
+        "features/vayon/deal-room/dashboard/DealRoomRoute.tsx",
+        "features/vayon/deal-room/components/DealRoomViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/deals/checklists/page.tsx",
+      "route": "/vayon/deals/checklists",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/deals/checklists/page.tsx",
+        "features/vayon/deal-room/dashboard/DealRoomRoute.tsx",
+        "features/vayon/deal-room/components/DealRoomViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/deals/contracts/page.tsx",
+      "route": "/vayon/deals/contracts",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/deals/contracts/page.tsx",
+        "features/vayon/deal-room/dashboard/DealRoomRoute.tsx",
+        "features/vayon/deal-room/components/DealRoomViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/deals/new/page.tsx",
+      "route": "/vayon/deals/new",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/deals/new/page.tsx",
+        "features/vayon/deal/components/DealForm.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/deals/offers/page.tsx",
+      "route": "/vayon/deals/offers",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/deals/offers/page.tsx",
+        "features/vayon/deal-room/dashboard/DealRoomRoute.tsx",
+        "features/vayon/deal-room/components/DealRoomViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/deals/page.tsx",
+      "route": "/vayon/deals",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/deals/page.tsx",
+        "features/vayon/deal/components/DealBoard.tsx",
+        "features/vayon/real-estate-experience/RealEstateSurfaces.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/deals/pipeline/page.tsx",
+      "route": "/vayon/deals/pipeline",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/deals/pipeline/page.tsx",
+        "features/vayon/deal/components/DealBoard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/deals/[dealId]/edit/page.tsx",
+      "route": "/vayon/deals/[dealId]/edit",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/deals/[dealId]/edit/page.tsx",
+        "features/vayon/deal/components/DealForm.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/deals/[dealId]/page.tsx",
+      "route": "/vayon/deals/[dealId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/deals/[dealId]/page.tsx",
+        "features/vayon/cross-module-intelligence/ContextualAIActions.tsx",
+        "features/vayon/deal/components/DealWorkspaceContent.tsx",
+        "features/vayon/workspace-engine/components/WorkspaceEngine.tsx",
+        "features/vayon/empty-states/UniversalEmptyState.tsx",
+        "features/vayon/workspace-engine/components/WorkspaceRenderer.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/developers/page.tsx",
+      "route": "/vayon/developers",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/developers/page.tsx",
+        "features/platform/knowledge/components/DeveloperPortal.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/documents/drive/page.tsx",
+      "route": "/vayon/documents/drive",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/documents/drive/page.tsx",
+        "features/platform/external-storage/components/GoogleDriveWorkspace.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/documents/onedrive/page.tsx",
+      "route": "/vayon/documents/onedrive",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/documents/onedrive/page.tsx",
+        "features/platform/integrations/microsoft/components/MicrosoftCapabilityShell.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/email/archive/page.tsx",
+      "route": "/vayon/email/archive",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/email/archive/page.tsx",
+        "features/platform/gmail/components/GmailShell.tsx",
+        "features/platform/gmail/components/MailboxView.tsx",
+        "features/platform/gmail/components/GmailMailboxPage.tsx",
+        "features/platform/integrations/google/components.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/platform/gmail/components/GmailProductionControls.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/email/drafts/page.tsx",
+      "route": "/vayon/email/drafts",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/email/drafts/page.tsx",
+        "features/platform/gmail/components/GmailShell.tsx",
+        "features/platform/gmail/components/MailboxView.tsx",
+        "features/platform/gmail/components/GmailMailboxPage.tsx",
+        "features/platform/integrations/google/components.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/platform/gmail/components/GmailProductionControls.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/email/inbox/page.tsx",
+      "route": "/vayon/email/inbox",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/email/inbox/page.tsx",
+        "features/platform/gmail/components/GmailShell.tsx",
+        "features/platform/gmail/components/MailboxView.tsx",
+        "features/platform/gmail/components/GmailMailboxPage.tsx",
+        "features/platform/integrations/google/components.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/platform/gmail/components/GmailProductionControls.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/email/page.tsx",
+      "route": "/vayon/email",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/email/page.tsx",
+        "features/platform/gmail/components/GmailShell.tsx",
+        "features/platform/gmail/components/MailboxView.tsx",
+        "features/platform/gmail/components/GmailMailboxPage.tsx",
+        "features/platform/integrations/google/components.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/platform/gmail/components/GmailProductionControls.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/email/sent/page.tsx",
+      "route": "/vayon/email/sent",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/email/sent/page.tsx",
+        "features/platform/gmail/components/GmailShell.tsx",
+        "features/platform/gmail/components/MailboxView.tsx",
+        "features/platform/gmail/components/GmailMailboxPage.tsx",
+        "features/platform/integrations/google/components.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/platform/gmail/components/GmailProductionControls.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/email/spam/page.tsx",
+      "route": "/vayon/email/spam",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/email/spam/page.tsx",
+        "features/platform/gmail/components/GmailShell.tsx",
+        "features/platform/gmail/components/MailboxView.tsx",
+        "features/platform/gmail/components/GmailMailboxPage.tsx",
+        "features/platform/integrations/google/components.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/platform/gmail/components/GmailProductionControls.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/email/trash/page.tsx",
+      "route": "/vayon/email/trash",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/email/trash/page.tsx",
+        "features/platform/gmail/components/GmailShell.tsx",
+        "features/platform/gmail/components/MailboxView.tsx",
+        "features/platform/gmail/components/GmailMailboxPage.tsx",
+        "features/platform/integrations/google/components.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/platform/gmail/components/GmailProductionControls.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/email/[messageId]/page.tsx",
+      "route": "/vayon/email/[messageId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/email/[messageId]/page.tsx",
+        "features/platform/integrations/google/components.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/events/catalog/page.tsx",
+      "route": "/vayon/events/catalog",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/events/catalog/page.tsx",
+        "features/platform/event-bus/dashboard/EventRoute.tsx",
+        "features/platform/event-bus/components/EventViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/events/history/page.tsx",
+      "route": "/vayon/events/history",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/events/history/page.tsx",
+        "features/platform/event-bus/dashboard/EventRoute.tsx",
+        "features/platform/event-bus/components/EventViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/events/page.tsx",
+      "route": "/vayon/events",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/events/page.tsx",
+        "features/platform/event-bus/dashboard/EventRoute.tsx",
+        "features/platform/event-bus/components/EventViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/executions/page.tsx",
+      "route": "/vayon/executions",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/executions/page.tsx",
+        "features/vayon/workflow-approval/components/GovernanceViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/follow-ups/page.tsx",
+      "route": "/vayon/follow-ups",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/follow-ups/page.tsx",
+        "features/vayon/communication/components/CommunicationUI.tsx",
+        "features/vayon/communication/components/CommunicationForms.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/founder/approvals/page.tsx",
+      "route": "/vayon/founder/approvals",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/founder/approvals/page.tsx",
+        "features/platform/ai-collaboration/components/CollaborationDashboard.tsx",
+        "features/vayon/founder-approval-center/FounderApprovalCenter.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/growth/page.tsx",
+      "route": "/vayon/growth",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/growth/page.tsx",
+        "features/vayon/growth-intelligence/GrowthOverview.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/growth/[section]/page.tsx",
+      "route": "/vayon/growth/[section]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/growth/[section]/page.tsx",
+        "features/vayon/growth-intelligence/GrowthSectionPage.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/home/page.tsx",
+      "route": "/vayon/home",
+      "redirect": true,
+      "sharedShell": true,
+      "sharedHeader": false,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/home/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/intelligence/page.tsx",
+      "route": "/vayon/intelligence",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/intelligence/page.tsx",
+        "features/platform/intelligence/dashboard/IntelligenceDashboard.tsx",
+        "features/platform/intelligence/dashboard/IntelligenceCard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/knowledge/help/page.tsx",
+      "route": "/vayon/knowledge/help",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/knowledge/help/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/knowledge/page.tsx",
+      "route": "/vayon/knowledge",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/knowledge/page.tsx",
+        "features/platform/knowledge/components/KnowledgeCenter.tsx",
+        "features/platform/knowledge/components/KnowledgeRecovery.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/leads/new/page.tsx",
+      "route": "/vayon/leads/new",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/leads/new/page.tsx",
+        "features/vayon/lead/components/LeadWizard.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/leads/page.tsx",
+      "route": "/vayon/leads",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": true,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/leads/page.tsx",
+        "features/vayon/lead/components/LeadList.tsx",
+        "features/vayon/lead/components/LeadBadges.tsx",
+        "features/vayon/lead/components/LeadToolbar.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/leads/[leadId]/edit/page.tsx",
+      "route": "/vayon/leads/[leadId]/edit",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/leads/[leadId]/edit/page.tsx",
+        "features/vayon/lead/components/LeadWizard.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/leads/[leadId]/page.tsx",
+      "route": "/vayon/leads/[leadId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/leads/[leadId]/page.tsx",
+        "features/vayon/real-estate-experience/RealEstateSurfaces.tsx",
+        "features/vayon/workspace-engine/components/WorkspaceRenderer.tsx",
+        "features/vayon/workspace-engine/components/WorkspaceEngine.tsx",
+        "features/vayon/empty-states/UniversalEmptyState.tsx",
+        "features/vayon/cross-module-intelligence/ContextualAIActions.tsx",
+        "features/vayon/enterprise-collaboration/CollaborationSurfaces.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/meetings/page.tsx",
+      "route": "/vayon/meetings",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/meetings/page.tsx",
+        "features/vayon/operations/components/OperationsUI.tsx",
+        "features/vayon/operations/components/OperationForms.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/messages/page.tsx",
+      "route": "/vayon/messages",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/messages/page.tsx",
+        "features/vayon/communication/components/CommunicationUI.tsx",
+        "features/vayon/communication/components/CommunicationForms.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/notifications/history/page.tsx",
+      "route": "/vayon/notifications/history",
+      "redirect": true,
+      "sharedShell": true,
+      "sharedHeader": false,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/notifications/history/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/notifications/inbox/page.tsx",
+      "route": "/vayon/notifications/inbox",
+      "redirect": true,
+      "sharedShell": true,
+      "sharedHeader": false,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/notifications/inbox/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/notifications/page.tsx",
+      "route": "/vayon/notifications",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": true,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/notifications/page.tsx",
+        "features/notifications/components/NotificationCenter.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/notifications/preferences/page.tsx",
+      "route": "/vayon/notifications/preferences",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/notifications/preferences/page.tsx",
+        "features/notifications/components/NotificationPreferences.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/objects/page.tsx",
+      "route": "/vayon/objects",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/objects/page.tsx",
+        "features/platform/universal-objects/components/UniversalObjectsWorkbench.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/platform/universal-objects/components/ActivityTimeline.tsx",
+        "features/platform/universal-objects/components/TimelineCard.tsx",
+        "features/platform/universal-objects/components/AddressCard.tsx",
+        "features/platform/universal-objects/components/AttachmentManager.tsx",
+        "features/platform/universal-objects/components/DocumentCenter.tsx",
+        "features/platform/universal-objects/components/DocumentViewer.tsx",
+        "features/platform/universal-objects/components/NotesManager.tsx",
+        "features/platform/universal-objects/components/RelationshipGraph.tsx",
+        "features/platform/universal-objects/components/EntityBadge.tsx",
+        "features/platform/universal-objects/components/TagManager.tsx",
+        "features/platform/universal-objects/components/UniversalObjectHeader.tsx",
+        "features/platform/universal-objects/components/UniversalProfileCard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/operations/page.tsx",
+      "route": "/vayon/operations",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/operations/page.tsx",
+        "features/vayon/operations/components/OperationsUI.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/page.tsx",
+      "route": "/vayon",
+      "redirect": true,
+      "sharedShell": true,
+      "sharedHeader": false,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/platform/launch-readiness/page.tsx",
+      "route": "/vayon/platform/launch-readiness",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/platform/launch-readiness/page.tsx",
+        "features/platform/launch-readiness/components/LaunchReadinessDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/analytics/page.tsx",
+      "route": "/vayon/properties/analytics",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/properties/analytics/page.tsx",
+        "features/vayon/property-platform/dashboard/PropertyRoute.tsx",
+        "features/vayon/property-platform/components/PropertyViews.tsx",
+        "features/vayon/real-estate-experience/RealEstateSurfaces.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/availability/page.tsx",
+      "route": "/vayon/properties/availability",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/properties/availability/page.tsx",
+        "features/vayon/property-platform/dashboard/PropertyRoute.tsx",
+        "features/vayon/property-platform/components/PropertyViews.tsx",
+        "features/vayon/real-estate-experience/RealEstateSurfaces.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/documents/page.tsx",
+      "route": "/vayon/properties/documents",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/properties/documents/page.tsx",
+        "features/vayon/property-platform/dashboard/PropertyRoute.tsx",
+        "features/vayon/property-platform/components/PropertyViews.tsx",
+        "features/vayon/real-estate-experience/RealEstateSurfaces.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/grid/page.tsx",
+      "route": "/vayon/properties/grid",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/properties/grid/page.tsx",
+        "features/vayon/property-platform/dashboard/PropertyRoute.tsx",
+        "features/vayon/property-platform/components/PropertyViews.tsx",
+        "features/vayon/real-estate-experience/RealEstateSurfaces.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/inventory/page.tsx",
+      "route": "/vayon/properties/inventory",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/properties/inventory/page.tsx",
+        "features/vayon/property-platform/inventory/InventoryViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/map/page.tsx",
+      "route": "/vayon/properties/map",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/properties/map/page.tsx",
+        "features/vayon/property-platform/dashboard/PropertyRoute.tsx",
+        "features/vayon/property-platform/components/PropertyViews.tsx",
+        "features/vayon/real-estate-experience/RealEstateSurfaces.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/media/page.tsx",
+      "route": "/vayon/properties/media",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/properties/media/page.tsx",
+        "features/vayon/property-platform/inventory/InventoryViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/new/page.tsx",
+      "route": "/vayon/properties/new",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/properties/new/page.tsx",
+        "features/vayon/property-intelligence/components/PropertyForm.tsx",
+        "features/vayon/property/components/PropertyWizard.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/vayon/property-intelligence/components/MediaManager.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/page.tsx",
+      "route": "/vayon/properties",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": true,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/properties/page.tsx",
+        "features/vayon/property/components/PropertyCard.tsx",
+        "features/vayon/property/components/PropertyStatusBadge.tsx",
+        "features/vayon/property/components/PropertyTable.tsx",
+        "features/vayon/property/components/PropertyToolbar.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/price-lists/page.tsx",
+      "route": "/vayon/properties/price-lists",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/properties/price-lists/page.tsx",
+        "features/vayon/property-platform/inventory/InventoryViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/projects/page.tsx",
+      "route": "/vayon/properties/projects",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/properties/projects/page.tsx",
+        "features/vayon/property-platform/inventory/InventoryViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/projects/[projectId]/page.tsx",
+      "route": "/vayon/properties/projects/[projectId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/properties/projects/[projectId]/page.tsx",
+        "features/vayon/property-platform/inventory/InventoryViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/[propertyId]/edit/page.tsx",
+      "route": "/vayon/properties/[propertyId]/edit",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/properties/[propertyId]/edit/page.tsx",
+        "features/vayon/property/components/PropertyWizard.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/vayon/property-intelligence/components/MediaManager.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/properties/[propertyId]/page.tsx",
+      "route": "/vayon/properties/[propertyId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/properties/[propertyId]/page.tsx",
+        "features/vayon/workspace-engine/components/WorkspaceEngine.tsx",
+        "features/vayon/empty-states/UniversalEmptyState.tsx",
+        "features/vayon/cross-module-intelligence/ContextualAIActions.tsx",
+        "features/vayon/enterprise-collaboration/CollaborationSurfaces.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/property-matching/compare/page.tsx",
+      "route": "/vayon/property-matching/compare",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/property-matching/compare/page.tsx",
+        "features/vayon/property-matching/MatchingViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/property-matching/page.tsx",
+      "route": "/vayon/property-matching",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/property-matching/page.tsx",
+        "features/vayon/property-matching/MatchingViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/property-matching/reports/page.tsx",
+      "route": "/vayon/property-matching/reports",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/property-matching/reports/page.tsx",
+        "features/vayon/property-matching/MatchingViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/providers/page.tsx",
+      "route": "/vayon/providers",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/providers/page.tsx",
+        "features/platform/live-providers/components/ProviderViews.tsx",
+        "features/platform/live-providers/components/ConnectionWizard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/providers/[provider]/page.tsx",
+      "route": "/vayon/providers/[provider]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/providers/[provider]/page.tsx",
+        "features/platform/live-providers/components/ProviderViews.tsx",
+        "features/platform/live-providers/components/ConnectionWizard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/runtime/page.tsx",
+      "route": "/vayon/runtime",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/runtime/page.tsx",
+        "features/platform/ai-runtime/dashboard/RuntimeDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/activity/page.tsx",
+      "route": "/vayon/settings/activity",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/activity/page.tsx",
+        "features/platform/organization/components/OrganizationUI.tsx",
+        "features/platform/organization/components/RoleManagementUI.tsx",
+        "features/platform/organization/components/MemberManagementRows.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/ai/openai/page.tsx",
+      "route": "/vayon/settings/ai/openai",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/ai/openai/page.tsx",
+        "features/platform/openai/components/OpenAISettings.tsx",
+        "features/vayon/one-click-experience/OneClickSetup.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/appearance/page.tsx",
+      "route": "/vayon/settings/appearance",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/appearance/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/billing/page.tsx",
+      "route": "/vayon/settings/billing",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/billing/page.tsx",
+        "features/vayon/billing/components/BillingUI.tsx",
+        "features/vayon/billing/components/BillingForms.tsx",
+        "features/vayon/billing/components/PaddleBilling.tsx",
+        "features/vayon/billing/components/CommercialPlatform.tsx",
+        "features/vayon/billing/components/BillingRecoveryState.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/billing/provider-health/page.tsx",
+      "route": "/vayon/settings/billing/provider-health",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/billing/provider-health/page.tsx",
+        "features/vayon/billing/components/BillingUI.tsx",
+        "features/vayon/billing/components/CommercialPlatform.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/configuration/page.tsx",
+      "route": "/vayon/settings/configuration",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/configuration/page.tsx",
+        "features/vayon/configuration/components/ConfigurationEngine.tsx",
+        "features/vayon/configuration/components/ConfigurationShell.tsx",
+        "features/vayon/configuration/components/CustomFieldEditor.tsx",
+        "features/vayon/configuration/components/PipelineEditor.tsx",
+        "features/vayon/configuration/components/StageCard.tsx",
+        "features/vayon/configuration/components/FormCanvas.tsx",
+        "features/vayon/configuration/components/PermissionMatrix.tsx",
+        "features/vayon/configuration/components/PreferencePanel.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/vayon/configuration/components/WorkflowCanvas.tsx",
+        "features/vayon/configuration/components/WorkflowNode.tsx",
+        "features/vayon/one-click-experience/OneClickSetup.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/departments/page.tsx",
+      "route": "/vayon/settings/departments",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/departments/page.tsx",
+        "features/platform/organization/components/OrganizationAdmin.tsx",
+        "features/platform/organization/components/OrganizationUI.tsx",
+        "features/platform/organization/components/RoleManagementUI.tsx",
+        "features/platform/organization/components/MemberManagementRows.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/email/history/page.tsx",
+      "route": "/vayon/settings/email/history",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/email/history/page.tsx",
+        "features/platform/email/components/EmailCenter.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/email/page.tsx",
+      "route": "/vayon/settings/email",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/email/page.tsx",
+        "features/platform/email/components/EmailCenter.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/email/queue/page.tsx",
+      "route": "/vayon/settings/email/queue",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/email/queue/page.tsx",
+        "features/platform/email/components/EmailCenter.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/email/templates/page.tsx",
+      "route": "/vayon/settings/email/templates",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/email/templates/page.tsx",
+        "features/platform/email/components/EmailCenter.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/google/page.tsx",
+      "route": "/vayon/settings/google",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/google/page.tsx",
+        "features/identity-workspace/components/SettingsShell.tsx",
+        "features/identity-workspace/components/ProfileSettings.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/identity-workspace/components/TenantSettings.tsx",
+        "features/identity-workspace/components/GoogleSettings.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/integrations/data-import/page.tsx",
+      "route": "/vayon/settings/integrations/data-import",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/integrations/data-import/page.tsx",
+        "features/onboarding/components/DataImportWorkspace.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/integrations/google/page.tsx",
+      "route": "/vayon/settings/integrations/google",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/integrations/google/page.tsx",
+        "features/platform/integrations/google/GoogleIdentityDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/integrations/microsoft/page.tsx",
+      "route": "/vayon/settings/integrations/microsoft",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/integrations/microsoft/page.tsx",
+        "features/platform/integrations/microsoft/MicrosoftIdentityDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/integrations/page.tsx",
+      "route": "/vayon/settings/integrations",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/integrations/page.tsx",
+        "features/platform/integrations/center/IntegrationCenter.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/invoices/page.tsx",
+      "route": "/vayon/settings/invoices",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/invoices/page.tsx",
+        "features/vayon/billing/components/BillingUI.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/invoices/[invoiceId]/page.tsx",
+      "route": "/vayon/settings/invoices/[invoiceId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/invoices/[invoiceId]/page.tsx",
+        "features/vayon/billing/components/BillingUI.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/members/page.tsx",
+      "route": "/vayon/settings/members",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/members/page.tsx",
+        "features/platform/organization/components/OrganizationUI.tsx",
+        "features/platform/organization/components/RoleManagementUI.tsx",
+        "features/platform/organization/components/MemberManagementRows.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/notifications/page.tsx",
+      "route": "/vayon/settings/notifications",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/notifications/page.tsx",
+        "features/identity-workspace/components/SettingsShell.tsx",
+        "features/identity-workspace/components/ProfileSettings.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/identity-workspace/components/TenantSettings.tsx",
+        "features/identity-workspace/components/GoogleSettings.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/organization/page.tsx",
+      "route": "/vayon/settings/organization",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/organization/page.tsx",
+        "features/platform/organization/components/OrganizationUI.tsx",
+        "features/platform/organization/components/RoleManagementUI.tsx",
+        "features/platform/organization/components/MemberManagementRows.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/page.tsx",
+      "route": "/vayon/settings",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/page.tsx",
+        "features/identity-workspace/components/SettingsShell.tsx",
+        "features/identity-workspace/components/ProfileSettings.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/identity-workspace/components/TenantSettings.tsx",
+        "features/identity-workspace/components/GoogleSettings.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/payment-methods/page.tsx",
+      "route": "/vayon/settings/payment-methods",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/payment-methods/page.tsx",
+        "features/vayon/billing/components/BillingUI.tsx",
+        "features/vayon/billing/components/CommercialBilling.tsx",
+        "features/vayon/billing/components/StripeBilling.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/permissions/page.tsx",
+      "route": "/vayon/settings/permissions",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/permissions/page.tsx",
+        "features/platform/organization/components/OrganizationAdmin.tsx",
+        "features/platform/organization/components/OrganizationUI.tsx",
+        "features/platform/organization/components/RoleManagementUI.tsx",
+        "features/platform/organization/components/MemberManagementRows.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/plans/page.tsx",
+      "route": "/vayon/settings/plans",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/plans/page.tsx",
+        "features/vayon/billing/components/BillingUI.tsx",
+        "features/vayon/billing/components/StripeBilling.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/product-intelligence/page.tsx",
+      "route": "/vayon/settings/product-intelligence",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/product-intelligence/page.tsx",
+        "features/platform/product-intelligence/components/ProductIntelligenceDashboard.tsx",
+        "features/platform/continuous-learning/components/ContinuousLearningDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/profile/page.tsx",
+      "route": "/vayon/settings/profile",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/profile/page.tsx",
+        "features/identity-workspace/components/SettingsShell.tsx",
+        "features/identity-workspace/components/ProfileSettings.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/identity-workspace/components/TenantSettings.tsx",
+        "features/identity-workspace/components/GoogleSettings.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/roles/page.tsx",
+      "route": "/vayon/settings/roles",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/roles/page.tsx",
+        "features/platform/organization/components/OrganizationUI.tsx",
+        "features/platform/organization/components/RoleManagementUI.tsx",
+        "features/platform/organization/components/MemberManagementRows.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/security/page.tsx",
+      "route": "/vayon/settings/security",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/security/page.tsx",
+        "features/identity-workspace/components/SettingsShell.tsx",
+        "features/identity-workspace/components/ProfileSettings.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/identity-workspace/components/TenantSettings.tsx",
+        "features/identity-workspace/components/GoogleSettings.tsx",
+        "features/platform/enterprise-security/components/SecurityDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/subscription/page.tsx",
+      "route": "/vayon/settings/subscription",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/subscription/page.tsx",
+        "features/vayon/billing/components/BillingForms.tsx",
+        "features/vayon/billing/components/BillingUI.tsx",
+        "features/vayon/billing/components/PaddleBilling.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/teams/page.tsx",
+      "route": "/vayon/settings/teams",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/teams/page.tsx",
+        "features/platform/organization/components/OrganizationAdmin.tsx",
+        "features/platform/organization/components/OrganizationUI.tsx",
+        "features/platform/organization/components/RoleManagementUI.tsx",
+        "features/platform/organization/components/MemberManagementRows.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/usage/page.tsx",
+      "route": "/vayon/settings/usage",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/usage/page.tsx",
+        "features/vayon/billing/components/BillingUI.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/users/page.tsx",
+      "route": "/vayon/settings/users",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/settings/users/page.tsx",
+        "features/platform/organization/components/OrganizationAdmin.tsx",
+        "features/platform/organization/components/OrganizationUI.tsx",
+        "features/platform/organization/components/RoleManagementUI.tsx",
+        "features/platform/organization/components/MemberManagementRows.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/settings/workspace/page.tsx",
+      "route": "/vayon/settings/workspace",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/settings/workspace/page.tsx",
+        "features/identity-workspace/components/SettingsShell.tsx",
+        "features/identity-workspace/components/ProfileSettings.tsx",
+        "components/ui/Input.tsx",
+        "features/location/components/AddressAutocomplete.tsx",
+        "features/location/components/CitySelect.tsx",
+        "features/location/components/RegionalSelect.tsx",
+        "features/onboarding/components/SearchableSelect.tsx",
+        "features/onboarding/components/ValidationMessage.tsx",
+        "features/location/components/CountrySelect.tsx",
+        "features/location/components/CurrencySelect.tsx",
+        "features/location/components/LanguageSelect.tsx",
+        "features/location/components/PhoneCodeSelect.tsx",
+        "features/location/components/StateSelect.tsx",
+        "features/location/components/TimezoneSelect.tsx",
+        "features/identity-workspace/components/TenantSettings.tsx",
+        "features/identity-workspace/components/GoogleSettings.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/site-visits/calendar/page.tsx",
+      "route": "/vayon/site-visits/calendar",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/site-visits/calendar/page.tsx",
+        "features/vayon/site-visits/VisitViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/site-visits/page.tsx",
+      "route": "/vayon/site-visits",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/site-visits/page.tsx",
+        "features/vayon/operations/components/OperationForms.tsx",
+        "features/vayon/site-visits/VisitViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/site-visits/reports/page.tsx",
+      "route": "/vayon/site-visits/reports",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/site-visits/reports/page.tsx",
+        "features/vayon/site-visits/VisitViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/site-visits/[visitId]/page.tsx",
+      "route": "/vayon/site-visits/[visitId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/site-visits/[visitId]/page.tsx",
+        "features/vayon/site-visits/VisitViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/storage/page.tsx",
+      "route": "/vayon/storage",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/storage/page.tsx",
+        "features/platform/integrations/storage/components.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/success-center/page.tsx",
+      "route": "/vayon/success-center",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/success-center/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/system/page.tsx",
+      "route": "/vayon/system",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/system/page.tsx",
+        "features/platform/quality/components/SystemDiagnostics.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/tasks/page.tsx",
+      "route": "/vayon/tasks",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/tasks/page.tsx",
+        "features/vayon/operations/components/OperationsUI.tsx",
+        "features/vayon/operations/components/OperationForms.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/team/page.tsx",
+      "route": "/vayon/team",
+      "redirect": true,
+      "sharedShell": true,
+      "sharedHeader": false,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/team/page.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/timeline/page.tsx",
+      "route": "/vayon/timeline",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": true,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/timeline/page.tsx",
+        "features/platform/business-timeline/components/TimelineDashboard.tsx",
+        "features/platform/business-timeline/components/live/TimelineExperience.tsx",
+        "features/platform/business-timeline/components/live/CorrelationExplorer.tsx",
+        "features/platform/business-timeline/components/live/EventInspector.tsx",
+        "features/platform/business-timeline/components/live/JourneyView.tsx",
+        "features/platform/business-timeline/components/live/ProjectionDashboard.tsx",
+        "features/platform/business-timeline/components/live/TimelineFeed.tsx",
+        "features/platform/business-timeline/components/live/TimelineFilters.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/whatsapp/conversations/page.tsx",
+      "route": "/vayon/whatsapp/conversations",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/whatsapp/conversations/page.tsx",
+        "features/platform/whatsapp/components/WhatsAppShell.tsx",
+        "features/platform/whatsapp/components/WhatsAppWorkspace.tsx",
+        "features/platform/integrations/whatsapp/WhatsAppConnectCard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/whatsapp/inbox/page.tsx",
+      "route": "/vayon/whatsapp/inbox",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/whatsapp/inbox/page.tsx",
+        "features/platform/whatsapp/components/WhatsAppShell.tsx",
+        "features/platform/whatsapp/components/WhatsAppWorkspace.tsx",
+        "features/platform/integrations/whatsapp/WhatsAppConnectCard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/whatsapp/page.tsx",
+      "route": "/vayon/whatsapp",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/whatsapp/page.tsx",
+        "features/platform/whatsapp/components/WhatsAppShell.tsx",
+        "features/platform/whatsapp/components/WhatsAppWorkspace.tsx",
+        "features/platform/integrations/whatsapp/WhatsAppConnectCard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/whatsapp/settings/page.tsx",
+      "route": "/vayon/whatsapp/settings",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/whatsapp/settings/page.tsx",
+        "features/platform/whatsapp/components/WhatsAppShell.tsx",
+        "features/platform/whatsapp/components/WhatsAppWorkspace.tsx",
+        "features/platform/integrations/whatsapp/WhatsAppConnectCard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/whatsapp/templates/page.tsx",
+      "route": "/vayon/whatsapp/templates",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/whatsapp/templates/page.tsx",
+        "features/platform/whatsapp/components/WhatsAppShell.tsx",
+        "features/platform/whatsapp/components/WhatsAppWorkspace.tsx",
+        "features/platform/integrations/whatsapp/WhatsAppConnectCard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/workflows/page.tsx",
+      "route": "/vayon/workflows",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/workflows/page.tsx",
+        "features/platform/workflows/components/WorkflowDesigner.tsx",
+        "features/platform/workflows/components/WorkflowAutomationDashboard.tsx",
+        "features/vayon/workflow-orchestrator/components/WorkflowOrchestrator.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/workflows/runtime/page.tsx",
+      "route": "/vayon/workflows/runtime",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/vayon/workflows/runtime/page.tsx",
+        "features/platform/workflows/components/WorkflowAutomationDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/workflows/[workflowId]/page.tsx",
+      "route": "/vayon/workflows/[workflowId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/workflows/[workflowId]/page.tsx",
+        "features/vayon/workflow-approval/components/GovernanceViews.tsx"
+      ]
+    },
+    {
+      "path": "app/vayon/workforce/page.tsx",
+      "route": "/vayon/workforce",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/vayon/workforce/page.tsx",
+        "features/platform/intelligence/workforce-mvp/components/WorkforceShell.tsx",
+        "features/platform/intelligence/workforce-mvp/components/AdvisorSelector.tsx",
+        "features/platform/intelligence/workforce-mvp/components/ConversationPanel.tsx",
+        "features/platform/intelligence/workforce-mvp/components/ExplainabilityDrawer.tsx",
+        "features/platform/intelligence/workforce-mvp/components/InsightCard.tsx",
+        "features/platform/intelligence/workforce-mvp/components/RecommendationTimeline.tsx",
+        "features/vayon/demo-workspace/executive-intelligence/ExecutiveIntelligencePanels.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/activity/page.tsx",
+      "route": "/platform/activity",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/activity/page.tsx",
+        "features/platform/core/activity/components/Timeline.tsx",
+        "features/platform/identity/components/FilterBar.tsx",
+        "features/platform/identity/components/SearchInput.tsx",
+        "features/platform/core/activity/components/TimelineItem.tsx",
+        "features/platform/core/components/PageLayout.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/applications/page.tsx",
+      "route": "/platform/applications",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/applications/page.tsx",
+        "features/platform/applications/components/ApplicationGrid.tsx",
+        "features/platform/applications/components/ApplicationCard.tsx",
+        "features/platform/applications/components/ApplicationLauncher.tsx",
+        "features/platform/applications/components/ApplicationStatusBadge.tsx",
+        "features/platform/applications/components/ApplicationHeader.tsx",
+        "features/platform/applications/components/ApplicationSidebar.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/audit/page.tsx",
+      "route": "/platform/audit",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/audit/page.tsx",
+        "features/platform/core/audit/components/AuditTable.tsx",
+        "features/platform/identity/components/DataTable.tsx",
+        "features/platform/identity/components/EmptyState.tsx",
+        "features/platform/identity/components/StatusBadge.tsx",
+        "features/platform/identity/components/TableToolbar.tsx",
+        "features/platform/identity/components/FilterBar.tsx",
+        "features/platform/identity/components/SearchInput.tsx",
+        "features/platform/core/components/PageLayout.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/builder/applications/page.tsx",
+      "route": "/platform/builder/applications",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/builder/applications/page.tsx",
+        "features/platform/builder/components/BuilderComponents.tsx",
+        "components/brand/BrandIcon.tsx",
+        "components/brand/BrandLogo.tsx",
+        "components/brand/BrandWordmark.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/builder/branding/page.tsx",
+      "route": "/platform/builder/branding",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/builder/branding/page.tsx",
+        "features/platform/builder/components/BuilderComponents.tsx",
+        "components/brand/BrandIcon.tsx",
+        "components/brand/BrandLogo.tsx",
+        "components/brand/BrandWordmark.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/builder/features/page.tsx",
+      "route": "/platform/builder/features",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/builder/features/page.tsx",
+        "features/platform/builder/components/BuilderComponents.tsx",
+        "components/brand/BrandIcon.tsx",
+        "components/brand/BrandLogo.tsx",
+        "components/brand/BrandWordmark.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/builder/modules/page.tsx",
+      "route": "/platform/builder/modules",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/builder/modules/page.tsx",
+        "features/platform/builder/components/BuilderComponents.tsx",
+        "components/brand/BrandIcon.tsx",
+        "components/brand/BrandLogo.tsx",
+        "components/brand/BrandWordmark.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/builder/navigation/page.tsx",
+      "route": "/platform/builder/navigation",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/builder/navigation/page.tsx",
+        "features/platform/builder/components/BuilderComponents.tsx",
+        "components/brand/BrandIcon.tsx",
+        "components/brand/BrandLogo.tsx",
+        "components/brand/BrandWordmark.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/builder/page.tsx",
+      "route": "/platform/builder",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/builder/page.tsx",
+        "features/platform/builder/components/BuilderComponents.tsx",
+        "components/brand/BrandIcon.tsx",
+        "components/brand/BrandLogo.tsx",
+        "components/brand/BrandWordmark.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/builder/settings/page.tsx",
+      "route": "/platform/builder/settings",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/builder/settings/page.tsx",
+        "features/platform/builder/components/BuilderComponents.tsx",
+        "components/brand/BrandIcon.tsx",
+        "components/brand/BrandLogo.tsx",
+        "components/brand/BrandWordmark.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/command-center/page.tsx",
+      "route": "/platform/command-center",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/command-center/page.tsx",
+        "features/platform/core/command-center/components/CommandCenter.tsx",
+        "features/platform/core/components/SectionHeader.tsx",
+        "features/platform/core/command-center/components/CommandInput.tsx",
+        "features/platform/core/command-center/components/CommandResult.tsx",
+        "features/platform/core/components/PageLayout.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/country-management/page.tsx",
+      "route": "/platform/country-management",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/country-management/page.tsx",
+        "features/platform/customer-success/components/MissionControlUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/customer-success/page.tsx",
+      "route": "/platform/customer-success",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/customer-success/page.tsx",
+        "features/platform/customer-success/components/MissionControlUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/customers/page.tsx",
+      "route": "/platform/customers",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/customers/page.tsx",
+        "features/platform/customer-success/components/MissionControlUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/customers/[organizationId]/page.tsx",
+      "route": "/platform/customers/[organizationId]",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/customers/[organizationId]/page.tsx",
+        "features/platform/customer-success/components/MissionControlUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/deployment/page.tsx",
+      "route": "/platform/deployment",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/deployment/page.tsx",
+        "features/platform/deployment/components/DeploymentDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/feature-flags/page.tsx",
+      "route": "/platform/feature-flags",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/feature-flags/page.tsx",
+        "features/platform/customer-success/components/MissionControlUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/access/page.tsx",
+      "route": "/platform/founder/access",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/founder/access/page.tsx",
+        "features/platform/founder-bootstrap/FounderBootstrapPanel.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/ai/page.tsx",
+      "route": "/platform/founder/ai",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/founder/ai/page.tsx",
+        "features/platform/founder-ai/components/FounderAIHome.tsx",
+        "features/platform/founder/components/FounderRealtime.tsx",
+        "features/platform/founder/components/FounderReportExports.tsx",
+        "features/platform/founder/components/LazyFounderCharts.tsx",
+        "features/platform/openai/runtime/ChatPanel.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/command-center/page.tsx",
+      "route": "/platform/founder/command-center",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/founder/command-center/page.tsx",
+        "features/platform/ai-command-center/components/AICommandCenter.tsx",
+        "features/platform/openai/runtime/ChatPanel.tsx",
+        "features/platform/founder/components/FounderRealtime.tsx",
+        "features/platform/ai-command-center/components/ObjectiveCoordinator.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/customer-success/page.tsx",
+      "route": "/platform/founder/customer-success",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/founder/customer-success/page.tsx",
+        "features/platform/customer-growth/components/CustomerGrowthDashboard.tsx",
+        "features/platform/founder/components/FounderRealtime.tsx",
+        "features/platform/founder/components/FounderReportExports.tsx",
+        "features/platform/founder/components/LazyFounderCharts.tsx",
+        "features/platform/openai/runtime/ChatPanel.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/integrations/page.tsx",
+      "route": "/platform/founder/integrations",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/founder/integrations/page.tsx",
+        "features/platform/enterprise-integrations/components/EnterpriseIntegrationDashboard.tsx",
+        "features/platform/integrations/components/IntegrationUI.tsx",
+        "features/platform/openai/runtime/ChatPanel.tsx",
+        "features/platform/enterprise-integrations/components/BusinessConnectionsDirectory.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/intelligence/page.tsx",
+      "route": "/platform/founder/intelligence",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/founder/intelligence/page.tsx",
+        "features/platform/intelligence-hub/components/IntelligenceHubDashboard.tsx",
+        "features/platform/founder/components/FounderRealtime.tsx",
+        "features/platform/founder/components/FounderReportExports.tsx",
+        "features/platform/founder/components/LazyFounderCharts.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/marketing/page.tsx",
+      "route": "/platform/founder/marketing",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/founder/marketing/page.tsx",
+        "features/platform/marketing-director/components/MarketingDirectorDashboard.tsx",
+        "features/platform/openai/runtime/ChatPanel.tsx",
+        "features/platform/founder/components/FounderRealtime.tsx",
+        "features/platform/founder/components/LazyFounderCharts.tsx",
+        "features/platform/marketing-director/components/MarketingReportExports.tsx",
+        "features/platform/founder/components/FounderReportExports.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/memory/page.tsx",
+      "route": "/platform/founder/memory",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/founder/memory/page.tsx",
+        "features/platform/unified-ai-context/components/UnifiedAIContextDashboard.tsx",
+        "features/platform/openai/runtime/ChatPanel.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/observability/page.tsx",
+      "route": "/platform/founder/observability",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/founder/observability/page.tsx",
+        "features/platform/observability-center/ObservabilityDashboard.tsx",
+        "features/platform/founder/components/FounderRealtime.tsx",
+        "features/platform/founder/components/FounderReportExports.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/operations/page.tsx",
+      "route": "/platform/founder/operations",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/founder/operations/page.tsx",
+        "features/platform/autonomous-operations/components/AutonomousOperationsDashboard.tsx",
+        "features/platform/openai/runtime/ChatPanel.tsx",
+        "features/platform/founder/components/FounderRealtime.tsx",
+        "features/platform/founder/components/FounderReportExports.tsx",
+        "features/platform/autonomous-operations/components/OperationsWorkbench.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/page.tsx",
+      "route": "/platform/founder",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/founder/page.tsx",
+        "features/platform/founder/components/FounderDashboard.tsx",
+        "features/platform/founder/components/FounderRealtime.tsx",
+        "features/platform/founder/components/LazyFounderCharts.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/sales/page.tsx",
+      "route": "/platform/founder/sales",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/founder/sales/page.tsx",
+        "features/platform/sales-director/components/SalesDirectorDashboard.tsx",
+        "features/platform/openai/runtime/ChatPanel.tsx",
+        "features/platform/founder/components/FounderRealtime.tsx",
+        "features/platform/founder/components/FounderReportExports.tsx",
+        "features/platform/founder/components/LazyFounderCharts.tsx",
+        "features/vayon/deal/components/DealBoard.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/tenants/page.tsx",
+      "route": "/platform/founder/tenants",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/founder/tenants/page.tsx",
+        "features/platform/tenant-management/components/TenantManagementCenter.tsx",
+        "features/platform/founder/components/FounderRealtime.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/founder/workflows/page.tsx",
+      "route": "/platform/founder/workflows",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/founder/workflows/page.tsx",
+        "features/platform/workflow-orchestration/components/WorkflowOrchestrationDashboard.tsx",
+        "features/platform/workflows/components/WorkflowAutomationDashboard.tsx",
+        "features/platform/workflow-orchestration/components/LazyWorkflowDesigner.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/identity/page.tsx",
+      "route": "/platform/identity",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/identity/page.tsx",
+        "features/platform/identity/components/IdentityDashboard.tsx",
+        "features/platform/identity/components/StatCard.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/integrations/health/page.tsx",
+      "route": "/platform/integrations/health",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/integrations/health/page.tsx",
+        "features/platform/integrations/components/IntegrationUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/integrations/logs/page.tsx",
+      "route": "/platform/integrations/logs",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/integrations/logs/page.tsx",
+        "features/platform/integrations/components/IntegrationUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/integrations/page.tsx",
+      "route": "/platform/integrations",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/integrations/page.tsx",
+        "features/platform/integrations/components/IntegrationUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/integrations/providers/page.tsx",
+      "route": "/platform/integrations/providers",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/integrations/providers/page.tsx",
+        "features/platform/integrations/components/IntegrationUI.tsx",
+        "features/platform/integrations/components/OpenAIMetrics.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/integrations/secrets/page.tsx",
+      "route": "/platform/integrations/secrets",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/integrations/secrets/page.tsx",
+        "features/platform/integrations/components/IntegrationUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/integrations/webhooks/page.tsx",
+      "route": "/platform/integrations/webhooks",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/integrations/webhooks/page.tsx",
+        "features/platform/integrations/components/IntegrationUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/launch-readiness/page.tsx",
+      "route": "/platform/launch-readiness",
+      "redirect": true,
+      "sharedShell": true,
+      "sharedHeader": false,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/launch-readiness/page.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/notifications/page.tsx",
+      "route": "/platform/notifications",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/notifications/page.tsx",
+        "features/platform/core/components/PageLayout.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx",
+        "features/platform/core/notifications/components/NotificationPlatform.tsx",
+        "features/platform/core/notifications/components/NotificationCard.tsx",
+        "features/platform/identity/components/StatusBadge.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/operations/page.tsx",
+      "route": "/platform/operations",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/operations/page.tsx",
+        "features/platform/operations-center/OperationsDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/organizations/page.tsx",
+      "route": "/platform/organizations",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/organizations/page.tsx",
+        "features/platform/organizations/components/OrganizationTable.tsx",
+        "features/platform/identity/components/ActionMenu.tsx",
+        "features/platform/identity/components/DataTable.tsx",
+        "features/platform/identity/components/EmptyState.tsx",
+        "features/platform/identity/components/StatusBadge.tsx",
+        "features/platform/identity/components/TableToolbar.tsx",
+        "features/platform/identity/components/FilterBar.tsx",
+        "features/platform/identity/components/SearchInput.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/page.tsx",
+      "route": "/platform",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/page.tsx",
+        "features/dashboard/components/Breadcrumbs.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/performance/page.tsx",
+      "route": "/platform/performance",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/performance/page.tsx",
+        "features/platform/performance/components/PerformanceDashboard.tsx",
+        "app/platform/performance/loading.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/permissions/page.tsx",
+      "route": "/platform/permissions",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/permissions/page.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx",
+        "features/platform/permissions/components/PermissionGroups.tsx",
+        "features/platform/identity/components/FilterBar.tsx",
+        "features/platform/identity/components/SearchInput.tsx",
+        "features/platform/identity/components/StatusBadge.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/platform-health/page.tsx",
+      "route": "/platform/platform-health",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/platform-health/page.tsx",
+        "features/platform/customer-success/components/MissionControlUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/region-management/page.tsx",
+      "route": "/platform/region-management",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/region-management/page.tsx",
+        "features/platform/customer-success/components/MissionControlUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/releases/page.tsx",
+      "route": "/platform/releases",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/releases/page.tsx",
+        "features/platform/customer-success/components/MissionControlUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/roles/page.tsx",
+      "route": "/platform/roles",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/roles/page.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx",
+        "features/platform/roles/components/RoleTable.tsx",
+        "features/platform/identity/components/ActionMenu.tsx",
+        "features/platform/identity/components/DataTable.tsx",
+        "features/platform/identity/components/EmptyState.tsx",
+        "features/platform/identity/components/StatusBadge.tsx",
+        "features/platform/identity/components/TableToolbar.tsx",
+        "features/platform/identity/components/FilterBar.tsx",
+        "features/platform/identity/components/SearchInput.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/search/page.tsx",
+      "route": "/platform/search",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/search/page.tsx",
+        "features/platform/core/components/PageLayout.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx",
+        "features/platform/core/search/components/UniversalSearch.tsx",
+        "features/platform/core/search/components/SearchGroup.tsx",
+        "features/platform/core/components/SectionHeader.tsx",
+        "features/platform/core/search/components/SearchResult.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/security-review/page.tsx",
+      "route": "/platform/security-review",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/security-review/page.tsx",
+        "features/platform/security-review/components/SecurityReviewDashboard.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/settings/page.tsx",
+      "route": "/platform/settings",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/settings/page.tsx",
+        "features/platform/core/components/PageLayout.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx",
+        "features/platform/core/settings/components/SettingsPlatform.tsx",
+        "features/platform/core/settings/components/SettingsSection.tsx",
+        "features/platform/core/components/SectionHeader.tsx",
+        "features/platform/core/settings/components/SettingsCard.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/support/page.tsx",
+      "route": "/platform/support",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/support/page.tsx",
+        "features/platform/customer-success/components/MissionControlUI.tsx",
+        "features/platform/customer-success/components/SupportActions.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/system-analytics/page.tsx",
+      "route": "/platform/system-analytics",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/system-analytics/page.tsx",
+        "features/platform/customer-success/components/MissionControlUI.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/themes/page.tsx",
+      "route": "/platform/themes",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/themes/page.tsx",
+        "features/platform/core/components/PageLayout.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx",
+        "features/platform/core/themes/components/ThemeManager.tsx",
+        "features/platform/core/themes/components/ThemeCard.tsx",
+        "features/platform/identity/components/StatusBadge.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/users/page.tsx",
+      "route": "/platform/users",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": true,
+      "presentationSources": [
+        "app/platform/users/page.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx",
+        "features/platform/users/components/UserTable.tsx",
+        "features/platform/identity/components/ActionMenu.tsx",
+        "features/platform/identity/components/Avatar.tsx",
+        "features/platform/identity/components/DataTable.tsx",
+        "features/platform/identity/components/EmptyState.tsx",
+        "features/platform/identity/components/StatusBadge.tsx",
+        "features/platform/identity/components/TableToolbar.tsx",
+        "features/platform/identity/components/FilterBar.tsx",
+        "features/platform/identity/components/SearchInput.tsx"
+      ]
+    },
+    {
+      "path": "app/platform/workspaces/page.tsx",
+      "route": "/platform/workspaces",
+      "redirect": false,
+      "sharedShell": true,
+      "sharedHeader": true,
+      "sharedFilters": false,
+      "sharedTable": false,
+      "presentationSources": [
+        "app/platform/workspaces/page.tsx",
+        "features/platform/identity/components/PageContainer.tsx",
+        "features/platform/identity/components/PageHeader.tsx",
+        "features/platform/workspaces/components/WorkspaceGrid.tsx",
+        "features/platform/identity/components/ActionMenu.tsx",
+        "features/platform/identity/components/FilterBar.tsx",
+        "features/platform/identity/components/SearchInput.tsx",
+        "features/platform/identity/components/StatusBadge.tsx"
+      ]
+    }
+  ],
+  "remaining": [],
+  "preservation": [
+    {
+      "path": "app/platform/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/communications/inbox/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/email/[messageId]/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/leads/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/properties/inventory/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/properties/media/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/properties/new/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/properties/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/properties/price-lists/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/properties/projects/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/properties/projects/[projectId]/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/properties/[propertyId]/edit/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/properties/[propertyId]/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "app/vayon/settings/page.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/identity-workspace/components/SettingsShell.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/onboarding/components/DataImportWorkspace.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/ai-collaboration/components/AICompanyOrchestrationCenter.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/ai-collaboration/components/CollaborationDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/ai-collaboration/components/ExecutiveCollaborationBoard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/ai-collaboration/components/TeamCollaborationCenter.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/ai-command-center/components/AICommandCenter.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/ai-runtime/dashboard/RuntimeDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/applications/components/ApplicationHeader.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/applications/components/ApplicationSidebar.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/autonomous-operations/components/AutonomousOperationsDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/builder/components/BuilderComponents.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/business-timeline/components/live/JourneyView.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/context-engine/components/ContextPanel.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/context-engine/dashboard/ContextEngineDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/core/notifications/components/NotificationPlatform.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/customer-growth/components/CustomerGrowthDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/customer-success/components/MissionControlUI.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/email/components/EmailCenter.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/enterprise-integrations/components/BusinessConnectionsDirectory.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/event-bus/components/EventViews.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/external-contacts/components/GoogleContactsWorkspace.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/external-storage/components/GoogleDriveWorkspace.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/founder/components/FounderDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/founder-bootstrap/FounderBootstrapPanel.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/gmail/components/GmailShell.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/google-calendar/components/GoogleCalendarShell.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/identity/components/DataTable.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/identity/components/FilterBar.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/integrations/center/IntegrationCenter.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/integrations/components/IntegrationUI.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/integrations/google/GoogleIdentityDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/integrations/microsoft/MicrosoftIdentityDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/intelligence/brain/dashboard/BrainDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/intelligence/cognitive/dashboard/CognitiveDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/intelligence/workforce-mvp/components/WorkforceShell.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/knowledge/components/DeveloperPortal.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/knowledge/components/DocumentationClient.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/marketing-director/components/MarketingDirectorDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/notifications/components/NotificationViews.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/operations-center/OperationsDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/organization/components/OrganizationAdmin.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/tenant-management/components/TenantManagementCenter.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/unified-ai-context/components/UnifiedAIContextDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/universal-objects/components/SearchOverlay.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/universal-objects/components/UniversalObjectHeader.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/universal-objects/components/UniversalObjectsWorkbench.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/whatsapp/components/WhatsAppShell.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/platform/workflows/components/WorkflowAutomationDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/adaptive-workspace/AdaptiveWorkspace.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/admin-platform/components/AdminViews.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/ai-runtime/components/AIRuntimeHeader.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/ai-workforce/components/AIWorkforceUI.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/analytics-platform/components/ExecutiveBI.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/autonomous-workforce/AutonomousWorkforceViews.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/billing/components/BillingUI.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/calendar-platform/components/CalendarViews.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/communication/components/CommunicationUI.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/configuration/components/ConfigurationShell.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/configuration/components/PermissionMatrix.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/creative-cloud/CreativeCloudDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/creative-pipeline/CreativePipelineDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/creative-runtime/CreativeRuntimeDashboard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/crm-engine/components/CrmLeadProfile.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/crm-engine/components/CrmLeadTable.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/dashboard/components/AICommandBar.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/dashboard/components/RevenueChart.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/deal/components/DealBoard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/deal-room/components/DealRoomViews.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/image-studio/ImageStudio.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/lead/components/LeadList.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/operational-workforce/components/WorkforceDirectory.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/operational-workforce/components/WorkforceViews.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/property/components/PropertyTable.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/property/components/PropertyToolbar.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/property-intelligence/components/ImportWizard.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/property-matching/MatchingViews.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/property-platform/components/PropertyShell.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/property-platform/components/PropertyViews.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/property-platform/inventory/InventoryViews.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/workflow-orchestrator/components/WorkflowOrchestrator.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    },
+    {
+      "path": "features/vayon/workspace-engine/components/WorkspaceEngine.tsx",
+      "formAndEventBindingsPreserved": true,
+      "existingCallTargetsPreserved": true
+    }
+  ],
+  "modifiedPresentationFiles": [
+    "app/platform/page.tsx",
+    "app/vayon/communications/inbox/page.tsx",
+    "app/vayon/email/[messageId]/page.tsx",
+    "app/vayon/leads/page.tsx",
+    "app/vayon/properties/[propertyId]/edit/page.tsx",
+    "app/vayon/properties/[propertyId]/page.tsx",
+    "app/vayon/properties/inventory/page.tsx",
+    "app/vayon/properties/media/page.tsx",
+    "app/vayon/properties/new/page.tsx",
+    "app/vayon/properties/page.tsx",
+    "app/vayon/properties/price-lists/page.tsx",
+    "app/vayon/properties/projects/[projectId]/page.tsx",
+    "app/vayon/properties/projects/page.tsx",
+    "app/vayon/settings/page.tsx",
+    "features/dashboard/components/MissionControlLayout.tsx",
+    "features/identity-workspace/components/SettingsShell.tsx",
+    "features/onboarding/components/DataImportWorkspace.tsx",
+    "features/platform/ai-collaboration/components/AICompanyOrchestrationCenter.tsx",
+    "features/platform/ai-collaboration/components/CollaborationDashboard.tsx",
+    "features/platform/ai-collaboration/components/ExecutiveCollaborationBoard.tsx",
+    "features/platform/ai-collaboration/components/TeamCollaborationCenter.tsx",
+    "features/platform/ai-command-center/components/AICommandCenter.tsx",
+    "features/platform/ai-runtime/dashboard/RuntimeDashboard.tsx",
+    "features/platform/applications/components/ApplicationHeader.tsx",
+    "features/platform/applications/components/ApplicationSidebar.tsx",
+    "features/platform/autonomous-operations/components/AutonomousOperationsDashboard.tsx",
+    "features/platform/builder/components/BuilderComponents.tsx",
+    "features/platform/business-timeline/components/live/JourneyView.tsx",
+    "features/platform/context-engine/components/ContextPanel.tsx",
+    "features/platform/context-engine/dashboard/ContextEngineDashboard.tsx",
+    "features/platform/core/notifications/components/NotificationPlatform.tsx",
+    "features/platform/customer-growth/components/CustomerGrowthDashboard.tsx",
+    "features/platform/customer-success/components/MissionControlUI.tsx",
+    "features/platform/design-system/components/data/Data.tsx",
+    "features/platform/design-system/layout/WorkspaceLayouts.tsx",
+    "features/platform/design-system/layout/WorkspaceTable.tsx",
+    "features/platform/design-system/layout/workspace.css",
+    "features/platform/email/components/EmailCenter.tsx",
+    "features/platform/enterprise-integrations/components/BusinessConnectionsDirectory.tsx",
+    "features/platform/event-bus/components/EventViews.tsx",
+    "features/platform/external-contacts/components/GoogleContactsWorkspace.tsx",
+    "features/platform/external-storage/components/GoogleDriveWorkspace.tsx",
+    "features/platform/founder-bootstrap/FounderBootstrapPanel.tsx",
+    "features/platform/founder/components/FounderDashboard.tsx",
+    "features/platform/gmail/components/GmailShell.tsx",
+    "features/platform/google-calendar/components/GoogleCalendarShell.tsx",
+    "features/platform/identity/components/DataTable.tsx",
+    "features/platform/identity/components/FilterBar.tsx",
+    "features/platform/integrations/center/IntegrationCenter.tsx",
+    "features/platform/integrations/components/IntegrationUI.tsx",
+    "features/platform/integrations/google/GoogleIdentityDashboard.tsx",
+    "features/platform/integrations/microsoft/MicrosoftIdentityDashboard.tsx",
+    "features/platform/intelligence/brain/dashboard/BrainDashboard.tsx",
+    "features/platform/intelligence/cognitive/dashboard/CognitiveDashboard.tsx",
+    "features/platform/intelligence/workforce-mvp/components/WorkforceShell.tsx",
+    "features/platform/knowledge/components/DeveloperPortal.tsx",
+    "features/platform/knowledge/components/DocumentationClient.tsx",
+    "features/platform/marketing-director/components/MarketingDirectorDashboard.tsx",
+    "features/platform/notifications/components/NotificationViews.tsx",
+    "features/platform/operations-center/OperationsDashboard.tsx",
+    "features/platform/organization/components/OrganizationAdmin.tsx",
+    "features/platform/tenant-management/components/TenantManagementCenter.tsx",
+    "features/platform/unified-ai-context/components/UnifiedAIContextDashboard.tsx",
+    "features/platform/universal-objects/components/SearchOverlay.tsx",
+    "features/platform/universal-objects/components/UniversalObjectHeader.tsx",
+    "features/platform/universal-objects/components/UniversalObjectsWorkbench.tsx",
+    "features/platform/whatsapp/components/WhatsAppShell.tsx",
+    "features/platform/workflows/components/WorkflowAutomationDashboard.tsx",
+    "features/vayon/adaptive-workspace/AdaptiveWorkspace.tsx",
+    "features/vayon/admin-platform/components/AdminViews.tsx",
+    "features/vayon/ai-runtime/components/AIRuntimeHeader.tsx",
+    "features/vayon/ai-workforce/components/AIWorkforceUI.tsx",
+    "features/vayon/analytics-platform/components/ExecutiveBI.tsx",
+    "features/vayon/autonomous-workforce/AutonomousWorkforceViews.tsx",
+    "features/vayon/billing/components/BillingUI.tsx",
+    "features/vayon/calendar-platform/components/CalendarViews.tsx",
+    "features/vayon/communication/components/CommunicationUI.tsx",
+    "features/vayon/components/ProductExperience.tsx",
+    "features/vayon/configuration/components/ConfigurationShell.tsx",
+    "features/vayon/configuration/components/PermissionMatrix.tsx",
+    "features/vayon/creative-cloud/CreativeCloudDashboard.tsx",
+    "features/vayon/creative-pipeline/CreativePipelineDashboard.tsx",
+    "features/vayon/creative-runtime/CreativeRuntimeDashboard.tsx",
+    "features/vayon/crm-engine/components/CrmLeadProfile.tsx",
+    "features/vayon/crm-engine/components/CrmLeadTable.tsx",
+    "features/vayon/dashboard/components/AICommandBar.tsx",
+    "features/vayon/dashboard/components/RevenueChart.tsx",
+    "features/vayon/deal-room/components/DealRoomViews.tsx",
+    "features/vayon/deal/components/DealBoard.tsx",
+    "features/vayon/image-studio/ImageStudio.tsx",
+    "features/vayon/lead/components/LeadList.tsx",
+    "features/vayon/operational-workforce/components/WorkforceDirectory.tsx",
+    "features/vayon/operational-workforce/components/WorkforceViews.tsx",
+    "features/vayon/property-intelligence/components/ImportWizard.tsx",
+    "features/vayon/property-matching/MatchingViews.tsx",
+    "features/vayon/property-platform/components/PropertyShell.tsx",
+    "features/vayon/property-platform/components/PropertyViews.tsx",
+    "features/vayon/property-platform/inventory/InventoryViews.tsx",
+    "features/vayon/property/components/PropertyTable.tsx",
+    "features/vayon/property/components/PropertyToolbar.tsx",
+    "features/vayon/workflow-orchestrator/components/WorkflowOrchestrator.tsx",
+    "features/vayon/workspace-engine/components/WorkspaceEngine.tsx"
+  ]
+}

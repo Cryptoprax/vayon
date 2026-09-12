@@ -1,0 +1,169 @@
+{
+  "environment": "Local Chromium: actual Members components/CSS; QA records; server actions replaced with payload capture. Not production certification.",
+  "screens": [
+    {
+      "width": 320,
+      "documentOverflow": false,
+      "overflowing": [],
+      "clippedButtons": 0,
+      "rows": 4,
+      "memberBeforeInvite": true,
+      "dialogKeyboardAndOverflow": "passed"
+    },
+    {
+      "width": 390,
+      "documentOverflow": false,
+      "overflowing": [],
+      "clippedButtons": 0,
+      "rows": 4,
+      "memberBeforeInvite": true,
+      "dialogKeyboardAndOverflow": "passed"
+    },
+    {
+      "width": 768,
+      "documentOverflow": false,
+      "overflowing": [],
+      "clippedButtons": 0,
+      "rows": 4,
+      "memberBeforeInvite": true,
+      "dialogKeyboardAndOverflow": "passed"
+    },
+    {
+      "width": 1280,
+      "documentOverflow": false,
+      "overflowing": [],
+      "clippedButtons": 0,
+      "rows": 4,
+      "memberBeforeInvite": true,
+      "dialogKeyboardAndOverflow": "passed"
+    },
+    {
+      "width": 1440,
+      "documentOverflow": false,
+      "overflowing": [],
+      "clippedButtons": 0,
+      "rows": 4,
+      "memberBeforeInvite": true,
+      "dialogKeyboardAndOverflow": "passed"
+    },
+    {
+      "width": 1600,
+      "documentOverflow": false,
+      "overflowing": [],
+      "clippedButtons": 0,
+      "rows": 4,
+      "memberBeforeInvite": true,
+      "dialogKeyboardAndOverflow": "passed"
+    },
+    {
+      "width": 1920,
+      "documentOverflow": false,
+      "overflowing": [],
+      "clippedButtons": 0,
+      "rows": 4,
+      "memberBeforeInvite": true,
+      "dialogKeyboardAndOverflow": "passed"
+    },
+    {
+      "width": 2560,
+      "documentOverflow": false,
+      "overflowing": [],
+      "clippedButtons": 0,
+      "rows": 4,
+      "memberBeforeInvite": true,
+      "dialogKeyboardAndOverflow": "passed"
+    }
+  ],
+  "before": [
+    {
+      "width": 390,
+      "tableHorizontalScroll": true
+    },
+    {
+      "width": 1280,
+      "tableHorizontalScroll": true
+    }
+  ],
+  "interactions": [
+    {
+      "ownerProtected": true,
+      "capturedExistingActions": [
+        {
+          "action": "member",
+          "values": {
+            "memberId": "00000000-0000-4000-8000-000000000001",
+            "intent": "role",
+            "role": "sales_representative"
+          }
+        },
+        {
+          "action": "member",
+          "values": {
+            "memberId": "00000000-0000-4000-8000-000000000001",
+            "intent": "suspend"
+          }
+        },
+        {
+          "action": "member",
+          "values": {
+            "memberId": "00000000-0000-4000-8000-000000000001",
+            "intent": "remove"
+          }
+        },
+        {
+          "action": "member",
+          "values": {
+            "memberId": "00000000-0000-4000-8000-000000000002",
+            "intent": "reactivate"
+          }
+        },
+        {
+          "action": "invite",
+          "values": {
+            "role": "organization_admin",
+            "name": "QA Invited Teammate",
+            "email": "qa-invite@example.test"
+          }
+        },
+        {
+          "action": "invitation",
+          "values": {
+            "invitationId": "00000000-0000-4000-8000-000000000099",
+            "intent": "resend"
+          }
+        },
+        {
+          "action": "invitation",
+          "values": {
+            "invitationId": "00000000-0000-4000-8000-000000000099",
+            "intent": "cancel"
+          }
+        },
+        {
+          "action": "transfer",
+          "values": {
+            "memberId": "00000000-0000-4000-8000-000000000001",
+            "confirmation": "TRANSFER"
+          }
+        }
+      ]
+    },
+    {
+      "readOnlyControlsProtected": true
+    },
+    {
+      "soloWorkspaceGuidancePreserved": true
+    },
+    {
+      "lightThemeWidth": 390,
+      "dialogSpaceAndCloseButton": true,
+      "noHorizontalOverflow": true
+    },
+    {
+      "lightThemeWidth": 1440,
+      "dialogSpaceAndCloseButton": true,
+      "noHorizontalOverflow": true
+    }
+  ],
+  "errors": []
+}

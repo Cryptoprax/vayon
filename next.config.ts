@@ -4,16 +4,16 @@ import { canonicalRouteRedirects } from "./config/canonical-routes";
 const isDevelopment = process.env.NODE_ENV === "development";
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' https://cdn.paddle.com 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' blob: data: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.stripe.com https://graph.facebook.com https://www.googleapis.com",
+  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.stripe.com https://*.paddle.com https://graph.facebook.com https://www.googleapis.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
-  "frame-src 'self' https://js.stripe.com https://accounts.google.com",
+  "frame-src 'self' https://buy.paddle.com https://sandbox-buy.paddle.com https://js.stripe.com https://accounts.google.com",
   "worker-src 'self' blob:",
   "upgrade-insecure-requests",
 ].join("; ");

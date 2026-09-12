@@ -37,7 +37,7 @@ export function CommandCenter({ snapshot }: { snapshot: WorkforceSnapshot }) {
         <article className={card}>
           <p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Multi-agent collaboration</p>
           <h2 className="mt-2 font-semibold">Governed customer workflow</h2>
-          <div className="mt-5 flex items-center gap-2 overflow-x-auto pb-2" aria-label="AI collaboration workflow">{["Sales Executive", "CRM Manager", "Meeting Coordinator", "Reporting Analyst", "Executive Assistant"].map((role, index) => <div className="flex shrink-0 items-center gap-2" key={role}><span className="rounded-xl border border-vds-border bg-vds-elevated px-3 py-2 text-xs">{role}</span>{index < 4 && <span aria-hidden="true" className="text-vds-primary">→</span>}</div>)}</div>
+          <div className="mt-5 flex flex-wrap items-center gap-2 min-w-0 pb-2" aria-label="AI collaboration workflow">{["Sales Executive", "CRM Manager", "Meeting Coordinator", "Reporting Analyst", "Executive Assistant"].map((role, index) => <div className="flex shrink-0 items-center gap-2" key={role}><span className="rounded-xl border border-vds-border bg-vds-elevated px-3 py-2 text-xs">{role}</span>{index < 4 && <span aria-hidden="true" className="text-vds-primary">→</span>}</div>)}</div>
           <p className="mt-3 text-xs text-vds-muted">Agents exchange tenant-scoped recommendations only. Approval remains mandatory before sensitive execution.</p>
           <Link href="/vayon/ai/collaboration" className="mt-4 inline-block text-sm text-vds-primary">Open collaboration graph</Link>
         </article>

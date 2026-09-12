@@ -1,3 +1,4 @@
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import type {
   NotificationPreference,
@@ -9,7 +10,7 @@ const card =
 export function NotificationNav() {
   return (
     <nav
-      className="mb-6 flex gap-2 overflow-x-auto"
+      className="mb-6 flex flex-wrap gap-2 min-w-0"
       aria-label="Notification platform"
     >
       <Link
@@ -47,13 +48,13 @@ export function NotificationHeader({
   description: string;
 }) {
   return (
-    <header>
+    <WorkspaceHeader>
       <p className="text-xs uppercase tracking-[.2em] text-vds-primary">
         Notification platform
       </p>
       <h1 className="mt-2 text-3xl font-semibold">{title}</h1>
       <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>
-    </header>
+    </WorkspaceHeader>
   );
 }
 export function Inbox({ items }: { items: readonly PlatformNotification[] }) {

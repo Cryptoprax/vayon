@@ -1,7 +1,11 @@
+import { subscriptionStreamFailure } from "@/features/vayon/billing/services/subscription-write-contract";
+import { guardSubscriptionApi } from "@/features/vayon/billing/services/subscription-write-guard";
 import { generateDocument } from "@/features/vayon/document-studio/actions";
 import type { DocumentWizardInput } from "@/features/vayon/document-studio/types";
 const stages = ["Planning", "Writing", "Brand Review", "Formatting"] as const;
 export async function POST(request: Request) {
+const subscriptionResponse = await guardSubscriptionApi(); if (subscriptionResponse) return subscriptionResponse;
+
   const input = (await request.json()) as DocumentWizardInput,
     encoder = new TextEncoder();
   const stream = new ReadableStream({
@@ -17,10 +21,10 @@ export async function POST(request: Request) {
             `${JSON.stringify({ type: "result", stage: submission.document ? "Completed" : submission.result.status, submission })}\n`,
           ),
         );
-      } catch {
+      } catch (error) {
         controller.enqueue(
           encoder.encode(
-            `${JSON.stringify({ type: "error", message: "Document generation could not be completed." })}\n`,
+            `${JSON.stringify(subscriptionStreamFailure(error, "Document generation could not be completed."))}\n`,
           ),
         );
       } finally {

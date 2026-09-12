@@ -31,7 +31,9 @@ test("VAYON launchers, cards, notices and demo actions register with the dock", 
     read("features/vayon/demo-experience/components/DemoExperience.tsx"),
     read("features/vayon/creative-studio-2/CreativeStudioHome.tsx"),
   ]);
-  for (const source of files) assert.match(source, /Floating(LayoutManager|Surface)/);
+  for (const source of files.slice(0,4)) assert.match(source, /Floating(LayoutManager|Surface)/);
+  assert.match(files[4], /vayon:copilot:open/);
+  assert.doesNotMatch(files[4], /<FloatingSurface|creative-assistant-dock/);
   assert.doesNotMatch(files[4], /fixed bottom-|fixed right-/);
 });
 

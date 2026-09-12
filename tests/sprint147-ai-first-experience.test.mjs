@@ -95,5 +95,5 @@ test("Sprint 147 remains a presentation-layer change", () => {
   const state = read("features/vayon/components/SmartEmptyState.tsx");
   assert.doesNotMatch(state, /fetch\(|supabase|database|billing|provider/i);
   assert.match(state, /ButtonLink/);
-  assert.match(state, /motion-reduce/);
+  assert.match(state, /WorkspaceEmptyState/);
 });

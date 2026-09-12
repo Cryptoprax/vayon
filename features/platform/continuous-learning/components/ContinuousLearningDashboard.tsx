@@ -17,7 +17,7 @@ export function ContinuousLearningDashboard({
 }) {
   return (
     <section
-      className="mx-auto max-w-7xl px-5 pb-10"
+      className="pb-10"
       aria-labelledby="continuous-learning-title"
     >
       <header className="border-t border-vds-border pt-8">

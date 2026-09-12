@@ -1,11 +1,11 @@
 "use client";
 
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/features/platform/design-system";
-import { FloatingSurface } from "@/features/vayon/floating-layout/FloatingLayoutManager";
-import { Boxes, ChevronRight, FileText, FolderKanban, Globe2, Image as ImageIcon, LayoutTemplate, Mail, Megaphone, Palette, PanelRight, Plus, Presentation, Search, Share2, Sparkles, Video, X } from "lucide-react";
+import { Boxes, ChevronRight, FileText, FolderKanban, Globe2, Image as ImageIcon, LayoutTemplate, Mail, Megaphone, Palette, PanelRight, Presentation, Search, Share2, Sparkles, Video, X } from "lucide-react";
 import { analyzeCreativeIntent, creativeExecutionStages, type CreativeExecutionPlan } from "./intent";
 import type { CreativeModuleId, CreativeStudio2Snapshot } from "./types";
 import styles from "./CreativeStudioHome.module.css";
@@ -35,7 +35,7 @@ const date = (value: string) => new Date(value).toLocaleDateString("en", { month
 
 export function CreativeStudioHome({ snapshot }: { readonly snapshot: CreativeStudio2Snapshot }) {
   const router = useRouter();
-  const [dialog, setDialog] = useState(false), [assistant, setAssistant] = useState(false), [dockWidth, setDockWidth] = useState(320);
+  const [dialog, setDialog] = useState(false);
   const [prompt, setPrompt] = useState(() => typeof window === "undefined" ? "" : (window.sessionStorage.getItem("vayon.creative.prompt") ?? ""));
   const [plan, setPlan] = useState<CreativeExecutionPlan | null>(null), [executionStatus, setExecutionStatus] = useState("Ready");
   const [query, setQuery] = useState(""), [group, setGroup] = useState<string>("All studios"), [recent, setRecent] = useState("Campaigns");
@@ -52,20 +52,13 @@ export function CreativeStudioHome({ snapshot }: { readonly snapshot: CreativeSt
   const recentAssets = assets.filter(asset => asset.name.toLowerCase().includes(query.toLowerCase()) && (recent !== "Exports" || asset.exports.length));
   const brand = snapshot.brandKits[0];
   return (
-    <div className={styles.center}>
-      <header className={`${card} ${styles.hero}`}>
-        <p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Your creative workspace</p>
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">AI Creative Center</h1>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-vds-muted">Create every marketing asset your business needs using AI.</p>
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Button onClick={() => setDialog(true)} className="min-h-12 gap-2 rounded-xl px-5"><Sparkles aria-hidden="true" className="size-5" />Create with AI</Button>
-        </div>
-      </header>
+    <WorkspaceContent >
+      <WorkspaceHeader title="AI Creative Center" description="Create every marketing asset your business needs using AI." actions={<Button onClick={() => setDialog(true)}><Sparkles aria-hidden="true" />Create with AI</Button>} />
       <nav aria-label="Creative Center sections" className="flex flex-wrap items-center gap-2 border-b border-vds-border py-3">
         {[["Quick actions", "quick-actions"], ["Studios", "studios"], ["Recent projects", "recent-projects"], ["Brand assets", "brand-assets"], ["Activity", "activity"]].map(([label,id]) => <a className={action} href={`#${id}`} key={id}>{label}</a>)}
-        <Button variant="outline" className="min-h-11 gap-2 xl:ml-auto" aria-expanded={assistant} aria-controls="creative-assistant-dock" onClick={() => setAssistant(value => !value)}><PanelRight aria-hidden="true" className="size-4" />Assistant</Button>
+        <Button variant="outline" className="min-h-11 gap-2 xl:ml-auto" onClick={() => window.dispatchEvent(new CustomEvent("vayon:copilot:open"))}><PanelRight aria-hidden="true" className="size-4" />Assistant</Button>
       </nav>
-      <div className={styles.workspace} data-docked={assistant} style={{ "--creative-dock-width": `${dockWidth}px` } as CSSProperties}>
+      <div className={styles.workspace}>
         <div className={styles.content}>
           <section aria-labelledby="quick-actions">
             <h2 id="quick-actions" className="text-xl font-semibold">What would you like to create?</h2>
@@ -120,14 +113,8 @@ export function CreativeStudioHome({ snapshot }: { readonly snapshot: CreativeSt
           </section>
           <section className={`${card} flex flex-wrap items-center justify-between gap-4 p-6`} aria-label="Export formats"><div><h2 className="font-semibold">Ready for every channel</h2><p className="mt-2 text-sm text-vds-muted">Export formats depend on your selected studio.</p></div><div className="flex flex-wrap gap-2">{snapshot.exportFormats.map(format => <span key={format} className="rounded-lg border border-vds-border px-3 py-2 text-xs">{format}</span>)}</div></section>
         </div>
-        <aside id="creative-assistant-dock" hidden={!assistant} className={`${styles.dock} ${card}`} aria-label="Creative Assistant">
-          <div className="flex items-center justify-between gap-2"><h2 className="font-semibold">Creative Assistant</h2><Button variant="ghost" aria-label="Collapse assistant" onClick={() => { setAssistant(false); document.querySelector<HTMLButtonElement>('[aria-controls="creative-assistant-dock"]')?.focus(); }}><X className="size-5" /></Button></div>
-          <p className="mt-4 text-sm leading-6 text-vds-muted">Turn your idea into a brief and a clear creation plan.</p><Button variant="outline" onClick={() => setDialog(true)} className="mt-4 w-full">Start a creative brief</Button>
-          <label className={styles.resize}>Assistant width<input aria-label="Assistant width" type="range" min="280" max="440" step="20" value={dockWidth} onChange={event => setDockWidth(Number(event.target.value))} /></label>
-          <div id="creative-intelligence-dock" className="mt-5 min-w-0" />
-        </aside>
+
       </div>
-      <FloatingSurface id="creative-create" kind="action" priority={50}><Button onClick={() => setDialog(true)} className={`${styles.createAction} min-h-12 gap-2 rounded-2xl shadow-lg`}><Plus className="size-5" aria-hidden="true" />Create with AI</Button></FloatingSurface>
       <dialog ref={dialogRef} onCancel={() => setDialog(false)} onClose={() => setDialog(false)}
           onKeyDown={event => {
             if (event.key !== "Tab") return;
@@ -269,6 +256,6 @@ export function CreativeStudioHome({ snapshot }: { readonly snapshot: CreativeSt
           </section>
         </div>
       </dialog>
-    </div>
+    </WorkspaceContent>
   );
 }

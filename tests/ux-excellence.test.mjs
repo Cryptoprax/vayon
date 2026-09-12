@@ -71,7 +71,7 @@ test("shared table supports enterprise interaction contracts", () => {
     "Home",
     "End",
     "aria-selected",
-    "overflow-x-auto",
+    "WorkspaceTable",
     "aria-live",
   ])
     assert.match(source, new RegExp(value));

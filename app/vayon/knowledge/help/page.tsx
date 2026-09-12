@@ -1,3 +1,4 @@
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import { Button } from "@/features/platform/design-system";
 import { EnterpriseKnowledgeService } from "@/features/platform/knowledge/services/knowledge.service";
@@ -35,15 +36,15 @@ export default async function Page({
       : null,
     answer = answerResult?.status === "ready" ? answerResult.answer : null;
   return (
-    <main className="mx-auto max-w-5xl px-4 py-8">
+    <WorkspaceContent >
       <Link href="/vayon/knowledge" className="text-sm text-vds-primary">
         ← Knowledge Center
       </Link>
-      <h1 className="mt-5 text-3xl font-semibold">Help Center</h1>
+      <WorkspaceHeader><h1 className="mt-5 text-3xl font-semibold">Help Center</h1>
       <p className="mt-2 text-sm text-vds-muted">
         Search product documentation, organization knowledge, launch guides, and
         context-sensitive help.
-      </p>
+      </p></WorkspaceHeader>
       <form className="mt-6 flex gap-2" role="search">
         <label className="sr-only" htmlFor="help-search">
           Search Help Center
@@ -183,6 +184,6 @@ export default async function Page({
           </p>
         </section>
       </div>
-    </main>
+    </WorkspaceContent>
   );
 }

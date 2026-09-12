@@ -35,7 +35,7 @@ test("transactions calendar marketing reports and search use real estate languag
   const calendar = read("features/vayon/calendar-platform/components/CalendarViews.tsx");
   const search = read("features/vayon/universal-bar/providers/static-navigation.provider.ts");
   for (const value of ["Viewing Scheduled", "Offer Accepted", "Loan Processing", "Legal Verification", "Registration", "Handover", "Open House", "Virtual Tour", "Luxury Brochure", "Commission Report", "Viewing Analytics", "Closing Analytics"]) assert.match(catalog, new RegExp(value));
-  assert.match(transactions, /Negotiation and closing/);
+  assert.match(transactions, /Move deals toward closing/);
   assert.match(calendar, /calendarCategories/);
   assert.match(search, /realEstatePriority/);
 });
@@ -49,7 +49,8 @@ test("priority empty states guide the current task without unrelated secondary a
   assert.match(properties, /No Properties Yet/);
   assert.match(properties, /begin receiving buyer enquiries/);
   assert.match(transactions, /No deals yet/);
-  assert.match(read("features/vayon/lead/components/LeadToolbar.tsx"), /href="\/vayon\/leads\/new"/);
+  assert.match(leads, /href="\/vayon\/leads\/new"/);
+  assert.doesNotMatch(read("features/vayon/lead/components/LeadToolbar.tsx"), /href="\/vayon\/leads\/new"/);
   assert.doesNotMatch(leads, /Review lead connections/);
   assert.match(transactions, /href="\/vayon\/deals\/new"/);
   assert.doesNotMatch(transactions, /Review qualified leads|Review properties/);

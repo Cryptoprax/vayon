@@ -1,3 +1,4 @@
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import Link from "next/link";
 import { Button } from "@/features/platform/design-system";
 import { submitProductFeedbackAction } from "../actions";
@@ -9,8 +10,8 @@ export function ProductIntelligenceDashboard({
   snapshot: ProductIntelligenceSnapshot;
 }) {
   return (
-    <main className="mx-auto max-w-7xl px-5 py-8">
-      <header>
+    <WorkspaceContent >
+      <WorkspaceHeader>
         <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">
           Customer success intelligence
         </p>
@@ -20,7 +21,7 @@ export function ProductIntelligenceDashboard({
           and customer health evidence. Recommendations never modify the
           application.
         </p>
-      </header>
+      </WorkspaceHeader>
       <div className="mt-7 grid gap-6 xl:grid-cols-[1fr_24rem]">
         <div className="space-y-7">
           <InsightSection title="Product adoption" items={snapshot.adoption} />
@@ -69,7 +70,7 @@ export function ProductIntelligenceDashboard({
         Cached snapshot generated{" "}
         {new Date(snapshot.generatedAt).toLocaleString()}.
       </p>
-    </main>
+    </WorkspaceContent>
   );
 }
 function InsightSection({

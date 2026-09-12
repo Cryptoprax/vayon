@@ -1,4 +1,5 @@
 "use client";
+import { SubscriptionResponseHandler } from "@/features/vayon/billing/components/SubscriptionResponseHandler";
 import { usePathname, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { useState, useSyncExternalStore, type ReactNode } from "react";
@@ -11,8 +12,9 @@ import { PremiumWelcomeExperience } from "@/features/onboarding/components/Premi
 import { FloatingLayoutManager, FloatingSurface } from "../floating-layout/FloatingLayoutManager";
 import { TTFVObserver } from "../ttfv/TTFVObserver";
 import type { PlatformVisibilityContext } from "@/features/platform/visibility/domain";
-import { AppShell, ContentContainer } from "../product-shell/AppShell";
+import { AppShell } from "../product-shell/AppShell";
 import { ShellFeedbackToast } from "./ShellFeedbackToast";
+import { WorkspacePageLayout, WorkspaceAssistantDock } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 const storageKey = "vayon.shell.sidebar.collapsed.v1";
 const storageEvent = "vayon-shell-collapse";
 const VayonIntelligence = dynamic(
@@ -40,6 +42,7 @@ function collapseSnapshot() {
 
 export function ProductExperience({
   children,
+  commercialNotice,
   identity,
   intelligenceEnabled = false,
   intelligenceOrganization,
@@ -49,6 +52,7 @@ export function ProductExperience({
   visibility,
 }: {
   readonly children: ReactNode;
+  readonly commercialNotice?: ReactNode;
   readonly identity: ShellIdentity;
   readonly intelligenceEnabled?: boolean;
   readonly intelligenceOrganization?: string;
@@ -68,8 +72,6 @@ export function ProductExperience({
     ),
     feedback = params.get("success") || params.get("error");
   const propertyRoute = path === "/vayon/properties" || path.startsWith("/vayon/properties/");
-  const wideWorkspace = propertyRoute || ["/vayon/leads", "/vayon/crm/contacts", "/vayon/crm/companies", "/vayon/deals", "/vayon/tasks", "/vayon/calendar", "/vayon/growth", "/vayon/approvals"].includes(path) || path.startsWith("/vayon/settings");
-  const propertyHeader = path === "/vayon/properties" || /^\/vayon\/properties\/[0-9a-f-]{36}$/i.test(path);
   const showWelcome = path === "/vayon/dashboard" && params.get("welcome") === "1" && !feedback;
   function toggleCollapse() {
     const next = !collapsed;
@@ -81,10 +83,10 @@ export function ProductExperience({
     window.dispatchEvent(new Event(storageEvent));
   }
   return (
-    <FloatingLayoutManager sidebarCollapsed={collapsed}>
+    <FloatingLayoutManager sidebarCollapsed={collapsed} inline>
     <div className="vayon-premium-canvas vayon-product min-h-dvh text-vds-foreground">
       {showWelcome && <PremiumWelcomeExperience userName={identity.userName} workspaceName={identity.workspaceName} />}
-      <TTFVObserver workspaceReady={Boolean(identity.workspaceName)} />
+      <SubscriptionResponseHandler/><TTFVObserver workspaceReady={Boolean(identity.workspaceName)} />
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
@@ -102,32 +104,16 @@ export function ProductExperience({
         onCollapse={toggleCollapse}
         onMobileClose={() => setMobile(false)}
       />}>
-        {!propertyHeader && <div className="sticky top-16 z-20 border-b border-vds-border bg-vds-background/90 backdrop-blur-lg">
-          <ContentContainer><Breadcrumbs path={path} /></ContentContainer>
-        </div>}
         <main
           id="main-content"
           tabIndex={-1}
           className="min-w-0 animate-[vds-fade-rise_180ms_cubic-bezier(.16,1,.3,1)]"
         >
-          {wideWorkspace ? <div className="vayon-content-container" style={{ maxWidth: "none" }}>{children}</div> : <ContentContainer>{children}</ContentContainer>}
+          <WorkspacePageLayout notice={commercialNotice} key={path} breadcrumbs={<Breadcrumbs path={path}/>} assistant={intelligenceEnabled && <WorkspaceAssistantDock key={path}><VayonIntelligence embedded route={path} organization={intelligenceOrganization ?? identity.workspaceName} workspace={identity.workspaceName} user={identity.userName} role={intelligenceRole} subscriptionPlan={intelligenceSubscription} permissions={intelligencePermissions} diagnostic={params.get("error")}/></WorkspaceAssistantDock>}>{children}</WorkspacePageLayout>
         </main>
       </AppShell>
       <aside hidden aria-hidden="true" data-future-utility-rail="disabled" />
-      {path !== "/vayon/creative" && (!propertyRoute || !intelligenceEnabled) && <QuickCreate role={identity.workspaceRole} visibility={visibility} />}
-      {intelligenceEnabled && (
-        <VayonIntelligence
-          docked={path === "/vayon/creative"}
-          route={path}
-          organization={intelligenceOrganization ?? identity.workspaceName}
-          workspace={identity.workspaceName}
-          user={identity.userName}
-          role={intelligenceRole}
-          subscriptionPlan={intelligenceSubscription}
-          permissions={intelligencePermissions}
-          diagnostic={params.get("error")}
-        />
-      )}
+      {propertyRoute && !intelligenceEnabled && <QuickCreate role={identity.workspaceRole} visibility={visibility} />}
       {feedback && (
         <FloatingSurface id="shell-feedback" kind="toast" priority={30}>
         <ShellFeedbackToast key={`${path}:${feedback}`} message={feedback} tone={params.get("error") ? "danger" : "success"}/>

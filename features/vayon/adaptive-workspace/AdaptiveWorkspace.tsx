@@ -620,7 +620,7 @@ export function AdaptiveWorkspace({ businessType }: { businessType?: string }) {
           <h2 id="recent-work-title" className="text-lg font-semibold">
             Continue where you left off
           </h2>
-          <div className="mt-3 flex gap-3 overflow-x-auto pb-2">
+          <div className="mt-3 flex flex-wrap gap-3 min-w-0 pb-2">
             {recents.map((item) => (
               <Link
                 key={item.href}

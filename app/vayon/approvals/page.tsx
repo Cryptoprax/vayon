@@ -1,3 +1,4 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import {
   ApprovalList,
   GovernanceHeader,
@@ -6,7 +7,7 @@ import { GovernanceService } from "@/features/vayon/workflow-approval/services/g
 export default function Page() {
   const data = new GovernanceService().dashboard();
   return (
-    <main className="w-full min-w-0 py-6">
+    <WorkspaceContent >
       <GovernanceHeader
         title="Real Estate Approval Center"
         description="Review property, listing, pricing, commission, offer, assignment, campaign, publication, contract, description, and media decisions with evidence and audit history."
@@ -16,6 +17,6 @@ export default function Page() {
         <p className="mt-2 text-sm leading-6 text-vds-muted">Publish Listing · Price Revision · Property Status · Commission · Discount · Offer Acceptance · Offer Rejection · Agent Assignment · Contract Approval · Marketing Campaign · Listing Removal · Media Approval</p>
       </section>
       <ApprovalList items={data.approvals} />
-    </main>
+    </WorkspaceContent>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
-import { useMemo, useRef, useState, type ReactNode } from "react";
+import { useMemo, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import { WorkspaceTable } from "../../layout/WorkspaceTable";
 import {
   ChevronLeft,
   ChevronRight,
@@ -163,8 +164,8 @@ export function DataTable<T>({
           Export CSV
         </Button>
       </div>
-      <div className="max-w-full overflow-x-auto rounded-2xl border border-[var(--vds-color-border)]">
-        <table className="w-full border-collapse text-sm">
+      <div className="min-w-0 max-w-full rounded-2xl border border-[var(--vds-color-border)]">
+        <WorkspaceTable className="w-full border-collapse text-sm">
           <caption className="sr-only">{caption}</caption>
           <thead className="sticky top-0 z-10 bg-vds-elevated text-left text-xs uppercase tracking-wide text-[var(--vds-color-muted)]">
             <tr>
@@ -182,7 +183,7 @@ export function DataTable<T>({
                 <th
                   key={column.id}
                   scope="col"
-                  style={{ width: widths[column.id] }}
+                  style={{ "--workspace-column-width": `${((widths[column.id] ?? 180) / (shown.reduce((total, item) => total + (widths[item.id] ?? 180), 0) + (selectable ? 48 : 0))) * 100}%` } as CSSProperties}
                   className={`relative h-11 px-4 py-3 font-semibold ${alignments[column.align ?? "left"]}`}
                 >
                   {column.header}
@@ -232,7 +233,7 @@ export function DataTable<T>({
               );
             })}
           </tbody>
-        </table>
+        </WorkspaceTable>
         {!rows.length && (
           <div role="status" className="grid min-h-40 place-items-center p-8 text-center">
             <div>

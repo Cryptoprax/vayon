@@ -1,0 +1,7 @@
+import { Button } from "@/features/platform/design-system";
+import { cancelSubscriptionAction, reactivateSubscriptionAction, updateBillingContactAction } from "../actions/billing.actions";
+import type { BillingContactRecord, SubscriptionRecord } from "../types";
+const field="rounded-xl border border-vds-border bg-vds-input px-4 py-3 text-sm";
+export function BillingContactForm({contact}:{contact:BillingContactRecord|null}){return <form action={updateBillingContactAction} className="grid gap-3 rounded-3xl border border-vds-border bg-vds-surface p-5"><input className={field} name="companyName" defaultValue={contact?.companyName} placeholder="Legal company name" required/><input className={field} name="billingEmail" type="email" defaultValue={contact?.billingEmail} placeholder="Billing email" required/><input className={field} name="taxId" defaultValue={contact?.taxId} placeholder="GST / Tax ID"/><Button variant="primary">Save billing details</Button></form>}
+export function SubscriptionLifecycle({subscription}:{subscription:SubscriptionRecord|null}){if(!subscription)return null;return subscription.cancelAtPeriodEnd?<form action={reactivateSubscriptionAction}><input type="hidden" name="expectedVersion" value={subscription.version}/><Button variant="control">Reactivate subscription</Button></form>:<form action={cancelSubscriptionAction}><input type="hidden" name="expectedVersion" value={subscription.version}/><Button variant="control" className="text-vds-danger">Cancel at period end</Button></form>}
+export const CancelSubscription=SubscriptionLifecycle;

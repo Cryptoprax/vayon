@@ -33,7 +33,7 @@ test("recoverable errors are friendly and never expose technical details", () =>
 test("empty states and feedback use shared accessible UX primitives", () => {
   const empty = read("features/vayon/components/SmartEmptyState.tsx");
   const toast = read("features/vayon/components/ShellFeedbackToast.tsx");
-  for (const value of ["Sparkles", "primaryLabel", "secondaryActions", "ButtonLink"])
+  for (const value of ["WorkspaceEmptyState", "primaryLabel", "secondaryActions", "ButtonLink"])
     assert.match(empty, new RegExp(value));
   assert.match(toast, /tone !== "success"/);
   assert.match(toast, /5000/);

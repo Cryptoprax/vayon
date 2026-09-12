@@ -32,14 +32,12 @@ test("checkout route always owns success and error JSON envelopes", () => {
     assert.match(route, new RegExp(code));
 });
 
-test("checkout UI safely handles empty or invalid response bodies", () => {
-  assert.doesNotMatch(client, /response\.json\(\)/);
-  assert.match(client, /await response\.text\(\)/);
-  assert.match(client, /if \(!text\.trim\(\)\) return null/);
-  assert.match(client, /try\s*\{[\s\S]*JSON\.parse\(text\)/);
-  assert.match(client, /if \(!response\.ok \|\| !result\.success\)/);
-  assert.match(client, /if \(!result\.checkoutUrl\)/);
-  assert.match(client, /window\.location\.assign\(result\.checkoutUrl\)/);
+test("checkout UI contains invalid response failures and uses transaction overlay", () => {
+  assert.match(client, /await response.json\(\)/);
+  assert.match(client, /!response.ok \|\| !result.success \|\| !result.transactionId/);
+  assert.match(client, /catch \{ notify\("Checkout could not open/);
+  assert.match(client, /openCheckoutOverlay\(result.transactionId/);
+  assert.doesNotMatch(client, /window.location.assign/);
 });
 
 test("Paddle client rejects empty and invalid provider JSON explicitly", () => {

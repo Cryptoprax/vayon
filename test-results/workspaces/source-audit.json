@@ -1,0 +1,1256 @@
+{
+  "evidence": "Source audit only; does not certify authenticated page rendering",
+  "checks": {
+    "allPrimaryLayoutsMigrated": true,
+    "nineSharedPrimitives": true,
+    "noFetchingInLayout": true,
+    "propertiesReferenceUnchanged": true,
+    "architectureUnchanged": true,
+    "sharedDockConnected": true,
+    "creativeUsesSharedDock": true
+  },
+  "primary": [
+    {
+      "name": "Dashboard",
+      "route": "/vayon/dashboard",
+      "layout": "features/vayon/dashboard/components/DashboardShell.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Leads",
+      "route": "/vayon/leads",
+      "layout": "app/vayon/leads/page.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Clients",
+      "route": "/vayon/crm/contacts",
+      "layout": "features/vayon/crm-engine/components/CrmShell.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Companies",
+      "route": "/vayon/crm/companies",
+      "layout": "features/vayon/crm-engine/components/CrmShell.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Deals",
+      "route": "/vayon/deals",
+      "layout": "app/vayon/deals/page.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Inbox",
+      "route": "/vayon/notifications",
+      "layout": "app/vayon/notifications/page.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Schedule Viewing",
+      "route": "/vayon/site-visits",
+      "layout": "app/vayon/site-visits/page.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Calendar",
+      "route": "/vayon/calendar",
+      "layout": "app/vayon/calendar/page.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Tasks",
+      "route": "/vayon/tasks",
+      "layout": "app/vayon/tasks/page.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Timeline",
+      "route": "/vayon/timeline",
+      "layout": "app/vayon/timeline/page.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Communications",
+      "route": "/vayon/communications",
+      "layout": "features/vayon/communications-workspace/components/CommunicationsShell.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Marketing / Growth",
+      "route": "/vayon/growth",
+      "layout": "features/vayon/growth-intelligence/GrowthOverview.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Analytics",
+      "route": "/vayon/analytics",
+      "layout": "features/vayon/analytics-platform/dashboard/AnalyticsRoute.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Workspace Settings",
+      "route": "/vayon/settings/organization",
+      "layout": "app/vayon/settings/organization/page.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Team",
+      "route": "/vayon/settings/members",
+      "layout": "app/vayon/settings/members/page.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Creative",
+      "route": "/vayon/creative",
+      "layout": "features/vayon/creative-studio-2/CreativeStudioHome.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Campaigns",
+      "route": "/vayon/creative/campaigns",
+      "layout": "features/vayon/creative-studio/components/StudioViews.tsx",
+      "sourceMigrated": true
+    },
+    {
+      "name": "Approvals",
+      "route": "/vayon/approvals",
+      "layout": "app/vayon/approvals/page.tsx",
+      "sourceMigrated": true
+    }
+  ],
+  "reference": {
+    "path": "app/vayon/properties/page.tsx",
+    "current": "269bf2c92f045803c126599ee8260e58cf3a2cb1d84ff53bd774490964cc8c59",
+    "baseline": "269bf2c92f045803c126599ee8260e58cf3a2cb1d84ff53bd774490964cc8c59"
+  },
+  "pages": [
+    {
+      "path": "app/vayon/admin/audit/page.tsx",
+      "route": "/vayon/admin/audit",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/admin/departments/page.tsx",
+      "route": "/vayon/admin/departments",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/admin/organizations/page.tsx",
+      "route": "/vayon/admin/organizations",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/admin/page.tsx",
+      "route": "/vayon/admin",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/admin/permissions/page.tsx",
+      "route": "/vayon/admin/permissions",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/admin/roles/page.tsx",
+      "route": "/vayon/admin/roles",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/admin/teams/page.tsx",
+      "route": "/vayon/admin/teams",
+      "category": "Existing redirect"
+    },
+    {
+      "path": "app/vayon/admin/users/page.tsx",
+      "route": "/vayon/admin/users",
+      "category": "Existing redirect"
+    },
+    {
+      "path": "app/vayon/admin/workspaces/page.tsx",
+      "route": "/vayon/admin/workspaces",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/ai/automations/page.tsx",
+      "route": "/vayon/ai/automations",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/ai/collaboration/page.tsx",
+      "route": "/vayon/ai/collaboration",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/ai/employees/page.tsx",
+      "route": "/vayon/ai/employees",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/ai/employees/[employeeId]/page.tsx",
+      "route": "/vayon/ai/employees/[employeeId]",
+      "category": "Existing redirect"
+    },
+    {
+      "path": "app/vayon/ai/goals/page.tsx",
+      "route": "/vayon/ai/goals",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/ai/history/page.tsx",
+      "route": "/vayon/ai/history",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/ai/knowledge/page.tsx",
+      "route": "/vayon/ai/knowledge",
+      "category": "Existing redirect"
+    },
+    {
+      "path": "app/vayon/ai/page.tsx",
+      "route": "/vayon/ai",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/ai/playground/page.tsx",
+      "route": "/vayon/ai/playground",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/ai/tasks/page.tsx",
+      "route": "/vayon/ai/tasks",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/ai/work-queue/page.tsx",
+      "route": "/vayon/ai/work-queue",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/ai/workforce/page.tsx",
+      "route": "/vayon/ai/workforce",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/ai/workforce/[employeeId]/page.tsx",
+      "route": "/vayon/ai/workforce/[employeeId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/analytics/communications/page.tsx",
+      "route": "/vayon/analytics/communications",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/analytics/conversion/page.tsx",
+      "route": "/vayon/analytics/conversion",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/analytics/crm/page.tsx",
+      "route": "/vayon/analytics/crm",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/analytics/deals/page.tsx",
+      "route": "/vayon/analytics/deals",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/analytics/executive/page.tsx",
+      "route": "/vayon/analytics/executive",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/analytics/page.tsx",
+      "route": "/vayon/analytics",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/analytics/properties/page.tsx",
+      "route": "/vayon/analytics/properties",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/analytics/sales/page.tsx",
+      "route": "/vayon/analytics/sales",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/analytics/workforce/page.tsx",
+      "route": "/vayon/analytics/workforce",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/approvals/page.tsx",
+      "route": "/vayon/approvals",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/approvals/[approvalId]/page.tsx",
+      "route": "/vayon/approvals/[approvalId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/brain/page.tsx",
+      "route": "/vayon/brain",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/agenda/page.tsx",
+      "route": "/vayon/calendar/agenda",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/day/page.tsx",
+      "route": "/vayon/calendar/day",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/google/calendars/page.tsx",
+      "route": "/vayon/calendar/google/calendars",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/google/events/page.tsx",
+      "route": "/vayon/calendar/google/events",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/google/free-busy/page.tsx",
+      "route": "/vayon/calendar/google/free-busy",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/google/page.tsx",
+      "route": "/vayon/calendar/google",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/google/settings/page.tsx",
+      "route": "/vayon/calendar/google/settings",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/meetings/page.tsx",
+      "route": "/vayon/calendar/meetings",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/month/page.tsx",
+      "route": "/vayon/calendar/month",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/outlook/page.tsx",
+      "route": "/vayon/calendar/outlook",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/page.tsx",
+      "route": "/vayon/calendar",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/reminders/page.tsx",
+      "route": "/vayon/calendar/reminders",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/site-visits/page.tsx",
+      "route": "/vayon/calendar/site-visits",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/tasks/page.tsx",
+      "route": "/vayon/calendar/tasks",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/calendar/week/page.tsx",
+      "route": "/vayon/calendar/week",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/cognitive/page.tsx",
+      "route": "/vayon/cognitive",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/communications/campaigns/page.tsx",
+      "route": "/vayon/communications/campaigns",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/communications/connectors/page.tsx",
+      "route": "/vayon/communications/connectors",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/communications/conversations/page.tsx",
+      "route": "/vayon/communications/conversations",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/communications/conversations/[conversationId]/page.tsx",
+      "route": "/vayon/communications/conversations/[conversationId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/communications/inbox/page.tsx",
+      "route": "/vayon/communications/inbox",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/communications/notifications/page.tsx",
+      "route": "/vayon/communications/notifications",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/communications/outlook/page.tsx",
+      "route": "/vayon/communications/outlook",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/communications/page.tsx",
+      "route": "/vayon/communications",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/communications/reports/page.tsx",
+      "route": "/vayon/communications/reports",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/communications/teams/page.tsx",
+      "route": "/vayon/communications/teams",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/communications/templates/page.tsx",
+      "route": "/vayon/communications/templates",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/contacts/google/page.tsx",
+      "route": "/vayon/contacts/google",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/contacts/microsoft/page.tsx",
+      "route": "/vayon/contacts/microsoft",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/context/page.tsx",
+      "route": "/vayon/context",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/assets/page.tsx",
+      "route": "/vayon/creative/assets",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/brand/page.tsx",
+      "route": "/vayon/creative/brand",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/calendar/page.tsx",
+      "route": "/vayon/creative/calendar",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/campaigns/page.tsx",
+      "route": "/vayon/creative/campaigns",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/cloud/page.tsx",
+      "route": "/vayon/creative/cloud",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/documents/page.tsx",
+      "route": "/vayon/creative/documents",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/images/page.tsx",
+      "route": "/vayon/creative/images",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/page.tsx",
+      "route": "/vayon/creative",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/pipelines/page.tsx",
+      "route": "/vayon/creative/pipelines",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/runtime/execution/page.tsx",
+      "route": "/vayon/creative/runtime/execution",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/runtime/page.tsx",
+      "route": "/vayon/creative/runtime",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/templates/page.tsx",
+      "route": "/vayon/creative/templates",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/videos/page.tsx",
+      "route": "/vayon/creative/videos",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative/[studio]/page.tsx",
+      "route": "/vayon/creative/[studio]",
+      "category": "Existing redirect"
+    },
+    {
+      "path": "app/vayon/creative-studio/analytics/page.tsx",
+      "route": "/vayon/creative-studio/analytics",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative-studio/assets/page.tsx",
+      "route": "/vayon/creative-studio/assets",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative-studio/assistant/page.tsx",
+      "route": "/vayon/creative-studio/assistant",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative-studio/brand-kits/page.tsx",
+      "route": "/vayon/creative-studio/brand-kits",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative-studio/calendar/page.tsx",
+      "route": "/vayon/creative-studio/calendar",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative-studio/editor/[assetId]/page.tsx",
+      "route": "/vayon/creative-studio/editor/[assetId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative-studio/growth/page.tsx",
+      "route": "/vayon/creative-studio/growth",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative-studio/packs/page.tsx",
+      "route": "/vayon/creative-studio/packs",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative-studio/page.tsx",
+      "route": "/vayon/creative-studio",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative-studio/templates/page.tsx",
+      "route": "/vayon/creative-studio/templates",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/creative-studio/wizard/page.tsx",
+      "route": "/vayon/creative-studio/wizard",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/crm/activities/page.tsx",
+      "route": "/vayon/crm/activities",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/crm/companies/new/page.tsx",
+      "route": "/vayon/crm/companies/new",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/crm/companies/page.tsx",
+      "route": "/vayon/crm/companies",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/crm/companies/[companyId]/edit/page.tsx",
+      "route": "/vayon/crm/companies/[companyId]/edit",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/crm/companies/[companyId]/page.tsx",
+      "route": "/vayon/crm/companies/[companyId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/crm/contacts/page.tsx",
+      "route": "/vayon/crm/contacts",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/crm/contacts/[contactId]/page.tsx",
+      "route": "/vayon/crm/contacts/[contactId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/crm/customers/page.tsx",
+      "route": "/vayon/crm/customers",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/crm/leads/page.tsx",
+      "route": "/vayon/crm/leads",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/crm/leads/[leadId]/page.tsx",
+      "route": "/vayon/crm/leads/[leadId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/crm/page.tsx",
+      "route": "/vayon/crm",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/customer-success/page.tsx",
+      "route": "/vayon/customer-success",
+      "category": "Existing redirect"
+    },
+    {
+      "path": "app/vayon/dashboard/page.tsx",
+      "route": "/vayon/dashboard",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/deals/analytics/page.tsx",
+      "route": "/vayon/deals/analytics",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/deals/checklists/page.tsx",
+      "route": "/vayon/deals/checklists",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/deals/contracts/page.tsx",
+      "route": "/vayon/deals/contracts",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/deals/new/page.tsx",
+      "route": "/vayon/deals/new",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/deals/offers/page.tsx",
+      "route": "/vayon/deals/offers",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/deals/page.tsx",
+      "route": "/vayon/deals",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/deals/pipeline/page.tsx",
+      "route": "/vayon/deals/pipeline",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/deals/[dealId]/edit/page.tsx",
+      "route": "/vayon/deals/[dealId]/edit",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/deals/[dealId]/page.tsx",
+      "route": "/vayon/deals/[dealId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/developers/page.tsx",
+      "route": "/vayon/developers",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/documents/drive/page.tsx",
+      "route": "/vayon/documents/drive",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/documents/onedrive/page.tsx",
+      "route": "/vayon/documents/onedrive",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/email/archive/page.tsx",
+      "route": "/vayon/email/archive",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/email/drafts/page.tsx",
+      "route": "/vayon/email/drafts",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/email/inbox/page.tsx",
+      "route": "/vayon/email/inbox",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/email/page.tsx",
+      "route": "/vayon/email",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/email/sent/page.tsx",
+      "route": "/vayon/email/sent",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/email/spam/page.tsx",
+      "route": "/vayon/email/spam",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/email/trash/page.tsx",
+      "route": "/vayon/email/trash",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/email/[messageId]/page.tsx",
+      "route": "/vayon/email/[messageId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/events/catalog/page.tsx",
+      "route": "/vayon/events/catalog",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/events/history/page.tsx",
+      "route": "/vayon/events/history",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/events/page.tsx",
+      "route": "/vayon/events",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/executions/page.tsx",
+      "route": "/vayon/executions",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/follow-ups/page.tsx",
+      "route": "/vayon/follow-ups",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/founder/approvals/page.tsx",
+      "route": "/vayon/founder/approvals",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/growth/page.tsx",
+      "route": "/vayon/growth",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/growth/[section]/page.tsx",
+      "route": "/vayon/growth/[section]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/home/page.tsx",
+      "route": "/vayon/home",
+      "category": "Existing redirect"
+    },
+    {
+      "path": "app/vayon/intelligence/page.tsx",
+      "route": "/vayon/intelligence",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/knowledge/help/page.tsx",
+      "route": "/vayon/knowledge/help",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/knowledge/page.tsx",
+      "route": "/vayon/knowledge",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/leads/new/page.tsx",
+      "route": "/vayon/leads/new",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/leads/page.tsx",
+      "route": "/vayon/leads",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/leads/[leadId]/edit/page.tsx",
+      "route": "/vayon/leads/[leadId]/edit",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/leads/[leadId]/page.tsx",
+      "route": "/vayon/leads/[leadId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/meetings/page.tsx",
+      "route": "/vayon/meetings",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/messages/page.tsx",
+      "route": "/vayon/messages",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/notifications/history/page.tsx",
+      "route": "/vayon/notifications/history",
+      "category": "Existing redirect"
+    },
+    {
+      "path": "app/vayon/notifications/inbox/page.tsx",
+      "route": "/vayon/notifications/inbox",
+      "category": "Existing redirect"
+    },
+    {
+      "path": "app/vayon/notifications/page.tsx",
+      "route": "/vayon/notifications",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/notifications/preferences/page.tsx",
+      "route": "/vayon/notifications/preferences",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/objects/page.tsx",
+      "route": "/vayon/objects",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/operations/page.tsx",
+      "route": "/vayon/operations",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/page.tsx",
+      "route": "/vayon",
+      "category": "Existing redirect"
+    },
+    {
+      "path": "app/vayon/platform/launch-readiness/page.tsx",
+      "route": "/vayon/platform/launch-readiness",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/properties/analytics/page.tsx",
+      "route": "/vayon/properties/analytics",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/availability/page.tsx",
+      "route": "/vayon/properties/availability",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/documents/page.tsx",
+      "route": "/vayon/properties/documents",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/grid/page.tsx",
+      "route": "/vayon/properties/grid",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/inventory/page.tsx",
+      "route": "/vayon/properties/inventory",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/map/page.tsx",
+      "route": "/vayon/properties/map",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/media/page.tsx",
+      "route": "/vayon/properties/media",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/new/page.tsx",
+      "route": "/vayon/properties/new",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/page.tsx",
+      "route": "/vayon/properties",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/price-lists/page.tsx",
+      "route": "/vayon/properties/price-lists",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/projects/page.tsx",
+      "route": "/vayon/properties/projects",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/projects/[projectId]/page.tsx",
+      "route": "/vayon/properties/projects/[projectId]",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/[propertyId]/edit/page.tsx",
+      "route": "/vayon/properties/[propertyId]/edit",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/properties/[propertyId]/page.tsx",
+      "route": "/vayon/properties/[propertyId]",
+      "category": "Properties reference family preserved"
+    },
+    {
+      "path": "app/vayon/property-matching/compare/page.tsx",
+      "route": "/vayon/property-matching/compare",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/property-matching/page.tsx",
+      "route": "/vayon/property-matching",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/property-matching/reports/page.tsx",
+      "route": "/vayon/property-matching/reports",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/providers/page.tsx",
+      "route": "/vayon/providers",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/providers/[provider]/page.tsx",
+      "route": "/vayon/providers/[provider]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/runtime/page.tsx",
+      "route": "/vayon/runtime",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/activity/page.tsx",
+      "route": "/vayon/settings/activity",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/ai/openai/page.tsx",
+      "route": "/vayon/settings/ai/openai",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/appearance/page.tsx",
+      "route": "/vayon/settings/appearance",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/billing/page.tsx",
+      "route": "/vayon/settings/billing",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/billing/provider-health/page.tsx",
+      "route": "/vayon/settings/billing/provider-health",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/configuration/page.tsx",
+      "route": "/vayon/settings/configuration",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/departments/page.tsx",
+      "route": "/vayon/settings/departments",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/email/history/page.tsx",
+      "route": "/vayon/settings/email/history",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/email/page.tsx",
+      "route": "/vayon/settings/email",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/email/queue/page.tsx",
+      "route": "/vayon/settings/email/queue",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/email/templates/page.tsx",
+      "route": "/vayon/settings/email/templates",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/google/page.tsx",
+      "route": "/vayon/settings/google",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/integrations/data-import/page.tsx",
+      "route": "/vayon/settings/integrations/data-import",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/integrations/google/page.tsx",
+      "route": "/vayon/settings/integrations/google",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/integrations/microsoft/page.tsx",
+      "route": "/vayon/settings/integrations/microsoft",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/integrations/page.tsx",
+      "route": "/vayon/settings/integrations",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/invoices/page.tsx",
+      "route": "/vayon/settings/invoices",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/invoices/[invoiceId]/page.tsx",
+      "route": "/vayon/settings/invoices/[invoiceId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/members/page.tsx",
+      "route": "/vayon/settings/members",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/notifications/page.tsx",
+      "route": "/vayon/settings/notifications",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/organization/page.tsx",
+      "route": "/vayon/settings/organization",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/page.tsx",
+      "route": "/vayon/settings",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/payment-methods/page.tsx",
+      "route": "/vayon/settings/payment-methods",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/permissions/page.tsx",
+      "route": "/vayon/settings/permissions",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/plans/page.tsx",
+      "route": "/vayon/settings/plans",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/product-intelligence/page.tsx",
+      "route": "/vayon/settings/product-intelligence",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/profile/page.tsx",
+      "route": "/vayon/settings/profile",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/roles/page.tsx",
+      "route": "/vayon/settings/roles",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/security/page.tsx",
+      "route": "/vayon/settings/security",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/subscription/page.tsx",
+      "route": "/vayon/settings/subscription",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/teams/page.tsx",
+      "route": "/vayon/settings/teams",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/usage/page.tsx",
+      "route": "/vayon/settings/usage",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/users/page.tsx",
+      "route": "/vayon/settings/users",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/settings/workspace/page.tsx",
+      "route": "/vayon/settings/workspace",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/site-visits/calendar/page.tsx",
+      "route": "/vayon/site-visits/calendar",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/site-visits/page.tsx",
+      "route": "/vayon/site-visits",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/site-visits/reports/page.tsx",
+      "route": "/vayon/site-visits/reports",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/site-visits/[visitId]/page.tsx",
+      "route": "/vayon/site-visits/[visitId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/storage/page.tsx",
+      "route": "/vayon/storage",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/success-center/page.tsx",
+      "route": "/vayon/success-center",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/system/page.tsx",
+      "route": "/vayon/system",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/tasks/page.tsx",
+      "route": "/vayon/tasks",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/team/page.tsx",
+      "route": "/vayon/team",
+      "category": "Existing redirect"
+    },
+    {
+      "path": "app/vayon/timeline/page.tsx",
+      "route": "/vayon/timeline",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/whatsapp/conversations/page.tsx",
+      "route": "/vayon/whatsapp/conversations",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/whatsapp/inbox/page.tsx",
+      "route": "/vayon/whatsapp/inbox",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/whatsapp/page.tsx",
+      "route": "/vayon/whatsapp",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/whatsapp/settings/page.tsx",
+      "route": "/vayon/whatsapp/settings",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/whatsapp/templates/page.tsx",
+      "route": "/vayon/whatsapp/templates",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/workflows/page.tsx",
+      "route": "/vayon/workflows",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/workflows/runtime/page.tsx",
+      "route": "/vayon/workflows/runtime",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/workflows/[workflowId]/page.tsx",
+      "route": "/vayon/workflows/[workflowId]",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    },
+    {
+      "path": "app/vayon/workforce/page.tsx",
+      "route": "/vayon/workforce",
+      "category": "Shared ProductExperience envelope; page-specific runtime verification pending"
+    }
+  ],
+  "legacy": [
+    {
+      "path": "app/platform/layout.tsx",
+      "reason": "Founder-only Mission Control is a separate administrative shell; not migrated to the customer workspace shell."
+    },
+    {
+      "path": "app/vayon/loading.tsx",
+      "reason": "Shared loading boundary also serves Properties. Preserved to avoid changing the reference family."
+    },
+    {
+      "path": "features/vayon/components/RouteStates.tsx",
+      "reason": "Shared loading/error markup preserved; the commercial envelope removes its extra width/gutters only on migrated routes."
+    },
+    {
+      "path": "features/vayon/property-platform",
+      "reason": "Property-specific inventory/detail layouts preserved under the no-Properties-redesign rule."
+    },
+    {
+      "path": "features/vayon/demo-experience/components/DemoExperience.tsx",
+      "reason": "Public demo shell is not an authenticated commercial workspace."
+    }
+  ]
+}

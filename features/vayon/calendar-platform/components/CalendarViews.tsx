@@ -1,3 +1,4 @@
+import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import { ButtonLink } from "@/features/platform/design-system";
 import type {
   CalendarSnapshot,
@@ -26,16 +27,16 @@ export function CalendarHeader({
   description: string;
 }) {
   return (
-    <header>
+    <WorkspaceHeader>
       <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">
         Scheduling platform
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight">{title}</h1>
       <p className="mt-2 max-w-3xl text-sm text-vds-muted">{description}</p>
-      <div className="mt-4 flex snap-x gap-2 overflow-x-auto pb-2" aria-label="Real estate event categories">
+      <div className="mt-4 flex flex-wrap snap-x gap-2 min-w-0 pb-2" aria-label="Real estate event categories">
         {calendarCategories.map((category) => <span className="shrink-0 snap-start rounded-full border border-vds-border bg-vds-surface px-3 py-1.5 text-xs text-vds-muted" key={category}>{category}</span>)}
       </div>
-    </header>
+    </WorkspaceHeader>
   );
 }
 

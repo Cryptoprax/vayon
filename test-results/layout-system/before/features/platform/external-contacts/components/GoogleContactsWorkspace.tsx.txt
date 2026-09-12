@@ -1,0 +1,238 @@
+import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
+/* eslint-disable react-hooks/error-boundaries -- provider failures become explicit unavailable states */
+import Link from "next/link";
+import { Button } from "@/features/platform/design-system";
+import { connectGoogleContactsAction } from "@/features/platform/integrations/google/actions";
+import { GoogleContactsService } from "@/features/platform/integrations/google/services/contacts.service";
+import { ContactMatcher } from "../matching/contact-matcher";
+import type { ContactView } from "../domain/contracts";
+const views: readonly ContactView[] = [
+  "all",
+  "other",
+  "directory",
+  "recent",
+  "favorites",
+];
+export async function GoogleContactsWorkspace({
+  view = "all",
+  query = "",
+  sort = "name",
+  group = "",
+}: {
+  view?: ContactView;
+  query?: string;
+  sort?: "name" | "updated";
+  group?: string;
+}) {
+  const service = new GoogleContactsService();
+  let status: Awaited<ReturnType<GoogleContactsService["status"]>> =
+    "not_connected";
+  try {
+    status = await service.status();
+  } catch {}
+  if (status !== "connected")
+    return (
+      <section className="rounded-3xl border border-vds-border bg-vds-surface/[.035] p-8">
+        <h1 className="text-3xl font-semibold">Google Contacts</h1>
+        <h2 className="mt-6 text-xl font-semibold">
+          Google Contacts is not connected.
+        </h2>
+        <p className="mt-2 text-sm text-vds-muted">
+          {status === "scope_required"
+            ? "Your Google identity is connected. Grant Contacts access separately."
+            : "Connect Google Workspace, then authorize Contacts."}
+        </p>
+        <form action={connectGoogleContactsAction} className="mt-5">
+          <Button>Connect Google Contacts</Button>
+        </form>
+      </section>
+    );
+  try {
+    const page = await service.list({ view, query, sort, group }),
+      duplicates = new ContactMatcher().duplicates(page.contacts);
+    return (
+      <WorkspaceContent>
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[.2em] text-vds-primary">
+              External identities
+            </p>
+            <h1 className="mt-2 text-3xl font-semibold">
+              Google Contacts Workspace
+            </h1>
+            <p className="mt-2 text-vds-muted">
+              Review live provider contacts, deterministic match candidates, and
+              duplicate suggestions. No automatic merges.
+            </p>
+          </div>
+          <form action={connectGoogleContactsAction}>
+            <Button variant="outline">Reconnect Contacts</Button>
+          </form>
+        </div>
+        <nav aria-label="Contact views" className="mt-6 flex flex-wrap gap-2">
+          {views.map((item) => (
+            <Link
+              key={item}
+              href={`/vayon/contacts/google?view=${item}`}
+              className={`rounded-xl border px-3 py-2 text-sm capitalize ${view === item ? "border-vds-accent-border bg-vds-primary-soft text-vds-primary" : "border-vds-border text-vds-muted"}`}
+            >
+              {item.replaceAll("_", " ")}
+            </Link>
+          ))}
+        </nav>
+        <form className="mt-5 grid gap-2 md:grid-cols-[1fr_11rem_11rem_auto]">
+          <input type="hidden" name="view" value={view} />
+          <input
+            name="q"
+            defaultValue={query}
+            placeholder="Search name, email, phone or organization"
+            aria-label="Search contacts"
+            className="h-11 rounded-xl border border-vds-border bg-vds-input px-4"
+          />
+          <select
+            name="sort"
+            defaultValue={sort}
+            aria-label="Sort contacts"
+            className="h-11 rounded-xl border border-vds-border bg-vds-input px-3"
+          >
+            <option value="name">Name</option>
+            <option value="updated">Recently updated</option>
+          </select>
+          <input
+            name="group"
+            defaultValue={group}
+            placeholder="Group filter"
+            aria-label="Filter group"
+            className="h-11 rounded-xl border border-vds-border bg-vds-input px-3"
+          />
+          <Button>Apply</Button>
+        </form>
+        {view === "favorites" && (
+          <p className="mt-4 rounded-xl border border-vds-border p-4 text-sm text-vds-muted">
+            Favorites are future-ready and are not inferred from provider data.
+          </p>
+        )}
+        <section className="mt-5 grid gap-4 lg:grid-cols-2">
+          {page.contacts.length ? (
+            page.contacts.map((contact) => (
+              <article
+                key={contact.resourceName}
+                className="rounded-2xl border border-vds-border bg-vds-surface/[.035] p-5"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="grid size-11 place-items-center rounded-full bg-vds-primary-soft text-vds-primary">
+                    {contact.name.slice(0, 1)}
+                  </span>
+                  <div>
+                    <dt className="text-xs text-vds-subtle">Photo reference</dt>
+                    <dd>{contact.photoUrl ? "Available from provider" : "Unavailable"}</dd>
+                  </div>
+                  <div>
+                    <h2 className="font-semibold">{contact.name}</h2>
+                    <p className="mt-1 text-sm text-vds-muted">
+                      {contact.jobTitle ?? "No job title"}
+                      {contact.company ? ` · ${contact.company}` : ""}
+                    </p>
+                  </div>
+                </div>
+                <dl className="mt-4 grid gap-2 text-sm">
+                  <div>
+                    <dt className="text-xs text-vds-subtle">Primary email</dt>
+                    <dd>{contact.primaryEmail ?? "Unavailable"}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-vds-subtle">
+                      Additional emails
+                    </dt>
+                    <dd>
+                      {contact.emails
+                        .filter((email) => email !== contact.primaryEmail)
+                        .join(", ") || "None"}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-vds-subtle">Phones</dt>
+                    <dd>{contact.phones.join(", ") || "None"}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-vds-subtle">Address</dt>
+                    <dd>{contact.addresses.join(" · ") || "Unavailable"}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-vds-subtle">Website</dt>
+                    <dd>{contact.websites.join(", ") || "Unavailable"}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-vds-subtle">
+                      Birthday / notes
+                    </dt>
+                    <dd>
+                      {contact.birthday ?? "Unavailable"} ·{" "}
+                      {contact.notesAvailable
+                        ? "Notes metadata available"
+                        : "No notes metadata"}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-vds-subtle">Groups</dt>
+                    <dd>{contact.groups.join(", ") || "None"}</dd>
+                  </div>
+                </dl>
+                <details className="mt-4 rounded-xl border border-vds-border p-3 text-sm">
+                  <summary className="cursor-pointer font-medium">
+                    CRM match review
+                  </summary>
+                  <p className="mt-2 text-vds-muted">
+                    No CRM candidates were loaded. Matching requires explicit
+                    identity candidates and never merges automatically.
+                  </p>
+                  <p className="mt-2 text-xs text-vds-subtle">
+                    Linking creates a proposed reference only.
+                  </p>
+                </details>
+              </article>
+            ))
+          ) : (
+            <p className="rounded-2xl border border-vds-border p-10 text-center text-sm text-vds-muted">
+              No Google Contacts match this view.
+            </p>
+          )}
+        </section>
+        <section className="mt-6 rounded-2xl border border-vds-border p-5">
+          <h2 className="font-semibold">Duplicate suggestions</h2>
+          {duplicates.length ? (
+            <ul className="mt-3 grid gap-2">
+              {duplicates.map((item, index) => (
+                <li
+                  key={`${item.kind}-${item.leftId}-${item.rightId}-${index}`}
+                  className="rounded-xl bg-vds-elevated p-3 text-sm"
+                >
+                  <span className="font-medium capitalize">
+                    {item.kind} duplicate
+                  </span>{" "}
+                  · {item.reason}
+                  <p className="mt-1 text-xs text-vds-subtle">
+                    Suggestion only — automatic merge disabled.
+                  </p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-2 text-sm text-vds-muted">
+              No deterministic duplicates detected in this provider page.
+            </p>
+          )}
+        </section>
+      </WorkspaceContent>
+    );
+  } catch {
+    return (
+      <section className="rounded-2xl border border-vds-border p-6">
+        <h1 className="text-2xl font-semibold">Google Contacts</h1>
+        <p className="mt-2 text-sm text-vds-muted">
+          Contact data is temporarily unavailable.
+        </p>
+      </section>
+    );
+  }
+}

@@ -32,7 +32,7 @@ test("layout reserves safe content and supports mobile fullscreen reduced motion
 
 test("universal empty state provides onboarding resources and scoped dismissal", () => {
   const empty = read("features/vayon/empty-states/UniversalEmptyState.tsx");
-  for (const value of ["data-empty-state", "Primary", "Watch tutorial", "Documentation", "workspace", "user", "localStorage"])
+  for (const value of ["WorkspaceEmptyState", "Primary", "Watch tutorial", "Documentation", "workspace", "user", "localStorage"])
     assert.match(empty, new RegExp(value, "i"));
   assert.match(read("features/vayon/workspace-engine/components/WorkspaceEngine.tsx"), /UniversalEmptyState/);
 });

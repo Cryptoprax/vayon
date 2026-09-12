@@ -37,7 +37,8 @@ test("empty states show AI guidance only when supplied and respect reduced motio
     read("features/vayon/components/SmartEmptyState.tsx"),
     read("features/vayon/components/RouteStates.tsx"),
   ]);
-  assert.match(empty, /aiSuggestion &&/);
+  assert.match(empty, /nextStep={aiSuggestion}/);
+  assert.match(await read("features/platform/design-system/layout/WorkspaceLayouts.tsx"), /nextStep &&/);
   assert.match(loading, /motion-reduce:animate-none/);
   assert.match(loading, /loading progressively/);
 });

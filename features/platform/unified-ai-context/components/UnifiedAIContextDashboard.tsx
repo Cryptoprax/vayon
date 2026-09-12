@@ -1,3 +1,4 @@
+import { WorkspaceContent, WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
 import {
   Activity,
   Bot,
@@ -41,8 +42,8 @@ export function UnifiedAIContextDashboard({
     ] as const,
     types = [...new Set(data.graph.nodes.map((node) => node.type))];
   return (
-    <main className="mx-auto w-full max-w-[120rem] space-y-8 px-4 py-7 sm:px-6 lg:px-8">
-      <header className={`${card} p-6 sm:p-8`}>
+    <WorkspaceContent >
+      <WorkspaceHeader >
         <p className="text-[11px] font-semibold uppercase tracking-[.22em] text-vds-primary">
           Founder Portal · tenant-isolated intelligence
         </p>
@@ -57,7 +58,7 @@ export function UnifiedAIContextDashboard({
         <p className="mt-4 text-xs text-vds-subtle">
           Updated {new Date(data.generatedAt).toLocaleString()}
         </p>
-      </header>
+      </WorkspaceHeader>
       <section
         className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
         aria-label="Developer observability"
@@ -78,8 +79,8 @@ export function UnifiedAIContextDashboard({
             title="Business context graph"
             detail="Cross-references remain inside the authorized organization and workspace"
           />
-          <div className={`${card} overflow-x-auto p-5`}>
-            <div className="flex min-w-[50rem] flex-wrap gap-3">
+          <div className={`${card} min-w-0 p-5`}>
+            <div className="flex min-w-0 flex-wrap gap-3">
               {types.map((type) => {
                 const nodes = data.graph.nodes.filter(
                   (node) => node.type === type,
@@ -276,7 +277,7 @@ export function UnifiedAIContextDashboard({
           explicit unavailable state instead of invented facts.
         </p>
       </aside>
-    </main>
+    </WorkspaceContent>
   );
 }
 function Heading({

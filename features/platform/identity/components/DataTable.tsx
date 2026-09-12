@@ -1,3 +1,4 @@
+import { WorkspaceTable } from "@/features/platform/design-system/layout/WorkspaceTable";
 import type { ReactNode } from "react";
 
 export interface DataTableColumn<T> {
@@ -30,8 +31,8 @@ export function DataTable<T>({
       {rows.length === 0 ? (
         emptyState
       ) : (
-        <div className="overflow-x-auto [scrollbar-color:var(--vds-color-border)_transparent] [scrollbar-width:thin]">
-          <table className="w-full min-w-max border-collapse text-left">
+        <div className="min-w-0 [scrollbar-color:var(--vds-color-border)_transparent] [scrollbar-width:thin]">
+          <WorkspaceTable className="w-full min-w-0 border-collapse text-left">
             <caption className="sr-only">{caption}</caption>
             <thead>
               <tr className="border-b border-vds-border/[0.07] bg-vds-surface/[0.018]">
@@ -63,7 +64,7 @@ export function DataTable<T>({
                 </tr>
               ))}
             </tbody>
-          </table>
+          </WorkspaceTable>
         </div>
       )}
     </section>

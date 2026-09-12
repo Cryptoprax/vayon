@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { WorkspaceContent, WorkspaceHeader } from "./WorkspaceLayouts";
 export function PageHeader({
   eyebrow,
   title,
@@ -12,52 +13,17 @@ export function PageHeader({
   readonly actions?: ReactNode;
   readonly className?: string;
 }) {
-  return (
-    <header
-      className={`vds-page-header flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between ${className}`}
-    >
-      <div className="min-w-0">
-        {eyebrow && (
-          <p className="text-xs font-semibold uppercase tracking-[.16em] text-vds-primary">
-            {eyebrow}
-          </p>
-        )}
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h1>
-        {description && (
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-vds-muted sm:text-base">
-            {description}
-          </p>
-        )}
-      </div>
-      {actions && (
-        <div className="flex shrink-0 flex-wrap items-center gap-2">
-          {actions}
-        </div>
-      )}
-    </header>
-  );
+  return <WorkspaceHeader title={title} description={description} eyebrow={eyebrow} actions={actions} className={className}/>;
 }
 export function Page({
   children,
-  width = "wide",
   className = "",
 }: {
   readonly children: ReactNode;
   readonly width?: "narrow" | "standard" | "wide";
   readonly className?: string;
 }) {
-  const widths = {
-    narrow: "max-w-3xl",
-    standard: "max-w-6xl",
-    wide: "max-w-[100rem]",
-  };
-  return (
-    <main
-      className={`vds-page mx-auto w-full px-4 py-8 sm:px-6 ${widths[width]} ${className}`}
-    >
-      {children}
-    </main>
-  );
+  return <WorkspaceContent className={className}>{children}</WorkspaceContent>;
 }
 export function Dashboard({
   children,

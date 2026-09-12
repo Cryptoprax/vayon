@@ -1,4 +1,6 @@
 "use client";
+import { WorkspaceTable } from "@/features/platform/design-system/layout/WorkspaceTable";
+
 import { useMemo, useState } from "react";
 import { Button } from "@/features/platform/design-system";
 import type { CrmLeadRow } from "../domain/contracts";
@@ -80,8 +82,8 @@ export function CrmLeadTable({ items }: { items: readonly CrmLeadRow[] }) {
           Export CSV
         </Button>
       </div>
-      <div className="overflow-x-auto rounded-2xl border border-vds-border">
-        <table className="min-w-[1100px] w-full text-left text-sm">
+      <div className="min-w-0 rounded-2xl border border-vds-border">
+        <WorkspaceTable className="w-full text-left text-sm">
           <thead className="bg-vds-elevated text-xs uppercase text-vds-muted">
             <tr>
               <th className="p-3">
@@ -171,7 +173,7 @@ export function CrmLeadTable({ items }: { items: readonly CrmLeadRow[] }) {
               </tr>
             ))}
           </tbody>
-        </table>
+        </WorkspaceTable>
         {!items.length && (
           <p className="p-12 text-center text-sm text-vds-muted">
             No leads match this view.

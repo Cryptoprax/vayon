@@ -37,6 +37,7 @@ const kindOrder: Record<FloatingKind, number> = {
 };
 
 interface FloatingContextValue {
+  readonly inline: boolean;
   readonly root: HTMLElement | null;
   readonly register: (registration: Registration) => () => void;
 }
@@ -46,9 +47,11 @@ const FloatingContext = createContext<FloatingContextValue | null>(null);
 export function FloatingLayoutManager({
   children,
   sidebarCollapsed,
+  inline = false,
 }: {
   readonly children: ReactNode;
   readonly sidebarCollapsed: boolean;
+  readonly inline?: boolean;
 }) {
   const dockRef = useRef<HTMLDivElement>(null);
   const [root, setRoot] = useState<HTMLElement | null>(null);
@@ -78,11 +81,11 @@ export function FloatingLayoutManager({
       const zoom = visual ? window.innerWidth / visual.width : 1;
       document.documentElement.style.setProperty(
         "--vayon-floating-safe-bottom",
-        expanded ? "1rem" : `${Math.min(height + 40, window.innerHeight * 0.8)}px`,
+        inline ? "0px" : expanded ? "1rem" : `${Math.min(height + 40, window.innerHeight * 0.8)}px`,
       );
       document.documentElement.style.setProperty(
         "--vayon-floating-safe-right",
-        expanded ? `${Math.min(width + 32, 512)}px` : `${Math.min(width + 32, 336)}px`,
+        inline ? "0px" : expanded ? `${Math.min(width + 32, 512)}px` : `${Math.min(width + 32, 336)}px`,
       );
       document.documentElement.dataset.floatingViewport = `${Math.round(visual?.width ?? window.innerWidth)}x${Math.round(visual?.height ?? window.innerHeight)}`;
       document.documentElement.dataset.floatingZoom = zoom.toFixed(2);
@@ -107,9 +110,9 @@ export function FloatingLayoutManager({
       window.removeEventListener("resize", update);
       window.visualViewport?.removeEventListener("resize", update);
     };
-  }, [expanded, sidebarCollapsed, registrations.length]);
+  }, [expanded, sidebarCollapsed, registrations.length, inline]);
 
-  const context = useMemo(() => ({ root, register }), [register, root]);
+  const context = useMemo(() => ({ root, register, inline }), [register, root, inline]);
   return (
     <FloatingContext.Provider value={context}>
       {children}
@@ -142,9 +145,10 @@ export function FloatingSurface({
 }) {
   const context = useContext(FloatingContext);
   useEffect(
-    () => context?.register({ id, kind, priority, expanded }),
+    () => context?.inline ? undefined : context?.register({ id, kind, priority, expanded }),
     [context, expanded, id, kind, priority],
   );
+  if (context?.inline) return <div data-workspace-inline-surface={kind}>{children}</div>;
   if (!context?.root) return null;
   return createPortal(
     <div

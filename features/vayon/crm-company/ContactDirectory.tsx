@@ -3,7 +3,7 @@ import type { ContactRecord } from "./domain";
 import { SmartEmptyState } from "@/features/vayon/components/SmartEmptyState";
 
 export function ContactDirectory({ items, search }: { items: readonly ContactRecord[]; search?: string }) {
-  return <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+  return <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
     {items.length ? items.map(item => <Link key={item.id} href={`/vayon/crm/contacts/${item.id}`} className="vds-focus vds-card-motion rounded-2xl border border-vds-border bg-vds-surface p-5 shadow-sm hover:border-vds-accent-border motion-reduce:transition-none">
       <div className="flex items-center gap-3">
         <span aria-hidden="true" className="grid size-11 shrink-0 place-items-center rounded-full bg-vds-primary-soft font-semibold">{item.name.slice(0, 2).toUpperCase()}</span>
