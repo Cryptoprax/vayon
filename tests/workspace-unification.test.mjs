@@ -44,10 +44,11 @@ test("pagination boundaries are disabled text instead of keyboard-accessible inv
   assert.match(html, /href="\?page=2&amp;search=buyer"/);
   assert.doesNotMatch(html, /href="[^"]*page=0/);
 });
-test("shared assistant starts collapsed with an accessible toggle and hidden content", () => {
+test("shared assistant starts collapsed with an accessible icon trigger and hidden content", () => {
   const html = render(layout.WorkspaceAssistantDock, { children: React.createElement("input", { "aria-label": "Ask assistant" }) });
   assert.match(html, /aria-expanded="false"/); assert.match(html, /aria-controls=/);
-  assert.match(html, /hidden=""/); assert.match(html, /Open assistant/);
+  assert.match(html, /hidden=""/); assert.match(html, /aria-label="Open VAYON assistant"/); assert.match(html, /VAYON Assistant/);
+  assert.doesNotMatch(html, />Open assistant</);
   assert.equal((html.match(/data-workspace-assistant=/g) || []).length, 1);
 });
 test("Leads preserves filters during paging and performs one existing list call", async () => {

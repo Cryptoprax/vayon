@@ -1,0 +1,93 @@
+{
+  "environment": "Local Chromium with actual shared layout, assistant dock, trial banner, and CSS. Not an authenticated production session.",
+  "widths": [
+    {
+      "width": 320,
+      "overflow": false,
+      "iconOnly": true,
+      "touchTarget": true,
+      "trialScrollsAway": true,
+      "assistantFixed": true
+    },
+    {
+      "width": 375,
+      "overflow": false,
+      "iconOnly": true,
+      "touchTarget": true,
+      "trialScrollsAway": true,
+      "assistantFixed": true
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "iconOnly": true,
+      "touchTarget": true,
+      "trialScrollsAway": true,
+      "assistantFixed": true
+    },
+    {
+      "width": 414,
+      "overflow": false,
+      "iconOnly": true,
+      "touchTarget": true,
+      "trialScrollsAway": true,
+      "assistantFixed": true
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "iconOnly": true,
+      "touchTarget": true,
+      "trialScrollsAway": true,
+      "assistantFixed": true
+    },
+    {
+      "width": 1024,
+      "overflow": false,
+      "iconOnly": true,
+      "touchTarget": true,
+      "trialScrollsAway": true,
+      "assistantFixed": true
+    },
+    {
+      "width": 1280,
+      "overflow": false,
+      "iconOnly": true,
+      "touchTarget": true,
+      "trialScrollsAway": true,
+      "assistantFixed": true
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "iconOnly": true,
+      "touchTarget": true,
+      "trialScrollsAway": true,
+      "assistantFixed": true
+    },
+    {
+      "width": 1920,
+      "overflow": false,
+      "iconOnly": true,
+      "touchTarget": true,
+      "trialScrollsAway": true,
+      "assistantFixed": true
+    },
+    {
+      "width": 2560,
+      "overflow": false,
+      "iconOnly": true,
+      "touchTarget": true,
+      "trialScrollsAway": true,
+      "assistantFixed": true
+    }
+  ],
+  "interactions": [
+    {
+      "keyboard": "Enter opens and Escape restores focus",
+      "tooltip": "Visible on focus",
+      "modal": "Assistant hides beneath native dialog"
+    }
+  ],
+  "errors": []
+}

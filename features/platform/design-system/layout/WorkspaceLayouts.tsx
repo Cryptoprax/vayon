@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { createContext, useContext, useEffect, useId, useRef, useState, type HTMLAttributes, type ReactNode } from "react";
-import { Button, ButtonLink } from "../components/core/Actions";
-import { FolderOpen } from "lucide-react";
+import { Button, ButtonLink, IconButton } from "../components/core/Actions";
+import { Tooltip } from "../components/disclosure/Disclosure";
+import { FolderOpen, MessageCircle, X } from "lucide-react";
 
 const BreadcrumbContext = createContext<ReactNode>(null);
 type RegionProps = HTMLAttributes<HTMLDivElement>;
@@ -49,5 +50,5 @@ export function WorkspaceAssistantDock({ children }: { children: ReactNode }) {
     window.addEventListener("vayon:copilot:open", reveal);
     return () => window.removeEventListener("vayon:copilot:open", reveal);
   }, []);
-  return <aside ref={region} className="vds-workspace-assistant" data-workspace-assistant data-open={open} aria-label="Workspace assistant" onKeyDown={event => { if (event.key === "Escape" && open) { setOpen(false); trigger.current?.focus(); } }}><Button ref={trigger} type="button" variant="secondary" aria-expanded={open} aria-controls={id} onClick={() => setOpen(value => !value)} className="vds-workspace-assistant-toggle">{open ? "Close assistant" : "Open assistant"}</Button><div id={id} hidden={!open} className="vds-workspace-assistant-content">{children}</div></aside>;
+  return <aside ref={region} className="vds-workspace-assistant" data-workspace-assistant data-open={open} aria-label="Workspace assistant" onKeyDown={event => { if (event.key === "Escape" && open) { setOpen(false); trigger.current?.focus(); } }}><Tooltip label="VAYON Assistant"><IconButton ref={trigger} aria-label={open ? "Close VAYON assistant" : "Open VAYON assistant"} aria-expanded={open} aria-controls={id} title="VAYON Assistant" onClick={() => setOpen(value => !value)} className="vds-workspace-assistant-toggle">{open ? <X aria-hidden="true"/> : <MessageCircle aria-hidden="true"/>}</IconButton></Tooltip><div id={id} hidden={!open} className="vds-workspace-assistant-content">{children}</div></aside>;
 }

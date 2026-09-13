@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { AppShell } from '@/features/vayon/product-shell/AppShell';
 import { WorkspacePageLayout, WorkspaceHeader, WorkspaceContent, WorkspaceEmptyState, WorkspaceAssistantDock, WorkspacePagination } from '@/features/platform/design-system/layout/WorkspaceLayouts';
 import { WorkspaceTable } from '@/features/platform/design-system/layout/WorkspaceTable';
+import { WorkspaceTrialBanner } from '@/features/vayon/billing/components/WorkspaceTrialBanner';
 import { Button, ButtonLink } from '@/features/platform/design-system/components/core/Actions';
 import { PropertyTable } from '@/features/vayon/property/components/PropertyTable';
 import { PropertyTable as BeforePropertyTable } from '@/features/vayon/property/components/PropertyTable?before';
@@ -39,6 +40,7 @@ function Fixture(){
  else content=<><Button onClick={()=>setRows(value=>value+1)} variant="secondary">Add QA row</Button>{table}</>;
  const header=<header className="fixed inset-x-0 top-0 z-50 flex h-16 items-center border-b border-vds-border bg-vds-background px-4 text-sm">VAYON · Local presentation fixture</header>;
  const sidebar=<aside className="fixed bottom-0 left-0 top-16 hidden w-64 border-r border-vds-border bg-vds-background p-5 lg:block"><nav aria-label="Fixture navigation">{Object.entries(names).map(([key,title])=><a className="mb-3 block" key={key} href={`?workspace=${key}`}>{title}</a>)}</nav></aside>;
- return <div className="vayon-product"><AppShell sidebarCollapsed={false} header={header} sidebar={sidebar}><main id="main-content"><WorkspacePageLayout breadcrumbs={breadcrumb} assistant={<WorkspaceAssistantDock><label>Ask assistant<textarea aria-label="Ask assistant" className="block w-full rounded-xl border border-vds-border bg-vds-input p-3"/></label></WorkspaceAssistantDock>}><WorkspaceContent>{mode!=='growth'&&<WorkspaceHeader title={names[mode]} description="Choose a record and continue your next task." actions={mode==='empty'||mode==='form'?undefined:<ButtonLink href="#workspace-records">Open records</ButtonLink>}/>}<div id="workspace-records">{content}</div><WorkspacePagination page={1} pageCount={2} nextHref="?page=2" total={20}/></WorkspaceContent></WorkspacePageLayout></main></AppShell></div>;
+ const trial={status:'trialing',endsAt:'2099-09-16T00:00:00.000Z',usage:{properties:1,leads:2,companies:1,members:1}};
+ return <div className="vayon-product"><AppShell sidebarCollapsed={false} header={header} sidebar={sidebar}><main id="main-content"><WorkspacePageLayout breadcrumbs={breadcrumb} notice={<WorkspaceTrialBanner snapshot={trial}/>} assistant={<WorkspaceAssistantDock><label>Ask assistant<textarea aria-label="Ask assistant" className="block w-full rounded-xl border border-vds-border bg-vds-input p-3"/></label></WorkspaceAssistantDock>}><WorkspaceContent>{mode!=='growth'&&<WorkspaceHeader title={names[mode]} description="Choose a record and continue your next task." actions={mode==='empty'||mode==='form'?undefined:<ButtonLink href="#workspace-records">Open records</ButtonLink>}/>}<div id="workspace-records">{content}</div><WorkspacePagination page={1} pageCount={2} nextHref="?page=2" total={20}/><div aria-hidden="true" style={{height:'110dvh'}}/></WorkspaceContent></WorkspacePageLayout></main></AppShell></div>;
 }
 createRoot(document.getElementById('root')).render(<Fixture/>);

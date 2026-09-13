@@ -36,9 +36,9 @@
 .vds-workspace-pagination { margin-top:1.25rem; display:flex; flex-wrap:wrap; justify-content:space-between; gap:.75rem; font-size:.875rem; color:var(--vds-color-muted); }
 .vds-workspace-pagination a { display:inline-flex; align-items:center; min-height:2.75rem; }
 .vds-workspace-pagination [aria-disabled=true] { opacity:.6; }
-.vds-workspace-assistant { min-width:0; margin-top:1.5rem; border-top:1px solid var(--vds-color-border); padding-top:1rem; }
+.vds-workspace-assistant { min-width:0; }
 .vds-workspace-assistant-toggle { min-height:2.75rem; }
-.vds-workspace-assistant-content { margin-top:1rem; max-width:100%; min-width:0; }
+.vds-workspace-assistant-content { max-width:100%; min-width:0; }
 .vds-workspace-assistant-content[hidden] { display:none; }
 .vds-workspace-page :where(img,video,svg,canvas,table,[role=table],[data-board]) { max-width:100%; }
 .vds-workspace-page :where(.grid,.flex) { min-width:0; }
@@ -96,14 +96,11 @@
 }
 .vds-workspace-pipeline { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr)); gap:1rem; align-items:start; }
 .vds-workspace-pipeline > * { width:auto; min-width:0; }
-/* A reserved sticky row keeps the launcher reachable without covering workspace content. */
-.vds-workspace-body { display:flex; flex-direction:column; }
-.vds-workspace-page:has(.vds-workspace-assistant) { height:calc(100dvh - 4rem); display:flex; flex-direction:column; padding-bottom:0; }
-.vds-workspace-page:has(.vds-workspace-assistant) .vds-workspace-body { min-height:0; flex:1; }
-.vds-workspace-page:has(.vds-workspace-assistant) .vds-workspace-main { min-height:0; flex:1; overflow-y:auto; scrollbar-gutter:stable; }
-.vds-workspace-page:has(.vds-workspace-assistant) .vds-workspace-header { top:0; }
-.vds-workspace-assistant { flex-shrink:0; margin-top:0; position:sticky; bottom:0; z-index:25; padding:1rem 0 max(1rem,env(safe-area-inset-bottom)); background:var(--vds-color-background); }
-.vds-workspace-assistant-content { max-height:55dvh; overflow-y:auto; }
+/* One compact viewport launcher keeps the existing assistant out of the document flow. */
+.vds-workspace-assistant { position:fixed; right:max(1rem,env(safe-area-inset-right)); bottom:max(1rem,env(safe-area-inset-bottom)); z-index:var(--vds-z-sticky,40); }
+.vds-workspace-assistant-toggle { box-shadow:0 10px 24px var(--vds-shadow-color); border-color:var(--vds-color-primary); background:var(--vds-color-primary); color:var(--vds-color-on-accent); }
+.vds-workspace-assistant-toggle:hover { background:var(--vds-color-primary); filter:brightness(1.06); }
+.vds-workspace-assistant-content { position:absolute; right:0; bottom:calc(100% + .75rem); width:min(24rem,calc(100vw - 2rem)); max-height:min(55dvh,38rem); overflow-y:auto; border:1px solid var(--vds-color-border); border-radius:1rem; background:var(--vds-color-background); box-shadow:0 16px 36px var(--vds-shadow-color); }
 .vds-workspace-page:has(dialog[open],[role=dialog][aria-modal=true]) .vds-workspace-assistant { visibility:hidden; }
 .vds-workspace-main > :is(main,section,div):not(.vds-workspace-content) { max-width:none; margin-inline:0; }
 .vds-workspace-main > main { padding-inline:0; }
@@ -123,8 +120,5 @@ body:has(dialog[open],[role=dialog][aria-modal=true]:not([hidden]):not([aria-hid
 [data-vds-theme="light"] .vds-workspace-page { --vds-color-on-accent:var(--vds-brand-draft-background); }
 [data-vds-theme="light"] .vds-workspace-page .text-vds-on-accent:hover { filter:brightness(1); }
 
-/* Subscription notice occupies its own row; it never covers the workspace. */
-.vds-workspace-notice { flex-shrink:0; min-width:0; }
-.vds-workspace-page:has(.vds-workspace-notice aside) { height:calc(100dvh - 4rem); display:flex; flex-direction:column; padding-bottom:0; }
-.vds-workspace-page:has(.vds-workspace-notice aside) .vds-workspace-body { min-height:0; flex:1; }
-.vds-workspace-page:has(.vds-workspace-notice aside) .vds-workspace-main { min-height:0; flex:1; overflow-y:auto; scrollbar-gutter:stable; }
+/* Trial status is normal page content and scrolls away with its workspace. */
+.vds-workspace-notice { min-width:0; }
