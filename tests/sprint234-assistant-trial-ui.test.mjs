@@ -20,3 +20,9 @@ test("Sprint 234 keeps the assistant fixed and the trial notice in document flow
   assert.doesNotMatch(css, /\.vds-workspace-page:has\(\.vds-workspace-notice aside\).*overflow-y:auto/);
   assert.match(css, /Trial status is normal page content/);
 });
+
+test("Sprint 235 keeps the launcher primary at rest despite premium canvas surface styling", () => {
+  assert.match(css, /\.vayon-premium-canvas \.vds-workspace-assistant-toggle \{[^}]*background-color:var\(--vds-color-primary\)/);
+  assert.match(css, /\.vayon-premium-canvas \.vds-workspace-assistant-toggle \{[^}]*color:var\(--vds-color-on-accent\)/);
+  assert.match(css, /\.vayon-premium-canvas \.vds-workspace-assistant-toggle:hover \{[^}]*background-color:var\(--vds-color-primary\)/);
+});

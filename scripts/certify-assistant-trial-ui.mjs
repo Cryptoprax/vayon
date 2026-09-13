@@ -28,6 +28,8 @@ try {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${width}: horizontal overflow`);
     const assistant = page.getByRole("button", { name: "Open VAYON assistant" });
     assert.equal(await assistant.evaluate(element => element.textContent?.trim()), "", `${width}: icon-only trigger`);
+    assert.equal(await assistant.evaluate(element => getComputedStyle(element).backgroundColor), "rgb(20, 184, 106)", `${width}: primary launcher is visible before hover`);
+    assert.equal(await assistant.evaluate(element => getComputedStyle(element).color), "rgb(6, 19, 13)", `${width}: icon contrast uses the accent token`);
     const assistantBox = await assistant.boundingBox();
     assert.ok(assistantBox && assistantBox.width >= 44 && assistantBox.height >= 44, `${width}: touch target`);
     await assistant.focus(); await expect(page.getByRole("tooltip", { name: "VAYON Assistant" })).toBeVisible(); await page.keyboard.press("Enter");
@@ -41,7 +43,7 @@ try {
     const fixed = await assistant.boundingBox();
     assert.ok(fixed && Math.abs(fixed.x + fixed.width - (width - 16)) < 3, `${width}: assistant stays bottom-right`);
     await page.screenshot({ path: `${output}/screenshots/${width}.png` });
-    evidence.widths.push({ width, overflow: false, iconOnly: true, touchTarget: true, trialScrollsAway: true, assistantFixed: true });
+    evidence.widths.push({ width, overflow: false, iconOnly: true, primaryAtRest: true, touchTarget: true, trialScrollsAway: true, assistantFixed: true });
   }
   await page.setViewportSize({ width: 390, height: 844 }); await page.goto(url);
   await page.evaluate(() => { const dialog = document.createElement("dialog"); dialog.textContent = "QA modal"; document.body.append(dialog); dialog.showModal(); });

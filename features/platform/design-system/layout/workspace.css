@@ -98,8 +98,8 @@
 .vds-workspace-pipeline > * { width:auto; min-width:0; }
 /* One compact viewport launcher keeps the existing assistant out of the document flow. */
 .vds-workspace-assistant { position:fixed; right:max(1rem,env(safe-area-inset-right)); bottom:max(1rem,env(safe-area-inset-bottom)); z-index:var(--vds-z-sticky,40); }
-.vds-workspace-assistant-toggle { box-shadow:0 10px 24px var(--vds-shadow-color); border-color:var(--vds-color-primary); background:var(--vds-color-primary); color:var(--vds-color-on-accent); }
-.vds-workspace-assistant-toggle:hover { background:var(--vds-color-primary); filter:brightness(1.06); }
+.vayon-premium-canvas .vds-workspace-assistant-toggle { box-shadow:0 10px 24px var(--vds-shadow-color); border-color:var(--vds-color-primary); background-color:var(--vds-color-primary); color:var(--vds-color-on-accent); opacity:1; }
+.vayon-premium-canvas .vds-workspace-assistant-toggle:hover { background-color:var(--vds-color-primary); filter:brightness(1.06); }
 .vds-workspace-assistant-content { position:absolute; right:0; bottom:calc(100% + .75rem); width:min(24rem,calc(100vw - 2rem)); max-height:min(55dvh,38rem); overflow-y:auto; border:1px solid var(--vds-color-border); border-radius:1rem; background:var(--vds-color-background); box-shadow:0 16px 36px var(--vds-shadow-color); }
 .vds-workspace-page:has(dialog[open],[role=dialog][aria-modal=true]) .vds-workspace-assistant { visibility:hidden; }
 .vds-workspace-main > :is(main,section,div):not(.vds-workspace-content) { max-width:none; margin-inline:0; }
