@@ -55,7 +55,7 @@ export async function POST(request: Request) {
   } catch (cause) {
     const selected = selection(input);
     if (cause instanceof SyntaxError) return errorResponse("The checkout request must contain valid JSON.", "INVALID_JSON", 400);
-    logError("billing.paddle.checkout_failed", { correlationId, stage, planCode: selected.planCode, billingPeriod: selected.billingPeriod, paddleEnvironment: process.env.PADDLE_ENVIRONMENT === "sandbox" ? "sandbox" : process.env.PADDLE_ENVIRONMENT === "live" ? "live" : "invalid", httpStatus: httpStatus(cause), paddleErrorCode: typeof cause === "object" && cause && "code" in cause ? String(cause.code) : null, errorType: cause instanceof Error ? cause.name : "UnknownError", safeMessage: failureCategory(cause), configurationPresence: configurationPresence(selected.planCode, selected.billingPeriod) });
+    logError("billing.paddle.checkout_failed", { correlationId, stage, planCode: selected.planCode, billingPeriod: selected.billingPeriod, paddleEnvironment: process.env.PADDLE_ENVIRONMENT === "sandbox" ? "sandbox" : process.env.PADDLE_ENVIRONMENT === "live" ? "live" : "invalid", httpStatus: httpStatus(cause), paddleErrorCode: typeof cause === "object" && cause && "code" in cause ? String(cause.code) : null, paddleErrorType: typeof cause === "object" && cause && "paddleErrorType" in cause ? String(cause.paddleErrorType) : null, validationField: typeof cause === "object" && cause && "validationField" in cause ? String(cause.validationField) : null, errorType: cause instanceof Error ? cause.name : "UnknownError", safeMessage: failureCategory(cause), configurationPresence: configurationPresence(selected.planCode, selected.billingPeriod) });
     return checkoutFailure(cause);
   }
 }
