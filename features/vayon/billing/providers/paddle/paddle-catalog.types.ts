@@ -15,3 +15,5 @@ export type PaddleCatalogPrice = {
   amount: string;
   currencyCode: string;
 };
+
+export type PublicPaddleCatalogPrice = Omit<PaddleCatalogPrice, "priceId" | "productId">;

@@ -71,5 +71,5 @@ test("pricing remains presentation-only and does not bypass commercial authoriti
   assert.match(source, /Prices shown in USD\. Monthly and annual plans available\./);
   const page = read("features/marketing/components/MarketingPage.tsx");
   assert.match(page, /content\.id === "pricing"/);
-  assert.match(page, /<PricingTable \/>/);
+  assert.match(page, /<PricingTable foundingAvailable=\{foundingAvailable\} \/>/);
 });

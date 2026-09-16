@@ -25,10 +25,7 @@ import { Reveal, WorkflowMotion } from "./LaunchMotion";
 import { EnterpriseFaq, HeroProductMockup } from "./EnterpriseExperience";
 import { LandingRoiCalculator } from "./LandingRoiCalculator";
 import { PublicGrowthPlatform } from "./PublicGrowthPlatform";
-import {
-  FOUNDING_MEMBER_ENABLED,
-  FOUNDING_MEMBER_SPOTS_REMAINING,
-} from "../config/marketing.config";
+import { FoundingOffer } from "./FoundingOffer";
 
 const hasCustomerTestimonials = false;
 
@@ -271,18 +268,7 @@ export function Homepage() {
             <p className="mt-5 max-w-2xl text-pretty leading-7 text-vds-muted">
               Organize properties, keep track of buyers, plan viewings, and follow up on deals. Use the existing AI Assistant where you need help, and review important actions before they run.
             </p>
-            {FOUNDING_MEMBER_ENABLED && (
-              <div className="mt-7 max-w-2xl rounded-2xl border border-vds-accent-border bg-vds-primary-soft p-4 shadow-lg shadow-vds-shadow/10">
-                <p className="text-sm font-semibold text-vds-primary">
-                  🚀 Founding Customer Offer
-                </p>
-                <p className="mt-1 text-sm leading-6 text-vds-secondary">
-                  First {FOUNDING_MEMBER_SPOTS_REMAINING} agencies receive
-                  Professional features at Starter pricing ($79/month) for 12
-                  months.
-                </p>
-              </div>
-            )}
+            <FoundingOffer />
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href="/signup" size="lg">
                 Start Free Trial{" "}

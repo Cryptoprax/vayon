@@ -22,6 +22,7 @@ export interface CommercialPricingPlan {
 
 export const ANNUAL_SAVINGS_PERCENT = 20;
 export const FOUNDING_MEMBER_SPOTS_REMAINING = 20;
+// Presentation metadata only. Availability must be supplied by the server.
 export const FOUNDING_MEMBER_ENABLED = true;
 
 export const commercialPricingPlans: readonly CommercialPricingPlan[] = [
@@ -35,12 +36,12 @@ export const commercialPricingPlans: readonly CommercialPricingPlan[] = [
 export const selfServiceCommercialPlans = commercialPricingPlans.filter((plan) => plan.selfService);
 
 export function commercialAnnualMonthlyPrice(plan: CommercialPricingPlan): number | null {
-  return plan.standardMonthlyPrice === null ? null : Math.round(plan.standardMonthlyPrice * (1 - ANNUAL_SAVINGS_PERCENT / 100));
+  return plan.standardMonthlyPrice === null ? null : Math.round(plan.standardMonthlyPrice * (1 - ANNUAL_SAVINGS_PERCENT / 100) * 100) / 100;
 }
 
-export function commercialDisplayPrice(plan: CommercialPricingPlan, period: "monthly" | "annual") {
+export function commercialDisplayPrice(plan: CommercialPricingPlan, period: "monthly" | "annual", foundingAvailable = false) {
   if (plan.standardMonthlyPrice === null) return { price: null, standardPrice: null, promotional: false };
-  if (period === "monthly" && plan.promotion?.enabled) return { price: plan.promotion.promotionalMonthlyPrice, standardPrice: plan.standardMonthlyPrice, promotional: true };
+  if (period === "monthly" && plan.promotion?.enabled && foundingAvailable) return { price: plan.promotion.promotionalMonthlyPrice, standardPrice: plan.standardMonthlyPrice, promotional: true };
   return { price: period === "annual" ? commercialAnnualMonthlyPrice(plan) : plan.standardMonthlyPrice, standardPrice: null, promotional: false };
 }
 

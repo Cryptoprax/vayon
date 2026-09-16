@@ -8,6 +8,7 @@ import type {
 } from "../billing-provider";
 import { paddleRequest } from "./paddle-client";
 import { paddleCatalogEntry, type PaddleBillingPeriod } from "./paddle-catalog";
+import { FoundingMemberService } from "../../services/founding-member.service";
 
 const supportedEvents = new Set([
   "transaction.completed",
@@ -87,13 +88,17 @@ export class PaddleBillingProvider implements BillingProvider {
   }
 
   async changeSubscription(input: BillingProviderChangeInput) {
-    await paddleRequest(`/subscriptions/${encodeURIComponent(input.subscriptionId)}`, {
-      method: "PATCH",
-      body: JSON.stringify({
-        items: [{ price_id: input.priceId, quantity: input.quantity }],
-        proration_billing_mode: "prorated_immediately",
-        custom_data: { plan_code: input.planCode },
-      }),
+    return new FoundingMemberService().withSubscriptionMutation(input.subscriptionId, async allocation => {
+      const keepFounding = allocation?.status === "confirmed" && allocation.successful_periods < 12
+        && input.planCode === "professional" && input.priceId === allocation.standard_price_id;
+      await paddleRequest(`/subscriptions/${encodeURIComponent(input.subscriptionId)}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          items: [{ price_id: keepFounding ? allocation.founding_price_id : input.priceId, quantity: input.quantity }],
+          proration_billing_mode: "prorated_immediately",
+          custom_data: { plan_code: input.planCode },
+        }),
+      });
     });
   }
 
@@ -105,6 +110,7 @@ export class PaddleBillingProvider implements BillingProvider {
   }
 
   async reactivateSubscription(subscriptionId: string) {
+    await new FoundingMemberService().prepareResume(subscriptionId);
     const current = await paddleRequest<{ status: string }>(`/subscriptions/${encodeURIComponent(subscriptionId)}`);
     if (current.status === "active") {
       await paddleRequest(`/subscriptions/${encodeURIComponent(subscriptionId)}`, { method: "PATCH", body: JSON.stringify({ scheduled_change: null }) });

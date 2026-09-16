@@ -2,6 +2,7 @@ import "server-only";
 import { log } from "@/lib/observability/logger";
 import { PaddleBillingProvider } from "../providers/paddle/paddle.provider";
 import { PaddleSubscriptionSyncService } from "./paddle-subscription-sync.service";
+import { FoundingMemberService } from "./founding-member.service";
 
 export class PaddleWebhookService {
   constructor(
@@ -14,7 +15,11 @@ export class PaddleWebhookService {
     log("paddle.webhook.received", { correlationId });
     try {
       const event = await this.provider.verifyWebhook(payload, signature);
-      await this.sync.project(event.eventId, event.type, event.data);
+      const current = await new FoundingMemberService().webhook(event.type, event.data);
+      // A delayed payment_failed event may now refer to a completed transaction.
+      const status = (current as { status?: string })?.status;
+      const projectionType = event.type.startsWith("transaction.") && status === "completed" ? "transaction.completed" : event.type;
+      await this.sync.project(event.eventId, projectionType, current);
       log("paddle.webhook.processed", {
         correlationId,
         eventId: event.eventId,

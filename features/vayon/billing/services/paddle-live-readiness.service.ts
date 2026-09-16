@@ -1,6 +1,7 @@
 import "server-only";
 import { paddleEnvironment, paddleRequest } from "../providers/paddle/paddle-client";
 import { paddlePlanCodes, paddleCatalogEntry } from "../providers/paddle/paddle-catalog";
+import { foundingMonthlyPriceId } from "../providers/paddle/paddle-catalog";
 
 export interface PaddleLiveReadiness {
   readonly environment: "sandbox" | "live";
@@ -9,6 +10,7 @@ export interface PaddleLiveReadiness {
   readonly webhook: "configured" | "configuration_required";
   readonly portal: "available" | "configuration_required";
   readonly checkedAt: string;
+  readonly foundingOffer: "configured" | "unavailable";
 }
 
 export class PaddleLiveReadinessService {
@@ -20,6 +22,6 @@ export class PaddleLiveReadinessService {
     let api: PaddleLiveReadiness["api"] = "healthy";
     try { await paddleRequest<readonly unknown[]>("/event-types"); } catch { api = "unavailable"; }
     const webhook = process.env.PADDLE_WEBHOOK_SECRET ? "configured" as const : "configuration_required" as const;
-    return Object.freeze({ environment, api, catalog, webhook, portal: environment === "live" && api === "healthy" && catalog === "healthy" ? "available" : "configuration_required", checkedAt: new Date().toISOString() });
+    return Object.freeze({ environment, api, catalog, webhook, portal: environment === "live" && api === "healthy" && catalog === "healthy" ? "available" : "configuration_required", foundingOffer: foundingMonthlyPriceId() && process.env.CRON_SECRET ? "configured" : "unavailable", checkedAt: new Date().toISOString() });
   }
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { foundingAvailability } from "@/features/vayon/billing/services/founding-member.service";
 import { redirect } from "next/navigation";
 import { AuthenticationService } from "@/features/authentication/services/authentication.service";
 import { WorkspacePermissionService } from "@/features/platform/permissions/runtime/permission.service";
@@ -26,15 +27,17 @@ export default async function Page({searchParams}: {searchParams: Promise<Record
   }
   await enforcePagePermission("billing");
   const [snapshot, trial] = await Promise.all([new BillingStabilityService().safeSnapshot(), getWorkspaceTrial().catch(() => null)]);
+  const founding = snapshot.organizationId ? await foundingAvailability(snapshot.organizationId) : undefined;
+  const publicCatalog = snapshot.catalog.map(({ plan, period, name, description, amount, currencyCode }) => ({ plan, period, name, description, amount, currencyCode }));
   const data = snapshot.dashboard;
   const hasBillingAccount = Boolean(data.subscription?.providerSubscriptionId);
   return <WorkspaceContent><BillingHeader title="Subscription Center" description="Manage your plan, workspace usage and billing in one place."/>
     <SubscriptionStatus subscription={data.subscription} trialSnapshot={trial}/>
     {!data.subscription && <p role="status" className="mt-4 text-sm text-vds-muted">We could not confirm your subscription. Refresh to try again, or contact your workspace owner.</p>}
-    <SubscriptionCenter blocked={blocked} catalog={snapshot.catalog} organizationId={snapshot.organizationId} workspaceId={snapshot.workspaceId} clientToken={snapshot.canManage ? process.env.PADDLE_CLIENT_TOKEN : undefined} environment={process.env.PADDLE_ENVIRONMENT === "sandbox" ? "sandbox" : "live"} subscribed={Boolean(data.subscription?.providerSubscriptionId)} checkoutEnabled={Boolean(snapshot.canManage && snapshot.provider.missing.length === 0)}/>
+    <SubscriptionCenter founding={founding} blocked={blocked} catalog={publicCatalog} organizationId={snapshot.organizationId} workspaceId={snapshot.workspaceId} clientToken={snapshot.canManage ? process.env.PADDLE_CLIENT_TOKEN : undefined} environment={process.env.PADDLE_ENVIRONMENT === "sandbox" ? "sandbox" : "live"} subscribed={Boolean(data.subscription?.providerSubscriptionId)} checkoutEnabled={Boolean(snapshot.canManage && snapshot.provider.missing.length === 0)}/>
     <section className="mt-7" aria-labelledby="workspace-usage"><h2 id="workspace-usage" className="text-lg font-semibold">Workspace Usage</h2><div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{Object.entries(workspaceTrialLimits).map(([key, limit]) => <article key={key} className="rounded-2xl border border-vds-border p-5"><h3 className="capitalize">{key === "members" ? "Additional Team Members" : key}</h3><p className="mt-3 text-2xl font-semibold">{trial?.usage[key as keyof typeof trial.usage] ?? "Not confirmed"}{trial?.status === "trialing" ? " / " + limit : ""}</p></article>)}</div></section>
     <section className="mt-7"><h2 className="text-lg font-semibold">Invoices</h2><InvoiceTable items={data.invoices}/><Link href="/vayon/settings/invoices" className="mt-3 inline-block text-sm underline">View all invoices</Link></section>
     <section className="mt-7"><h2 className="text-lg font-semibold">Payment Method</h2><PaymentMethodList items={data.paymentMethods}/></section><BillingHistory items={data.events}/>
-    <details className="mt-7 rounded-2xl border border-vds-border p-5"><summary className="cursor-pointer font-semibold">Billing details and renewal</summary><div className="mt-5 grid gap-5 lg:grid-cols-2">{snapshot.canManage && <BillingContactForm contact={data.contact}/>} {hasBillingAccount && snapshot.canManage && data.subscription && <SubscriptionManagement subscription={data.subscription} catalog={snapshot.catalog} clientToken={process.env.PADDLE_CLIENT_TOKEN} environment={process.env.PADDLE_ENVIRONMENT === "sandbox" ? "sandbox" : "live"}/>}</div></details>
+    <details className="mt-7 rounded-2xl border border-vds-border p-5"><summary className="cursor-pointer font-semibold">Billing details and renewal</summary><div className="mt-5 grid gap-5 lg:grid-cols-2">{snapshot.canManage && <BillingContactForm contact={data.contact}/>} {hasBillingAccount && snapshot.canManage && data.subscription && <SubscriptionManagement subscription={data.subscription} catalog={publicCatalog} clientToken={process.env.PADDLE_CLIENT_TOKEN} environment={process.env.PADDLE_ENVIRONMENT === "sandbox" ? "sandbox" : "live"}/>}</div></details>
   </WorkspaceContent>;
 }

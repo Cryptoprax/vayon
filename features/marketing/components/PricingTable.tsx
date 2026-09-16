@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import { Button, ButtonLink } from "@/features/platform/design-system";
 import { CurrencyDisplay } from "../currency/CurrencyDisplay";
+import { usePublicFoundingOffer } from "./FoundingOffer";
 import { ANNUAL_SAVINGS_PERCENT, commercialDisplayPrice, commercialPricingPlans } from "@/features/platform/commercial-pricing";
 const shell = "mx-auto max-w-[96rem] px-5 py-20 sm:px-8",
   card =
@@ -110,7 +111,8 @@ const faqs = [
 ] as const;
 export const pricingSectionLabel =
   "Compare plans - Pricing FAQ - Professional - Growth-ready";
-export function PricingTable() {
+export function PricingTable({ foundingAvailable = false }: { foundingAvailable?: boolean }) {
+  const available = usePublicFoundingOffer(foundingAvailable);
   const [annual, setAnnual] = useState(false);
   return (
     <>
@@ -155,7 +157,7 @@ export function PricingTable() {
             className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5"
           >
             {plans.map((plan) => {
-              const price = commercialDisplayPrice(plan, annual ? "annual" : "monthly");
+              const price = commercialDisplayPrice(plan, annual ? "annual" : "monthly", available);
               const foundingPlan = price.promotional;
               return (
               <article
@@ -185,9 +187,10 @@ export function PricingTable() {
                 <p className="mt-4 text-xs text-vds-subtle">{plan.audience}</p>
                 {foundingPlan && (
                   <p className="mt-3 rounded-xl bg-vds-primary-soft px-3 py-2 text-xs font-medium text-vds-primary">
-                    Limited to the first {plan.promotion?.limitAgencies} agencies. Professional is $79/month for {plan.promotion?.durationMonths} months instead of the standard $149/month.
+                    Limited to the first {plan.promotion?.limitAgencies} eligible agencies. Professional is $79/month for {plan.promotion?.durationMonths} successful monthly billing periods instead of the standard $149/month. Eligibility is confirmed at checkout.
                   </p>
                 )}
+                {annual && plan.standardMonthlyPrice !== null && <p className="mt-3 text-xs text-vds-muted">${(plan.standardMonthlyPrice * 12 * 0.8).toFixed(2)} billed annually.</p>}
                 <ul className="mt-5 space-y-2 text-sm">
                   <li className="flex items-center gap-2"><Check aria-hidden="true" className="size-4 shrink-0 text-vds-primary" />{plan.seats} team members</li>
                   <li className="flex items-center gap-2"><Check aria-hidden="true" className="size-4 shrink-0 text-vds-primary" />{plan.workspaces} workspaces</li>

@@ -3,11 +3,11 @@ import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/features/platform/design-system";
 import type { SubscriptionRecord } from "../types";
-import type { PaddleCatalogPrice } from "../providers/paddle/paddle-catalog.types";
+import type { PublicPaddleCatalogPrice } from "../providers/paddle/paddle-catalog.types";
 import { manageSubscription } from "../actions/subscription-center.actions";
 import { containDialogFocus } from "./dialog-keyboard";
 import { openCheckoutOverlay } from "./checkout-overlay";
-export function SubscriptionManagement({ subscription, catalog, clientToken, environment = "live" }: { subscription: SubscriptionRecord; catalog: PaddleCatalogPrice[]; clientToken?: string; environment?: "sandbox" | "live" }) {
+export function SubscriptionManagement({ subscription, catalog, clientToken, environment = "live" }: { subscription: SubscriptionRecord; catalog: PublicPaddleCatalogPrice[]; clientToken?: string; environment?: "sandbox" | "live" }) {
   const [busy, setBusy] = useState(false), [message, setMessage] = useState("");
   const confirm = useRef<HTMLDialogElement>(null);
   const router = useRouter();

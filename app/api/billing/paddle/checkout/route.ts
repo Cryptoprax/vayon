@@ -19,7 +19,7 @@ function checkoutFailure(cause: unknown) {
   if (message.includes("Paddle did not return a checkout URL")) return errorResponse(message, "PADDLE_CHECKOUT_URL_MISSING", 502);
   return errorResponse("Paddle Checkout is temporarily unavailable. Please try again.", "PADDLE_CHECKOUT_FAILED", 500);
 }
-function selection(input: { planCode?: string; billingPeriod?: string }): Selection { return { planCode: input.planCode && isPaddlePlanCode(input.planCode) ? input.planCode : null, billingPeriod: input.billingPeriod === "monthly" || input.billingPeriod === "annual" ? input.billingPeriod : null }; }
+function selection(input: { planCode?: string; billingPeriod?: string } | null): Selection { return { planCode: typeof input?.planCode === "string" && isPaddlePlanCode(input.planCode) ? input.planCode : null, billingPeriod: input?.billingPeriod === "monthly" || input?.billingPeriod === "annual" ? input.billingPeriod : null }; }
 function configurationPresence(planCode: string | null, billingPeriod: "monthly" | "annual" | null) {
   const plan = planCode?.toUpperCase();
   return { apiKeyPresent: Boolean(process.env.PADDLE_API_KEY), clientTokenPresent: Boolean(process.env.PADDLE_CLIENT_TOKEN), webhookSecretPresent: Boolean(process.env.PADDLE_WEBHOOK_SECRET), productConfigured: Boolean(plan && process.env[`PADDLE_PRODUCT_${plan}`]), priceConfigured: Boolean(plan && billingPeriod && process.env[`PADDLE_PRICE_${plan}_${billingPeriod.toUpperCase()}`]) };
@@ -46,6 +46,8 @@ export async function POST(request: Request) {
   log("billing.paddle.checkout_requested", { correlationId, stage });
   try {
     input = (await request.json()) as typeof input;
+    if (!input || typeof input !== "object" || Array.isArray(input) || Object.keys(input).some(key => !["planCode", "billingPeriod", "seatQuantity"].includes(key)))
+      return errorResponse("Send only plan, billing period and seat quantity.", "INVALID_CHECKOUT_SELECTION", 400);
     const selected = selection(input);
     if (!selected.planCode || !selected.billingPeriod) return errorResponse("Invalid checkout selection.", "INVALID_CHECKOUT_SELECTION", 400);
     const checkout = await new PaddleCheckoutService().create(selected.planCode, selected.billingPeriod, input.seatQuantity ?? 1, new URL(request.url).origin, (nextStage) => { stage = nextStage; });

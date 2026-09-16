@@ -5,6 +5,13 @@ import { SubscriptionRepository } from "../repositories/subscription.repository"
 import { PaddleSubscriptionService } from "../services/paddle-subscription.service";
 import { paddleRequest } from "../providers/paddle/paddle-client";
 import { isPaddlePlanCode } from "../providers/paddle/paddle-catalog";
+import { foundingAvailability } from "../services/founding-member.service";
+
+export async function refreshFoundingAvailability(expectedWorkspaceId: string) {
+  const context = await billingContext();
+  if (context.workspaceId !== expectedWorkspaceId) throw new Error("Workspace changed.");
+  return foundingAvailability(context.organizationId);
+}
 
 export async function manageSubscription(form: FormData) {
   try {

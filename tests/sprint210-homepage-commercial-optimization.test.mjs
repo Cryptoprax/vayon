@@ -12,14 +12,17 @@ test("homepage hides unapproved testimonials and shows customer value", async ()
   assert.doesNotMatch(source, /pending verification|customer approval|placeholder/i);
 });
 
-test("founding customer offer is configured once and presented in hero and pricing", async () => {
+test("founding customer offer uses shared pricing and server availability in hero and pricing", async () => {
   const [config, homepage, pricing, commercial] = await Promise.all([
     read("features/marketing/config/marketing.config.ts"), read("features/marketing/components/Homepage.tsx"), read("features/marketing/components/PricingTable.tsx"), read("features/platform/commercial-pricing.ts"),
   ]);
   assert.match(config, /commercial-pricing/);
   assert.match(commercial, /FOUNDING_MEMBER_SPOTS_REMAINING = 20/);
   assert.match(commercial, /FOUNDING_MEMBER_ENABLED = true/);
-  assert.match(homepage, /Founding Customer Offer/);
+  assert.match(homepage, /<FoundingOffer \/>/);
+  const offer = await read("features/marketing/components/FoundingOffer.tsx");
+  assert.match(offer, /if \(!available\) return null/);
+  assert.match(offer, /founding\/availability/);
   assert.match(pricing, /FOUNDING MEMBER PRICING/);
 });test("pricing FAQ uses customer-facing support AI and retention answers", async () => {
   const source = await read("features/marketing/components/PricingTable.tsx");

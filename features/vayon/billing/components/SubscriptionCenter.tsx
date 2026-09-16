@@ -6,10 +6,11 @@ import { subscriptionMessage, type SubscriptionWriteDecision } from "../services
 import { Button } from "@/features/platform/design-system";
 import { CommercialPlans } from "./CommercialPlatform";
 import { containDialogFocus } from "./dialog-keyboard";
-import type { PaddleCatalogPrice } from "../providers/paddle/paddle-catalog.types";
+import type { PublicPaddleCatalogPrice } from "../providers/paddle/paddle-catalog.types";
+import type { FoundingMemberAvailability } from "../services/founding-member.types";
 import { redeemVayon3Day } from "../actions/vayon3day.actions";
 
-export function SubscriptionCenter(props: { catalog: PaddleCatalogPrice[]; organizationId: string; workspaceId: string; clientToken?: string; environment?: "sandbox" | "live"; subscribed?: boolean; checkoutEnabled?: boolean; blocked?: SubscriptionWriteDecision }) {
+export function SubscriptionCenter(props: { catalog: PublicPaddleCatalogPrice[]; organizationId: string; workspaceId: string; clientToken?: string; environment?: "sandbox" | "live"; subscribed?: boolean; checkoutEnabled?: boolean; founding?: FoundingMemberAvailability; blocked?: SubscriptionWriteDecision }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const router = useRouter();
   const [message, setMessage] = useState("");

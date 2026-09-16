@@ -36,6 +36,7 @@ export function paddleCatalogEntry(
 }
 
 export function planForPaddlePrice(priceId: string) {
+  if (foundingMonthlyPriceId() === priceId) return { plan: "professional" as const, period: "monthly" as const };
   for (const plan of paddlePlanCodes) {
     for (const period of ["monthly", "annual"] as const) {
       if (process.env[`PADDLE_PRICE_${plan.toUpperCase()}_${period.toUpperCase()}`] === priceId)
@@ -43,4 +44,10 @@ export function planForPaddlePrice(priceId: string) {
     }
   }
   return null;
+}
+
+// Optional and server-only. Never replace the standard Professional mapping.
+export function foundingMonthlyPriceId(): string | null {
+  const value = process.env.PADDLE_PRICE_PROFESSIONAL_FOUNDING_MONTHLY;
+  return value && /^pri_[a-z0-9]+$/.test(value) && value !== process.env.PADDLE_PRICE_PROFESSIONAL_MONTHLY ? value : null;
 }

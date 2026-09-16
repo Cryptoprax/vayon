@@ -11,13 +11,15 @@ import { PricingTable } from "./PricingTable";
 
 export function MarketingPage({
   content,
+  foundingAvailable = false,
 }: {
   readonly content: MarketingPageContent;
+  readonly foundingAvailable?: boolean;
 }) {
   if (content.id === "pricing")
     return (
       <main>
-        <PricingTable />
+        <PricingTable foundingAvailable={foundingAvailable} />
       </main>
     );
   return (
