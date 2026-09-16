@@ -9,7 +9,7 @@ import { containDialogFocus } from "./dialog-keyboard";
 import type { PaddleCatalogPrice } from "../providers/paddle/paddle-catalog.types";
 import { redeemVayon3Day } from "../actions/vayon3day.actions";
 
-export function SubscriptionCenter(props: { catalog: PaddleCatalogPrice[]; organizationId: string; workspaceId: string; clientToken?: string; environment?: "sandbox" | "live"; subscribed?: boolean; blocked?: SubscriptionWriteDecision }) {
+export function SubscriptionCenter(props: { catalog: PaddleCatalogPrice[]; organizationId: string; workspaceId: string; clientToken?: string; environment?: "sandbox" | "live"; subscribed?: boolean; checkoutEnabled?: boolean; blocked?: SubscriptionWriteDecision }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const router = useRouter();
   const [message, setMessage] = useState("");

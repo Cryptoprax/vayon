@@ -7,7 +7,8 @@ test("billing comparison consumes the four-plan shared commercial catalog and ma
   const pricing = read("features/platform/commercial-pricing.ts");
   for (const plan of ["starter", "professional", "business", "business_plus"]) assert.match(pricing, new RegExp(`code: "${plan}"`));
   assert.doesNotMatch(ui, /enterprise/);
-  assert.match(ui, /item\.period === period/);
+  assert.match(ui, /checkoutEnabled && clientToken && !subscribed/);
+  assert.doesNotMatch(ui, /mappedPrice/);
   assert.match(ui, /setPeriod\(value\)/);
   assert.match(ui, /aria-pressed=\{period === value\}/);
 });
@@ -15,6 +16,8 @@ test("checkout starts the existing workspace-scoped transaction in an overlay", 
   assert.match(ui, /fetch\("\/api\/billing\/paddle\/checkout"/);
   assert.match(ui, /planCode: plan, billingPeriod: period, seatQuantity: 1/);
   assert.match(ui, /openCheckoutOverlay\(result\.transactionId/);
+  assert.match(ui, /Preparing checkout/);
+  assert.match(ui, /Choose " \+ displayPlan\.name/);
   assert.doesNotMatch(ui, /window\.location|href="\/(pricing|contact)"/);
 });
 test("self-service checkout does not offer Enterprise or leave the workspace", () => {

@@ -11,8 +11,8 @@ import { refreshSubscriptionState } from "../actions/subscription-center.actions
 const card = "min-w-0 rounded-2xl border border-vds-border bg-vds-surface p-5";
 type Period = "monthly" | "annual";
 
-export function CommercialPlans({ catalog, workspaceId, clientToken, environment = "live", subscribed = false, onCheckout, onMessage }: {
-  catalog: PaddleCatalogPrice[]; organizationId: string; workspaceId: string; clientToken?: string; environment?: "sandbox" | "live"; subscribed?: boolean; onCheckout?: () => void; onMessage?: (message: string) => void;
+export function CommercialPlans({ workspaceId, clientToken, environment = "live", subscribed = false, checkoutEnabled = false, onCheckout, onMessage }: {
+  catalog: PaddleCatalogPrice[]; organizationId: string; workspaceId: string; clientToken?: string; environment?: "sandbox" | "live"; subscribed?: boolean; checkoutEnabled?: boolean; onCheckout?: () => void; onMessage?: (message: string) => void;
 }) {
   const router = useRouter();
   const mounted = useRef(true);
@@ -46,16 +46,15 @@ export function CommercialPlans({ catalog, workspaceId, clientToken, environment
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">{selfServiceCommercialPlans.map(displayPlan => {
       const plan = subscriptionEntitlementCatalog[displayPlan.code];
       const displayPrice = commercialDisplayPrice(displayPlan, period);
-      const mappedPrice = catalog.find(item => item.plan === displayPlan.code && item.period === period);
-      const checkoutAvailable = Boolean(mappedPrice && clientToken && !subscribed);
-      return <article key={displayPlan.code} className={card}>
-        <div className="flex items-start justify-between gap-3"><div><h3 className="text-lg font-semibold">{displayPlan.name}</h3><p className="mt-2 text-sm text-vds-muted">{displayPlan.audience}</p></div>{displayPrice.promotional && <span className="rounded-full bg-vds-primary px-2 py-1 text-[10px] font-semibold text-vds-on-accent">FOUNDING MEMBER PRICING</span>}</div>
+      const checkoutAvailable = Boolean(checkoutEnabled && clientToken && !subscribed);
+      return <article key={displayPlan.code} className={`${card} flex h-full flex-col`}>
+        <div className="flex flex-col gap-3"><div className="min-w-0"><h3 className="text-lg font-semibold">{displayPlan.name}</h3><p className="mt-2 text-sm text-vds-muted">{displayPlan.audience}</p></div>{displayPrice.promotional && <span className="self-start rounded-full bg-vds-primary px-2 py-1 text-[10px] font-semibold text-vds-on-accent">FOUNDING MEMBER PRICING</span>}</div>
         <p className="mt-4 text-2xl font-semibold">{displayPrice.promotional && displayPrice.standardPrice !== null && <span className="mr-2 text-base font-medium text-vds-muted line-through">${displayPrice.standardPrice}</span>}${displayPrice.price}<span className="ml-1 text-sm font-normal text-vds-muted">/ month</span></p>
         {displayPrice.promotional && displayPlan.promotion && <p className="mt-3 rounded-xl bg-vds-primary-soft px-3 py-2 text-xs font-medium text-vds-primary">Limited to the first {displayPlan.promotion.limitAgencies} agencies. ${displayPlan.promotion.promotionalMonthlyPrice}/month for {displayPlan.promotion.durationMonths} months instead of the standard ${displayPlan.standardMonthlyPrice}/month.</p>}
         {period === "annual" && displayPlan.promotion && <p className="mt-3 text-xs text-vds-muted">Annual pricing uses the standard plan rate. The Founding Member offer applies to monthly billing.</p>}
         <dl className="my-5 grid gap-3 text-sm">{[["Seats", plan.quotas.users ?? "Unlimited"], ["Storage", plan.quotas.storage_gb === null ? "Unlimited" : plan.quotas.storage_gb + " GB"], ["AI requests", plan.quotas.ai_requests ?? "Unlimited"], ["Reports", plan.quotas.reports ?? "Unlimited"], ["Support", plan.features.includes("priority_support" as never) ? "Priority support" : "Standard support"]].map(([label, value]) => <div key={label} className="flex flex-wrap justify-between gap-2"><dt className="text-vds-muted">{label}</dt><dd>{value}</dd></div>)}</dl>
         <details className="mb-5 text-sm"><summary className="cursor-pointer">Included capabilities</summary><ul className="mt-3 space-y-2">{plan.features.filter(feature => feature !== "founder_tools").map(feature => <li key={feature}>{feature.replaceAll("_", " ")}</li>)}</ul></details>
-        {checkoutAvailable ? <Button variant="primary" disabled={busy !== null} onClick={() => checkout(displayPlan.code)}>{busy === displayPlan.code ? "Opening checkout..." : "Upgrade to " + displayPlan.name}</Button> : <p className="text-sm text-vds-muted">{subscribed ? "Manage your current subscription below." : "Online checkout is temporarily unavailable."}</p>}
+        <div className="mt-auto pt-2">{checkoutAvailable ? <Button className="w-full" variant="primary" disabled={busy !== null} onClick={() => checkout(displayPlan.code)}>{busy === displayPlan.code ? "Preparing checkout..." : "Choose " + displayPlan.name}</Button> : <p className="text-sm text-vds-muted">{subscribed ? "Manage your current subscription below." : "Online checkout is temporarily unavailable."}</p>}</div>
       </article>;
     })}</div><p className="mt-4 text-sm" role="status">{message}</p>
   </section>;
