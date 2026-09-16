@@ -31,6 +31,9 @@ test("the redemption action and Subscription Center never grant browser-authorit
   assert.match(ui, /router\.refresh\(\).*router\.push\("\/vayon\/dashboard"\)/);
 });
 
-test("VAYON3DAY does not invoke Paddle", () => {
+test("VAYON3DAY RPC execution is restricted and does not invoke Paddle", () => {
+  assert.match(migration, /revoke all on function public\.redeem_vayon3day\(text\) from public;/);
+  assert.match(migration, /revoke execute on function public\.redeem_vayon3day\(text\) from anon;/);
+  assert.match(migration, /grant execute on function public\.redeem_vayon3day\(text\) to authenticated;/);
   assert.doesNotMatch(`${migration}\n${action}`, /paddle|transaction|provider_subscription_id/i);
 });

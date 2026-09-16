@@ -3,75 +3,24 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import { Button, ButtonLink } from "@/features/platform/design-system";
 import { CurrencyDisplay } from "../currency/CurrencyDisplay";
-import { FOUNDING_MEMBER_ENABLED, FOUNDING_MEMBER_SPOTS_REMAINING } from "../config/marketing.config";
+import { ANNUAL_SAVINGS_PERCENT, commercialDisplayPrice, commercialPricingPlans } from "@/features/platform/commercial-pricing";
 const shell = "mx-auto max-w-[96rem] px-5 py-20 sm:px-8",
   card =
     "rounded-3xl border border-vds-border bg-vds-surface/80 shadow-xl shadow-vds-shadow/10";
-const plans = [
-  {
-    name: "Starter",
-    price: 79,
-    tag: "Launch your business with AI",
-    audience: "Independent agents and small real estate teams",
-    users: "3",
-    workspaces: "1",
-    storage: "10 GB",
-    popular: false,
-  },
-  {
-    name: "Professional",
-    price: 149,
-    tag: "Grow with AI employees",
-    audience: "Growing teams",
-    users: "10",
-    workspaces: "3",
-    storage: "100 GB",
-    popular: true,
-  },
-  {
-    name: "Business",
-    price: 399,
-    tag: "Run your organization with AI",
-    audience: "Established businesses",
-    users: "50",
-    workspaces: "10",
-    storage: "500 GB",
-    popular: false,
-  },
-  {
-    name: "Business Plus",
-    price: 799,
-    tag: "Scale teams and locations",
-    audience: "Multi-department operations",
-    users: "Custom",
-    workspaces: "Custom",
-    storage: "Custom",
-    popular: false,
-  },
-  {
-    name: "Enterprise",
-    price: null,
-    tag: "Dedicated enterprise operating system",
-    audience: "Large organizations",
-    users: "Unlimited",
-    workspaces: "Unlimited",
-    storage: "Custom",
-    popular: false,
-  },
-] as const;
+const plans = commercialPricingPlans;
 const softwareCosts = [
-  ["CRM", "$50–150+"],
-  ["AI Writing Assistant", "$20–30"],
-  ["AI Image Generation", "$20–40"],
-  ["AI Video Generation", "$20–60"],
-  ["Graphic Design Platform", "$15–60"],
-  ["Project Management", "$10–40"],
-  ["Marketing Automation", "$50–300+"],
-  ["Business Intelligence", "$30–100+"],
-  ["Customer Success Platform", "$80–300+"],
-  ["Brand Management", "$20–100+"],
-  ["Document Generation", "$20–50"],
-  ["Sales Enablement", "$40–150+"],
+  ["CRM", "$50â€“150+"],
+  ["AI Writing Assistant", "$20â€“30"],
+  ["AI Image Generation", "$20â€“40"],
+  ["AI Video Generation", "$20â€“60"],
+  ["Graphic Design Platform", "$15â€“60"],
+  ["Project Management", "$10â€“40"],
+  ["Marketing Automation", "$50â€“300+"],
+  ["Business Intelligence", "$30â€“100+"],
+  ["Customer Success Platform", "$80â€“300+"],
+  ["Brand Management", "$20â€“100+"],
+  ["Document Generation", "$20â€“50"],
+  ["Sales Enablement", "$40â€“150+"],
 ] as const;
 const planRecommendations = [
   ["Starter", "Perfect for independent agents and small real estate teams."],
@@ -160,7 +109,7 @@ const faqs = [
   ],
 ] as const;
 export const pricingSectionLabel =
-  "Compare plans · Pricing FAQ · Professional · Growth-ready";
+  "Compare plans Â· Pricing FAQ Â· Professional Â· Growth-ready";
 export function PricingTable() {
   const [annual, setAnnual] = useState(false);
   return (
@@ -191,7 +140,7 @@ export function PricingTable() {
                 variant={annual ? "primary" : "control"}
                 onClick={() => setAnnual(true)}
               >
-                Annual · save 20%
+                Annual ï¿½ save {ANNUAL_SAVINGS_PERCENT}%
               </Button>
               <Button
                 variant={!annual ? "primary" : "control"}
@@ -206,7 +155,8 @@ export function PricingTable() {
             className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-5"
           >
             {plans.map((plan) => {
-              const foundingPlan = FOUNDING_MEMBER_ENABLED && plan.name === "Professional";
+              const price = commercialDisplayPrice(plan, annual ? "annual" : "monthly");
+              const foundingPlan = price.promotional;
               return (
               <article
                 key={plan.name}
@@ -225,34 +175,23 @@ export function PricingTable() {
                   {plan.name}
                 </p>
                 <p className="mt-5 text-4xl font-semibold">
-                  {plan.price === null ? (
-                    "Custom"
-                  ) : (
-                    <CurrencyDisplay
-                      valueUsd={
-                        foundingPlan ? 79 : annual ? Math.round(plan.price * 0.8) : plan.price
-                      }
-                    />
-                  )}{" "}
-                  {plan.price !== null && (
-                    <span className="text-xs font-normal text-vds-muted">
-                      / month
-                    </span>
-                  )}
-                </p>
-                <p className="mt-4 min-h-12 text-sm text-vds-muted">
-                  {plan.tag}
+                  {price.price === null ? "Custom" : <>
+                    {price.promotional && price.standardPrice !== null && <span className="mr-2 text-lg font-medium text-vds-muted line-through"><CurrencyDisplay valueUsd={price.standardPrice} /></span>}
+                    <CurrencyDisplay valueUsd={price.price} />
+                  </>}{price.price !== null && <span className="text-xs font-normal text-vds-muted"> / month</span>}
+                </p>                <p className="mt-4 min-h-12 text-sm text-vds-muted">
+                  {plan.description}
                 </p>
                 <p className="mt-4 text-xs text-vds-subtle">{plan.audience}</p>
                 {foundingPlan && (
                   <p className="mt-3 rounded-xl bg-vds-primary-soft px-3 py-2 text-xs font-medium text-vds-primary">
-                    Limited to the first {FOUNDING_MEMBER_SPOTS_REMAINING} agencies. Professional features at $79/month for 12 months.
+                    Limited to the first {plan.promotion?.limitAgencies} agencies. Professional is $79/month for {plan.promotion?.durationMonths} months instead of the standard $149/month.
                   </p>
                 )}
                 <ul className="mt-5 space-y-2 text-sm">
-                  <li>✓ {plan.users} team members</li>
-                  <li>✓ {plan.workspaces} workspaces</li>
-                  <li>✓ {plan.storage} storage</li>
+                  <li>âœ“ {plan.seats} team members</li>
+                  <li>âœ“ {plan.workspaces} workspaces</li>
+                  <li>âœ“ {plan.storage} storage</li>
                 </ul>
                 <ButtonLink
                   fullWidth
@@ -365,7 +304,7 @@ export function PricingTable() {
                     TOTAL
                   </th>
                   <td className="px-5 py-5 text-right text-lg font-semibold sm:px-7">
-                    $355–1,380+/month
+                    $355â€“1,380+/month
                   </td>
                 </tr>
               </tbody>
@@ -373,7 +312,7 @@ export function PricingTable() {
           </div>
           <div className="mx-auto mt-12 max-w-3xl text-center">
             <p className="text-lg leading-8 text-vds-muted">
-              Instead of paying for 10–12 separate business tools, VAYON brings
+              Instead of paying for 10â€“12 separate business tools, VAYON brings
               your CRM, AI Workforce, Creative Studio, Marketing, Sales,
               Customer Success and Business Intelligence together in one
               intelligent platform.
@@ -454,7 +393,7 @@ function Heading({ eyebrow, title }: { eyebrow: string; title: string }) {
   );
 }
 function value(row: string, index: number, plan: number) {
-  if (row === "Team Members") return plans[plan].users;
+  if (row === "Team Members") return plans[plan].seats;
   if (row === "Workspaces") return plans[plan].workspaces;
   if (row === "Storage") return plans[plan].storage;
   const threshold =
@@ -465,6 +404,6 @@ function value(row: string, index: number, plan: number) {
       Included
     </span>
   ) : (
-    "—"
+    "â€”"
   );
 }

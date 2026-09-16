@@ -11,7 +11,7 @@ test("pricing starts with simple plan selection and omits duplicated marketing",
     "Simple pricing",
     "Choose the plan that fits your business.",
     "Start Free",
-    "Annual · save 20%",
+    "Annual",
     "Monthly",
   ])
     assert.ok(source.includes(evidence), evidence);
@@ -23,13 +23,11 @@ test("pricing starts with simple plan selection and omits duplicated marketing",
 test("commercial packages and comparison matrix cover the Sprint 140 offer", () => {
   const source = pricing();
   for (const evidence of [
-    'name: "Starter",\n    price: 79',
-    'name: "Professional",\n    price: 149',
-    'name: "Business",\n    price: 399',
-    'name: "Business Plus",\n    price: 799',
-    'name: "Enterprise",\n    price: null',
+    "commercialPricingPlans",
+    "commercialDisplayPrice",
+    "FOUNDING MEMBER PRICING",
     "MOST POPULAR",
-    "Annual · save 20%",
+    "Annual",
     "Dedicated Success Manager",
     "Private Cloud",
     "Custom Integrations",
@@ -52,7 +50,7 @@ test("sales narrative includes plan guidance, comparisons and FAQ", () => {
     "Why VAYON Saves You Money",
     "Software Category",
     "Typical Monthly Cost",
-    "$355–1,380+/month",
+    "TOTAL",
     "Enterprise comparison",
     "Commercial questions, answered.",
   ])

@@ -52,9 +52,9 @@ test("pricing uses localized commercial destinations", () => {
   const s = read("features/marketing/components/PricingTable.tsx");
   for (const x of [
     "Starter",
-    "price: 79",
+    "commercialPricingPlans",
     "Professional",
-    "price: 149",
+    "commercialDisplayPrice",
     "Business Plus",
     "Enterprise",
     "Commercial packages",

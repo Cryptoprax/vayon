@@ -29,7 +29,7 @@ export default async function Page({searchParams}: {searchParams: Promise<Record
   const data = snapshot.dashboard;
   const hasBillingAccount = Boolean(data.subscription?.providerSubscriptionId);
   return <WorkspaceContent><BillingHeader title="Subscription Center" description="Manage your plan, workspace usage and billing in one place."/>
-    <SubscriptionStatus subscription={data.subscription}/>
+    <SubscriptionStatus subscription={data.subscription} trialSnapshot={trial}/>
     {!data.subscription && <p role="status" className="mt-4 text-sm text-vds-muted">We could not confirm your subscription. Refresh to try again, or contact your workspace owner.</p>}
     <SubscriptionCenter blocked={blocked} catalog={snapshot.catalog} organizationId={snapshot.organizationId} workspaceId={snapshot.workspaceId} clientToken={snapshot.canManage ? process.env.PADDLE_CLIENT_TOKEN : undefined} environment={process.env.PADDLE_ENVIRONMENT === "sandbox" ? "sandbox" : "live"} subscribed={Boolean(data.subscription?.providerSubscriptionId)}/>
     <section className="mt-7" aria-labelledby="workspace-usage"><h2 id="workspace-usage" className="text-lg font-semibold">Workspace Usage</h2><div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{Object.entries(workspaceTrialLimits).map(([key, limit]) => <article key={key} className="rounded-2xl border border-vds-border p-5"><h3 className="capitalize">{key === "members" ? "Additional Team Members" : key}</h3><p className="mt-3 text-2xl font-semibold">{trial?.usage[key as keyof typeof trial.usage] ?? "Not confirmed"}{trial?.status === "trialing" ? " / " + limit : ""}</p></article>)}</div></section>

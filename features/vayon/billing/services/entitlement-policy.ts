@@ -32,6 +32,7 @@ function base(context: EntitlementPolicyContext) {
 export function evaluateFeatureEntitlement(context: EntitlementPolicyContext, feature: EntitlementFeature): EntitlementDecision {
   const { founderOverride, expired } = base(context);
   if (founderOverride) return { allowed: true, state: "enabled", feature, currentPlan: context.plan, targetPlan: null, reason: "Founder accounts are exempt from subscription limits.", founderOverride: true };
+  if (context.subscriptionStatus === "unverified") return { allowed: false, state: "expiration", feature, currentPlan: context.plan, targetPlan: minimumPlanFor(feature), reason: "We could not confirm an active subscription entitlement.", founderOverride: false };
   if (expired && context.subscriptionStatus !== "trialing") return { allowed: false, state: "expiration", feature, currentPlan: context.plan, targetPlan: minimumPlanFor(feature), reason: "The subscription entitlement has expired.", founderOverride: false };
   const trialCapability = context.subscriptionStatus === "trialing" && ["basic_ai", "marketing_ai", "sales_ai", "advanced_ai", "creative_studio", "advanced_analytics"].includes(feature);
   const allowed = trialCapability || (subscriptionEntitlementCatalog[context.plan].features as readonly EntitlementFeature[]).includes(feature);
@@ -43,6 +44,7 @@ export function evaluateFeatureEntitlement(context: EntitlementPolicyContext, fe
 export function evaluateQuotaEntitlement(context: EntitlementPolicyContext, quota: EntitlementQuota, usage: number, increment = 0): EntitlementDecision {
   const { founderOverride, expired } = base(context), limit = subscriptionEntitlementCatalog[context.plan].quotas[quota];
   if (founderOverride) return { allowed: true, state: "enabled", quota, usage, limit: null, currentPlan: context.plan, targetPlan: null, reason: "Founder accounts are exempt from subscription limits.", founderOverride: true };
+  if (context.subscriptionStatus === "unverified") return { allowed: false, state: "expiration", quota, usage, limit, currentPlan: context.plan, targetPlan: nextPlan(context.plan), reason: "We could not confirm an active subscription entitlement.", founderOverride: false };
   if (expired && !(context.subscriptionStatus === "trialing" && ["exports", "reports"].includes(quota))) return { allowed: false, state: "expiration", quota, usage, limit, currentPlan: context.plan, targetPlan: nextPlan(context.plan), reason: "The subscription entitlement has expired.", founderOverride: false };
   if (limit === null) return { allowed: true, state: context.subscriptionStatus === "trialing" ? "trial" : "enabled", quota, usage, limit, currentPlan: context.plan, targetPlan: null, reason: "This quota is unlimited.", founderOverride: false };
   const allowed = usage + increment <= limit;

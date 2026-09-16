@@ -60,6 +60,7 @@ exception when unique_violation then
 end;
 $$;
 revoke all on function public.redeem_vayon3day(text) from public;
+revoke execute on function public.redeem_vayon3day(text) from anon;
 grant execute on function public.redeem_vayon3day(text) to authenticated;
 
 -- Preserve the required subscription row and limits for new workspaces, but do

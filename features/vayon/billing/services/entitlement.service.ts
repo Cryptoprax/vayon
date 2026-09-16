@@ -20,7 +20,7 @@ export class SubscriptionEntitlementService {
     const joined = subscription?.subscription_plans as unknown as { code?: string } | null;
     const code = joined?.code ?? "starter";
     if (!isSubscriptionPlanCode(code)) throw new Error(`Unsupported subscription plan: ${code}`);
-    const status = String(subscription?.status ?? "trialing");
+    const status = subscription?.status === "trialing" && !subscription.trial_ends_at ? "unverified" : String(subscription?.status ?? "unverified");
     const expiresAt = status === "trialing" ? subscription?.trial_ends_at ?? null : status === "cancelled" || status === "suspended" ? subscription?.current_period_ends_at ?? null : null;
     return { ...context, plan: code, status, expiresAt, founder: isFounder(auth.user) };
   }
