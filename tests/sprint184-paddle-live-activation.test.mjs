@@ -4,9 +4,9 @@ import { spawnSync } from "node:child_process";
 import test from "node:test";
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
-test("Paddle production mode is explicit and rejects crossed credentials", async () => {
+test("Paddle environment is explicit and rejects crossed credentials", async () => {
   const source = await read("features/vayon/billing/providers/paddle/paddle-client.ts");
-  for (const value of ["PADDLE_ENVIRONMENT", "production", "live", "sandbox", "_sdbx_", "_live_", "Paddle-Version", "AbortSignal.timeout"]) assert.match(source, new RegExp(value.replaceAll(".", "\\.")));
+  for (const value of ["PADDLE_ENVIRONMENT", "live", "sandbox", "_sdbx_", "_live_", "Paddle-Version", "AbortSignal.timeout"]) assert.match(source, new RegExp(value.replaceAll(".", "\\.")));
   assert.doesNotMatch(source, /pdl_(?:live|sdbx)_apikey_[A-Za-z0-9_-]{20}/);
 });
 

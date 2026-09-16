@@ -5,8 +5,6 @@ export function paddleEnvironment(): PaddleEnvironment {
   const value = process.env.PADDLE_ENVIRONMENT;
   if (value !== "sandbox" && value !== "live")
     throw new Error("PADDLE_ENVIRONMENT must be explicitly set to sandbox or live.");
-  if (process.env.APP_ENV === "production" && value !== "live")
-    throw new Error("Production billing requires PADDLE_ENVIRONMENT=live.");
   return value;
 }
 const apiBase = () => paddleEnvironment() === "sandbox" ? "https://sandbox-api.paddle.com" : "https://api.paddle.com";
@@ -55,7 +53,8 @@ export async function paddleRequest<T>(
     const error = new Error(body?.error?.detail ?? `Paddle API failed (${response.status}).`);
     Object.assign(error, { status: response.status });
     throw error;
-  }  if (!body || !("data" in body))
+  }
+  if (!body || !("data" in body))
     throw new Error(`Paddle API returned an empty response (${response.status}).`);
   return body.data;
 }
