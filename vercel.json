@@ -2,7 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "regions": ["bom1"],
-  "crons": [{ "path": "/api/billing/paddle/founding/reconcile", "schedule": "*/15 * * * *" }],
   "headers": [
     {
       "source": "/api/health/(.*)",

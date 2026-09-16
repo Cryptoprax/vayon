@@ -1,0 +1,53 @@
+name: Founding member reconciliation
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vayon-founding-reconciliation
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    if: github.repository == 'Cryptoprax/vayon' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Reconcile founding memberships
+        shell: bash
+        env:
+          RECONCILIATION_SECRET: ${{ secrets.VAYON_RECONCILIATION_SECRET }}
+        run: |
+          set -euo pipefail
+          if [[ -z "$RECONCILIATION_SECRET" || "$RECONCILIATION_SECRET" == *$'\n'* || "$RECONCILIATION_SECRET" == *$'\r'* ]]; then
+            echo "::error::Reconciliation secret is missing or invalid."
+            exit 1
+          fi
+          response_file="$(mktemp)"
+          trap 'rm -f "$response_file"' EXIT
+          # Supply the header on stdin; never log credentials or response bodies.
+          # No redirects or immediate retries: the server may still be working.
+          if ! status="$(printf 'Authorization: Bearer %s\n' "$RECONCILIATION_SECRET" | curl \
+            --fail-with-body --show-error --silent \
+            --proto '=https' --request GET \
+            --connect-timeout 15 --max-time 330 \
+            --header @- --header 'Accept: application/json' \
+            --output "$response_file" --write-out '%{http_code}' \
+            'https://vayon.online/api/billing/paddle/founding/reconcile')"; then
+            echo "::error::Reconciliation request failed."
+            exit 1
+          fi
+          if [[ ! "$status" =~ ^2[0-9][0-9]$ ]]; then
+            echo "::error::Reconciliation returned a non-success HTTP status."
+            exit 1
+          fi
+          if ! jq -e 'type == "object" and .ok == true' "$response_file" > /dev/null 2>&1; then
+            echo "::error::Reconciliation did not confirm success."
+            exit 1
+          fi
+          echo "Reconciliation completed successfully."
