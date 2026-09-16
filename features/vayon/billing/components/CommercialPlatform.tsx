@@ -22,7 +22,7 @@ export function CommercialPlans({ catalog, workspaceId, clientToken, environment
   const [message, setMessage] = useState("");
   function notify(next: string) { setMessage(next); onMessage?.(next); }
   async function confirmPayment() {
-    setBusy(null); notify("Payment received. Waiting for subscription confirmation…");
+    setBusy(null); notify("Payment received. Waiting for subscription confirmation...");
     for (let attempt = 0; attempt < 10; attempt++) {
       if (!mounted.current) return;
       try { const current = await refreshSubscriptionState(workspaceId); if (!mounted.current) return; if (current.status === "active") { notify("Your subscription is active. Continue working in VAYON."); router.refresh(); return; } } catch { break; }
@@ -42,7 +42,7 @@ export function CommercialPlans({ catalog, workspaceId, clientToken, environment
   }
   return <section className="mt-5" aria-label="Compare subscription plans">
     <p className="text-sm text-vds-muted">Choose the plan that fits your team. Manage your subscription here in VAYON.</p>
-    <div role="group" aria-label="Billing period" className="my-5 flex flex-wrap gap-3">{(["monthly", "annual"] as const).map(value => <Button key={value} variant={period === value ? "primary" : "control"} aria-pressed={period === value} onClick={() => setPeriod(value)}>{value === "monthly" ? "Monthly" : "Annual · save 20%"}</Button>)}</div>
+    <div role="group" aria-label="Billing period" className="my-5 flex flex-wrap gap-3">{(["monthly", "annual"] as const).map(value => <Button key={value} variant={period === value ? "primary" : "control"} aria-pressed={period === value} onClick={() => setPeriod(value)}>{value === "monthly" ? "Monthly" : <>Annual {"\u00B7"} save 20%</>}</Button>)}</div>
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">{selfServiceCommercialPlans.map(displayPlan => {
       const plan = subscriptionEntitlementCatalog[displayPlan.code];
       const displayPrice = commercialDisplayPrice(displayPlan, period);
@@ -55,7 +55,7 @@ export function CommercialPlans({ catalog, workspaceId, clientToken, environment
         {period === "annual" && displayPlan.promotion && <p className="mt-3 text-xs text-vds-muted">Annual pricing uses the standard plan rate. The Founding Member offer applies to monthly billing.</p>}
         <dl className="my-5 grid gap-3 text-sm">{[["Seats", plan.quotas.users ?? "Unlimited"], ["Storage", plan.quotas.storage_gb === null ? "Unlimited" : plan.quotas.storage_gb + " GB"], ["AI requests", plan.quotas.ai_requests ?? "Unlimited"], ["Reports", plan.quotas.reports ?? "Unlimited"], ["Support", plan.features.includes("priority_support" as never) ? "Priority support" : "Standard support"]].map(([label, value]) => <div key={label} className="flex flex-wrap justify-between gap-2"><dt className="text-vds-muted">{label}</dt><dd>{value}</dd></div>)}</dl>
         <details className="mb-5 text-sm"><summary className="cursor-pointer">Included capabilities</summary><ul className="mt-3 space-y-2">{plan.features.filter(feature => feature !== "founder_tools").map(feature => <li key={feature}>{feature.replaceAll("_", " ")}</li>)}</ul></details>
-        {checkoutAvailable ? <Button variant="primary" disabled={busy !== null} onClick={() => checkout(displayPlan.code)}>{busy === displayPlan.code ? "Opening checkout…" : "Upgrade to " + displayPlan.name}</Button> : <p className="text-sm text-vds-muted">{subscribed ? "Manage your current subscription below." : "Online checkout is temporarily unavailable."}</p>}
+        {checkoutAvailable ? <Button variant="primary" disabled={busy !== null} onClick={() => checkout(displayPlan.code)}>{busy === displayPlan.code ? "Opening checkout..." : "Upgrade to " + displayPlan.name}</Button> : <p className="text-sm text-vds-muted">{subscribed ? "Manage your current subscription below." : "Online checkout is temporarily unavailable."}</p>}
       </article>;
     })}</div><p className="mt-4 text-sm" role="status">{message}</p>
   </section>;

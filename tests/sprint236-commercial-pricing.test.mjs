@@ -28,3 +28,14 @@ test("authenticated display pricing is independent from Paddle checkout mapping"
   assert.doesNotMatch(billing, /enterprise/);
 });
 
+
+test("pricing presentation is UTF-8 safe and renders feature icons separately from commercial data", () => {
+  for (const source of [config, publicPricing, billing]) {
+    assert.doesNotMatch(source, /â|ï¿½|�/);
+  }
+  assert.match(publicPricing, /Annual \{"\\u00B7"\} save \{ANNUAL_SAVINGS_PERCENT\}%/);
+  assert.match(billing, /Annual \{"\\u00B7"\} save 20%/);
+  assert.match(publicPricing, /<Check aria-hidden="true"/);
+  assert.match(publicPricing, /\{plan\.seats\} team members/);
+  assert.doesNotMatch(config, /✓|âœ/);
+});

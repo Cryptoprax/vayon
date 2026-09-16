@@ -9,18 +9,18 @@ const shell = "mx-auto max-w-[96rem] px-5 py-20 sm:px-8",
     "rounded-3xl border border-vds-border bg-vds-surface/80 shadow-xl shadow-vds-shadow/10";
 const plans = commercialPricingPlans;
 const softwareCosts = [
-  ["CRM", "$50â€“150+"],
-  ["AI Writing Assistant", "$20â€“30"],
-  ["AI Image Generation", "$20â€“40"],
-  ["AI Video Generation", "$20â€“60"],
-  ["Graphic Design Platform", "$15â€“60"],
-  ["Project Management", "$10â€“40"],
-  ["Marketing Automation", "$50â€“300+"],
-  ["Business Intelligence", "$30â€“100+"],
-  ["Customer Success Platform", "$80â€“300+"],
-  ["Brand Management", "$20â€“100+"],
-  ["Document Generation", "$20â€“50"],
-  ["Sales Enablement", "$40â€“150+"],
+  ["CRM", "$50-150+"],
+  ["AI Writing Assistant", "$20-30"],
+  ["AI Image Generation", "$20-40"],
+  ["AI Video Generation", "$20-60"],
+  ["Graphic Design Platform", "$15-60"],
+  ["Project Management", "$10-40"],
+  ["Marketing Automation", "$50-300+"],
+  ["Business Intelligence", "$30-100+"],
+  ["Customer Success Platform", "$80-300+"],
+  ["Brand Management", "$20-100+"],
+  ["Document Generation", "$20-50"],
+  ["Sales Enablement", "$40-150+"],
 ] as const;
 const planRecommendations = [
   ["Starter", "Perfect for independent agents and small real estate teams."],
@@ -109,7 +109,7 @@ const faqs = [
   ],
 ] as const;
 export const pricingSectionLabel =
-  "Compare plans Â· Pricing FAQ Â· Professional Â· Growth-ready";
+  "Compare plans - Pricing FAQ - Professional - Growth-ready";
 export function PricingTable() {
   const [annual, setAnnual] = useState(false);
   return (
@@ -140,7 +140,7 @@ export function PricingTable() {
                 variant={annual ? "primary" : "control"}
                 onClick={() => setAnnual(true)}
               >
-                Annual ï¿½ save {ANNUAL_SAVINGS_PERCENT}%
+                Annual {"\u00B7"} save {ANNUAL_SAVINGS_PERCENT}%
               </Button>
               <Button
                 variant={!annual ? "primary" : "control"}
@@ -189,9 +189,9 @@ export function PricingTable() {
                   </p>
                 )}
                 <ul className="mt-5 space-y-2 text-sm">
-                  <li>âœ“ {plan.seats} team members</li>
-                  <li>âœ“ {plan.workspaces} workspaces</li>
-                  <li>âœ“ {plan.storage} storage</li>
+                  <li className="flex items-center gap-2"><Check aria-hidden="true" className="size-4 shrink-0 text-vds-primary" />{plan.seats} team members</li>
+                  <li className="flex items-center gap-2"><Check aria-hidden="true" className="size-4 shrink-0 text-vds-primary" />{plan.workspaces} workspaces</li>
+                  <li className="flex items-center gap-2"><Check aria-hidden="true" className="size-4 shrink-0 text-vds-primary" />{plan.storage} storage</li>
                 </ul>
                 <ButtonLink
                   fullWidth
@@ -304,7 +304,7 @@ export function PricingTable() {
                     TOTAL
                   </th>
                   <td className="px-5 py-5 text-right text-lg font-semibold sm:px-7">
-                    $355â€“1,380+/month
+                    $355-1,380+/month
                   </td>
                 </tr>
               </tbody>
@@ -312,7 +312,7 @@ export function PricingTable() {
           </div>
           <div className="mx-auto mt-12 max-w-3xl text-center">
             <p className="text-lg leading-8 text-vds-muted">
-              Instead of paying for 10â€“12 separate business tools, VAYON brings
+              Instead of paying for 10-12 separate business tools, VAYON brings
               your CRM, AI Workforce, Creative Studio, Marketing, Sales,
               Customer Success and Business Intelligence together in one
               intelligent platform.
@@ -404,6 +404,6 @@ function value(row: string, index: number, plan: number) {
       Included
     </span>
   ) : (
-    "â€”"
+    "-"
   );
 }
