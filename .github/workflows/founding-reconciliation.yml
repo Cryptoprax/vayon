@@ -32,18 +32,29 @@ jobs:
           trap 'rm -f "$response_file"' EXIT
           # Supply the header on stdin; never log credentials or response bodies.
           # No redirects or immediate retries: the server may still be working.
-          if ! status="$(printf 'Authorization: Bearer %s\n' "$RECONCILIATION_SECRET" | curl \
+          if status="$(printf 'Authorization: Bearer %s\n' "$RECONCILIATION_SECRET" | curl \
             --fail-with-body --show-error --silent \
             --proto '=https' --request GET \
             --connect-timeout 15 --max-time 330 \
             --header @- --header 'Accept: application/json' \
             --output "$response_file" --write-out '%{http_code}' \
-            'https://vayon.online/api/billing/paddle/founding/reconcile')"; then
-            echo "::error::Reconciliation request failed."
+            'https://www.vayon.online/api/billing/paddle/founding/reconcile')"; then
+            :
+          else
+            curl_exit=$?
+            if [[ "$curl_exit" -eq 22 && "$status" =~ ^[1-5][0-9][0-9]$ ]]; then
+              echo "::error::Reconciliation returned HTTP ${status}."
+            else
+              echo "::error::Reconciliation request failed."
+            fi
             exit 1
           fi
           if [[ ! "$status" =~ ^2[0-9][0-9]$ ]]; then
-            echo "::error::Reconciliation returned a non-success HTTP status."
+            if [[ "$status" =~ ^[1-5][0-9][0-9]$ ]]; then
+              echo "::error::Reconciliation returned HTTP ${status}."
+            else
+              echo "::error::Reconciliation returned an invalid HTTP status."
+            fi
             exit 1
           fi
           if ! jq -e 'type == "object" and .ok == true' "$response_file" > /dev/null 2>&1; then

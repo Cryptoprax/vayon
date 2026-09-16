@@ -21,12 +21,13 @@ test("Hobby scheduler uses only scheduled/manual GitHub execution with least pri
   assert.equal(workflow.jobs.reconcile["timeout-minutes"], 7);
   assert.equal(workflow.jobs.reconcile.steps.length, 1);
   assert.deepEqual(step.env, { RECONCILIATION_SECRET: "${{ secrets.VAYON_RECONCILIATION_SECRET }}" });
-  assert.match(step.run, /https:\/\/vayon\.online\/api\/billing\/paddle\/founding\/reconcile/);
+  assert.match(step.run, /https:\/\/www\.vayon\.online\/api\/billing\/paddle\/founding\/reconcile/);
+  assert.doesNotMatch(step.run, /https:\/\/vayon\.online\/api\/billing\/paddle\/founding\/reconcile/);
   assert.match(step.run, /--request GET/);
   assert.match(step.run, /--header @-/);
   assert.match(step.run, /--connect-timeout 15 --max-time 330/);
   assert.match(step.run, /jq -e 'type == "object" and \.ok == true'/);
-  assert.doesNotMatch(step.run, /--verbose|--location|--retry|set -x|--insecure/);
+  assert.doesNotMatch(step.run, /--verbose|--location|--retry|set -x|--insecure|(?:^|\s)-[a-zA-Z]*[Lv](?:\s|$)/);
   assert.doesNotMatch(source, /PADDLE_API_KEY|SUPABASE_SERVICE_ROLE_KEY|actions\/checkout/);
 });
 
@@ -36,11 +37,15 @@ for (const [name, secret, status, body, networkExit, success] of [
   ["missing secret", "", "200", '{"ok":true}', 0, false],
   ["header injection", "scheduler-test-only\nInjected: true", "200", '{"ok":true}', 0, false],
   ["network failure", "scheduler-test-only", "000", "", 6, false],
+  ["timeout after headers", "scheduler-test-only", "200", "", 28, false],
   ["unauthorized", "scheduler-test-only", "401", '{"error":"Unauthorized"}', 22, false],
   ["service failure", "scheduler-test-only", "503", '{"error":"retry"}', 22, false],
-  ["redirect", "scheduler-test-only", "302", '{"ok":true}', 0, false],
+  ["redirect", "scheduler-test-only", "308", '{"ok":true}', 0, false],
   ["unsuccessful body", "scheduler-test-only", "200", '{"ok":false}', 0, false],
   ["missing confirmation", "scheduler-test-only", "200", '{}', 0, false],
+  ["malformed status", "scheduler-test-only", "308 injected-status", 'private-response-body', 0, false],
+  ["malformed failed status", "scheduler-test-only", "401 injected-status", 'private-response-body', 22, false],
+  ["out of range status", "scheduler-test-only", "999", 'private-response-body', 0, false],
   ["invalid JSON", "scheduler-test-only", "200", '<html>error</html>', 0, false],
 ]) test(`scheduler shell: ${name}`, { skip: process.platform === "win32" && !existsSync(bash) }, () => {
   const doubles = `
@@ -66,7 +71,15 @@ jq() {
   });
   assert.ifError(result.error);
   assert.equal(result.status === 0, success, result.stderr + result.stdout);
-  assert.doesNotMatch(result.stdout + result.stderr, /scheduler-test-only|Injected: true|<html>|"ok"|"error"/);
+  const output = result.stdout + result.stderr;
+  assert.doesNotMatch(output, /scheduler-test-only|Injected: true|<html>|"ok"|"error"|injected-status|private-response-body|Authorization:/);
+  if (["redirect", "unauthorized", "service failure"].includes(name)) {
+    assert.equal(output.trim(), `::error::Reconciliation returned HTTP ${status}.`);
+  } else if (name === "network failure" || name === "timeout after headers" || name === "malformed failed status") {
+    assert.equal(output.trim(), "::error::Reconciliation request failed.");
+  } else if (name === "malformed status" || name === "out of range status") {
+    assert.equal(output.trim(), "::error::Reconciliation returned an invalid HTTP status.");
+  }
 });
 
 test("route rejects missing/wrong authorization before reconciliation and reports service failure", async () => {
