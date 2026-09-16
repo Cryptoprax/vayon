@@ -9,9 +9,11 @@ test("billing prices still come from the existing verified provider catalog", ()
   assert.match(service, /include=product/);
   assert.match(read("app/vayon/settings/billing/page.tsx"), /catalog=\{snapshot.catalog\}/);
   assert.doesNotMatch(ui, /\b59\b|\b179\b|\b399\b/);
+  assert.doesNotMatch(ui, /\b(?:pro|pri)_[a-z0-9]+\b/i);
 });
-test("comparison offers Starter Professional Enterprise and matching billing periods", () => {
-  for (const plan of ["starter", "professional", "enterprise"]) assert.match(ui, new RegExp(plan));
+test("comparison offers all four Paddle plans and matching billing periods", () => {
+  for (const plan of ["starter", "professional", "business", "business_plus"]) assert.match(ui, new RegExp(plan));
+  assert.doesNotMatch(ui, /\["starter", "professional", "enterprise"\]/);
   assert.match(ui, /item.period === period/);
   assert.match(ui, /setPeriod\(value\)/);
   assert.match(ui, /aria-pressed=\{period === value\}/);
@@ -22,7 +24,7 @@ test("checkout starts the existing workspace-scoped transaction in an overlay", 
   assert.match(ui, /openCheckoutOverlay\(result.transactionId/);
   assert.doesNotMatch(ui, /window.location|href="\/(pricing|contact)"/);
 });
-test("Enterprise does not invent checkout prices or leave the workspace", () => {
-  assert.match(ui, /Enterprise upgrades require an agreed contract/);
+test("self-service checkout does not offer Enterprise or leave the workspace", () => {
+  assert.doesNotMatch(ui, /enterprise/);
   assert.doesNotMatch(ui, /href="\/contact"/);
 });
