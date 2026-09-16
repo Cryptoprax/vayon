@@ -12,12 +12,14 @@ export class AuthenticationService {
   }
   async signUp(name: string, email: string, password: string, origin: string) {
     const client = await createSupabaseServerClient();
+    const confirmationOrigin = ["https://vayon.online", "https://www.vayon.online"].includes(origin)
+      ? "https://www.vayon.online" : origin;
     return client.auth.signUp({
       email,
       password,
       options: {
         data: { name },
-        emailRedirectTo: `${origin}/auth/callback?next=/vayon`,
+        emailRedirectTo: `${confirmationOrigin}/auth/callback?next=/vayon`,
       },
     });
   }

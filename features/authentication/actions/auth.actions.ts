@@ -28,22 +28,35 @@ async function origin() {
       "http://localhost:3000";
   return trustedApplicationOrigin(candidate);
 }
-export async function signUpAction(form: FormData) {
+export type SignUpResult = { status: "confirmation"; email: string } | { status: "error"; message: string };
+export async function signUpAction(form: FormData): Promise<SignUpResult> {
   const parsed = signUpSchema.safeParse({
     name: value(form, "name"),
     email: value(form, "email"),
     password: value(form, "password"),
   });
   if (!parsed.success)
-    fail("/signup", parsed.error.issues[0]?.message ?? "Invalid sign up.");
-  const { error } = await new AuthenticationService().signUp(
-    parsed.data.name,
-    parsed.data.email,
-    parsed.data.password,
-    await origin(),
-  );
-  if (error) fail("/signup", error.message);
-  redirect("/verify-email");
+    return { status: "error", message: parsed.error.issues[0]?.message ?? "Invalid sign up." };
+  try {
+    const service = new AuthenticationService();
+    const { data, error } = await service.signUp(
+      parsed.data.name, parsed.data.email, parsed.data.password, await origin(),
+    );
+    if (error) return { status: "error", message: error.message };
+    // Confirmation-enabled signup must not create an authenticated session.
+    if (data?.session) {
+      await service.logout();
+      return { status: "error", message: "We couldn't confirm the email verification step. Please try signing in or contact support." };
+    }
+    if (!data?.user?.id)
+      return { status: "error", message: "We couldn't confirm your signup. Please try again." };
+    // Supabase may obscure duplicate signups. Do not claim a new account/email.
+    if (data.user.identities?.length === 0 || data.user.email_confirmed_at)
+      return { status: "error", message: "If you already have an account, sign in or reset your password. Otherwise, check your inbox for a verification email." };
+    return { status: "confirmation", email: parsed.data.email };
+  } catch {
+    return { status: "error", message: "We couldn't complete signup. Check your connection and try again." };
+  }
 }
 export async function loginAction(form: FormData) {
   const next = safeAuthenticatedPath(value(form, "next") || "/vayon");
