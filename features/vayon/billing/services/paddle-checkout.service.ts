@@ -19,13 +19,18 @@ export class PaddleCheckoutService {
     period: PaddleBillingPeriod,
     seats: number,
     origin: string,
+    onStage?: (stage: "checkout.auth_validated" | "checkout.context_validated" | "checkout.config_validated" | "checkout.customer_create_started" | "checkout.transaction_create_started" | "checkout.transaction_created") => void,
   ) {
     const context = await billingContext("manage");
+    onStage?.("checkout.auth_validated");
     const current = await new SubscriptionRepository(context.client, context.organizationId, context.workspaceId).current();
+    onStage?.("checkout.context_validated");
     if (current?.providerSubscriptionId && current.status !== "cancelled") throw new Error("Manage your existing subscription from the Subscription Center.");
     const resolved = this.catalog.resolve(plan, period);
+    onStage?.("checkout.config_validated");
     if (!Number.isSafeInteger(seats) || seats < 1 || seats > 10_000)
       throw new Error("Seat quantity must be between 1 and 10,000.");
+    onStage?.("checkout.customer_create_started");
     const customerId = await this.customers.getOrCreate();
     const correlationId = crypto.randomUUID();
     log("paddle.checkout.started", {
@@ -35,6 +40,7 @@ export class PaddleCheckoutService {
       planCode: resolved.plan,
       billingPeriod: period,
     });
+    onStage?.("checkout.transaction_create_started");
     const checkout = await this.provider.createCheckout({
       organizationId: context.organizationId,
       workspaceId: context.workspaceId,
@@ -45,6 +51,7 @@ export class PaddleCheckoutService {
       successUrl: `${origin}/vayon/settings/subscription?checkout=success`,
       cancelUrl: `${origin}/vayon/settings/subscription?checkout=cancelled`,
     });
+    onStage?.("checkout.transaction_created");
     return { ...checkout, correlationId };
   }
 }

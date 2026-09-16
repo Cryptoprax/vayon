@@ -15,11 +15,9 @@ test("checkout CTA is available from server configuration even when catalog disp
 });
 
 test("every client selection remains a plan and interval, never a Paddle identifier", () => {
-  for (const [plan, env] of [["starter", "STARTER"], ["professional", "PROFESSIONAL"], ["business", "BUSINESS"], ["business_plus", "BUSINESS_PLUS"]]) {
-    assert.match(catalog, new RegExp(`PADDLE_PRODUCT_\\$\\{plan\\.toUpperCase\\(\\)\\}`));
-    assert.match(catalog, /PADDLE_PRICE_\$\{suffix\}/);
-    assert.match(ui, /planCode: plan, billingPeriod: period/);
-  }
+  assert.match(catalog, /PADDLE_PRODUCT_\$\{plan\.toUpperCase\(\)\}/);
+  assert.match(catalog, /PADDLE_PRICE_\$\{suffix\}/);
+  assert.match(ui, /planCode: plan, billingPeriod: period/);
   assert.match(route, /isPaddlePlanCode/);
   assert.doesNotMatch(ui, /\b(?:pri|pro)_[a-z0-9]+\b/i);
 });

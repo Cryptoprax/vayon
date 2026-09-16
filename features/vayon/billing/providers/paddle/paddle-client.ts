@@ -51,9 +51,11 @@ export async function paddleRequest<T>(
       throw new Error(`Paddle API returned invalid JSON (${response.status}).`);
     }
   }
-  if (!response.ok)
-    throw new Error(body?.error?.detail ?? `Paddle API failed (${response.status}).`);
-  if (!body || !("data" in body))
+  if (!response.ok) {
+    const error = new Error(body?.error?.detail ?? `Paddle API failed (${response.status}).`);
+    Object.assign(error, { status: response.status });
+    throw error;
+  }  if (!body || !("data" in body))
     throw new Error(`Paddle API returned an empty response (${response.status}).`);
   return body.data;
 }
