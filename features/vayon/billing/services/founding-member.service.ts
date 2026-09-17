@@ -23,6 +23,35 @@ interface PaddleEntity {
 }
 const table = "professional_founding_allocations";
 
+type ReconciliationStage = "allocation_query" | "reservation_recovery" | "transition_check"
+  | "transaction_list" | "payment_record" | "subscription_fetch"
+  | "subscription_validation" | "subscription_sync";
+
+function logReconciliationFailure(stage: ReconciliationStage, error: unknown) {
+  // Copy only known diagnostic vocabulary; never pass through messages or objects.
+  const fields: Record<string, unknown> = { stage, errorCategory: "UnknownError" };
+  try {
+    if (error && typeof error === "object") {
+      const value = error as Record<string, unknown>;
+      const name = value.name, code = value.code, status = value.status;
+      if (["Error", "TypeError", "RangeError", "AbortError", "TimeoutError", "PaddleApiError"].includes(name as string))
+        fields.errorCategory = name;
+      if (name === "PaddleApiError") {
+        if (typeof status === "number" && Number.isInteger(status) && status >= 100 && status <= 599)
+          fields.providerHttpStatus = status;
+        if (["authentication_missing", "authentication_malformed", "authentication_invalid", "authorization_denied",
+          "not_found", "entity_not_found", "bad_request", "invalid_field", "too_many_requests", "internal_server_error", "service_unavailable"].includes(code as string))
+          fields.providerErrorCode = code;
+      } else if (typeof code === "string" && /^[0-9A-Z]{5}$/.test(code)) {
+        fields.sqlstate = code;
+        fields.errorCategory = "DatabaseError";
+      }
+    }
+  } catch { /* Untrusted error properties must not interfere with propagation. */ }
+  try { log("billing.founding_offer.reconciliation_failed", fields); }
+  catch { /* Diagnostics must not change reconciliation failure handling. */ }
+}
+
 export class FoundingMemberService {
   constructor(private client = createSupabaseServiceClient(), private request = paddleRequest) {}
 
@@ -227,33 +256,43 @@ export class FoundingMemberService {
 
   /** Independent scheduled recovery: no browser, login, or webhook delivery required. */
   async reconcile() {
-    const { data, error } = await this.client.from(table).select("*").in("status", ["reserved", "confirmed", "transition_pending"]);
-    if (error) throw error;
+    let result;
+    try {
+      result = await this.client.from(table).select("*").in("status", ["reserved", "confirmed", "transition_pending"]);
+    } catch (error) { logReconciliationFailure("allocation_query", error); throw error; }
+    const { data, error } = result;
+    if (error) { logReconciliationFailure("allocation_query", error); throw error; }
     let failures = 0;
     for (const a of (data ?? []) as Allocation[]) {
+      let stage: ReconciliationStage = "reservation_recovery";
       try {
         if (a.status === "reserved") {
           if (Date.parse(a.reserved_until) <= Date.now()) await this.cancelReservation(a);
           continue;
         }
-        if (a.status === "transition_pending") { await this.transition(a); continue; }
+        if (a.status === "transition_pending") { stage = "transition_check"; await this.transition(a); continue; }
         // Catch missed payment notifications; pagination uses Paddle's ID cursor.
         let after = "";
         for (let page = 0; page < 100; page++) {
+          stage = "transaction_list";
           const transactions = await this.request<PaddleEntity[]>(`/transactions?subscription_id=${encodeURIComponent(a.paddle_subscription_id!)}&status=completed&per_page=30${after ? `&after=${encodeURIComponent(after)}` : ""}`);
-          for (const transaction of transactions) await this.recordPayment(transaction);
+          for (const transaction of transactions) { stage = "payment_record"; await this.recordPayment(transaction); }
+          stage = "transaction_list";
           if (transactions.length < 30) break;
           after = transactions[transactions.length - 1].id;
           if (page === 99) throw new Error("Founding reconciliation pagination exceeded.");
         }
+        stage = "subscription_fetch";
         const current = await this.request<PaddleEntity>(`/subscriptions/${encodeURIComponent(a.paddle_subscription_id!)}`);
+        stage = "subscription_validation";
         if (current.status === "canceled" || !current.items.some(item => item.price.id === a.founding_price_id)) {
           // Do not overwrite a transition that recordPayment just completed.
           const result = await this.client.from(table).update({ status: "ended" }).eq("reservation_id", a.reservation_id).eq("status", "confirmed");
           if (result.error) throw result.error;
         }
+        stage = "subscription_sync";
         await this.syncSubscription(a.paddle_subscription_id!);
-      } catch { failures++; log("billing.founding_offer.reconciliation_failed", {}); }
+      } catch (error) { failures++; logReconciliationFailure(stage, error); }
     }
     if (failures) throw new Error("Founding reconciliation requires retry.");
   }
