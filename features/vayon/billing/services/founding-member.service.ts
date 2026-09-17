@@ -19,7 +19,7 @@ interface PaddleItem { price: { id: string }; quantity: number }
 interface PaddleEntity {
   id: string; status: string; customer_id: string; subscription_id?: string;
   items: PaddleItem[]; custom_data?: Record<string, unknown> | null;
-  updated_at?: string;
+  updated_at?: string; invoice_id?: string;
 }
 const table = "professional_founding_allocations";
 
@@ -295,6 +295,46 @@ export class FoundingMemberService {
       } catch (error) { failures++; logReconciliationFailure(stage, error); }
     }
     if (failures) throw new Error("Founding reconciliation requires retry.");
+  }
+
+  async organizationIdByName(name: string): Promise<string | null> {
+    const { data, error } = await this.client.from("organizations").select("id").eq("name", name).maybeSingle();
+    if (error) throw error;
+    return (data as { id: string } | null)?.id ?? null;
+  }
+
+  /** One-time gap recovery: reconcile() only ever projects subscription.updated, so a
+   *  confirmed founding payment can be missing its invoice if the original transaction
+   *  webhook was never delivered. This projects the existing, freshly fetched completed
+   *  transaction through the same idempotent billing projection the webhook would have
+   *  used; it never touches record_professional_founding_payment, so successful_periods
+   *  cannot change here. */
+  async recoverFoundingInvoice(organizationId: string): Promise<{ recovered: boolean }> {
+    const { data, error } = await this.client.from(table).select("*").eq("organization_id", organizationId).maybeSingle();
+    if (error) throw error;
+    const a = data as Allocation | null;
+    if (!a || a.status !== "confirmed") throw new Error("Founding allocation is not confirmed.");
+
+    const workspace = await this.client.from("workspaces").select("organization_id").eq("id", a.workspace_id).maybeSingle();
+    if (workspace.error) throw workspace.error;
+    const workspaceOrganizationId = (workspace.data as { organization_id: string } | null)?.organization_id;
+    if (workspaceOrganizationId !== a.organization_id) throw new Error("Founding allocation organization/workspace mismatch.");
+
+    const transaction = await this.request<PaddleEntity>(`/transactions/${encodeURIComponent(a.paddle_transaction_id)}`);
+    if (transaction.id !== a.paddle_transaction_id) throw new Error("Unexpected founding transaction identity.");
+    if (transaction.status !== "completed") throw new Error("Founding transaction is not completed.");
+    if (transaction.customer_id !== a.paddle_customer_id) throw new Error("Founding transaction customer mismatch.");
+    if (transaction.subscription_id !== a.paddle_subscription_id) throw new Error("Founding transaction subscription mismatch.");
+    if (!transaction.items.some(item => item.price.id === a.founding_price_id))
+      throw new Error("Founding transaction does not carry the founding price.");
+
+    const invoiceId = transaction.invoice_id || transaction.id;
+    const existing = await this.client.from("invoices").select("provider_invoice_id").eq("provider_invoice_id", invoiceId).maybeSingle();
+    if (existing.error) throw existing.error;
+    if (existing.data) return { recovered: false };
+
+    await new PaddleSubscriptionSyncService().project(`founding-invoice-recover:${transaction.id}`, "transaction.completed", transaction);
+    return { recovered: true };
   }
 }
 
