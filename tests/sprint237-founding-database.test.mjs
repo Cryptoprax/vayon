@@ -16,7 +16,7 @@ describe("Sprint 237 real PostgreSQL allocation and payment lifecycle", { skip: 
     await db.pool.query("insert into workspaces values($1,$2)",[workspace,org]);
     await db.pool.query("insert into billing_customers values($1,$2,'paddle',$3)",[org,workspace,customer]);
     await db.pool.query("insert into subscriptions(organization_id,workspace_id) values($1,$2)",[org,workspace]);
-    return { org, workspace, customer, transaction: `txn_${randomUUID()}`, subscription: `sub_${randomUUID()}` };
+    return { org, workspace, customer, transaction: `txn_${randomUUID()}`, subscription: `sub_${randomUUID().replaceAll('-', '').slice(0,26)}` };
   }
   async function reserve(o, connection = db.pool) {
     return (await connection.query("select reserve_professional_founding($1,$2,$3,$4,'pri_founding','pri_standard') a",[o.org,o.workspace,o.customer,o.transaction])).rows[0].a;
@@ -37,6 +37,87 @@ describe("Sprint 237 real PostgreSQL allocation and payment lifecycle", { skip: 
     });
     return new FoundingMemberService(databaseClient(db.pool), request);
   }
+  function subscription(o, changes = {}) {
+    return { id:o.subscription, customer_id:o.customer, status:'active', updated_at:'2026-09-17T17:00:00Z',
+      custom_data:{organization_id:o.org,workspace_id:o.workspace,plan_code:'professional'},
+      current_billing_period:{starts_at:'2026-09-17T16:00:00Z',ends_at:'2026-10-17T16:00:00Z'},
+      items:[{price:{id:'pri_founding'},quantity:1}], ...changes };
+  }
+  const project = (payload, event = randomUUID()) => db.pool.query(
+    "select process_paddle_billing_event($1,'subscription.updated',$2)", [event,payload]);
+  async function assertProjected(o) {
+    const s=(await db.pool.query('select s.*,p.code from subscriptions s join subscription_plans p on p.id=s.plan_id where s.workspace_id=$1',[o.workspace])).rows[0];
+    assert.equal(s.code,'professional'); assert.equal(s.status,'active'); assert.equal(s.provider,'paddle');
+    assert.equal(s.provider_customer_id,o.customer); assert.equal(s.provider_subscription_id,o.subscription);
+    assert.equal(s.current_period_ends_at.toISOString(),'2026-10-17T16:00:00.000Z'); assert.equal(s.cancel_at_period_end,false);
+    const items=(await db.pool.query('select * from subscription_items where workspace_id=$1',[o.workspace])).rows;
+    assert.equal(items.length,1); assert.equal(items[0].provider_item_id,`paddle:${o.subscription}:pri_founding`);
+    assert.equal((await db.pool.query('select count(*) n from paddle_subscription_projection_versions where workspace_id=$1',[o.workspace])).rows[0].n,'1');
+  }
+  test('production NOT NULL item identity and Paddle-shaped projection are compatible', async()=>{
+    const o=await organization(); await reserve(o); await record(payment(o));
+    const column=(await db.owner.query("select is_nullable from information_schema.columns where table_schema='public' and table_name='subscription_items' and column_name='provider_item_id'")).rows[0];
+    assert.equal(column.is_nullable,'NO');
+    const payload=subscription(o); assert.equal(Object.hasOwn(payload.items[0],'id'),false);
+    await project(payload); await assertProjected(o);
+  });
+  test('same and newer snapshots retain deterministic identity without duplicating payment or subscription', async()=>{
+    const o=await organization(); await reserve(o); await record(payment(o));
+    await project(subscription(o),'evt_repeat'); await project(subscription(o),'evt_repeat');
+    await project(subscription(o,{updated_at:'2026-09-17T18:00:00Z'})); await assertProjected(o);
+    assert.equal((await eligibility(o)).successfulPeriods,1);
+    assert.equal((await db.pool.query('select count(*) n from subscriptions where workspace_id=$1',[o.workspace])).rows[0].n,'1');
+  });
+  test('different subscriptions sharing a price never collide', async()=>{
+    const a=await organization(),b=await organization();
+    await project(subscription(a)); await project(subscription(b));
+    const keys=(await db.pool.query('select provider_item_id from subscription_items')).rows.map(r=>r.provider_item_id);
+    assert.equal(keys.length,2); assert.equal(new Set(keys).size,2);
+  });
+  for(const [name,changes] of [
+    ['missing price',{items:[{price:{},quantity:1}]}],
+    ['null price',{items:[{price:{id:null},quantity:1}]}],
+    ['empty price',{items:[{price:{id:''},quantity:1}]}],
+    ['malformed price',{items:[{price:{id:'pri_invalid:component'},quantity:1}]}],
+    ['missing subscription',{id:undefined}], ['null subscription',{id:null}],
+    ['empty subscription',{id:''}], ['malformed subscription',{id:'sub_invalid:component'}],
+  ]) test(`${name} fails atomically through the public projection RPC`,async()=>{
+    const o=await organization(); const before=(await db.pool.query('select * from subscriptions where workspace_id=$1',[o.workspace])).rows[0];
+    await assert.rejects(project(subscription(o,changes)),e=>e.code==='22023');
+    assert.deepEqual((await db.pool.query('select * from subscriptions where workspace_id=$1',[o.workspace])).rows[0],before);
+    for(const table of ['subscription_items','billing_events','paddle_subscription_projection_versions'])
+      assert.equal((await db.pool.query(`select count(*) n from ${table} where workspace_id=$1`,[o.workspace])).rows[0].n,'0');
+  });
+  function realProjectionMocks(request) {
+    return { '@/lib/observability/logger':{log(){}},
+      '@/lib/supabase/service':{createSupabaseServiceClient:()=>databaseClient(db.pool)},
+      '../providers/paddle/paddle-client':{paddleRequest:request} };
+  }
+  test('confirmed first payment recovers through real subscription sync and RPC without invoice projection',async()=>{
+    const o=await organization(); await reserve(o); await record(payment(o)); const calls=[];
+    const request=async(path,init)=>{assert.equal(init,undefined); calls.push(path); return path.startsWith('/transactions?')?[payment(o)]:subscription(o);};
+    const {FoundingMemberService}=load('features/vayon/billing/services/founding-member.service.ts',realProjectionMocks(request));
+    await new FoundingMemberService().reconcile(); await assertProjected(o);
+    assert.equal(calls.length,3); assert.equal((await eligibility(o)).successfulPeriods,1);
+    assert.equal((await db.pool.query('select count(*) n from invoices')).rows[0].n,'0');
+  });
+  test('verified subscription.updated webhook reaches real corrected projection',async()=>{
+    const o=await organization(); await reserve(o); await record(payment(o));
+    const mocks=realProjectionMocks(async()=>subscription(o));
+    mocks['../providers/paddle/paddle.provider']={PaddleBillingProvider:class{async verifyWebhook(){return{eventId:'evt_projection',type:'subscription.updated',data:subscription(o)};}}};
+    const {PaddleWebhookService}=load('features/vayon/billing/services/paddle-webhook.service.ts',mocks);
+    await new PaddleWebhookService().process('test-only','test-only'); await assertProjected(o);
+    assert.equal((await eligibility(o)).successfulPeriods,1);
+  });
+  test('migration rerun preserves public RPC access and private core restrictions',async()=>{
+    await db.owner.query(readFileSync('supabase/migrations/20261031010000_fix_paddle_subscription_item_projection.sql','utf8'));
+    for(const role of ['anon','authenticated','service_role']) {
+      const result=(await db.owner.query("select has_function_privilege($1,'public.process_paddle_billing_event_core237(text,text,jsonb)','EXECUTE') allowed",[role])).rows[0];
+      assert.equal(result.allowed,false);
+    }
+    assert.equal((await db.owner.query("select has_function_privilege('service_role','public.process_paddle_billing_event(text,text,jsonb)','EXECUTE') allowed")).rows[0].allowed,true);
+    const o=await organization(); await project(subscription(o)); await assertProjected(o);
+  });
   test("viewing global and organization eligibility allocates nothing", async () => {
     const o = await organization();
     assert.equal((await eligibility(o)).eligible,true); assert.equal((await eligibility()).remaining,20);
