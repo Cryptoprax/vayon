@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-09-18",
+  "branch": "main",
+  "commit": "d14db92cd50813650f16e2d1d465b1648a93387b",
+  "production_domain": "https://www.vayon.online",
+  "vercel_project": "realestatewhatsapp/vayon",
+  "supabase_project_name": "vayon-production (operator-reported)",
+  "paddle_environment": "sandbox (intentional; deployed value not independently verified)",
+  "current_sprint": 237,
+  "pending_migration": "20261031010000_fix_paddle_subscription_item_projection.sql (reported unapplied; verify installed definition before execution)",
+  "next_action": "Manual installed-function/migration review and, only if still unapplied and separately approved, manual application of the projection fix. No checkout.",
+  "test_state_summary": "Prior isolated PostgreSQL: 45/45; relevant billing/founding: 163/163; typecheck/lint/build passed. Current GitHub CI fails at npm test; current reconciliation fails. No tests rerun in read-only audit.",
+  "important_commits": {
+    "projection_fix": "d14db92cd50813650f16e2d1d465b1648a93387b",
+    "reconciliation_diagnostics": "88f0405e1da53044989bfdcb4eb16bde879964b4",
+    "auth_diagnostics": "a91f34f33c96da0dea2484cb32c9064728b39f2b"
+  },
+  "important_migrations": [
+    "20261030020000_sprint236_paddle_provider_compatibility.sql",
+    "20261030030000_sprint236_vayon3day_redemption.sql",
+    "20261031000000_sprint237_professional_founding.sql",
+    "20261031010000_fix_paddle_subscription_item_projection.sql"
+  ]
+}
