@@ -42,6 +42,20 @@ describe("Sprint 237 founding invoice recovery (real PostgreSQL)", { skip: !proc
     const { FoundingMemberService } = load("features/vayon/billing/services/founding-member.service.ts", realProjectionMocks(request));
     return new FoundingMemberService(databaseClient(db.pool), request);
   }
+  function serviceWithLogSpy(request) {
+    const logs = [];
+    const mocks = { ...realProjectionMocks(request), "@/lib/observability/logger": { log(event, fields) { logs.push({ event, ...fields }); } } };
+    const { FoundingMemberService } = load("features/vayon/billing/services/founding-member.service.ts", mocks);
+    return { service: new FoundingMemberService(databaseClient(db.pool), request), logs };
+  }
+  // Every value that must never leak into a diagnostic log for this scenario.
+  function secretValues(o) {
+    return [o.org, o.workspace, o.customer, o.transaction, o.subscription, "pri_founding", `inv_${o.org}`];
+  }
+  function assertNoSecrets(logs, o) {
+    const serialized = JSON.stringify(logs);
+    for (const value of secretValues(o)) assert.ok(!serialized.includes(value), `leaked secret-like value: ${value}`);
+  }
   async function confirmedOrganization() {
     const o = await organization();
     await reserve(o);
@@ -115,69 +129,196 @@ describe("Sprint 237 founding invoice recovery (real PostgreSQL)", { skip: !proc
     assert.equal(await successfulPeriods(o.org), 1);
   });
 
-  test("K: a mismatched transaction ID is rejected before any DB write", async () => {
+  test("K: a mismatched transaction ID is rejected before any DB write, logging only the safe stage", async () => {
     const o = await confirmedOrganization();
-    const error = await service(async () => fetchedTransaction(o, { id: "txn_other" })).recoverFoundingInvoice(o.org).catch(e => e);
+    const { service: svc, logs } = serviceWithLogSpy(async () => fetchedTransaction(o, { id: "txn_other" }));
+    const error = await svc.recoverFoundingInvoice(o.org).catch(e => e);
     assert.match(error.message, /Unexpected founding transaction identity/);
     assert.ok(!error.message.includes(o.transaction) && !error.message.includes("txn_other"));
     assert.equal(await invoiceCount(o.workspace), 0);
+    assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "transaction_identity_validation", errorCategory: "Error" }]);
+    assertNoSecrets(logs, o);
   });
 
-  test("L: a mismatched customer ID is rejected before any DB write", async () => {
+  test("L: a mismatched customer ID is rejected before any DB write, logging only the safe stage", async () => {
     const o = await confirmedOrganization();
-    const error = await service(async () => fetchedTransaction(o, { customer_id: "ctm_other" })).recoverFoundingInvoice(o.org).catch(e => e);
+    const { service: svc, logs } = serviceWithLogSpy(async () => fetchedTransaction(o, { customer_id: "ctm_other" }));
+    const error = await svc.recoverFoundingInvoice(o.org).catch(e => e);
     assert.match(error.message, /customer mismatch/);
     assert.ok(!error.message.includes(o.customer) && !error.message.includes("ctm_other"));
     assert.equal(await invoiceCount(o.workspace), 0);
+    assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "customer_validation", errorCategory: "Error" }]);
+    assertNoSecrets(logs, o);
   });
 
-  test("M: a mismatched subscription ID is rejected before any DB write", async () => {
+  test("M: a mismatched subscription ID is rejected before any DB write, logging only the safe stage", async () => {
     const o = await confirmedOrganization();
-    const error = await service(async () => fetchedTransaction(o, { subscription_id: "sub_other" })).recoverFoundingInvoice(o.org).catch(e => e);
+    const { service: svc, logs } = serviceWithLogSpy(async () => fetchedTransaction(o, { subscription_id: "sub_other" }));
+    const error = await svc.recoverFoundingInvoice(o.org).catch(e => e);
     assert.match(error.message, /subscription mismatch/);
     assert.ok(!error.message.includes(o.subscription) && !error.message.includes("sub_other"));
     assert.equal(await invoiceCount(o.workspace), 0);
+    assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "subscription_validation", errorCategory: "Error" }]);
+    assertNoSecrets(logs, o);
   });
 
-  test("N: a transaction missing the founding price is rejected before any DB write", async () => {
+  test("N: a transaction missing the founding price is rejected before any DB write, logging only the safe stage", async () => {
     const o = await confirmedOrganization();
-    const error = await service(async () => fetchedTransaction(o, { items: [{ price: { id: "pri_other" } }] })).recoverFoundingInvoice(o.org).catch(e => e);
+    const { service: svc, logs } = serviceWithLogSpy(async () => fetchedTransaction(o, { items: [{ price: { id: "pri_other" } }] }));
+    const error = await svc.recoverFoundingInvoice(o.org).catch(e => e);
     assert.match(error.message, /founding price/);
     assert.equal(await invoiceCount(o.workspace), 0);
+    assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "founding_price_validation", errorCategory: "Error" }]);
+    assertNoSecrets(logs, o);
   });
 
-  test("O: a non-completed transaction is rejected before any DB write", async () => {
+  test("O: a non-completed transaction is rejected before any DB write, logging only the safe stage", async () => {
     const o = await confirmedOrganization();
-    const error = await service(async () => fetchedTransaction(o, { status: "paid" })).recoverFoundingInvoice(o.org).catch(e => e);
+    const { service: svc, logs } = serviceWithLogSpy(async () => fetchedTransaction(o, { status: "paid" }));
+    const error = await svc.recoverFoundingInvoice(o.org).catch(e => e);
     assert.match(error.message, /not completed/);
     assert.equal(await invoiceCount(o.workspace), 0);
+    assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "transaction_status_validation", errorCategory: "Error" }]);
+    assertNoSecrets(logs, o);
   });
 
-  test("P: a non-confirmed allocation is rejected without ever calling Paddle", async () => {
+  test("P: a non-confirmed allocation is rejected without ever calling Paddle, logging only the safe stage", async () => {
     const o = await organization();
     await reserve(o); // status is "reserved", never confirmed
     let called = false;
-    const error = await service(async () => { called = true; return fetchedTransaction(o); }).recoverFoundingInvoice(o.org).catch(e => e);
+    const { service: svc, logs } = serviceWithLogSpy(async () => { called = true; return fetchedTransaction(o); });
+    const error = await svc.recoverFoundingInvoice(o.org).catch(e => e);
     assert.match(error.message, /not confirmed/);
     assert.equal(called, false);
+    assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "allocation_lookup", errorCategory: "Error" }]);
+    assertNoSecrets(logs, o);
   });
 
-  test("Q: an organization with no allocation at all cannot be targeted", async () => {
+  test("Q: an organization with no allocation at all cannot be targeted, logging only the safe stage", async () => {
     const other = await organization();
     let called = false;
-    const error = await service(async () => { called = true; return fetchedTransaction(other); }).recoverFoundingInvoice(other.org).catch(e => e);
+    const { service: svc, logs } = serviceWithLogSpy(async () => { called = true; return fetchedTransaction(other); });
+    const error = await svc.recoverFoundingInvoice(other.org).catch(e => e);
     assert.match(error.message, /not confirmed/);
     assert.equal(called, false);
+    assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "allocation_lookup", errorCategory: "Error" }]);
+    assertNoSecrets(logs, other);
   });
 
-  test("Q: a data-integrity workspace/organization mismatch is rejected before any DB write", async () => {
+  test("Q: a data-integrity workspace/organization mismatch is rejected before any DB write, logging only the safe stage", async () => {
     const o = await confirmedOrganization();
     const decoy = await organization();
     await db.pool.query("update workspaces set organization_id=$1 where id=$2", [decoy.org, o.workspace]);
-    const error = await service(async () => fetchedTransaction(o)).recoverFoundingInvoice(o.org).catch(e => e);
+    const { service: svc, logs } = serviceWithLogSpy(async () => fetchedTransaction(o));
+    const error = await svc.recoverFoundingInvoice(o.org).catch(e => e);
     assert.match(error.message, /organization\/workspace mismatch/);
     assert.equal(await invoiceCount(o.workspace), 0);
+    assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "workspace_validation", errorCategory: "Error" }]);
+    assertNoSecrets(logs, o);
   });
+
+  test("successful recovery emits no failure diagnostic", async () => {
+    const o = await confirmedOrganization();
+    const { service: svc, logs } = serviceWithLogSpy(async () => fetchedTransaction(o));
+    const result = await svc.recoverFoundingInvoice(o.org);
+    assert.equal(result.recovered, true);
+    // The pre-existing PaddleSubscriptionSyncService success log is unrelated and unchanged;
+    // only the new failure diagnostic must never fire on a successful run.
+    assert.ok(!logs.some(entry => entry.event === "founding_invoice_recovery.failed"));
+  });
+
+  test("an idempotent no-op recovery emits no failure diagnostic", async () => {
+    const o = await confirmedOrganization();
+    await service(async () => fetchedTransaction(o)).recoverFoundingInvoice(o.org);
+    const { service: svc, logs } = serviceWithLogSpy(async () => fetchedTransaction(o));
+    const result = await svc.recoverFoundingInvoice(o.org);
+    assert.equal(result.recovered, false);
+    assert.deepEqual(logs, []);
+  });
+});
+
+// Mocked-client coverage for stages that are impractical to trigger against a real
+// database (construction, lookup errors, provider errors, RPC errors). No HTTP/DB access.
+function mockedStageHarness({ failStage, error = new Error("mock failure"), organizationRow = { id: "org-mock" }, invoiceRow = null }) {
+  const logs = [];
+  const alloc = { organization_id: "org-mock", workspace_id: "ws-mock", status: "confirmed",
+    paddle_transaction_id: "txn_mock", paddle_customer_id: "ctm_mock",
+    paddle_subscription_id: "sub_mock", founding_price_id: "pri_mock" };
+  const workspaceRow = { organization_id: alloc.organization_id };
+  const transaction = { id: alloc.paddle_transaction_id, status: "completed", customer_id: alloc.paddle_customer_id,
+    subscription_id: alloc.paddle_subscription_id, items: [{ price: { id: alloc.founding_price_id } }], invoice_id: "inv_mock" };
+  const step = (name, value) => { if (failStage === name) throw error; return value; };
+  const client = {
+    from(name) {
+      return { select: () => ({ eq: () => ({ async maybeSingle() {
+        if (name === "organizations") return step("organization_lookup", { data: organizationRow, error: null });
+        if (name === "professional_founding_allocations") return step("allocation_lookup", { data: alloc, error: null });
+        if (name === "workspaces") return step("workspace_validation", { data: workspaceRow, error: null });
+        if (name === "invoices") return step("invoice_lookup", { data: invoiceRow, error: null });
+        throw new Error(`unmocked table ${name}`);
+      } }) }) };
+    },
+  };
+  const request = async () => step("paddle_transaction_fetch", transaction);
+  const { FoundingMemberService } = load("features/vayon/billing/services/founding-member.service.ts", {
+    "@/lib/observability/logger": { log(event, fields) { logs.push({ event, ...fields }); } },
+    "@/lib/supabase/service": { createSupabaseServiceClient: () => { if (failStage === "service_init") throw error; return client; } },
+    "./paddle-subscription-sync.service": { PaddleSubscriptionSyncService: class { async project() { return step("billing_projection"); } } },
+  });
+  return { FoundingMemberService, client, request, logs };
+}
+
+test("service_init failure logs the safe stage without the raw message", () => {
+  const error = new Error("service role key missing");
+  const { FoundingMemberService, logs } = mockedStageHarness({ failStage: "service_init", error });
+  assert.throws(() => FoundingMemberService.create(), /service role key missing/);
+  assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "service_init", errorCategory: "Error" }]);
+});
+
+test("organization_lookup DB error logs the safe stage without raw Supabase error details", async () => {
+  const error = { code: "42501", message: "permission denied for table organizations" };
+  const { FoundingMemberService, client, logs } = mockedStageHarness({ failStage: "organization_lookup", error });
+  const svc = new FoundingMemberService(client, async () => { throw new Error("must not be called"); });
+  await assert.rejects(svc.organizationIdByName("PRAKYATH VP Organization"), actual => actual === error);
+  assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "organization_lookup", errorCategory: "DatabaseError", sqlstate: "42501" }]);
+  assert.ok(!JSON.stringify(logs).includes("permission denied"));
+});
+
+test("organization not found logs the safe stage without the searched name", async () => {
+  const { FoundingMemberService, client, logs } = mockedStageHarness({ failStage: null, organizationRow: null });
+  const svc = new FoundingMemberService(client, async () => { throw new Error("must not be called"); });
+  const id = await svc.organizationIdByName("PRAKYATH VP Organization");
+  assert.equal(id, null);
+  assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "organization_lookup", errorCategory: "Error" }]);
+  assert.ok(!JSON.stringify(logs).includes("PRAKYATH"));
+});
+
+test("paddle_transaction_fetch failure logs the safe stage with only allowlisted provider diagnostics", async () => {
+  const error = Object.assign(new Error("Paddle API failed (500)."), { name: "PaddleApiError", status: 500, code: "internal_server_error" });
+  const { FoundingMemberService, client, request, logs } = mockedStageHarness({ failStage: "paddle_transaction_fetch", error });
+  const svc = new FoundingMemberService(client, request);
+  await assert.rejects(svc.recoverFoundingInvoice("org-mock"), actual => actual === error);
+  assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "paddle_transaction_fetch",
+    errorCategory: "PaddleApiError", providerHttpStatus: 500, providerErrorCode: "internal_server_error" }]);
+  assert.ok(!JSON.stringify(logs).includes("txn_mock"));
+});
+
+test("invoice_lookup DB error logs the safe stage without the transaction identity", async () => {
+  const error = { code: "08006", message: "connection failure" };
+  const { FoundingMemberService, client, request, logs } = mockedStageHarness({ failStage: "invoice_lookup", error });
+  const svc = new FoundingMemberService(client, request);
+  await assert.rejects(svc.recoverFoundingInvoice("org-mock"), actual => actual === error);
+  assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "invoice_lookup", errorCategory: "DatabaseError", sqlstate: "08006" }]);
+  assert.ok(!JSON.stringify(logs).includes("inv_mock") && !JSON.stringify(logs).includes("txn_mock"));
+});
+
+test("billing_projection RPC failure logs the safe stage without the SQL error message or payload", async () => {
+  const error = { code: "23502", message: "null value in column provider_item_id violates not-null constraint" };
+  const { FoundingMemberService, client, request, logs } = mockedStageHarness({ failStage: "billing_projection", error });
+  const svc = new FoundingMemberService(client, request);
+  await assert.rejects(svc.recoverFoundingInvoice("org-mock"), actual => actual === error);
+  assert.deepEqual(logs, [{ event: "founding_invoice_recovery.failed", stage: "billing_projection", errorCategory: "DatabaseError", sqlstate: "23502" }]);
+  assert.ok(!JSON.stringify(logs).includes("provider_item_id") && !JSON.stringify(logs).includes("txn_mock"));
 });
 
 test("S: recover-invoice route requires CRON_SECRET and calls recovery exactly once when authorized", async () => {
@@ -189,6 +330,7 @@ test("S: recover-invoice route requires CRON_SECRET and calls recovery exactly o
       "next/server": { NextResponse: { json: (body, options) => Response.json(body, options) } },
       "@/features/vayon/billing/services/founding-member.service": {
         FoundingMemberService: class {
+          static create() { return new this(); }
           async organizationIdByName(name) { calls.push(["organizationIdByName", name]); return "org-under-test"; }
           async recoverFoundingInvoice(id) { calls.push(["recoverFoundingInvoice", id]); return { recovered: true }; }
         },
@@ -220,6 +362,7 @@ test("S: recover-invoice route returns a sanitized 503 on failure, never a provi
       "next/server": { NextResponse: { json: (body, options) => Response.json(body, options) } },
       "@/features/vayon/billing/services/founding-member.service": {
         FoundingMemberService: class {
+          static create() { return new this(); }
           async organizationIdByName() { return "org-under-test"; }
           async recoverFoundingInvoice() { throw Object.assign(new Error("Bearer secret_token txn_private"), { name: "PaddleApiError", status: 500 }); }
         },

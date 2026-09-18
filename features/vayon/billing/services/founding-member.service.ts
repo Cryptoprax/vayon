@@ -52,8 +52,44 @@ function logReconciliationFailure(stage: ReconciliationStage, error: unknown) {
   catch { /* Diagnostics must not change reconciliation failure handling. */ }
 }
 
+export type InvoiceRecoveryStage = "service_init" | "organization_lookup" | "allocation_lookup"
+  | "workspace_validation" | "paddle_transaction_fetch" | "transaction_identity_validation"
+  | "transaction_status_validation" | "customer_validation" | "subscription_validation"
+  | "founding_price_validation" | "invoice_lookup" | "billing_projection";
+
+export function logInvoiceRecoveryFailure(stage: InvoiceRecoveryStage, error: unknown) {
+  // Same safe diagnostic vocabulary as logReconciliationFailure: never pass through
+  // messages, stacks, payloads, or any request/business identifiers.
+  const fields: Record<string, unknown> = { stage, errorCategory: "UnknownError" };
+  try {
+    if (error && typeof error === "object") {
+      const value = error as Record<string, unknown>;
+      const name = value.name, code = value.code, status = value.status;
+      if (["Error", "TypeError", "RangeError", "AbortError", "TimeoutError", "PaddleApiError"].includes(name as string))
+        fields.errorCategory = name;
+      if (name === "PaddleApiError") {
+        if (typeof status === "number" && Number.isInteger(status) && status >= 100 && status <= 599)
+          fields.providerHttpStatus = status;
+        if (["authentication_missing", "authentication_malformed", "authentication_invalid", "authorization_denied",
+          "not_found", "entity_not_found", "bad_request", "invalid_field", "too_many_requests", "internal_server_error", "service_unavailable"].includes(code as string))
+          fields.providerErrorCode = code;
+      } else if (typeof code === "string" && /^[0-9A-Z]{5}$/.test(code)) {
+        fields.sqlstate = code;
+        fields.errorCategory = "DatabaseError";
+      }
+    }
+  } catch { /* Untrusted error properties must not interfere with propagation. */ }
+  try { log("founding_invoice_recovery.failed", fields); }
+  catch { /* Diagnostics must not change recovery failure handling. */ }
+}
+
 export class FoundingMemberService {
   constructor(private client = createSupabaseServiceClient(), private request = paddleRequest) {}
+
+  static create(): FoundingMemberService {
+    try { return new FoundingMemberService(); }
+    catch (error) { logInvoiceRecoveryFailure("service_init", error); throw error; }
+  }
 
   async assertCheckoutAllowed(organizationId: string) {
     const paid = await this.client.from("subscriptions").select("id")
@@ -298,9 +334,16 @@ export class FoundingMemberService {
   }
 
   async organizationIdByName(name: string): Promise<string | null> {
-    const { data, error } = await this.client.from("organizations").select("id").eq("name", name).maybeSingle();
-    if (error) throw error;
-    return (data as { id: string } | null)?.id ?? null;
+    try {
+      const { data, error } = await this.client.from("organizations").select("id").eq("name", name).maybeSingle();
+      if (error) throw error;
+      const id = (data as { id: string } | null)?.id ?? null;
+      if (!id) logInvoiceRecoveryFailure("organization_lookup", new Error("Organization not found."));
+      return id;
+    } catch (error) {
+      logInvoiceRecoveryFailure("organization_lookup", error);
+      throw error;
+    }
   }
 
   /** One-time gap recovery: reconcile() only ever projects subscription.updated, so a
@@ -310,31 +353,51 @@ export class FoundingMemberService {
    *  used; it never touches record_professional_founding_payment, so successful_periods
    *  cannot change here. */
   async recoverFoundingInvoice(organizationId: string): Promise<{ recovered: boolean }> {
-    const { data, error } = await this.client.from(table).select("*").eq("organization_id", organizationId).maybeSingle();
-    if (error) throw error;
-    const a = data as Allocation | null;
-    if (!a || a.status !== "confirmed") throw new Error("Founding allocation is not confirmed.");
+    let stage: InvoiceRecoveryStage = "allocation_lookup";
+    try {
+      const { data, error } = await this.client.from(table).select("*").eq("organization_id", organizationId).maybeSingle();
+      if (error) throw error;
+      const a = data as Allocation | null;
+      if (!a || a.status !== "confirmed") throw new Error("Founding allocation is not confirmed.");
 
-    const workspace = await this.client.from("workspaces").select("organization_id").eq("id", a.workspace_id).maybeSingle();
-    if (workspace.error) throw workspace.error;
-    const workspaceOrganizationId = (workspace.data as { organization_id: string } | null)?.organization_id;
-    if (workspaceOrganizationId !== a.organization_id) throw new Error("Founding allocation organization/workspace mismatch.");
+      stage = "workspace_validation";
+      const workspace = await this.client.from("workspaces").select("organization_id").eq("id", a.workspace_id).maybeSingle();
+      if (workspace.error) throw workspace.error;
+      const workspaceOrganizationId = (workspace.data as { organization_id: string } | null)?.organization_id;
+      if (workspaceOrganizationId !== a.organization_id) throw new Error("Founding allocation organization/workspace mismatch.");
 
-    const transaction = await this.request<PaddleEntity>(`/transactions/${encodeURIComponent(a.paddle_transaction_id)}`);
-    if (transaction.id !== a.paddle_transaction_id) throw new Error("Unexpected founding transaction identity.");
-    if (transaction.status !== "completed") throw new Error("Founding transaction is not completed.");
-    if (transaction.customer_id !== a.paddle_customer_id) throw new Error("Founding transaction customer mismatch.");
-    if (transaction.subscription_id !== a.paddle_subscription_id) throw new Error("Founding transaction subscription mismatch.");
-    if (!transaction.items.some(item => item.price.id === a.founding_price_id))
-      throw new Error("Founding transaction does not carry the founding price.");
+      stage = "paddle_transaction_fetch";
+      const transaction = await this.request<PaddleEntity>(`/transactions/${encodeURIComponent(a.paddle_transaction_id)}`);
 
-    const invoiceId = transaction.invoice_id || transaction.id;
-    const existing = await this.client.from("invoices").select("provider_invoice_id").eq("provider_invoice_id", invoiceId).maybeSingle();
-    if (existing.error) throw existing.error;
-    if (existing.data) return { recovered: false };
+      stage = "transaction_identity_validation";
+      if (transaction.id !== a.paddle_transaction_id) throw new Error("Unexpected founding transaction identity.");
 
-    await new PaddleSubscriptionSyncService().project(`founding-invoice-recover:${transaction.id}`, "transaction.completed", transaction);
-    return { recovered: true };
+      stage = "transaction_status_validation";
+      if (transaction.status !== "completed") throw new Error("Founding transaction is not completed.");
+
+      stage = "customer_validation";
+      if (transaction.customer_id !== a.paddle_customer_id) throw new Error("Founding transaction customer mismatch.");
+
+      stage = "subscription_validation";
+      if (transaction.subscription_id !== a.paddle_subscription_id) throw new Error("Founding transaction subscription mismatch.");
+
+      stage = "founding_price_validation";
+      if (!transaction.items.some(item => item.price.id === a.founding_price_id))
+        throw new Error("Founding transaction does not carry the founding price.");
+
+      stage = "invoice_lookup";
+      const invoiceId = transaction.invoice_id || transaction.id;
+      const existing = await this.client.from("invoices").select("provider_invoice_id").eq("provider_invoice_id", invoiceId).maybeSingle();
+      if (existing.error) throw existing.error;
+      if (existing.data) return { recovered: false };
+
+      stage = "billing_projection";
+      await new PaddleSubscriptionSyncService().project(`founding-invoice-recover:${transaction.id}`, "transaction.completed", transaction);
+      return { recovered: true };
+    } catch (error) {
+      logInvoiceRecoveryFailure(stage, error);
+      throw error;
+    }
   }
 }
 

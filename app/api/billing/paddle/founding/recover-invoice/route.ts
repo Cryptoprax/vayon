@@ -14,7 +14,7 @@ export async function GET(request: Request) {
   if (!secret || actual.length !== expected.length || !timingSafeEqual(actual, expected))
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
-    const service = new FoundingMemberService();
+    const service = FoundingMemberService.create();
     const organizationId = await service.organizationIdByName(TARGET_ORGANIZATION_NAME);
     if (!organizationId) return NextResponse.json({ error: "Recovery target not found" }, { status: 503 });
     const result = await service.recoverFoundingInvoice(organizationId);
