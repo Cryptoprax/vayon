@@ -64,6 +64,7 @@ test("pricing uses localized commercial destinations", () => {
   ])
     assert.match(s, new RegExp(x));
   assert.ok(s.includes("/signup?plan="));
+  assert.match(s, /\/signup\?plan=\$\{plan\.code\}&period=\$\{annual \? "annual" : "monthly"\}/);
 });
 test("SEO includes canonicals open graph structured data sitemap and robots", () => {
   const layout = read("app/layout.tsx"),

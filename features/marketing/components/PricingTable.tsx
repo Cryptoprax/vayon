@@ -203,7 +203,7 @@ export function PricingTable({ foundingAvailable = false }: { foundingAvailable?
                   href={
                     plan.name === "Enterprise"
                       ? "/contact?intent=sales"
-                      : `/signup?plan=${plan.code}`
+                      : `/signup?plan=${plan.code}&period=${annual ? "annual" : "monthly"}`
                   }
                 >
                   {plan.name === "Enterprise" ? "Contact Sales" : "Start Free"}

@@ -15,7 +15,7 @@ function action(result, throws = false) {
     '../security/oauth': { trustedApplicationOrigin: x => x, safeAuthenticatedPath: x => x },
     '@/lib/supabase/server': {},
     '../services/authentication.service': { AuthenticationService: class {
-      async signUp(...args) { calls++; assert.deepEqual(args,['Test User','person@example.test','strong-password','https://www.vayon.online']); if (throws) throw Error('private network details'); return result; }
+      async signUp(...args) { calls++; assert.deepEqual(args,['Test User','person@example.test','strong-password','https://www.vayon.online',undefined,undefined]); if (throws) throw Error('private network details'); return result; }
       async logout() { logouts++; }
     } },
   });
@@ -55,6 +55,19 @@ test('signup preserves metadata and PKCE callback while canonicalizing productio
     await new AuthenticationService().signUp('Test User','person@example.test','strong-password',origin);
     assert.deepEqual(input,{email:'person@example.test',password:'strong-password',options:{data:{name:'Test User'},emailRedirectTo:expected+'/auth/callback?next=/vayon'}});
   }
+});
+test('signup stores validated selected-plan intent in user_metadata alongside name, and omits it when absent or unpaired', async () => {
+  const {AuthenticationService}=load('features/authentication/services/authentication.service.ts',{
+    '@/lib/supabase/server':{createSupabaseServerClient:async()=>({auth:{signUp:async x=>{last=x;return {data:{user,session:null}};}}})},
+    '../security/oauth':{safeAuthenticatedPath:x=>x},
+  });
+  let last;
+  await new AuthenticationService().signUp('Test User','person@example.test','strong-password','https://www.vayon.online','business_plus','annual');
+  assert.deepEqual(last.options.data,{name:'Test User',intendedPlan:'business_plus',intendedBillingPeriod:'annual'});
+  await new AuthenticationService().signUp('Test User','person@example.test','strong-password','https://www.vayon.online');
+  assert.deepEqual(last.options.data,{name:'Test User'});
+  await new AuthenticationService().signUp('Test User','person@example.test','strong-password','https://www.vayon.online','business_plus');
+  assert.deepEqual(last.options.data,{name:'Test User',intendedPlan:'business_plus'},'a plan without a period must not fabricate a period');
 });
 test('verification landing stays public, while app routes stay protected',()=>{
   const {isPublicWebsiteRoute}=load('lib/supabase/proxy.ts',{

@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getSupabaseConfig } from "@/lib/supabase/config";
 import { safeAuthenticatedPath, trustedApplicationOrigin } from "@/features/authentication/security/oauth";
+import { isPaddleBillingPeriod, isPaddlePlanCode } from "@/features/vayon/billing/providers/paddle/paddle-catalog";
 
 // Never pass through arbitrary provider strings, even if they resemble error codes.
 const errorCodes = new Set([
@@ -98,6 +99,18 @@ export async function GET(request: Request) {
     p_event_type: verificationType === "email_change" ? "email.changed" : user.email_confirmed_at ? "email.verified" : "login",
     p_metadata: { provider: user.app_metadata?.provider ?? "email" },
   });
+  // Google OAuth carries selected-plan intent only via `next`; converge it onto the
+  // same durable user_metadata representation email/password signup already uses.
+  // Re-validate against the canonical allowlist -- never trust `next` contents blindly --
+  // and never drop unrelated existing metadata (e.g. `name`).
+  const destinationParams = new URL(destination, "https://vayon.invalid").searchParams;
+  const rawIntentPlan = destinationParams.get("plan");
+  if (rawIntentPlan && isPaddlePlanCode(rawIntentPlan)) {
+    const rawIntentPeriod = destinationParams.get("period");
+    const metadata: Record<string, unknown> = { ...user.user_metadata, intendedPlan: rawIntentPlan };
+    if (rawIntentPeriod && isPaddleBillingPeriod(rawIntentPeriod)) metadata.intendedBillingPeriod = rawIntentPeriod;
+    await client.auth.updateUser({ data: metadata }).catch(() => { /* Metadata mirroring must not block sign-in. */ });
+  }
   log({ redirectCategory: destinationCategory(destination) });
   return NextResponse.redirect(new URL(destination, origin));
 }

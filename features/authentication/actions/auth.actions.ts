@@ -14,8 +14,24 @@ import {
   trustedApplicationOrigin,
 } from "../security/oauth";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { isPaddleBillingPeriod, isPaddlePlanCode } from "@/features/vayon/billing/providers/paddle/paddle-catalog";
 function value(form: FormData, key: string) {
   return String(form.get(key) ?? "");
+}
+// Selected-plan intent from a signup form is untrusted client input; re-validate
+// against the canonical Paddle allowlist before it can influence anything downstream.
+function intendedPlan(form: FormData) {
+  const plan = value(form, "plan");
+  return isPaddlePlanCode(plan) ? plan : undefined;
+}
+function intendedBillingPeriod(form: FormData) {
+  const period = value(form, "period");
+  return isPaddleBillingPeriod(period) ? period : undefined;
+}
+function withIntent(path: string, plan?: string, period?: string) {
+  if (!plan) return path;
+  const separator = path.includes("?") ? "&" : "?";
+  return `${path}${separator}plan=${plan}${period ? `&period=${period}` : ""}`;
 }
 function fail(path: string, message: string): never {
   redirect(`${path}${path.includes("?") ? "&" : "?"}error=${encodeURIComponent(message)}`);
@@ -41,6 +57,7 @@ export async function signUpAction(form: FormData): Promise<SignUpResult> {
     const service = new AuthenticationService();
     const { data, error } = await service.signUp(
       parsed.data.name, parsed.data.email, parsed.data.password, await origin(),
+      intendedPlan(form), intendedBillingPeriod(form),
     );
     if (error) return { status: "error", message: error.message };
     // Confirmation-enabled signup must not create an authenticated session.
@@ -94,9 +111,11 @@ export async function loginAction(form: FormData) {
 }
 export async function googleLoginAction(form?: FormData) {
   const next = safeAuthenticatedPath(form ? value(form, "next") : null),
+    plan = form ? intendedPlan(form) : undefined,
+    period = form ? intendedBillingPeriod(form) : undefined,
     { data, error } = await new AuthenticationService().googleLogin(
       await origin(),
-      next,
+      withIntent(next, plan, period),
     );
   if (error || !data?.url) fail("/login", "Google authentication is temporarily unavailable.");
   redirect(data.url);

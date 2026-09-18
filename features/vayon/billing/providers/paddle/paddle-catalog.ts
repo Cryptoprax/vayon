@@ -21,6 +21,15 @@ export function isPaddlePlanCode(value: string): value is PaddlePlanCode {
   return paddlePlanCodes.includes(value as PaddlePlanCode);
 }
 
+export const paddleBillingPeriods: readonly PaddleBillingPeriod[] = [
+  "monthly",
+  "annual",
+];
+
+export function isPaddleBillingPeriod(value: string): value is PaddleBillingPeriod {
+  return paddleBillingPeriods.includes(value as PaddleBillingPeriod);
+}
+
 export function paddleCatalogEntry(
   plan: PaddlePlanCode,
   period: PaddleBillingPeriod,

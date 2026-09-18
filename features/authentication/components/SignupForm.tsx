@@ -6,8 +6,9 @@ import { MailCheck } from "lucide-react";
 import { Button, ButtonLink } from "@/features/platform/design-system";
 import { googleLoginAction, signUpAction, type SignUpResult } from "../actions/auth.actions";
 import { AuthFields, AuthShell, FormNotice } from "./AuthForm";
+import type { PaddleBillingPeriod, PaddlePlanCode } from "@/features/vayon/billing/providers/paddle/paddle-catalog.types";
 
-export function SignupForm({ initialError }: { initialError?: string }) {
+export function SignupForm({ initialError, plan, period }: { initialError?: string; plan?: PaddlePlanCode; period?: PaddleBillingPeriod }) {
   const [state, submit, pending] = useActionState<SignUpResult | null, FormData>(async (_previous, form) => {
     try { return await signUpAction(form); }
     catch { return { status: "error", message: "We couldn't complete signup. Check your connection and try again." }; }
@@ -35,10 +36,18 @@ export function SignupForm({ initialError }: { initialError?: string }) {
   return (
     <AuthShell title="Create your account" description="Bring your properties, leads, and daily work into one place.">
       <div role="alert"><FormNotice error={state?.status === "error" ? state.message : initialError} /></div>
-      <form action={googleLoginAction}><Button type="submit" disabled={pending} variant="control" className="mb-4 w-full rounded-xl border border-vds-border-strong bg-vds-surface px-4 py-3 text-sm font-semibold text-vds-foreground">Continue with Google</Button></form>
+      <form action={googleLoginAction}>
+        {plan && <input type="hidden" name="plan" value={plan} />}
+        {plan && period && <input type="hidden" name="period" value={period} />}
+        <Button type="submit" disabled={pending} variant="control" className="mb-4 w-full rounded-xl border border-vds-border-strong bg-vds-surface px-4 py-3 text-sm font-semibold text-vds-foreground">Continue with Google</Button>
+      </form>
       <div className="mb-4 flex items-center gap-3 text-xs uppercase tracking-widest text-vds-subtle"><span className="h-px flex-1 bg-vds-hover" />or<span className="h-px flex-1 bg-vds-hover" /></div>
       <form action={submit} aria-busy={pending} onSubmit={(event) => { if (pending) event.preventDefault(); }}>
-        <fieldset disabled={pending} className="min-w-0 disabled:opacity-60"><AuthFields kind="signup" /></fieldset>
+        <fieldset disabled={pending} className="min-w-0 disabled:opacity-60">
+          <AuthFields kind="signup" />
+          {plan && <input type="hidden" name="plan" value={plan} />}
+          {plan && period && <input type="hidden" name="period" value={period} />}
+        </fieldset>
         {pending && <p role="status" className="mt-3 text-sm text-vds-muted">Creating your account…</p>}
       </form>
       <p className="mt-5 text-center text-sm text-vds-muted">Already registered? <Link href="/login" className="text-vds-primary">Sign in</Link></p>

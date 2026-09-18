@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button, ButtonLink } from "@/features/platform/design-system";
 import { commercialDisplayPrice, commercialPricingPlans } from "@/features/platform/commercial-pricing";
-import { subscriptionEntitlementCatalog, isSubscriptionPlanCode } from "../config/entitlements";
+import { subscriptionEntitlementCatalog, isSubscriptionPlanCode, type SubscriptionPlanCode } from "../config/entitlements";
 import { resolvePlanAction } from "../services/plan-action";
 import type { PublicPaddleCatalogPrice } from "../providers/paddle/paddle-catalog.types";
 import { unavailableFoundingOffer, type FoundingMemberAvailability } from "../services/founding-member.types";
@@ -14,13 +14,17 @@ import { refreshSubscriptionState, refreshFoundingAvailability, manageSubscripti
 const card = "min-w-0 rounded-2xl border border-vds-border bg-vds-surface p-5";
 type Period = "monthly" | "annual";
 
-export function CommercialPlans({ workspaceId, clientToken, environment = "live", subscription = null, checkoutEnabled = false, founding = unavailableFoundingOffer, onCheckout, onMessage }: {
-  catalog: PublicPaddleCatalogPrice[]; organizationId: string; workspaceId: string; clientToken?: string; environment?: "sandbox" | "live"; subscription?: SubscriptionRecord | null; checkoutEnabled?: boolean; founding?: FoundingMemberAvailability; onCheckout?: () => void; onMessage?: (message: string) => void;
+export function CommercialPlans({ workspaceId, clientToken, environment = "live", subscription = null, checkoutEnabled = false, founding = unavailableFoundingOffer, initialPlan, initialPeriod, onCheckout, onMessage }: {
+  catalog: PublicPaddleCatalogPrice[]; organizationId: string; workspaceId: string; clientToken?: string; environment?: "sandbox" | "live"; subscription?: SubscriptionRecord | null; checkoutEnabled?: boolean; founding?: FoundingMemberAvailability; initialPlan?: SubscriptionPlanCode; initialPeriod?: Period; onCheckout?: () => void; onMessage?: (message: string) => void;
 }) {
   const router = useRouter();
   const mounted = useRef(true);
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
-  const [period, setPeriod] = useState<Period>("monthly");
+  // Real subscription state always takes precedence over signup intent: once a
+  // customer has an active subscription, stored intent is never read or displayed.
+  const hasActiveSubscription = Boolean(subscription?.providerSubscriptionId && subscription.status !== "cancelled");
+  const highlightedPlan = hasActiveSubscription ? undefined : initialPlan;
+  const [period, setPeriod] = useState<Period>(!hasActiveSubscription && initialPeriod ? initialPeriod : "monthly");
   const [busy, setBusy] = useState<string | null>(null);
   const [message, setMessage] = useState("");
   const [offer, setOffer] = useState(founding);
@@ -35,7 +39,6 @@ export function CommercialPlans({ workspaceId, clientToken, environment = "live"
     return () => { active = false; window.clearInterval(timer); };
   }, [workspaceId]);
   function notify(next: string) { setMessage(next); onMessage?.(next); }
-  const hasActiveSubscription = Boolean(subscription?.providerSubscriptionId && subscription.status !== "cancelled");
   const currentPlanCode = subscription?.planCode && isSubscriptionPlanCode(subscription.planCode) ? subscription.planCode : null;
   async function confirmPayment() {
     setBusy(null); notify("Payment received. Waiting for subscription confirmation...");
@@ -85,8 +88,9 @@ export function CommercialPlans({ workspaceId, clientToken, environment = "live"
       const plan = subscriptionEntitlementCatalog[displayPlan.code];
       const action = resolvePlanAction({ planCode: displayPlan.code, currentPlanCode, hasActiveSubscription, checkoutEnabled, hasClientToken: Boolean(clientToken) });
       const displayPrice = commercialDisplayPrice(displayPlan, period, offer.eligible || offer.applicable);
-      return <article key={displayPlan.code} className={`${card} flex h-full flex-col`}>
-        <div className="flex flex-col gap-3"><div className="min-w-0"><h3 className="text-lg font-semibold">{displayPlan.name}</h3><p className="mt-2 text-sm text-vds-muted">{displayPlan.audience}</p></div>{displayPrice.promotional && <span className="self-start rounded-full bg-vds-primary px-2 py-1 text-[10px] font-semibold text-vds-on-accent">FOUNDING MEMBER PRICING</span>}</div>
+      const isHighlighted = highlightedPlan === displayPlan.code;
+      return <article key={displayPlan.code} className={`${card} flex h-full flex-col ${isHighlighted ? "border-vds-accent-border ring-1 ring-vds-primary/30" : ""}`}>
+        <div className="flex flex-col gap-3"><div className="min-w-0"><h3 className="text-lg font-semibold">{displayPlan.name}</h3><p className="mt-2 text-sm text-vds-muted">{displayPlan.audience}</p></div>{displayPrice.promotional && <span className="self-start rounded-full bg-vds-primary px-2 py-1 text-[10px] font-semibold text-vds-on-accent">FOUNDING MEMBER PRICING</span>}{!displayPrice.promotional && isHighlighted && <span className="self-start rounded-full bg-vds-primary-soft px-2 py-1 text-[10px] font-semibold text-vds-primary">YOUR SELECTED PLAN</span>}</div>
         <p className="mt-4 text-2xl font-semibold">{displayPrice.price === null ? "Custom" : <>{displayPrice.promotional && displayPrice.standardPrice !== null && <span className="mr-2 text-base font-medium text-vds-muted line-through">${displayPrice.standardPrice}</span>}${displayPrice.price}<span className="ml-1 text-sm font-normal text-vds-muted">/ month</span></>}</p>
         {displayPrice.promotional && displayPlan.promotion && <p className="mt-3 rounded-xl bg-vds-primary-soft px-3 py-2 text-xs font-medium text-vds-primary">Limited to the first {displayPlan.promotion.limitAgencies} agencies. ${displayPlan.promotion.promotionalMonthlyPrice}/month for {displayPlan.promotion.durationMonths} months instead of the standard ${displayPlan.standardMonthlyPrice}/month.</p>}
         {period === "annual" && displayPlan.standardMonthlyPrice !== null && <p className="mt-3 text-xs text-vds-muted">${(displayPlan.standardMonthlyPrice * 12 * 0.8).toFixed(2)} billed annually. Annual pricing uses the standard plan rate.</p>}

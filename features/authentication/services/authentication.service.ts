@@ -2,6 +2,7 @@ import "server-only";
 import { createHash } from "node:crypto";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { safeAuthenticatedPath } from "../security/oauth";
+import type { PaddleBillingPeriod, PaddlePlanCode } from "@/features/vayon/billing/providers/paddle/paddle-catalog.types";
 const hash = (v: string) => createHash("sha256").update(v).digest("hex");
 export class AuthenticationService {
   async user() {
@@ -10,7 +11,12 @@ export class AuthenticationService {
     if (error) return null;
     return data.user;
   }
-  async signUp(name: string, email: string, password: string, origin: string) {
+  async signUp(
+    name: string, email: string, password: string, origin: string,
+    // Selected-plan intent only; the caller has already validated these against
+    // the canonical Paddle allowlist. Never store an unvalidated value here.
+    intendedPlan?: PaddlePlanCode, intendedBillingPeriod?: PaddleBillingPeriod,
+  ) {
     const client = await createSupabaseServerClient();
     const confirmationOrigin = ["https://vayon.online", "https://www.vayon.online"].includes(origin)
       ? "https://www.vayon.online" : origin;
@@ -18,7 +24,11 @@ export class AuthenticationService {
       email,
       password,
       options: {
-        data: { name },
+        data: {
+          name,
+          ...(intendedPlan ? { intendedPlan } : {}),
+          ...(intendedPlan && intendedBillingPeriod ? { intendedBillingPeriod } : {}),
+        },
         emailRedirectTo: `${confirmationOrigin}/auth/callback?next=/vayon`,
       },
     });
