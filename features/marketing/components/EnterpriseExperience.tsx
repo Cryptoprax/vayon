@@ -479,11 +479,11 @@ const questions = [
   ],
   [
     "How does pricing work?",
-    "Starter and Growth plans are available monthly, while Enterprise is configured around commercial, scale, and governance requirements.",
+    "Starter, Professional, Business, and Business Plus plans are available monthly or annually, while Enterprise is configured around commercial, scale, and governance requirements.",
   ],
   [
     "Which integrations are supported?",
-    "The platform includes existing Google Workspace, Microsoft 365, WhatsApp, OpenAI, Stripe, and Supabase integrations.",
+    "The platform includes existing Google Workspace, Microsoft 365, WhatsApp, OpenAI, Paddle, and Supabase integrations.",
   ],
   [
     "How is data privacy maintained?",

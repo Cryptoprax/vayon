@@ -52,9 +52,6 @@ const routes = [
   "/brand-assets",
   "/media-kit",
   "/partners",
-  "/cookie-policy",
-  "/refund-policy",
-  "/support-policy",
   "/demo",
   "/compare",
   "/roi-calculator",
@@ -74,7 +71,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...assets.assets.map((x) => `/sales-assets/${x.slug}`),
       ...assets.stories.map((x) => `/customers/${x.slug}`),
     ];
-  return [...routes, ...documentation, ...marketing].map((path) => ({
+  const paths = Array.from(new Set([...routes, ...documentation, ...marketing]));
+  return paths.map((path) => ({
     url: `${publicSiteUrl}${path}`,
     changeFrequency: path === "/blog" ? "weekly" : "monthly",
     priority: path === "" ? 1 : path === "/product" ? 0.9 : 0.7,

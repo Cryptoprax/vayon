@@ -397,7 +397,7 @@ export const marketingPages: Readonly<
     "pricing",
     "Pricing",
     "A plan for every stage of operational maturity.",
-    "Compare production Vayon editions. Pricing available at launch is now represented by the approved Stripe plan catalog.",
+    "Compare Vayon plans and choose the tier that fits your team, with secure payments powered by Paddle.",
     [],
     [
       "Monthly and annual presentation",

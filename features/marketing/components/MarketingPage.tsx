@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import type { MarketingPageContent } from "../content/pages";
 import { PricingTable } from "./PricingTable";
+import { publicSiteUrl } from "@/lib/public-url";
 
 export function MarketingPage({
   content,
@@ -353,8 +354,8 @@ function MarketingJsonLd({
     "@type": "WebPage",
     name: content.title,
     description: content.description,
-    url: `https://vayon.app/${content.id}`,
-    isPartOf: { "@type": "WebSite", name: "Vayon", url: "https://vayon.app" },
+    url: `${publicSiteUrl}/${content.id}`,
+    isPartOf: { "@type": "WebSite", name: "Vayon", url: publicSiteUrl },
   };
   return (
     <script

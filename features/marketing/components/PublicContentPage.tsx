@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { PublicPage } from "../contracts";
+import { publicSiteUrl } from "@/lib/public-url";
 export function PublicContentPage({ page }: { page: PublicPage }) {
   return (
     <main>
@@ -11,7 +12,7 @@ export function PublicContentPage({ page }: { page: PublicPage }) {
             "@type": "WebPage",
             name: page.title,
             description: page.description,
-            url: `https://vayon.app/${page.slug}`,
+            url: `${publicSiteUrl}/${page.slug}`,
           }).replaceAll("<", "\\u003c"),
         }}
       />
