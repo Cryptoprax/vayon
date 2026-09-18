@@ -9,7 +9,12 @@ const route = read("app/api/billing/paddle/checkout/route.ts");
 
 test("checkout CTA is available from server configuration even when catalog display reads are unavailable", () => {
   assert.match(page, /checkoutEnabled=\{Boolean\(snapshot\.canManage && snapshot\.provider\.missing\.length === 0\)\}/);
-  assert.match(ui, /checkoutEnabled && clientToken && !subscribed/);
+  // Plan-aware availability now flows through the canonical resolvePlanAction
+  // helper (checkoutEnabled + clientToken are inputs to it), rather than a
+  // single boolean subscribed flag.
+  assert.match(ui, /resolvePlanAction\(/);
+  assert.match(ui, /checkoutEnabled/);
+  assert.match(ui, /hasClientToken: Boolean\(clientToken\)/);
   assert.doesNotMatch(ui, /catalog\.find/);
   for (const name of ["Starter", "Professional", "Business", "Business Plus"]) assert.match(ui, new RegExp(`Choose " \\+ displayPlan\\.name|${name}`));
 });
