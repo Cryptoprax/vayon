@@ -52,6 +52,6 @@ export function evaluateQuotaEntitlement(context: EntitlementPolicyContext, quot
 }
 
 function nextPlan(plan: SubscriptionPlanCode): SubscriptionPlanCode | null {
-  const order: readonly SubscriptionPlanCode[] = ["starter", "professional", "business", "enterprise"];
+  const order: readonly SubscriptionPlanCode[] = ["starter", "professional", "business", "business_plus", "enterprise"];
   return order[order.indexOf(plan) + 1] ?? null;
 }

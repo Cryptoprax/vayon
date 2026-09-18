@@ -4,14 +4,14 @@
 
 The public pricing experience positions VAYON as one AI Business Operating System rather than a collection of point features. It leads with business value, shows the platform products and outcomes, explains software consolidation, then presents commercial packages, governance, ROI context and enterprise engagement paths.
 
-The page is a sales presentation layer only. The existing Subscription Engine, entitlement catalog, Stripe lifecycle and checkout services remain the authorities for purchasable products, billing state, quotas and access. Business Plus is presented as a sales-assisted package and therefore routes to Contact Sales; it does not create a new billing or entitlement plan.
+The page is a sales presentation layer only. The existing Subscription Engine, entitlement catalog, Stripe lifecycle and checkout services remain the authorities for purchasable products, billing state, quotas and access. Business Plus is a genuine self-service finite-quota plan and routes to the normal signup/checkout flow; only Enterprise routes to Contact Sales.
 
 ## Pricing philosophy
 
 - Starter supports founders launching with AI.
 - Professional is the recommended growth package and is visually identified as Most Popular.
 - Business supports established multi-function organizations.
-- Business Plus supports sales-assisted multi-department and multi-location packaging.
+- Business Plus is a self-service finite-quota package for multi-department and multi-location teams.
 - Enterprise supports negotiated deployment, security, integration, enablement and SLA requirements.
 
 Monthly prices remain visible by default. The annual control provides a clearly labeled estimated annual-commitment discount without changing checkout logic. Localized monetary display reuses the shared public-site currency system.

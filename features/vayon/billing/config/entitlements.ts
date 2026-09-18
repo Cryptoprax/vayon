@@ -49,7 +49,7 @@ export const subscriptionEntitlementCatalog = Object.freeze({
   },
   business_plus: {
     code: "business_plus", name: "Business Plus", audience: "Multi-location companies", features: entitlementFeatures,
-    quotas: { workspaces: null, users: null, storage_gb: null, ai_requests: null, exports: null, reports: null, workflows: null, automations: null, integrations: null, knowledge_articles: null, creative_assets: null, api_calls: null },
+    quotas: { workspaces: 25, users: 150, storage_gb: 1_500, ai_requests: 150_000, exports: 7_500, reports: 7_500, workflows: 3_000, automations: 3_000, integrations: 75, knowledge_articles: 30_000, creative_assets: 7_500, api_calls: 300_000 },
   },
   enterprise: {
     code: "enterprise", name: "Enterprise", audience: "Enterprise organizations", features: entitlementFeatures,

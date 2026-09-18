@@ -29,7 +29,7 @@ export const commercialPricingPlans: readonly CommercialPricingPlan[] = [
   { code: "starter", name: "Starter", audience: "Independent agents and small real estate teams", description: "Launch your business with AI", standardMonthlyPrice: 79, seats: "3", workspaces: "1", storage: "10 GB", selfService: true },
   { code: "professional", name: "Professional", audience: "Growing teams", description: "Grow with AI employees", standardMonthlyPrice: 149, seats: "10", workspaces: "3", storage: "100 GB", selfService: true, popular: true, promotion: { type: "founding_member", enabled: FOUNDING_MEMBER_ENABLED, promotionalMonthlyPrice: 79, limitAgencies: FOUNDING_MEMBER_SPOTS_REMAINING, durationMonths: 12 } },
   { code: "business", name: "Business", audience: "Established businesses", description: "Run your organization with AI", standardMonthlyPrice: 399, seats: "50", workspaces: "10", storage: "500 GB", selfService: true },
-  { code: "business_plus", name: "Business Plus", audience: "Multi-department operations", description: "Scale teams and locations", standardMonthlyPrice: 799, seats: "Custom", workspaces: "Custom", storage: "Custom", selfService: true },
+  { code: "business_plus", name: "Business Plus", audience: "Multi-department operations", description: "Scale teams and locations", standardMonthlyPrice: 799, seats: "150", workspaces: "25", storage: "1,500 GB", selfService: true },
   { code: "enterprise", name: "Enterprise", audience: "Large organizations", description: "Dedicated enterprise operating system", standardMonthlyPrice: null, seats: "Unlimited", workspaces: "Unlimited", storage: "Custom", selfService: false },
 ];
 

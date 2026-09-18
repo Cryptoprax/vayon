@@ -201,14 +201,12 @@ export function PricingTable({ foundingAvailable = false }: { foundingAvailable?
                   className="mt-7"
                   variant={plan.popular ? "primary" : "outline"}
                   href={
-                    plan.name === "Enterprise" || plan.name === "Business Plus"
+                    plan.name === "Enterprise"
                       ? "/contact?intent=sales"
-                      : `/signup?plan=${plan.name.toLowerCase()}`
+                      : `/signup?plan=${plan.code}`
                   }
                 >
-                  {plan.name === "Enterprise" || plan.name === "Business Plus"
-                    ? "Contact Sales"
-                    : "Start Free"}
+                  {plan.name === "Enterprise" ? "Contact Sales" : "Start Free"}
                 </ButtonLink>
               </article>
               );

@@ -40,6 +40,7 @@ export async function foundingDatabase() {
   await owner.query(readFileSync("supabase/migrations/20261031000000_sprint237_professional_founding.sql", "utf8"));
   await owner.query(readFileSync("supabase/migrations/20261031010000_fix_paddle_subscription_item_projection.sql", "utf8"));
   await owner.query(readFileSync("supabase/migrations/20261101000000_fix_billing_invoice_provider_conflict_target.sql", "utf8"));
+  await owner.query(readFileSync("supabase/migrations/20261101010000_align_business_plus_entitlements.sql", "utf8"));
   await owner.query("grant usage on schema public to service_role,anon,authenticated; grant all on all tables in schema public to service_role");
   const pool = new Pool({ ...config, database: name, max: 30, options: "-c role=service_role" });
   return {
