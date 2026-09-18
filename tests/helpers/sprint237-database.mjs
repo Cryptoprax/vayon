@@ -26,14 +26,20 @@ export async function foundingDatabase() {
       deleted_at timestamptz,version int default 1,updated_at timestamptz default now(),cancel_at_period_end boolean,
       seat_quantity int default 1,current_period_ends_at timestamptz,created_by uuid default gen_random_uuid());
     create table billing_events(organization_id uuid,workspace_id uuid,provider text,provider_event_id text,event_type text,status text,payload jsonb,
-      processed_at timestamptz,error_code text,unique(provider,provider_event_id));
+      created_at timestamptz not null default now(),processed_at timestamptz,error_code text,unique(provider,provider_event_id));
     create table subscription_items(organization_id uuid not null,workspace_id uuid not null,subscription_id uuid not null,provider_item_id text not null unique,provider_price_id text not null,quantity int not null default 1 check(quantity>0),metered boolean not null default false,updated_at timestamptz not null default now());
     create table organization_limits(organization_id uuid,workspace_id uuid,metric text,limit_value numeric,source text,updated_at timestamptz,unique(workspace_id,metric));
-    create table invoices(organization_id uuid,workspace_id uuid,subscription_id uuid,invoice_number text,status text,currency text,subtotal numeric,tax numeric,issued_at timestamptz,paid_at timestamptz,download_url text,provider_invoice_id text unique,created_by uuid,metadata jsonb,updated_at timestamptz);
+    create table invoices(organization_id uuid,workspace_id uuid,subscription_id uuid,invoice_number text,status text,currency text,subtotal numeric,tax numeric,issued_at timestamptz,due_at timestamptz,paid_at timestamptz,download_url text,provider_invoice_id text,payment_intent_id text,created_by uuid,metadata jsonb,updated_at timestamptz);
+    -- Matches Production exactly: provider_invoice_id uniqueness is a partial index,
+    -- not a full constraint, which is the condition the ON CONFLICT SQLSTATE 42P10
+    -- fix depends on reproducing.
+    create unique index invoices_provider_id_idx on invoices(provider_invoice_id) where provider_invoice_id is not null;
   `);
+  await owner.query(readFileSync("supabase/migrations/20260921000000_sprint123_stripe_billing_lifecycle.sql", "utf8"));
   await owner.query(readFileSync("supabase/migrations/20260922000000_sprint143_paddle_billing_platform.sql", "utf8"));
   await owner.query(readFileSync("supabase/migrations/20261031000000_sprint237_professional_founding.sql", "utf8"));
   await owner.query(readFileSync("supabase/migrations/20261031010000_fix_paddle_subscription_item_projection.sql", "utf8"));
+  await owner.query(readFileSync("supabase/migrations/20261101000000_fix_billing_invoice_provider_conflict_target.sql", "utf8"));
   await owner.query("grant usage on schema public to service_role,anon,authenticated; grant all on all tables in schema public to service_role");
   const pool = new Pool({ ...config, database: name, max: 30, options: "-c role=service_role" });
   return {

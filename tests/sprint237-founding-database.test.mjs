@@ -116,6 +116,10 @@ describe("Sprint 237 real PostgreSQL allocation and payment lifecycle", { skip: 
       assert.equal(result.allowed,false);
     }
     assert.equal((await db.owner.query("select has_function_privilege('service_role','public.process_paddle_billing_event(text,text,jsonb)','EXECUTE') allowed")).rows[0].allowed,true);
+    // Replaying this older migration reverts core237 to its pre-fix invoice ON CONFLICT
+    // clause; reapply the current migration so later tests run against the latest state,
+    // exactly as Production's ordered migration history would leave it.
+    await db.owner.query(readFileSync('supabase/migrations/20261101000000_fix_billing_invoice_provider_conflict_target.sql','utf8'));
     const o=await organization(); await project(subscription(o)); await assertProjected(o);
   });
   test("viewing global and organization eligibility allocates nothing", async () => {
