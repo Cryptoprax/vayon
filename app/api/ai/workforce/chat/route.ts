@@ -4,6 +4,7 @@ import { z } from "zod";
 import { WorkforceRuntimeService } from "@/features/platform/openai/runtime/service";
 import { EnterpriseRateLimitService, requestSubject } from "@/features/platform/security-review/services/rate-limit.service";
 import { enforceApiPermission } from "@/features/platform/permissions/runtime/http";
+import { requireEntitlement, FeatureNotEntitledError } from "@/features/vayon/billing/services/require-entitlement";
 
 const schema = z.object({
   employee: z.enum(["sales-ai", "crm-ai", "marketing-ai", "whatsapp-ai", "voice-ai", "operations-ai", "finance-ai", "executive-ai"]),
@@ -16,6 +17,11 @@ export async function POST(request: Request) {
   const authorization=await enforceApiPermission("ai_employees","create");
   if(authorization.response)return authorization.response;
 const subscriptionResponse = await guardSubscriptionApi(); if (subscriptionResponse) return subscriptionResponse;
+  try { await requireEntitlement("ai_workforce"); }
+  catch (error) {
+    if (error instanceof FeatureNotEntitledError) return Response.json({ error: "AI Workforce is available on the Professional plan.", code: "AI_WORKFORCE_NOT_ENTITLED" }, { status: 403, headers: { "Cache-Control": "private, no-store" } });
+    throw error;
+  }
 
   const limit = await new EnterpriseRateLimitService().enforce("ai-runtime", requestSubject(request));
   if (!limit.allowed) return Response.json({ error: "Rate limit exceeded." }, { status: 429, headers: { "Retry-After": String(limit.retryAfterSeconds) } });

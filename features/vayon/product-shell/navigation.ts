@@ -35,14 +35,19 @@ export const shellNavigation: readonly ShellNavigationGroup[] = [
     { label: "Referral Network", href: "/vayon/growth/referral-network", icon: Handshake },
     { label: "Market Intelligence", href: "/vayon/growth/market-intelligence", icon: LineChart },
   ] },
+  // "Suggestions" (/vayon/ai/collaboration) is Founder/Super Admin-only AI Company
+  // Orchestration content and must not appear in customer navigation. "Automations" and
+  // "AI Goals" (/vayon/ai/automations, /vayon/ai/goals) have no tenant-backed
+  // implementation yet -- their pages now show an honest "not available yet" state
+  // rather than fixture data, so they were removed from navigation to avoid pointing
+  // customers at unfinished functionality. "Today's AI Tasks" was repointed from the
+  // fixture-backed /vayon/ai/work-queue to the real, tenant-scoped approve/reject task
+  // queue at /vayon/ai/tasks.
   { id: "ai", label: "AI Assistant", icon: Sparkles, items: [
     { label: "AI Assistant", href: "/vayon/intelligence", icon: Sparkles },
     { label: "My AI Team", href: "/vayon/ai/workforce", icon: Users },
-    { label: "Today's AI Tasks", href: "/vayon/ai/work-queue", icon: SquareKanban },
-    { label: "Suggestions", href: "/vayon/ai/collaboration", icon: Sparkles },
-    { label: "Automations", href: "/vayon/ai/automations", icon: Workflow },
+    { label: "Today's AI Tasks", href: "/vayon/ai/tasks", icon: SquareKanban },
     { label: "Approvals", href: "/vayon/approvals", icon: ShieldCheck },
-    { label: "AI Goals", href: "/vayon/ai/goals", icon: Target },
     { label: "History", href: "/vayon/ai/history", icon: Activity },
     { label: "Workflow templates", href: "/vayon/workflows", icon: Workflow },
   ] },

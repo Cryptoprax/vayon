@@ -26,7 +26,17 @@ export const platformVisibilityRules: readonly VisibilityRule[] = [
   { id: "founder-approvals", pathPrefix: "/vayon/founder", industries: allIndustries, roles: founderRoles },
   { id: "ai-company-orchestration", pathPrefix: "/vayon/ai/collaboration", industries: allIndustries, roles: founderRoles },
   { id: "ai-playground", pathPrefix: "/vayon/ai/playground", industries: allIndustries, roles: founderRoles },
-  { id: "platform-ai-team", pathPrefix: "/vayon/ai", industries: allIndustries, roles: founderRoles },
+  // The former blanket "/vayon/ai" founder-only rule was removed here: it unintentionally
+  // blocked the customer-facing AI Workforce pages (workforce, employees, tasks, work-queue,
+  // history, goals, automations) for every paying customer regardless of plan. The two
+  // rules above it (ai-company-orchestration, ai-playground) are matched first by
+  // visibilityRuleForPath's first-match-wins .find(), so those two remain founder-only.
+  // The remaining /vayon/ai/* paths now match no rule -> canViewPath() allows any
+  // authenticated workspace member through; commercial (Professional+) access is enforced
+  // separately by requireEntitlement("ai_workforce") on each page, and mutation-level
+  // authorization is unaffected (guardSubscriptionAction + the ai_employees permission
+  // module for navigation + the DB-level can_govern_ai() role check on every AI Workforce
+  // mutation RPC all remain exactly as they were).
   { id: "platform-ai-workforce", pathPrefix: "/vayon/workforce", industries: allIndustries, roles: founderRoles },
   { id: "workflow-designer", pathPrefix: "/vayon/workflows", industries: allIndustries, roles: founderRoles },
   { id: "creative-operating-system", pathPrefix: "/vayon/creative", industries: allIndustries, roles: founderRoles },

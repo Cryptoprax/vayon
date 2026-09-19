@@ -2,8 +2,16 @@ import { WorkspaceContent } from "@/features/platform/design-system/layout/Works
 import { AIHeader, ProviderHealth } from "@/features/vayon/ai-workforce/components/AIWorkforceUI";
 import { WorkforceDirectory } from "@/features/vayon/operational-workforce/components/WorkforceDirectory";
 import { WorkforceService } from "@/features/vayon/operational-workforce/services/workforce.service";
+import { requireEntitlement, FeatureNotEntitledError } from "@/features/vayon/billing/services/require-entitlement";
+import { EntitlementUpgradeRequired } from "@/features/vayon/billing/components/EntitlementUpgradeRequired";
 
 export default async function Page() {
+  try {
+    await requireEntitlement("ai_workforce");
+  } catch (error) {
+    if (error instanceof FeatureNotEntitledError) return <EntitlementUpgradeRequired feature="ai_workforce" label="AI Workforce" />;
+    throw error;
+  }
   const snapshot = await (await WorkforceService.production()).snapshot();
   const health = snapshot.runtimeHealth;
   return <WorkspaceContent >

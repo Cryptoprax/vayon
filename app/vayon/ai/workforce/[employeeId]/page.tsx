@@ -16,6 +16,8 @@ import { EmployeeIdentityPanel } from "@/features/vayon/operational-workforce/co
 import { AlexOperationsManagerDashboard } from "@/features/vayon/operational-workforce/components/AlexOperationsManagerDashboard";
 import { DavidFinanceManagerDashboard } from "@/features/vayon/operational-workforce/components/DavidFinanceManagerDashboard";
 import { OliviaCustomerSuccessManagerDashboard } from "@/features/vayon/operational-workforce/components/OliviaCustomerSuccessManagerDashboard";
+import { requireEntitlement, FeatureNotEntitledError } from "@/features/vayon/billing/services/require-entitlement";
+import { EntitlementUpgradeRequired } from "@/features/vayon/billing/components/EntitlementUpgradeRequired";
 const EmployeeHeadquartersSecondary = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeHeadquartersSecondary"));
 const EmployeeMemoryPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeMemoryPanel"));
 const EmployeeCollaborationPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeCollaborationPanel"));
@@ -25,6 +27,12 @@ export default async function Page({
 }: {
   params: Promise<{ employeeId: string }>;
 }) {
+  try {
+    await requireEntitlement("ai_workforce");
+  } catch (error) {
+    if (error instanceof FeatureNotEntitledError) return <EntitlementUpgradeRequired feature="ai_workforce" label="AI Workforce" />;
+    throw error;
+  }
   const { employeeId } = await params;
   const result = await (
     await WorkforceService.production()

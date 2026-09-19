@@ -3,6 +3,8 @@ import { guardSubscriptionApi } from "@/features/vayon/billing/services/subscrip
 import { z } from "zod";
 import { AICollaborationService } from "@/features/platform/ai-collaboration";
 import { enforceApiPermission } from "@/features/platform/permissions/runtime/http";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { isFounder } from "@/features/platform/founder/services/founder-context";
 const employee = z.enum([
     "sales-ai",
     "crm-ai",
@@ -26,6 +28,13 @@ const employee = z.enum([
     agents: z.array(employee).min(1).max(8).optional(),
   });
 export async function POST(request: Request) {
+  // AI Company Orchestration is Founder/Super Admin-only tooling -- its intended UI
+  // (app/platform/founder/command-center) already sits behind app/platform/layout.tsx's
+  // isFounder() gate, but that gate does not protect this API route itself. Reuse the
+  // same canonical founder-check primitive here so a normal authenticated customer
+  // cannot invoke this endpoint directly even with valid ai_employees permission.
+  const { data: { user } } = await (await createSupabaseServerClient()).auth.getUser();
+  if (!isFounder(user)) return Response.json({ error: "Forbidden" }, { status: 403, headers: { "Cache-Control": "private, no-store" } });
   const authorization=await enforceApiPermission("ai_employees","create");
   if(authorization.response)return authorization.response;
 const subscriptionResponse = await guardSubscriptionApi(); if (subscriptionResponse) return subscriptionResponse;

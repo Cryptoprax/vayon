@@ -1,6 +1,8 @@
 import { notFound, redirect } from "next/navigation";
 import type { AIEmployeeCode } from "@/features/platform/openai/domain/models";
 import { AIService } from "@/features/vayon/ai-workforce/services/ai.service";
+import { requireEntitlement, FeatureNotEntitledError } from "@/features/vayon/billing/services/require-entitlement";
+import { EntitlementUpgradeRequired } from "@/features/vayon/billing/components/EntitlementUpgradeRequired";
 
 const employeeMap: Record<string, AIEmployeeCode> = {
   ai_ceo: "executive-ai",
@@ -13,6 +15,12 @@ const employeeMap: Record<string, AIEmployeeCode> = {
 };
 
 export default async function Page({ params }: { params: Promise<{ employeeId: string }> }) {
+  try {
+    await requireEntitlement("ai_workforce");
+  } catch (error) {
+    if (error instanceof FeatureNotEntitledError) return <EntitlementUpgradeRequired feature="ai_workforce" label="AI Workforce" />;
+    throw error;
+  }
   const { employeeId } = await params;
   if (employeeId in employeeMap) redirect(`/vayon/ai/workforce/${employeeMap[employeeId]}`);
   const employee = (await new AIService().employees()).find((item) => item.id === employeeId);
