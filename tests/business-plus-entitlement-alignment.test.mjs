@@ -54,8 +54,10 @@ test("6: Starter, Professional and Business entitlement definitions are unchange
     workflows: 1000, automations: 1000, integrations: 25, knowledge_articles: 10000, creative_assets: 2500, api_calls: 100000,
   });
   assert.equal(subscriptionEntitlementCatalog.starter.features.length, 5);
-  assert.equal(subscriptionEntitlementCatalog.professional.features.length, 15);
-  assert.equal(subscriptionEntitlementCatalog.business.features.length, 20);
+  // Professional/Business grew by exactly one entry (ai_workforce) under the approved
+  // Phase A/B entitlement foundation; Starter's count is untouched.
+  assert.equal(subscriptionEntitlementCatalog.professional.features.length, 16);
+  assert.equal(subscriptionEntitlementCatalog.business.features.length, 21);
 });
 
 test("7: Business Plus remains selfService === true", () => {
@@ -84,7 +86,7 @@ test("11: public pricing CTA routes Business Plus to self-service signup and onl
   assert.doesNotMatch(pricingTableSource, /plan\.name === "Business Plus"/);
   assert.match(pricingTableSource, /plan\.name === "Enterprise"\s*\n\s*\?\s*"\/contact\?intent=sales"/);
   assert.match(pricingTableSource, /\/signup\?plan=\$\{plan\.code\}/);
-  assert.match(pricingTableSource, /plan\.name === "Enterprise" \? "Contact Sales" : "Start Free"/);
+  assert.match(pricingTableSource, /plan\.name === "Enterprise" \? "Contact Sales" : "Get Started"/);
 });
 
 test("12: Business Plus price remains $799 monthly", () => {

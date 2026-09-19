@@ -71,6 +71,38 @@ const rows = [
   "Custom Integrations",
   "SLA",
 ] as const;
+// Positioning + capability copy shown on each plan card. Every capability listed
+// here is verified against features/vayon/billing/config/entitlements.ts (the
+// authoritative entitlement source) and confirmed to have real implementation in
+// the repository -- nothing here is copied from the comparison table below without
+// independent verification. Capacity is shown separately from capabilities so a
+// visitor can see both what a plan unlocks and how much room it provides.
+const planHighlights: Record<string, { positioning: string; progressiveFrom?: string; capabilities: readonly string[] }> = {
+  Starter: {
+    positioning: "Core tools to launch and run the business.",
+    capabilities: ["CRM (contacts, companies, deals)", "Calendar & scheduling", "AI assistant", "Knowledge base", "Email"],
+  },
+  Professional: {
+    positioning: "AI-powered growth, marketing and creative capabilities.",
+    progressiveFrom: "Starter",
+    capabilities: ["Marketing AI", "AI sales assistant", "Customer success tools", "Creative Studio", "Workflow automation", "Google, Microsoft & WhatsApp integrations"],
+  },
+  Business: {
+    positioning: "Operations, analytics and automation for established businesses.",
+    progressiveFrom: "Professional",
+    capabilities: ["Advanced AI", "Advanced analytics", "Approval workflows", "API access", "Priority support"],
+  },
+  "Business Plus": {
+    positioning: "Advanced governance and support for larger organizations.",
+    progressiveFrom: "Business",
+    capabilities: ["Audit logs", "Role management"],
+  },
+  Enterprise: {
+    positioning: "Custom enterprise operating environment.",
+    progressiveFrom: "Business Plus",
+    capabilities: ["SSO & custom security", "Private infrastructure", "White-label branding", "Custom integrations", "SLA-backed support"],
+  },
+};
 const faqs = [
   [
     "How does billing work?",
@@ -191,7 +223,17 @@ export function PricingTable({ foundingAvailable = false }: { foundingAvailable?
                   </p>
                 )}
                 {annual && plan.standardMonthlyPrice !== null && <p className="mt-3 text-xs text-vds-muted">${(plan.standardMonthlyPrice * 12 * 0.8).toFixed(2)} billed annually.</p>}
-                <ul className="mt-5 space-y-2 text-sm">
+                {planHighlights[plan.name] && <div className="mt-5">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-vds-subtle">{planHighlights[plan.name].positioning}</p>
+                  {planHighlights[plan.name].progressiveFrom && <p className="mt-3 text-sm font-medium">Everything in {planHighlights[plan.name].progressiveFrom}, plus:</p>}
+                  <ul className="mt-3 space-y-2 text-sm">
+                    {planHighlights[plan.name].capabilities.map((capability) => (
+                      <li className="flex items-center gap-2" key={capability}><Check aria-hidden="true" className="size-4 shrink-0 text-vds-primary" />{capability}</li>
+                    ))}
+                  </ul>
+                </div>}
+                <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-vds-subtle">Capacity</p>
+                <ul className="mt-3 space-y-2 text-sm">
                   <li className="flex items-center gap-2"><Check aria-hidden="true" className="size-4 shrink-0 text-vds-primary" />{plan.seats} team members</li>
                   <li className="flex items-center gap-2"><Check aria-hidden="true" className="size-4 shrink-0 text-vds-primary" />{plan.workspaces} workspaces</li>
                   <li className="flex items-center gap-2"><Check aria-hidden="true" className="size-4 shrink-0 text-vds-primary" />{plan.storage} storage</li>
@@ -206,7 +248,7 @@ export function PricingTable({ foundingAvailable = false }: { foundingAvailable?
                       : `/signup?plan=${plan.code}&period=${annual ? "annual" : "monthly"}`
                   }
                 >
-                  {plan.name === "Enterprise" ? "Contact Sales" : "Start Free"}
+                  {plan.name === "Enterprise" ? "Contact Sales" : "Get Started"}
                 </ButtonLink>
               </article>
               );
@@ -401,10 +443,13 @@ function value(row: string, index: number, plan: number) {
     index < 5 ? 0 : index < 15 ? 1 : index < 25 ? 2 : index < 30 ? 3 : 4;
   return plan >= threshold ? (
     <span className="inline-flex items-center gap-1 text-vds-primary">
-      <Check className="size-4" />
+      <Check aria-hidden="true" className="size-4" />
       Included
     </span>
   ) : (
-    "-"
+    <span>
+      <span aria-hidden="true">-</span>
+      <span className="sr-only">Not included</span>
+    </span>
   );
 }

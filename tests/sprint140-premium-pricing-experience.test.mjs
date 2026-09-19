@@ -10,7 +10,7 @@ test("pricing starts with simple plan selection and omits duplicated marketing",
   for (const evidence of [
     "Simple pricing",
     "Choose the plan that fits your business.",
-    "Start Free",
+    "Get Started",
     "Annual",
     "Monthly",
   ])
