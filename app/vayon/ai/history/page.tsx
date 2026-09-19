@@ -3,6 +3,7 @@ import { WorkforceShell } from "@/features/vayon/operational-workforce/component
 import { WorkforceService } from "@/features/vayon/operational-workforce/services/workforce.service";
 import { requireEntitlement, FeatureNotEntitledError } from "@/features/vayon/billing/services/require-entitlement";
 import { EntitlementUpgradeRequired } from "@/features/vayon/billing/components/EntitlementUpgradeRequired";
+export const dynamic = "force-dynamic";
 export default async function Page() {
   try {
     await requireEntitlement("ai_workforce");

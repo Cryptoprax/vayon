@@ -11,17 +11,18 @@ import { WhatsAppAIDashboard, WhatsAppAIService } from "@/features/platform/what
 import { EmmaMarketingManagerDashboard, MarketingAIDashboard, MarketingAIService } from "@/features/platform/marketing-ai";
 import { ExecutiveAIDashboard, ExecutiveAIService } from "@/features/platform/executive-ai";
 import { AICollaborationService, ExecutiveCollaborationDashboard } from "@/features/platform/ai-collaboration";
-import dynamic from "next/dynamic";
+import nextDynamic from "next/dynamic";
 import { EmployeeIdentityPanel } from "@/features/vayon/operational-workforce/components/EmployeeIdentityPanel";
 import { AlexOperationsManagerDashboard } from "@/features/vayon/operational-workforce/components/AlexOperationsManagerDashboard";
 import { DavidFinanceManagerDashboard } from "@/features/vayon/operational-workforce/components/DavidFinanceManagerDashboard";
 import { OliviaCustomerSuccessManagerDashboard } from "@/features/vayon/operational-workforce/components/OliviaCustomerSuccessManagerDashboard";
 import { requireEntitlement, FeatureNotEntitledError } from "@/features/vayon/billing/services/require-entitlement";
 import { EntitlementUpgradeRequired } from "@/features/vayon/billing/components/EntitlementUpgradeRequired";
-const EmployeeHeadquartersSecondary = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeHeadquartersSecondary"));
-const EmployeeMemoryPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeMemoryPanel"));
-const EmployeeCollaborationPanel = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeCollaborationPanel"));
-const EmployeeDailyWorkspace = dynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeDailyWorkspace"));
+const EmployeeHeadquartersSecondary = nextDynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeHeadquartersSecondary"));
+const EmployeeMemoryPanel = nextDynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeMemoryPanel"));
+const EmployeeCollaborationPanel = nextDynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeCollaborationPanel"));
+const EmployeeDailyWorkspace = nextDynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeDailyWorkspace"));
+export const dynamic = "force-dynamic";
 export default async function Page({
   params,
 }: {

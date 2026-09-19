@@ -7,6 +7,7 @@ import Link from "next/link";
 import { requireEntitlement, FeatureNotEntitledError } from "@/features/vayon/billing/services/require-entitlement";
 import { EntitlementUpgradeRequired } from "@/features/vayon/billing/components/EntitlementUpgradeRequired";
 
+export const dynamic = "force-dynamic";
 export default async function Page() {
   try {
     await requireEntitlement("automation");

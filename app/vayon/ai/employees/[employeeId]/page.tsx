@@ -14,6 +14,7 @@ const employeeMap: Record<string, AIEmployeeCode> = {
   ai_support_assistant: "whatsapp-ai",
 };
 
+export const dynamic = "force-dynamic";
 export default async function Page({ params }: { params: Promise<{ employeeId: string }> }) {
   try {
     await requireEntitlement("ai_workforce");

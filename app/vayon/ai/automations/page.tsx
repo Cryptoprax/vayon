@@ -1,6 +1,7 @@
 import { requireEntitlement, FeatureNotEntitledError } from "@/features/vayon/billing/services/require-entitlement";
 import { EntitlementUpgradeRequired } from "@/features/vayon/billing/components/EntitlementUpgradeRequired";
 import { FeatureAvailabilityState } from "@/features/vayon/empty-states/FeatureAvailabilityState";
+export const dynamic = "force-dynamic";
 export default async function Page() {
   try {
     await requireEntitlement("ai_workforce");
