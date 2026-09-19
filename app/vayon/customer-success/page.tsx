@@ -4,6 +4,8 @@ import type { ConversationSnapshot } from "@/features/platform/openai/runtime/mo
 import { WorkforceRuntimeService } from "@/features/platform/openai/runtime/service";
 import { CustomerSuccessWorkspace } from "@/features/platform/customer-success-workspace/components/CustomerSuccessWorkspace";
 import { CustomerSuccessWorkspaceService } from "@/features/platform/customer-success-workspace/services/customer-success-workspace.service";
+import { requireEntitlement, FeatureNotEntitledError } from "@/features/vayon/billing/services/require-entitlement";
+import { EntitlementUpgradeRequired } from "@/features/vayon/billing/components/EntitlementUpgradeRequired";
 
 export const dynamic = "force-dynamic";
 const unavailable: OpenAIHealth = {
@@ -19,6 +21,12 @@ const unavailable: OpenAIHealth = {
   empty: ConversationSnapshot = { conversations: [], messages: [] };
 
 export default async function Page() {
+  try {
+    await requireEntitlement("customer_success");
+  } catch (error) {
+    if (error instanceof FeatureNotEntitledError) return <EntitlementUpgradeRequired feature="customer_success" label="Customer Success tools" />;
+    redirect("/login?next=/vayon/customer-success");
+  }
   const service = new CustomerSuccessWorkspaceService();
   let data;
   try {

@@ -4,7 +4,7 @@ export type SubscriptionPlanCode = (typeof planCodes)[number];
 export const entitlementFeatures = [
   "crm", "calendar", "basic_ai", "knowledge", "email", "integrations_marketplace",
   "marketing_ai", "sales_ai", "customer_success", "creative_studio", "workflow_automation",
-  "google", "microsoft", "whatsapp", "advanced_ai", "advanced_analytics", "automation",
+  "ai_workforce", "google", "microsoft", "whatsapp", "advanced_ai", "advanced_analytics", "automation",
   "approvals", "api", "priority_support", "white_label", "sso", "custom_domain", "audit",
   "custom_roles", "advanced_security", "priority_ai", "founder_tools",
 ] as const;
@@ -28,7 +28,7 @@ export interface SubscriptionEntitlementPlan {
 const starterFeatures = ["crm", "calendar", "basic_ai", "knowledge", "email"] as const;
 const professionalFeatures = [
   ...starterFeatures, "integrations_marketplace", "marketing_ai", "sales_ai", "customer_success",
-  "creative_studio", "workflow_automation", "google", "microsoft", "whatsapp", "automation",
+  "creative_studio", "workflow_automation", "ai_workforce", "google", "microsoft", "whatsapp", "automation",
 ] as const;
 const businessFeatures = [
   ...professionalFeatures, "advanced_ai", "advanced_analytics", "approvals", "api", "priority_support",

@@ -4,8 +4,16 @@ import { WorkflowAutomationDashboard } from "@/features/platform/workflows/compo
 import { WorkflowAutomationService } from "@/features/platform/workflows/services/automation.service";
 import { WorkflowOrchestrator } from "@/features/vayon/workflow-orchestrator/components/WorkflowOrchestrator";
 import Link from "next/link";
+import { requireEntitlement, FeatureNotEntitledError } from "@/features/vayon/billing/services/require-entitlement";
+import { EntitlementUpgradeRequired } from "@/features/vayon/billing/components/EntitlementUpgradeRequired";
 
 export default async function Page() {
+  try {
+    await requireEntitlement("automation");
+  } catch (error) {
+    if (error instanceof FeatureNotEntitledError) return <EntitlementUpgradeRequired feature="automation" label="Workflow Automation" />;
+    throw error;
+  }
   const snapshot = await new WorkflowAutomationService().snapshot();
   return (
     <WorkspaceContent >

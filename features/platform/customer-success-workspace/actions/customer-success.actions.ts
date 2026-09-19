@@ -1,11 +1,13 @@
 "use server";
 import { guardSubscriptionAction } from "@/features/vayon/billing/services/subscription-write-guard";
+import { requireEntitlement } from "@/features/vayon/billing/services/require-entitlement";
 
 import { revalidatePath } from "next/cache";
 import { EnterpriseOnboardingService } from "@/features/onboarding/services/enterprise-onboarding.service";
 
 export async function completeCustomerSuccessTaskAction(step: number) {
 await guardSubscriptionAction();
+await requireEntitlement("customer_success");
 
   const service = new EnterpriseOnboardingService(),
     session = await service.session();
@@ -22,6 +24,7 @@ await guardSubscriptionAction();
 
 export async function configureCustomerAIAction(employees: readonly string[]) {
 await guardSubscriptionAction();
+await requireEntitlement("customer_success");
 
   const allowed = new Set([
       "Marketing AI",
