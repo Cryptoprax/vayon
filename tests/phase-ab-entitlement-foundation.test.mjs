@@ -89,9 +89,11 @@ test("15: the new server guard delegates to SubscriptionEntitlementService.requi
 });
 // Phase A/B itself shipped zero call sites. Phase C1 wired the guard into six files.
 // Option C (a later, separately approved controlled phase) added the remaining page-level
-// gates on the customer-safe /vayon/ai/* routes and the chat API. This asserts the current
-// allowlist rather than zero, so any *unexpected* future call site still fails.
-test("16: only the Phase C1/Option C-approved call sites invoke the new guard -- nothing unexpected", () => {
+// gates on the customer-safe /vayon/ai/* routes and the chat API. Phase C2 (a further later,
+// separately approved controlled phase) added the three real Business+/Business-Plus+ gates
+// (advanced_analytics, api, audit). This asserts the current allowlist rather than zero, so
+// any *unexpected* future call site still fails.
+test("16: only the Phase C1/Option C/Phase C2-approved call sites invoke the new guard -- nothing unexpected", () => {
   let output = "";
   try { output = execSync('git grep -l "requireEntitlement" -- ":!tests" ":!features/vayon/billing/services/require-entitlement.ts"', { cwd: process.cwd() }).toString(); }
   catch { output = ""; }
@@ -116,6 +118,9 @@ test("16: only the Phase C1/Option C-approved call sites invoke the new guard --
     "app/vayon/ai/workforce/page.tsx",
     // Comment-only reference (explains why the visibility rule was removed); not a call site.
     "features/platform/visibility/policy.ts",
+    "app/vayon/analytics/executive/page.tsx",
+    "app/vayon/settings/activity/page.tsx",
+    "app/api/security/route.ts",
   ].sort();
   assert.deepEqual(found, approved);
 });

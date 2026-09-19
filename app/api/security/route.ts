@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { EnterpriseSecurityService } from "@/features/platform/enterprise-security";
+import { requireEntitlement, FeatureNotEntitledError } from "@/features/vayon/billing/services/require-entitlement";
 const schema = z.discriminatedUnion("action", [
   z.object({
     action: z.literal("enroll-mfa"),
@@ -79,14 +80,36 @@ export async function POST(request: Request) {
       case "remove-device":
         await service.removeDevice(input.id);
         break;
-      case "create-token":
+      case "create-token": {
+        try {
+          await requireEntitlement("api");
+        } catch (error) {
+          if (error instanceof FeatureNotEntitledError)
+            return Response.json(
+              { error: "Programmatic API access (personal access tokens) is available on the Business plan.", code: "API_NOT_ENTITLED" },
+              { status: 403, headers: { "Cache-Control": "no-store" } },
+            );
+          throw error;
+        }
         return Response.json(
           await service.createToken(input.name, input.scopes, input.expiresAt),
           { headers: { "Cache-Control": "no-store" } },
         );
-      case "revoke-token":
+      }
+      case "revoke-token": {
+        try {
+          await requireEntitlement("api");
+        } catch (error) {
+          if (error instanceof FeatureNotEntitledError)
+            return Response.json(
+              { error: "Programmatic API access (personal access tokens) is available on the Business plan.", code: "API_NOT_ENTITLED" },
+              { status: 403, headers: { "Cache-Control": "no-store" } },
+            );
+          throw error;
+        }
         await service.revokeToken(input.id);
         break;
+      }
       case "switch-organization":
         await service.switchOrganization(
           input.organizationId,
