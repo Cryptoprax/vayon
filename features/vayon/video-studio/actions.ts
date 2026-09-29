@@ -43,6 +43,8 @@ async function execute(
     throw new Error(
       "Project and campaign are required for governed video storage.",
     );
+  const access = await creativeStudioAccess();
+  if (!access) throw new Error("Creative Studio access is required.");
   const studio = await VideoStudioService.production(),
     snapshot = studio ? await studio.snapshot() : null,
     campaign =
@@ -95,8 +97,23 @@ async function execute(
       campaign,
       storyboard,
     ),
-    id = crypto.randomUUID(),
-    result = await execution.accept({
+    id = crypto.randomUUID();
+  // ADS-B0: the quota claim happens as the LAST step before the real,
+  // expensive Sora video-generation call -- the storyboard step above uses
+  // capability "Document" (cheap text generation), never gated. Nothing
+  // between a successful claim and the accept() call below can fail, so a
+  // successful claim always corresponds to a real provider invocation
+  // actually being attempted. See the migration's own comment for why
+  // every call (including a user re-submitting after a failure) claims
+  // quota -- there is no job/retry queue here, so each execute() call is
+  // its own independent, legitimately-billable attempt.
+  const { error: quotaError } = await access.client.rpc("claim_creative_generation_quota", {
+    p_workspace_id: context.workspaceId,
+    p_organization_id: context.organizationId,
+    p_metric: "video_generations",
+  });
+  if (quotaError) throw quotaError;
+  const result = await execution.accept({
       id: `video-${id}`,
       organizationId: context.organizationId,
       workspaceId: context.workspaceId,
@@ -136,8 +153,6 @@ async function execute(
         ? output.metadata.storagePath
         : null;
   if (!path) return summary(result, null);
-  const access = await creativeStudioAccess();
-  if (!access) throw new Error("Creative Studio access is required.");
   const {
     data: { user },
   } = await access.client.auth.getUser();

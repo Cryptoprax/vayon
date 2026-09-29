@@ -121,8 +121,20 @@ export class CreativeGenerationWorker {
     try {
       const { prompt: approvedPrompt, size } = job.creative_brief_id
           ? await buildCampaignBriefPrompt(client, job)
-          : await buildAssistantPrompt(client, job),
-        result = await this.provider.generate({
+          : await buildAssistantPrompt(client, job);
+      // ADS-B0: the quota claim happens as the LAST step before the real
+      // provider call, on every attempt (see the migration's own comment
+      // for why retries are not exempted) -- nothing else in this try block
+      // can fail between the claim succeeding and the provider being
+      // invoked, so a successful claim always corresponds to a real
+      // provider invocation actually being attempted.
+      const { error: quotaError } = await client.rpc("claim_creative_generation_quota", {
+        p_workspace_id: String(job.workspace_id),
+        p_organization_id: String(job.organization_id),
+        p_metric: "image_generations",
+      });
+      if (quotaError) throw quotaError;
+      const result = await this.provider.generate({
           prompt: approvedPrompt,
           size,
           quality: "medium",
