@@ -2,7 +2,21 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 const read=(path)=>readFileSync(new URL(`../${path}`,import.meta.url),"utf8");
-test("login and signup retain Google plus email authentication",()=>{const login=read("app/login/page.tsx"),signup=read("app/signup/page.tsx"),actions=read("features/authentication/actions/auth.actions.ts");for(const source of [login,signup])assert.match(source,/Continue with Google/);assert.match(login,/AuthFields kind="login"/);assert.match(signup,/AuthFields kind="signup"/);assert.match(actions,/Google authentication is temporarily unavailable/)});
+test("login and signup retain Google plus email authentication",()=>{
+  // Since dacb4f5 "fix(auth): preserve selected plan through signup",
+  // app/signup/page.tsx delegates to a dedicated client SignupForm
+  // component (needed to carry selected-plan intent and pending/loading
+  // state) instead of rendering "Continue with Google" and AuthFields
+  // inline itself -- app/login/page.tsx was not part of that change and
+  // still renders both directly.
+  const login=read("app/login/page.tsx"),signup=read("app/signup/page.tsx"),signupForm=read("features/authentication/components/SignupForm.tsx"),actions=read("features/authentication/actions/auth.actions.ts");
+  assert.match(login,/Continue with Google/);
+  assert.match(login,/AuthFields kind="login"/);
+  assert.match(signup,/SignupForm/);
+  assert.match(signupForm,/Continue with Google/);
+  assert.match(signupForm,/AuthFields kind="signup"/);
+  assert.match(actions,/Google authentication is temporarily unavailable/);
+});
 test("CRM import is absent from onboarding and available after activation",()=>{const wizard=read("features/onboarding/components/EnterpriseOnboardingWizard.tsx"),dataImport=read("features/onboarding/components/DataImportWorkspace.tsx");assert.doesNotMatch(wizard,/CrmImportRecovery|initialStep === 9|CRM Import/);for(const value of ["HubSpot","Salesforce","Zoho","Pipedrive","CSV Import","Coming Soon"])assert.match(dataImport,new RegExp(value.replaceAll(".","\\.")))});
 test("campaign wizard gates navigation and empty recommendations",()=>{const studio=read("features/vayon/campaign-studio/CampaignStudio.tsx");for(const value of ["Campaign Name","Business Type","Industry","Target Country","Campaign Goal","Language","Primary Deliverable","Complete the required campaign information before AI recommendations can be generated.","disabled={!valid}","vayon-campaign-draft","completed","remaining"])assert.match(studio,new RegExp(value.replaceAll(".","\\.")))});
 test("calendar unavailable state is commercial and feature-flag safe",()=>{const calendar=read("features/platform/google-calendar/components/GoogleCalendarWorkspace.tsx");assert.match(calendar,/Connect Google Calendar/);assert.match(calendar,/Calendar integration is temporarily unavailable/);assert.match(calendar,/Retry/);assert.match(calendar,/Learn More/);assert.doesNotMatch(calendar,/Disabled by workspace feature flag/)});

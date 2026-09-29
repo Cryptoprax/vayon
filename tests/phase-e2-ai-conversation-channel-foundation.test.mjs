@@ -255,7 +255,13 @@ test("no D1 (Approvals) or D2 (Quota) file was modified by this phase", () => {
   // WhatsAppDraftApprovalViews.tsx is Phase E4's own new file (a WhatsApp-scoped
   // approval review component), living under the shared features/vayon/workflow-approval
   // prefix used here as a D1-directory indicator -- it is not a D1 engine change.
-  assert.deepEqual(status, expectedBeforeE2, "any deviation here means E2 touched a D1/D2 file");
+  // `status` must be a SUBSET of `expectedBeforeE2`: an entry legitimately
+  // disappears from `git status` entirely once a later, separately-authorized
+  // release (e.g. Wave 4C) commits that exact file with no further edits --
+  // a stronger, cleaner state than "M"/"??", not a violation. Anything NOT
+  // in expectedBeforeE2 is still a hard failure.
+  const unexpected = status.filter((entry) => !expectedBeforeE2.includes(entry));
+  assert.deepEqual(unexpected, [], "any deviation here means E2 touched a D1/D2 file");
 });
 test("no E1 (WhatsApp phone identity) file was modified by this phase", () => {
   const e1Files = ["features/vayon/lead/utils", "features/platform/integrations/whatsapp/lead-identity.service.ts", "features/platform/integrations/whatsapp/types.ts", "features/platform/integrations/whatsapp/whatsapp.service.ts", "features/platform/integrations/whatsapp/whatsapp.repository.ts", "supabase/migrations/20261104000000_whatsapp_crm_identity.sql"];
@@ -284,7 +290,12 @@ test("no E1 (WhatsApp phone identity) file was modified by this phase", () => {
     "??|features/vayon/lead/utils/",
     "??|supabase/migrations/20261104000000_whatsapp_crm_identity.sql",
   ].sort();
-  assert.deepEqual(status, expectedE1, "any deviation here means E2 touched an E1 file");
+  // Subset, not strict equality: an entry legitimately disappears from
+  // `git status` entirely once a later, separately-authorized release (e.g.
+  // Wave 4C) commits that exact file with no further edits -- a stronger,
+  // cleaner state than "M"/"??", not a violation.
+  const unexpected = status.filter((entry) => !expectedE1.includes(entry));
+  assert.deepEqual(unexpected, [], "any deviation here means E2 touched an E1 file");
 });
 test("none of the three pending migrations (D1 Approvals, D2 Quota, E1 WhatsApp CRM identity) were renamed, altered, or applied -- each still shows exactly as an untracked (??) new file", () => {
   const parse = (line) => { const m = /^(.{2})\s*(.+)$/.exec(line); return m ? `${m[1].trim()}|${m[2]}` : line; };

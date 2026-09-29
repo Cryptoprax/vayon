@@ -72,13 +72,22 @@ test("pricing contains commercial editions and annual savings", async () => {
     "Business",
     "Business Plus",
     "Enterprise",
-    "Annual · save 20%",
     "AI Workforce",
     "storage",
     "integrations",
     "support",
   ])
     assert.ok(source.includes(value), value);
+  // Since Sprint 236 ("unify pricing, trial entitlements and Paddle billing
+  // UX"), the savings label sources its percentage from the single
+  // canonical ANNUAL_SAVINGS_PERCENT constant (features/platform/commercial-
+  // pricing.ts) rather than a hardcoded "20%" literal, so the discount can
+  // never drift out of sync with the actual billing calculation. Verified
+  // two ways: the label text is present (with the percent interpolated as a
+  // JSX expression, not a literal substring), and the component genuinely
+  // imports the canonical constant rather than hardcoding its own value.
+  assert.match(source, /Annual[\s\S]{0,20}save[\s\S]{0,20}ANNUAL_SAVINGS_PERCENT/);
+  assert.match(source, /import\s*\{[^}]*\bANNUAL_SAVINGS_PERCENT\b[^}]*\}\s*from\s*["']@\/features\/platform\/commercial-pricing["']/);
 });
 test("conversion engine accepts every required acquisition intent", async () => {
   const action = await read("features/marketing/actions/lead.actions.ts"),

@@ -77,7 +77,12 @@ test("marketing claims and empty states do not fabricate launch evidence", () =>
   for (const boundary of [
     "no certification is implied",
     "No customer\\s+endorsement",
-    "Pricing available at launch",
+    // Updated by b3a7f13 "fix(marketing): align canonical SEO and pricing
+    // copy" -- the old "Pricing available at launch" placeholder implied
+    // pricing was a future promise; now that pricing and Paddle checkout are
+    // genuinely live, the honest claim is the concrete, factual replacement
+    // below, not a re-hedged restatement of the old placeholder.
+    "secure payments powered by Paddle",
     "No open roles published",
     "Contact channels coming soon",
   ])

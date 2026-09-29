@@ -111,7 +111,17 @@ test("trust contact resources status and changelog are launch ready without fabr
   ])
     assert.ok(status.includes(service), service);
   assert.match(status, /unknown/);
-  assert.match(home, /Founding Customer Offer/);
+  // Since Sprint 237 ("add Professional founding member billing"), the
+  // founding-offer section was extracted out of Homepage.tsx into its own
+  // <FoundingOffer /> component, whose visibility is now driven by a real
+  // fetch to /api/billing/paddle/founding/availability (rendering nothing
+  // when unavailable) instead of a hardcoded always-on flag -- a stronger
+  // anti-fabrication property than the literal heading text this test used
+  // to check for directly in Homepage.tsx.
+  const foundingOffer = read("features/marketing/components/FoundingOffer.tsx");
+  assert.match(home, /<FoundingOffer\s*\/>/);
+  assert.match(foundingOffer, /founding\/availability/);
+  assert.match(foundingOffer, /if \(!available\) return null;/);
   assert.match(home, /hasCustomerTestimonials = false/);
   assert.ok(
     read("app/(marketing)/release-notes/page.tsx").includes("v1.0.0 RC1"),

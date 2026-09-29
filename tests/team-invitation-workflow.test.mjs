@@ -11,6 +11,7 @@ const {evaluateWorkspacePermission}=load('features/platform/permissions/runtime/
 const {StaticNavigationSearchProvider}=loadPureModule('features/vayon/universal-bar/providers/static-navigation.provider.ts');
 const {rankUniversalResults}=loadPureModule('features/vayon/universal-bar/services/universal-search.service.ts');
 const {shellNavigation}=loadPureModule('features/vayon/product-shell/navigation.ts');
+const {isPaddleBillingPeriod,isPaddlePlanCode}=loadPureModule('features/vayon/billing/providers/paddle/paddle-catalog.ts');
 test('all team synonyms return the canonical invitation action first',()=>{const provider=new StaticNavigationSearchProvider(shellNavigation.flatMap(g=>g.items).map(p=>({...p,id:p.href,visible:true})));for(const query of ['Invite','Team','Members','User','Employee','Staff']){const results=rankUniversalResults(provider.search({query,scopes:provider.scopes}),query);assert.equal(results[0].label,'Invite Team Members',query);assert.equal(results[0].href,'/vayon/settings/members');assert.equal(results.filter(r=>r.href==='/vayon/settings/members').length,1);}});
 test('a settings ancestor cannot expose the invitation action when members navigation is absent',()=>{const provider=new StaticNavigationSearchProvider([{id:'settings',href:'/vayon/settings',label:'Settings',visible:true}]);for(const query of ['Invite','Team','Employee'])assert.ok(provider.search({query,scopes:provider.scopes}).every(r=>r.id!=='invite-team'));});
 test('existing RBAC grants owners and admins and denies agents; manager mismatch stays explicit',()=>{for(const role of ['organization_owner','organization_admin'])assert.equal(evaluateWorkspacePermission(role,{module:'team_management',action:'create'}).allowed,true);for(const role of ['agent','sales_representative','manager'])assert.equal(evaluateWorkspacePermission(role,{module:'team_management',action:'create'}).allowed,false);});
@@ -28,6 +29,10 @@ test('password login resumes invitation acceptance and rejects external return U
   if(name==='../services/authentication.service')return {AuthenticationService:class{async login(){return {error:null}}}};
   if(name==='../security/oauth')return {safeAuthenticatedPath};
   if(name==='@/lib/supabase/server')return {createSupabaseServerClient:async()=>({rpc:async()=>({error:null})})};
+  // Added by dacb4f5 "fix(auth): preserve selected plan through signup" --
+  // re-validates untrusted signup-form plan/period intent against the real
+  // Paddle allowlist before it can influence anything downstream.
+  if(name==='@/features/vayon/billing/providers/paddle/paddle-catalog')return {isPaddleBillingPeriod,isPaddlePlanCode};
   throw new Error('Unexpected dependency '+name);
  },mod,mod.exports);
  for(const [next,expected] of [['/accept-invitation','/accept-invitation'],['https://attacker.invalid','/vayon/dashboard'],['//attacker.invalid','/vayon/dashboard']]){const form=new FormData();form.set('next',next);await assert.rejects(mod.exports.loginAction(form),error=>error.message==='REDIRECT '+expected);}

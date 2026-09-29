@@ -11,7 +11,7 @@ export function loadPureModule(file) {
   const source = readFileSync(filename, "utf8");
   const code = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
   const compiledModule = { exports: {} };
-  const localRequire = name => name.startsWith("@/") ? loadPureModule(name.slice(2) + ".ts") : name.startsWith(".") ? loadPureModule(resolve(dirname(filename), name + ".ts")) : require(name);
+  const localRequire = name => name === "server-only" ? {} : name.startsWith("@/") ? loadPureModule(name.slice(2) + ".ts") : name.startsWith(".") ? loadPureModule(resolve(dirname(filename), name + ".ts")) : require(name);
   new Function("require", "module", "exports", code)(localRequire, compiledModule, compiledModule.exports);
   return compiledModule.exports;
 }

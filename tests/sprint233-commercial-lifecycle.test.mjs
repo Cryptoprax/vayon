@@ -6,13 +6,19 @@ const read = path => readFileSync(path, 'utf8');
 const source = ts.transpileModule(read('features/vayon/billing/config/trial.ts'), { compilerOptions: { module: ts.ModuleKind.ESNext } }).outputText;
 const { trialState, workspaceTrialLimits } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
 test('trial changes days at exact 24-hour boundaries and expires at 72 hours', () => {
-  const start=Date.parse('2026-01-01T00:00:00Z'),end='2026-01-04T00:00:00Z';
-  assert.deepEqual(trialState('trialing',end,start),{trial:true,expired:false,daysRemaining:3,day:1});
-  assert.equal(trialState('trialing',end,start+86400000).day,2);
-  assert.equal(trialState('trialing',end,start+2*86400000).day,3);
-  assert.equal(trialState('trialing',end,start+3*86400000-1).expired,false);
-  assert.equal(trialState('trialing',end,start+3*86400000).expired,true);
-  assert.equal(trialState('trialing',end,start+4*86400000).daysRemaining,0);
+  // Since Sprint 236 ("unify pricing, trial entitlements and Paddle billing
+  // UX"), day/totalDays are computed only from a real, persisted
+  // redeemedAt timestamp -- not inferred by assuming every trial is exactly
+  // WORKSPACE_TRIAL_DAYS long counting back from `end`, which could
+  // silently fabricate a "day N" display disconnected from when the trial
+  // actually started. redeemedAt below is that real trial-start date.
+  const redeemedAt='2026-01-01T00:00:00Z',start=Date.parse(redeemedAt),end='2026-01-04T00:00:00Z';
+  assert.deepEqual(trialState('trialing',end,start,redeemedAt),{trial:true,expired:false,daysRemaining:3,day:1,totalDays:3});
+  assert.equal(trialState('trialing',end,start+86400000,redeemedAt).day,2);
+  assert.equal(trialState('trialing',end,start+2*86400000,redeemedAt).day,3);
+  assert.equal(trialState('trialing',end,start+3*86400000-1,redeemedAt).expired,false);
+  assert.equal(trialState('trialing',end,start+3*86400000,redeemedAt).expired,true);
+  assert.equal(trialState('trialing',end,start+4*86400000,redeemedAt).daysRemaining,0);
 });
 test('paid subscriptions do not expire from an old trial timestamp; missing dates are not invented',()=>{
   assert.equal(trialState('active','2020-01-01').expired,false);

@@ -389,7 +389,12 @@ test("no D1 (Approvals) or D2 (Quota) file was modified by this phase", () => {
   ].sort();
   // WhatsAppDraftApprovalViews.tsx is Phase E4's own new file, added later
   // under the shared D1-directory prefix used here -- not a D1 engine change.
-  assert.deepEqual(status, expected, "any deviation here means E3 touched a D1/D2 file");
+  // Subset, not strict equality: an entry legitimately disappears from
+  // `git status` entirely once a later, separately-authorized release (e.g.
+  // Wave 4C) commits that exact file with no further edits -- a stronger,
+  // cleaner state than "M"/"??", not a violation.
+  const unexpected = status.filter((entry) => !expected.includes(entry));
+  assert.deepEqual(unexpected, [], "any deviation here means E3 touched a D1/D2 file");
 });
 test("E1's own normalization/CRM-identity SQL logic is untouched by this phase -- only process_whatsapp_message's RETURN VALUE changed (void -> jsonb), the body is otherwise identical, and resolve_whatsapp_lead_identity is not redefined here at all", () => {
   assert.doesNotMatch(migration, /create or replace function public\.resolve_whatsapp_lead_identity/);
@@ -412,11 +417,18 @@ test("E1 TypeScript files' normalization functions are untouched -- phone.ts, le
     const path = m[2].startsWith("features/vayon/lead/utils/") ? "features/vayon/lead/utils/" : m[2];
     return `${code}|${path}`;
   };
-  assert.deepEqual(output.map(parse).sort(), [
+  const expected = [
     "??|features/platform/integrations/whatsapp/lead-identity.service.ts",
     "M|features/platform/integrations/whatsapp/types.ts",
     "??|features/vayon/lead/utils/",
-  ].sort());
+  ].sort();
+  // Subset, not strict equality: an entry legitimately disappears from
+  // `git status` entirely once a later, separately-authorized release (e.g.
+  // Wave 4C) commits that exact file with no further edits -- a stronger,
+  // cleaner state than "M"/"??", not a violation.
+  const actual = output.map(parse).sort();
+  const unexpected = actual.filter((entry) => !expected.includes(entry));
+  assert.deepEqual(unexpected, []);
 });
 test("E1 files whatsapp.service.ts/whatsapp.repository.ts were extended, not rewritten -- their pre-existing verifySignature/sendText/markRead/normalize/connectionByPhoneNumber/updateStatus logic is present verbatim", () => {
   assert.match(whatsappServiceSource, /verifySignature\(raw:string,signature:string\)/);

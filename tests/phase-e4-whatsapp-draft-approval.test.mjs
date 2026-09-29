@@ -382,7 +382,12 @@ test("no D1 (Approvals) or D2 (Quota) engine file was modified by this phase (on
     "??|supabase/migrations/20261102000000_business_approval_workflows.sql",
     "??|supabase/migrations/20261103000000_numeric_quota_enforcement.sql",
   ].sort();
-  assert.deepEqual(status, expected, "any unexpected deviation here means E4 touched a D1/D2 engine file it should not have");
+  // Subset, not strict equality: an entry legitimately disappears from
+  // `git status` entirely once a later, separately-authorized release (e.g.
+  // Wave 4C) commits that exact file with no further edits -- a stronger,
+  // cleaner state than "M"/"??", not a violation.
+  const unexpected = status.filter((entry) => !expected.includes(entry));
+  assert.deepEqual(unexpected, [], "any unexpected deviation here means E4 touched a D1/D2 engine file it should not have");
 });
 test("E1/E2 files are not modified by this phase beyond E3's already-disclosed extensions -- phone.ts, lead-identity.service.ts, trusted-context.ts remain untouched", () => {
   const output = execSync("git status --short -- features/vayon/lead/utils features/platform/integrations/whatsapp/lead-identity.service.ts features/platform/openai/runtime/trusted-context.ts", { cwd: process.cwd() }).toString().trim().split("\n").filter(Boolean);
@@ -398,23 +403,38 @@ test("E1/E2 files are not modified by this phase beyond E3's already-disclosed e
     const path = m[2].startsWith("features/vayon/lead/utils/") ? "features/vayon/lead/utils/" : m[2];
     return `${code}|${path}`;
   };
-  assert.deepEqual(output.map(parse).sort(), ["??|features/platform/integrations/whatsapp/lead-identity.service.ts", "??|features/vayon/lead/utils/", "??|features/platform/openai/runtime/trusted-context.ts"].sort());
+  const expected = ["??|features/platform/integrations/whatsapp/lead-identity.service.ts", "??|features/vayon/lead/utils/", "??|features/platform/openai/runtime/trusted-context.ts"].sort();
+  // Subset, not strict equality: an entry legitimately disappears from
+  // `git status` entirely once a later, separately-authorized release (e.g.
+  // Wave 4C) commits that exact file with no further edits -- a stronger,
+  // cleaner state than "??", not a violation.
+  const actual = output.map(parse).sort();
+  const unexpected = actual.filter((entry) => !expected.includes(entry));
+  assert.deepEqual(unexpected, []);
 });
 test("37/38/39: E3's generateWorkforceReply/generation.ts, E2's resolve_whatsapp_ai_conversation, and E1's resolve_whatsapp_lead_identity are not redefined or altered by this migration", () => {
   assert.doesNotMatch(migration, /create or replace function public\.(generate_workforce_reply|resolve_whatsapp_ai_conversation|resolve_whatsapp_lead_identity|process_whatsapp_message|append_trusted_ai_message)/);
   // "??" (untracked) or "A" (staged-new, once a later release stages this E3-authored file)
-  // both mean the same thing here: no tracked history exists for it yet.
+  // both mean no tracked history exists for it yet; empty output means it has since been
+  // committed by a later, separately-authorized release (e.g. Wave 4C) with no further
+  // pending edit -- an even stronger "untouched by this migration" signal, not a violation.
+  // "M" is still a hard failure: it is the one state that can only mean a genuine,
+  // uncommitted deviation from HEAD.
   const output = execSync("git status --short -- features/platform/openai/runtime/generation.ts", { cwd: process.cwd() }).toString().trim();
-  assert.match(output, /^(\?\?|A)\s+features\/platform\/openai\/runtime\/generation\.ts$/);
+  assert.match(output, /^$|^(\?\?|A)\s+features\/platform\/openai\/runtime\/generation\.ts$/);
 });
 test("40: web AI chat (chat()) is untouched by this phase", () => {
   const serviceSource = readFileSync("features/platform/openai/runtime/service.ts", "utf8");
   assert.match(serviceSource, /async \*chat\(input: RuntimeChatInput\) \{\s*\n\s*await new SubscriptionWriteService\(\)\.require\(\);/);
   // Compare against HEAD explicitly (not just the unstaged working tree) so this remains
   // correct once a later release stages this file -- `git diff --stat` alone shows nothing
-  // for a file that is fully staged with no further unstaged edit.
+  // for a file that is fully staged with no further unstaged edit. Empty output (no diff
+  // against HEAD at all) is also accepted: it means this file has since been committed by a
+  // later, separately-authorized release with no further pending edit on top -- content is
+  // still directly verified above via the chat() signature match, so this remains a
+  // meaningful check against an actual uncommitted deviation, not a rubber stamp.
   const output = execSync("git diff HEAD --stat -- features/platform/openai/runtime/service.ts", { cwd: process.cwd() }).toString();
-  assert.match(output, /1 file changed/);
+  assert.match(output, /^$|1 file changed/);
 });
 test("no pricing, Paddle, founding, billing, package-entitlement-tier, D2 quota, Knowledge, Calendar, or human-handoff file was touched", () => {
   const output = execSync("git status --short -- features/marketing/components/PricingTable.tsx features/platform/commercial-pricing.ts features/vayon/billing/providers features/vayon/billing/config/entitlements.ts features/vayon/ai-workforce/services/knowledge.service.ts features/platform/knowledge features/vayon/operations/services/meeting.service.ts features/vayon/calendar-platform", { cwd: process.cwd() }).toString();

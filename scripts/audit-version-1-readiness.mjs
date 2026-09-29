@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
-import { basename, join } from "node:path";
+import { join } from "node:path";
 
 const root = process.cwd();
 const migrationRoot = join(root, "supabase/migrations");
@@ -57,7 +57,9 @@ for (const directory of ["app", "features"]) {
 const declaredFunctions = new Set(
   sql.flatMap(({ source }) =>
     [
-      ...source.matchAll(/create or replace function public\.([a-z0-9_]+)/gi),
+      ...source.matchAll(
+        /create (?:or replace )?function public\.([a-z0-9_]+)/gi,
+      ),
     ].map((match) => match[1]),
   ),
 );
@@ -129,7 +131,7 @@ if (structuralFailure) {
     );
   if (missingRpcDefinitions.length)
     console.log(
-      `Review note: ${missingRpcDefinitions.length} RPC calls are external/legacy declarations requiring deployed-schema verification: ${missingRpcDefinitions.map(basename).join(", ")}.`,
+      `Review note: ${missingRpcDefinitions.length} RPC calls are external/legacy declarations requiring deployed-schema verification: ${missingRpcDefinitions.join(", ")}.`,
     );
 }
 

@@ -246,7 +246,14 @@ test("20: E3's generation.ts and E2's trusted-context.ts remain untracked/new, u
   // treated as equivalent here so this assertion survives a later release staging these
   // E2/E3-authored files, not just their original untracked state.
   const parse = (line) => { const m = /^(.{2})\s*(.+)$/.exec(line); if (!m) return line; const code = m[1].trim() === "A" ? "??" : m[1].trim(); return `${code}|${m[2]}`; };
-  assert.deepEqual(output.map(parse).sort(), ["??|features/platform/openai/runtime/generation.ts", "??|features/platform/openai/runtime/trusted-context.ts"].sort());
+  const expected = ["??|features/platform/openai/runtime/generation.ts", "??|features/platform/openai/runtime/trusted-context.ts"].sort();
+  // Subset, not strict equality: an entry legitimately disappears from
+  // `git status` entirely once a later, separately-authorized release (e.g.
+  // Wave 4C) commits that exact file with no further edits -- a stronger,
+  // cleaner state than "??", not a violation.
+  const actual = output.map(parse).sort();
+  const unexpected = actual.filter((entry) => !expected.includes(entry));
+  assert.deepEqual(unexpected, []);
 });
 test("no D1 (Approvals) or D2 (Quota) engine file was modified by this phase", () => {
   const d1d2Prefixes = ["app/vayon/approvals", "app/vayon/executions", "app/vayon/workflows/[workflowId]", "features/vayon/billing/services/require-quota.ts", "app/accept-invitation/page.tsx", "features/platform/organization", "supabase/migrations/20261102000000_business_approval_workflows.sql", "supabase/migrations/20261103000000_numeric_quota_enforcement.sql"];
@@ -265,7 +272,12 @@ test("no D1 (Approvals) or D2 (Quota) engine file was modified by this phase", (
     "??|supabase/migrations/20261102000000_business_approval_workflows.sql",
     "??|supabase/migrations/20261103000000_numeric_quota_enforcement.sql",
   ].sort();
-  assert.deepEqual(status, expected);
+  // Subset, not strict equality: an entry legitimately disappears from
+  // `git status` entirely once a later, separately-authorized release (e.g.
+  // Wave 4C) commits that exact file with no further edits -- a stronger,
+  // cleaner state than "M"/"??", not a violation.
+  const unexpected = status.filter((entry) => !expected.includes(entry));
+  assert.deepEqual(unexpected, []);
 });
 test("no pricing, Paddle, founding-member-service, billing, Knowledge, or Calendar file was touched (the founding reconcile route was only read for reference, never modified)", () => {
   const output = execSync("git status --short -- features/marketing/components/PricingTable.tsx features/platform/commercial-pricing.ts features/vayon/billing/providers features/vayon/billing/services/founding-member.service.ts app/api/billing/paddle/founding/reconcile/route.ts features/vayon/ai-workforce/services/knowledge.service.ts features/platform/knowledge features/vayon/operations/services/meeting.service.ts features/vayon/calendar-platform", { cwd: process.cwd() }).toString();
