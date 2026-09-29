@@ -2,7 +2,66 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { load } from "./helpers/sprint237-load.mjs";
-import { fakeClient, propertyRow } from "./helpers/fake-supabase-c2.mjs";
+
+// ADS-B0E: fakeClient/propertyRow inlined rather than imported from
+// tests/helpers/fake-supabase-c2.mjs -- that helper has zero commit history
+// (still deferred), so importing it left this test file unable to run in a
+// clean checkout of committed history. Both functions are small, fully
+// generic, feature-agnostic test utilities (no C2-specific logic despite
+// the source file's name) -- duplicating them here is the smallest durable
+// fix, not a deferred-feature-tree pull-in. Keep byte-identical to the
+// original if that helper is ever committed, so there is no drift to
+// reconcile later.
+function fakeClient({ tables = {}, rpcs = {} } = {}) {
+  const rpcCalls = [];
+  function builder(table) {
+    const filters = [];
+    let rows = tables[table] ?? [];
+    const api = {
+      select() { return api; },
+      eq(col, val) { filters.push((row) => row[col] === val); return api; },
+      is(col, val) { filters.push((row) => (row[col] ?? null) === val); return api; },
+      in(col, vals) { filters.push((row) => vals.includes(row[col])); return api; },
+      order() { return api; },
+      limit() { return api; },
+      maybeSingle: async () => {
+        const matched = rows.filter((row) => filters.every((f) => f(row)));
+        return { data: matched[0] ?? null, error: null };
+      },
+      single: async () => {
+        const matched = rows.filter((row) => filters.every((f) => f(row)));
+        return matched.length === 1 ? { data: matched[0], error: null } : { data: null, error: new Error("no rows or multiple rows found") };
+      },
+      then(resolve, reject) {
+        const matched = rows.filter((row) => filters.every((f) => f(row)));
+        return Promise.resolve({ data: matched, error: null }).then(resolve, reject);
+      },
+    };
+    return api;
+  }
+  return {
+    from: (table) => builder(table),
+    rpc: async (name, params) => {
+      rpcCalls.push([name, params]);
+      const handler = rpcs[name];
+      if (!handler) return { data: null, error: new Error(`no rpc handler for ${name}`) };
+      return handler(params);
+    },
+    storage: { from: () => ({ upload: async () => ({ data: {}, error: null }) }) },
+    auth: { getUser: async () => ({ data: { user: { id: "user-1" } }, error: null }) },
+    _rpcCalls: rpcCalls,
+  };
+}
+function propertyRow(over = {}) {
+  return {
+    id: "property-1", reference: "REF-1", title: "Aurora Heights", property_type: "apartment", listing_type: "sale",
+    status: "available", country_code: "IN", region: "Karnataka", city: "Bengaluru", locality: "Indiranagar",
+    address: "123 Main St", bedrooms: 3, bathrooms: 2, area: "1500", area_unit: "sqft", parking: 1, floor: 5,
+    amenities: ["Swimming Pool", "Gym", "Clubhouse"], sale_price: "12500000", rental_price: null, currency: "INR",
+    organization_id: "org-1", workspace_id: "ws-1", deleted_at: null,
+    ...over,
+  };
+}
 
 const rd = (p) => readFileSync(p, "utf8");
 const migration = rd("supabase/migrations/20261203000000_ads_b0_safety_attribution_prerequisites.sql");
@@ -299,4 +358,93 @@ test("migration is fresh-replay safe: no ALTER DEFAULT PRIVILEGES, no migration-
   assert.doesNotMatch(migrationSql, /alter default privileges/i);
   assert.doesNotMatch(migrationSql, /supabase_migrations\.schema_migrations|deployment_migration_history|db push|migration repair/i);
   assert.doesNotMatch(migrationSql, /graph\.facebook|api\.openai|sora|whatsapp\.com|paddle\.com|googleads|fetch\(|https?:\/\//i);
+});
+
+// ---------------------------------------------------------------------------
+// ADS-B0E -- Image Studio quota guard (real image-studio/actions.ts code)
+// ---------------------------------------------------------------------------
+function imageStudioModule({ quota, executionAccept } = {}) {
+  const quotaCalls = [];
+  const client = fakeClient({
+    rpcs: {
+      claim_creative_generation_quota: async (params) => {
+        quotaCalls.push(params);
+        if (quota === "exceeded") return { data: null, error: new Error("QUOTA_EXCEEDED: creative generation limit reached for the starter plan (25 of 25 used this period)") };
+        return { data: { metric: params.p_metric, planCode: "starter", usage: 1, limit: 25, periodStart: "2026-01-01" }, error: null };
+      },
+    },
+  });
+  let acceptCalls = 0;
+  const execution = {
+    accept: async () => {
+      acceptCalls++;
+      if (executionAccept) return executionAccept();
+      return { status: "WaitingApproval", provider: "openai-image", capability: "Image", metadata: {}, warnings: [], errors: [], outputs: [] };
+    },
+  };
+  const mod = load("features/vayon/image-studio/actions.ts", {
+    "@/features/vayon/billing/services/subscription-write-guard": { guardSubscriptionAction: async () => {} },
+    "@/features/platform/permissions/runtime/permission.service": { requireWorkspacePermission: async () => ({ organizationId: "org-1", workspaceId: "ws-1", actorId: "user-1" }) },
+    "@/features/vayon/creative-studio/access.service": { creativeStudioAccess: async () => ({ client }) },
+    "@/features/vayon/creative-providers/execution.factory": { createLiveCreativeExecutionService: () => execution },
+    "./service": { ImageStudioService: { production: async () => null } },
+    "./prompt-builder": { buildImagePrompt: () => "prompt" },
+  });
+  return { mod, quotaCalls, acceptCallCount: () => acceptCalls };
+}
+const imageInput = { projectId: "prop-1", campaignId: "campaign-1", type: "hero", style: "premium", prompt: "A modern apartment" };
+
+test("Image Studio generateImage: quota exhausted -> provider (execution.accept) is never called", async () => {
+  const { mod, acceptCallCount } = imageStudioModule({ quota: "exceeded" });
+  await assert.rejects(mod.generateImage(imageInput));
+  assert.equal(acceptCallCount(), 0, "the expensive OpenAI image provider must never be invoked once quota is exhausted");
+});
+
+test("Image Studio editImage: quota exhausted -> provider (execution.accept) is never called", async () => {
+  const { mod, acceptCallCount } = imageStudioModule({ quota: "exceeded" });
+  await assert.rejects(mod.editImage(imageInput, "asset-1", "Enhance"));
+  assert.equal(acceptCallCount(), 0, "the expensive OpenAI image provider must never be invoked once quota is exhausted");
+});
+
+test("Image Studio generateImage: quota allowed -> quota RPC called once, provider boundary reached exactly once", async () => {
+  const { mod, quotaCalls, acceptCallCount } = imageStudioModule({ quota: "allowed" });
+  await mod.generateImage(imageInput);
+  assert.equal(quotaCalls.length, 1);
+  assert.equal(quotaCalls[0].p_metric, "image_generations");
+  assert.equal(quotaCalls[0].p_workspace_id, "ws-1");
+  assert.equal(quotaCalls[0].p_organization_id, "org-1");
+  assert.equal(acceptCallCount(), 1);
+});
+
+test("Image Studio editImage: quota allowed -> quota RPC called once, provider boundary reached exactly once", async () => {
+  const { mod, quotaCalls, acceptCallCount } = imageStudioModule({ quota: "allowed" });
+  await mod.editImage(imageInput, "asset-1", "Enhance");
+  assert.equal(quotaCalls.length, 1);
+  assert.equal(quotaCalls[0].p_metric, "image_generations");
+  assert.equal(acceptCallCount(), 1);
+});
+
+test("Image Studio: rejected workspace permission -> provider never called (authorization precedes the quota claim, which precedes the provider)", async () => {
+  const modRejecting = load("features/vayon/image-studio/actions.ts", {
+    "@/features/vayon/billing/services/subscription-write-guard": { guardSubscriptionAction: async () => {} },
+    "@/features/platform/permissions/runtime/permission.service": { requireWorkspacePermission: async () => { throw new Error("insufficient workspace permission"); } },
+    "@/features/vayon/creative-studio/access.service": { creativeStudioAccess: async () => null },
+    "@/features/vayon/creative-providers/execution.factory": { createLiveCreativeExecutionService: () => ({ accept: async () => { throw new Error("must not be reached"); } }) },
+    "./service": { ImageStudioService: { production: async () => null } },
+    "./prompt-builder": { buildImagePrompt: () => "prompt" },
+  });
+  await assert.rejects(modRejecting.generateImage(imageInput), /insufficient workspace permission/);
+});
+
+test("Image Studio: both generateImage and editImage funnel through the same shared quota-guarded execute() -- one enforcement point, not duplicated logic", () => {
+  const source = rd("features/vayon/image-studio/actions.ts");
+  const quotaCallCount = (source.match(/claim_creative_generation_quota/g) ?? []).length;
+  assert.equal(quotaCallCount, 1, "exactly one call site -- generateImage/editImage both delegate to the same execute() function");
+  const generateIdx = source.indexOf("export async function generateImage");
+  const editIdx = source.indexOf("export async function editImage");
+  const executeIdx = source.indexOf("async function execute");
+  const quotaIdx = source.indexOf('rpc("claim_creative_generation_quota"');
+  const acceptIdx = source.indexOf("createLiveCreativeExecutionService().accept(");
+  assert.ok(generateIdx >= 0 && editIdx >= 0 && executeIdx > editIdx, "both public entry points delegate to execute()");
+  assert.ok(quotaIdx > executeIdx && acceptIdx > quotaIdx, "the quota claim sits inside execute(), before the provider call");
 });

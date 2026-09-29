@@ -41,6 +41,8 @@ async function execute(
     throw new Error(
       "Project and campaign are required for governed asset storage.",
     );
+  const access = await creativeStudioAccess();
+  if (!access) throw new Error("Creative Studio access is required.");
   const service = await ImageStudioService.production(),
     snapshot = service ? await service.snapshot() : null,
     campaign =
@@ -48,8 +50,27 @@ async function execute(
       null,
     prompt = buildImagePrompt(input, snapshot?.brand ?? null, campaign),
     now = new Date().toISOString(),
-    requestId = crypto.randomUUID(),
-    result = await createLiveCreativeExecutionService().accept({
+    requestId = crypto.randomUUID();
+  // ADS-B0E: generateImage and editImage both funnel through this shared
+  // execute() before ever reaching the expensive OpenAI image call --
+  // exactly one guard here covers both. The claim happens as the LAST step
+  // before the real provider call, after authentication
+  // (requireWorkspacePermission above), the subscription guard
+  // (guardSubscriptionAction, called by both public entry points before
+  // execute()), and the project/campaign presence check -- nothing between
+  // a successful claim and the accept() call below can fail, so a
+  // successful claim always corresponds to a real provider invocation
+  // actually being attempted. See the migration's own comment for why every
+  // call (including a user re-submitting after a failure) claims quota --
+  // there is no job/retry queue here, so each execute() call is its own
+  // independent, legitimately-billable attempt.
+  const { error: quotaError } = await access.client.rpc("claim_creative_generation_quota", {
+    p_workspace_id: context.workspaceId,
+    p_organization_id: context.organizationId,
+    p_metric: "image_generations",
+  });
+  if (quotaError) throw quotaError;
+  const result = await createLiveCreativeExecutionService().accept({
       id: `image-${requestId}`,
       organizationId: context.organizationId,
       workspaceId: context.workspaceId,
@@ -98,8 +119,6 @@ async function execute(
       latencyMs: result.metadata.latencyMs,
       estimatedCost: result.metadata.estimatedCost,
     };
-  const access = await creativeStudioAccess();
-  if (!access) throw new Error("Creative Studio access is required.");
   const {
     data: { user },
   } = await access.client.auth.getUser();
