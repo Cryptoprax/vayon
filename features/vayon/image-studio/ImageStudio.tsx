@@ -331,7 +331,7 @@ export function ImageStudio({
                   type: "Photography",
                   style,
                   brandId: snapshot.brand?.id ?? null,
-                  projectId: editor.asset.projectId,
+                  projectId: editor.asset.propertyId,
                   campaignId: editor.asset.campaignId,
                   brandMode: true,
                 },

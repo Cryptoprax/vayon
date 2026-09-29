@@ -148,7 +148,13 @@ async function execute(
       organization_id: context.organizationId,
       workspace_id: context.workspaceId,
       campaign_id: input.campaignId,
-      project_id: input.projectId,
+      // Phase C1: input.projectId is this wizard's own long-standing form
+      // field name, but VideoStudioService.snapshot() now derives its
+      // `projects` picker list from each campaign's propertyId (Model A) --
+      // so the value this form actually submits is a property id. Mapped
+      // onto the repaired property_id column, not a rename of this wizard's
+      // own local input type (kept scoped to the actual persistence boundary).
+      property_id: input.projectId,
       name: `${input.output} · AI draft`,
       category: "video",
       format: "MP4",

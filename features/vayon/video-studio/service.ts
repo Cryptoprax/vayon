@@ -36,7 +36,7 @@ export class VideoStudioService {
         .map((item) => ({
           id: item.id,
           name: item.name,
-          projectId: item.projectId,
+          projectId: item.propertyId,
           campaignId: item.campaignId,
           version: item.version,
           createdAt: item.generatedAt,
@@ -44,8 +44,8 @@ export class VideoStudioService {
       projects: [
         ...new Map(
           creative.campaigns.map((item) => [
-            item.projectId,
-            { id: item.projectId, name: item.projectName },
+            item.propertyId,
+            { id: item.propertyId, name: item.projectName },
           ]),
         ).values(),
       ],

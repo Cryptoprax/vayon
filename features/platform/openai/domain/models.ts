@@ -1,4 +1,4 @@
-export type OpenAIModelId="gpt-5"|"gpt-5.5"|(string&{});export type AIEmployeeCode="sales-ai"|"crm-ai"|"marketing-ai"|"whatsapp-ai"|"voice-ai"|"operations-ai"|"finance-ai"|"executive-ai";
+export type OpenAIModelId="gpt-5"|"gpt-5.5"|(string&{});export type AIEmployeeCode="sales-ai"|"crm-ai"|"marketing-ai"|"whatsapp-ai"|"voice-ai"|"operations-ai"|"finance-ai"|"executive-ai";export const workforceEmployeeCodes:readonly AIEmployeeCode[]=["sales-ai","crm-ai","marketing-ai","whatsapp-ai","voice-ai","operations-ai","finance-ai","executive-ai"];
 export interface OpenAIRequest{readonly system:string;readonly prompt:string;readonly workspaceId:string;readonly employee:AIEmployeeCode;readonly model?:OpenAIModelId;readonly maxOutputTokens?:number;readonly signal?:AbortSignal}
 export interface TokenUsage{readonly promptTokens:number;readonly completionTokens:number;readonly totalTokens:number;readonly estimated:boolean}
 export interface CostEstimate{readonly model:string;readonly inputUsd:number;readonly outputUsd:number;readonly totalUsd:number;readonly estimated:true;readonly pricingVersion:string}

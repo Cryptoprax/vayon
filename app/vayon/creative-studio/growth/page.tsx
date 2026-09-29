@@ -8,7 +8,7 @@ export default async function Page() {
   const studio = await CreativeStudioService.production();
   if (!studio) notFound();
   const service = new GrowthStudioService(),
-    [{ inventory }, dashboard] = await Promise.all([
+    [{ properties }, dashboard] = await Promise.all([
       studio.projectContext(),
       service.dashboard(),
     ]);
@@ -17,7 +17,7 @@ export default async function Page() {
       title="AI Growth Studio"
       description="Plan complete multilingual real estate campaign packs from authoritative project data. Every output remains a governed draft."
     >
-      <GrowthCampaignChat projects={inventory.projects} />
+      <GrowthCampaignChat properties={properties} />
       <div className="mt-6">
         <GrowthOverview
           packs={dashboard.packs}

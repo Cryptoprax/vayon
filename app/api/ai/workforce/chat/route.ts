@@ -10,6 +10,8 @@ const schema = z.object({
   employee: z.enum(["sales-ai", "crm-ai", "marketing-ai", "whatsapp-ai", "voice-ai", "operations-ai", "finance-ai", "executive-ai"]),
   conversationId: z.string().uuid().optional(),
   message: z.string().trim().min(1).max(20_000),
+  propertyId: z.string().uuid().optional(),
+  leadId: z.string().uuid().optional(),
   contextRefs: z.array(z.object({ type: z.enum(["crm", "gmail", "calendar", "whatsapp", "deal", "task"]), id: z.string().min(1).max(100) })).max(50).optional(),
 });
 

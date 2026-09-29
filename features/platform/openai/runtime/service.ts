@@ -1,7 +1,7 @@
 import "server-only";
 import { SubscriptionWriteService } from "@/features/vayon/billing/services/subscription-write.service";
 import { operationsContext } from "@/features/vayon/operations/services/context";
-import type { AIEmployeeCode } from "../domain/models";
+import { workforceEmployeeCodes, type AIEmployeeCode } from "../domain/models";
 import { OpenAIProvider } from "../providers/openai.provider";
 import type { RuntimeChatInput, WorkforceRuntimeObservability } from "./models";
 import { WorkforceConversationRepository } from "./repository";
@@ -11,14 +11,29 @@ import { WhatsAppAIService } from "@/features/platform/whatsapp-ai/services/what
 import { MarketingAIService } from "@/features/platform/marketing-ai/services/marketing-ai.service";
 import { ExecutiveAIService } from "@/features/platform/executive-ai/services/executive-ai.service";
 import { OpenAIRuntimeConfigurationService, environmentOpenAIConfiguration, type OpenAIRuntimeConfiguration } from "../services/runtime-configuration";
-import { employeePolicy } from "../services/employee-policy";
+import type { TrustedWorkforceContext } from "./trusted-context";
+import { TrustedWorkforceRuntime } from "./trusted-runtime";
+import { generateWorkforceReply } from "./generation";
+import { buildWorkforceEvidence, type PropertyRetrievalPort } from "./property-context";
+import { PropertyKnowledgeRetrievalService } from "@/features/vayon/property-knowledge/retrieval/retrieval.service";
 
-const employees: readonly AIEmployeeCode[] = ["sales-ai", "crm-ai", "marketing-ai", "whatsapp-ai", "voice-ai", "operations-ai", "finance-ai", "executive-ai"];
+const employees = workforceEmployeeCodes;
 const allowedSources = new Set(["crm", "gmail", "calendar", "whatsapp", "deal", "task"]);
 
 export class WorkforceRuntimeService {
-  constructor(private repository: WorkforceConversationRepository, private provider = new OpenAIProvider(), private workspaceId: string, private configuration: OpenAIRuntimeConfiguration = environmentOpenAIConfiguration()) {}
-  static async production() { const context = await operationsContext(), configuration = await new OpenAIRuntimeConfigurationService(context).resolve(); return new WorkforceRuntimeService(new WorkforceConversationRepository(context), new OpenAIProvider(undefined, configuration), context.workspaceId, configuration); }
+  constructor(private repository: WorkforceConversationRepository, private provider = new OpenAIProvider(), private workspaceId: string, private configuration: OpenAIRuntimeConfiguration = environmentOpenAIConfiguration(), private propertyRetrieval: PropertyRetrievalPort | null = null) {}
+  static async production() { const context = await operationsContext(), configuration = await new OpenAIRuntimeConfigurationService(context).resolve(); return new WorkforceRuntimeService(new WorkforceConversationRepository(context), new OpenAIProvider(undefined, configuration), context.workspaceId, configuration, new PropertyKnowledgeRetrievalService(context.client, context.organizationId, context.workspaceId)); }
+  /**
+   * Webhook-safe entry point -- never reads cookies, never accepts a raw
+   * public payload. `context` must already be a validated TrustedWorkforceContext
+   * (see buildTrustedWorkforceContext() in trusted-context.ts). Returns a
+   * TrustedWorkforceRuntime, not a WorkforceRuntimeService: OpenAI invocation
+   * (.chat()) is intentionally not exposed on the trusted path yet.
+   */
+  static forTrustedContext(context: TrustedWorkforceContext): TrustedWorkforceRuntime {
+    if (!employees.includes(context.employeeCode)) throw new Error("Unsupported AI employee.");
+    return TrustedWorkforceRuntime.create(context);
+  }
   history(employee: AIEmployeeCode, query = "") { return this.repository.snapshot(employee, query); }
   health() { return this.provider.health(); }
   async observability(): Promise<WorkforceRuntimeObservability> {
@@ -38,16 +53,20 @@ export class WorkforceRuntimeService {
     const whatsappEvidence = input.employee === "whatsapp-ai" ? await (await WhatsAppAIService.production()).runtimeContext() : null;
     const marketingEvidence = input.employee === "marketing-ai" ? await (await MarketingAIService.production()).runtimeContext() : null;
     const executiveEvidence = input.employee === "executive-ai" ? await (await ExecutiveAIService.production()).runtimeContext() : null;
-    const system = `You are ${input.employee}, a governed VAYON AI employee. Use only supplied workspace evidence. Never invent CRM relationships or performance. Never execute or send messages. Never publish or spend. Never edit records. Email and WhatsApp content is draft-only. Recommendations always require human approval. If evidence is absent, say so explicitly.${input.employee === "sales-ai" ? " You are an enterprise sales advisor responsible for lead qualification, pipeline risk, daily briefings, communication drafts, meeting preparation, CRM cleanup, and forecasting. Explain confidence and evidence." : ""}${input.employee === "crm-ai" ? " You are an enterprise CRM advisor responsible for customer summaries, relationship health, activity and timeline intelligence, data-quality cleanup, enrichment recommendations, and natural-language CRM discovery. Explain confidence, evidence, and unavailable sources." : ""}${input.employee === "whatsapp-ai" ? " You are an enterprise WhatsApp advisor responsible for conversation intent, sentiment, urgency, lead qualification, reply drafts, property matching, summaries, meeting recommendations, and conversation health. Every reply is a draft; never send, tag, edit CRM, or book calendars." : ""}${input.employee === "marketing-ai" ? " You are an enterprise Marketing advisor responsible for campaign strategy, Facebook and Google ad drafts, SEO, email, social content, lead generation, budgets, audiences, calendars, and evidence-backed analytics. Never publish, buy ads, or fabricate CAC, ROI, reach, or conversions." : ""}${input.employee === "executive-ai" ? " You are an enterprise executive advisor responsible for business briefings, health scores, revenue intelligence, prioritized recommendations, department summaries, natural-language timelines, risks, and export-ready daily, weekly, monthly, and quarterly reports. Never make or execute decisions." : ""}`;
-    const prompt = `${input.message.trim()}\n\nAuthorized workspace references (identifiers only; do not infer their contents): ${refs.length ? JSON.stringify(refs) : "None supplied"}.${salesEvidence ? `\n\nTenant-scoped Sales AI evidence:\n${salesEvidence}` : ""}${crmEvidence ? `\n\nTenant-scoped CRM AI evidence:\n${crmEvidence}` : ""}${whatsappEvidence ? `\n\nTenant-scoped WhatsApp AI evidence:\n${whatsappEvidence}` : ""}${marketingEvidence ? `\n\nTenant-scoped Marketing AI evidence:\n${marketingEvidence}` : ""}${executiveEvidence ? `\n\nTenant-scoped Executive AI evidence:\n${executiveEvidence}` : ""}`;
-    const governedSystem = `${system} ${employeePolicy(input.employee)}`;
-    const started = performance.now();
-    let output = "";
-    for await (const delta of this.provider.stream({ employee: input.employee, workspaceId: this.workspaceId, model: this.configuration.model, maxOutputTokens: this.configuration.maxOutputTokens, system: governedSystem, prompt })) { output += delta; yield { type: "delta" as const, value: delta, conversationId }; }
-    const usage = await this.provider.countTokens(`${governedSystem}\n${prompt}\n${output}`);
-    const cost = this.provider.estimateCost(this.configuration.model, usage.promptTokens, Math.ceil(output.length / 4));
-    const latencyMs = Math.round(performance.now() - started);
-    await this.repository.append({ conversationId, role: "assistant", content: output, model: cost.model, usage: { ...usage, completionTokens: Math.ceil(output.length / 4), totalTokens: usage.promptTokens + Math.ceil(output.length / 4) }, cost, latencyMs });
-    yield { type: "complete" as const, conversationId, usage, cost, model: cost.model, latencyMs, recommendationOnly: true as const };
+    const property = await buildWorkforceEvidence({ employee: input.employee, message: input.message, propertyId: input.propertyId, leadId: input.leadId, retrieval: this.propertyRetrieval });
+    const result = yield* generateWorkforceReply({
+      employee: input.employee,
+      message: input.message,
+      refs,
+      evidence: { sales: salesEvidence, crm: crmEvidence, whatsapp: whatsappEvidence, marketing: marketingEvidence, executive: executiveEvidence },
+      provider: this.provider,
+      workspaceId: this.workspaceId,
+      model: this.configuration.model,
+      maxOutputTokens: this.configuration.maxOutputTokens,
+      conversationId,
+      ...(property ? { propertyKnowledge: property.promptSection } : {}),
+    });
+    await this.repository.append({ conversationId, role: "assistant", content: result.output, ...(property?.sourceRefs.length ? { sourceRefs: property.sourceRefs } : {}), model: result.cost.model, usage: { ...result.usage, completionTokens: Math.ceil(result.output.length / 4), totalTokens: result.usage.promptTokens + Math.ceil(result.output.length / 4) }, cost: result.cost, latencyMs: result.latencyMs });
+    yield { type: "complete" as const, conversationId, usage: result.usage, cost: result.cost, model: result.cost.model, latencyMs: result.latencyMs, recommendationOnly: true as const, ...(property ? { propertyContext: property.summary, ...(property.sourceRefs.length ? { sources: property.sourceRefs } : {}) } : {}) };
   }
 }

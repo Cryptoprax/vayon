@@ -3,7 +3,7 @@ import { announceSubscriptionBlock, handleSubscriptionResponse } from "@/feature
 import { FormEvent, useMemo, useState } from "react";
 import Link from "next/link";
 import type { AIEmployeeCode, OpenAIHealth } from "../domain/models";
-import type { ConversationSnapshot, WorkforceMessage } from "./models";
+import type { ConversationSnapshot, PersistedSourceRef, WorkforceMessage } from "./models";
 import { Button } from "@/features/platform/design-system";
 
 export interface EmployeeConversationContext {
@@ -29,6 +29,8 @@ export function WorkforceChatPanel({
   initialPrompt = "",
   explainability,
   context,
+  propertyId,
+  leadId,
 }: {
   employee: AIEmployeeCode;
   initial: ConversationSnapshot;
@@ -36,6 +38,8 @@ export function WorkforceChatPanel({
   initialPrompt?: string;
   explainability?: { readonly evidence: number; readonly entities: number; readonly confidence: number | null; readonly sources: readonly string[]; readonly timestamp: string };
   context?: EmployeeConversationContext;
+  propertyId?: string;
+  leadId?: string;
 }) {
   const [conversationId, setConversationId] = useState(
     initial.conversations[0]?.id,
@@ -134,7 +138,7 @@ export function WorkforceChatPanel({
       recommendationOnly: true,
     };
     setMessages((current) => [...current, temporary]);
-    if (context && context.evidenceCount === 0) {
+    if (context && context.evidenceCount === 0 && !propertyId && !leadId) {
       setMessages((current) => [...current, {
         id: crypto.randomUUID(),
         conversationId: conversationId ?? "pending",
@@ -154,7 +158,7 @@ export function WorkforceChatPanel({
       const response = await fetch("/api/ai/workforce/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ employee, conversationId, message }),
+        body: JSON.stringify({ employee, conversationId, message, ...(propertyId ? { propertyId } : {}), ...(leadId ? { leadId } : {}) }),
       });
       if (await handleSubscriptionResponse(response)) { setStatus("idle"); return; }
       if (!response.ok || !response.body)
@@ -181,6 +185,7 @@ export function WorkforceChatPanel({
             cost?: WorkforceMessage["cost"];
             model?: string;
             latencyMs?: number;
+            sources?: WorkforceMessage["sourceRefs"];
           };
           if (item.type === "error" && announceSubscriptionBlock(item)) { await reader.cancel(); setStatus("idle"); return; }
           if (item.type === "error") throw new Error(item.message);
@@ -214,6 +219,7 @@ export function WorkforceChatPanel({
                       cost: item.cost ?? null,
                       model: item.model ?? entry.model,
                       latencyMs: item.latencyMs ?? null,
+                      ...(item.sources?.length ? { sourceRefs: item.sources } : {}),
                     }
                   : entry,
               ),
@@ -290,6 +296,7 @@ export function WorkforceChatPanel({
                 className={`max-w-[85%] rounded-xl border border-vds-border p-3 text-sm ${item.role === "user" ? "ml-auto bg-vds-primary-soft" : "bg-vds-surface"}`}
               >
                 {item.role === "assistant" ? <div><p className="text-[10px] font-semibold uppercase tracking-[.14em] text-vds-primary">Summary</p><p className="mt-2 whitespace-pre-wrap">{item.content}</p><div className="mt-4 grid gap-2 sm:grid-cols-2"><ResponseField label="Reasoning" value={context?.evidenceCount ? `Prepared from ${context.evidenceCount} verified workspace signals.` : "I don't have enough verified information to answer that yet."}/><ResponseField label="Confidence" value={context?.evidenceCount ? `${Math.round((explainability?.confidence ?? .7) * 100)}%` : "Not available"}/><ResponseField label="Business Impact" value={context?.businessImpact ?? "Not available"}/><ResponseField label="Approval Required" value="Yes · recommendation only"/></div><details className="mt-4 rounded-xl border border-vds-border bg-vds-elevated/60 p-3 [content-visibility:auto]"><summary className="cursor-pointer font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vds-focus">Evidence Panel</summary><dl className="mt-3 grid gap-2 text-xs"><ResponseField label="Related Customer" value={related(context,"Customer")}/><ResponseField label="Related Property" value={related(context,"Property")}/><ResponseField label="Related Task" value={related(context,"Task")}/><ResponseField label="Related Campaign" value={related(context,"Campaign")}/><ResponseField label="Related Meeting" value={related(context,"Meeting")}/><ResponseField label="Last Activity" value={context?.lastActivity ?? "No verified activity"}/><ResponseField label="Source Module" value={context?.sourceModules.join(", ") || "No verified source"}/></dl></details><div className="mt-4"><p className="text-[10px] font-semibold uppercase tracking-[.14em] text-vds-primary">Recommended Actions</p><div className="mt-2 flex flex-wrap gap-3 text-xs"><Link href={approvalHref(context,"approve")} className="text-vds-primary">Approve</Link><Link href={approvalHref(context,"modify")} className="text-vds-primary">Modify</Link><Link href={approvalHref(context,"reject")} className="text-vds-primary">Reject</Link><Link href={approvalHref(context,"explain")} className="text-vds-primary">Explain</Link><Link href={relatedHref(employee)} className="text-vds-primary">View Related Record</Link></div></div><div className="mt-4 border-t border-vds-border pt-3"><p className="text-xs text-vds-muted">Follow-up questions</p><div className="mt-2 flex flex-wrap gap-2">{suggested.slice(0,3).map(prompt=><Button variant="control" className="rounded-full px-3 py-1 text-xs" onClick={()=>setValue(prompt)} key={prompt}>{prompt}</Button>)}</div></div></div> : <p className="whitespace-pre-wrap">{item.content}</p>}
+                {item.role === "assistant" && item.sourceRefs?.length ? <SourceList refs={item.sourceRefs} /> : null}
                 {item.role === "assistant" && (
                   <div className="mt-2 text-[11px] text-vds-muted">
                   <p>
@@ -363,6 +370,23 @@ export function WorkforceChatPanel({
   );
 }
 
+const sourceTypeLabel: Record<PersistedSourceRef["type"], string> = { property: "Property record", price_revision: "Approved price", property_document: "Document" };
+function sourceHref(ref: PersistedSourceRef) {
+  const base = `/vayon/properties/${encodeURIComponent(ref.propertyId)}`;
+  return ref.type === "property_document" ? `${base}/documents/${encodeURIComponent(ref.id)}` : `${base}?tab=pricing`;
+}
+function SourceList({ refs }: { refs: readonly PersistedSourceRef[] }) {
+  return (
+    <div className="mt-3 text-xs">
+      <p className="font-semibold text-vds-primary">Sources</p>
+      <ul className="mt-1 space-y-1">
+        {refs.map((ref) => (
+          <li key={ref.citation}><Link href={sourceHref(ref)} className="underline">{ref.title}</Link> <span className="text-vds-muted">· {sourceTypeLabel[ref.type]}</span></li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 function ResponseField({label,value}:{label:string;value:string}) { return <div className="rounded-lg bg-vds-surface/60 p-2"><dt className="text-vds-subtle">{label}</dt><dd className="mt-1 text-vds-muted">{value}</dd></div>; }
 function related(context:EmployeeConversationContext|undefined,type:string) { return context?.relatedRecords.find(record=>record.type===type)?.label ?? "No verified record"; }
 function approvalHref(context:EmployeeConversationContext|undefined,decision:string) { const id=context?.recommendationIds[0]; return `/vayon/approvals?${id?`recommendation=${encodeURIComponent(id)}&`:""}decision=${decision}`; }

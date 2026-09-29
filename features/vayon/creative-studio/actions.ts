@@ -21,7 +21,8 @@ await guardSubscriptionAction();
     const selectedAudiences = formData.getAll("audience").map(String);
     const platforms = formData.getAll("platform").map(String);
     if (!campaignTypes.includes(campaignType as never) || selectedAudiences.some((x) => !audiences.includes(x as never)) || platforms.some((x) => !creativePlatforms.includes(x as never))) throw new Error("Invalid campaign selection.");
-    const brief: CampaignBrief = { projectId: String(formData.get("projectId")), campaignType: campaignType as CampaignBrief["campaignType"], audiences: selectedAudiences as CampaignBrief["audiences"], platforms: platforms as CampaignBrief["platforms"], language: String(formData.get("language") ?? "English").slice(0, 40), objective: String(formData.get("objective") ?? "").slice(0, 1000) };
+    const propertyProjectId = String(formData.get("propertyProjectId") ?? "") || undefined;
+    const brief: CampaignBrief = { propertyId: String(formData.get("propertyId")), propertyProjectId, campaignType: campaignType as CampaignBrief["campaignType"], audiences: selectedAudiences as CampaignBrief["audiences"], platforms: platforms as CampaignBrief["platforms"], language: String(formData.get("language") ?? "English").slice(0, 40), objective: String(formData.get("objective") ?? "").slice(0, 1000) };
     await service.saveDraft(brief, String(formData.get("name") ?? "Untitled campaign").slice(0, 160));
     saved = true;
   } catch (subscriptionError) {redirectSubscriptionFailure(subscriptionError);
@@ -36,7 +37,7 @@ await guardSubscriptionAction();
 export async function generateCreativeAssetAction(formData: FormData) {
 await guardSubscriptionAction();
 
-  await new CreativeGenerationService().assistant(String(formData.get("prompt") ?? ""), String(formData.get("projectId") ?? "") || undefined);
+  await new CreativeGenerationService().assistant(String(formData.get("prompt") ?? ""), String(formData.get("propertyId") ?? "") || undefined);
   revalidatePath("/vayon/creative-studio/assistant");
 }
 
@@ -44,7 +45,7 @@ export async function creativeAssistantChatAction(_previous: { message: string; 
 await guardSubscriptionAction();
 
   try {
-    const result = await new CreativeGenerationService().assistant(String(formData.get("prompt") ?? ""), String(formData.get("projectId") ?? "") || undefined);
+    const result = await new CreativeGenerationService().assistant(String(formData.get("prompt") ?? ""), String(formData.get("propertyId") ?? "") || undefined);
     revalidatePath("/vayon/creative-studio/assistant");
     return { message: `${result.intent.intentSummary}. ${result.message}`, jobId: result.jobId };
   } catch (subscriptionError) {redirectSubscriptionFailure(subscriptionError);
@@ -69,7 +70,7 @@ await guardSubscriptionAction();
 export async function growthCampaignChatAction(_previous: { message: string; campaignId: string | null }, formData: FormData) {
 await guardSubscriptionAction();
 
-  const result = await new GrowthStudioService().assistant(String(formData.get("prompt") ?? ""), String(formData.get("projectId") ?? "") || undefined, String(formData.get("language") ?? "English"));
+  const result = await new GrowthStudioService().assistant(String(formData.get("prompt") ?? ""), String(formData.get("propertyId") ?? "") || undefined, String(formData.get("language") ?? "English"));
   revalidatePath("/vayon/creative-studio/growth");
   revalidatePath("/vayon/creative-studio/packs");
   return result;

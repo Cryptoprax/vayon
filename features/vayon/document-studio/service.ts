@@ -17,8 +17,8 @@ export class DocumentStudioService {
       projects: [
         ...new Map(
           source.campaigns.map((item) => [
-            item.projectId,
-            { id: item.projectId, name: item.projectName },
+            item.propertyId,
+            { id: item.propertyId, name: item.projectName },
           ]),
         ).values(),
       ],

@@ -1,7 +1,6 @@
 "use client";
 import { useActionState } from "react";
 import { Button } from "@/features/platform/design-system";
-import type { InventoryProject } from "@/features/vayon/property-platform/inventory/domain";
 import { growthCampaignChatAction } from "../actions";
 import { growthLanguages } from "../domain";
 
@@ -13,9 +12,9 @@ const examples = [
   "Generate weekend open house campaign.",
 ];
 export function GrowthCampaignChat({
-  projects,
+  properties,
 }: {
-  projects: readonly InventoryProject[];
+  properties: readonly { readonly id: string; readonly title: string }[];
 }) {
   const [state, action, pending] = useActionState(growthCampaignChatAction, {
     message: "Tell the AI Marketing Manager what campaign you need.",
@@ -35,13 +34,13 @@ export function GrowthCampaignChat({
       <form action={action} className="mt-4 grid gap-3 md:grid-cols-2">
         <select
           required
-          name="projectId"
+          name="propertyId"
           className="vds-focus h-11 rounded-xl border border-vds-border bg-vds-elevated px-3"
         >
-          <option value="">Choose project</option>
-          {projects.map((project) => (
-            <option key={project.id} value={project.id}>
-              {project.name}
+          <option value="">Choose property</option>
+          {properties.map((property) => (
+            <option key={property.id} value={property.id}>
+              {property.title}
             </option>
           ))}
         </select>

@@ -23,10 +23,13 @@ const EmployeeMemoryPanel = nextDynamic(() => import("@/features/vayon/operation
 const EmployeeCollaborationPanel = nextDynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeCollaborationPanel"));
 const EmployeeDailyWorkspace = nextDynamic(() => import("@/features/vayon/operational-workforce/components/EmployeeDailyWorkspace"));
 export const dynamic = "force-dynamic";
+const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export default async function Page({
   params,
+  searchParams,
 }: {
   params: Promise<{ employeeId: string }>;
+  searchParams?: Promise<{ propertyId?: string; leadId?: string }>;
 }) {
   try {
     await requireEntitlement("ai_workforce");
@@ -35,6 +38,9 @@ export default async function Page({
     throw error;
   }
   const { employeeId } = await params;
+  const contextQuery = (await searchParams) ?? {};
+  const propertyContextId = contextQuery.propertyId && uuidPattern.test(contextQuery.propertyId) ? contextQuery.propertyId : undefined;
+  const leadContextId = contextQuery.leadId && uuidPattern.test(contextQuery.leadId) ? contextQuery.leadId : undefined;
   const result = await (
     await WorkforceService.production()
   ).employee(employeeId);
@@ -95,7 +101,7 @@ export default async function Page({
       <EmployeeMemoryPanel item={result.employee} tasks={result.tasks} activity={result.activity}/>
       <EmployeeCollaborationPanel item={result.employee}/>
       <section className="rounded-3xl border border-vds-border bg-vds-surface p-5 sm:p-7" aria-labelledby="employee-conversation-title"><p className="text-xs font-semibold uppercase tracking-[.18em] text-vds-primary">Conversation</p><h2 id="employee-conversation-title" className="mt-2 text-2xl font-semibold">{result.employee.name} · {result.employee.role}</h2><p className="mt-2 text-sm text-vds-muted">What should I follow up today? · Which buyers are hottest? · Which deals are at risk? · Summarize today&apos;s opportunities. · Prepare follow-up plan.</p><p className="mt-3 text-xs text-vds-muted">Chat prepares actions only and remains approval-based. Nothing is executed autonomously.</p></section>
-      <WorkforceChatPanel employee={employee} initial={history} health={health} context={conversationContext}/>
+      <WorkforceChatPanel employee={employee} initial={history} health={health} context={conversationContext} propertyId={propertyContextId} leadId={leadContextId}/>
     </WorkforceShell>
   );
 }

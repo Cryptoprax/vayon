@@ -1,20 +1,10 @@
-import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
-import {
-  ExecutionList,
-  GovernanceHeader,
-  GovernanceNav,
-} from "@/features/vayon/workflow-approval/components/GovernanceViews";
-import { GovernanceService } from "@/features/vayon/workflow-approval/services/governance.service";
+import { FeatureAvailabilityState } from "@/features/vayon/empty-states/FeatureAvailabilityState";
+export const dynamic = "force-dynamic";
 export default function Page() {
-  const data = new GovernanceService().dashboard();
-  return (
-    <WorkspaceContent >
-      <GovernanceHeader
-        title="Execution Requests"
-        description="Governed action proposals and their lifecycle. No adapter in this release can perform an external action."
-      />
-      <GovernanceNav />
-      <ExecutionList items={data.executions} />
-    </WorkspaceContent>
-  );
+  // Execution Requests previously rendered the demo GovernanceService's
+  // hardcoded in-memory "governed-crm-actions" fixture -- not real tenant
+  // data. Phase D1 built a real, tenant-scoped Approval Workflows foundation
+  // (see /vayon/approvals) but deliberately did not build workflow-template/
+  // execution persistence, so this route has no real data to show yet.
+  return <FeatureAvailabilityState title="Execution Requests" description="Governed execution tracking for approved actions is not available yet for this workspace." />;
 }

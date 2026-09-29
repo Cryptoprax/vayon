@@ -22,7 +22,7 @@ function diagnosticMessage(value?: string) {
 export default async function Page() {
   const studio = await CreativeStudioService.production();
   if (!studio) notFound();
-  const [{ inventory }, jobs] = await Promise.all([
+  const [{ properties }, jobs] = await Promise.all([
     studio.projectContext(),
     new CreativeGenerationService().jobs(),
   ]);
@@ -38,7 +38,7 @@ export default async function Page() {
           <p className="mt-1 text-vds-muted">Existing drafts remain editable. Continue with templates, Brand Kit, Asset Library, and the editor while the provider recovers.</p>
         </aside>
       )}
-      <CreativeAssistant projects={inventory.projects} />
+      <CreativeAssistant properties={properties} />
       <section className="mt-6">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Generation jobs</h2>

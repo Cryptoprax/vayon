@@ -17,7 +17,8 @@ const supportedIntent =
   /launch|festival|diwali|luxury|nri|tower|open house|commercial|rental|villa|apartment|investment|construction/i;
 
 export class GrowthStudioService {
-  async assistant(prompt: string, projectId?: string, language = "English") {
+  /** Phase C1: matches against public.properties (Model A) -- consistent with CreativeGenerationService.assistant() and the Campaign Wizard's own property-first design. */
+  async assistant(prompt: string, propertyId?: string, language = "English") {
     const request = prompt.trim();
     if (!request || request.length > 2000)
       throw new Error("Campaign request must contain 1–2000 characters.");
@@ -29,17 +30,17 @@ export class GrowthStudioService {
       throw new Error("Unsupported campaign language.");
     const studio = await CreativeStudioService.production();
     if (!studio) throw new Error("Marketing Studio subscription access is required.");
-    const { inventory } = await studio.projectContext();
-    const project = projectId
-      ? inventory.projects.find((item) => item.id === projectId)
-      : inventory.projects.find((item) =>
-          request.toLowerCase().includes(item.name.toLowerCase()),
+    const { properties } = await studio.projectContext();
+    const property = propertyId
+      ? properties.find((item) => item.id === propertyId)
+      : properties.find((item) =>
+          request.toLowerCase().includes(item.title.toLowerCase()),
         );
-    if (!project)
+    if (!property)
       return {
         campaignId: null,
         message:
-          "Choose an authoritative project before generating the campaign pack.",
+          "Choose a property before generating the campaign pack.",
       };
     const campaignType = /diwali|festival/i.test(request)
       ? "Festival"
@@ -55,7 +56,7 @@ export class GrowthStudioService {
                 ? "Custom"
                 : "Launch";
     const brief: CampaignBrief = {
-      projectId: project.id,
+      propertyId: property.id,
       campaignType,
       audiences: [
         /nri/i.test(request)
@@ -78,7 +79,7 @@ export class GrowthStudioService {
     };
     const campaignId = await studio.saveDraft(
       brief,
-      `${project.name} · ${campaignType} growth campaign`,
+      `${property.title} · ${campaignType} growth campaign`,
     );
     const access = await creativeStudioAccess();
     if (!access) throw new Error("Marketing Studio subscription access is required.");
@@ -100,6 +101,10 @@ export class GrowthStudioService {
     const [packsResult, scheduleResult] = await Promise.all([
       access.client
         .from("creative_campaign_packs")
+        // Phase DBV3D: property_project_id is renamed to project_id under
+        // Production's compatibility shape (DBV3B) -- an explicit select
+        // naming property_project_id by itself would 400 there, so this
+        // reads "*" and resolves the Model-B column name in JS instead.
         .select("*")
         .eq("organization_id", access.organizationId)
         .eq("workspace_id", access.workspaceId)
@@ -119,7 +124,8 @@ export class GrowthStudioService {
       (row): GrowthCampaignPack => ({
         id: String(row.id),
         campaignId: String(row.campaign_id),
-        projectId: String(row.project_id),
+        propertyId: String(row.property_id),
+        propertyProjectId: (row.property_project_id ?? row.project_id) ? String(row.property_project_id ?? row.project_id) : undefined,
         name: String(row.name),
         language: String(row.language) as GrowthCampaignPack["language"],
         status: String(row.status) as GrowthCampaignPack["status"],

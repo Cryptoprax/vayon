@@ -89,8 +89,8 @@ export class ImageStudioService {
       projects: [
         ...new Map(
           creative.campaigns.map((item) => [
-            item.projectId,
-            { id: item.projectId, name: item.projectName },
+            item.propertyId,
+            { id: item.propertyId, name: item.projectName },
           ]),
         ).values(),
       ],
