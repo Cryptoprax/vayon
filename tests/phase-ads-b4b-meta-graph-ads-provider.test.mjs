@@ -688,7 +688,9 @@ test("61: FakeMetaAdsProvider remains the only provider MetaPublishWorker's defa
 test("62: MetaGraphAdsProvider has zero production call sites -- no route/action/service/worker/factory constructs it", () => {
   let output = "";
   try {
-    output = execSync('git grep -ln "new MetaGraphAdsProvider" -- app features', { cwd: process.cwd() }).toString().trim();
+    // Anchored on the literal "(" so this never substring-matches the unrelated
+    // MetaGraphAdsProviderError/MetaGraphAdsUncertainNetworkOutcomeError classes.
+    output = execSync('git grep -ln "new MetaGraphAdsProvider(" -- app features', { cwd: process.cwd() }).toString().trim();
   } catch (error) {
     if (error.status !== 1) throw error; // exit 1 = no matches found, which is the required/expected outcome
   }
