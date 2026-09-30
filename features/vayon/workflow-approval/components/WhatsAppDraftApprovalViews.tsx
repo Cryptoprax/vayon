@@ -2,6 +2,7 @@ import { Button } from "@/features/platform/design-system";
 import Link from "next/link";
 import type { ApprovalEvent, ApprovalRecord } from "../domain/approval";
 import { approveWhatsAppDraftAction, rejectWhatsAppDraftAction } from "../actions/whatsapp-approval.actions";
+import { sendApprovedWhatsAppDraftAction } from "../actions/whatsapp-send.actions";
 import type { PersistedSourceRef } from "@/features/platform/openai/runtime/models";
 
 const card = "rounded-2xl border border-vds-border bg-vds-surface p-5";
@@ -79,6 +80,7 @@ export function WhatsAppDraftApprovalDetail({
   sourceRefs?: readonly PersistedSourceRef[];
 }) {
   const sent = sendState === "sent";
+  const canSend = (sendState === "eligible" || sendState === "failed_retryable") && canDecide;
   return (
     <div className="space-y-5">
       <section className={card}>
@@ -110,7 +112,15 @@ export function WhatsAppDraftApprovalDetail({
           </div>
         )}
         {item.status === "approved" && sendState === "failed_retryable" && (
-          <p className="mt-5 text-sm text-vds-muted">The previous delivery attempt failed. A send retry is not available on this review surface yet.</p>
+          <p className="mt-5 text-sm text-vds-muted">The previous delivery attempt failed. You may retry.</p>
+        )}
+        {canSend && (
+          <div className="mt-5">
+            <form action={sendApprovedWhatsAppDraftAction}>
+              <input type="hidden" name="approvalId" value={item.id} />
+              <Button type="submit" variant="primary">Send Approved Reply</Button>
+            </form>
+          </div>
         )}
         {item.status === "approved" && sendState === "claimed" && (
           <p className="mt-5 text-sm text-vds-muted">Sending…</p>

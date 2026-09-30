@@ -1,1 +1,1 @@
-export interface WhatsAppMessage{id:string;from:string;to?:string;type:string;text?:string;media?:{id:string;mimeType?:string;sha256?:string;caption?:string};timestamp:string;status?:string;raw:unknown}
+export interface WhatsAppMessage{id:string;from:string;senderName?:string;to?:string;type:string;text?:string;media?:{id:string;mimeType?:string;sha256?:string;caption?:string};timestamp:string;status?:string;raw:unknown}
