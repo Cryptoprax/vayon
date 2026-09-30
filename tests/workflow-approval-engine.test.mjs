@@ -18,10 +18,17 @@ test("governance model covers workflow approval execution and audit", () => {
   ])
     assert.match(source, new RegExp(value));
 });
-test("all supported action contracts require a policy", () => {
+// Phase D1 (a later, explicitly authorized controlled phase) replaced
+// GovernanceService's production path with a real, tenant-scoped Supabase
+// repository -- the demo policy object that used to embed this action-type
+// list directly in governance.service.ts moved with the rest of the untouched
+// demo scaffold, and now lives only in the retained in-memory fixture
+// repository. See tests/phase-d1-approval-workflows.test.mjs for the new
+// production behavior's own coverage.
+test("all supported demo action contracts require a policy", () => {
   const model = read("features/vayon/workflow-approval/domain/models.ts"),
-    service = read(
-      "features/vayon/workflow-approval/services/governance.service.ts",
+    demoRepository = read(
+      "features/vayon/workflow-approval/repositories/in-memory.repository.ts",
     );
   for (const action of [
     "whatsapp.message",
@@ -34,7 +41,7 @@ test("all supported action contracts require a policy", () => {
     "task.create",
   ]) {
     assert.match(model, new RegExp(action.replace(".", "\\.")));
-    assert.match(service, new RegExp(action.replace(".", "\\.")));
+    assert.match(demoRepository, new RegExp(action.replace(".", "\\.")));
   }
 });
 test("approval lifecycle forbids self approval and requires a reason", () => {
