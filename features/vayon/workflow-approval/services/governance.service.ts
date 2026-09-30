@@ -1,49 +1,55 @@
 import "server-only";
-import type { ApprovalPolicy } from "../domain/models";
-import { DeterministicExecutionAdapter } from "../adapters/deterministic.adapter";
-import { ApprovalEngine } from "../engines/approval.engine";
-import { ExecutionEngine } from "../engines/execution.engine";
-import { WorkflowEngine } from "../engines/workflow.engine";
-import { InMemoryGovernanceRepository } from "../repositories/in-memory.repository";
-const policy: ApprovalPolicy = {
-  id: "policy-human-approval",
-  actionTypes: [
-    "whatsapp.message",
-    "email.draft",
-    "meeting.schedule",
-    "lead.assign",
-    "deal.update",
-    "document.generate",
-    "campaign.launch",
-    "task.create",
-  ],
-  requiredApproverRole: "workspace-approver",
-  selfApprovalAllowed: false,
-  expiresAfterMinutes: 1440,
-  enabled: true,
-};
-const repository = new InMemoryGovernanceRepository(),
-  approvals = new ApprovalEngine(repository, policy),
-  workflows = new WorkflowEngine(repository, approvals),
-  adapter = new DeterministicExecutionAdapter(),
-  executions = new ExecutionEngine(repository, approvals, adapter);
+import { operationsContext } from "@/features/vayon/operations/services/context";
+import type { ApprovalRepository } from "../contracts/approval-repository";
+import type { RequestApprovalInput } from "../domain/approval";
+import { InMemoryApprovalRepository } from "../repositories/in-memory-approval.repository";
+import { SupabaseApprovalRepository } from "../repositories/supabase-approval.repository";
+
+/**
+ * Real, tenant-scoped Business+ Approval Workflows service. production()
+ * derives scope exclusively from the caller's own session via
+ * operationsContext() -- never from client-supplied IDs -- and never falls
+ * back to in-memory storage. demo() exists only for explicit demo/test use
+ * and must never be reachable from a customer production route.
+ *
+ * This replaces the previous GovernanceService, which was hardwired to a
+ * module-level InMemoryGovernanceRepository singleton shared across every
+ * organization with no live mutation path. That scaffold (GovernanceRepository,
+ * InMemoryGovernanceRepository, ApprovalEngine/WorkflowEngine/ExecutionEngine,
+ * the domain types in ../domain/models.ts) is left in place, unreferenced by
+ * any customer route, for possible future workflow-template-builder use --
+ * see the Phase D1 approval-workflows report for the full rationale.
+ */
 export class GovernanceService {
-  readonly workflowEngine = workflows;
-  readonly approvalEngine = approvals;
-  readonly executionAdapter = adapter;
-  readonly executionEngine = executions;
-  dashboard() {
-    return {
-      workflows: repository.workflows(),
-      approvals: repository.approvals(),
-      executions: repository.executions(),
-      audit: repository.audit(),
-    };
+  constructor(private repository: ApprovalRepository) {}
+
+  static async production() {
+    const c = await operationsContext();
+    return new GovernanceService(new SupabaseApprovalRepository(c.client, c.organizationId, c.workspaceId));
   }
-  workflow(id: string) {
-    return { workflow: repository.workflow(id), audit: repository.audit(id) };
+
+  static demo() {
+    return new GovernanceService(new InMemoryApprovalRepository());
   }
-  approval(id: string) {
-    return { approval: repository.approval(id), audit: repository.audit(id) };
+
+  approvals() {
+    return this.repository.list();
+  }
+
+  async approval(id: string) {
+    const [approval, events] = await Promise.all([this.repository.get(id), this.repository.events(id)]);
+    return { approval, events };
+  }
+
+  requestApproval(input: RequestApprovalInput) {
+    return this.repository.request(input);
+  }
+
+  decideApproval(id: string, expectedVersion: number, decision: "approved" | "rejected", reason?: string) {
+    return this.repository.decide(id, expectedVersion, decision, reason);
+  }
+
+  cancelApproval(id: string, expectedVersion: number) {
+    return this.repository.cancel(id, expectedVersion);
   }
 }

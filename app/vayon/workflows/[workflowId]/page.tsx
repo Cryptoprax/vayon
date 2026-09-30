@@ -1,27 +1,10 @@
-import { WorkspaceContent } from "@/features/platform/design-system/layout/WorkspaceLayouts";
-import { notFound } from "next/navigation";
-import {
-  GovernanceHeader,
-  GovernanceNav,
-  WorkflowDetail,
-} from "@/features/vayon/workflow-approval/components/GovernanceViews";
-import { GovernanceService } from "@/features/vayon/workflow-approval/services/governance.service";
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ workflowId: string }>;
-}) {
-  const { workflowId } = await params;
-  const result = new GovernanceService().workflow(workflowId);
-  if (!result.workflow) notFound();
-  return (
-    <WorkspaceContent >
-      <GovernanceHeader
-        title={result.workflow.name}
-        description={result.workflow.description}
-      />
-      <GovernanceNav />
-      <WorkflowDetail item={result.workflow} audit={result.audit} />
-    </WorkspaceContent>
-  );
+import { FeatureAvailabilityState } from "@/features/vayon/empty-states/FeatureAvailabilityState";
+export const dynamic = "force-dynamic";
+export default function Page() {
+  // Governed workflow templates previously rendered the demo GovernanceService's
+  // hardcoded in-memory "governed-crm-actions" fixture -- not real tenant data.
+  // Phase D1 built a real, tenant-scoped Approval Workflows foundation (see
+  // /vayon/approvals) but deliberately did not build workflow-template
+  // persistence, so this route has no real data to show yet.
+  return <FeatureAvailabilityState title="Governed Workflow" description="Custom governed workflow templates are not available yet for this workspace." />;
 }

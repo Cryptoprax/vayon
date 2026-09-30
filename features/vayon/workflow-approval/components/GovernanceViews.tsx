@@ -1,4 +1,5 @@
 import { WorkspaceHeader } from "@/features/platform/design-system/layout/WorkspaceLayouts";
+import { Button } from "@/features/platform/design-system";
 import Link from "next/link";
 import type {
   ApprovalRequest,
@@ -6,6 +7,8 @@ import type {
   ExecutionRequest,
   GovernedWorkflow,
 } from "../domain/models";
+import type { ApprovalEvent, ApprovalRecord } from "../domain/approval";
+import { approveApprovalAction, cancelApprovalAction, rejectApprovalAction, requestApprovalAction } from "../actions/approval.actions";
 const card = "rounded-2xl border border-vds-border bg-vds-surface p-5";
 export function GovernanceNav() {
   return (
@@ -220,6 +223,126 @@ function Empty({ text }: { text: string }) {
   return (
     <div className="rounded-2xl border border-dashed border-vds-border p-12 text-center text-sm text-vds-muted">
       {text}
+    </div>
+  );
+}
+
+// --------------------------------------------------------------------------
+// Real, tenant-scoped Business+ Approval Workflows UI (Phase D1). These
+// components render ApprovalRecord/ApprovalEvent (see ../domain/approval.ts),
+// the persistent replacement for the ApprovalRequest/AuditEntry demo shapes
+// above. Approve/Reject/Cancel controls are shown only when the caller's
+// permission decision allows it, but the server actions re-check permission,
+// entitlement, and the DB-level can_manage_approvals()/self-approval/version
+// rules regardless -- these controls are a convenience, not the boundary.
+export function RequestApprovalForm() {
+  return (
+    <form action={requestApprovalAction} className="grid gap-2 sm:grid-cols-[1fr_1fr_auto]">
+      <input className="rounded-xl border border-vds-border bg-vds-input px-3 py-2 text-sm" name="sourceType" placeholder="Source type (e.g. marketing_campaign)" required />
+      <input className="rounded-xl border border-vds-border bg-vds-input px-3 py-2 text-sm" name="actionType" placeholder="Action (e.g. campaign.publish)" required />
+      <Button type="submit" variant="primary">Request approval</Button>
+    </form>
+  );
+}
+
+export function ApprovalRequestList({ items, canDecide }: { items: readonly ApprovalRecord[]; canDecide: boolean }) {
+  return (
+    <div className="space-y-3">
+      {items.length ? (
+        items.map((item) => (
+          <Link href={`/vayon/approvals/${item.id}`} key={item.id} className={`${card} block`}>
+            <div className="flex justify-between">
+              <h2 className="font-medium">{item.actionType}</h2>
+              <span className="text-xs capitalize">{item.status}</span>
+            </div>
+            <dl className="mt-4 grid gap-2 text-xs text-vds-muted sm:grid-cols-2 lg:grid-cols-4">
+              <div><dt className="font-medium text-vds-foreground">Source</dt><dd>{item.sourceType}</dd></div>
+              <div><dt className="font-medium text-vds-foreground">Requested by</dt><dd>{item.requestedBy}</dd></div>
+              <div><dt className="font-medium text-vds-foreground">Approver</dt><dd>{item.approverId ?? "Awaiting assignment"}</dd></div>
+              <div><dt className="font-medium text-vds-foreground">Requested</dt><dd>{new Date(item.requestedAt).toLocaleString()}</dd></div>
+            </dl>
+          </Link>
+        ))
+      ) : (
+        <Empty text={canDecide ? "No approvals need attention." : "No approvals need attention. Requests you submit will appear here."} />
+      )}
+    </div>
+  );
+}
+
+export function ApprovalEventList({ items }: { items: readonly ApprovalEvent[] }) {
+  return (
+    <section>
+      <h2 className="mb-3 font-semibold">History</h2>
+      <div className="space-y-3">
+        {items.length ? (
+          items.map((item) => (
+            <article key={item.id} className={`${card} border-l-2 border-l-vds-primary`}>
+              <p className="font-medium">{item.event}</p>
+              <p className="mt-1 text-xs text-vds-muted">{item.actorId} · {new Date(item.occurredAt).toLocaleString()}</p>
+              {item.metadata.reason ? <p className="mt-1 text-xs text-vds-muted">Reason: {String(item.metadata.reason)}</p> : null}
+            </article>
+          ))
+        ) : (
+          <Empty text="No history has been recorded." />
+        )}
+      </div>
+    </section>
+  );
+}
+
+export function ApprovalRequestDetail({
+  item,
+  events,
+  canDecide,
+  canCancel,
+}: {
+  item: ApprovalRecord;
+  events: readonly ApprovalEvent[];
+  canDecide: boolean;
+  canCancel: boolean;
+}) {
+  return (
+    <div className="space-y-5">
+      <section className={card}>
+        <h2 className="font-semibold">Decision record</h2>
+        <p className="mt-3 text-sm text-vds-muted">
+          Action: {item.actionType} · Source: {item.sourceType} · Status: {item.status}
+        </p>
+        <p className="mt-2 text-sm text-vds-muted">
+          Requested by {item.requestedBy} on {new Date(item.requestedAt).toLocaleString()}
+        </p>
+        <p className="mt-2 text-sm text-vds-muted">
+          Approver: {item.approverId ?? "Awaiting decision"} · Reason: {item.reason ?? "Awaiting decision"}
+          {item.decidedAt ? ` · Decided ${new Date(item.decidedAt).toLocaleString()}` : ""}
+        </p>
+        {item.status === "pending" && (canDecide || canCancel) && (
+          <div className="mt-5 flex flex-wrap gap-2">
+            {canDecide && (
+              <>
+                <form action={approveApprovalAction}>
+                  <input type="hidden" name="approvalId" value={item.id} />
+                  <input type="hidden" name="version" value={item.version} />
+                  <Button type="submit" variant="primary">Approve</Button>
+                </form>
+                <form action={rejectApprovalAction}>
+                  <input type="hidden" name="approvalId" value={item.id} />
+                  <input type="hidden" name="version" value={item.version} />
+                  <Button type="submit" variant="ghost" className="text-vds-danger">Reject</Button>
+                </form>
+              </>
+            )}
+            {canCancel && (
+              <form action={cancelApprovalAction}>
+                <input type="hidden" name="approvalId" value={item.id} />
+                <input type="hidden" name="version" value={item.version} />
+                <Button type="submit" variant="ghost">Cancel</Button>
+              </form>
+            )}
+          </div>
+        )}
+      </section>
+      <ApprovalEventList items={events} />
     </div>
   );
 }
