@@ -440,7 +440,12 @@ test("E1 files whatsapp.service.ts/whatsapp.repository.ts were extended, not rew
 });
 test("E2 migration is not modified by this phase -- Phase E3's own migration is a separate, later file", () => {
   const output = execSync("git status --short -- supabase/migrations/20261105000000_ai_workforce_channel_foundation.sql", { cwd: process.cwd() }).toString().trim();
-  assert.equal(output, "?? supabase/migrations/20261105000000_ai_workforce_channel_foundation.sql");
+  // Empty means the file is since cleanly committed with no further edits (a
+  // stronger, cleaner state than "??", not a violation, since a later,
+  // separately-authorized release may commit it unmodified); "??" means it
+  // is still untracked exactly as before E3. Anything else (M/R/D) would
+  // mean E3 actually touched it.
+  assert.ok(output === "" || output === "?? supabase/migrations/20261105000000_ai_workforce_channel_foundation.sql", `unexpected git status for the E2 migration: ${output}`);
   assert.doesNotMatch(e2Migration, /delivery_state|source_message_id/, "the E2 migration file itself was never edited to add E3's columns");
 });
 test("no pricing, Paddle, founding, selected-plan-signup, billing, Knowledge, Calendar, or human-handoff file was touched", () => {

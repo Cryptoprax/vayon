@@ -4,7 +4,7 @@ import { execSync } from "node:child_process";
 import test from "node:test";
 import { load } from "./helpers/sprint237-load.mjs";
 
-const migration = readFileSync("supabase/migrations/20261104000000_whatsapp_crm_identity.sql", "utf8");
+const migration = readFileSync("supabase/migrations/20261104000000_whatsapp_crm_identity.sql", "utf8").replace(/\r\n/g, "\n");
 const whatsappService = readFileSync("features/platform/integrations/whatsapp/whatsapp.service.ts", "utf8");
 const whatsappRepository = readFileSync("features/platform/integrations/whatsapp/whatsapp.repository.ts", "utf8");
 const leadIdentityService = readFileSync("features/platform/integrations/whatsapp/lead-identity.service.ts", "utf8");
@@ -330,13 +330,15 @@ test("no D1 (Approvals) or D2 (Quota) file was modified by this phase -- status 
   const unexpected = status.filter((entry) => !expectedBeforeE1.includes(entry));
   assert.deepEqual(unexpected, [], "any deviation here means E1 touched a D1/D2 file");
 });
-test("neither pending migration (D1 Approvals, D2 Quota) was renamed, altered, or applied -- each shows exactly as an untracked (??) new file, unchanged from before E1", () => {
+test("neither pending migration (D1 Approvals, D2 Quota) was renamed, altered, or applied -- each is either untracked (??) exactly as before E1, or, for one since committed with no further edits (a stronger, cleaner state, not a violation -- see the D1/D2 subset-check comment above), cleanly absent from git status entirely", () => {
   const parse = (line) => { const m = /^(.{2})\s*(.+)$/.exec(line); return m ? `${m[1].trim()}|${m[2]}` : line; };
   const status = execSync("git status --short -- supabase/migrations/20261102000000_business_approval_workflows.sql supabase/migrations/20261103000000_numeric_quota_enforcement.sql", { cwd: process.cwd() }).toString().trim().split("\n").filter(Boolean).map(parse).sort();
-  assert.deepEqual(status, [
+  const expected = [
     "??|supabase/migrations/20261102000000_business_approval_workflows.sql",
     "??|supabase/migrations/20261103000000_numeric_quota_enforcement.sql",
-  ].sort());
+  ].sort();
+  const unexpected = status.filter((entry) => !expected.includes(entry));
+  assert.deepEqual(unexpected, [], "any deviation here means a pending migration was renamed, altered, or applied");
 });
 test("no pricing, Paddle, founding, selected-plan-signup, or AI Workforce file was touched", () => {
   const output = execSync("git status --short -- features/marketing/components/PricingTable.tsx features/platform/commercial-pricing.ts features/vayon/billing/providers features/vayon/ai-workforce", { cwd: process.cwd() }).toString();

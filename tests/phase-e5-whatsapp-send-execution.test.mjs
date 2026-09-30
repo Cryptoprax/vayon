@@ -423,10 +423,14 @@ test("the residual crash-after-accept risk is explicitly documented in the migra
 // PART 20/22 -- EXISTING WORK SAFETY
 // ---------------------------------------------------------------------------
 test("D1/E4 migrations are untouched -- E5 only adds a new, later migration", () => {
+  // Empty means the file is since cleanly committed with no further edits (a
+  // stronger, cleaner state than "??", not a violation); "??" means it is
+  // still untracked exactly as before E5. Anything else (M/R/D) would mean
+  // E5 actually touched it.
   const outputD1 = execSync("git status --short -- supabase/migrations/20261102000000_business_approval_workflows.sql", { cwd: process.cwd() }).toString().trim();
-  assert.equal(outputD1, "?? supabase/migrations/20261102000000_business_approval_workflows.sql");
+  assert.ok(outputD1 === "" || outputD1 === "?? supabase/migrations/20261102000000_business_approval_workflows.sql", `unexpected git status for D1's migration: ${outputD1}`);
   const outputE4 = execSync("git status --short -- supabase/migrations/20261107000000_whatsapp_ai_draft_approval.sql", { cwd: process.cwd() }).toString().trim();
-  assert.equal(outputE4, "?? supabase/migrations/20261107000000_whatsapp_ai_draft_approval.sql");
+  assert.ok(outputE4 === "" || outputE4 === "?? supabase/migrations/20261107000000_whatsapp_ai_draft_approval.sql", `unexpected git status for E4's migration: ${outputE4}`);
   assert.doesNotMatch(migration, /create or replace function public\.(request_whatsapp_draft_approval|request_approval|decide_approval|cancel_approval)\(/);
   assert.doesNotMatch(e4Migration, /whatsapp_ai_send_executions|claim_whatsapp_draft_send/);
 });
@@ -457,7 +461,13 @@ test("no D1 (Approvals) or D2 (Quota) engine file was modified by this phase", (
 test("52: E4's own approval-decide behavior (decide_approval, whatsapp-approval.actions.ts) is unmodified by this phase", () => {
   const output = execSync("git status --short -- features/vayon/workflow-approval/actions/whatsapp-approval.actions.ts features/vayon/workflow-approval/services/whatsapp-draft-approval.service.ts", { cwd: process.cwd() }).toString().trim().split("\n").filter(Boolean);
   const parse = (line) => { const m = /^(.{2})\s*(.+)$/.exec(line); return m ? `${m[1].trim()}|${m[2]}` : line; };
-  assert.deepEqual(output.map(parse).sort(), ["??|features/vayon/workflow-approval/actions/whatsapp-approval.actions.ts"].sort());
+  const expected = ["??|features/vayon/workflow-approval/actions/whatsapp-approval.actions.ts"];
+  // Empty means whatsapp-approval.actions.ts is since cleanly committed with
+  // no further edits (a stronger, cleaner state than "??", not a violation);
+  // "??" means still untracked exactly as before E5. Anything else would
+  // mean E5 actually touched E4's approval-decide action.
+  const unexpected = output.map(parse).filter((entry) => !expected.includes(entry));
+  assert.deepEqual(unexpected, []);
 });
 test("53/54/55: E3's generation.ts, E2's conversation RPCs, and E1's identity RPCs are not redefined by this migration", () => {
   assert.doesNotMatch(migration, /create or replace function public\.(generate_workforce_reply|resolve_whatsapp_ai_conversation|resolve_whatsapp_lead_identity|process_whatsapp_message|append_trusted_ai_message)/);

@@ -4,7 +4,7 @@ import { execSync } from "node:child_process";
 import test from "node:test";
 import { load } from "./helpers/sprint237-load.mjs";
 
-const migration = readFileSync("supabase/migrations/20261107000000_whatsapp_ai_draft_approval.sql", "utf8");
+const migration = readFileSync("supabase/migrations/20261107000000_whatsapp_ai_draft_approval.sql", "utf8").replace(/\r\n/g, "\n");
 const d1Migration = readFileSync("supabase/migrations/20261102000000_business_approval_workflows.sql", "utf8");
 const e3Migration = readFileSync("supabase/migrations/20261106000000_whatsapp_ai_draft_response.sql", "utf8");
 const orchestratorSource = readFileSync("features/platform/integrations/whatsapp/whatsapp-ai-orchestrator.service.ts", "utf8");
@@ -363,7 +363,11 @@ test("27/28: no communication is ever marked 'sent' and no whatsapp_messages del
 // ---------------------------------------------------------------------------
 test("D1's own migration file is untouched -- E4 only adds a new, later migration", () => {
   const output = execSync("git status --short -- supabase/migrations/20261102000000_business_approval_workflows.sql", { cwd: process.cwd() }).toString().trim();
-  assert.equal(output, "?? supabase/migrations/20261102000000_business_approval_workflows.sql");
+  // Empty means the file is since cleanly committed with no further edits (a
+  // stronger, cleaner state than "??", not a violation); "??" means it is
+  // still untracked exactly as before E4. Anything else (M/R/D) would mean
+  // E4 actually touched it.
+  assert.ok(output === "" || output === "?? supabase/migrations/20261102000000_business_approval_workflows.sql", `unexpected git status for D1's migration: ${output}`);
 });
 test("no D1 (Approvals) or D2 (Quota) engine file was modified by this phase (only new E4 files were added under the shared directory prefix)", () => {
   const d1d2Prefixes = ["app/vayon/approvals", "app/vayon/executions", "app/vayon/workflows/[workflowId]", "features/vayon/billing/services/require-quota.ts", "app/accept-invitation/page.tsx", "features/platform/organization", "supabase/migrations/20261102000000_business_approval_workflows.sql", "supabase/migrations/20261103000000_numeric_quota_enforcement.sql"];

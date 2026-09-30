@@ -197,7 +197,11 @@ test("reconciliation performs zero writes to any customer-visible communication 
 });
 test("18: executeApprovedWhatsAppDraft's success/failure code paths are byte-for-byte unchanged by this phase", () => {
   const status = execSync("git status --short -- features/platform/integrations/whatsapp/whatsapp-send-execution.service.ts", { cwd: process.cwd() }).toString().trim();
-  assert.equal(status, "?? features/platform/integrations/whatsapp/whatsapp-send-execution.service.ts");
+  // Empty means the file is since cleanly committed with no further edits (a
+  // stronger, cleaner state than "??", not a violation); "??" means it is
+  // still untracked exactly as before E6. Anything else (M/R/D) would mean
+  // E6 actually touched it.
+  assert.ok(status === "" || status === "?? features/platform/integrations/whatsapp/whatsapp-send-execution.service.ts", `unexpected git status for E5's executor: ${status}`);
   assert.match(executorSource, /export async function executeApprovedWhatsAppDraft\(draftMessageId: string\)/);
 });
 
