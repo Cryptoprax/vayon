@@ -452,11 +452,23 @@ test("no pricing, Paddle, founding, selected-plan-signup, billing, Knowledge, Ca
   const output = execSync("git status --short -- features/marketing/components/PricingTable.tsx features/platform/commercial-pricing.ts features/vayon/billing/providers features/vayon/ai-workforce features/vayon/ai-workforce/services/knowledge.service.ts features/platform/knowledge features/vayon/operations/services/meeting.service.ts features/vayon/calendar-platform", { cwd: process.cwd() }).toString();
   assert.equal(output.trim(), "");
 });
-test("no Meta Ads / Meta Lead Ads / Meta campaign publishing file was touched", () => {
-  let output = "";
-  try { output = execSync("git grep -l \"MetaAds\\|MetaLeadAds\\|meta-ads\\|meta-lead-ads\" -- app features", { cwd: process.cwd() }).toString().trim(); }
-  catch (error) { if (error.status !== 1) throw error; }
-  assert.equal(output, "");
+test("E3-owned WhatsApp AI draft files do not depend on or reference Meta Ads / Meta Lead Ads campaign publishing (ADS-B3)", () => {
+  // The original repo-wide `git grep` for Meta-Ads identifiers assumed no Meta
+  // Ads feature existed anywhere in the tree, so any match necessarily meant
+  // E3 itself had introduced one. That assumption broke once ADS-B3 (a later,
+  // separately-authorized, legitimate Meta campaign-publishing feature) was
+  // added under features/vayon/meta-ads/** -- its own files now trivially
+  // match those same identifiers (e.g. their own relative imports contain the
+  // literal substring "meta-ads"), producing a false positive. The actual
+  // invariant under test has always been narrower: E3 (WhatsApp AI draft
+  // generation) must not depend on or reference Meta Ads, not that Meta Ads
+  // must not exist. This checks that invariant directly, against every file
+  // E3 itself owns/touches, using ADS-B3's real, concrete identifiers.
+  const metaAdsPattern = /features\/vayon\/meta-ads|meta-ads\.service|MetaAdsProvider|MetaPublishWorker|request_meta_campaign_publish|meta_campaign_publish_executions/;
+  const e3OwnedSources = { migration, generationSource, trustedRuntimeSource, orchestratorSource, whatsappServiceSource, whatsappRepositorySource };
+  for (const [name, source] of Object.entries(e3OwnedSources)) {
+    assert.doesNotMatch(source, metaAdsPattern, `${name} must not reference Meta Ads / ADS-B3`);
+  }
 });
 
 // ---------------------------------------------------------------------------
