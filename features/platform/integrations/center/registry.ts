@@ -157,7 +157,10 @@ export const integrationCenterRegistry = Object.freeze([
   provider("google_analytics_4", "Google Analytics 4", "productivity"),
   provider("google_search_console", "Google Search Console", "productivity"),
   provider("google_business_profile", "Google Business Profile", "social"),
-  provider("meta_ads", "Meta Ads", "social"),
+  provider("meta_ads", "Meta Marketing / Lead Ads", "social", {
+    settingsHref: "/vayon/settings/integrations/meta-marketing",
+    available: true,
+  }),
   provider("linkedin_ads", "LinkedIn Ads", "social"),
   provider("microsoft_graph", "Microsoft Graph", "productivity"),
   provider("outlook_calendar", "Outlook Calendar", "calendar"),
