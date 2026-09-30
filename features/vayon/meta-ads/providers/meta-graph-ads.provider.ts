@@ -1,6 +1,6 @@
 import "server-only";
 import { requireMetaMarketingWritesEnabled } from "@/features/platform/integrations/meta-marketing/providers/meta-graph.provider";
-import type { MetaAdsProvider, MetaCampaignInput, MetaAdSetInput, MetaCreativeInput, MetaAdInput, MetaProviderCreateResult, MetaCampaignStatusResult } from "./meta-ads.provider";
+import type { MetaAdsProvider, MetaCampaignInput, MetaAdSetInput, MetaCreativeInput, MetaCreativeCtaType, MetaAdInput, MetaProviderCreateResult, MetaCampaignStatusResult } from "./meta-ads.provider";
 import { classifyMetaGraphAdsError, parseMetaGraphAdsRateLimitHeaders, MetaGraphAdsUncertainNetworkOutcomeError, MetaGraphAdsUnsupportedOperationError, type MetaGraphAdsRateLimitSnapshot } from "./meta-graph-ads-errors";
 
 /**
@@ -143,12 +143,17 @@ export class MetaGraphAdsProvider implements MetaAdsProvider {
       name: input.name,
       campaign_id: input.providerCampaignId,
       optimization_goal: "LEAD_GENERATION",
+      // ADS-B4C officially verified these two fixed values for VAYON's
+      // certified V1 flow (OUTCOME_LEADS + LEAD_GENERATION + Instant Form):
+      // billing_event is always "IMPRESSIONS", destination_type is always
+      // "ON_AD" (the Instant Form opens on the ad itself, never off-platform).
+      // Both are fixed provider-side constants, never caller-controlled.
+      billing_event: "IMPRESSIONS",
+      destination_type: "ON_AD",
       targeting,
       promoted_object: { page_id: input.pageId },
       status: "PAUSED",
-      // destination_type, billing_event, and bid_strategy are deliberately
-      // OMITTED. ADS-B4A2 could not verify a correct value for any of the
-      // three against official Meta documentation -- do not guess (Part 8).
+      // bid_strategy is deliberately OMITTED -- still unverified (ADS-B4C Part 8).
     };
     if (input.dailyBudgetMinorUnits != null) body.daily_budget = input.dailyBudgetMinorUnits;
     if (input.lifetimeBudgetMinorUnits != null) body.lifetime_budget = input.lifetimeBudgetMinorUnits;
@@ -156,21 +161,49 @@ export class MetaGraphAdsProvider implements MetaAdsProvider {
     return { providerObjectId: String(result.id), status: "PAUSED" };
   }
 
-  async createCreative(_input: MetaCreativeInput, _accessToken: string): Promise<MetaProviderCreateResult> {
+  /**
+   * ADS-B4D: implements ONLY the ADS-B4C-certified static-image Instant Form
+   * creative contract (object_story_spec.link_data with a fixed
+   * "https://fb.me/" link and call_to_action.value.lead_gen_form_id). Other
+   * creative formats, image upload, and lead-form creation remain out of
+   * scope -- this method consumes an already-uploaded imageHash and an
+   * already-created leadGenFormId, it never creates either. Every required
+   * field is validated before any HTTP call; nothing is fabricated.
+   */
+  async createCreative(input: MetaCreativeInput, accessToken: string): Promise<MetaProviderCreateResult> {
     requireMetaMarketingWritesEnabled();
-    // Not yet certified (Part 9). The existing, shared MetaCreativeInput/
-    // MetaCreativePlanItem contract (meta-ads.types.ts, unchanged since
-    // ADS-B3) carries no page_id, ad copy (message/link/description), or
-    // lead-form linkage -- ADS-B4A2 could not verify the exact
-    // call_to_action.value.lead_gen_form_id nesting for a non-video lead ad
-    // creative, and extending the shared ADS-B3 types to invent those fields
-    // would mean guessing both a new interface shape AND which of VAYON's
-    // own domain data feeds them. No HTTP call is attempted. Requires a
-    // separately-authorized phase once the creative payload contract is
-    // independently re-verified.
-    throw new MetaGraphAdsUnsupportedOperationError(
-      "createCreative is not yet certified: MetaCreativeInput carries no page_id/ad-copy/lead-form-id, and the exact call_to_action.value.lead_gen_form_id nesting for a non-video lead ad creative was not independently verified (ADS-B4A2 Part 11/19). No HTTP call was attempted.",
-    );
+    if (!input.adAccountId) throw new MetaGraphAdsUnsupportedOperationError("createCreative: adAccountId is required (ad creatives are account-scoped: POST /act_{id}/adcreatives)");
+    if (isBlank(input.pageId)) throw new MetaGraphAdsUnsupportedOperationError("createCreative: pageId is required (object_story_spec.page_id)");
+    if (isBlank(input.primaryText)) throw new MetaGraphAdsUnsupportedOperationError("createCreative: primaryText is required (link_data.message)");
+    if (isBlank(input.imageHash)) throw new MetaGraphAdsUnsupportedOperationError("createCreative: imageHash is required (link_data.image_hash) -- this method never uploads an image, it only consumes an existing hash");
+    if (isBlank(input.leadGenFormId)) throw new MetaGraphAdsUnsupportedOperationError("createCreative: leadGenFormId is required (call_to_action.value.lead_gen_form_id) -- this method never creates a lead form, it only consumes an existing form id");
+    if (!input.ctaType || !CERTIFIED_CTA_TYPES.has(input.ctaType)) {
+      throw new MetaGraphAdsUnsupportedOperationError(`createCreative: ctaType "${String(input.ctaType)}" is not certified -- only ${[...CERTIFIED_CTA_TYPES].join(", ")} are implemented`);
+    }
+    const linkData: Record<string, unknown> = {
+      message: input.primaryText,
+      image_hash: input.imageHash,
+      // Fixed per the certified Instant Form contract (ADS-B4C Part 6) --
+      // lead ads never send the user off-platform; the Instant Form opens
+      // in-app. This is never a caller-controlled/arbitrary destination URL.
+      link: "https://fb.me/",
+      call_to_action: {
+        type: input.ctaType,
+        value: { lead_gen_form_id: input.leadGenFormId },
+      },
+    };
+    if (!isBlank(input.description)) linkData.description = input.description;
+    const body = {
+      object_story_spec: {
+        page_id: input.pageId,
+        link_data: linkData,
+      },
+    };
+    const result = await this.send("POST", `/act_${input.adAccountId}/adcreatives`, accessToken, body);
+    // Ad creatives have no PAUSED/ACTIVE lifecycle of their own (unlike
+    // campaigns/ad sets/ads) -- "CREATED" is used rather than PAUSED to
+    // avoid implying a status concept that doesn't apply to this object type.
+    return { providerObjectId: String(result.id), status: "CREATED" };
   }
 
   async createAd(input: MetaAdInput, accessToken: string): Promise<MetaProviderCreateResult> {
@@ -237,6 +270,13 @@ const KNOWN_EFFECTIVE_STATUSES = new Set([
 function mapEffectiveStatus(effectiveStatus: string | null): string {
   if (effectiveStatus === null || !KNOWN_EFFECTIVE_STATUSES.has(effectiveStatus)) return "uncertain";
   return effectiveStatus;
+}
+
+/** ADS-B4C's verified call_to_action.type allowlist for lead-gen creatives. Runtime defense in depth -- the MetaCreativeCtaType TS type alone does not stop a non-typed/JS caller. */
+const CERTIFIED_CTA_TYPES: ReadonlySet<MetaCreativeCtaType> = new Set(["APPLY_NOW", "DOWNLOAD", "GET_QUOTE", "LEARN_MORE", "SIGN_UP", "SUBSCRIBE"]);
+
+function isBlank(value: string | undefined): boolean {
+  return value === undefined || value.trim().length === 0;
 }
 
 /**

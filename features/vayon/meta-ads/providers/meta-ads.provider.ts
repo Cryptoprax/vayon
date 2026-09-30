@@ -25,10 +25,29 @@ export interface MetaAdSetInput {
   readonly adAccountId?: string;
   readonly pageId?: string;
 }
+/** ADS-B4D: the Meta-verified call_to_action.type allowlist for the certified static-image Instant Form creative contract. */
+export type MetaCreativeCtaType = "APPLY_NOW" | "DOWNLOAD" | "GET_QUOTE" | "LEARN_MORE" | "SIGN_UP" | "SUBSCRIBE";
+
 export interface MetaCreativeInput {
   readonly providerAdSetId: string;
   readonly storagePath: string;
   readonly format: string;
+  /**
+   * ADS-B4D: optional, unused by FakeMetaAdsProvider. Required by
+   * MetaGraphAdsProvider.createCreative() for the certified static-image
+   * Instant Form creative contract only -- object_story_spec.page_id,
+   * link_data.message/description/image_hash, and
+   * call_to_action.value.lead_gen_form_id. description is the one optional
+   * field in this set; the rest are required and fail closed before any
+   * HTTP call.
+   */
+  readonly adAccountId?: string;
+  readonly pageId?: string;
+  readonly primaryText?: string;
+  readonly description?: string;
+  readonly imageHash?: string;
+  readonly leadGenFormId?: string;
+  readonly ctaType?: MetaCreativeCtaType;
 }
 export interface MetaAdInput {
   readonly providerAdSetId: string;
