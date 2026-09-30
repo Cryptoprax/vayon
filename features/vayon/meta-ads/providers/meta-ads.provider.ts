@@ -21,6 +21,9 @@ export interface MetaAdSetInput {
   readonly dailyBudgetMinorUnits: number | null;
   readonly lifetimeBudgetMinorUnits: number | null;
   readonly targetingSpec: unknown;
+  /** ADS-B4B: optional, unused by FakeMetaAdsProvider. A real provider needs the ad account (adsets are account-scoped: POST /act_{id}/adsets) and the Page (promoted_object.page_id, required for lead-gen ad sets) that the fake provider never had to know about. */
+  readonly adAccountId?: string;
+  readonly pageId?: string;
 }
 export interface MetaCreativeInput {
   readonly providerAdSetId: string;
@@ -31,6 +34,8 @@ export interface MetaAdInput {
   readonly providerAdSetId: string;
   readonly providerCreativeId: string;
   readonly name: string;
+  /** ADS-B4B: optional, unused by FakeMetaAdsProvider. Ads are account-scoped (POST /act_{id}/ads). */
+  readonly adAccountId?: string;
 }
 export interface MetaProviderCreateResult {
   readonly providerObjectId: string;
