@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { shellNavigation, navigationGroupForPath } from "./navigation";
+import { LinkPendingHint } from "./LinkPendingHint";
 import { filterNavigationForRole } from "@/features/platform/permissions/runtime/navigation";
 import type { WorkspaceRoleCode } from "@/features/platform/organization/config/workspace-role-catalog";
 import type { PlatformVisibilityContext } from "@/features/platform/visibility/domain";
@@ -31,14 +32,14 @@ export function ShellSidebar({ path, role, visibility, collapsed, mobileOpen, on
         return <div key={group.id} className="mb-2">
           <Link href={destination} onClick={onMobileClose} title={collapsed ? group.label : undefined}
             aria-current={path === destination ? "page" : undefined}
-            className={`focus-ring flex min-h-11 items-center rounded-xl text-sm font-semibold ${collapsed ? "justify-center px-2" : "gap-3 px-3"} ${active ? "bg-vds-primary-soft text-vds-primary" : "text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"}`}>
-            <GroupIcon aria-hidden="true" className="size-5 shrink-0" /><span className={collapsed ? "sr-only" : "min-w-0"}>{group.label}{group.items[0].label !== group.label && <span className="block text-xs font-normal text-vds-muted">{group.items[0].label}</span>}</span>
+            className={`focus-ring relative flex min-h-11 items-center rounded-xl text-sm font-semibold ${collapsed ? "justify-center px-2" : "gap-3 px-3"} ${active ? "bg-vds-primary-soft text-vds-primary" : "text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"}`}>
+            <GroupIcon aria-hidden="true" className="size-5 shrink-0" /><span className={collapsed ? "sr-only" : "min-w-0"}>{group.label}{group.items[0].label !== group.label && <span className="block text-xs font-normal text-vds-muted">{group.items[0].label}</span>}</span><LinkPendingHint/>
           </Link>
           {active && !collapsed && workflowItems.length > 0 && <div role="group" aria-label={group.label + " destinations"} className="ml-5 mt-2 grid gap-1 border-l border-vds-border pl-3">
             {items.map(item => <Link key={item.href} href={item.href!} onClick={onMobileClose}
               aria-current={path === item.href ? "page" : undefined}
-              className={`focus-ring flex min-h-11 items-center rounded-lg px-3 py-2 text-sm ${path === item.href ? "bg-vds-primary-soft text-vds-primary" : "text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"}`}>{item.label}</Link>)}
-            {advancedItems.length > 0 && <details key={path} open={advancedItems.some(item => path === item.href)} className="mt-2"><summary className="focus-ring cursor-pointer rounded-lg px-3 py-3 text-sm text-vds-muted">More tools for this workflow</summary><div className="grid gap-1">{advancedItems.map(item => <Link key={item.href} href={item.href!} onClick={onMobileClose} aria-current={path === item.href ? "page" : undefined} className="focus-ring min-h-11 rounded-lg px-3 py-3 text-sm text-vds-muted hover:bg-vds-hover">{item.label}</Link>)}</div></details>}
+              className={`focus-ring relative flex min-h-11 items-center rounded-lg px-3 py-2 text-sm ${path === item.href ? "bg-vds-primary-soft text-vds-primary" : "text-vds-muted hover:bg-vds-hover hover:text-vds-foreground"}`}>{item.label}<LinkPendingHint/></Link>)}
+            {advancedItems.length > 0 && <details key={path} open={advancedItems.some(item => path === item.href)} className="mt-2"><summary className="focus-ring cursor-pointer rounded-lg px-3 py-3 text-sm text-vds-muted">More tools for this workflow</summary><div className="grid gap-1">{advancedItems.map(item => <Link key={item.href} href={item.href!} onClick={onMobileClose} aria-current={path === item.href ? "page" : undefined} className="focus-ring relative min-h-11 rounded-lg px-3 py-3 text-sm text-vds-muted hover:bg-vds-hover">{item.label}<LinkPendingHint/></Link>)}</div></details>}
           </div>}
         </div>;
       })}

@@ -79,6 +79,20 @@ export function canViewPath(context: PlatformVisibilityContext, path: string): b
   return !rule || (rule.industries.includes(context.industry) && rule.roles.includes(context.role));
 }
 
+// Which per-request inputs canViewPath() can depend on for this user and path. An input is unnecessary when
+// the outcome is the same for every value it can take: a platform founder sees everything, a rule that lists
+// every role ignores the workspace role, and a rule that lists every industry ignores the industry. Callers
+// may skip looking up an unnecessary input; the decision is unchanged (pinned by platform-visibility tests).
+export function visibilityInputsForPath(platformRole: unknown, path: string): { readonly workspaceRole: boolean; readonly industry: boolean } {
+  const role = normalizeVisibilityRole(platformRole, undefined);
+  const rule = visibilityRuleForPath(path);
+  if (role === "Founder" || role === "Super Admin" || !rule) return { workspaceRole: false, industry: false };
+  return {
+    workspaceRole: !allRoles.every((candidate) => rule.roles.includes(candidate)),
+    industry: !allIndustries.every((candidate) => rule.industries.includes(candidate)),
+  };
+}
+
 export function filterVisibleItems<T extends { readonly href?: string }>(context: PlatformVisibilityContext, items: readonly T[]): T[] {
   return items.filter((item) => !item.href || canViewPath(context, item.href));
 }

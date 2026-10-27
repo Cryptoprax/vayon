@@ -1,4 +1,4 @@
-import { getWorkspaceTrial } from "@/features/vayon/billing/services/workspace-trial";
+import { getWorkspaceTrial, type WorkspaceTrialSnapshot } from "@/features/vayon/billing/services/workspace-trial";
 import { WorkspaceTrialBanner } from "@/features/vayon/billing/components/WorkspaceTrialBanner";
 import { evaluateWorkspacePermission } from "@/features/platform/permissions/runtime/policy";
 import type { ReactNode } from "react";
@@ -17,14 +17,20 @@ export async function VayonShell({
 }: {
   readonly children: ReactNode;
 }) {
-  const user = await new AuthenticationService().user();
-  let organization = await new OrganizationService().current();
+  // Identity lookups are request-scoped, so these calls share one getUser() and one context read.
+  const [user, currentOrganization] = await Promise.all([
+    new AuthenticationService().user(),
+    new OrganizationService().current(),
+  ]);
+  let organization = currentOrganization;
+  // Bootstrap must finish before anything that reads the organization or workspace.
   if (user && !organization)
     organization = await new WorkspaceBootstrapService().ensure(user);
-  const authorization = await new WorkspacePermissionService()
-    .context()
-    .catch(() => null);
-  const visibility = await new PlatformVisibilityService().context();
+  // Visibility reuses this request's permission context instead of resolving it again.
+  const [authorization, visibility] = await Promise.all([
+    new WorkspacePermissionService().context().catch(() => null),
+    new PlatformVisibilityService().context(),
+  ]);
   const
     demo = getAuroraNavigationContext(),
     userName = String(
@@ -54,11 +60,12 @@ export async function VayonShell({
           demoWorkspace: "aurora" as const,
           workspaceRole: authorization?.role ?? "guest" as const,
         };
-  const trial = await getWorkspaceTrial().catch(() => null);
+  // Start the trial snapshot now; the banner streams in when it resolves instead of blocking the shell.
+  const trial = getWorkspaceTrial().catch(() => null);
   return (
     <Suspense>
       <ProductExperience
-        commercialNotice={<WorkspaceTrialBanner snapshot={trial} canOpenBilling={Boolean(authorization && evaluateWorkspacePermission(authorization.role, { module: "billing", action: "view" }).allowed)}/>}
+        commercialNotice={<Suspense fallback={null}><ShellTrialNotice trial={trial} canOpenBilling={Boolean(authorization && evaluateWorkspacePermission(authorization.role, { module: "billing", action: "view" }).allowed)}/></Suspense>}
         identity={identity}
         visibility={visibility}
         intelligenceEnabled={process.env.FEATURE_VAYON_INTELLIGENCE !== "false"}
@@ -71,4 +78,14 @@ export async function VayonShell({
       </ProductExperience>
     </Suspense>
   );
+}
+
+async function ShellTrialNotice({
+  trial,
+  canOpenBilling,
+}: {
+  readonly trial: Promise<WorkspaceTrialSnapshot | null>;
+  readonly canOpenBilling: boolean;
+}) {
+  return <WorkspaceTrialBanner snapshot={await trial} canOpenBilling={canOpenBilling}/>;
 }

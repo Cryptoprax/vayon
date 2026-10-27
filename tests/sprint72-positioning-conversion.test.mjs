@@ -7,11 +7,11 @@ test("hero defines the AI operating system category for real estate", () => {
   const source = read("features/marketing/components/Homepage.tsx");
   assert.match(
     source,
-    /Keep your next conversation, viewing, and deal in focus/,
+    /From the first lead to the final deal, VAYON brings AI employees, sales, properties, and operations together in one intelligent platform/,
   );
   for (const item of [
     "AI Employees",
-    "Run your real estate day from one workspace",
+    "Your Entire Real Estate Business",
     "Real Estate CRM",
     "WhatsApp Automation",
     "AI Voice Agents",

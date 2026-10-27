@@ -260,10 +260,11 @@ export function Homepage() {
               Properties, clients, and follow-ups in one place
             </span>
             <h1 className="mt-7 text-balance text-5xl font-semibold leading-[.96] tracking-[-.06em] sm:text-7xl">
-              Run your real estate day from one workspace.
+              <span className="block text-vds-foreground">Your Entire Real Estate Business.</span>
+              <span className="block text-vds-primary">Powered by World-Class AI Intelligence.</span>
             </h1>
             <h2 className="mt-7 max-w-2xl text-xl font-medium leading-8 text-vds-secondary">
-              Keep your next conversation, viewing, and deal in focus.
+              From the first lead to the final deal, VAYON brings AI employees, sales, properties, and operations together in one intelligent platform.
             </h2>
             <p className="mt-5 max-w-2xl text-pretty leading-7 text-vds-muted">
               Organize properties, keep track of buyers, plan viewings, and follow up on deals. Use the existing AI Assistant where you need help, and review important actions before they run.

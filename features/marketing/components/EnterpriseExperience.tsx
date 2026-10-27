@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import {
   BarChart3,
   BrainCircuit,
@@ -14,7 +14,7 @@ import {
   Settings2,
   Users,
 } from "lucide-react";
-import { useEffect, useState, type ComponentType } from "react";
+import { useEffect, useRef, useState, type ComponentType } from "react";
 import { Button } from "@/features/platform/design-system";
 import { CurrencyDisplay } from "../currency/CurrencyDisplay";
 
@@ -70,20 +70,24 @@ const metrics: Record<
 export function HeroProductMockup() {
   const [active, setActive] = useState(0),
     reduced = useReducedMotion(),
+    frame = useRef<HTMLDivElement>(null),
+    // The float and the view rotation only run while the mockup is on screen.
+    looping = useInView(frame) && !reduced,
     view = productViews[active];
   useEffect(() => {
-    if (reduced) return;
+    if (!looping) return;
     const timer = window.setInterval(
       () => setActive((value) => (value + 1) % productViews.length),
       3600,
     );
     return () => window.clearInterval(timer);
-  }, [reduced]);
+  }, [looping]);
   return (
     <motion.div
+      ref={frame}
       className="relative rounded-[2rem] border border-vds-border-strong bg-vds-elevated p-2 shadow-2xl"
-      animate={reduced ? undefined : { y: [0, -5, 0] }}
-      transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      animate={reduced ? undefined : looping ? { y: [0, -5, 0] } : { y: 0 }}
+      transition={looping ? { duration: 7, repeat: Infinity, ease: "easeInOut" } : { duration: 0.3 }}
     >
       <div className="overflow-hidden rounded-[1.55rem] border border-vds-border bg-vds-background">
         <div className="flex items-center justify-between border-b border-vds-border px-5 py-4">

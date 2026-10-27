@@ -24,8 +24,10 @@ export async function proxy(request: NextRequest) {
   return refreshSession(request);
 }
 
+// Static assets and the public metadata routes (app/robots.ts, sitemap.ts, manifest.ts) skip the
+// session proxy; without the exclusion an anonymous crawler was redirected to /login for them.
 export const config = {
   matcher: [
-    "/((?!api(?:/|$)|api/webhooks(?:/|$)|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!api(?:/|$)|api/webhooks(?:/|$)|_next/static|_next/image|favicon.ico|robots\\.txt$|sitemap\\.xml$|manifest\\.webmanifest$|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

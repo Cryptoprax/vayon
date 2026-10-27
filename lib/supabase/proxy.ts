@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { getSupabaseConfig } from "./config";
-import { canViewPath, isFounderOnlyPath, normalizeIndustry, normalizeVisibilityRole } from "@/features/platform/visibility/policy";
+import { canViewPath, isFounderOnlyPath, normalizeIndustry, normalizeVisibilityRole, visibilityInputsForPath } from "@/features/platform/visibility/policy";
 const PUBLIC_ROUTES = [
   "/",
   "/login",
@@ -111,9 +111,13 @@ export async function refreshSession(request: NextRequest) {
     return NextResponse.rewrite(target, { status: 404 });
   }
   if (user && path.startsWith("/vayon")) {
-    const { data: membership } = await supabase.from("workspace_members").select("workspace_id,roles(code)").eq("user_id", user.id).eq("status", "active").limit(1).maybeSingle();
+    // Read only the inputs this path's rule can depend on; canViewPath() still decides every /vayon request.
+    const needs = visibilityInputsForPath(user.app_metadata?.role, path);
+    const { data: membership } = needs.workspaceRole || needs.industry
+      ? await supabase.from("workspace_members").select("workspace_id,roles(code)").eq("user_id", user.id).eq("status", "active").limit(1).maybeSingle()
+      : { data: null };
     const workspaceId = membership?.workspace_id;
-    const { data: workspaceIndustry } = workspaceId
+    const { data: workspaceIndustry } = workspaceId && needs.industry
       ? await supabase.from("workspace_industry").select("industry").eq("workspace_id", workspaceId).maybeSingle()
       : { data: null };
     const workspaceRole = (membership as unknown as { roles?: { code?: string } | null } | null)?.roles?.code;

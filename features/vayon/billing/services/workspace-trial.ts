@@ -2,6 +2,7 @@ import "server-only";
 import { cache } from "react";
 import { operationsContext } from "@/features/vayon/operations/services/context";
 import { isFounder } from "@/features/platform/founder/services/founder-context";
+import { requestAuthUser } from "@/lib/supabase/request-identity";
 export interface WorkspaceTrialSnapshot {
   status: string;
   endsAt: string | null;
@@ -11,8 +12,7 @@ export interface WorkspaceTrialSnapshot {
 }
 /** Request-scoped selected-workspace entitlement snapshot shared by shell and billing. */
 export const getWorkspaceTrial = cache(async (): Promise<WorkspaceTrialSnapshot | null> => {
-  const c = await operationsContext();
-  const { data: { user } } = await c.client.auth.getUser();
+  const [c, user] = await Promise.all([operationsContext(), requestAuthUser()]);
   if (!user || isFounder(user)) return null;
   const { data, error } = await c.client.from("subscriptions").select("status,trial_ends_at").eq("workspace_id", c.workspaceId).eq("organization_id", c.organizationId).is("deleted_at", null).maybeSingle();
   if (error) throw error;

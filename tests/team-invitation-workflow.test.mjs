@@ -33,7 +33,14 @@ test('password login resumes invitation acceptance and rejects external return U
   // re-validates untrusted signup-form plan/period intent against the real
   // Paddle allowlist before it can influence anything downstream.
   if(name==='@/features/vayon/billing/providers/paddle/paddle-catalog')return {isPaddleBillingPeriod,isPaddlePlanCode};
+  // P1: the default /vayon entry is resolved in the action (dashboard when a workspace exists).
+  if(name==='@/features/onboarding/services/workspace.service')return {WorkspaceService:class{async first(){workspaceReads++;return workspace}}};
   throw new Error('Unexpected dependency '+name);
  },mod,mod.exports);
+ let workspace={id:'workspace',name:'Workspace'},workspaceReads=0;
  for(const [next,expected] of [['/accept-invitation','/accept-invitation'],['https://attacker.invalid','/vayon/dashboard'],['//attacker.invalid','/vayon/dashboard']]){const form=new FormData();form.set('next',next);await assert.rejects(mod.exports.loginAction(form),error=>error.message==='REDIRECT '+expected);}
+ assert.equal(workspaceReads,0,'explicit destinations never read the workspace');
+ // Default entry: a member goes straight to the dashboard; without a workspace /vayon keeps its onboarding redirect.
+ for(const [value,expected] of [[workspace,'/vayon/dashboard'],[null,'/vayon']]){workspace=value;const form=new FormData();form.set('next','/vayon');await assert.rejects(mod.exports.loginAction(form),error=>error.message==='REDIRECT '+expected);}
+ assert.equal(workspaceReads,2);
 });

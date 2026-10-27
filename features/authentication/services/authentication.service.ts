@@ -1,15 +1,14 @@
 import "server-only";
 import { createHash } from "node:crypto";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { requestAuthUser } from "@/lib/supabase/request-identity";
 import { safeAuthenticatedPath } from "../security/oauth";
 import type { PaddleBillingPeriod, PaddlePlanCode } from "@/features/vayon/billing/providers/paddle/paddle-catalog.types";
 const hash = (v: string) => createHash("sha256").update(v).digest("hex");
 export class AuthenticationService {
+  // Verified with auth.getUser() once per request (request-scoped; never shared across requests).
   async user() {
-    const client = await createSupabaseServerClient();
-    const { data, error } = await client.auth.getUser();
-    if (error) return null;
-    return data.user;
+    return requestAuthUser();
   }
   async signUp(
     name: string, email: string, password: string, origin: string,

@@ -12,9 +12,18 @@ export function usePublicFoundingOffer(initial = false) {
         if (active) setAvailable(result?.available === true);
       } catch { if (active) setAvailable(false); }
     };
+    // Poll only while the page is visible, and re-check as soon as it becomes visible again, so a
+    // background tab makes no requests but a returning visitor never sees a stale offer.
+    let timer: number | undefined;
+    const stop = () => { window.clearInterval(timer); timer = undefined; };
+    const start = () => { if (timer === undefined) timer = window.setInterval(() => void refresh(), 60_000); };
+    const onVisibility = () => {
+      if (document.visibilityState === "visible") { void refresh(); start(); } else stop();
+    };
     void refresh();
-    const timer = window.setInterval(() => void refresh(), 30_000);
-    return () => { active = false; window.clearInterval(timer); };
+    if (document.visibilityState === "visible") start();
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => { active = false; stop(); document.removeEventListener("visibilitychange", onVisibility); };
   }, []);
   return available;
 }

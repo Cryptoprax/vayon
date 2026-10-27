@@ -14,6 +14,7 @@ import {
   trustedApplicationOrigin,
 } from "../security/oauth";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { WorkspaceService } from "@/features/onboarding/services/workspace.service";
 import { isPaddleBillingPeriod, isPaddlePlanCode } from "@/features/vayon/billing/providers/paddle/paddle-catalog";
 function value(form: FormData, key: string) {
   return String(form.get(key) ?? "");
@@ -107,7 +108,15 @@ export async function loginAction(form: FormData) {
     p_event_type: "login",
     p_metadata: { provider: "email" },
   });
-  redirect(next);
+  redirect(await signedInDestination(next));
+}
+// /vayon only forwards a signed-in member to the dashboard (or to onboarding without a workspace).
+// Resolve that here for the default entry so a member lands on the dashboard without the extra
+// redirect; anything else, including a member without a workspace, keeps the original destination.
+async function signedInDestination(next: string) {
+  if (next !== "/vayon") return next;
+  const workspace = await new WorkspaceService().first().catch(() => null);
+  return workspace ? "/vayon/dashboard" : next;
 }
 export async function googleLoginAction(form?: FormData) {
   const next = safeAuthenticatedPath(form ? value(form, "next") : null),

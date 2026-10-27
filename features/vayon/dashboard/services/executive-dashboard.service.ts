@@ -77,19 +77,22 @@ export class ExecutiveDashboardService {
       yearStart = new Date(today);
     yearStart.setMonth(yearStart.getMonth() - 11, 1);
     yearStart.setHours(0, 0, 0, 0);
-    const scoped = (table: string) =>
+    // The four unbounded or year-long reads select only the columns load() reads (pinned by the
+    // dashboard column-usage test); the other reads are bounded by day ranges or limits.
+    const scoped = (table: string, columns = "*") =>
       client
         .from(table)
-        .select("*")
+        // Typed as "*" so rows keep the untyped Row shape load() already uses.
+        .select(columns as "*")
         .eq("organization_id", o)
         .eq("workspace_id", w);
     const results = await Promise.all([
       client.from("workspace_members").select("id", { count: "exact", head: true }).eq("organization_id", o).eq("workspace_id", w).neq("status", "removed"),
-      scoped("leads")
+      scoped("leads", "id,status,created_at")
         .gte("created_at", yearStart.toISOString())
         .is("deleted_at", null),
-      scoped("deals").is("deleted_at", null),
-      scoped("properties").is("deleted_at", null),
+      scoped("deals", "id,status,stage_id,value,currency,created_at,updated_at").is("deleted_at", null),
+      scoped("properties", "id,created_at").is("deleted_at", null),
       scoped("meetings")
         .gte("starts_at", today.toISOString())
         .lt("starts_at", tomorrow.toISOString())
@@ -101,7 +104,7 @@ export class ExecutiveDashboardService {
       scoped("ai_conversations")
         .gte("created_at", twoWeeks.toISOString())
         .is("deleted_at", null),
-      scoped("invoices")
+      scoped("invoices", "id,status,total,currency,paid_at")
         .gte("created_at", yearStart.toISOString())
         .is("deleted_at", null),
       scoped("activity_events")

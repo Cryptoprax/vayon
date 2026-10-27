@@ -7,8 +7,9 @@ const read = (path) => readFileSync(path, "utf8");
 test("hero uses the approved real estate positioning and conversion hierarchy", () => {
   const home = read("features/marketing/components/Homepage.tsx");
   for (const copy of [
-    "Run your real estate day from one workspace",
-    "Keep your next conversation, viewing, and deal in focus",
+    "Your Entire Real Estate Business",
+    "Powered by World-Class AI Intelligence",
+    "From the first lead to the final deal, VAYON brings AI employees, sales, properties, and operations together in one intelligent platform",
     "Organize properties, keep track of buyers",
     "follow up on deals",
     "review important actions before they run",
