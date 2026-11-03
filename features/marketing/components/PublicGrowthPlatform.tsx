@@ -99,14 +99,15 @@ export function PublicGrowthPlatform() {
     <>
       <section className="border-y border-vds-border bg-vds-elevated/30">
         <div className="mx-auto max-w-[90rem] px-5 py-24 sm:px-8">
-          <p className="eyebrow">One intelligent real estate platform</p>
+          <p className="eyebrow">See it in a real estate workspace</p>
           <h2 className="mt-4 max-w-4xl text-4xl font-semibold tracking-[-.04em] sm:text-5xl">
-            Turn every property enquiry into coordinated, accountable growth.
+            Turn every enquiry into coordinated, accountable growth.
           </h2>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-vds-muted">
-            VAYON connects lead acquisition, property sales, listing creative,
-            buyer communication, agent coordination, and executive intelligence
-            without losing context between teams.
+            Explore VAYON through its real estate solution: lead acquisition,
+            property sales, listing creative, buyer communication, agent
+            coordination, and executive intelligence, without losing context
+            between teams.
           </p>
           <div className="mt-12 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {experiences.map(([title, copy, Icon, href]) => (

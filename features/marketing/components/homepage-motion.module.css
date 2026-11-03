@@ -1,0 +1,80 @@
+/* Homepage hero and AI Business Command Center motion. Every effect is decorative: content is server-rendered
+   in its final state, and the motion only runs when the visitor has not asked for reduced motion. */
+
+.heroBackdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 60% at 18% 0, color-mix(in srgb, var(--vds-color-primary) 18%, transparent), transparent 70%);
+}
+
+.heroGlow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(36rem 26rem at var(--gx, 72%) var(--gy, 28%), color-mix(in srgb, var(--vds-color-primary) 13%, transparent), transparent 70%);
+  transition: background-position 0.2s ease-out;
+}
+
+.word {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Transform, blur and a partial fade only: the headline is never fully transparent, so it still paints early. */
+  .word {
+    animation: word-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 55ms);
+  }
+  .feedEnter {
+    animation: feed-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .live {
+    animation: live-pulse 1.8s ease-in-out infinite;
+  }
+  .bar {
+    transition: height 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0.25;
+    transform: translateY(0.42em);
+    filter: blur(6px);
+  }
+}
+
+@keyframes feed-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes live-pulse {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.bar {
+  flex: 1;
+  border-radius: 4px 4px 2px 2px;
+  background: linear-gradient(var(--vds-color-primary), color-mix(in srgb, var(--vds-color-primary) 30%, transparent));
+}
+
+.tabs {
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 40rem) {
+  .heroGlow {
+    display: none;
+  }
+}

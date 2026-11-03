@@ -7,7 +7,7 @@ const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 test("homepage hides unapproved testimonials and shows customer value", async () => {
   const source = await read("features/marketing/components/Homepage.tsx");
   assert.match(source, /hasCustomerTestimonials = false/);
-  assert.match(source, /Why Real Estate Teams Choose VAYON/);
+  assert.match(source, /Why Growing Teams Choose VAYON/);
   assert.match(source, /Nothing executes automatically/);
   assert.doesNotMatch(source, /pending verification|customer approval|placeholder/i);
 });

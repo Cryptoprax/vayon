@@ -23,8 +23,8 @@ test("architecture and dashboard previews cover required layers and modules", ()
 
 test("homepage includes focused features workflow trust pricing and customer proof", () => {
   const source = read("features/marketing/components/Homepage.tsx");
-  for (const item of ["AI employees", "Real Estate CRM", "WhatsApp Automation", "Property Intelligence", "Secure Workspaces", "Human approval controls", "Cloud-native infrastructure", "Built Specifically For Real Estate", "LandingRoiCalculator", "Testimonials", "PricingTable"]) assert.match(source, new RegExp(item));
-  for (const step of ["Lead enters", "AI qualifies", "Property matching", "Appointment booked", "Agent assigned", "Follow up", "Offer sent", "Deal won"]) assert.match(source, new RegExp(step));
+  for (const item of ["AI employees", "CRM", "WhatsApp Automation", "Property Intelligence", "Secure Workspaces", "Human approval controls", "Cloud-native infrastructure", "Dedicated Workflows For Real Estate", "LandingRoiCalculator", "Testimonials", "PricingTable"]) assert.match(source, new RegExp(item));
+  for (const step of ["Lead enters", "AI qualifies", "Best-fit recommendation", "Appointment booked", "Owner assigned", "Follow up", "Proposal sent", "Deal won"]) assert.match(source, new RegExp(step));
 });
 
 test("FAQ, metadata, schema and footer contracts remain accessible", () => {
@@ -35,6 +35,6 @@ test("FAQ, metadata, schema and footer contracts remain accessible", () => {
 
 test("experience preserves evidence boundaries and introduces no backend artifacts", () => {
   const homepage = read("features/marketing/components/Homepage.tsx"), docs = read("docs/SPRINT_71_ENTERPRISE_PRODUCT_EXPERIENCE.md");
-  assert.match(homepage, /hasCustomerTestimonials = false/i); assert.match(homepage, /Why Real Estate Teams Choose VAYON/i); assert.doesNotMatch(homepage, /pending verification|customer story placeholders/i); assert.match(docs, /database schema.*untouched/i);
+  assert.match(homepage, /hasCustomerTestimonials = false/i); assert.match(homepage, /Why Growing Teams Choose VAYON/i); assert.doesNotMatch(homepage, /pending verification|customer story placeholders/i); assert.match(docs, /database schema.*untouched/i);
   assert.equal(existsSync("supabase/migrations/20260903000000_sprint71.sql"), false);
 });

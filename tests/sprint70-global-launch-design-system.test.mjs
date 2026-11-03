@@ -41,8 +41,8 @@ test("launch homepage communicates the operating system positioning and complete
     "The AI operating system",
     "AI Lead Qualification",
     "Marketing Automation",
-    "Real Estate CRM",
-    "Real Estate AI Employees",
+    "CRM",
+    "Executive Intelligence",
     "AI Voice Agents",
     "Property Intelligence",
     "Sales Pipeline",
@@ -52,7 +52,7 @@ test("launch homepage communicates the operating system positioning and complete
     "Approval",
     "Start Free",
     "Book Demo",
-    "Built Specifically For Real Estate",
+    "Dedicated Workflows For Real Estate",
   ])
     assert.match(source, new RegExp(item, "i"));
   assert.match(source, /SoftwareApplication/);

@@ -3,25 +3,26 @@ import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 const read = (path) => readFileSync(path, "utf8");
 
-test("hero defines the AI operating system category for real estate", () => {
+test("hero defines the AI operating system category for businesses", () => {
   const source = read("features/marketing/components/Homepage.tsx");
   assert.match(
     source,
-    /From the first lead to the final deal, VAYON brings AI employees, sales, properties, and operations together in one intelligent platform/,
+    /Meet VAYON — an intelligent business operating system where AI employees work alongside your team/,
   );
   for (const item of [
     "AI Employees",
-    "Your Entire Real Estate Business",
-    "Real Estate CRM",
+    "One Intelligent AI Operating System",
+    "For Your Entire Business",
+    "CRM",
     "WhatsApp Automation",
     "AI Voice Agents",
     "Marketing Automation",
     "Property Intelligence",
     "Deal & Revenue Tracking",
     "Secure Workspaces",
-    "Start Free Trial",
-    "Book Live Demo",
-    "Watch 2-Minute Demo",
+    "Start Free",
+    "Book a Demo",
+    "Watch Demo",
   ])
     assert.match(source, new RegExp(item));
 });
@@ -68,8 +69,8 @@ test("workforce roles explain real estate outcomes and daily work", () => {
 test("story covers one feature grid audience workflow ROI and customer proof", () => {
   const source = read("features/marketing/components/Homepage.tsx");
   for (const item of [
-    "Complete Real Estate Operating System",
-    "Built Specifically For Real Estate",
+    "A Complete Business Operating System",
+    "Dedicated Workflows For Real Estate",
     "Agencies",
     "Brokerages",
     "Property Investment Firms",
@@ -77,7 +78,7 @@ test("story covers one feature grid audience workflow ROI and customer proof", (
     "Lead enters",
     "Deal won",
     "Business case",
-    "Why Real Estate Teams Choose VAYON",
+    "Why Growing Teams Choose VAYON",
     "Property Intelligence",
   ])
     assert.match(source, new RegExp(item));

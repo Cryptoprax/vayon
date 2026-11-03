@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | VAYON",
   },
   description:
-    "Organize properties, clients, viewings, and follow-ups in one real estate workspace. Use contextual assistance and review important actions before they run.",
+    "Meet VAYON, the AI operating system where AI employees work alongside your team on customer conversations, sales, marketing, and operations. Review important actions before they run.",
   alternates: { canonical: "/" },
   applicationName: "Vayon OS",
   manifest: "/manifest.webmanifest",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Meet Your AI Team | VAYON",
     description:
-      "Organize properties, clients, viewings, and follow-ups in one real estate workspace. Use contextual assistance and review important actions before they run.",
+      "Meet VAYON, the AI operating system where AI employees work alongside your team on customer conversations, sales, marketing, and operations. Review important actions before they run.",
     url: "/",
     type: "website",
     siteName: "Vayon",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Meet Your AI Team | VAYON",
     description:
-      "Organize properties, clients, viewings, and follow-ups in one real estate workspace. Use contextual assistance and review important actions before they run.",
+      "Meet VAYON, the AI operating system where AI employees work alongside your team on customer conversations, sales, marketing, and operations. Review important actions before they run.",
     images: ["/assets/brand/twitter-image.png"],
   },
 };

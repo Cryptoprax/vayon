@@ -65,7 +65,7 @@ test("real estate audiences, AI employees, customer templates, and SEO are prese
   for (const value of [
     "One Platform Instead of 10+ Tools",
     "Five AI Managers Working Together",
-    "Built for Real Estate",
+    "Dedicated Workflows For Real Estate",
   ])
     assert.ok(homepage.toLowerCase().includes(value.toLowerCase()));
   assert.match(homepage, /hasCustomerTestimonials = false/);

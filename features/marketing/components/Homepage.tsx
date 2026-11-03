@@ -10,7 +10,6 @@ import {
   Cloud,
   Database,
   FileCheck2,
-  HeartHandshake,
   MessageSquareText,
   PhoneCall,
   ShieldCheck,
@@ -18,14 +17,17 @@ import {
   Target,
   Workflow,
 } from "lucide-react";
-import type { ReactNode } from "react";
+import { Fragment, type CSSProperties, type ReactNode } from "react";
 import { ButtonLink } from "@/features/platform/design-system";
 import { PricingTable } from "./PricingTable";
 import { Reveal, WorkflowMotion } from "./LaunchMotion";
-import { EnterpriseFaq, HeroProductMockup } from "./EnterpriseExperience";
+import { EnterpriseFaq } from "./EnterpriseExperience";
+import { CommandCenter } from "./CommandCenter";
+import { HeroGlow } from "./HeroGlow";
 import { LandingRoiCalculator } from "./LandingRoiCalculator";
 import { PublicGrowthPlatform } from "./PublicGrowthPlatform";
 import { FoundingOffer } from "./FoundingOffer";
+import motionStyles from "./homepage-motion.module.css";
 
 const hasCustomerTestimonials = false;
 
@@ -36,14 +38,14 @@ const features = [
     "Qualify every enquiry and prioritize the leads most likely to convert.",
   ],
   [
-    "Real Estate CRM",
+    "CRM",
     Database,
-    "Keep buyers, sellers, properties, activities, and deals in one relationship graph.",
+    "Keep customers, contacts, activities, and deals in one relationship graph.",
   ],
   [
     "WhatsApp Automation",
     MessageSquareText,
-    "Prepare contextual replies, property recommendations, and appointment confirmations.",
+    "Prepare contextual replies, recommendations, and appointment confirmations.",
   ],
   [
     "AI Voice Agents",
@@ -66,14 +68,14 @@ const features = [
     "Understand pipeline, conversion, activity, and AI utilization.",
   ],
   [
-    "Calendar & Site Visits",
+    "Calendar & Appointments",
     CalendarDays,
-    "Connect meetings, property visits, tasks, and reminders.",
+    "Connect meetings, visits, tasks, and reminders.",
   ],
   [
     "Property Matching",
     Building2,
-    "Match demand to inventory with explained alternatives.",
+    "For real estate teams: match demand to inventory with explained alternatives.",
   ],
   [
     "Lead Qualification",
@@ -81,14 +83,14 @@ const features = [
     "Classify intent, urgency, temperature, and confidence.",
   ],
   [
-    "Real Estate AI Employees",
+    "Executive Intelligence",
     CircleDollarSign,
     "See revenue, risk, priorities, and business health.",
   ],
   [
     "Property Intelligence",
     BrainCircuit,
-    "Find trusted knowledge and cite the source.",
+    "For real estate teams: find trusted property knowledge and cite the source.",
   ],
   [
     "Workflow Automation",
@@ -109,13 +111,14 @@ const features = [
 const workflow = [
   "Lead enters",
   "AI qualifies",
-  "Property matching",
+  "Best-fit recommendation",
   "Appointment booked",
-  "Agent assigned",
+  "Owner assigned",
   "Follow up",
-  "Offer sent",
+  "Proposal sent",
   "Deal won",
 ] as const;
+const heroHeadline = ["One Intelligent AI Operating System.", "For Your Entire Business."] as const;
 export const workflowContinuity = ["Lead arrives", "AI qualifies"] as const;
 export const launchExperienceContinuity = [
   "The AI Operating System for Modern Real Estate Companies",
@@ -200,15 +203,15 @@ const aiTeam = [
     ["Tasks", "Calendar", "Documents", "Approvals", "Automation"],
   ],
 ] as const;
-const aiTeamCapabilities = ["Qualify Leads", "Book Meetings", "Generate Listings", "Design Flyers", "Generate Videos", "Run Marketing", "Manage CRM", "Schedule Viewings", "Generate Reports", "Write Emails", "Answer Customers", "Manage Documents"] as const;
-const aiTeamJourney = [["Create Your Workspace", "Choose your real estate business and create a secure workspace."], ["Meet Your AI Team", "Your sales, property, marketing, customer success and operations specialists are prepared automatically."], ["Start Growing", "Give your team its first goal and keep control of every important action."]] as const;
+const aiTeamCapabilities = ["Qualify Leads", "Book Meetings", "Prepare Proposals", "Design Flyers", "Generate Videos", "Run Marketing", "Manage CRM", "Schedule Appointments", "Generate Reports", "Write Emails", "Answer Customers", "Manage Documents"] as const;
+const aiTeamJourney = [["Create Your Workspace", "Choose your business type and create a secure workspace."], ["Meet Your AI Team", "Your sales, marketing, customer success and operations specialists are prepared automatically, with property specialists for real estate teams."], ["Start Growing", "Give your team its first goal and keep control of every important action."]] as const;
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
-      name: "Why is Vayon built specifically for real estate?",
-      text: "Vayon connects leads, properties, visits, conversations, deals, approvals, and revenue intelligence in one operating model.",
+      name: "Which businesses can use VAYON?",
+      text: "VAYON brings customer relationships, conversations, sales, marketing, operations, approvals, and analytics into one AI workspace for businesses across industries, with dedicated property workflows for real estate teams.",
     },
     {
       name: "Does Vayon replace human decision-making?",
@@ -238,7 +241,7 @@ export function Homepage() {
             applicationCategory: "BusinessApplication",
             operatingSystem: "Web",
             description:
-              "Manage leads, listings, agents, appointments, AI employees, marketing and operations with one AI-powered operating system built for modern real estate businesses.",
+              "Manage customers, conversations, sales, marketing, operations and AI employees in one AI business operating system, with dedicated workflows for real estate teams.",
             featureList: modules,
             offers: [
               { "@type": "Offer", price: "79", priceCurrency: "USD" },
@@ -252,34 +255,31 @@ export function Homepage() {
         dangerouslySetInnerHTML={{ __html: safeJson(faqJsonLd) }}
       />
       <section className="relative isolate overflow-hidden px-5 py-20 sm:px-8 sm:py-28">
-        <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-[44rem] max-w-6xl rounded-full bg-vds-primary-soft blur-3xl" />
-        <div className="mx-auto grid max-w-[90rem] items-center gap-14 lg:grid-cols-[.92fr_1.08fr]">
+        <div className={motionStyles.heroBackdrop} aria-hidden="true" />
+        <HeroGlow />
+        <div className="mx-auto grid max-w-[90rem] grid-cols-[minmax(0,1fr)] items-center gap-14 lg:grid-cols-[minmax(0,.92fr)_minmax(0,1.08fr)]">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-vds-accent-border bg-vds-primary-soft px-3 py-1.5 text-xs font-semibold text-vds-primary">
+            <span className="inline-flex items-center gap-2 rounded-full border border-vds-accent-border bg-vds-primary-soft px-3 py-1.5 text-xs font-semibold tracking-[.14em] text-vds-primary">
               <Sparkles className="size-3.5" aria-hidden="true" />
-              Properties, clients, and follow-ups in one place
+              THE FUTURE OF INTELLIGENT BUSINESS
             </span>
-            <h1 className="mt-7 text-balance text-5xl font-semibold leading-[.96] tracking-[-.06em] sm:text-7xl">
-              <span className="block text-vds-foreground">Your Entire Real Estate Business.</span>
-              <span className="block text-vds-primary">Powered by World-Class AI Intelligence.</span>
+            <h1 className="mt-7 text-balance text-5xl font-semibold leading-[.98] tracking-[-.055em] sm:text-7xl">
+              <HeroHeadline />
             </h1>
             <h2 className="mt-7 max-w-2xl text-xl font-medium leading-8 text-vds-secondary">
-              From the first lead to the final deal, VAYON brings AI employees, sales, properties, and operations together in one intelligent platform.
+              Meet VAYON — an intelligent business operating system where AI employees work alongside your team to manage customer conversations, automate sales, coordinate operations, and turn everyday work into measurable progress.
             </h2>
             <p className="mt-5 max-w-2xl text-pretty leading-7 text-vds-muted">
-              Organize properties, keep track of buyers, plan viewings, and follow up on deals. Use the existing AI Assistant where you need help, and review important actions before they run.
+              Build smarter workflows. Reduce repetitive work. Unlock the full potential of AI across your organization.
             </p>
             <FoundingOffer />
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href="/signup" size="lg">
-                Start Free Trial{" "}
+                Start Free{" "}
                 <ArrowRight className="size-4" aria-hidden="true" />
               </ButtonLink>
-              <ButtonLink href="/demo" variant="outline" size="lg">
-                Watch 2-Minute Demo
-              </ButtonLink>
-              <ButtonLink href="/contact?intent=demo" variant="ghost" size="lg">
-                Book Live Demo
+              <ButtonLink href="/contact?intent=demo" variant="outline" size="lg">
+                Book a Demo
               </ButtonLink>
             </div>
             <div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-xs text-vds-muted">
@@ -299,7 +299,7 @@ export function Homepage() {
               ))}
             </div>
           </div>
-          <HeroProductMockup />
+          <CommandCenter />
         </div>
       </section>
       <Section
@@ -318,16 +318,16 @@ export function Homepage() {
       <Proof />
       <Section
         eyebrow="Your AI team, working together"
-        title="Powered by the World's Most Advanced AI Operating System for Real Estate"
-        copy="AI Employees, CRM, Marketing, Communications, Automation, Calendar, Properties, Creative Studio, Growth Intelligence, Analytics and Connected Apps—everything working together."
+        title="One AI Operating System for Every Part of Your Business"
+        copy="AI Employees, CRM, Marketing, Communications, Automation, Calendar, Creative Studio, Growth Intelligence, Analytics and Connected Apps—everything working together."
       >
         <ModuleGrid />
       </Section>
       <Band>
         <Section
           eyebrow="Complete platform"
-          title="Complete Real Estate Operating System"
-          copy="Manage buyers, sellers, listings, agents, appointments, communications and closing activity without losing context between tools."
+          title="A Complete Business Operating System"
+          copy="Manage customers, pipelines, teams, appointments, communications and operations without losing context between tools."
         >
           <FeatureGrid />
         </Section>
@@ -335,12 +335,12 @@ export function Homepage() {
       <Section
         eyebrow="Working from day one"
         title="Meet Your AI Team"
-        copy="Your complete real estate workforce is prepared to qualify buyers, market properties, coordinate operations and follow up—while you remain in control."
+        copy="Your AI team is prepared to qualify leads, run marketing, coordinate operations and follow up—while you remain in control."
       >
         <AiTeamGrid />
       </Section>
       <Band>
-        <Section eyebrow="One team, every outcome" title="Everything Your AI Team Can Do" copy="Give your AI Team a business goal and let each specialist prepare the work needed to move deals forward.">
+        <Section eyebrow="One team, every outcome" title="Everything Your AI Team Can Do" copy="Give your AI Team a business goal and let each specialist prepare the work needed to move your business forward.">
           <AiTeamCapabilities />
         </Section>
       </Band>
@@ -361,38 +361,12 @@ export function Homepage() {
         <PricingTable />
       </section>
       <Section
-        eyebrow="Real Estate FAQ"
-        title="The questions serious real estate companies ask."
-        copy="Specific answers about property sales, lead response, AI, integrations, pricing, support, and deployment."
+        eyebrow="FAQ"
+        title="The questions growing businesses ask."
+        copy="Specific answers about security, AI, pricing, integrations, setup, and support."
       >
         <EnterpriseFaq />
       </Section>
-      <section className="px-5 pb-24 sm:px-8">
-        <div className="mx-auto max-w-5xl rounded-[2rem] border border-vds-accent-border bg-vds-surface px-6 py-16 text-center shadow-2xl sm:px-12">
-          <HeartHandshake
-            className="mx-auto size-8 text-vds-primary"
-            aria-hidden="true"
-          />
-          <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-semibold tracking-[-.045em] sm:text-6xl">
-            Ready To Transform Your Real Estate Business?
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-vds-muted">
-            Start a workspace, see Vayon in action, or design your enterprise
-            rollout.
-          </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <ButtonLink href="/signup" size="lg">
-              Start Free
-            </ButtonLink>
-            <ButtonLink href="/contact" variant="outline" size="lg">
-              Book Live Demo
-            </ButtonLink>
-            <ButtonLink href="/contact?intent=sales" variant="ghost" size="lg">
-              Contact Sales
-            </ButtonLink>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
@@ -426,9 +400,9 @@ function RealEstateBusinesses() {
   return (
     <Band>
       <Section
-        eyebrow="Real estate, end to end"
-        title="Built Specifically For Real Estate"
-        copy="Purpose-built operating workflows for the teams that develop, market, sell, lease, and manage property."
+        eyebrow="Industry solution · Real estate"
+        title="Dedicated Workflows For Real Estate"
+        copy="Alongside the core platform, VAYON includes property, viewing, and deal workflows for the teams that develop, market, sell, lease, and manage property."
       >
         <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {realEstateBusinesses.map(([business, description]) => (
@@ -462,7 +436,7 @@ function Testimonials() {
     <Band>
       <Section
         eyebrow="Customer stories"
-        title="Real estate teams building with VAYON"
+        title="Teams building with VAYON"
         copy="Customer stories will appear here when they are ready to share."
       >
         <div className="grid gap-4 lg:grid-cols-3">
@@ -485,14 +459,14 @@ function WhyTeamsChooseVayon() {
   const reasons = [
     ["One Platform Instead of 10+ Tools", Workflow, "Manage CRM, marketing, operations, AI, transactions, and reporting from one workspace."],
     ["Five AI Managers Working Together", Bot, "Sales, Marketing, Operations, Finance, and Customer Success collaborate with evidence-backed recommendations."],
-    ["Built for Real Estate", Building2, "Purpose-built workflows for agencies, brokers, builders, and developers."],
+    ["Industry Solutions", Building2, "Start with the core platform, or use dedicated workflows for real estate agencies, brokers, builders, and developers."],
     ["Enterprise Security", ShieldCheck, "Role-based permissions, approvals, audit history, and secure workspace isolation."],
     ["AI With Human Control", FileCheck2, "Nothing executes automatically. Every important action stays under your approval."],
-    ["Scalable For Growing Agencies", ChartNoAxesCombined, "Designed to support boutique agencies through enterprise brokerages."],
+    ["Scalable As You Grow", ChartNoAxesCombined, "Designed to support small teams through larger organizations."],
   ] as const;
   return (
     <Band>
-      <Section eyebrow="A connected operating advantage" title="Why Real Estate Teams Choose VAYON" copy="Bring your people, customer relationships, property work, and AI managers together without sacrificing control.">
+      <Section eyebrow="A connected operating advantage" title="Why Growing Teams Choose VAYON" copy="Bring your people, customer relationships, operations, and AI managers together without sacrificing control.">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {reasons.map(([title, Icon, description]) => (
             <article className="vds-card-motion rounded-2xl border border-vds-border bg-vds-surface p-6" key={title}>
@@ -528,7 +502,7 @@ function ModuleGrid() {
     "CRM",
     "AI Employees",
     "Marketing",
-    "Property Management",
+    "Communications",
     "Lead Qualification",
     "Appointments",
     "Automation",
@@ -586,6 +560,29 @@ function AiTeamCapabilities() {
 }
 function AiTeamJourney() {
   return <div className="grid gap-4 lg:grid-cols-3">{aiTeamJourney.map(([title, description]) => <article key={title} className="rounded-3xl border border-vds-border bg-vds-surface p-7"><span className="grid size-11 place-items-center rounded-2xl bg-vds-primary-soft text-vds-primary"><Bot className="size-5" aria-hidden="true"/></span><h3 className="mt-6 text-xl font-semibold">{title}</h3><p className="mt-3 text-sm leading-6 text-vds-muted">{description}</p></article>)}</div>;
+}
+// The headline is server-rendered once for assistive technology; the visible copy is split into words for the
+// staggered reveal (CSS only, skipped for reduced motion).
+function HeroHeadline() {
+  return (
+    <>
+      <span className="sr-only">{heroHeadline.join(" ")}</span>
+      <span aria-hidden="true">
+        {heroHeadline.map((line, lineIndex) => {
+          const offset = heroHeadline.slice(0, lineIndex).reduce((count, previous) => count + previous.split(" ").length, 0);
+          return (
+            <span key={line} className={`block ${lineIndex ? "text-vds-primary" : "text-vds-foreground"}`}>
+              {line.split(" ").map((word, wordIndex) => (
+                <Fragment key={wordIndex}>
+                  <span className={motionStyles.word} style={{ "--i": offset + wordIndex } as CSSProperties}>{word}</span>{" "}
+                </Fragment>
+              ))}
+            </span>
+          );
+        })}
+      </span>
+    </>
+  );
 }
 function Section({
   eyebrow,

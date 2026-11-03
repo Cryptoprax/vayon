@@ -37,7 +37,7 @@ test("9-10: the selected plan and period query parameters survive the copy chang
 });
 test("11: generic (non-plan-specific) signup CTAs are intentionally unchanged", () => {
   assert.match(marketingShell, /Start Free/);
-  assert.match(homepage, /Start Free Trial/);
+  assert.match(homepage, /Start Free\b/);
 });
 test("12: existing-subscriber Upgrade copy/behavior is unchanged by this pass", () => {
   assert.match(commercialPlatform, /action === "upgrade" \? <Button className="w-full" variant="primary" disabled=\{busy !== null\} onClick=\{\(\) => changePlan\(displayPlan\.code\)\}>\{busy === displayPlan\.code \? "Updating plan\.\.\." : "Upgrade to " \+ displayPlan\.name\}<\/Button>/);

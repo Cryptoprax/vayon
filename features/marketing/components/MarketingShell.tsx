@@ -203,7 +203,7 @@ function MarketingFooter() {
         <div>
           <BrandLogo size="md" />
           <p className="mt-4 max-w-xs text-sm leading-6 text-vds-muted">
-            The AI Operating System built for modern real estate companies.
+            The AI Operating System for modern businesses, with dedicated solutions for real estate.
           </p>
           <p className="mt-6 text-xs text-vds-subtle">
             Built with governance at the core.
@@ -275,7 +275,7 @@ function MarketingFooter() {
         </div>
       </div>
       <div className="border-t border-vds-border px-5 py-5 text-center text-xs text-vds-subtle">
-        © {new Date().getUTCFullYear()} Vayon. Real estate operations powered by
+        © {new Date().getUTCFullYear()} Vayon. Business operations powered by
         AI, under human control.
       </div>
     </footer>
@@ -289,16 +289,16 @@ function ConversionCta() {
       className="border-t border-vds-border px-5 py-20 sm:px-8"
     >
       <div className="mx-auto max-w-5xl rounded-[2rem] border border-vds-accent-border bg-vds-surface px-6 py-14 text-center shadow-2xl sm:px-12">
-        <p className="eyebrow">Move your real estate business forward</p>
+        <p className="eyebrow">Move your business forward</p>
         <h2
           id="public-conversion-heading"
           className="mt-4 text-3xl font-semibold tracking-[-.04em] sm:text-5xl"
         >
-          See how VAYON turns property enquiries into closed deals.
+          See how VAYON turns everyday work into measurable progress.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl leading-7 text-vds-muted">
           Start a workspace, explore the product, or plan a live walkthrough for
-          your agents and leadership team.
+          your team and leadership.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <ButtonLink href="/signup" size="lg">

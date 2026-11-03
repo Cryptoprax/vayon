@@ -12,7 +12,7 @@ for (const term of ["authoritative", "projection", "placeholder", "runtime", "pr
   assert.equal(new RegExp(term, "i").test(publicCopy), false, `Homepage still contains internal term: ${term}`);
 }
 assert.match(homepage, /hasCustomerTestimonials = false/);
-assert.match(homepage, /Why Real Estate Teams Choose VAYON/);
+assert.match(homepage, /Why Growing Teams Choose VAYON/);
 assert.match(homepage, /Founding Customer Offer/);
 assert.match(pricing, /FOUNDING MEMBER PRICING/);
 assert.match(pricing, /Prices shown in USD\. Monthly and annual plans available\./);

@@ -4,18 +4,16 @@ import test from "node:test";
 
 const read = (path) => readFileSync(path, "utf8");
 
-test("hero uses the approved real estate positioning and conversion hierarchy", () => {
+test("hero uses the approved AI operating system positioning and conversion hierarchy", () => {
   const home = read("features/marketing/components/Homepage.tsx");
   for (const copy of [
-    "Your Entire Real Estate Business",
-    "Powered by World-Class AI Intelligence",
-    "From the first lead to the final deal, VAYON brings AI employees, sales, properties, and operations together in one intelligent platform",
-    "Organize properties, keep track of buyers",
-    "follow up on deals",
-    "review important actions before they run",
-    "Start Free Trial",
-    "Watch 2-Minute Demo",
-    "Book Live Demo",
+    "THE FUTURE OF INTELLIGENT BUSINESS",
+    "One Intelligent AI Operating System.",
+    "For Your Entire Business.",
+    "Meet VAYON — an intelligent business operating system where AI employees work alongside your team to manage customer conversations, automate sales, coordinate operations, and turn everyday work into measurable progress.",
+    "Build smarter workflows. Reduce repetitive work. Unlock the full potential of AI across your organization.",
+    "Start Free",
+    "Book a Demo",
   ])
     assert.match(home, new RegExp(copy));
 });

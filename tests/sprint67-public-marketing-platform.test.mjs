@@ -37,9 +37,9 @@ test("homepage covers focused positioning and interactive conversion", () => {
   for (const x of [
     "Product demo",
     "WorkflowMotion",
-    "Complete Real Estate Operating System",
+    "A Complete Business Operating System",
     "AiTeamGrid",
-    "Built Specifically For Real Estate",
+    "Dedicated Workflows For Real Estate",
     "LandingRoiCalculator",
     "PricingTable",
     "Start Free",

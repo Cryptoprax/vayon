@@ -8,10 +8,10 @@ const employees = read("features/vayon/operational-workforce/components/Workforc
 const empty = read("features/vayon/empty-states/UniversalEmptyState.tsx");
 const failures = [];
 const requireText = (source, pattern, message) => { if (!pattern.test(source)) failures.push(message); };
-for (const copy of ["Your Entire Real Estate Business", "Powered by World-Class AI Intelligence", "From the first lead to the final deal, VAYON brings AI employees, sales, properties, and operations together in one intelligent platform", "Organize properties, keep track of buyers", "Start Free Trial", "Watch 2-Minute Demo", "Book Live Demo", "Meet Your AI Team", "Everything Your AI Team Can Do", "Create Your Workspace", "Start Growing", "Connected Apps"]) requireText(homepage, new RegExp(copy), `Missing homepage message: ${copy}`);
+for (const copy of ["One Intelligent AI Operating System", "For Your Entire Business", "Meet VAYON — an intelligent business operating system", "Build smarter workflows", "Start Free", "Book a Demo", "Watch Demo", "Meet Your AI Team", "Everything Your AI Team Can Do", "Create Your Workspace", "Start Growing", "Connected Apps"]) requireText(homepage, new RegExp(copy), `Missing homepage message: ${copy}`);
 for (const role of ["Sarah · Sales Manager", "Emma · Property Advisor", "Alex · Marketing Director", "Olivia · Customer Success Manager", "David · Operations Manager"]) requireText(homepage, new RegExp(role), `Missing AI Team role: ${role}`);
 requireText(metadata, /Meet Your AI Team \| VAYON/, "Homepage SEO title is incorrect.");
-requireText(metadata, /Organize properties, clients, viewings, and follow-ups/, "Homepage SEO description is incorrect.");
+requireText(metadata, /AI employees work alongside your team on customer conversations, sales, marketing, and operations/, "Homepage SEO description is incorrect.");
 requireText(dashboard, /Meet Your AI Team.*Your AI Team is already working.*Today.*Recommended actions/s, "Dashboard AI Team summary is incomplete.");
 requireText(onboarding, /Meet your AI Team.*Choose your business.*prepared automatically/s, "Onboarding AI Team journey is incomplete.");
 requireText(empty, /{description}/, "Empty states must use their workspace description.");

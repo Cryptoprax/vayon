@@ -7,7 +7,8 @@ const read = (path) => readFile(path, "utf8");
 test("hero prioritizes demo conversion with visible trust", async () => {
   const source = await read("features/marketing/components/Homepage.tsx");
   assert.match(source, /Book Demo/);
-  assert.match(source, /Watch 2-Minute Demo/);
+  assert.match(source, /Watch Demo/);
+  assert.match(source, /Book a Demo/);
   assert.match(source, /Start Free/);
   for (const value of [
     "Secure by design",
@@ -22,11 +23,11 @@ test("homepage tells the complete lead-to-revenue workflow", async () => {
   for (const step of [
     "Lead enters",
     "AI qualifies",
-    "Property matching",
+    "Best-fit recommendation",
     "Appointment booked",
-    "Agent assigned",
+    "Owner assigned",
     "Follow up",
-    "Offer sent",
+    "Proposal sent",
     "Deal won",
   ])
     assert.match(source, new RegExp(step));
@@ -71,7 +72,7 @@ test("interactive ROI calculator uses transparent requested inputs and outputs",
 test("customer proof is launch-ready without fabricated endorsements", async () => {
   const source = await read("features/marketing/components/Homepage.tsx");
   assert.match(source, /hasCustomerTestimonials = false/i);
-  assert.match(source, /Why Real Estate Teams Choose VAYON/i);
+  assert.match(source, /Why Growing Teams Choose VAYON/i);
   assert.doesNotMatch(source, /pending customer approval/i);
   assert.doesNotMatch(source, /pending verification/i);
 });

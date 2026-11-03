@@ -18,8 +18,7 @@ test("landing page follows the final unique information architecture", () => {
     'eyebrow="Business case"',
     "<Testimonials />",
     "<PricingTable />",
-    'eyebrow="Real Estate FAQ"',
-    "Ready To Transform",
+    'eyebrow="FAQ"',
   ];
   let previous = -1;
   for (const marker of order) {
@@ -34,7 +33,7 @@ test("landing page follows the final unique information architecture", () => {
 
 test("landing page has one audience and AI employee presentation", () => {
   const source = read("features/marketing/components/Homepage.tsx");
-  assert.equal(source.match(/Built Specifically For Real Estate/g)?.length, 1);
+  assert.equal(source.match(/Dedicated Workflows For Real Estate/g)?.length, 1);
   assert.equal(source.match(/<AiTeamGrid \/>/g)?.length, 1);
   for (const removed of [
     "ConversionWorkforce",
